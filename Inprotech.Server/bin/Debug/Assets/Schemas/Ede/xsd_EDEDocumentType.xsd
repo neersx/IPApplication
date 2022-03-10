@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.6">
+	<xs:annotation>
+		<xs:documentation>Document Type</xs:documentation>
+	</xs:annotation>
+	<!-- ======================================================================
+          Filename      : DocumentType_T.xsd 
+          Author        : CPA Software Solutions
+          Version       : 0.6
+          Last Update   : 2006-06-20
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA-XML Bulk Load schema.
+       ====================================================================== -->
+	<!-- ======================================================================
+          DOCUMENT TYPES LIBRARY                                                                                           
+       ====================================================================== -->
+	<xs:complexType name="DocumentType">
+		<xs:sequence>
+			<xs:element name="DocumentName" type="xs:string" sql:field="DOCUMENTNAME"/>
+			<xs:element name="DocumentFilename" type="xs:string" minOccurs="0" sql:field="DOCUMENTFILENAME"/>
+			<xs:element name="DocumentFileFormat" type="xs:string" minOccurs="0" sql:field="DOCUMENTFILEFORMAT"/>
+			<xs:element name="DocumentDate" type="xs:dateTime" minOccurs="0" sql:field="DOCUMENTDATE"/>
+			<xs:element name="DocumentTypeCode" type="xs:string" minOccurs="0" sql:field="DOCUMENTTYPECODE"/>
+			<xs:element name="DocumentLanguageCode" type="xs:string" minOccurs="0" sql:field="DOCUMENTLANGUAGECODE"/>
+			<xs:element name="DocumentMedia" type="xs:string" minOccurs="0" sql:field="DOCUMENTMEDIA"/>
+			<xs:element name="DocumentLocation" type="xs:string" minOccurs="0" sql:field="DOCUMENTLOCATION"/>
+			<xs:element name="DocumentVersion" type="xs:string" minOccurs="0" sql:field="DOCUMENTVERSION"/>
+			<xs:element name="DocumentSizeInByte" type="xs:integer" minOccurs="0" sql:field="DOCUMENTSIZEINBYTE"/>
+			<xs:element name="DocumentComment" type="xs:string" minOccurs="0" sql:field="DOCUMENTCOMMENT"/>
+			<xs:element name="DocumentBinary" type="xs:base64Binary" minOccurs="0" sql:field="DOCUMENTBINARY"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

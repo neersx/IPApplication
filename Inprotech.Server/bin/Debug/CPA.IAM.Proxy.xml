@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CPA.IAM.Proxy</name>
+    </assembly>
+    <members>
+        <member name="T:CPA.IAM.Proxy.IAMCommunicationException">
+            <summary>
+            Thrown when a communication against IAM fails 
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.IAMCommunicationException.StatusCode">
+            <summary>
+            Status code indicating the error
+            </summary>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IAMCommunicationException.#ctor(System.Net.HttpStatusCode,System.String)">
+            <summary>
+            Main constructor
+            </summary>
+            <param name="code">HTTP status code</param>
+            <param name="message">Exception message</param>
+        </member>
+        <member name="T:CPA.IAM.Proxy.IBaseDataProxy">
+            <summary>
+            Contains methods for fetching base data
+            </summary>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IBaseDataProxy.GetAllContactInfoTypes">
+            <summary>
+            Fetch all contact info types
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CPA.IAM.Proxy.IOrganizationProxy">
+            <summary>
+            Proxy for IAM API - Organizations
+            </summary>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IOrganizationProxy.Search(CPA.IAM.Proxy.Types.Organizations.SearchCriteriaOrganization,System.Nullable{System.Guid})">
+            <summary>
+            Search for organization using the criteria
+            The search is paginated and will return a maximum number of 100 entries at a time
+            </summary>
+            <returns>searchresult containing matching entries and total query count</returns>        
+        </member>
+        <member name="M:CPA.IAM.Proxy.IOrganizationProxy.SearchAsync(CPA.IAM.Proxy.Types.Organizations.SearchCriteriaOrganization,System.Nullable{System.Guid})">
+            <summary>
+            Search for organization using the criteria
+            The search is paginated and will return a maximum number of 100 entries at a time
+            </summary>
+            <returns>searchresult containing matching entries and total query count</returns>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IOrganizationProxy.FindByGuk(System.Guid)">
+            <summary>
+            Find a specific organization by GUK
+            </summary>
+            <param name="guk"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IOrganizationProxy.FindByGukAsync(System.Guid)">
+            <summary>
+            Find a specific organization by GUK
+            </summary>
+            <param name="guk"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CPA.IAM.Proxy.ITokenProvider">
+            <summary>
+            Interface for providing tokens, implemented by each application
+            </summary>
+        </member>
+        <member name="M:CPA.IAM.Proxy.ITokenProvider.GetUserAccessToken">
+            <summary>
+            Get the access token for the current user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.IAM.Proxy.ITokenProvider.GetClientAccessToken">
+            <summary>
+            Get a new access token for the application as client
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CPA.IAM.Proxy.IUserProxy">
+            <summary>
+            Proxy for IAM API - Users
+            </summary>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IUserProxy.Search(CPA.IAM.Proxy.Types.Users.SearchCriteriaUser,System.Nullable{System.Guid})">
+            <summary>
+            Search for users
+            </summary>
+            <param name="sc">Search Criteria</param>
+            <param name="searchAsUserGuk"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IUserProxy.SearchAsync(CPA.IAM.Proxy.Types.Users.SearchCriteriaUser,System.Nullable{System.Guid})">
+            <summary>
+            Search for users
+            </summary>
+            <param name="sc">Search Criteria</param>
+            <param name="searchAsUserGuk"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IUserProxy.FindByGuk(System.Guid)">
+            <summary>
+            Find a specific user by GUK
+            </summary>
+            <param name="guk"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IUserProxy.FindByGukAsync(System.Guid)">
+            <summary>
+            Find a specific user by GUK
+            </summary>
+            <param name="guk"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IUserProxy.Create(CPA.IAM.Proxy.Types.Users.User)">
+            <summary>
+            Create a new user
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IUserProxy.CreateAsync(CPA.IAM.Proxy.Types.Users.User)">
+            <summary>
+            Create a new user
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IUserProxy.Update(CPA.IAM.Proxy.Types.Users.User)">
+            <summary>
+            Update an existing user
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IUserProxy.UpdateAsync(CPA.IAM.Proxy.Types.Users.User)">
+            <summary>
+            Update an existing user
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CPA.IAM.Proxy.IAMProxyModule">
+            <summary>
+            Autofac module for CPA.IAM.Proxy
+            </summary>
+        </member>
+        <member name="M:CPA.IAM.Proxy.IAMProxyModule.Load(Autofac.ContainerBuilder)">
+            <summary>
+            Load method for services
+            </summary>
+            <param name="builder"></param>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cpasoftwaresolutions.com" targetNamespace="http://www.cpasoftwaresolutions.com" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.4">
+	<xs:annotation>
+		<xs:documentation>
+			CPA-XML Standard Version 1.6
+		</xs:documentation>
+	</xs:annotation>
+	<!-- ======================================================================
+          Filename      : CPA-XML.xsd 
+          Author        : CPA Software Solutions
+          Version       : 1.6
+          Last Update   : 2016-10-06
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA Data Model Version 1.6 (CPA-XML)  
+       ====================================================================== -->
+	<!-- ======================================================================
+          CASE TYPE
+       ====================================================================== -->
+	<xs:include schemaLocation="CaseType.xsd"/>
+	<!-- ======================================================================
+          BUSINESS TYPES LIBRARY   
+       ====================================================================== -->
+	<xs:include schemaLocation="DocumentType.xsd"/>
+	<xs:include schemaLocation="PaymentType.xsd"/>
+	<xs:include schemaLocation="NameTypeCodeType.xsd"/>
+	<!-- ======================================================================
+          TRANSACTION/MESSAGE TYPES LIBRARY 
+       ====================================================================== -->
+	<xs:element name="Transaction" type="TransactionType">
+		<xs:annotation>
+			<xs:documentation>Top Level Transaction for all Types of Message</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!-- ====================================================================== -->
+	<xs:complexType name="TransactionType">
+		<xs:sequence>
+			<xs:element name="TransactionHeader" type="TransactionHeaderType" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="TransactionBody" type="TransactionBodyType" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="TransactionHeaderType">
+		<xs:sequence>
+			<xs:element name="SenderDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SenderRequestType" type="RequestType" minOccurs="0"/>
+						<xs:element name="SenderRequestIdentifier" type="xs:string"/>
+						<xs:element name="Sender" type="xs:string"/>
+						<xs:element name="SenderLanguageCode" type="LanguageCodeType" minOccurs="0"/>
+						<xs:element name="SenderXSDVersion" type="xs:string"/>
+						<xs:element name="SenderSoftware" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="SenderSoftwareName" type="xs:string" minOccurs="0"/>
+									<xs:element name="SenderSoftwareVersion" type="xs:string" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SenderFilename" type="xs:string" minOccurs="0"/>
+						<xs:choice>
+							<xs:element name="SenderProducedDate" type="xs:date" minOccurs="0"/>
+							<xs:element name="SenderProducedDateTime" type="xs:dateTime" minOccurs="0"/>
+						</xs:choice>
+						<xs:element name="SenderEmail" type="xs:string" minOccurs="0"/>
+						<xs:element name="SenderCopyToEmail" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceiverDetails" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ReceiverRequestType" type="RequestType" minOccurs="0"/>
+						<xs:element name="ReceiverRequestIdentifier" type="xs:string" minOccurs="0"/>
+						<xs:element name="Receiver" type="xs:string" minOccurs="0"/>
+						<xs:element name="ReceiverLanguageCode" type="LanguageCodeType" minOccurs="0"/>
+						<xs:element name="ReceiverXSDVersion" type="xs:string" minOccurs="0"/>
+						<xs:element name="ReceiverSoftware" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ReceiverSoftwareName" type="xs:string" minOccurs="0"/>
+									<xs:element name="ReceiverSoftwareVersion" type="xs:string" minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ReceiverFilename" type="xs:string" minOccurs="0"/>
+						<xs:choice>
+							<xs:element name="ReceiverProducedDate" type="xs:date" minOccurs="0"/>
+							<xs:element name="ReceiverProducedDateTime" type="xs:dateTime" minOccurs="0"/>
+						</xs:choice>
+						<xs:element name="ReceiverEmail" type="xs:string" minOccurs="0"/>
+						<xs:element name="ReceiverCopyToEmail" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="OutputFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionSummaryDetails" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="CountSummary" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="CountTypeCode" type="CountTypeCodeType"/>
+									<xs:element name="CountCode" type="xs:string"/>
+									<xs:element name="CountDescription" type="xs:string" minOccurs="0"/>
+									<xs:element name="Count" type="GreaterOrEqualToZeroType"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="FilterSummary" minOccurs="0" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="FilterTypeCode" type="FilterTypeCodeType"/>
+									<xs:choice>
+										<xs:element name="ValueDate" type="xs:date" minOccurs="0"/>
+										<xs:element name="ValueDateTime" type="xs:dateTime" minOccurs="0"/>
+										<xs:element name="ValueString" type="xs:string" minOccurs="0"/>
+										<xs:element name="ValueInteger" type="xs:integer" minOccurs="0"/>
+										<xs:element name="ValueDecimal" type="xs:decimal" minOccurs="0"/>
+										<xs:element name="ValueBoolean" type="xs:boolean" minOccurs="0"/>
+									</xs:choice>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="TransactionBodyType">
+		<xs:sequence>
+			<xs:element name="TransactionIdentifier" type="xs:string"/>
+			<xs:element name="TransactionReturnCode" type="TransactionReturnCodeType" minOccurs="0"/>
+			<xs:element name="TransactionMessageDetails" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TransactionMessageCode" type="xs:string" minOccurs="0"/>
+						<xs:element name="TransactionMessageText" type="TextType" minOccurs="0"/>
+					</xs:sequence>
+					<xs:attribute name="sequentialNumber" type="xs:positiveInteger" use="optional"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionContentDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AlternativeSender" type="xs:string" minOccurs="0"/>
+						<xs:element name="TransactionCode" type="TransactionCodeType"/>
+						<xs:element name="TransactionSubCode" type="xs:string" minOccurs="0"/>
+						<xs:element name="TransactionComment" type="TextType" minOccurs="0"/>
+						<xs:element name="TransactionData" type="TransactionDataType"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="RequestType">
+		<xs:union memberTypes="RequestFixType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="RequestFixType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Case Import"/>
+			<xs:enumeration value="Data Input"/>
+			<xs:enumeration value="Data Input Response"/>
+			<xs:enumeration value="Data Verification"/>
+			<xs:enumeration value="Events"/>
+			<xs:enumeration value="Initial Data Export"/>
+			<xs:enumeration value="Data Export"/>
+		  <xs:enumeration value="Agent Input"/>
+			<xs:enumeration value="Agent Instruction"/>
+			<xs:enumeration value="Agent Response"/>
+			<xs:enumeration value="Extract Cases"/>
+			<xs:enumeration value="Extract Cases Response"/>
+			<xs:enumeration value="Extract List Cases"/>
+			<xs:enumeration value="Extract List Cases Response"/>
+			<xs:enumeration value="Extract Documents"/>
+			<xs:enumeration value="Extract Documents Response"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="TransactionReturnCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Accepted"/>
+			<xs:enumeration value="Rejected"/>
+			<xs:enumeration value="New Case"/>
+			<xs:enumeration value="Amended Case"/>
+			<xs:enumeration value="No Changes Made"/>
+			<xs:enumeration value="Case Rejected"/>
+			<xs:enumeration value="Cancellation Instruction"/>
+			<xs:enumeration value="Case Reinstated"/>
+			<xs:enumeration value="Case Deleted Or Archived"/>
+			<xs:enumeration value="New Name"/>
+			<xs:enumeration value="Amended Name"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="TransactionCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Case Import"/>
+			<xs:enumeration value="Name Import"/>
+			<xs:enumeration value="Case Import Response"/>
+			<xs:enumeration value="Name Import Response"/>
+			<xs:enumeration value="Case Export"/>
+			<xs:enumeration value="Name Export"/>
+			<xs:enumeration value="Case Events"/>
+			<xs:enumeration value="Renewal Instruction"/>
+			<xs:enumeration value="Renewal Response"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="TransactionDataType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="CaseDetails" type="CaseType" minOccurs="0"/>
+				<xs:element name="NameAddressDetails" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NameTypeCode" type="NameTypeCodeType" minOccurs="0"/>
+							<xs:element name="AddressBook" type="AddressBookType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="DocumentDetails" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Document" type="DocumentType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PaymentDetails" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Payment" type="PaymentType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CountTypeCodeType">
+		<xs:union memberTypes="CountTypeCodeFixType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CountTypeCodeFixType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Event Group"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="FilterTypeCodeType">
+		<xs:union memberTypes="FilterTypeCodeFixType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="FilterTypeCodeFixType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Data Range From"/>
+			<xs:enumeration value="Data Range To"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="GreaterOrEqualToZeroType">
+		<xs:restriction base="xs:integer">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

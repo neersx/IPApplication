@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.8">
+	<xs:annotation>
+		<xs:appinfo>
+			<sql:relationship name="CaseDesc" parent="EDECASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDEDESCRIPTIONDETAILS" child-key="USERID TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="CaseIdNumDtls" parent="EDECASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDEIDENTIFIERNUMBERDETAILS" child-key="USERID TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="CaseEvntDtls" parent="EDECASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDEEVENTDETAILS" child-key="USERID TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="EvntChrg" parent="EDEEVENTDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER ROWID ASSOCIATEDCASERELATIONSHIPCODE ASSOCIATEDCASECOUNTRYCODE EVENTCODE" child="EDECHARGEDETAILS" child-key="USERID TRANSACTIONIDENTIFIER EVENTROWID ASSOCIATEDCASERELATIONSHIPCODE ASSOCIATEDCASECOUNTRYCODE EVENTCODE"/>
+			<sql:relationship name="CaseName" parent="EDECASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDECASENAMEDETAILS" child-key="USERID TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="CaseAddrBook" parent="EDECASENAMEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER" child="EDEADDRESSBOOK" child-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER"/>
+			<sql:relationship name="AssocCase" parent="EDECASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDEASSOCIATEDCASEDETAILS" child-key="USERID TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="AssocCaseNumberID" parent="EDEASSOCIATEDCASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER ASSOCCASESEQ ASSOCIATEDCASERELATIONSHIPCODE ASSOCIATEDCASECOUNTRYCODE" child="EDEIDENTIFIERNUMBERDETAILS" child-key="USERID TRANSACTIONIDENTIFIER ASSOCCASESEQ ASSOCIATEDCASERELATIONSHIPCODE ASSOCIATEDCASECOUNTRYCODE"/>
+			<sql:relationship name="AssocCaseEvntDtls" parent="EDEASSOCIATEDCASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER ASSOCCASESEQ ASSOCIATEDCASERELATIONSHIPCODE ASSOCIATEDCASECOUNTRYCODE" child="EDEEVENTDETAILS" child-key="USERID TRANSACTIONIDENTIFIER ASSOCCASESEQ ASSOCIATEDCASERELATIONSHIPCODE ASSOCIATEDCASECOUNTRYCODE"/>
+			<sql:relationship name="AssocDoc" parent="EDEASSOCIATEDCASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER ASSOCCASESEQ ASSOCIATEDCASERELATIONSHIPCODE ASSOCIATEDCASECOUNTRYCODE" child="EDEDOCUMENT" child-key="USERID TRANSACTIONIDENTIFIER ASSOCCASESEQ ASSOCIATEDCASERELATIONSHIPCODE ASSOCIATEDCASECOUNTRYCODE"/>
+			<sql:relationship name="CaseDesgCntry" parent="EDECASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDEDESIGNATEDCOUNTRYDETAILS" child-key="USERID TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="CaseGdsSrvcs" parent="EDECASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDEGOODSSERVICESDETAILS" child-key="USERID TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="ClassDescDtls" parent="EDEGOODSSERVICESDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER CLASSIFICATIONTYPECODE CLASSIFICATIONVERSION" child="EDECLASSDESCRIPTION" child-key="USERID TRANSACTIONIDENTIFIER CLASSIFICATIONTYPECODE CLASSIFICATIONVERSION"/>
+			<sql:relationship name="CaseChargeDtls" parent="EDECASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDECHARGEDETAILS" child-key="USERID TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="PatentTermAdjustment" parent="EDECASEDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDEPATENTTERMADJ" child-key="USERID TRANSACTIONIDENTIFIER"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>Details of a Case request or transaction</xs:documentation>
+	</xs:annotation>
+	<!-- ======================================================================
+          Filename      	: xsd_EDECaseType.xsd 
+          Author        	: CPA Software Solutions
+          Version       	: 1.6
+          Date Created   	: 20-06-2006
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA-XML Bulk Load schema
+	06/10/2006 SQA13451 - Added Patent Term Adjustment group element for CPA-XML 0.7.
+	11/05/2007 SQA14388 - Added propagation of AssocCaseId and EventRowId for use with SQLXML 4.0
+	28/08/2014 RFC38519 - Cater for Type of Mark (CPA-XML 1.5)
+	28/08/2014 RFC38555 - Cater for Stem (CPA-XML 1.5)
+	06/10/2016 DR-7526	- Cater for Case Office and Family (CPA-XML 1.6)
+       ====================================================================== -->
+	<!-- ======================================================================
+          BUSINESS TYPES LIBRARY                                                                                         
+       ====================================================================== -->
+	<xs:include schemaLocation="xsd_EDEAddressBookType.xsd"/>
+	<xs:include schemaLocation="xsd_EDEDocumentType.xsd"/>
+	<!-- ======================================================================
+          ADDITIONAL TYPES LIBRARY                                                                                         
+       ====================================================================== -->
+	<xs:include schemaLocation="xsd_EDEAmountType.xsd"/>
+	<!-- ====================================================================== -->
+	<xs:complexType name="CaseType">
+		<xs:sequence>
+			<xs:element name="SenderCaseIdentifier" type="xs:string" minOccurs="0" sql:field="SENDERCASEIDENTIFIER"/>
+			<xs:element name="SenderCaseReference" type="xs:string" minOccurs="0" sql:field="SENDERCASEREFERENCE"/>
+			<xs:element name="ReceiverCaseIdentifier" type="xs:string" minOccurs="0" sql:field="RECEIVERCASEIDENTIFIER"/>
+			<xs:element name="ReceiverCaseReference" type="xs:string" minOccurs="0" sql:field="RECEIVERCASEREFERENCE"/>
+			<xs:element name="CaseLanguageCode" type="xs:string" minOccurs="0" sql:field="CASELANGUAGECODE"/>
+			<xs:element name="CorrespondenceLanguageCode" type="xs:string" minOccurs="0" sql:field="CORRESPONDENCELANGUAGECODE"/>
+			<xs:element name="CaseTypeCode" type="xs:string" minOccurs="0" sql:field="CASETYPECODE"/>
+			<xs:element name="CasePropertyTypeCode" type="xs:string" sql:field="CASEPROPERTYTYPECODE"/>
+			<xs:element name="CaseCategoryCode" type="xs:string" minOccurs="0" sql:field="CASECATEGORYCODE"/>
+			<xs:element name="CaseSubTypeCode" type="xs:string" minOccurs="0" sql:field="CASESUBTYPECODE"/>
+			<xs:element name="CaseBasisCode" type="xs:string" minOccurs="0" sql:field="CASEBASISCODE"/>
+			<xs:element name="CaseCountryCode" type="xs:string" sql:field="CASECOUNTRYCODE"/>
+			<xs:element name="EntitySize" type="xs:string" minOccurs="0" sql:field="ENTITYSIZE"/>
+			<xs:element name="NumberClaims" type="xs:positiveInteger" minOccurs="0" sql:field="NUMBERCLAIMS"/>
+			<xs:element name="NumberDesigns" type="xs:positiveInteger" minOccurs="0" sql:field="NUMBERDESIGNS"/>
+			<xs:element name="ExtendedNumberYears" type="xs:positiveInteger" minOccurs="0" sql:field="EXTENDEDNUMBERYEARS"/>
+			<xs:element name="CaseStatus" type="xs:string" minOccurs="0" sql:field="CASESTATUS"/>
+			<xs:element name="CaseRenewalStatus" type="xs:string" minOccurs="0" sql:field="CASERENEWALSTATUS"/>
+			<xs:element name="CaseStatusFlag" type="xs:string" minOccurs="0" sql:field="CASESTATUSFLAG"/>
+			<xs:element name="StopReasonCode" type="xs:string" minOccurs="0" sql:field="STOPREASONCODE"/>
+			<xs:element name="TypeOfMark" type="xs:string" minOccurs="0" sql:field="TYPEOFMARK"/>
+			<xs:element name="CaseReferenceStem" type="xs:string" minOccurs="0" sql:field="CASEREFERENCESTEM"/>
+			<xs:element name="CaseOffice" type="xs:string" minOccurs="0" sql:field="CASEOFFICE"/>
+			<xs:element name="Family" type="xs:string" minOccurs="0" sql:field="FAMILY"/>
+			<xs:element name="DescriptionDetails" type="DescriptionType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDEDESCRIPTIONDETAILS" sql:relationship="CaseDesc"/>
+			<xs:element name="IdentifierNumberDetails" type="IdentifierNumberType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDEIDENTIFIERNUMBERDETAILS" sql:relationship="CaseIdNumDtls"/>
+			<xs:element name="EventDetails" type="CaseEventType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDEEVENTDETAILS" sql:relationship="CaseEvntDtls"/>
+			<xs:element name="NameDetails" type="CaseNameType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDECASENAMEDETAILS" sql:relationship="CaseName"/>
+			<xs:element name="AssociatedCaseDetails" type="AssociatedCaseType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDEASSOCIATEDCASEDETAILS" sql:relationship="AssocCase"/>
+			<xs:element name="DesignatedCountryDetails" type="DesignatedCountryType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDEDESIGNATEDCOUNTRYDETAILS" sql:relationship="CaseDesgCntry"/>
+			<xs:element name="GoodsServicesDetails" type="GoodsServicesType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDEGOODSSERVICESDETAILS" sql:relationship="CaseGdsSrvcs"/>
+			<xs:element name="ChargeDetails" type="ChargeType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDECHARGEDETAILS" sql:relationship="CaseChargeDtls"/>
+			<xs:element name="PatentTermAdjustment" type="PatentTermAdjustmentType" minOccurs="0" sql:relation="EDEPATENTTERMADJ" sql:relationship="PatentTermAdjustment"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ======================================================================
+          BUSINESS TYPES LIBRARY                                                                                         
+       ====================================================================== -->
+	<xs:complexType name="DescriptionType">
+		<xs:sequence>
+			<xs:element name="DescriptionCode" type="xs:string" sql:field="DESCRIPTIONCODE"/>
+			<xs:element name="DescriptionText" type="TextType" maxOccurs="unbounded" sql:field="DESCRIPTIONTEXT"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="IdentifierNumberType">
+		<xs:sequence>
+			<xs:element name="IdentifierNumberCode" type="xs:string" sql:field="IDENTIFIERNUMBERCODE"/>
+			<xs:element name="IdentifierNumberText" type="xs:string" sql:field="IDENTIFIERNUMBERTEXT"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="CaseEventType">
+		<xs:sequence>
+			<xs:element name="EventCode" type="xs:string" sql:field="EVENTCODE"/>
+			<xs:element name="EventDate" type="xs:dateTime" minOccurs="0" sql:field="EVENTDATE"/>
+			<xs:element name="EventDueDate" type="xs:dateTime" minOccurs="0" sql:field="EVENTDUEDATE"/>
+			<xs:element name="EventText" type="TextType" minOccurs="0" sql:field="EVENTTEXT"/>
+			<xs:element name="EventCycle" type="xs:integer" minOccurs="0" sql:field="EVENTCYCLE"/>
+			<xs:element name="AnnuityTerm" type="xs:string" minOccurs="0" sql:field="ANNUITYTERM"/>
+			<xs:element name="EventChargeDetails" type="ChargeType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDECHARGEDETAILS" sql:relationship="EvntChrg"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="CaseNameType">
+		<xs:sequence>
+			<xs:element name="NameTypeCode" type="xs:string" sql:field="NAMETYPECODE"/>
+			<xs:element name="NameSequenceNumber" type="xs:integer" minOccurs="0" sql:field="NAMESEQUENCENUMBER"/>
+			<xs:element name="NameReference" type="xs:string" minOccurs="0" sql:field="NAMEREFERENCE"/>
+			<xs:element name="NameCurrencyCode" type="xs:string" minOccurs="0" sql:field="NAMECURRENCYCODE"/>
+			<xs:element name="AddressBook" type="AddressBookType" minOccurs="0" sql:relation="EDEADDRESSBOOK" sql:relationship="CaseAddrBook"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="AssociatedCaseType">
+		<xs:sequence>
+			<xs:element name="AssociatedCaseRelationshipCode" type="xs:string" sql:field="ASSOCIATEDCASERELATIONSHIPCODE"/>
+			<xs:element name="AssociatedCaseCountryCode" type="xs:string" minOccurs="0" sql:field="ASSOCIATEDCASECOUNTRYCODE"/>
+			<xs:element name="AssociatedCaseStatus" type="xs:string" minOccurs="0" sql:field="ASSOCIATEDCASESTATUS"/>
+			<xs:element name="AssociatedCaseComment" type="xs:string" minOccurs="0" sql:field="ASSOCIATEDCASECOMMENT"/>
+			<xs:element name="AssociatedCaseIdentifierNumberDetails" type="IdentifierNumberType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDEIDENTIFIERNUMBERDETAILS" sql:relationship="AssocCaseNumberID"/>
+			<xs:element name="AssociatedCaseEventDetails" type="CaseEventType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDEEVENTDETAILS" sql:relationship="AssocCaseEvntDtls"/>
+			<xs:element name="AssociatedDocumentDetails" minOccurs="0" sql:is-constant="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AssociatedDocument" type="DocumentType" maxOccurs="unbounded" sql:relation="EDEDOCUMENT" sql:relationship="AssocDoc"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="DesignatedCountryType">
+		<xs:sequence>
+			<xs:element name="DesignatedCountryCode" type="xs:string" sql:field="DESIGNATEDCOUNTRYCODE"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="GoodsServicesType">
+		<xs:sequence>
+			<xs:element name="ClassificationTypeCode" type="xs:string" minOccurs="0" sql:field="CLASSIFICATIONTYPECODE"/>
+			<xs:element name="ClassificationVersion" type="xs:string" minOccurs="0" sql:field="CLASSIFICATIONVERSION"/>
+			<xs:element name="GoodsServicesComment" type="TextType" minOccurs="0" sql:field="GOODSSERVICESCOMMENT"/>
+			<xs:element name="ClassDescriptionDetails" sql:is-constant="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ClassDescription" type="ClassDescriptionType" maxOccurs="unbounded" sql:relation="EDECLASSDESCRIPTION" sql:relationship="ClassDescDtls"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="ClassDescriptionType">
+		<xs:sequence>
+			<xs:element name="ClassNumber" type="xs:positiveInteger" minOccurs="0" sql:field="CLASSNUMBER"/>
+			<xs:element name="GoodsServicesDescription" type="TextType" minOccurs="0" maxOccurs="unbounded" sql:field="GOODSSERVICESDESCRIPTION"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="ChargeType">
+		<xs:sequence>
+			<xs:element name="ChargeDate" type="xs:dateTime" minOccurs="0" sql:field="CHARGEDATE"/>
+			<xs:element name="ChargeTypeCode" type="xs:string" minOccurs="0" sql:field="CHARGETYPECODE"/>
+			<xs:element name="ChargeDocumentNumber" type="xs:string" minOccurs="0" sql:field="CHARGEDOCUMENTNUMBER"/>
+			<xs:element name="ChargeDocumentItemNumber" type="xs:string" minOccurs="0" sql:field="CHARGEDOCUMENTITEMNUMBER"/>
+			<xs:element name="ChargeAmount" type="AmountType" sql:field="CHARGEAMOUNT"/>
+			<xs:element name="ChargeComment" type="TextType" minOccurs="0" sql:field="CHARGECOMMENT"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="PatentTermAdjustmentType">
+		<xs:sequence>
+			<xs:element name="PreIssuePetitions" type="xs:integer" minOccurs="0" sql:field="PREISSUEPETITIONS"/>
+			<xs:element name="PostIssuePetitions" type="xs:integer" minOccurs="0" sql:field="POSTISSUEPETITIONS"/>
+			<xs:element name="USPTOAdjustment" type="xs:integer" minOccurs="0" sql:field="USPTOADJUSTMENT"/>
+			<xs:element name="USPTODelay" type="xs:integer" minOccurs="0" sql:field="USPTODELAY"/>
+			<xs:element name="ThreeYears" type="xs:integer" minOccurs="0" sql:field="THREEYEARS"/>
+			<xs:element name="ApplicantDelay" type="xs:integer" minOccurs="0" sql:field="APPLICANTDELAY"/>
+			<xs:element name="TotalPatentTermAdjustment" type="xs:integer" minOccurs="0" sql:field="TOTALPTA"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<License>
+  <Data>
+    <LicensedTo>CPA Software Solutions</LicensedTo>
+    <LicenseType>Developer OEM Subscription</LicenseType>
+    <LicenseNote>Limited to 1 developer.</LicenseNote>
+    <OrderID>100601235300</OrderID>
+    <OEM>This is a redistributable license</OEM>
+    <Products>
+      <Product>Aspose.Words for .NET</Product>
+    </Products>
+    <EditionType>Enterprise</EditionType>
+    <SerialNumber>ab806c49-9dd4-422e-b91e-2f22c68a48a2</SerialNumber>
+    <SubscriptionExpiry>20110702</SubscriptionExpiry>
+    <LicenseVersion>2.2</LicenseVersion>
+  </Data>
+  <Signature>vA0BqZc//jZYzN7RWxeHewdrgsP9Uu2IOn5g2Vbtw+0r+2YCFOdg7IaI0k28b//I3XQNuCUXmwQyzbiQSx4hYORhGKAC8OwY5j3JevmN9aKre8rxxJ5UeV7jHriiFp67SX/x6yvbYeCBq1FVDcGh5WmOMmeawwY+7TWUwC888RM=</Signature>
+</License>

@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CPA.IAM.Proxy.Types</name>
+    </assembly>
+    <members>
+        <member name="T:CPA.IAM.Proxy.Types.BaseData.ContactInfoTypeEnum">
+            <summary>
+            The different contact info types
+            </summary>
+        </member>
+        <member name="F:CPA.IAM.Proxy.Types.BaseData.ContactInfoTypeEnum.Phone">
+            <summary>
+            Phone
+            </summary>
+        </member>
+        <member name="F:CPA.IAM.Proxy.Types.BaseData.ContactInfoTypeEnum.Cell">
+            <summary>
+            Cell
+            </summary>
+        </member>
+        <member name="F:CPA.IAM.Proxy.Types.BaseData.ContactInfoTypeEnum.JobTitle">
+            <summary>
+            Job Title
+            </summary>
+        </member>
+        <member name="F:CPA.IAM.Proxy.Types.BaseData.ContactInfoTypeEnum.Department">
+            <summary>
+            Department
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.BaseData.ContactInfoType">
+            <summary>
+            Contact info type
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.BaseData.ContactInfoType.Id">
+            <summary>
+            Id of the type
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.BaseData.ContactInfoType.Name">
+            <summary>
+            User-friendly name of the type
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.Organizations.Organization">
+            <summary>
+            Organization
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Organizations.Organization.GUK">
+            <summary>
+            Organization GUK
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Organizations.Organization.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.Organizations.SearchCriteriaOrganization">
+            <summary>
+            Search criteria to find an organization
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Organizations.SearchCriteriaOrganization.GUK">
+            <summary>
+            Organization GUK
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Organizations.SearchCriteriaOrganization.Name">
+            <summary>
+            Name (contains)
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.SearchCriteriaBase">
+            <summary>
+            Base class for all Search Criterias
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.SearchCriteriaBase.Offset">
+            <summary>
+            The number of entries to skip (for instance in a paged list)
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.SearchCriteriaBase.Limit">
+            <summary>
+            The number of entries to take (for instance in a paged list)
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.SearchCriteriaBase.Sort">
+            <summary>
+            A string representing sorting of entries. Prepend a value with "-" to sort descending.
+            i.e. lastname, -firstname
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.SearchResult`1">
+            <summary>
+            A result returned from a search
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.SearchResult`1.PaginationTotal">
+            <summary>
+            Total number of matches
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.SearchResult`1.Result">
+            <summary>
+            Entries returned by this search 
+            Differs from total number of matches if offset/limit has been set
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.Users.SearchCriteriaUser">
+            <summary>
+            Search criteria to find a specific user
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.SearchCriteriaUser.GUK">
+            <summary>
+            User GUK
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.SearchCriteriaUser.Email">
+            <summary>
+            Email (exact match)
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.SearchCriteriaUser.OrganizationGUK">
+            <summary>
+            Organization GUK
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.SearchCriteriaUser.Firstname">
+            <summary>
+            First name (starts with)
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.SearchCriteriaUser.Lastname">
+            <summary>
+            Last name (starts with)
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.SearchCriteriaUser.IsActive">
+            <summary>
+            If the user is considered active or not. 
+            Set to null to retrieve all users independent of status.
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.Users.UserBase">
+            <summary>
+            Basic representation of a user
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserBase.GUK">
+            <summary>
+            User GUK
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserBase.Firstname">
+            <summary>
+            First name
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserBase.Lastname">
+            <summary>
+            Last name
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserBase.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserBase.LanguageCode">
+            <summary>
+            Language code for the users preferred language
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserBase.OrganizationGUK">
+            <summary>
+            Organization GUK
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.Users.User">
+            <summary>
+            Full representation of a User
+            </summary>
+        </member>
+        <member name="M:CPA.IAM.Proxy.Types.Users.User.GetContactInfoValue(CPA.IAM.Proxy.Types.BaseData.ContactInfoTypeEnum)">
+            <summary>
+            Get the value for the specified contact info type
+            </summary>
+            <param name="typeEnum"></param>
+            <returns></returns>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.User.ContactInfo">
+            <summary>
+            All contact infos for the user
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.User.SkipActivationEmail">
+            <summary>
+            Skip activation e-mail
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.Users.UserInfo">
+            <summary>
+            Light representation of a user, used ie in search results
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserInfo.Status">
+            <summary>
+            User Status
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.Users.UserStatus">
+            <summary>
+            Status of a user
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserStatus.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserStatus.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="T:CPA.IAM.Proxy.Types.Users.UserContactInfo">
+            <summary>
+            User contact info
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserContactInfo.Type">
+            <summary>
+            Contact Info Type
+            </summary>
+        </member>
+        <member name="P:CPA.IAM.Proxy.Types.Users.UserContactInfo.Value">
+            <summary>
+            Value
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<License>
+  <Data>
+    <LicensedTo>CPA Software Solutions</LicensedTo>
+    <LicenseType>Developer OEM Subscription</LicenseType>
+    <LicenseNote>Limited to 1 developer.</LicenseNote>
+    <OrderID>100602000245</OrderID>
+    <OEM>This is a redistributable license</OEM>
+    <Products>
+      <Product>Aspose.Cells for .NET</Product>
+    </Products>
+    <EditionType>Enterprise</EditionType>
+    <SerialNumber>a27592f4-cec3-4a7f-8e5f-bbf3fa0ea2db</SerialNumber>
+    <SubscriptionExpiry>20110702</SubscriptionExpiry>
+    <LicenseVersion>2.2</LicenseVersion>
+  </Data>
+  <Signature>g3fDW2CiGpa3Rg3nMoOZQp9eejNLLGoJZByamHJaREGNAIMyng+fzw3S2m8jBM/FOJyLES85l5sMpo+I/xqMjUwy1hcmwemngnOTDEPyMcpgAsCsC5zzEaFXPPCmHgNVeVLe4Ik85FFooDtdikYqpuU/s/efT1y6Ha3ETB/dPWI=</Signature>
+</License>

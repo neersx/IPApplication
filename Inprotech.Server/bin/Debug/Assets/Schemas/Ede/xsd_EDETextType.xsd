@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.6">
+	<!-- ======================================================================
+          Filename      : TextType_T.xsd 
+          Author        : CPA Software Solutions
+          Version       : 0.6
+          Last Update   : 2006-06-20
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA-XML Bulk Load schema.
+       ====================================================================== -->
+	<xs:complexType name="TextType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="languageCode" type="xs:language" use="optional" sql:field="LANGUAGECODE"/>
+				<xs:attribute name="sequenceNumber" type="xs:positiveInteger" use="optional" sql:field="SEQUENCENUMBER"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

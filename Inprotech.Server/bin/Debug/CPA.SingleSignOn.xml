@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CPA.SingleSignOn</name>
+    </assembly>
+    <members>
+        <member name="T:CPA.SingleSignOn.Autofac.Modules.SSOModule">
+            <summary>
+            Autofac module for CPA.SingleSignOn
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Autofac.Modules.SSOModule.Load(Autofac.ContainerBuilder)">
+            <summary>
+            Load method for services
+            </summary>
+            <param name="builder">Autofac ContainerBuilder</param>
+        </member>
+    </members>
+</doc>

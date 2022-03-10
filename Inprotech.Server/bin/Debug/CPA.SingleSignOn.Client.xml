@@ -1,0 +1,618 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CPA.SingleSignOn.Client</name>
+    </assembly>
+    <members>
+        <member name="T:CPA.SingleSignOn.Client.Autofac.Modules.SSOClientModule">
+            <summary>
+            Autofac module for CPA.SingleSignOn.Client
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Autofac.Modules.SSOClientModule.Load(Autofac.ContainerBuilder)">
+            <summary>
+            Load method for services
+            </summary>
+            <param name="builder">Autofac ContainerBuilder</param>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Configuration.SSOProviderEnum">
+            <summary>
+            Provider used for SSO
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Configuration.SSOProviderEnum.PingFederate">
+            <summary>
+            PingFederate
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Configuration.SSOProviderEnum.IdentityServer">
+            <summary>
+            IdentityServer
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Configuration.ISSOConfig">
+            <summary>
+            Interface representation of configuration file
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Configuration.ISSOConfig.ClientId">
+            <summary>
+            Client Id
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Configuration.ISSOConfig.ClientSecret">
+            <summary>
+            Client Secret
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Configuration.ISSOConfig.ServerUrl">
+            <summary>
+            Custom server URL, if SSOServer is Custom
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Configuration.ISSOConfig.Certificate">
+            <summary>
+            The certificate used to sign tokens, base64-encoded
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Configuration.ISSOConfig.IAMUrl">
+            <summary>
+            Custom IAM Url, required when IAM Server is set to Custom
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Configuration.ISSOConfig.TokenCacheExpirationInSeconds">
+            <summary>
+            The time in seconds after where the token cache will expire (Absolute expiration)
+            Setting to 0 will disable cache
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Configuration.ISSOConfig.SSOProvider">
+            <summary>
+            The SSO Provider used
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Configuration.ISSOConfig.ProviderSettings">
+            <summary>
+            Provider settings
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Configuration.SSOConfig">
+            <summary>
+            Helper class to fetch ISSOConfig, depending on configuration type.
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Configuration.SSOConfig.Get">
+            <summary>
+            Get the SSO Configuration
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Constants.Application">
+            <summary>
+            The different application codes a user can have access to
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.Application.Ipendo">
+            <summary>
+            Ipendo
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.Application.IPCloud">
+            <summary>
+            Ipendo
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Constants.Header">
+            <summary>
+            These are the header keys that are used in responses from SSO services
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.Header.AuthorizationScheme">
+            <summary>
+            Authorization 
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.Header.Language">
+            <summary>
+            Language
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.Header.WWWChallenge">
+            <summary>
+            WWWChallenge key
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.Header.WWWChallengeScheme">
+            <summary>
+            WWWChallenge value
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Constants.OAuthClient">
+            <summary>
+            The IDs for the different OAuth clients that exists
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.OAuthClient.IAM">
+            <summary>
+            IAM
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Constants.OAuthScope">
+            <summary>
+            The different scopes for tokens
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.OAuthScope.ApiClient">
+            <summary>
+            Api client scope
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.OAuthScope.ActivateAccount">
+            <summary>
+            Activate account
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.OAuthScope.User">
+            <summary>
+            The normal scope when a user is logged on
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Constants.SSOClaim">
+            <summary>
+            The different claims a user can contain
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.Applications">
+            <summary>
+            Applications
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.FirstName">
+            <summary>
+            First Name
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.GUK">
+            <summary>
+            GUK
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.LanguageCode">
+            <summary>
+            Language Code
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.LastName">
+            <summary>
+             Last Name
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.OrganizationGUK">
+            <summary>
+            Organization GUK
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.SessionId">
+            <summary>
+            Session ID
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.ClientId">
+            <summary>
+            Client Id
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.Scope">
+            <summary>
+            Scope
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.AccessToken">
+            <summary>
+            The original access token 
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.SSOClaim.ImpersonatedBy">
+            <summary>
+            GUK of the user that has impersonated this user
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Constants.UserType">
+            <summary>
+            The different user types for Identity 
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.UserType.RegularUser">
+            <summary>
+            Regular user, the normal case
+            </summary>
+        </member>
+        <member name="F:CPA.SingleSignOn.Client.Constants.UserType.ExternalApplication">
+            <summary>
+            External application
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Exceptions.ExtendedClaimsProviderException">
+            <summary>
+            Thrown when IExtendedClaimsProvider fails
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Exceptions.ExtendedClaimsProviderException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the System.Exception class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a null reference</param>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Exceptions.TokenInvalidException">
+            <summary>
+            Thrown when token validation fails
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.ClaimsIdentityExtensions">
+            <summary>
+            Provides extension methods for ClaimsIdentity
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetClaimValueString(System.Security.Claims.ClaimsIdentity,System.String,System.Boolean)">
+            <summary>
+            Get the claim value as a string
+            </summary>
+            <param name="claimsId">Identity</param>
+            <param name="name">Claim Name</param>
+            <param name="throwNotFound">Throw exception if not found. Otherwise return null</param>
+            <returns>Claim value</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetClaimValueGuid(System.Security.Claims.ClaimsIdentity,System.String)">
+            <summary>
+            Get the claim value as a Guid
+            </summary>
+            <param name="claimsId">Identity</param>
+            <param name="name">Claim Name</param>
+            <returns>Claim value</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetClaimValueInt(System.Security.Claims.ClaimsIdentity,System.String)">
+            <summary>
+            Get the claim value as an integer
+            </summary>
+            <param name="claimsId">Identity</param>
+            <param name="name">Claim Name</param>
+            <returns>Int value</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetApplications(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get all applications that user have access to
+            </summary>
+            <param name="claimsId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.HasApplication(System.Security.Claims.ClaimsIdentity,System.String)">
+            <summary>
+            Check if the user have access to a given application
+            </summary>
+            <param name="claimsId"></param>
+            <param name="applicationCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetEmail(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the claim value representing Email
+            </summary>
+            <param name="claimsId">Identity</param>
+            <returns>Email</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetFirstName(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the claim value representing First Name
+            </summary>
+            <param name="claimsId">Identity</param>
+            <returns>First Name</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetGUK(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the claim value representing Globally Unique Identifier
+            </summary>
+            <param name="claimsId">Identity</param>
+            <returns>Id</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetLanguageCode(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the users language code
+            </summary>
+            <param name="claimsId">Identity</param>
+            <returns>Language Code (ISO639-1)</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetLastName(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the claim value representing Last Name
+            </summary>
+            <param name="claimsId">Identity</param>
+            <returns>Last Name</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetOrganizationGUK(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the claim value representing Organization Id
+            </summary>
+            <param name="claimsId">Identity</param>
+            <returns>Organization Id</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetSessionId(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the claim value representing SessionId
+            </summary>
+            <param name="claimsId">Identity</param>
+            <returns>Last Name</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetClientId(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the claim value representing ClientId
+            </summary>
+            <param name="claimsId">Identity</param>
+            <returns>Last Name</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetAccessToken(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the claim value representing Access Token
+            </summary>
+            <param name="claimsId">Identity</param>
+            <returns>Access Token</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetImpersonatedBy(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the claim value representing who impersonated this user
+            </summary>
+            <param name="claimsId">Identity</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetScopes(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the scopes for the token
+            </summary>
+            <param name="claimsId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.ClaimsIdentityExtensions.GetUserType(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Get the type of user represented by claims id
+            </summary>
+            <param name="claimsId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Impersonation.ImpersonationExtensions">
+            <summary>
+            Provides extensions for impersonation
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Impersonation.ImpersonationExtensions.ToClaimsIdentity(CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser,System.String)">
+            <summary>
+            Create a claims identity from an impersonation user
+            </summary>
+            <param name="impersonationUser">The impersonation user</param>
+            <param name="authenticationType">The type of authentication used.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Impersonation.ImpersonationExtensions.ToClaimsPrincipal(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Create a claims principal from the claims identity
+            </summary>
+            <param name="claimsIdentity"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser">
+            <summary>
+            Represents an SSO user that will be impersonated
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser.GUK">
+            <summary>
+            User GUK
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser.Firstname">
+            <summary>
+            First name
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser.Lastname">
+            <summary>
+            Last name
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser.LanguageCode">
+            <summary>
+            Language Code
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser.OrganizationGUK">
+            <summary>
+            Organization GUK
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser.ClientId">
+            <summary>
+            Client Id of the application that will be impersonated.
+            Optional. If not supplied, the value for current application in config file will be used.
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser.AccessToken">
+            <summary>
+            The original users access token. This is optional.
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Impersonation.ImpersonationSSOUser.ImpersonatedBy">
+            <summary>
+            GUK of the user that has impersonated this user
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Models.SSOProviderResponse">
+            <summary>
+            The response from SSO Provider when exchanging code and refreshing token
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Models.SSOProviderResponse.AccessToken">
+            <summary>
+            The access token
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Models.SSOProviderResponse.RefreshToken">
+            <summary>
+            The refresh token
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Models.SSOProviderResponse.TokenType">
+            <summary>
+            Token type ("Bearer" for OAuth 2)
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Models.SSOProviderResponse.ExpiresIn">
+            <summary>
+            Expires in seconds
+            </summary>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Models.SSOProviderSettings">
+            <summary>
+            SSO Provider Settings
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Models.SSOProviderSettings.AuthorizationPath">
+            <summary>
+            Authorization Path
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Models.SSOProviderSettings.TokenPath">
+            <summary>
+            Token Path
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Models.SSOProviderSettings.LogoutPath">
+            <summary>
+            Logout Path
+            </summary>
+        </member>
+        <member name="P:CPA.SingleSignOn.Client.Models.SSOProviderSettings.TokenIssuer">
+            <summary>
+            Token Issuer
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Models.SSOProviderSettings.AuthorizationUrl(System.String)">
+            <summary>
+            Get authorization url
+            </summary>
+            <param name="serverUrl"></param>
+            <returns></returns>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Services.IExtendedClaimsProvider">
+            <summary>
+            This interface serves as a provider for application specific claims on a given ClaimsIdentity
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.IExtendedClaimsProvider.SetExtendedClaimsUser(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Set application specific claims on the identity representing a user
+            Called after generic SSO claims have been set
+            </summary>
+            <param name="identity">SSO Identity containing generic claims</param>
+            <returns>SSO Identity containing both generic and application specific claims</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.IExtendedClaimsProvider.SetExtendedClaimsExternalApplication(System.Security.Claims.ClaimsIdentity)">
+            <summary>
+            Set application specific claims on the identity representing an external application
+            Called after generic SSO claims have been set
+            </summary>
+            <param name="identity">SSO Identity containing generic claims</param>
+            <returns>SSO Identity containing both generic and application specific claims</returns>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Services.IIAMService">
+            <summary>
+            Managing of iam meta info.
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.IIAMService.GetIAMFrontendBaseUrl">
+            <summary>
+            Get the url to iam frontend
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Services.ITokenManagementService">
+            <summary>
+            Managing of OAuth 2 tokens - Request, Refresh etc.
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.ITokenManagementService.GetAuthorizationUrl">
+            <summary>
+            Get the url to the oauth2 authorization endpoint
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.ITokenManagementService.GetLoginUrl">
+            <summary>
+            Create the login url from where a one-time code for a token can be requested
+            </summary>
+            <returns>Login url</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.ITokenManagementService.GetLogoutUrl">
+            <summary>
+            Create the logout url where the Ping session is invalidated
+            </summary>
+            <returns>Logout url</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.ITokenManagementService.GetByCode(System.String,System.String)">
+            <summary>
+            Create a token from a one-time code
+            </summary>
+            <param name="code">one-time code</param>
+            <param name="redirectUri">the redirect_uri used when getting the code</param>
+            <returns>SSOProvider Response containing access and refresh tokens</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.ITokenManagementService.GetForClient">
+            <summary>
+            Create a token for the client. This will not contain all claims that a user token have.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.ITokenManagementService.Refresh(System.String)">
+            <summary>
+            Refresh the given access token
+            </summary>
+            <param name="refreshToken"></param>
+            <returns>Provider response containing new access and refresh tokens</returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.ITokenManagementService.Revoke(System.String,System.String)">
+            <summary>
+            Invalidate the access token and all grants for the same session
+            </summary>
+            <param name="accessToken"></param>
+            <param name="sessionId"></param>
+        </member>
+        <member name="T:CPA.SingleSignOn.Client.Services.ITokenValidationService">
+            <summary>
+            Validation of OAuth 2 tokens
+            </summary>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.ITokenValidationService.GetTokenValidationParameters">
+            <summary>
+            Get the default set of validation parameters
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CPA.SingleSignOn.Client.Services.ITokenValidationService.ValidateToPrincipal(System.String,System.Boolean)">
+            <summary>
+            Validate the token and create ClaimsPrincipal
+            </summary>
+            <param name="accessToken"></param>
+            <param name="validateScope"></param>
+            <returns>ClaimsPrincipal with token's claims</returns>
+        </member>
+    </members>
+</doc>

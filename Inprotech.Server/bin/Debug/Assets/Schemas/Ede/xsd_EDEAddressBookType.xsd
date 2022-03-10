@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.8">
+	<xs:annotation>
+		<xs:appinfo>
+			<sql:relationship name="Name" parent="EDEADDRESSBOOK" parent-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER" child="EDENAME" child-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="FormattedName" parent="EDENAME" parent-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER" child="EDEFORMATTEDNAME" child-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="FormattedAddress" parent="EDEADDRESSBOOK" parent-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER" child="EDEFORMATTEDADDRESS" child-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="FormattedAddressLine" parent="EDEFORMATTEDADDRESS" parent-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER" child="EDEFORMATTEDADDRESS" child-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="FormattedAttentionOf" parent="EDEADDRESSBOOK" parent-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER" child="EDEFORMATTEDATTNOF" child-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="ContactDetails" parent="EDEADDRESSBOOK" parent-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER" child="EDECONTACTINFORMATIONDETAILS" child-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE NAMESEQUENCENUMBER PAYMENTIDENTIFIER"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>Address Book Type</xs:documentation>
+	</xs:annotation>
+	<!-- ======================================================================
+          Filename      	: xsd_EDEAddressBookType.xsd 
+          Author        	: CPA Software Solutions
+          Version       	: 0.8
+          Date Created   : 2006-06-20
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA-XML Bulk Load schema.
+		06/10/2006 SQA13451 - Added Change to Attention Of name group element for CPA-XML 0.8
+       ====================================================================== -->
+	<!-- ======================================================================
+          ADDITIONAL TYPES LIBRARY                                                                                         
+       ====================================================================== -->
+	<xs:include schemaLocation="xsd_EDETextType.xsd"/>
+	<!-- ======================================================================
+          ADDRESS BOOK TYPES LIBRARY                                                                                           
+       ====================================================================== -->
+	<xs:complexType name="AddressBookType">
+		<xs:sequence>
+			<xs:element name="AddressLanguageCode" type="xs:string" minOccurs="0" sql:field="ADDRESSLANGUAGECODE"/>
+			<xs:element name="FreeFormatNameAddressDetails" minOccurs="0" sql:mapped="false">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FreeFormatNameAddressLine" type="TextType" maxOccurs="unbounded" sql:field="NAMEADDRESSLINE"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FormattedNameAddress" type="FormattedNameAddressType" minOccurs="0" sql:is-constant="1"/>
+			<xs:element name="ContactInformationDetails" minOccurs="0" sql:relation="EDECONTACTINFORMATIONDETAILS" sql:relationship="ContactDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Phone" type="PhoneType" minOccurs="0" maxOccurs="unbounded" sql:field="PHONE"/>
+						<xs:element name="Fax" type="xs:string" minOccurs="0" maxOccurs="unbounded" sql:field="FAX"/>
+						<xs:element name="Email" type="xs:string" minOccurs="0" maxOccurs="unbounded" sql:field="EMAIL"/>
+						<xs:element name="URL" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded" sql:field="URL"/>
+						<xs:element name="OtherElectronicAddress" type="xs:string" minOccurs="0" maxOccurs="unbounded" sql:field="OTHERELECTRONICADDRESS"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="FormattedNameAddressType">
+		<xs:sequence>
+			<xs:element name="Name" type="NameType" sql:relation="EDENAME" sql:relationship="Name"/>
+			<xs:element name="Address" type="AddressType" minOccurs="0" sql:is-constant="1"/>
+			<xs:element name="AttentionOf" type="AttentionOfType" minOccurs="0" sql:is-constant="1"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="NameType">
+		<xs:sequence>
+			<xs:element name="SenderNameIdentifier" type="xs:string" minOccurs="0" sql:field="SENDERNAMEIDENTIFIER"/>
+			<xs:element name="ReceiverNameIdentifier" type="xs:string" minOccurs="0" sql:field="RECEIVERNAMEIDENTIFIER"/>
+			<xs:element name="FreeFormatName" type="FreeFormatNameType" minOccurs="0" sql:mapped="false"/>
+			<xs:element name="FormattedName" sql:relation="EDEFORMATTEDNAME" sql:relationship="FormattedName">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NamePrefix" type="xs:string" minOccurs="0" sql:field="NAMEPREFIX"/>
+						<xs:element name="FirstName" type="xs:string" minOccurs="0" sql:field="FIRSTNAME"/>
+						<xs:element name="MiddleName" type="xs:string" minOccurs="0" sql:field="MIDDLENAME"/>
+						<xs:element name="LastName" type="xs:string" minOccurs="0" sql:field="LASTNAME"/>
+						<xs:element name="SecondLastName" type="xs:string" minOccurs="0" sql:field="SECONDLASTNAME"/>
+						<xs:element name="NameSuffix" type="xs:string" minOccurs="0" sql:field="NAMESUFFIX"/>
+						<xs:element name="Gender" type="xs:string" minOccurs="0" sql:field="GENDER"/>
+						<xs:element name="IndividualIdentifier" type="xs:string" minOccurs="0" sql:field="INDIVIDUALIDENTIFIER"/>
+						<xs:element name="PersonRole" type="xs:string" minOccurs="0" sql:field="PERSONROLE"/>
+						<xs:element name="OrganizationName" type="xs:string" minOccurs="0" sql:field="ORGANIZATIONNAME"/>
+						<xs:element name="OrganizationDepartment" type="xs:string" minOccurs="0" sql:field="ORGANIZATIONDEPARTMENT"/>
+						<xs:element name="NameSynonym" type="xs:string" minOccurs="0" maxOccurs="unbounded" sql:field="NAMESYNONYM"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="AddressType">
+		<xs:sequence>
+			<xs:element name="FreeFormatAddress" minOccurs="0" sql:mapped="false">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FreeFormatAddressLine" type="TextType" maxOccurs="unbounded" sql:field="FREEFORMATADDRESSLINE"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FormattedAddress" sql:relation="EDEFORMATTEDADDRESS" sql:relationship="FormattedAddress">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AddressLine" type="TextType" minOccurs="0" maxOccurs="unbounded" sql:field="ADDRESSLINE" sql:relationship="FormattedAddressLine"/>
+						<xs:element name="AddressMailCode" type="xs:string" minOccurs="0" sql:field="ADDRESSMAILCODE"/>
+						<xs:element name="AddressPostOfficeBox" type="xs:string" minOccurs="0" sql:field="ADDRESSPOSTOFFICEBOX"/>
+						<xs:element name="AddressRoom" type="xs:string" minOccurs="0" sql:field="ADDRESSROOM"/>
+						<xs:element name="AddressFloor" type="xs:string" minOccurs="0" sql:field="ADDRESSFLOOR"/>
+						<xs:element name="AddressBuilding" type="xs:string" minOccurs="0" sql:field="ADDRESSBUILDING"/>
+						<xs:element name="AddressStreet" type="xs:string" minOccurs="0" sql:field="ADDRESSSTREET"/>
+						<xs:element name="AddressCity" type="xs:string" minOccurs="0" sql:field="ADDRESSCITY"/>
+						<xs:element name="AddressCounty" type="xs:string" minOccurs="0" sql:field="ADDRESSCOUNTY"/>
+						<xs:element name="AddressState" type="xs:string" minOccurs="0" sql:field="ADDRESSSTATE"/>
+						<xs:element name="AddressPostcode" type="xs:string" minOccurs="0" sql:field="ADDRESSPOSTCODE"/>
+						<xs:element name="AddressCountryCode" type="xs:string" minOccurs="0" sql:field="ADDRESSCOUNTRYCODE"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="AttentionOfType">
+		<xs:sequence>
+			<xs:element name="FreeFormatAttentionOf" minOccurs="0" sql:mapped="false">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FreeFormatAttentionOfLine" type="TextType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="FormattedAttentionOf" sql:relation="EDEFORMATTEDATTNOF" sql:relationship="FormattedAttentionOf">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NamePrefix" type="xs:string" minOccurs="0" sql:field="NAMEPREFIX"/>
+						<xs:element name="FirstName" type="xs:string" minOccurs="0" sql:field="FIRSTNAME"/>
+						<xs:element name="LastName" type="xs:string" minOccurs="0" sql:field="LASTNAME"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="FreeFormatNameType">
+		<xs:sequence>
+			<xs:element name="NameKind" type="xs:string" minOccurs="0" sql:field="NAMEKIND"/>
+			<xs:element name="FreeFormatNameDetails" minOccurs="0" sql:mapped="false">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FreeFormatNameLine" type="TextType" maxOccurs="unbounded" sql:field="FREEFORMATNAMELINE"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="PhoneType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="phoneKind" type="xs:string" use="optional" sql:field="PHONEKIND"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.8">
+	<xs:annotation>
+		<xs:appinfo>
+			<sql:relationship name="Trans" parent="EDETRANSACTIONHEADER" parent-key="USERID" child="EDESENDERDETAILS" child-key="USERID"/>
+			<sql:relationship name="SenderSoft" parent="EDESENDERDETAILS" parent-key="SENDER" child="EDESENDERSOFTWARE" child-key="SENDER"/>
+			<sql:relationship name="TransHeadR" parent="EDETRANSACTIONHEADER" parent-key="USERID" child="EDERECEIVERDETAILS" child-key="USERID"/>
+			<sql:relationship name="ReceiverSoft" parent="EDERECEIVERDETAILS" parent-key="RECEIVER" child="EDERECEIVERSOFTWARE" child-key="RECEIVER"/>
+			<sql:relationship name="TransBody" parent="EDETRANSACTIONHEADER" parent-key="USERID" child="EDETRANSACTIONBODY" child-key="USERID"/>
+			<sql:relationship name="TransMsgDtls" parent="EDETRANSACTIONBODY" parent-key="TRANSACTIONIDENTIFIER" child="EDETRANSACTIONMESSAGEDETAILS" child-key="TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="TransContDtls" parent="EDETRANSACTIONBODY" parent-key="TRANSACTIONIDENTIFIER" child="EDETRANSACTIONCONTENTDETAILS" child-key="TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="CaseDtls" parent="EDETRANSACTIONCONTENTDETAILS" parent-key="TRANSACTIONIDENTIFIER" child="EDECASEDETAILS" child-key="TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="NameAddrDtls" parent="EDETRANSACTIONCONTENTDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDENAMEADDRESSDETAILS" child-key="USERID TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="NameAddrBook" parent="EDENAMEADDRESSDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE" child="EDEADDRESSBOOK" child-key="USERID TRANSACTIONIDENTIFIER NAMETYPECODE"/>
+			<sql:relationship name="DocumentRow" parent="EDETRANSACTIONCONTENTDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDEDOCUMENT" child-key="USERID TRANSACTIONIDENTIFIER"/>
+			<sql:relationship name="PaymentDtls" parent="EDETRANSACTIONCONTENTDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER" child="EDEPAYMENTDETAILS" child-key="USERID TRANSACTIONIDENTIFIER"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>
+        CPA-XML Standard Version 0.8
+      </xs:documentation>
+	</xs:annotation>
+	<!-- ======================================================================
+          Filename      	: xsd_EDECPA-XML.xsd 
+          Author        	: CPA Software Solutions
+          Version       	: 0.8
+          Date Created   : 2006-06-20
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA-XML Bulk Load schema.
+
+	NOTE: If adding/removing EDE tables, you must also remove the references
+	to these tables from stored procs ede_ClearCorruptBatch and ede_UpdateKeys.
+	
+	Changes:
+	06/10/2006 SQA13451 - Added Receiver E-mail element for CPA-XML 0.8
+	02/01/2007 SQA13473 - Rename Transaction Producer to Alternative Sender CPA-XML 0.9
+       ====================================================================== -->
+	<!-- ======================================================================
+          CASE TYPE
+       ======================================================================-->
+	<xs:include schemaLocation="xsd_EDECaseType.xsd"/>
+	<!--======================================================================
+          BUSINESS TYPES LIBRARY                                                                                         
+       ======================================================================-->
+	<xs:include schemaLocation="xsd_EDEDocumentType.xsd"/>
+	<xs:include schemaLocation="xsd_EDEPaymentType.xsd"/>
+	<!--======================================================================
+          TRANSACTION/MESSAGE TYPES LIBRARY                                                                                           
+       ====================================================================== -->
+	<xs:element name="Transaction" type="TransactionType" sql:relation="EDETRANSACTIONHEADER">
+		<xs:annotation>
+			<xs:documentation>Top Level Transaction for all Types of Message</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:complexType name="TransactionType">
+		<xs:sequence>
+			<xs:element name="TransactionHeader" type="TransactionHeaderType" minOccurs="0" sql:is-constant="1"/>
+			<xs:element name="TransactionBody" type="TransactionBodyType" minOccurs="0" maxOccurs="unbounded" sql:relation="EDETRANSACTIONBODY" sql:relationship="TransBody"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TransactionHeaderType">
+		<xs:sequence>
+			<xs:element name="SenderDetails" sql:relation="EDESENDERDETAILS" sql:relationship="Trans">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="SenderRequestType" type="xs:string" minOccurs="0" sql:field="SENDERREQUESTTYPE"/>
+						<xs:element name="SenderRequestIdentifier" type="xs:string" sql:field="SENDERREQUESTIDENTIFIER"/>
+						<xs:element name="Sender" type="xs:string" sql:field="SENDER"/>
+						<xs:element name="SenderLanguageCode" type="xs:string" minOccurs="0" sql:field="SENDERLANGUAGECODE"/>
+						<xs:element name="SenderXSDVersion" type="xs:string" sql:field="SENDERXSDVERSION"/>
+						<xs:element name="SenderSoftware" minOccurs="0" sql:relation="EDESENDERSOFTWARE" sql:relationship="SenderSoft">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="SenderSoftwareName" type="xs:string" minOccurs="0" sql:field="SENDERSOFTWARENAME"/>
+									<xs:element name="SenderSoftwareVersion" type="xs:string" minOccurs="0" sql:field="SENDERSOFTWAREVERSION"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="SenderFilename" type="xs:string" minOccurs="0" sql:field="SENDERFILENAME"/>
+						<xs:element name="SenderProducedDate" type="xs:dateTime" minOccurs="0" sql:field="SENDERPRODUCEDDATE"/>
+						<xs:element name="SenderProducedDateTime" type="xs:dateTime" minOccurs="0" sql:field="SENDERPRODUCEDDATETIME"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReceiverDetails" minOccurs="0" sql:relation="EDERECEIVERDETAILS" sql:relationship="TransHeadR">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ReceiverRequestType" type="xs:string" minOccurs="0" sql:field="RECEIVERREQUESTTYPE"/>
+						<xs:element name="ReceiverRequestIdentifier" type="xs:string" minOccurs="0" sql:field="RECEIVERREQUESTIDENTIFIER"/>
+						<xs:element name="Receiver" type="xs:string" minOccurs="0" sql:field="RECEIVER"/>
+						<xs:element name="ReceiverLanguageCode" type="xs:string" minOccurs="0" sql:field="RECEIVERLANGUAGECODE"/>
+						<xs:element name="ReceiverXSDVersion" type="xs:string" minOccurs="0" sql:field="RECEIVERXSDVERSION"/>
+						<xs:element name="ReceiverSoftware" minOccurs="0" sql:relation="EDERECEIVERSOFTWARE" sql:relationship="ReceiverSoft">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="ReceiverSoftwareName" type="xs:string" minOccurs="0" sql:field="RECEIVERSOFTWARENAME"/>
+									<xs:element name="ReceiverSoftwareVersion" type="xs:string" minOccurs="0" sql:field="RECEIVERSOFTWAREVERSION"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ReceiverFilename" type="xs:string" minOccurs="0" sql:field="RECEIVERFILENAME"/>
+						<xs:element name="ReceiverProducedDate" type="xs:dateTime" minOccurs="0" sql:field="RECEIVERPRODUCEDDATE"/>
+						<xs:element name="ReceiverProducedDateTime" type="xs:dateTime" minOccurs="0" sql:field="RECEIVERPRODUCEDDATETIME"/>
+						<xs:element name="ReceiverEmail" type="xs:string" minOccurs="0" sql:field="RECEIVEREMAIL"/>
+						<xs:element name="OutputFormat" type="xs:string" minOccurs="0" maxOccurs="unbounded" sql:field="OUTPUTFORMAT"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="TransactionBodyType">
+		<xs:sequence>
+			<xs:element name="TransactionIdentifier" type="xs:string" minOccurs="0" sql:field="TRANSACTIONIDENTIFIER"/>
+			<xs:element name="TransactionReturnCode" type="xs:string" minOccurs="0" sql:field="TRANSACTIONRETURNCODE"/>
+			<xs:element name="TransactionMessageDetails" minOccurs="0" maxOccurs="unbounded" sql:relation="EDETRANSACTIONMESSAGEDETAILS" sql:relationship="TransMsgDtls">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="TransactionMessageCode" type="xs:string" minOccurs="0" sql:field="TRANSACTIONMESSAGECODE"/>
+						<xs:element name="TransactionMessageText" type="TextType" minOccurs="0" sql:field="TRANSACTIONMESSAGETEXT"/>
+					</xs:sequence>
+					<xs:attribute name="sequentialNumber" type="xs:positiveInteger" use="optional" sql:field="SEQUENTIALNUMBER"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TransactionContentDetails" sql:relation="EDETRANSACTIONCONTENTDETAILS" sql:relationship="TransContDtls">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AlternativeSender" type="xs:string" minOccurs="0" sql:field="ALTERNATIVESENDER"/>
+						<xs:element name="TransactionCode" type="xs:string" sql:field="TRANSACTIONCODE"/>
+						<xs:element name="TransactionSubCode" type="xs:string" minOccurs="0" sql:field="TRANSACTIONSUBCODE"/>
+						<xs:element name="TransactionComment" type="xs:string" minOccurs="0" sql:field="TRANSACTIONCOMMENT"/>
+						<xs:element name="TransactionData" type="TransactionDataType" sql:is-constant="1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="TransactionDataType">
+		<xs:sequence>
+			<xs:element name="CaseDetails" type="CaseType" minOccurs="0" sql:relation="EDECASEDETAILS" sql:relationship="CaseDtls"/>
+			<xs:element name="NameAddressDetails" minOccurs="0" maxOccurs="unbounded" sql:relation="EDENAMEADDRESSDETAILS" sql:relationship="NameAddrDtls">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="NameTypeCode" type="xs:string" minOccurs="0" sql:field="NAMETYPECODE"/>
+						<xs:element name="AddressBook" type="AddressBookType" maxOccurs="unbounded" sql:relation="EDEADDRESSBOOK" sql:relationship="NameAddrBook"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+			<xs:element name="DocumentDetails" minOccurs="0" sql:is-constant="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Document" type="DocumentType" maxOccurs="unbounded" sql:relation="EDEDOCUMENT" sql:relationship="DocumentRow"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PaymentDetails" minOccurs="0" sql:is-constant="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Payment" type="PaymentType" maxOccurs="unbounded" sql:relation="EDEPAYMENTDETAILS" sql:relationship="PaymentDtls"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
