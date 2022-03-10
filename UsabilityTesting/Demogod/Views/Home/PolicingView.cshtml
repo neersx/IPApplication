@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "PolicingView";
+}
+
+<h2>Policing</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <p>
+            Click on below links to generate items as necessary. They are random in nature and particularly for 'more items' will take some time to complete item creations.
+        </p>
+    </div>
+    <div class="col-md-12">
+        <p>
+            Policing Server Status: <button id="policingServerStatus" class="btn">Not Ready</button>
+        </p>
+    </div>
+    <div class="col-md-12">
+        <ul>
+            <li><a id="btnFail" class="btn">Not Ready</a></li>
+            <li><a id="btnError" class="btn">Not Ready</a></li>
+            <li><a id="btnMore" class="btn">Not Ready</a></li>
+            <li><a id="btnClear" class="btn">Not Ready</a></li>
+        </ul>
+    </div>
+
+    <div class="col-md-12" id="problemItems">
+        <table class="table table-condensed">
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function() {
+
+            var policing = $.connection.policingHub;
+
+            var message = $.connection.messageHub;
+
+            message.client.publish = function(message) {
+                console.log(message);
+            };
+
+            policing.client.problems = function(problems) {
+                $('#problemItems tr').remove();
+                $('#problemItems table').append($('<tr><th>Case Ref</th><th>Type</th><th>User</th></tr>'));
+                
+                problems.forEach(function(item) {
+                    var css = item.Status === 'Error' ? 'danger' : 'warning';
+                    var newItem = $('<tr></tr>').addClass(css);
+
+                    newItem.append($('<td></td>').text(item.CaseRef));
+                    newItem.append($('<td></td>').text(item.Status));
+                    newItem.append($('<td></td>').text(item.User));
+                    $('#problemItems table').append(newItem);
+                });
+            };
+
+            policing.client.statusUpdate = function (name, message) {
+
+                // Add the message to the page.
+                $('#policingServerStatus')
+                    .removeClass()
+                    .addClass(function () {
+                        if (message === 'On') {
+                            return 'btn-success';
+                        }
+
+                        if (message === 'Off') {
+                            return 'btn-danger';
+                        }
+
+                        return undefined;
+                    })
+                    .text(function () {
+                        if (message === 'On') {
+                            return 'Running';
+                        }
+
+                        if (message === 'Off') {
+                            return 'Off';
+                        }
+
+                        return 'Not Ready';
+                    });
+            };
+
+            $('#policingServerStatus').click(function() {
+
+                var currentText = $(this).text();
+
+                if (currentText === 'Running') {
+                    policing.server.turnOff();
+                    return;
+                }
+
+                if (currentText === 'Off') {
+                    policing.server.turnOn();
+                    return;
+                }
+            });
+
+            $('#btnFail').click(function () {
+                policing.server.makeFailedItems();
+            });
+
+            $('#btnError').click(function () {
+                policing.server.makeErrorItems();
+            });
+
+            $('#btnMore').click(function () {
+                policing.server.makeMoreItems();
+            });
+
+            $('#btnClear').click(function () {
+                policing.server.clearAllItems();
+            });
+
+            $('#btnFail').text('Make failed items');
+
+            $('#btnError').text('Make error items');
+
+            $('#btnMore').text('Make more items');
+
+            $('#btnClear').text('Clear all items');
+
+            $.connection.hub.start();
+        });
+    </script>
+}
