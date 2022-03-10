@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Inprotech.Setup.Pages.EventView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:ui="clr-namespace:Inprotech.Setup.UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ui:EventTypeColorConverter x:Key="EventTypeColorConverter" />
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal" Margin="0 0 0 5">
+        <TextBlock xml:space="preserve"> - </TextBlock>
+        <TextBlock x:Name="Details" Margin="5 0 0 0" Foreground="{Binding Type, Converter={StaticResource EventTypeColorConverter}}"></TextBlock>
+    </StackPanel>
+</UserControl>

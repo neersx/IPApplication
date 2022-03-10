@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Inprotech.Setup.Pages.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Style="{StaticResource Title}">Configuration Summary</Label>
+            <Border Style="{StaticResource Seperator}"></Border>
+        </StackPanel>
+        <TextBlock Grid.Row="1" TextWrapping="Wrap" Visibility="{Binding HasNoInstance, Converter={StaticResource BooleanVisibilityConverter}}" >
+            This machine does not have any Inprotech Web Application instances configured.
+            Inprotech Web Applications is an extensions pack to Inprotech Web Version. 
+            You should have Inprotech Web Version installed on this machine in order to successfully 
+            setup an instance of Inprotech Web Applications.
+        </TextBlock>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="PairedInstances" Margin="0 10" />
+        </ScrollViewer>
+        <Border Grid.Row="2" Style="{StaticResource Seperator}"></Border>
+        <StackPanel Grid.Row="3" HorizontalAlignment="Right">
+            <Button x:Name="ShowInprotechInstanceSelection" Style="{StaticResource PrimaryButton}">Create New Instance</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

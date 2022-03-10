@@ -1,0 +1,225 @@
+﻿<UserControl x:Class="Inprotech.Setup.Pages.AdfsSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="575" d:DesignWidth="855">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Style="{StaticResource Title}">ADFS Settings</Label>
+            <Border Style="{StaticResource Seperator}"></Border>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top" Grid.Row="1">
+            <Border BorderThickness="3,2,3,2" CornerRadius="3" >
+                <Border.BorderBrush>
+                    <VisualBrush>
+                        <VisualBrush.Visual>
+                            <Rectangle StrokeDashArray="1.0 1.0"
+                                       Stroke="DarkOrange"
+                                       StrokeThickness="2"
+                                       RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
+                                       RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
+                                       Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                                       Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Border.BorderBrush>
+                <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Center">
+                    <ContentControl Content="{StaticResource WarningTooltip}" ToolTipService.ShowDuration="12000" Margin="5, 5, 10, 10"></ContentControl>
+                    <TextBlock TextWrapping="Wrap" FontSize="13" Width="790" VerticalAlignment="Center">
+                        Specify the settings for ADFS Server authentication. Refer to the 
+                        <Hyperlink NavigateUri="http://portal.cpasoftwaresolutions.com/common/isg/AuthenticationGuide.pdf" RequestNavigate="OnlineGuide">
+                            Authentication Guide
+                        </Hyperlink>
+                         for more information.</TextBlock>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Grid Grid.Row="2" VerticalAlignment="Top">
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                    <Setter Property="Foreground" Value="#2679b5"></Setter>
+                </Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Margin" Value="0,0,0,5" />
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="150"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="90"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
+                <Label>Server URL</Label>
+                <ContentControl Content="{StaticResource InfoTooltip}" ToolTipService.ShowDuration="20000">
+                    <ContentControl.ToolTip>
+                        <TextBlock>
+                            Enter the URL hosting the ADFS Server
+                        </TextBlock>
+                    </ContentControl.ToolTip>
+                </ContentControl>
+            </StackPanel>
+            <TextBox x:Name="ServerUrl" FontSize="12" Width="500" Height="30" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <Border BorderBrush="Red" BorderThickness="0.5">
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                            </Border>
+                            <TextBlock FontSize="12"  Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                <Label>Client Id</Label>
+                <ContentControl Content="{StaticResource InfoTooltip}" ToolTipService.ShowDuration="20000">
+                    <ContentControl.ToolTip>
+                        <TextBlock>
+                            Specify the Client ID for a registered ADFS Client.
+                        </TextBlock>
+                    </ContentControl.ToolTip>
+                </ContentControl>
+            </StackPanel>
+            <TextBox x:Name="ClientId" FontSize="12" Width="500" Height="30" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <Border BorderBrush="Red" BorderThickness="0.5">
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                            </Border>
+                            <TextBlock FontSize="12"  Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0">
+                <Label>Relying Party Trust Id</Label>
+                <ContentControl Content="{StaticResource InfoTooltip}" ToolTipService.ShowDuration="20000">
+                    <ContentControl.ToolTip>
+                        <TextBlock>
+                            Enter a Relying Party Trust’s Identifier to connect to the ADFS Server.
+                            <LineBreak />
+                            This should also return claim "WindowsAccountName" for the user.
+                        </TextBlock>
+                    </ContentControl.ToolTip>
+                </ContentControl>
+            </StackPanel>
+            <TextBox x:Name="RelyingPartyTrustId" FontSize="12" Width="500" Height="30" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalAlignment="Left">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <Border BorderBrush="Red" BorderThickness="0.5">
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                            </Border>
+                            <TextBlock FontSize="12"  Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0">
+                <Label>Certificate</Label>
+                <ContentControl Content="{StaticResource InfoTooltip}" ToolTipService.ShowDuration="20000">
+                    <ContentControl.ToolTip>
+                        <TextBlock>
+                            Specify a Certificate for a JWT token. This should be an encoded, Base-64 string exported from your ADFS store.
+                        </TextBlock>
+                    </ContentControl.ToolTip>
+                </ContentControl>
+            </StackPanel>
+            <TextBox x:Name="Certificate" FontSize="12" Width="500" Height="100" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Top" HorizontalAlignment="Left" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto">
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <Border BorderBrush="Red" BorderThickness="0.5">
+                                <AdornedElementPlaceholder x:Name="textBox"/>
+                            </Border>
+                            <TextBlock FontSize="12"  Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </TextBox>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0">
+                <StackPanel VerticalAlignment="Bottom">
+                    <Label>Return URL</Label>
+                    <Label FontSize="12">(Case Sensitive)</Label>
+                </StackPanel>
+                <ContentControl VerticalAlignment="Top" Content="{StaticResource InfoTooltip}" ToolTipService.ShowDuration="20000">
+                    <ContentControl.ToolTip>
+                        <TextBlock>
+                            Enter the URL used when registering the ADFS client. More than one URL can be entered here using the [Add] link.
+                        </TextBlock>
+                    </ContentControl.ToolTip>
+                </ContentControl>
+            </StackPanel>
+            <StackPanel  Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+                <TextBox x:Name="NewReturnUrl" FontSize="12" Width="500" Height="30" VerticalAlignment="Top" VerticalContentAlignment="Top" HorizontalAlignment="Left">
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <Border BorderBrush="Red" BorderThickness="0.5">
+                                    <AdornedElementPlaceholder x:Name="textBox"/>
+                                </Border>
+                                <TextBlock FontSize="12"  Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+                <Button Name="AddReturnUrl" Style="{StaticResource LinkButton}" VerticalAlignment="Top" Margin="10,0">Add</Button>
+            </StackPanel>
+            <DataGrid Grid.Row="5" Grid.Column="1" Name="ReturnUrls" AutoGenerateColumns="False" Background="White" SelectionUnit="Cell" SelectionMode="Single" 
+                      GridLinesVisibility="None" HeadersVisibility="None" IsReadOnly="True">
+                <DataGrid.Resources>
+                    <Style x:Key="NotFocusable" TargetType="{x:Type DataGridCell}">
+                        <Setter Property="Focusable" Value="False"/>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="50">
+                        <DataGridTemplateColumn.CellStyle>
+                            <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource NotFocusable}"/>
+                        </DataGridTemplateColumn.CellStyle>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button BorderThickness="0" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" VerticalAlignment="Top" ToolTip="Delete this URL"
+                                         cal:Message.Attach="[Event Click] = [Action DeleteReturnUrl($this)]"
+                                        Width="20" Height="20" Margin="0,3">
+                                    <Image Source="/Inprotech.Setup;component/trash.png"></Image>
+                                </Button>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Width="*" Binding="{Binding Mode=OneWay}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Validation.ErrorTemplate>
+                <ControlTemplate >
+                    <StackPanel>
+                        <Border BorderBrush="Red" BorderThickness="0.5">
+                            <AdornedElementPlaceholder x:Name="textBox"/>
+                        </Border>
+                        <TextBlock FontSize="12"  Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </Grid>
+        
+    </Grid>
+</UserControl>

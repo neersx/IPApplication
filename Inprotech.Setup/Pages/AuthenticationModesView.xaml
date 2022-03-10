@@ -1,0 +1,146 @@
+﻿<UserControl x:Class="Inprotech.Setup.Pages.AuthenticationModesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="390" d:DesignWidth="855">
+    <ScrollViewer VerticalScrollBarVisibility="Auto"
+          HorizontalScrollBarVisibility="Disabled">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                    <Setter Property="Foreground" Value="#2679b5"></Setter>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="6,0,0,0"></Setter>
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <Label Style="{StaticResource Title}">Authentication</Label>
+                <Border Style="{StaticResource Seperator}" Margin="0,3"></Border>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Top" Grid.Row="1">
+                <Label>Select one or more authentication methods</Label>
+                <Border BorderThickness="3,2,3,2" CornerRadius="3">
+                    <Border.BorderBrush>
+                        <VisualBrush>
+                            <VisualBrush.Visual>
+                                <Rectangle StrokeDashArray="1.0 1.0"
+                                       Stroke="DarkOrange"
+                                       StrokeThickness="2"
+                                       RadiusX="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.TopRight}"
+                                       RadiusY="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=CornerRadius.BottomLeft}"
+                                       Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualWidth}"
+                                       Height="{Binding RelativeSource={RelativeSource AncestorType={x:Type Border}}, Path=ActualHeight}"/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.BorderBrush>
+                    <Grid Margin="0 3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <ContentControl Content="{StaticResource WarningTooltip}" ToolTipService.ShowDuration="12000"
+                                    Margin="10" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" />
+                        <TextBlock TextWrapping="Wrap" FontSize="13" Grid.Column="1" Grid.Row="0">The authentication methods currently in place were automatically selected. Amend these if required.</TextBlock>
+                        <TextBlock TextWrapping="Wrap" FontSize="13" Grid.Column="1" Grid.Row="1">Forms Authentication with Single Sign-On is replaced by Forms and Windows Authentication together.</TextBlock>
+                    </Grid>
+
+                </Border>
+            </StackPanel>
+            <Grid x:Name="AuthenticationMode" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <GroupBox Grid.Row="0">
+                    <GroupBox.Header>
+                        <Label>Inprotech access only</Label>
+                    </GroupBox.Header>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="4*"></RowDefinition>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="4*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Margin="10, 0, 0, 0" Grid.Row="1" Orientation="Vertical">
+                            <CheckBox x:Name="AuthForms">
+                                <Label>Forms Authentication</Label>
+                            </CheckBox>
+                            <TextBlock Style="{StaticResource MutedText}" Margin="23, 0, 5, 0">This method allows Users to sign into Inprotech with a Login ID and Password.</TextBlock>
+                            <StackPanel Margin="23,0,5,0">
+                                <Label Style="{StaticResource SubTitle}" >
+                                    Optional Two Step Verification
+                                </Label>
+                                <TextBlock Style="{StaticResource MutedText }" TextWrapping="Wrap">
+                                    Two step verification requires those accessing Inprotech to enter a password and a system-generated code when they sign in.
+                                </TextBlock>
+                                <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap">
+                                    Select one or both options below if you plan to use this method.
+                                </TextBlock>
+                                <StackPanel>
+                                    <CheckBox x:Name="Internal2FA">
+                                        <Label Content="Two step verification for the firm's staff (Internal Users)"/>
+                                    </CheckBox>
+                                    <CheckBox x:Name="External2FA">
+                                        <Label Content="Two step verification for the firm's clients (External Users)"/>
+                                    </CheckBox>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="10, 0, 0, 0" Grid.Row="3" Orientation="Vertical">
+                            <CheckBox x:Name="AuthWindows">
+                                <Label>Windows Authentication</Label>
+                            </CheckBox>
+                            <TextBlock Style="{StaticResource MutedText}" Margin="23, 0, 5, 0">This method allows Users to access Inprotech automatically once they are signed into the network.</TextBlock>
+                            <StackPanel Margin="25, 0, 0, 0" Orientation="Vertical">
+                                <CheckBox x:Name="AuthAdfs">
+                                    <Label>ADFS Authentication</Label>
+                                </CheckBox>
+                                <TextBlock Style="{StaticResource MutedText}" Margin="23, 0, 5, 0">Select this option to use the ADFS Server for authentication.</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <GroupBox Grid.Row="1">
+                    <GroupBox.Header>
+                        <Label>Inprotech and The IP Platform access</Label>
+                    </GroupBox.Header>
+                    <Grid>
+                        <StackPanel Margin="10, 0, 0, 0">
+                            <CheckBox x:Name="AuthCpaSso" >
+                                <Label>Single Sign On via The IP Platform</Label>
+                            </CheckBox>
+                            <TextBlock Style="{StaticResource MutedText}" Margin="23, 0, 5, 0">This method is integrated with The IP Platform and allows Users to access Inprotech using The IP Platform credentials. <LineBreak/>Select this option only if your firm has registered for The IP Platform.</TextBlock>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+
+                <Validation.ErrorTemplate>
+                    <ControlTemplate>
+                        <StackPanel>
+                            <Border BorderBrush="Red" BorderThickness="0.5">
+                                <AdornedElementPlaceholder x:Name="textBox2"/>
+                            </Border>
+                            <TextBlock FontSize="12"  Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                        </StackPanel>
+                    </ControlTemplate>
+                </Validation.ErrorTemplate>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

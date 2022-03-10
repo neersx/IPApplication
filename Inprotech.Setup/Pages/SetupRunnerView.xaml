@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Inprotech.Setup.Pages.SetupRunnerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label Style="{StaticResource Title}" Name="Title">                
+            </Label>
+            <Label>Do not close this window while Setup is configuring your environment.</Label>
+            <Border Style="{StaticResource Seperator}"></Border>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" Name="ActionsScroll" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0,2.5,0,-3">
+            <StackPanel>            
+                <ItemsControl x:Name="Actions" Margin="10">
+                </ItemsControl>                               
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2">
+            <Border Style="{StaticResource Seperator}"></Border>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="CopyToClipboard" Margin="10" IsEnabled="{Binding Finished }" Style="{StaticResource SecondaryButton}">Copy to Clipboard</Button>
+                <Button x:Name="Accept" Margin="10" IsEnabled="{Binding Finished }" Width="100" Style="{StaticResource PrimaryButton}">Finish</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>
