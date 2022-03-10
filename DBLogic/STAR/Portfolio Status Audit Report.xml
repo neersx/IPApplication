@@ -1,0 +1,2761 @@
+<QuickResults>
+	<!-- This XML should be used in conjunction with the CPA Excel tool called "CPA Quick Results" 
+    and will cause a new worksheet to be created which contains the sheets and results described below. -->
+	<!-- These statements are designed to cause a new worksheet to be created containing results of a status audit 
+    which will help CPA/CPASS and clients to accurately assess the status of their data.  -->
+	<!-- February 2007 Anna van der Aa 	File created.-->
+	<!-- 06 Mar 2007	AvdA	2		Modified to complement portfoliostatusaudit.sql v8.-->
+	<!-- 29 May 2007	AvdA	3		Major change from views to working tables - complements portfoliostatusaudit.sql v11.-->
+	<!-- 13 Jun 2007		AvdA	4		Minor change to macros to add freeze and filter - complements portfoliostatusaudit.sql v12.-->
+	<!-- 19 Jun 2007 	AvdA	5		Combine macros into one for simpler treatment - complements portfoliostatusaudit.sql v13.-->
+	<!-- 28 Jun 2007  	AvdA	6		Add event status to CPA only - complements portfoliostatusaudit.sql v14.-->
+	<!-- 25 Jul 2007  	AvdA	7		Modify to support managing agents - complements portfoliostatusaudit.sql v15.-->
+	<!-- 25 Jul 2007  	AvdA	8		Remove the File match - was specific to one client and inefficient - complements portfoliostatusaudit.sql v16.-->
+	<!-- 09 Nov 2007	AvdA	9		Standardise content. -->
+	<!-- 26 Dec 2007	AvdA	10	Update with shortcuts (including case launch) complements CPA Quick Results v.8 -->
+	<!-- 11 Jan 2008		AvdA	11	Include program path to avoid login popup. -->
+	<!-- 18 Mar 2008	AvdA	12	Add default CASEENQ. -->
+	<!-- 27 Jun 2008		AvdA	13	Major change to work with the results of the stored procedure cpa_ReportSTARPreparation -->
+	<!--- 											complements STAR Instructions 2.0 - portfoliostatusaudit.sql becomes obsolete -->
+	<!--- 											includes ClientRef (ie MARK) and Standing Instruction,	adds tab: SI Inhibits - Inprotech Only-->
+	<!---11 Jul 2008		AvdA	14	Includes CPAAccount complements STAR 2.1-->
+	<!---30 Jul 2008		AvdA	15	Put cases with stoppayeason onto Inhibited tab -->
+	<!---04 Aug 2008	AvdA	16	Revise estimate for new cases to be consistent -->
+	<!---06 Aug 2008	AvdA	17	Allow for new category column in Inprotech Only -->
+	<!-- 04 Dec 2008	AvdA	18	Add FileNumber and ClientsReference for conversions - complements STAR preparation 2.4 -->
+	<!-- 13 Feb 2008	AvdA	19	Minor change to statement to remove unused element - no impact -->
+	<!-- 27 Apr 2009		AvdA	20	Update for use with CPA Quick Results v.11 -->
+	<!-- 15 Jun 2009		AvdA	23	Remove manual QuickPrepare step - this report must be run with CPA Quick Results v.15 or later. -->
+	<Sheet sheetname="Tips" header="Tips for using this report">
+		<Step/>
+		<Step>!! Important !! First save this new report (CTRL+S).</Step>
+		<Step/>
+		<Step>Tips:</Step>
+		<Step>Tip 1 - to search for a value across all sheets, first right-mouse click a tab and Select All Sheets, then choose Edit, Find from the standard menu.</Step>
+		<Step>Tip 2 - to open Cases directly, select an IRN and run macro CasesByIRN (shortcut CTRL+SHIFT+C).</Step>
+		<Step>Note - the macro CaseByIRN depends on cell AA2 containing the case program with appropriate parameters (eg CASE -nCASEENQ).</Step>
+		<Step>Note - cell AA2 may be populated differently when the workbook is created if site control "CPA QR Case Application" is present with the Application Name to launch (eg. Renewals).</Step>
+		<Query location="AA1">
+			<SQL><![CDATA[
+select case when max(PROGRAMNAME) is null then 'CASE -nCASEENQ' else 
+								(select isnull(PROGRAMPATH,'') + isnull(PROGRAMNAME,'') + ' ' + isnull(RUNTIMEPARMS,'') 
+								from APPLICATIONS
+								where APPLICATIONNAME = (select COLCHARACTER
+								from SITECONTROL
+								where CONTROLID = 'CPA QR Case Application')) end as ' '
+from APPLICATIONS
+where APPLICATIONNAME = (select COLCHARACTER
+from SITECONTROL
+where CONTROLID = 'CPA QR Case Application')
+]]></SQL>
+		</Query>
+	</Sheet>
+	<!--End standard Quick Results Queries-->
+	<!--Begin STAR specific Sheets and Queries-->
+	<Sheet sheetname="Totals">
+		<Query location="A3">
+			<!--Count of all records showing in the PSU as being held at CPA--><![CDATA[
+select count(0) as 'Total CPA Portfolio'
+from CPAPORTFOLIO
+]]></Query>
+		<Query location="B6">
+			<!--Breakdown of these records into matched/unmatched/cpalive--><![CDATA[
+select case when  MATCHTYPE ='IRN' then 'Direct match CASECODE (IRN-I)' 
+when MATCHTYPE ='Number' then 'Official number (PROPOSEDIRN-N)' 
+when  MATCHTYPE ='Obsolete' then 'Obsolete match'
+else 'No match' end as 'Matching',
+case when  MATCHTYPE ='IRN'  then 1 
+when MATCHTYPE ='Number'  then 2 
+when  MATCHTYPE ='Obsolete' then 3
+else 4 end as 'Discardable Sort Column 1',
+case when MATCHTYPE is null then (
+	case when  ((Responsibility='Client responsible') 
+			and (CPAStatus ='Live at CPA') )then 'CPA Live and Client responsible' 
+	     when  ((Responsibility='Agent responsible') 
+			and (CPAStatus ='Live at CPA') )then 'CPA Live and Agent responsible' 
+	    when (((Responsibility <>'Client responsible') 
+			 and (Responsibility<>'Agent responsible') )
+			or (CPAStatus <>'Live at CPA')) then 'Dead/other - see Portfolio Only' end )
+when MATCHTYPE = 'Obsolete' then ''  
+else 'See Match Breakdown' end as 'Status',
+count ( distinct PORTFOLIONO)  as 'Cases on CPA Portfolio'
+from CPASTAR_MATCHEDPORTFOLIO CPA
+group by case when  MATCHTYPE ='IRN' then 'Direct match CASECODE (IRN-I)' 
+when MATCHTYPE ='Number' then 'Official number (PROPOSEDIRN-N)' 
+when  MATCHTYPE ='Obsolete' then 'Obsolete match'
+else 'No match' end,
+case when  MATCHTYPE ='IRN'  then 1 
+when MATCHTYPE ='Number'  then 2 
+when  MATCHTYPE ='Obsolete' then 3
+else 4 end,
+case when MATCHTYPE is null then (
+	case when  ((Responsibility='Client responsible') 
+			and (CPAStatus ='Live at CPA') )then 'CPA Live and Client responsible' 
+	     when  ((Responsibility='Agent responsible') 
+			and (CPAStatus ='Live at CPA') )then 'CPA Live and Agent responsible' 
+	    when (((Responsibility <>'Client responsible') 
+			 and (Responsibility<>'Agent responsible') )
+			or (CPAStatus <>'Live at CPA')) then 'Dead/other - see Portfolio Only' end )
+when MATCHTYPE = 'Obsolete' then ''  
+else 'See Match Breakdown' end
+order by 2 desc, 3
+]]></Query>
+		<Query location="A16">
+			<!--Total cases on Inprotech not matching CPA but flagged to send.--><![CDATA[
+select count (distinct C.IRN)  as   'Inprotech Only - flagged cases'
+from CASES C
+left join CPASTAR_MATCHEDPORTFOLIO CPA on CPA.CASEID = C.CASEID
+where  REPORTTOTHIRDPARTY = 1
+and CPA.CASEID is null
+]]></Query>
+		<Query location="C18">
+			<!--Breakdown of these cases into live/dead/notsending --><![CDATA[
+select case (isnull(S.LIVEFLAG,1)) 
+	when 0 then 'Dead(or Dead Renewal)' 
+	else (
+case (isnull(SR.LIVEFLAG,1)) 
+	when 0 then 'Dead(or Dead Renewal)' 
+	else 
+(case (isnull(IO.INSTRUCTIONSENDFLAG,0)) 
+	when 0 then 'Live (Inhibited)' 
+	else (case when C.STOPPAYREASON is not null
+	then 'Live (Inhibited)' 
+	else 'Live for sending' end  ) end  )
+ end ) 
+end as 'Inprotech status', 
+count (distinct C.CASEID)  as  'Inprotech Only - flagged cases'
+from CASES C
+left join CPASTAR_MATCHEDPORTFOLIO MP on MP.CASEID = C.CASEID
+left join CPASTAR_LIVEINPROTECHONLY IO on IO.CASEID = C.CASEID
+left join PROPERTYTYPE T on (T.PROPERTYTYPE = C.PROPERTYTYPE)	
+left join STATUS S on (S.STATUSCODE = C.STATUSCODE)
+left join PROPERTY P       on (P.CASEID=C.CASEID)
+left join STATUS SR        on (SR.STATUSCODE=P.RENEWALSTATUS)
+where  C.REPORTTOTHIRDPARTY = 1
+and MP.CASEID is null -- only non-matched cases
+group by case (isnull(S.LIVEFLAG,1)) 
+	when 0 then 'Dead(or Dead Renewal)' 
+	else (
+case (isnull(SR.LIVEFLAG,1)) 
+	when 0 then 'Dead(or Dead Renewal)' 
+	else 
+(case (isnull(IO.INSTRUCTIONSENDFLAG,0)) 
+	when 0 then 'Live (Inhibited)' 
+	else (case when C.STOPPAYREASON is not null
+	then 'Live (Inhibited)' 
+	else 'Live for sending' end  ) end  )
+ end ) 
+end
+order by 1 desc, 2 desc
+]]></Query>
+		<Query location="B28"><![CDATA[
+select (select count(distinct IRN)
+from CPASTAR_LIVEINPROTECHONLY
+where (isnull(INSTRUCTIONSENDFLAG,0) = 1)
+and STOPPAYREASON is null) as 'Estimate', 
+cast ((select count(1) from CPAPORTFOLIO)/100 as dec(6,0)) as 'Goal',
+'New cases? Investigate if more than 1% of total portfolio. See Inprotech Only.'
+]]></Query>
+		<Query location="B30"><![CDATA[
+select count(distinct MP.CASEID) as 'Estimate', 
+sum(case when (StartPayDate >= getdate() - 90) then 1 else 0 end) as 'Goal',
+'Investigate start date - cases to reactivate? Start date must be less than 6 months old at time of processing.'
+from CPASTAR_MATCHEDPORTFOLIO MP
+left join CPAPORTFOLIO CPALIVE on (CPALIVE.CASEID = MP.CASEID
+							and CPALIVE.STATUSINDICATOR = 'L')
+where MP.CASEID is not null
+and MP.MATCHTYPE <> 'Obsolete'
+and MP.StartPayDate >= convert( datetime, convert(varchar(4),year(getdate()))+'01'+'01',112)
+and MP.CPAStatus <> 'Live at CPA'
+and MP.InprotechLiveFlag  = 'Live on Inprotech'
+and MP.InprotechSendFlag = 'Flagged'
+and CPALIVE.CASEID is null -- ie where there isn't a live one
+]]></Query>
+		<Query location="B32"><![CDATA[
+select (select count(distinct CASEID)
+from CPASTAR_MATCHEDPORTFOLIO 
+where PROPOSEDIRN is not null
+and CPAStatus <> 'Transferred'
+and InprotechLiveFlag  = 'Live on Inprotech'
+and InprotechSendFlag = 'Flagged') as 'Estimate',
+0 as 'Goal', 
+'Update case code - appear new but match found by official number (PROPOSEDIRN-N).'
+]]></Query>
+		<Query location="B34"><![CDATA[
+select (select count(distinct CASEID)
+from CPASTAR_MATCHEDPORTFOLIO 
+where PROPOSEDIRN is not null
+and CPAStatus = 'Transferred'
+and InprotechLiveFlag  = 'Live on Inprotech'
+and InprotechSendFlag = 'Flagged') as 'Estimate', 
+0 as 'Goal', 
+'Investigate and stop reporting - appear new but match found by official number (PROPOSEDIRN-N) AND Transferred.'
+]]></Query>
+		<Query location="B36"><![CDATA[
+SELECT  count(distinct MP.CASEID) as 'Estimate', 
+0 as 'Goal',
+case when (MP.Responsibility = 'Agent responsible' ) 
+then '(Agent responsible) investigate stop reason - these cases may auto-abandon - remove stop reason or manually instruct.' 
+else '(Client responsible) investigate stop reason - these cases may auto-abandon - remove stop reason or manually instruct.' 
+end
+from CPASTAR_MATCHEDPORTFOLIO MP
+left join CPASTAR_MATCHEDPORTFOLIO MPL on (MP.CASEID = MPL.CASEID
+			 and MP.IPRURN <> MPL.IPRURN)
+where  MP.CASEID is not null
+and MPL.CASEID is null
+and MP.MATCHTYPE <> 'Obsolete'
+and MP.StopPayReason is not null
+and MP.CPAStatus = 'Live at CPA'
+group by MP.Responsibility
+order by MP.Responsibility
+]]></Query>
+	</Sheet>
+	<Sheet sheetname="Match Breakdown">
+		<Query><![CDATA[
+SELECT PropertyType, 
+	case when (PropertyType = 'Patents')
+		then 1
+		when (PropertyType = 'Trademarks')
+		then 2
+		when (PropertyType = 'Designs')
+		then 3
+		else 4 end as 'Discardable Sort Column 1', 
+	Responsibility, 
+	CPAStatus,
+	case when (CPAStatus ='Live at CPA') then 1
+		when (CPAStatus='Dead at CPA') then 2
+		when (CPAStatus='Transferred') then 3
+		else 4 end as 'Discardable Sort Column 2', 
+	InprotechLiveFlag,
+	case when InprotechLiveFlag = 'Live on Inprotech' 
+		then 1
+		else 2 end
+		as 'Discardable Sort Column 3',
+	case when InprotechLiveFlag <> 'Dead(or Dead Renewal)' 
+		then  InprotechSendFlag
+		else 'N/A' end
+		as  InprotechSendFlag,
+COUNT(DISTINCT PORTFOLIONO) as 'Total'
+from CPASTAR_MATCHEDPORTFOLIO C
+where CASEID is not null
+and MATCHTYPE <> 'Obsolete'
+group by  PropertyType, 
+	case when (PropertyType = 'Patents') then 1
+		when (PropertyType = 'Trademarks') then 2
+		when (PropertyType = 'Designs') then 3
+		else 4 end, 
+	Responsibility,
+	CPAStatus,
+	case when (CPAStatus ='Live at CPA') then 1
+		when (CPAStatus='Dead at CPA') then 2
+		when (CPAStatus='Transferred') then 3
+		else 4 end,
+	InprotechLiveFlag,
+	case when InprotechLiveFlag = 'Live on Inprotech' 
+		then  1
+		else 2 end,
+	case when InprotechLiveFlag <> 'Dead(or Dead Renewal)' 
+		then   InprotechSendFlag
+		else 'N/A' end
+order by 2,3,5,7,8
+]]></Query>
+		<Query location="Z1"><![CDATA[
+Select COLBOOLEAN
+from   SITECONTROL 
+where  upper(CONTROLID) ='CPA-USE CLIENTCASECODE'
+		]]></Query>
+	</Sheet>
+	<Sheet sheetname="Portfolio Only">
+		<Query><![CDATA[
+SELECT PropertyType, 
+case when (PropertyType = 'Patents')
+		then 1
+		when (PropertyType = 'Trademarks')
+		then 2
+		when (PropertyType = 'Designs')
+		then 3
+		else 4 end as 'Discardable Sort Column 1', 
+	Responsibility , CPAStatus,
+	case when (CPAStatus ='Live at CPA') then 1
+		when (CPAStatus='Dead at CPA') then 2
+		when (CPAStatus='Transferred') then 3
+		else 4 end as 'Discardable Sort Column 2',
+COUNT(DISTINCT PORTFOLIONO) as 'Total'
+from CPASTAR_MATCHEDPORTFOLIO C
+where CASEID is  null
+group by  PropertyType, 
+case when (PropertyType = 'Patents')
+		then 1
+		when (PropertyType = 'Trademarks')
+		then 2
+		when (PropertyType = 'Designs')
+		then 3
+		else 4 end , 
+	Responsibility , CPAStatus,
+	case when (CPAStatus ='Live at CPA') then 1
+		when (CPAStatus='Dead at CPA') then 2
+		when (CPAStatus='Transferred') then 3
+		else 4 end
+order by 2,3,5
+ ]]></Query>
+		<Query location="Z1"><![CDATA[
+Select COLBOOLEAN
+from   SITECONTROL 
+where  upper(CONTROLID) ='CPA-USE CLIENTCASECODE'
+		]]></Query>
+	</Sheet>
+	<Sheet sheetname="Inprotech Only" header="Inprotech Only - live cases flagged to send">
+		<!--Assumes matching has been done by official numbers and that CPA agentcasecodes or clientcasecodes have been updated with the PROPOSEDIRN. Only shows those with valid Standing Instruction. -->
+		<Query><![CDATA[
+select  V.*
+from CPASTAR_LIVEINPROTECHONLY V
+where INSTRUCTIONSENDFLAG =1
+and StopPayReason is null
+order by V.CASEID, V.IRN
+ ]]></Query>
+	</Sheet>
+	<Sheet sheetname="Inhibited - Inprotech Only" header="Inhibited Inprotech Only - live cases flagged but Standing Instruction or Stop Pay Reason will inhibit">
+		<Query><![CDATA[
+select  V.*
+from CPASTAR_LIVEINPROTECHONLY V
+where (isnull(INSTRUCTIONSENDFLAG,0)=0 
+or StopPayReason is not null)
+order by V.CASEID, V.IRN
+ ]]></Query>
+	</Sheet>
+	<!-- Live at CPA Only -->
+	<Sheet sheetname="PAL" header="Patents, Agent responsible, Live at CPA - No Match">
+		<!--Patents, Agent responsible, Live at CPA - No Match-->
+		<Query><![CDATA[select PropertyType, Responsibility, CPAStatus, CPAEventStatus, CASECODE, CPATypeCode, CPATypeName, CPACountryCode,
+CPAApplicationNo, CPARegistrationNo, CPAApplicationDate, CPAGrantDate, CPAProprietor, CPAAccount, CPAClientRef, PORTFOLIONO, IPRURN
+from CPASTAR_MATCHEDPORTFOLIO
+where PropertyType = 'Patents'
+and Responsibility = 'Agent responsible'
+and CPAStatus = 'Live at CPA'
+and MATCHTYPE is null
+order by CASECODE desc ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TAL" header="Trademarks, Agent responsible, Live at CPA - No Match">
+		<!--Trademarks, Agent responsible, Live at CPA - No Match-->
+		<Query><![CDATA[select PropertyType, Responsibility, CPAStatus, CPAEventStatus, CASECODE, CPATypeCode, CPATypeName, CPACountryCode,
+CPAApplicationNo, CPARegistrationNo, CPAApplicationDate, CPAGrantDate, CPAProprietor, CPAAccount, CPAClientRef, PORTFOLIONO, IPRURN
+from CPASTAR_MATCHEDPORTFOLIO 
+where PropertyType = 'Trademarks'
+and Responsibility = 'Agent responsible'
+and CPAStatus = 'Live at CPA'
+and MATCHTYPE is null
+order by CASECODE desc ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DAL" header="Designs, Agent responsible, Live at CPA - No Match">
+		<!--Designs, Agent responsible, Live at CPA - No Match-->
+		<Query><![CDATA[select PropertyType, Responsibility, CPAStatus, CPAEventStatus, CASECODE, CPATypeCode, CPATypeName, CPACountryCode,
+CPAApplicationNo, CPARegistrationNo, CPAApplicationDate, CPAGrantDate, CPAProprietor, CPAAccount, CPAClientRef, PORTFOLIONO, IPRURN
+from CPASTAR_MATCHEDPORTFOLIO 
+where PropertyType = 'Designs'
+and Responsibility = 'Agent responsible'
+and CPAStatus = 'Live at CPA'
+and MATCHTYPE is null
+order by CASECODE desc ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCL" header="Patents, Client responsible, Live at CPA - No Match">
+		<!--Patents, Client responsible, Live at CPA - No Match-->
+		<Query><![CDATA[select PropertyType, Responsibility, CPAStatus, CPAEventStatus, CASECODE, CPATypeCode, CPATypeName, CPACountryCode,
+CPAApplicationNo, CPARegistrationNo, CPAApplicationDate, CPAGrantDate, CPAProprietor, CPAAccount, CPAClientRef, PORTFOLIONO, IPRURN
+from CPASTAR_MATCHEDPORTFOLIO
+where PropertyType = 'Patents'
+and Responsibility = 'Client responsible'
+and CPAStatus = 'Live at CPA'
+and MATCHTYPE is null
+order by CASECODE desc ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCL" header="Trademarks, Client responsible, Live at CPA - No Match">
+		<!--Trademarks, Client responsible, Live at CPA - No Match-->
+		<Query><![CDATA[select PropertyType, Responsibility, CPAStatus, CPAEventStatus, CASECODE, CPATypeCode, CPATypeName, CPACountryCode,
+CPAApplicationNo, CPARegistrationNo, CPAApplicationDate, CPAGrantDate, CPAProprietor, CPAAccount, CPAClientRef, PORTFOLIONO, IPRURN
+from CPASTAR_MATCHEDPORTFOLIO 
+where PropertyType = 'Trademarks'
+and Responsibility = 'Client responsible'
+and CPAStatus = 'Live at CPA'
+and MATCHTYPE is null
+order by CASECODE desc ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCL" header="Designs, Client responsible, Live at CPA - No Match">
+		<!--Designs, Client responsible, Live at CPA - No Match-->
+		<Query><![CDATA[select PropertyType, Responsibility, CPAStatus, CPAEventStatus, CASECODE, CPATypeCode, CPATypeName, CPACountryCode,
+CPAApplicationNo, CPARegistrationNo, CPAApplicationDate, CPAGrantDate, CPAProprietor, CPAAccount, CPAClientRef, PORTFOLIONO, IPRURN
+from CPASTAR_MATCHEDPORTFOLIO 
+where PropertyType = 'Designs'
+and Responsibility = 'Client responsible'
+and CPAStatus = 'Live at CPA'
+and MATCHTYPE is null
+order by CASECODE desc ]]></Query>
+	</Sheet>
+	<!-- Live at CPA Only -->
+	<!-- START detail Patents -->
+	<Sheet sheetname="PALLF-I" header="Patents, Agent responsible, Live at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Agent responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PALLF-N" header="Patents, Agent responsible, Live at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Agent responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PALLN-I" header="Patents, Agent responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Agent responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PALLN-N" header="Patents, Agent responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Agent responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PALDo-I" header="Patents, Agent responsible, Live at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Patents, Agent responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PALDo-N" header="Patents, Agent responsible, Live at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Agent responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PADLF-I" header="Patents, Agent responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Agent responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PADLF-N" header="Patents, Agent responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Agent responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PADLN-I" header="Patents, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PADLN-N" header="Patents, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PADDo-I" header="Patents, Agent responsible, Dead at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Patents, Agent responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PADDo-N" header="Patents, Agent responsible, Dead at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Agent responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PATLF-I" header="Patents, Agent responsible, Transferred, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PATLF-N" header="Patents, Agent responsible, Transferred, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PATLN-I" header="Patents, Agent responsible, Transferred, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PATLN-N" header="Patents, Agent responsible, Transferred, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PATDo-I" header="Patents, Agent responsible, Transferred, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Patents, Agent responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PATDo-N" header="Patents, Agent responsible, Transferred, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Agent responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCLLF-I" header="Patents, Client responsible, Live at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Agent responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCLLF-N" header="Patents, Client responsible, Live at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Client responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCLLN-I" header="Patents, Client responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Client responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCLLN-N" header="Patents, Client responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Client responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCLDo-I" header="Patents, Client responsible, Live at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Patents, Client responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCLDo-N" header="Patents, Client responsible, Live at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Client responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCDLF-I" header="Patents, Client responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Client responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCDLF-N" header="Patents, Client responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Client responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCDLN-I" header="Patents, Client responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Client responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCDLN-N" header="Patents, Client responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Client responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCDDo-I" header="Patents, Client responsible, Dead at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Patents, Client responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCDDo-N" header="Patents, Client responsible, Dead at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Client responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCTLF-I" header="Patents, Client responsible, Transferred, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCTLF-N" header="Patents, Client responsible, Transferred, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCTLN-I" header="Patents, Client responsible, Transferred, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Patents, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCTLN-N" header="Patents, Client responsible, Transferred, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCTDo-I" header="Patents, Client responsible, Transferred, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Patents, Client responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="PCTDo-N" header="Patents, Client responsible, Transferred, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Patents, Client responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Patents'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<!-- END detail Patents -->
+	<!-- START detail Trademarks -->
+	<Sheet sheetname="TALLF-I" header="Trademarks, Agent responsible, Live at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Agent responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TALLF-N" header="Trademarks, Agent responsible, Live at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Agent responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TALLN-I" header="Trademarks, Agent responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Agent responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TALLN-N" header="Trademarks, Agent responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Agent responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TALDo-I" header="Trademarks, Agent responsible, Live at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Trademarks, Agent responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TALDo-N" header="Trademarks, Agent responsible, Live at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Agent responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TADLF-I" header="Trademarks, Agent responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Agent responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TADLF-N" header="Trademarks, Agent responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Agent responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TADLN-I" header="Trademarks, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TADLN-N" header="Trademarks, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TADDo-I" header="Trademarks, Agent responsible, Dead at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Trademarks, Agent responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TADDo-N" header="Trademarks, Agent responsible, Dead at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Agent responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TATLF-I" header="Trademarks, Agent responsible, Transferred, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TATLF-N" header="Trademarks, Agent responsible, Transferred, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TATLN-I" header="Trademarks, Agent responsible, Transferred, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TATLN-N" header="Trademarks, Agent responsible, Transferred, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TATDo-I" header="Trademarks, Agent responsible, Transferred, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Trademarks, Agent responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TATDo-N" header="Trademarks, Agent responsible, Transferred, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Agent responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCLLF-I" header="Trademarks, Client responsible, Live at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Client responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCLLF-N" header="Trademarks, Client responsible, Live at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Client responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCLLN-I" header="Trademarks, Client responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Client responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCLLN-N" header="Trademarks, Client responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Client responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCLDo-I" header="Trademarks, Client responsible, Live at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Trademarks, Client responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCLDo-N" header="Trademarks, Client responsible, Live at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Client responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCDLF-I" header="Trademarks, Client responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Client responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCDLF-N" header="Trademarks, Client responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Client responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCDLN-I" header="Trademarks, Client responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Client responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCDLN-N" header="Trademarks, Client responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Client responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCDDo-I" header="Trademarks, Client responsible, Dead at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Trademarks, Client responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCDDo-N" header="Trademarks, Client responsible, Dead at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Client responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCTLF-I" header="Trademarks, Client responsible, Transferred, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCTLF-N" header="Trademarks, Client responsible, Transferred, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCTLN-I" header="Trademarks, Client responsible, Transferred, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Trademarks, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCTLN-N" header="Trademarks, Client responsible, Transferred, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCTDo-I" header="Trademarks, Client responsible, Transferred, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Trademarks, Client responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="TCTDo-N" header="Trademarks, Client responsible, Transferred, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Trademarks, Client responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Trademarks'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<!-- END detail Trademarks -->
+	<!-- START detail Designs-->
+	<Sheet sheetname="DALLF-I" header="Designs, Agent responsible, Live at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Agent responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DALLF-N" header="Designs, Agent responsible, Live at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Agent responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DALLN-I" header="Designs, Agent responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Agent responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DALLN-N" header="Designs, Agent responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Agent responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DALDo-I" header="Designs, Agent responsible, Live at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Designs, Agent responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DALDo-N" header="Designs, Agent responsible, Live at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Agent responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DADLF-I" header="Designs, Agent responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Agent responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DADLF-N" header="Designs, Agent responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Agent responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DADLN-I" header="Designs, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DADLN-N" header="Designs, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Agent responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DADDo-I" header="Designs, Agent responsible, Dead at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Designs, Agent responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DADDo-N" header="Designs, Agent responsible, Dead at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Agent responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DATLF-I" header="Designs, Agent responsible, Transferred, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DATLF-N" header="Designs, Agent responsible, Transferred, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DATLN-I" header="Designs, Agent responsible, Transferred, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DATLN-N" header="Designs, Agent responsible, Transferred, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Agent responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DATDo-I" header="Designs, Agent responsible, Transferred, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Designs, Agent responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DATDo-N" header="Designs, Agent responsible, Transferred, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Agent responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Agent responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCLLF-I" header="Designs, Client responsible, Live at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Client responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCLLF-N" header="Designs, Client responsible, Live at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Client responsible, Live at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCLLN-I" header="Designs, Client responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Client responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCLLN-N" header="Designs, Client responsible, Live at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Client responsible, Live at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCLDo-I" header="Designs, Client responsible, Live at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Designs, Client responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCLDo-N" header="Designs, Client responsible, Live at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Client responsible, Live at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Live at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCDLF-I" header="Designs, Client responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Client responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCDLF-N" header="Designs, Client responsible, Dead at CPA, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Client responsible, Dead at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCDLN-I" header="Designs, Client responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Client responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCDLN-N" header="Designs, Client responsible, Dead at CPA, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Client responsible, Dead at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCDDo-I" header="Designs, Client responsible, Dead at CPA, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Designs, Client responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCDDo-N" header="Designs, Client responsible, Dead at CPA, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Client responsible, Dead at CPA, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Dead at CPA'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCTLF-I" header="Designs, Client responsible, Transferred, Live on Inprotech, Flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCTLF-N" header="Designs, Client responsible, Transferred, Live on Inprotech, Flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCTLN-I" header="Designs, Client responsible, Transferred, Live on Inprotech, Not flagged - Matched by CASECODE (IRN)">
+		<!--Designs, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCTLN-N" header="Designs, Client responsible, Transferred, Live on Inprotech, Not flagged - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Client responsible, Dead or Transferred at CPA, Live on Inprotech, Not flagged-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Live on Inprotech'
+and V.InprotechSendFlag = 'Not flagged'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCTDo-I" header="Designs, Client responsible, Transferred, Dead on Inprotech - Matched by CASECODE (IRN)">
+		<!--Designs, Client responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'IRN'
+order by V.PORTFOLIONO, V.CASECODE ]]></Query>
+	</Sheet>
+	<Sheet sheetname="DCTDo-N" header="Designs, Client responsible, Transferred, Dead on Inprotech - Matched by Official Number (PROPOSEDIRN)">
+		<!--Designs, Client responsible, Transferred, Dead on Inprotech-->
+		<Query><![CDATA[select V.* 
+from CPASTAR_MATCHEDPORTFOLIO V
+where V.PropertyType = 'Designs'
+and V.Responsibility = 'Client responsible'
+and V.CPAStatus = 'Transferred'
+and V.InprotechLiveFlag = 'Dead(or Dead Renewal)'
+and V.MATCHTYPE = 'Number'
+order by V.PORTFOLIONO, V.PROPOSEDIRN ]]></Query>
+	</Sheet>
+	<!-- END detail Designs -->
+	<!-- This macro will be created so that it can be run in the new workbook-->
+	<Macro Name="QuickPrepare" ShortcutKey="q"><![CDATA[
+Sub QuickPrepare()
+	'Add report-specific formatting macro instructions here:
+
+	Dim nRows, nColumn, nSheet, nSheets As Integer
+	'Now loop through sheets and remove Discardable columns (had to wait for data)
+	For nSheet = 3 To 4
+		Sheets(nSheet).Activate
+		nColumn = 1
+		Do Until Len(Cells(2, nColumn)) = 0
+			If Left(Cells(2, nColumn), 11) = "Discardable" Then
+				Columns(nColumn).Delete Shift:=xlToLeft
+				'no need to increment if deleting
+			Else
+				nColumn = nColumn + 1
+			End If
+		Loop
+	Next nSheet
+	'Hard coded colouring-in:
+	'First the totals sheet
+	Sheets("Totals").Select
+	  'Remove discardable sort column
+		Range("C6:C12").Select
+		Selection.Delete Shift:=xlToLeft
+	  'Resize columns
+		Columns("A:A").ColumnWidth = 10.57
+		Columns("B:B").ColumnWidth = 30
+		Columns("C:C").ColumnWidth = 28
+		Columns("D:D").ColumnWidth = 35
+		Columns("E:E").ColumnWidth = 6
+		Columns("F:F").ColumnWidth = 4.86
+	  'Colour the sections
+		Rows("3:15").Select
+		Selection.Interior.ColorIndex = 35
+		Rows("16:23").Select
+		Selection.Interior.ColorIndex = 34
+		Rows("24:39").Select
+		Selection.Interior.ColorIndex = 36
+	  'Adjust the CPA summary section
+	  If Range("C7").Value <> "CPA Live and Agent responsible" Then
+		'Move the rows down
+		Range("B7:D11").Select
+		Selection.Copy
+		Range("B8").Select
+		ActiveSheet.Paste
+		Range("B7:D7").Select
+		Selection.ClearContents	  
+	  End If
+	  If Range("C8").Value <> "CPA Live and Client responsible" Then
+		'Move the rows down
+		Range("B8:D11").Select
+		Selection.Copy
+		Range("B9").Select
+		ActiveSheet.Paste
+		Range("B8:D8").Select
+		Selection.ClearContents
+	  End If
+	  If Range("C9").Value <> "Dead/other - see Portfolio Only" Then
+		'Move the rows down
+		Range("B9:D11").Select
+		Selection.Copy
+		Range("B10").Select
+		ActiveSheet.Paste
+		Range("B9:D9").Select
+		Selection.ClearContents
+	  End If
+	  If Range("B10").Value <> "Obsolete match" Then
+		'Move the rows down
+		Range("B10:D11").Select
+		Selection.Copy
+		Range("B11").Select
+		ActiveSheet.Paste
+		Range("B10:D10").Select
+		Selection.ClearContents
+	 End If
+	 If Range("B11").Value <> "Official number (PROPOSEDIRN-N)" Then
+		'Move the rows down
+		Range("B11:D11").Select
+		Selection.Copy
+		Range("B12").Select
+		ActiveSheet.Paste
+		Range("B11:D11").Select
+		Selection.ClearContents
+	  End If
+	'Adjust the Inprotech Only section
+	  If Range("C19").Value <> "Live for sending" Then
+		'Move the rows down
+		Range("C19:D20").Select
+		Selection.Copy
+		Range("C20").Select
+		ActiveSheet.Paste
+		Range("C19:D19").Select
+		Selection.ClearContents	  
+	  End If
+	  If Range("C20").Value <> "Live (Inhibited)" Then
+		'Move the rows down
+		Range("C20:D20").Select
+		Selection.Copy
+		Range("C21").Select
+		ActiveSheet.Paste
+		Range("C20:D20").Select
+		Selection.ClearContents
+	  End If
+	  'Prepare Batch section
+		Range("A24").Select
+		ActiveCell.FormulaR1C1 = "Batch"
+		Range("B25").Select
+		ActiveCell.FormulaR1C1 = "Current estimate"
+		Range("C25").Select
+		ActiveCell.FormulaR1C1 = "Goal"
+		Range("D26").Select
+		ActiveCell.FormulaR1C1 = "Maximum batch size"
+	   ' Remove query headings  
+		Rows("28:28").Select
+		Selection.Delete Shift:=xlUp
+		Rows("29:29").Select
+		Selection.Delete Shift:=xlUp
+		Rows("30:30").Select
+		Selection.Delete Shift:=xlUp
+		Rows("31:31").Select
+		Selection.Delete Shift:=xlUp
+		Rows("32:32").Select
+		Selection.Delete Shift:=xlUp
+		'Sum batch results
+		Range("B26").Select
+		ActiveCell.FormulaR1C1 = "=SUM(R[2]C:R[7]C)"
+		Range("C26").Select
+		ActiveCell.FormulaR1C1 = "=SUM(R[2]C:R[7]C)"
+	  'Sum for crosscheck
+		Range("D13").Select
+		ActiveCell.FormulaR1C1 = "=SUM(R[-6]C:R[-1]C)"
+		Range("D13").Select
+		Selection.Font.ColorIndex = 15
+		Range("D22").Select
+		ActiveCell.FormulaR1C1 = "=SUM(R[-3]C:R[-1]C)"
+		Range("D22").Select
+		Selection.Font.ColorIndex = 15
+	   'Cross check totals
+		Range("F22").Select
+		ActiveCell.FormulaR1C1 = "=R[-5]C[-5]-RC[-2]"
+		Range("F22").Select
+		Selection.NumberFormat = "_(* #,##0_);_(* (#,##0);_(* ""-""_);_(@_)"
+		Range("F23").Select
+		ActiveCell.FormulaR1C1 = "=R[5]C[-4]-R[-4]C[-2]"
+		Range("F23").Select
+		Selection.NumberFormat = "_(* #,##0_);_(* (#,##0);_(* ""-""_);_(@_)"
+		Range("F13").Select
+		ActiveCell.FormulaR1C1 = "=R[-9]C[-5]-RC[-2]"
+		Range("F13").Select
+		Selection.NumberFormat = "_(* #,##0_);_(* (#,##0);_(* ""-""_);_(@_)"
+		Range("F14").Select
+		ActiveCell.FormulaR1C1 = "=(R[-7]C[-2] + R[-6]C[-2] + R[-5]C[-2])- SUM('Portfolio Only'!C[-2])"
+		Range("F14").Select
+		Selection.NumberFormat = "_(* #,##0_);_(* (#,##0);_(* ""-""_);_(@_)"
+		Range("F15").Select
+		ActiveCell.FormulaR1C1 = "=(R[-4]C[-2]+R[-3]C[-2])-SUM('Match Breakdown'!C)"
+		Range("F15").Select
+		Selection.NumberFormat = "_(* #,##0_);_(* (#,##0);_(* ""-""_);_(@_)"
+		'Checks
+		Range("G13").Select
+		ActiveCell.FormulaR1C1 = "zero check"
+		Range("G14").Select
+		ActiveCell.FormulaR1C1 = "zero check - portfolio only"
+		Range("G15").Select
+		ActiveCell.FormulaR1C1 = "zero check - match breakdown"
+		Range("G22").Select
+		ActiveCell.FormulaR1C1 = "zero check"
+		Range("G23").Select
+		ActiveCell.FormulaR1C1 = "zero check - new cases"
+	   'Highlight key aspects
+		Range("D7").Select
+		Selection.Font.ColorIndex = 3
+		Range("D8").Select
+		Selection.Font.ColorIndex = 3
+		Range("D19").Select
+		Selection.Font.ColorIndex = 3
+		Range("B26").Select
+		Selection.Font.ColorIndex = 3
+		Range("A24").Select
+		Selection.Font.Bold = True
+		Range("B25:C25").Select
+		Selection.Font.Bold = True
+		Range("B26:C26").Select
+		Selection.Font.Bold = True
+		Range("D26").Select
+		Selection.Font.Bold = True
+		If Range("D7").Value <> "" Then
+			Range("E7").Select
+			ActiveCell.FormulaR1C1 = "Investigate - add to Inprotech or remove from CPA?"
+		End If
+		If Range("D8").Value <> "" Then
+			Range("E8").Select
+			ActiveCell.FormulaR1C1 = "Investigate - add to Inprotech or remove from CPA?"
+		End If
+			If Range("C20").Value <> "" Then
+			Range("E20").Select
+			ActiveCell.FormulaR1C1 = "Investigate - report to CPA flag should be off?"
+		End If
+		Range("B25:C25").Select
+		With Selection
+			.HorizontalAlignment = xlRight
+			.VerticalAlignment = xlBottom
+			.WrapText = False
+			.Orientation = 0
+			.AddIndent = False
+			.ShrinkToFit = False
+			.MergeCells = False
+		End With
+		Range("D6").Select
+		With Selection
+			.HorizontalAlignment = xlRight
+			.VerticalAlignment = xlBottom
+			.WrapText = False
+			.Orientation = 0
+			.AddIndent = False
+			.ShrinkToFit = False
+			.MergeCells = False
+		End With
+		Range("D18").Select
+		With Selection
+			.HorizontalAlignment = xlRight
+			.VerticalAlignment = xlBottom
+			.WrapText = False
+			.Orientation = 0
+			.AddIndent = False
+			.ShrinkToFit = False
+			.MergeCells = False
+		End With    
+		'Frame results
+		Range("B6:D12").Select
+		Selection.borders(xlDiagonalDown).LineStyle = xlNone
+		Selection.borders(xlDiagonalUp).LineStyle = xlNone
+		With Selection.borders(xlEdgeLeft)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.borders(xlEdgeTop)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.borders(xlEdgeBottom)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.borders(xlEdgeRight)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.borders(xlInsideVertical)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.borders(xlInsideHorizontal)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		Range("C18:D21").Select
+		Selection.borders(xlDiagonalDown).LineStyle = xlNone
+		Selection.borders(xlDiagonalUp).LineStyle = xlNone
+		With Selection.borders(xlEdgeLeft)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.borders(xlEdgeTop)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.borders(xlEdgeBottom)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.borders(xlEdgeRight)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.borders(xlInsideVertical)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.borders(xlInsideHorizontal)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		Range("B25:C26").Select
+		Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+		Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+		With Selection.Borders(xlEdgeLeft)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.Borders(xlEdgeTop)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.Borders(xlEdgeBottom)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.Borders(xlEdgeRight)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.Borders(xlInsideVertical)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.Borders(xlInsideHorizontal)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		Range("B28:C33").Select
+		Selection.Borders(xlDiagonalDown).LineStyle = xlNone
+		Selection.Borders(xlDiagonalUp).LineStyle = xlNone
+		With Selection.Borders(xlEdgeLeft)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.Borders(xlEdgeTop)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.Borders(xlEdgeBottom)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.Borders(xlEdgeRight)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.Borders(xlInsideVertical)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		With Selection.Borders(xlInsideHorizontal)
+			.LineStyle = xlContinuous
+			.Weight = xlThin
+			.ColorIndex = xlAutomatic
+		End With
+		Range("A1").Select
+	  'Now the match breakdown
+	Sheets("Match Breakdown").Select
+	Dim nRow, nColumnOutput  As Integer
+	Dim nStore, nStore1, nStore2, nStore3, nStore4, nStore5 As Integer
+	Dim sValue, sDetailSheet As String
+	Dim nColour, nFontColour As Integer
+	nColumnOutput = 7
+	ActiveSheet.Cells(2, nColumnOutput).Font.Bold = True
+	ActiveSheet.Cells(2, nColumnOutput).Value = "Detail sheet"
+	ActiveSheet.Cells(2, nColumnOutput + 1).Font.Bold = True
+	ActiveSheet.Cells(2, nColumnOutput + 1).Value = "Research required"
+	For nRow = 3 To ActiveSheet.UsedRange.Rows.Count
+	  ' Test the variable "result"
+	  Select Case Cells(nRow, 1).Value
+		  Case "Patents"
+			  nStore1 = 1
+		  Case "Trademarks"
+			  nStore1 = 2
+		  Case "Designs"
+			  nStore1 = 3
+		  Case Else
+			   nStore1 = 0
+		  End Select
+	  Select Case Cells(nRow, 2).Value
+		  Case "Agent responsible"
+			  nStore2 = 10
+		  Case "Client responsible"
+			  nStore2 = 20
+		  Case Else
+			   nStore2 = 0
+		  End Select
+	  Select Case Cells(nRow, 3).Value
+		  Case "Live at CPA"
+			  nStore3 = 100
+		  Case "Dead at CPA"
+			  nStore3 = 200
+		  Case "Transferred"
+			  nStore3 = 300
+		  Case "N/A"
+			  nStore3 = 400
+		  Case Else
+			   nStore3 = 0
+		  End Select
+	  Select Case Cells(nRow, 4).Value
+		  Case "Live on Inprotech"
+			  nStore4 = 1000
+		  Case "Dead(or Dead Renewal)"
+			  nStore4 = 2000
+		  Case Else
+			   nStore4 = 0
+		  End Select
+	  Select Case Cells(nRow, 5).Value
+		  Case "Flagged"
+			  nStore5 = 10000
+		  Case "Not flagged"
+			  nStore5 = 20000
+		  Case "N/A"
+			  nStore5 = 30000
+		  Case Else
+			   nStore5 = 0
+		  End Select
+	   nStore = nStore1 + nStore2 + nStore3 + nStore4 + nStore5
+	   sValue = "Synchronised"
+	   nColour = 35
+	   nFontColour = 1
+	   sDetailSheet = "Other"
+	   Select Case nStore
+		  'Patents
+		   'Agent responsible
+		   Case 11111
+			  sValue = "Synchronised"
+			  nColour = 35
+			  nFontColour = 1
+			  sDetailSheet = "PALLF"
+		   Case 21111
+			  sValue = "***Not sending - should CPA receive? Perhaps sent too soon from previous system - check stop pay reason - switch on Inprotech send flag?"
+			  nColour = 6
+			  nFontColour = 3
+			  sDetailSheet = "PALLN"
+		  Case 32111
+			  sValue = "***Not sending - should CPA receive? Check stop pay reason - research correct status and update systems accordingly."
+			  nColour = 6
+			  nFontColour = 3
+			  sDetailSheet = "PALDo"
+		  Case 11211
+			  sValue = "***Sending - CPA not paying - research correct status and update systems accordingly"
+			  nColour = 6
+			  nFontColour = 3
+			  sDetailSheet = "PADLF"
+		  Case 21211
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "PADLN"
+		  Case 32211
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "PADDo"
+		  Case 11311
+			  sValue = "**Sending (but Transferred) - research correct status and update systems accordingly"
+			  nColour = 36
+			  nFontColour = 1
+			  sDetailSheet = "PATLF"
+		  Case 21311
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "PATLN"
+		  Case 32311
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "PATDo"
+		  'Client responsible
+		  Case 11121
+			 If Range("W2").Value = 1 Then
+			   sValue = "Synchronised"
+			   nColour = 35
+			   nFontColour = 1
+			 Else
+			   sValue = "** Sending (but Client responsible) - research correct status and update systems accordingly"
+			   nColour = 36
+			   nFontColour = 1
+			 End If      
+			 sDetailSheet = "PCLLF"
+		   Case 21121
+			  If Range("W2").Value = 1 Then
+				 sValue = "***Not sending - should CPA receive? Perhaps sent too soon from previous system - check stop pay reason - switch on Inprotech send flag?"
+				nColour = 6
+				nFontColour = 3
+			  Else
+				sValue = "Synchronised"
+				nColour = 34
+				nFontColour = 1
+			  End If    
+			  sDetailSheet = "PCLLN"
+		  Case 32121
+			  If Range("W2").Value = 1 Then
+				sValue = "***Not sending - should CPA receive? Check stop pay reason - research correct status and update systems accordingly."
+				nColour = 6
+				nFontColour = 3
+			  Else
+				sValue = "Synchronised"
+				nColour = 34
+				nFontColour = 1
+			  End If 
+			  sDetailSheet = "PCLDo"
+		  Case 11221
+			  If Range("W2").Value = 1 Then
+				  sValue = "***Sending - CPA not paying - research correct status and update systems accordingly"
+				  nColour = 6
+				  nFontColour = 3
+			 Else
+			   sValue = "** Sending (but Client responsible) - research correct status and update systems accordingly"
+			   nColour = 36
+			   nFontColour = 1
+			 End If      
+			  sDetailSheet = "PCDLF"
+		  Case 21221
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "PCDLN"
+		  Case 32221
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "PCDDo"
+		  Case 11321
+			 If Range("W2").Value = 1 Then
+			  sValue = "**Sending (but Transferred) - research correct status and update systems accordingly"
+			  nColour = 36
+			  nFontColour = 1
+			 Else
+			   sValue = "** Sending (but Client responsible) - research correct status and update systems accordingly"
+			   nColour = 36
+			   nFontColour = 1
+			 End If      
+			  sDetailSheet = "PCTLF"
+		  Case 21321
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "PCTLN"
+		  Case 32321
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "PCTDo"
+		  'Trademarks
+		  'Agent responsible
+		   Case 11112
+			  sValue = "Synchronised"
+			  nColour = 35
+			  nFontColour = 1
+			  sDetailSheet = "TALLF"
+		   Case 21112
+			  sValue = "***Not sending - should CPA receive? Perhaps sent too soon from previous system - check stop pay reason - switch on Inprotech send flag?"
+			  nColour = 6
+			  nFontColour = 3
+			  sDetailSheet = "TALLN"
+		  Case 32112
+			  sValue = "***Not sending - should CPA receive? Check stop pay reason - research correct status and update systems accordingly."
+			  nColour = 6
+			  nFontColour = 3
+			  sDetailSheet = "TALDo"
+		  Case 11212
+			  sValue = "***Sending - CPA not paying - research correct status and update systems accordingly"
+			  nColour = 6
+			  nFontColour = 3
+			  sDetailSheet = "TADLF"
+		  Case 21212
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "TADLN"
+		  Case 32212
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "TADDo"
+		  Case 11312
+			  sValue = "**Sending (but Transferred) - research correct status and update systems accordingly"
+			  nColour = 36
+			  nFontColour = 1
+			  sDetailSheet = "TATLF"
+		  Case 21312
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "TATLN"
+		  Case 32312
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "TATDo"
+				'Client responsible
+		  Case 11122
+			 If Range("W2").Value = 1 Then
+			   sValue = "Synchronised"
+			   nColour = 35
+			   nFontColour = 1
+			 Else
+			   sValue = "** Sending (but Client responsible) - research correct status and update systems accordingly"
+			   nColour = 36
+			   nFontColour = 1
+			 End If 
+			 sDetailSheet = "TCLLF"
+		   Case 21122
+			  If Range("W2").Value = 1 Then
+				 sValue = "***Not sending - should CPA receive? Perhaps sent too soon from previous system - check stop pay reason - switch on Inprotech send flag?"
+				nColour = 6
+				nFontColour = 3
+			  Else
+				sValue = "Synchronised"
+				nColour = 34
+				nFontColour = 1
+			  End If    
+			  sDetailSheet = "TCLLN"
+		  Case 32122
+			   If Range("W2").Value = 1 Then
+				sValue = "***Not sending - should CPA receive? Check stop pay reason - research correct status and update systems accordingly."
+				nColour = 6
+				nFontColour = 3
+			  Else
+				sValue = "Synchronised"
+				nColour = 34
+				nFontColour = 1
+			  End If 
+			  sDetailSheet = "TCLDo"
+		  Case 11222
+			  If Range("W2").Value = 1 Then
+				  sValue = "***Sending - CPA not paying - research correct status and update systems accordingly"
+				  nColour = 6
+				  nFontColour = 3
+			 Else
+			   sValue = "** Sending (but Client responsible) - research correct status and update systems accordingly"
+			   nColour = 36
+			   nFontColour = 1
+			 End If      
+			  sDetailSheet = "TCDLF"
+		  Case 21222
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "TCDLN"
+		  Case 32222
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "TCDDo"
+		  Case 11322
+			 If Range("W2").Value = 1 Then
+			  sValue = "**Sending (but Transferred) - research correct status and update systems accordingly"
+			  nColour = 36
+			  nFontColour = 1
+			 Else
+			   sValue = "** Sending (but Client responsible) - research correct status and update systems accordingly"
+			   nColour = 36
+			   nFontColour = 1
+			 End If      
+			 sDetailSheet = "TCTLF"
+		  Case 21322
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "TCTLN"
+		  Case 32322
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "TCTDo"
+		 'Designs
+			   'Agent responsible
+		   Case 11113
+			  sValue = "Synchronised"
+			  nColour = 35
+			  nFontColour = 1
+			  sDetailSheet = "DALLF"
+		   Case 21113
+			  sValue = "***Not sending - should CPA receive? Perhaps sent too soon from previous system - check stop pay reason - switch on Inprotech send flag?"
+			  nColour = 6
+			  nFontColour = 3
+			  sDetailSheet = "DALLN"
+		  Case 32113
+			  sValue = "***Not sending - should CPA receive? Check stop pay reason - research correct status and update systems accordingly."
+			  nColour = 6
+			  nFontColour = 3
+			  sDetailSheet = "DALDo"
+		  Case 11213
+			  sValue = "***Sending - CPA not paying - research correct status and update systems accordingly"
+			  nColour = 6
+			  nFontColour = 3
+			  sDetailSheet = "DADLF"
+		  Case 21213
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "DADLN"
+		  Case 32213
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "DADDo"
+		  Case 11313
+			  sValue = "**Sending (but Transferred) - research correct status and update systems accordingly"
+			  nColour = 36
+			  nFontColour = 1
+			  sDetailSheet = "DATLF"
+		  Case 21313
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "DATLN"
+		  Case 32313
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "DATDo"
+		  'Client responsible
+		   Case 11123
+			If Range("W2").Value = 1 Then
+			   sValue = "Synchronised"
+			   nColour = 35
+			   nFontColour = 1
+			 Else
+			   sValue = "** Sending (but Client responsible) - research correct status and update systems accordingly"
+			   nColour = 36
+			   nFontColour = 1
+			 End If 
+			  sDetailSheet = "DCLLF"
+		   Case 21123
+			  If Range("W2").Value = 1 Then
+				 sValue = "***Not sending - should CPA receive? Perhaps sent too soon from previous system - check stop pay reason - switch on Inprotech send flag?"
+				nColour = 6
+				nFontColour = 3
+			  Else
+				sValue = "Synchronised"
+				nColour = 34
+				nFontColour = 1
+			  End If    
+			  sDetailSheet = "DCLLN"
+		  Case 32123
+			  If Range("W2").Value = 1 Then
+				sValue = "***Not sending - should CPA receive? Check stop pay reason - research correct status and update systems accordingly."
+				nColour = 6
+				nFontColour = 3
+			  Else
+				sValue = "Synchronised"
+				nColour = 34
+				nFontColour = 1
+			  End If 
+			  sDetailSheet = "DCLDo"
+		  Case 11223
+			   If Range("W2").Value = 1 Then
+				  sValue = "***Sending - CPA not paying - research correct status and update systems accordingly"
+				  nColour = 6
+				  nFontColour = 3
+			 Else
+			   sValue = "** Sending (but Client responsible) - research correct status and update systems accordingly"
+			   nColour = 36
+			   nFontColour = 1
+			 End If      
+			  sDetailSheet = "DCDLF"
+		  Case 21223
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "DCDLN"
+		  Case 32223
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "DCDDo"
+		  Case 11323
+			 If Range("W2").Value = 1 Then
+			  sValue = "**Sending (but Transferred) - research correct status and update systems accordingly"
+			  nColour = 36
+			  nFontColour = 1
+			 Else
+			   sValue = "** Sending (but Client responsible) - research correct status and update systems accordingly"
+			   nColour = 36
+			   nFontColour = 1
+			 End If      
+			  sDetailSheet = "DCTLF"
+		  Case 21323
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "DCTLN"
+		  Case 32323
+			  sValue = "Synchronised"
+			  nColour = 34
+			  nFontColour = 1
+			  sDetailSheet = "DCTDo"
+		  Case Else
+			  sValue = "**** Not a standard Property Type"
+			  nColour = 36
+			  nFontColour = 1
+			  sDetailSheet = ""
+		  End Select
+		  Rows(nRow).Interior.ColorIndex = nColour
+		  Cells(nRow, nColumnOutput).Value = sDetailSheet
+		  Cells(nRow, nColumnOutput + 1).Font.ColorIndex = nFontColour
+		  Cells(nRow, nColumnOutput + 1).Value = sValue
+	 Next nRow
+	 Range("W1:W2").Select
+	 Selection.Delete Shift:=xlToLeft
+	 Range("A1").Select
+	'Now the portfolio only breakdown
+	Sheets("Portfolio Only").Select
+	nColumnOutput = 5
+	ActiveSheet.Cells(2, nColumnOutput).Font.Bold = True
+	ActiveSheet.Cells(2, nColumnOutput).Value = "Detail sheet"
+	ActiveSheet.Cells(2, nColumnOutput + 1).Font.Bold = True
+	ActiveSheet.Cells(2, nColumnOutput + 1).Value = "Research required"
+	For nRow = 3 To ActiveSheet.UsedRange.Rows.Count
+	  ' Test the variable "result"
+	  Select Case Cells(nRow, 1).Value
+		 Case "Patents"
+			 nStore1 = 1
+		 Case "Trademarks"
+			 nStore1 = 2
+		 Case "Designs"
+			 nStore1 = 3
+		 Case Else
+			  nStore1 = 0
+		 End Select
+	  Select Case Cells(nRow, 2).Value
+		 Case "Agent responsible"
+			 nStore2 = 10
+		 Case "Client responsible"
+			 nStore2 = 20
+		 Case Else
+			  nStore2 = 0
+		 End Select
+	  Select Case Cells(nRow, 3).Value
+		 Case "Live at CPA"
+			 nStore3 = 100
+		 Case "Dead at CPA"
+			 nStore3 = 200
+		 Case "Transferred"
+			 nStore3 = 300
+		 Case "N/A"
+			 nStore3 = 400
+		 Case Else
+			  nStore3 = 0
+		 End Select
+	  nStore = nStore1 + nStore2 + nStore3
+	  sValue = "Synchronised"
+	  nColour = 35
+	  nFontColour = 1
+	  sDetailSheet = "Other"
+	  Select Case nStore
+		 'Patents no match
+		 Case 111
+			 sValue = "**These should be found on Inprotech or added to Inprotech, or removed from CPA (eg obsolete country designations)."
+			 nColour = 36
+			 nFontColour = 1
+			 sDetailSheet = "PAL"
+		 Case 211
+			 sValue = ""
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 Case 311
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 Case 121
+			If Range("X2").Value = 1 Then
+			  sValue = "**These should be found on Inprotech or added to Inprotech, or removed from CPA (eg obsolete country designations)."
+			  nColour = 36
+			  nFontColour = 1
+			 Else
+			  sValue = " "
+			  nColour = 34
+			  nFontColour = 1
+			 End If          
+			 sDetailSheet = "PCL"
+		 Case 221
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 Case 321
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		'Trademarks no match
+		 Case 112
+			 sValue = "**These should be found on Inprotech or added to Inprotech, or removed from CPA (eg obsolete country designations)."
+			 nColour = 36
+			 nFontColour = 1
+			 sDetailSheet = "TAL"
+		 Case 212
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 Case 312
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 Case 122
+			If Range("X2").Value = 1 Then
+			  sValue = "**These should be found on Inprotech or added to Inprotech, or removed from CPA (eg obsolete country designations)."
+			  nColour = 36
+			  nFontColour = 1
+			 Else
+			  sValue = " "
+			  nColour = 34
+			  nFontColour = 1
+			 End If          
+			 sDetailSheet = "TCL"
+		 Case 222
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 Case 322
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		'Designs no match
+		 Case 113
+			 sValue = "**These should be found on Inprotech or added to Inprotech, or removed from CPA (eg obsolete country designations)."
+			 nColour = 36
+			 nFontColour = 1
+			 sDetailSheet = "DAL"
+		 Case 213
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 Case 313
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 Case 123
+			If Range("X2").Value = 1 Then
+			  sValue = "**These should be found on Inprotech or added to Inprotech, or removed from CPA (eg obsolete country designations)."
+			  nColour = 36
+			  nFontColour = 1
+			 Else
+			  sValue = " "
+			  nColour = 34
+			  nFontColour = 1
+			 End If          
+			 sDetailSheet = "DCL"
+		 Case 223
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 Case 323
+			 sValue = " "
+			 nColour = 34
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 Case Else
+			 sValue = "**** Not a standard Property Type"
+			 nColour = 36
+			 nFontColour = 1
+			 sDetailSheet = ""
+		 End Select
+		 Rows(nRow).Interior.ColorIndex = nColour
+		 Cells(nRow, nColumnOutput).Value = sDetailSheet
+		 Cells(nRow, nColumnOutput + 1).Font.ColorIndex = nFontColour
+		 Cells(nRow, nColumnOutput + 1).Value = sValue
+	Next nRow
+	Range("X1:X2").Select
+	Selection.Delete Shift:=xlToLeft
+	Range("A1").Select
+	'First find duplicates in Inprotech Only
+	Sheets("Inprotech Only").Activate
+	'Check the data is as expected
+	If Range("U2").Value = "CASEID" Then
+	  'Remove the TEMPID column and INSTRUCTIONSENDFLAG
+	  Columns("X:Y").Select
+	  Selection.Delete Shift:=xlToLeft
+	  'Grey text for repeated rows
+	  nRows = ActiveSheet.UsedRange.Rows.Count
+	  For nRow = 4 To nRows
+		Cells(nRow, 24).FormulaR1C1 = "=IF(ISBLANK(RC[-3]),"""",IF(R[-1]C[-3]=RC[-3],1,0))"
+		If Cells(nRow, 24).Value = 1 Then
+		  Rows(nRow).Font.ColorIndex = 15
+		End If
+	  Next nRow
+	  'Clean up working column
+	  Columns("X:X").Select
+	  Selection.Delete Shift:=xlToLeft
+	  'Freeze header
+	  Rows("3:3").Select
+	  ActiveWindow.FreezePanes = True
+	  Range("A1").Select
+	End If
+	'Repeat for duplicates in Inhibited - Inprotech Only
+	Sheets("Inhibited - Inprotech Only").Activate
+	'Check the data is as expected
+	If Range("U2").Value = "CASEID" Then
+	  'Remove the TEMPID column and INSTRUCTIONSENDFLAG
+	  Columns("X:Y").Select
+	  Selection.Delete Shift:=xlToLeft
+	  'Grey text for repeated rows
+	  nRows = ActiveSheet.UsedRange.Rows.Count
+	  For nRow = 4 To nRows
+		Cells(nRow, 24).FormulaR1C1 = "=IF(ISBLANK(RC[-3]),"""",IF(R[-1]C[-3]=RC[-3],1,0))"
+		If Cells(nRow, 24).Value = 1 Then
+		  Rows(nRow).Font.ColorIndex = 15
+		End If
+	  Next nRow
+	  'Clean up working column
+	  Columns("X:X").Select
+	  Selection.Delete Shift:=xlToLeft
+	  'Freeze header
+	  Rows("3:3").Select
+	  ActiveWindow.FreezePanes = True
+	  Range("A1").Select
+	End If
+	'Now for live CPA only tabs, freeze header
+	For nSheet = 7 To 12
+	  Sheets(nSheet).Activate
+	  Rows("3:3").Select
+	  ActiveWindow.FreezePanes = True
+	  Range("A2:P2").Select
+	  Range("A1").Select
+	Next nSheet
+	'Now loop through all detail sheets and highlight duplicates, freeze header
+	nSheets = Sheets.Count
+	For nSheet = 13 To nSheets
+	'Start after breakdown sheets
+	  Sheets(nSheet).Activate
+	  'Check the data is as expected
+	  If Range("AE2").Value = "PORTFOLIONO" Then
+		'Remove the Match column and the TEMPID column
+		Columns("AK:AL").Select
+		Selection.Delete Shift:=xlToLeft
+		nRows = ActiveSheet.UsedRange.Rows.Count
+		  For nRow = 3 To nRows
+			'Highlight if more than one live CPA case
+			If Cells(nRow, 36).Value = 1 Then
+			  Rows(nRow).Interior.ColorIndex = 6
+			End If
+			Cells(nRow, 37).FormulaR1C1 = "=IF(ISBLANK(RC[-6]),"""",IF(R[-1]C[-6]=RC[-6],1,0))"
+			'Grey text for repeated rows
+			If Cells(nRow, 37).Value = 1 Then
+			  Rows(nRow).Font.ColorIndex = 15
+			End If
+		  Next nRow
+		Columns("AJ:AK").Select
+		Selection.Delete Shift:=xlToLeft
+		'Freeze header
+		Rows("3:3").Select
+		ActiveWindow.FreezePanes = True
+		Range("A1").Select
+	  End If
+	Next nSheet
+	'Now loop through all detail sheets - delete tab if no results.
+	Dim saDeleteSheet() As String  'declares the array variable with the necessary size
+	ReDim saDeleteSheet(1 To nSheets)
+	For nSheet = 7 To nSheets
+	  'Start after breakdown sheets
+	  Sheets(nSheet).Activate
+	  'Check for data
+	  If Range("A3").Value = "" Then
+		'Preserve name for later deletion by name
+		saDeleteSheet(nSheet) = ActiveSheet.Name
+	  End If
+	Next nSheet
+	Application.DisplayAlerts = False
+	For nSheet = 7 To nSheets
+	  If saDeleteSheet(nSheet) <> "" Then
+		  Sheets(saDeleteSheet(nSheet)).Delete
+	  End If
+	Next nSheet
+	'Clean up
+	Erase saDeleteSheet() ' free some memory
+	Application.DisplayAlerts = True
+
+End Sub
+]]></Macro>
+	<Macro Name="CaseByIRN" ShortcutKey="C"><![CDATA[
+Sub CaseByIRN()
+ 'Details from the application name in Site Control "CPA QR Case Application"
+  If Range("Tips!AA2").Value = "" Then
+     End
+  End If
+On Error Resume Next
+Shell Range("Tips!AA2").Value & " -IRN" & Selection.Value, 1
+End Sub
+]]></Macro>
+</QuickResults>

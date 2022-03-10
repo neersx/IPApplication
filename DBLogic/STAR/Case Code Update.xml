@@ -1,0 +1,148 @@
+<QuickResults>
+	<!-- This XML should be used in conjunction with the CPA Excel tool called "CPA Quick Results" 
+    and will cause a new worksheet to be created which contains the sheets and results described below. -->
+	<!-- It is ASSUMED that the SP cpa_ListCandidateIRN has been run against the same database (this is best done using the tool cpa_ListCandidateIRN.xml with "CPA Quick Results.xls".-->
+	<!-- 25 Jun 2007		Anna van der Aa	File created-->
+	<!-- 03 Oct 2007	AvdA	2	Changed to use STAR tables for sake of performance -->
+	<!-- 09 Nov 2007	AvdA	3	Standardise content. -->
+	<!-- 26 Dec 2007	AvdA	4	Update with shortcuts (including case launch) complements CPA Quick Results v.8 -->
+	<!-- 11 Jan 2008		AvdA	5	Include program path to avoid login popup. -->
+	<!-- 18 Mar 2008	AvdA	6	Add default CASEENQ. -->
+	<!-- 04 Dec 2008	AvdA	7	Rename to Case Code Update and include ALL Case Code Update for conversions - complements STAR preparation 2.4 -->
+	<!-- 27 Apr 2009		AvdA	8	Update for use with CPA Quick Results v.11 -->
+	<!-- 15 Jun 2009		AvdA	11	Remove manual QuickPrepare step - this report must be run with CPA Quick Results v.15 or later. -->
+	<!--	_____________________________________________________________________________________________________ -->
+	<!-- These results support the Portfolio Status Audit Report (STAR) which must have ALREADY been prepared on this database.-->
+	<!--	_____________________________________________________________________________________________________ -->
+	<Sheet sheetname="Tips" header="Tips for using this report">
+		<Step/>
+		<Step>!! Important !! First save this new report (CTRL+S).</Step>
+		<Step/>
+		<Step>Tips:</Step>
+		<Step>Tip 1 - to search for a value across all sheets, first right-mouse click a tab and Select All Sheets, then choose Edit, Find from the standard menu.</Step>
+		<Step>Tip 2 - to open Cases directly, select an IRN and run macro CasesByIRN (shortcut CTRL+SHIFT+C).</Step>
+		<Step>Note - the macro CaseByIRN depends on cell AA2 containing the case program with appropriate parameters (eg CASE -nCASEENQ).</Step>
+		<Step>Note - cell AA2 may be populated differently when the workbook is created if site control "CPA QR Case Application" is present with the Application Name to launch (eg. Renewals).</Step>
+		<Query location="AA1">
+			<SQL><![CDATA[
+select case when max(PROGRAMNAME) is null then 'CASE -nCASEENQ' else 
+								(select isnull(PROGRAMPATH,'') + isnull(PROGRAMNAME,'') + ' ' + isnull(RUNTIMEPARMS,'') 
+								from APPLICATIONS
+								where APPLICATIONNAME = (select COLCHARACTER
+								from SITECONTROL
+								where CONTROLID = 'CPA QR Case Application')) end as ' '
+from APPLICATIONS
+where APPLICATIONNAME = (select COLCHARACTER
+from SITECONTROL
+where CONTROLID = 'CPA QR Case Application')
+]]></SQL>
+		</Query>
+	</Sheet>
+	<Sheet sheetname="OnlyProposedCodeUpdate" header="Case Code update for cases whose code was proposed by Inprotech based on official numbers etc - send results to the CPA Service Account Manager">
+		<!--These results can be used to send to the Service Account Manager at CPA to arrange for these codes to be updated at Jersey.-->
+		<Query><![CDATA[
+		select distinct C.PROPERTYTYPE as 'FIRM-PROPERTYTYPE', 
+		left(CPAStatus,1) as 'CPA-STATUS', 
+		isnull(CT.ALTERNATECODE,CT.COUNTRYCODE) as 'FIRM-COUNTRY',
+		PROPOSEDIRN as 'FIRM-CASECODE', 
+		CASECODE as 'CPA-CASECODE',
+		IPRURN as 'CPA-IPRURN',
+		Office as 'FIRM-OFFICE',
+		FileNumber as 'FIRM-FILENUMBER',
+		ClientsReference as 'FIRM-CLIENTREF'
+		from CPASTAR_MATCHEDPORTFOLIO M
+		join CASES C on  C.CASEID = M.CASEID
+		left join COUNTRY CT on (CT.COUNTRYCODE = C.COUNTRYCODE)
+		where PROPOSEDIRN is not null
+		and CPAStatus <> 'Transferred'
+		order by 1 DESC, 2 DESC, 3, 4
+		]]></Query>
+	</Sheet>
+	<Sheet sheetname="OnlyProposedCodeUpdateSummary" header="Total cases with proposed Case Codes to Update  - Transferred vs Free">
+		<Query location="A3"><![CDATA[
+		select count (*) as 'CaseCodeUpdate Total'
+		from CPASTAR_MATCHEDPORTFOLIO M
+		join CASES C on  C.CASEID = M.CASEID
+		left join COUNTRY CT on (CT.COUNTRYCODE = C.COUNTRYCODE)
+		where PROPOSEDIRN is not null
+]]></Query>
+		<Query location="A6"><![CDATA[
+		select count (*) as 'Transferred cannot update'
+		from CPASTAR_MATCHEDPORTFOLIO M
+		join CASES C on  C.CASEID = M.CASEID
+		left join COUNTRY CT on (CT.COUNTRYCODE = C.COUNTRYCODE)
+		where PROPOSEDIRN is not null
+		and CPAStatus = 'Transferred'
+]]></Query>
+		<Query location="A9"><![CDATA[
+		select count (*) as 'Free to update'
+		from CPASTAR_MATCHEDPORTFOLIO M
+		join CASES C on  C.CASEID = M.CASEID
+		left join COUNTRY CT on (CT.COUNTRYCODE = C.COUNTRYCODE)
+		where PROPOSEDIRN is not null
+		and CPAStatus <> 'Transferred'
+]]></Query>
+	</Sheet>
+	<Sheet sheetname="AllCaseCodeUpdate" header="Case Code update for ALL cases in the client portfolio - for use by CPA during CPA Interface initialisation">
+		<!--These results can be used to send to the Service Account Manager at CPA to arrange for these codes to be updated at Jersey.-->
+		<Query><![CDATA[
+		select distinct C.PROPERTYTYPE as 'FIRM-PROPERTYTYPE', 
+		left(CPAStatus,1) as 'CPA-STATUS', 
+		isnull(CT.ALTERNATECODE,CT.COUNTRYCODE) as 'FIRM-COUNTRY',
+		case when PROPOSEDIRN is not null then PROPOSEDIRN
+		else (case (Select COLBOOLEAN
+					from   SITECONTROL 
+					where  upper(CONTROLID) ='CPA USE CASEID AS CASE CODE') when 1 then cast(C.CASEID as varchar(15)) else C.IRN end)
+		end  as 'FIRM-CASECODE', 
+		CASECODE as 'CPA-CASECODE',
+		IPRURN as 'CPA-IPRURN',
+		Office as 'FIRM-OFFICE',
+		FileNumber as 'FIRM-FILENUMBER',
+		ClientsReference as 'FIRM-CLIENTREF'		
+		from CPASTAR_MATCHEDPORTFOLIO M
+		join CASES C on  C.CASEID = M.CASEID
+		left join COUNTRY CT on (CT.COUNTRYCODE = C.COUNTRYCODE)
+		where CPAStatus <> 'Transferred'
+		order by 1 DESC, 2 DESC, 3, 4	
+		]]></Query>
+	</Sheet>
+	<Sheet sheetname="AllCaseCodeUpdateSummary" header="Total cases for All Case Code Update  - Transferred vs Free">
+		<Query location="A3"><![CDATA[
+		select count (*) as 'AllCaseCodeUpdate Total'
+		from CPASTAR_MATCHEDPORTFOLIO M
+		join CASES C on  C.CASEID = M.CASEID
+		left join COUNTRY CT on (CT.COUNTRYCODE = C.COUNTRYCODE)
+]]></Query>
+		<Query location="A6"><![CDATA[
+		select count (*) as 'Transferred cannot update'
+		from CPASTAR_MATCHEDPORTFOLIO M
+		join CASES C on  C.CASEID = M.CASEID
+		left join COUNTRY CT on (CT.COUNTRYCODE = C.COUNTRYCODE)
+		where CPAStatus = 'Transferred'
+]]></Query>
+		<Query location="A9"><![CDATA[
+		select count (*) as 'Free to update'
+		from CPASTAR_MATCHEDPORTFOLIO M
+		join CASES C on  C.CASEID = M.CASEID
+		left join COUNTRY CT on (CT.COUNTRYCODE = C.COUNTRYCODE)
+		where CPAStatus <> 'Transferred'
+]]></Query>
+	</Sheet>
+	<!-- This macro will be created so that it can be run in the new workbook-->
+		<Macro Name="QuickPrepare" ShortcutKey="q"><![CDATA[
+Sub QuickPrepare()
+	'Add report-specific formatting macro instructions here:
+	
+End Sub
+]]></Macro>
+	<Macro Name="CaseByIRN" ShortcutKey="C"><![CDATA[
+Sub CaseByIRN()
+ 'Details from the application name in Site Control "CPA QR Case Application"
+  If Range("Tips!AA2").Value = "" Then
+     End
+  End If
+On Error Resume Next
+Shell Range("Tips!AA2").Value & " -IRN" & Selection.Value, 1
+End Sub
+]]></Macro>
+</QuickResults>

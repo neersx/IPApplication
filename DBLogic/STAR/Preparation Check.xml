@@ -1,0 +1,123 @@
+<QuickResults>
+	<!-- This XML should be used in conjunction with the CPA Excel tool called "CPA Quick Results" 
+    and will cause a new worksheet to be created which contains the sheets and results described below. -->
+	<!-- These statements are designed to check that the database contains the CPA Portfolio data. -->
+	<!-- AND to check that the setup being used is correct and the macros are being run smoothly. -->
+	<!-- 11 Jan 2010	Anna van der Aa	File created (based on previous STAR prep statements). -->
+	<Sheet sheetname="Check" header="STAR Preparation Check">
+		<Step/>
+		<Step>If you can read this then there is a problem with your setup!</Step>
+		<Step/>
+		<Query location="B5">
+			<SQL><![CDATA[
+select distinct DATEOFPORTFOLIOLST as CreationDatePSF
+from CPAPORTFOLIO
+]]></SQL>
+		</Query>
+		<Query location="B9">
+			<SQL><![CDATA[
+select  count(*) as CPACaseCount , 
+case  STATUSINDICATOR when 'L' then 'Live' when 'D' then 'Dead' when 'T' then 'Transferred' end as CPAStatus
+from CPAPORTFOLIO
+group by STATUSINDICATOR 
+order by STATUSINDICATOR asc]]></SQL>
+		</Query>
+		<Query location="B14">
+			<SQL><![CDATA[
+select count(*) as CPAEventRecords  
+from CPAEVENT
+]]></SQL>
+		</Query>
+	</Sheet>
+	<Sheet sheetname="Site Controls" header="Site Control Settings">
+		<Query location="A2">
+			<SQL><![CDATA[
+select 'CPA Number-Registration' as 'Site control id',  
+COLCHARACTER as 'Value' 
+from SITECONTROL 
+where CONTROLID = 'CPA Number-Registration'
+]]></SQL>
+		</Query>
+		<Query location="A5">
+			<SQL><![CDATA[
+select 'CPA Number-Application' as 'Site control id',  
+COLCHARACTER as 'Value' 
+from SITECONTROL 
+where CONTROLID = 'CPA Number-Application'
+]]></SQL>
+		</Query>
+		<Query location="A8">
+			<SQL><![CDATA[
+select 'CPA Date-Registratn' as 'Site control id',  
+COLINTEGER as 'Value' 
+from SITECONTROL 
+where CONTROLID = 'CPA Date-Registratn'
+]]></SQL>
+		</Query>
+		<Query location="A11">
+			<SQL><![CDATA[
+select 'CPA Date-Filing' as 'Site control id',  
+COLINTEGER as 'Value' 
+from SITECONTROL 
+where CONTROLID = 'CPA Date-Filing'
+]]></SQL>
+		</Query>
+		<Query location="A14">
+			<SQL><![CDATA[
+select 'CPA Date-Start' as 'Site control id',  
+COLINTEGER as 'Value' 
+from SITECONTROL 
+where CONTROLID = 'CPA Date-Start'
+]]></SQL>
+		</Query>
+		<Query location="A17">
+			<SQL><![CDATA[
+select 'CPA Date-Stop' as 'Site control id',  
+COLINTEGER as 'Value' 
+from SITECONTROL 
+where CONTROLID = 'CPA Date-Stop'
+]]></SQL>
+		</Query>
+		<Query location="A20">
+			<SQL><![CDATA[
+select 'CPA-Use ClientCaseCode'as 'Site control id',   
+	case when(COLBOOLEAN=1) then 'On' else 'Off' end as 'Value' 
+from SITECONTROL 
+where CONTROLID = 'CPA-Use ClientCaseCode'
+]]></SQL>
+		</Query>
+	</Sheet>
+	<!-- This macro will be created so that it can be run in the new workbook-->
+	<Macro Name="QuickPrepare" ShortcutKey="q"><![CDATA[
+Sub QuickPrepare()
+	'Add report-specific formatting macro instructions here:
+	
+	'Modify the report to ensure that the macro setup is working
+	Sheets("Check").Select	
+    Range("A3").Select
+    Selection.ClearContents
+    Range("B5:C15").Select
+    Selection.Cut
+    Range("A3").Select
+    ActiveSheet.Paste
+    Columns("A:A").ColumnWidth = 15.86
+    Range("A1").Select
+    With Selection.Font
+        .Color = -16776961
+        .TintAndShade = 0
+    End With
+    Range("A1:B1").Select
+
+End Sub
+]]></Macro>
+	<Macro Name="CaseByIRN" ShortcutKey="C"><![CDATA[
+Sub CaseByIRN()
+ 'Details from the application name in Site Control "CPA QR Case Application"
+  If Range("Tips!AA2").Value = "" Then
+     End
+  End If
+On Error Resume Next
+Shell Range("Tips!AA2").Value & " -IRN" & Selection.Value, 1
+End Sub
+]]></Macro>
+</QuickResults>

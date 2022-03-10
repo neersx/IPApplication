@@ -1,0 +1,88 @@
+<QuickResults>
+	<!-- This XML should be used in conjunction with the CPA Excel tool called "CPA Quick Results" 
+    and will cause a new worksheet to be created which contains the sheets and results described below. -->
+	<!-- These statements are designed to find cases where the CPA match cannot be resolved - duplicate candidates. -->
+	<!-- 26 Sep 2007	Anna van der Aa	File created (based on previous cpa star anomalies.xml). -->
+	<!-- 09 Nov 2007	AvdA	2	Standardise content. -->
+	<!-- 26 Dec 2007	AvdA	3	Update with shortcuts (including case launch) complements CPA Quick Results v.8 -->
+	<!-- 11 Jan 2008		AvdA	4	Include program path to avoid login popup. -->
+	<!-- 29 Jan 2008		AvdA	5	Include sort by CPA Status. -->
+	<!-- 18 Mar 2008	AvdA	6	Add default CASEENQ. -->
+	<!-- 10 Jul 2008		AvdA	7	Modify macro to handle no results. -->
+	<!-- 04 Aug 2008	AvdA	8	Only include multi-live (remove obsolete). -->
+	<!-- 04 Dec 2008	AvdA	9	Add FileNumber and ClientsReference for conversions - complements STAR preparation 2.4 -->
+	<!-- 27 Apr 2009		AvdA	10	Update for use with CPA Quick Results v.11 -->
+	<!-- 15 Jun 2009		AvdA	13	Remove manual QuickPrepare step - this report must be run with CPA Quick Results v.15 or later. -->
+	<!--	_____________________________________________________________________________________________________ -->
+	<!-- These results support the Portfolio Status Audit Report (STAR) which must have ALREADY been prepared on this database.-->
+	<!--	_____________________________________________________________________________________________________ -->
+	<Sheet sheetname="Tips" header="Tips for using this report">
+		<Step/>
+		<Step>!! Important !! First save this new report (CTRL+S).</Step>
+		<Step/>
+		<Step>Tips:</Step>
+		<Step>Tip 1 - to search for a value across all sheets, first right-mouse click a tab and Select All Sheets, then choose Edit, Find from the standard menu.</Step>
+		<Step>Tip 2 - to open Cases directly, select an IRN and run macro CasesByIRN (shortcut CTRL+SHIFT+C).</Step>
+		<Step>Note - the macro CaseByIRN depends on cell AA2 containing the case program with appropriate parameters (eg CASE -nCASEENQ).</Step>
+		<Step>Note - cell AA2 may be populated differently when the workbook is created if site control "CPA QR Case Application" is present with the Application Name to launch (eg. Renewals).</Step>
+		<Query location="AA1">
+			<SQL><![CDATA[
+select case when max(PROGRAMNAME) is null then 'CASE -nCASEENQ' else 
+								(select isnull(PROGRAMPATH,'') + isnull(PROGRAMNAME,'') + ' ' + isnull(RUNTIMEPARMS,'') 
+								from APPLICATIONS
+								where APPLICATIONNAME = (select COLCHARACTER
+								from SITECONTROL
+								where CONTROLID = 'CPA QR Case Application')) end as ' '
+from APPLICATIONS
+where APPLICATIONNAME = (select COLCHARACTER
+from SITECONTROL
+where CONTROLID = 'CPA QR Case Application')
+]]></SQL>
+		</Query>
+	</Sheet>
+	<Sheet sheetname="MultiCPACases" header="Investigate cases with more than one live CPA case matching one Inprotech case.">
+		<Query><![CDATA[
+select * from CPASTAR_MATCHEDPORTFOLIO
+where MULTILIVEFLAG = 1
+order by CASEID, CPAStatus desc, case when CPAEventStatus='Live' then 1 
+when  CPAEventStatus='Pay (Live)'then 1 else 2 end, IPRURN
+]]></Query>
+	</Sheet>
+	<!-- This macro will be created so that it can be run in the new workbook-->
+		<Macro Name="QuickPrepare" ShortcutKey="q"><![CDATA[
+Sub QuickPrepare()
+	'Add report-specific formatting macro instructions here:
+	
+	Dim nRows, nRow As Integer
+	Sheets("MultiCPACases").Activate
+	nRows = ActiveSheet.UsedRange.Rows.Count
+	  For nRow = 2 To nRows
+	  'Highlight changes
+		  Cells(nRow, 39).FormulaR1C1 = "=IF(ISBLANK(RC[-6]),"""",IF(R[-1]C[-6]=RC[-6],1,0))"
+		  'Dark grey text for repeated rows
+		  If Cells(nRow, 39).Value = 1 Then
+			  Rows(nRow).Font.ColorIndex = 48
+		  End If
+		Next nRow
+	'Remove working and irrelevant columns
+	Columns("AJ:AM").Select
+	Selection.Delete Shift:=xlToLeft
+	If nRows > 2 Then
+		Rows("3:3").Select
+		ActiveWindow.FreezePanes = True
+	End If	
+	Range("A1").Select
+	
+End Sub
+]]></Macro>
+	<Macro Name="CaseByIRN" ShortcutKey="C"><![CDATA[
+Sub CaseByIRN()
+ 'Details from the application name in Site Control "CPA QR Case Application"
+  If Range("Tips!AA2").Value = "" Then
+     End
+  End If
+On Error Resume Next
+Shell Range("Tips!AA2").Value & " -IRN" & Selection.Value, 1
+End Sub
+]]></Macro>
+</QuickResults>

@@ -1,0 +1,88 @@
+<QuickResults>
+	<!-- This XML should be used in conjunction with the CPA Excel tool called "CPA Quick Results" 
+    and will cause a new worksheet to be created which contains the sheets and results described below. -->
+	<!-- This file will run the SP cpa_ListCandidateIRN (must be at least v16) against a database with -->
+	<!-- a DSN connection. This will actually update the CPAPORTOLIO table with the unique IRNs that are -->
+	<!-- found to match the CPA cases, and will cause a new worksheet to be created which contains those -->
+	<!-- Inprotech cases which match multiple CPA cases and for which the Case Code (IRN or CASEID) -->
+	<!-- cannot be uniquely proposed via the Inprotech fuzzy matching.-->
+	<!-- 18 Jun 2007		Anna van der Aa	File created.-->
+	<!-- 09 Nov 2007	AvdA	2	Standardise content. -->
+	<!-- 26 Dec 2007	AvdA	3	Update with shortcuts (including case launch) complements CPA Quick Results v.8 -->
+	<!-- 11 Jan 2008		AvdA	4	Include program path to avoid login popup. -->
+	<!-- 14 Feb 2008	AvdA	5	Change result header. -->
+	<!-- 18 Mar 2008	AvdA	6	Add default CASEENQ. -->
+	<!-- 07 Aug 2008	AvdA	7	Highlight CPA case changes. -->
+	<!-- 05 Dec 2008	AvdA	8	Rename from IRN to Case Code to better describe differing practices. -->
+	<!-- 27 Apr 2009		AvdA	9	Update for use with CPA Quick Results v.11 -->
+	<!-- 15 Jun 2009		AvdA	12	Remove manual QuickPrepare step - this report must be run with CPA Quick Results v.15 or later. -->
+	<Sheet sheetname="Tips" header="Tips for using this report">
+		<Step/>
+		<Step>!! Important !! First save this new report (CTRL+S).</Step>
+		<Step/>
+		<Step>Tips:</Step>
+		<Step>Tip 1 - to search for a value across all sheets, first right-mouse click a tab and Select All Sheets, then choose Edit, Find from the standard menu.</Step>
+		<Step>Tip 2 - to open Cases directly, select an IRN and run macro CasesByIRN (shortcut CTRL+SHIFT+C).</Step>
+		<Step>Note - the macro CaseByIRN depends on cell AA2 containing the case program with appropriate parameters (eg CASE -nCASEENQ).</Step>
+		<Step>Note - cell AA2 may be populated differently when the workbook is created if site control "CPA QR Case Application" is present with the Application Name to launch (eg. Renewals).</Step>
+		<Query location="AA1">
+			<SQL><![CDATA[
+select case when max(PROGRAMNAME) is null then 'CASE -nCASEENQ' else 
+								(select isnull(PROGRAMPATH,'') + isnull(PROGRAMNAME,'') + ' ' + isnull(RUNTIMEPARMS,'') 
+								from APPLICATIONS
+								where APPLICATIONNAME = (select COLCHARACTER
+								from SITECONTROL
+								where CONTROLID = 'CPA QR Case Application')) end as ' '
+from APPLICATIONS
+where APPLICATIONNAME = (select COLCHARACTER
+from SITECONTROL
+where CONTROLID = 'CPA QR Case Application')
+]]></SQL>
+		</Query>
+	</Sheet>
+	<Sheet sheetname="MultipleProposedCaseCodes" header="More than one Inprotech Case Code (IRN or CASEID) proposed for the same CPA case OR proposed Case Code more than 15 characters in length">
+		<!--Third parameter 1 will return result of multiple matches after running-->
+		<Query><![CDATA[
+[dbo].[cpa_ListCandidateIRN] NULL, NULL, 1
+]]></Query>
+	</Sheet>
+	<!-- This macro will be created so that it can be run in the new workbook-->
+		<Macro Name="QuickPrepare" ShortcutKey="q"><![CDATA[
+Sub QuickPrepare()
+	'Add report-specific formatting macro instructions here:
+	
+	Dim nRows, nRow As Integer
+	Sheets("MultipleProposedCaseCodes").Activate
+	nRows = ActiveSheet.UsedRange.Rows.Count
+	If nRows > 2 Then
+		For nRow = 3 To nRows
+		   Cells(nRow, 18).FormulaR1C1 = "=IF(R[-1]C[-13]=RC[-13],1,0)"
+			'Make grey if same CPA case IPRURN as previous row
+			If Cells(nRow, 18).Value =1 Then
+			  Rows(nRow).Font.ColorIndex = 16
+			End If
+			'End of CPA Case change marking
+		Next nRow
+		'Clean up working column
+		Columns("R:R").Select
+		Selection.Delete Shift:=xlToLeft
+		'Freeze
+		Rows("3:3").Select
+		ActiveWindow.FreezePanes = True
+	End If	
+	Range("A1").Select	
+
+End Sub
+]]></Macro>
+
+	<Macro Name="CaseByIRN" ShortcutKey="C"><![CDATA[
+Sub CaseByIRN()
+ 'Details from the application name in Site Control "CPA QR Case Application"
+  If Range("Tips!AA2").Value = "" Then
+     End
+  End If
+On Error Resume Next
+Shell Range("Tips!AA2").Value & " -IRN" & Selection.Value, 1
+End Sub
+]]></Macro>
+</QuickResults>
