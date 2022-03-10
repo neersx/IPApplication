@@ -1,0 +1,17 @@
+<div class="ipx-grid-columns-picker">
+    <div class="header" [translate]="'columnSelection.selection'" [translateParams]="{ count: selected, all: total}">
+    </div>
+    <ul>
+        <li *ngFor="let column of columns; let index = index; trackBy: trackByColumnField" [attr.data-field]="column.field">
+            <input type="checkbox" [checked]="!column.hidden" [disabled]="isDisabled(column)"
+                [attr.data-index]="index" />
+            <label class="k-checkbox-column-picker">
+                {{ column.displayTitle | translate }}
+            </label>
+        </li>
+    </ul>
+
+    <div class="footer">
+        <a [translate]="'columnSelection.reset'" (click)="cancelChanges()"> </a>
+    </div>
+</div>

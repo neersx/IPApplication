@@ -1,0 +1,71 @@
+<form #form="ngForm" (ngSubmit)="onSubmit()">
+    <div>
+        <p>Common components for pick lists can be tested here.</p>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Multipick Pick List</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ipx-typeahead id="multipickPicklist" name="criteria" config="criteria" multiselect multipick picklistCanMaintain picklistNewSearch apply-edited label="Criteria" [(ngModel)]="model">
+                </ipx-typeahead>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Maintenance Pick List</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- <ipx-typeahead name="e2eEventGroup" config="eventGroup" label="picklist.event.maintenance.group" [(ngModel)]="group" canMaintain></ipx-typeahead> -->
+                <ipx-typeahead name="e2eInstructionType" config="instructionType" label="Instruction Type" picklistCanMaintain [(ngModel)]="group"> </ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Pick List Validation</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ipx-typeahead name="caseType" label="picklist.casetype.Type" config="caseType" [(ngModel)]="caseType"></ipx-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ipx-typeahead name="jurisdiction" label="picklist.jurisdiction.Type" config="jurisdiction" [(ngModel)]="jurisdiction" picklistCanMaintain></ipx-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ipx-typeahead name="propertyType" label="picklist.propertytype.Type" config="propertyType" [(ngModel)]="propertyType"></ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <h2>Pick list form submission</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ipx-typeahead name="numberType" label='picklist.numberType.label' config="numberType" [(ngModel)]="numberType"></ipx-typeahead>
+            </div>
+            <div class="col-sm-2">
+                <button type="submit">submit</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <span>result: </span>
+                <input name="text" type="text" id="formResult" [(ngModel)]="formResult">
+            </div>
+        </div>
+    </div>
+</form>

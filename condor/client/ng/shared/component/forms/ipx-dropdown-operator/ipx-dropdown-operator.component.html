@@ -1,0 +1,8 @@
+<div class="input-wrap">
+    <label *ngIf="label" [translate]="label" [attr.for]="identifier"></label>
+    <select #selectoperatorref [(ngModel)]="value" (change)="change(value)" [attr.id]="identifier" [ngClass]="{ 'edited' : controledited()}">
+        <option [ngValue]="item.key" *ngFor="let item of operatorOptions; trackBy: item">
+            {{ item.value| translate }}
+        </option>
+    </select>
+</div>

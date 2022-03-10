@@ -1,0 +1,37 @@
+<div id="case-view">
+    <ipx-sticky-header>
+        <ipx-page-title [title]="caseProgram | translate" [subtitle]="caseViewTitle" [description]="viewData.caseDefaultDescription">
+            <before-title>
+                <ipx-level-up-button [tooltip]="'caseview.backToSearchResults' | translate" *ngIf="hasPreviousState" [toState]="stateParams.levelUpState" [additionalStateParams]="{rowKey: stateParams.rowKey,clearSelection:true}"></ipx-level-up-button>
+            </before-title>
+            <after-title>
+                <button *ngIf="showWebLink" class="btn btn-icon-circle btn-circle" (click)="toCaseDetails()" tooltip="{{'caseview.viewDetails' | translate }}" placement="bottom">
+                    <span class="cpa-icon cpa-icon-link"></span>
+                </button>
+            </after-title>
+            <action-buttons>
+                <ipx-policing-status *ngIf="!isExternal" [caseKey]="viewData.caseKey" (policingCompleted)="reloadTopics()"></ipx-policing-status>
+            </action-buttons>
+        </ipx-page-title>
+        <div class="title-header">
+            <div class="col-sm-12">
+                <div class="pull-left">
+                    <span name="propertyTypeStatus" class="text" [ngClass]="{ 'dead': viewData.isDead, 'pending': viewData.isPending, 'registered': viewData.isRegistered}" tooltip="{{ iconTooltip }}" placement="top">
+                        <ipx-property-type-icon *ngIf="viewData.propertyTypeImageId" [imageKey]="viewData.propertyTypeImageId"></ipx-property-type-icon>
+                        <i *ngIf="!viewData.propertyTypeImageId"
+                            [ngClass]="{'cpa-icon-trademark': isTrademark && !viewData.isRegistered, 'cpa-icon-registered': isTrademark && viewData.isRegistered, 'cpa-icon-copyright': isCopyright, 'cpa-icon-design-property': isDesign, 'cpa-icon-lightbulb-o': isNone || isPatent}"
+                            class="cpa-icon cpa-icon-lg"></i>
+                    </span>
+                </div>
+                <div class="pull-left">
+                    <span name="title" class="text">{{ viewData.title }}</span>
+                </div>
+                <ipx-detail-page-nav *ngIf="navData" [ids]="navData.keys" paramKey="rowKey" [routerState]="navigationState" [routerParams]="stateParams" [totalRows]="navData.totalRows" [fetchNext]="navData.fetchCallback" [pageSize]="navData.pageSize">
+                </ipx-detail-page-nav>
+            </div>
+        </div>
+    </ipx-sticky-header>
+
+    <ipx-topics #topicHost *ngIf="topicsInitialized()" [options]="topicOptions" (activeTopicChanged)="activeTopicChanged($event)" (actionClicked)="actionClicked($event)">
+    </ipx-topics>
+</div>

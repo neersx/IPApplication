@@ -1,0 +1,8 @@
+<div class="col-sm-2" ng-if="vm.isIconDisplayed();">
+    <span class="cpa-icon no-color cpa-icon-lg {{vm.iconName}}"></span>
+</div>
+<div ng-class="{'col-sm-10': vm.isIconDisplayed(), 'col-sm-12': !vm.isIconDisplayed()}">
+    <div uib-popover="{{vm.tooltip}}" popover-trigger="none" popover-is-open="vm.togglePopOver" popover-class="popover-leftmargin" popover-placement="right">
+        <span class="nav-label text-elipses" ng-show="vm.expanded">{{vm.text | translate}}</span>
+    </div>
+</div>

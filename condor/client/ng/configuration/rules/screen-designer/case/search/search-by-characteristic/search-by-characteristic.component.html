@@ -1,0 +1,76 @@
+<h5 translate="screenDesignerCases.search.characteristics"></h5>
+<form #characteristicSearchForm="ngForm">
+    <ipx-search-option (search)="submitForm()" (clear)="resetFormData()" [isSearchDisabled]="characteristicSearchForm.invalid">
+    <div class="row">
+        <div class="col-sm-6">
+            <ipx-typeahead *ngIf="viewData.hasOffices" name="office" [(ngModel)]="formData.office" config="office" ipx-autofocus="true" label="picklist.office.Type" (onChange)="onCriteriaChange()">
+            </ipx-typeahead>
+            <ipx-typeahead name="program" [(ngModel)]="formData.program" config="caseProgram" label="picklist.caseProgram.ShortType" [tooltipConfig]="{placement:'top', templateRef: programTootip}">
+            </ipx-typeahead>
+            <ng-template #programTootip>
+                <p>
+                    <span translate="screenDesignerCases.programTooltip"></span>
+                </p>
+            </ng-template>
+            <ipx-typeahead name="caseType" [(ngModel)]="formData.caseType" config="caseType" label="picklist.casetype.Type" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" (onChange)="onCriteriaChange()">
+            </ipx-typeahead>
+            <ipx-typeahead name="jurisdiction" [(ngModel)]="formData.jurisdiction" config="jurisdiction" label="picklist.jurisdiction.Type" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" (onChange)="onCriteriaChange()">
+            </ipx-typeahead>
+            <ipx-typeahead name="propertyType" entity="propertyTypes" [(ngModel)]="formData.propertyType" config="propertyType" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" label="picklist.propertytype.Type" (onChange)="onCriteriaChange()">
+            </ipx-typeahead>
+        </div>
+        <div class="col-sm-6">
+            <ipx-typeahead name="caseCategory" entity="caseCategories" [(ngModel)]="formData.caseCategory" config="caseCategory" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" keyField="key" codeField="code" textField="value" [disabled]="isCaseCategoryDisabled|async" label="picklist.casecategory.Type" (onChange)="onCriteriaChange()">
+            </ipx-typeahead>
+            <ipx-typeahead name="subType" entity="subTypes" [(ngModel)]="formData.subType" config="subType" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" keyField="key" codeField="code" textField="value" label="picklist.subtype.Type" (onChange)="onCriteriaChange()">
+            </ipx-typeahead>
+            <ipx-typeahead name="basis" entity="basis" [(ngModel)]="formData.basis" config="basis" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" keyField="key" codeField="code" textField="value" label="picklist.basis.Type" (onChange)="onCriteriaChange()">
+            </ipx-typeahead>
+            <ipx-typeahead name="profile" [(ngModel)]="formData.profile" config="profile" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" keyField="key" codeField="code" textField="value" label="picklist.profile.Type" (onChange)="onCriteriaChange()">
+            </ipx-typeahead>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3">
+            <div class="input-wrap-group">
+                <span>
+                    <ipx-inline-dialog [tooltipPlacement]="'top'" [templateRef]="matchTypeTooltip" [adaptivePosition]="true">
+                    </ipx-inline-dialog>
+                    <ng-template #matchTypeTooltip>
+                        <div style="width: 250px">
+                            <p>
+                                <b translate="screenDesignerCases.search.exactMatchs"></b>&nbsp;
+                                <span translate="screenDesignerCases.search.exactMatchsInfo"></span>
+                            </p>
+                            <p><b translate="screenDesignerCases.search.bestCriteriaOnly"></b>&nbsp;
+                                <span translate="screenDesignerCases.search.bestCriteriaOnlyInfo"></span>
+                            </p>
+                            <p><b translate="screenDesignerCases.search.bestMatches"></b>&nbsp;
+                                <span translate="screenDesignerCases.search.bestMatchesInfo"></span>
+                            </p>
+                        </div>
+                    </ng-template>
+                    <span translate="Find"></span>
+                </span>
+                <ipx-radio-button value="exact-match" name="matchType" [(ngModel)]="formData.matchType">
+                    <span translate="screenDesignerCases.search.exactMatchs"></span>
+                </ipx-radio-button>
+                <ipx-radio-button value="best-criteria-only" name="matchType" [(ngModel)]="formData.matchType">
+                    <span translate="screenDesignerCases.search.bestCriteriaOnly"></span>
+                </ipx-radio-button>
+                <ipx-radio-button value="characteristics-best-match" name="matchType" [(ngModel)]="formData.matchType">
+                    <span translate="screenDesignerCases.search.bestMatches"></span>
+                </ipx-radio-button>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="input-wrap-group">
+                <span translate="Include"></span>
+                <ipx-checkbox name="criteriaNotInUse" [(ngModel)]="formData.includeCriteriaNotInUse" [label]="'screenDesignerCases.search.criteriaNotInUse'"></ipx-checkbox>
+                <ipx-checkbox *ngIf="viewData.canMaintainProtectedRules || viewData.canMaintainRules" name="protectedCriteria" [(ngModel)]="formData.includeProtectedCriteria" [label]="'screenDesignerCases.search.protectedCriteria'"></ipx-checkbox>
+            </div>
+        </div>
+    </div>
+    </ipx-search-option>
+</form>

@@ -1,0 +1,7 @@
+<div class="row" *ngIf="!!gridOptions">
+    <ipx-kendo-grid id="recordalStepElements" [dataOptions]="gridOptions" #stepElementsGrid>
+    </ipx-kendo-grid>
+</div>
+<ng-template #detailTemplate let-rowIndex let-dataItem>
+    <ipx-recordal-step-elements-controls [isHosted]="isHosted" [isAssignedStep]="isAssignedStep" [dataItem]="dataItem" [rowId]="dataItem.elementId" [recordalType]="recordalType"></ipx-recordal-step-elements-controls>
+</ng-template>

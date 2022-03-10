@@ -1,0 +1,227 @@
+<div class="modal-header">
+    <h2 class="modal-title" *ngIf="mode!==adhocTypeMode.maintain" translate="caseTaskMenu.createAdHocDate"></h2>
+    <h2 class="modal-title" *ngIf="mode===adhocTypeMode.maintain" translate="caseTaskMenu.maintainAdHocDate"></h2>
+    <div class="modal-header-controls">
+        <ipx-checkbox name="addAnother" *ngIf="mode !== adhocTypeMode.maintain" label="adHocDate.createAnother" [(ngModel)]="isAddAnotherChecked">
+        </ipx-checkbox>
+        <ipx-delete-button *ngIf="canDelete()" (onclick)="onDelete()"></ipx-delete-button>
+        <ipx-save-button id="save" name="save" type="button" (click)="onSave()" [disabled]="!formValid() || isLoading"></ipx-save-button>
+        <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+    </div>
+</div>
+<div *ngIf="isLoading" class="col-sm-7 k-loading-image" style="position: absolute;top:175px;height: 56px; width: 100%;"></div>
+<div class="modal-body">
+    <form name="adhocForm" #adhocForm="ngForm">
+        <div class="row">
+            <div class="col-md-11">
+                <div class="input-wrap-group group-inline">
+                    <span translate="Type"></span>
+                    <ipx-radio-button value="case" name="adHocType" id="case" [(ngModel)]="formData.adhocType" (change)="onAdhocTypeChanged($event)">
+                        <span translate="adHocDate.adHocType.case"></span>
+                    </ipx-radio-button>
+                    <ipx-radio-button value="name" name="adHocType" id="name" [(ngModel)]="formData.adhocType" (change)="onAdhocTypeChanged($event)">
+                        <span translate="adHocDate.adHocType.name"></span>
+                    </ipx-radio-button>
+                    <ipx-radio-button value="general" name="adHocType" id="general" [(ngModel)]="formData.adhocType" (change)="onAdhocTypeChanged($event)">
+                        <span translate="adHocDate.adHocType.general"></span>
+                    </ipx-radio-button>
+                    <span>
+                        <ipx-inline-dialog tooltipPlacement="auto" [adaptivePosition]="true" [content]="'adHocDate.adHocType.tooltipType' | translate">
+                        </ipx-inline-dialog>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <ipx-typeahead *ngIf="formData.adhocType === 'case'" (onChange)='caseRefChange($event)' name="case" [label]="'adHocDate.caseReference' | translate" config="case" required [(ngModel)]="formData.reference.case"></ipx-typeahead>
+                <ipx-typeahead *ngIf="formData.adhocType === 'name'" name="name" [label]="'adHocDate.nameReference' | translate" config="name" required [(ngModel)]="formData.reference.name"></ipx-typeahead>
+                <ipx-text-field *ngIf="formData.adhocType === 'general'" name="general" [label]="'adHocDate.generalReference' | translate" required [(ngModel)]="formData.reference.general"></ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5" style="margin-left: 104px;">
+                <ipx-date-picker label="adHocDate.dueDate" name="dueDate" id="dueDate" [(ngModel)]="formData.dueDate" [allowNull]="true" [disabled]="formData.event" [laterThan]="today" [includeSameDate]="true" (onChange)="onDueDateChanged()">
+                </ipx-date-picker>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <ipx-typeahead label="adHocDate.event" name="event" config="event" [(ngModel)]="formData.event" [disabled]="!formData.reference.case || formData.dueDate || formData.adhocType === 'name' || formData.adhocType === 'general'" (onChange)="onEventChanged($event)"></ipx-typeahead>
+            </div>
+            <div>
+                <ipx-inline-dialog tooltipPlacement="auto" [adaptivePosition]="true" [content]="'adHocDate.tooltipEvent' | translate">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <ipx-typeahead label="adHocDate.adHocResponsible" required name="adHocResponsible" config="name" [(ngModel)]="formData.responsibleName"></ipx-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div style="margin-left: 34px;">
+                <span translate="adHocDate.deleteOn" class="col-md-3" style="margin-top:8px;margin-left:10px"></span>
+                <ipx-date-picker label="" class="col-md-3" style="margin-left: -7px;width:182px" name="deleteOn" id="deleteOn" [(ngModel)]="formData.deleteOn" [laterThan]="formData.dueDate" [allowNull]="true" [includeSameDate]="true" (onChange)="onDeleteOnChanged($event)">
+                </ipx-date-picker>
+                <div>
+                    <ipx-inline-dialog tooltipPlacement="right" [adaptivePosition]="true" [content]="'adHocDate.tooltipDeleteOn' | translate">
+                    </ipx-inline-dialog>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="mode === adhocTypeMode.maintain && viewData.canFinaliseAdhoc">
+            <div class=" row">
+                <div class="col-md-5" style="margin-left: 104px;">
+                    <ipx-date-picker label="taskPlanner.finaliseAdHocDate.finalisedOn" name="finalise" id="finalise" [(ngModel)]="formData.finalise" [includeSameDate]="true" (onChange)="onDueDateChanged($event)">
+                    </ipx-date-picker>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10" style="margin-left: 16px;">
+                    <ipx-dropdown name="reason" label="taskPlanner.finaliseAdHocDate.reasonForFinalise" displayField="description" keyField="userCode" [(ngModel)]="formData.reason" [options]="resolveReasons">
+                    </ipx-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="text-wrap" style="margin-top: 10px;">
+            <span class="label-legend" translate="adHocDate.basedOnHeader"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <ipx-typeahead name="alertTemplate" label="adHocDate.adHocTemplate" config="alertTemplate" [(ngModel)]="formData.adhocTemplate">
+                </ipx-typeahead>
+            </div>
+        </div>
+        <div class="text-wrap" style="margin-top: 5px;">
+            <span class="label-legend" translate="adHocDate.message"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <ipx-text-field label="adHocDate.message" required name="message" multiLine="true" [rows]="4" [(ngModel)]="formData.message">
+                </ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7" style="margin-left: 70px;">
+                <ipx-dropdown name="importanceLevel" label="adHocDate.importanceLevel" displayField="description" keyField="code" [(ngModel)]="formData.importanceLevel" [options]="viewData.importanceLevelOptions">
+                </ipx-dropdown>
+            </div>
+        </div>
+        <div class="text-wrap" style="margin-top: 10px;">
+            <span class="label-legend" translate="adHocDate.remindersHeader"></span>
+        </div>
+        <div class="row">
+            <div style="margin-left: 171px;" class="input-wrap-group group-inline">
+                <ipx-radio-button (change)="reminderChanged(true)" id="rdbNoReminders" [(ngModel)]="formData.noReminder" label="adHocDate.reminders.noreminders" [value]='true' name="noReminders">
+                </ipx-radio-button>
+                <ipx-inline-dialog style="margin-left: 82px;" tooltipPlacement="auto" [adaptivePosition]="true" [content]="'adHocDate.reminders.tooltipNoReminder' | translate">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 5px;">
+            <div class="col-sm-12 input-wrap-group group-inline">
+                <span style="margin-left: -40px;" class="col-sm-2" translate="adHocDate.reminders.sendreminder"></span>
+                <ipx-radio-button class="rdbReminder col-sm-4" (change)="reminderChanged(false)" id="rdbSendReminder" label=" " [value]='false' [(ngModel)]="formData.noReminder" name="noReminders">
+                </ipx-radio-button>
+                <div class="col-sm-4" style="display: inline;margin-left: -40px;">
+                    <ipx-text-dropdown-group [disabled]="noReminder" ipx-data-type="nonNegativeInteger" name="sendreminder" [(ngModel)]="formData.sendreminder" label="" [textField]="'value'" [optionField]="'type'" [displayField]="'value'" [keyField]="'key'" [options]="periodTypes">
+                    </ipx-text-dropdown-group>
+
+                </div>
+                <span class="col-sm-2" translate="adHocDate.reminders.beforeduedate"></span>
+            </div>
+        </div>
+        <div class="row" style="margin-left: 181px;">
+            <ipx-checkbox [disabled]="noReminder" [(ngModel)]="formData.isRecurring" (onChange)="toggleRecuring($event)" name="recurring" label="adHocDate.reminders.recurring">
+            </ipx-checkbox>
+        </div>
+        <div class="row col-md-12">
+            <div class="col-md-6" style="margin-left: 81px;">
+                <ipx-text-field ipx-data-type="nonNegativeInteger" [disabled]="enableRecurringControls()" label="adHocDate.reminders.repeatevery" name="repeatEvery" [(ngModel)]="formData.repeatEvery">
+                </ipx-text-field>
+            </div>
+            <div style="padding-top: 6px;">
+                <span style="width: 76px;display: inline-block;" *ngIf="formData.sendreminder.type=='D'" translate="adHocDate.reminders.days"></span>
+                <span style="width: 76px;display: inline-block;" *ngIf="formData.sendreminder.type=='M'" translate="adHocDate.reminders.months"></span>
+                <span translate="adHocDate.reminders.afterfirstreminder"></span>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6" style="margin-left: 81px;">
+                <ipx-date-picker (onChange)="onEndOnChanged($event)" [laterThan]="today" [allowNull]="true" [disabled]="enableRecurringControls()" label="adHocDate.reminders.endOn" name="endOn" id="endOn" [(ngModel)]="formData.endOn">
+                </ipx-date-picker>
+            </div>
+            <div class="col-md-2">
+                <ipx-inline-dialog tooltipPlacement="right" [adaptivePosition]="true" [content]="'adHocDate.reminders.tooltipEndOn' | translate">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+        <div class="text-wrap" style="margin-top: 10px;">
+            <span class="label-legend" translate="adHocDate.reminders.reminderRecipients"></span>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-wrap-group group-inline" style="margin-left: 150px;">
+                    <ipx-checkbox [disabled]="noReminder" [(ngModel)]="formData.mySelf" (onChange)="toggleMyself($event)" name="mySelf" label="adHocDate.reminders.mySelf">
+                    </ipx-checkbox>
+                    <ipx-checkbox [disabled]="noReminder || isAdhocTypeCase" [(ngModel)]="formData.staff" (onChange)="toggleStaff($event)" name="staff" label="adHocDate.reminders.staff">
+                    </ipx-checkbox>
+                    <ipx-checkbox [disabled]="noReminder || isAdhocTypeCase" [(ngModel)]="formData.signatory" (onChange)="toggleSignatory($event)" name="signatory" label="adHocDate.reminders.signatory">
+                    </ipx-checkbox>
+                    <ipx-checkbox [disabled]="noReminder || isAdhocTypeCase" [(ngModel)]="formData.criticalList" (onChange)="toggleCriticalList($event)" name="criticalList" label="adHocDate.reminders.criticalList">
+                    </ipx-checkbox>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-11">
+                <ipx-typeahead [disabled]="noReminder || isAdhocTypeCase" (onChange)='nameTypeChange($event)' name="nameType" label="adHocDate.reminders.nameType" config="nameType" [(ngModel)]="formData.nameType">
+                </ipx-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <ipx-typeahead [disabled]="(noReminder || isAdhocTypeCase) || !formData.nameType" (onChange)='nameTypeRelationship($event)' name="relationship" label="adHocDate.reminders.relationShip" config="nameRelationship" [(ngModel)]="formData.relationship"></ipx-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <ipx-typeahead multiselect multipick [disabled]="true" name="names" label="adHocDate.reminders.names" config="name" [(ngModel)]="formData.names">
+                </ipx-typeahead>
+            </div>
+            <div>
+                <ipx-inline-dialog tooltipPlacement="auto" [adaptivePosition]="true" [content]="'adHocDate.namesTooltip' | translate">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+        <div class="row" *ngIf="(mode!==adhocTypeMode.maintain)">
+            <div class="col-md-11">
+                <ipx-typeahead multiselect multipick [disabled]="noReminder" name="additionalNames" label="adHocDate.reminders.additionalNames" config="name" [(ngModel)]="formData.otherNames">
+                </ipx-typeahead>
+            </div>
+            <div>
+                <ipx-inline-dialog tooltipPlacement="auto" [adaptivePosition]="true" [content]="'adHocDate.otherNamesToolTip' | translate">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+        <div class="text-wrap" style="margin-top: 10px;">
+            <span class="label-legend" translate="adHocDate.reminders.emailReminders"></span>
+            <ipx-inline-dialog id="emailReminderTooltip" tooltipPlacement="auto" [adaptivePosition]="true" [content]="'adHocDate.emailReminderTootip' | translate">
+            </ipx-inline-dialog>
+        </div>
+        <div class="row" style="margin-left: 186px;">
+            <ipx-checkbox [disabled]="noReminder" [(ngModel)]="formData.emailToRecipients" (onChange)="toggleEmailSubjectLine($event)" name="emailToRecipients" label="adHocDate.reminders.emailToRecipients">
+            </ipx-checkbox>
+        </div>
+        <div class="row">
+            <div class="col-md-11">
+                <ipx-text-field multiLine="true" [rows]="2" [disabled]="enableEmailSubjectLine()" label="adHocDate.reminders.emailSubjectLine" name="emailSubjectLine" [(ngModel)]="formData.emailSubjectLine">
+                </ipx-text-field>
+            </div>
+
+        </div>
+    </form>
+</div>

@@ -1,0 +1,20 @@
+<div translate-namespace=".changeAction" ng-form="vm.form" ip-form ng-class="{'input-inherited': vm.isInherited()}">
+    <div class="row">
+        <div class="col-sm-6">
+            <ip-typeahead ng-class="{edited: vm.form.openAction.$dirty}" name="openAction" ng-disabled="::!vm.canEdit" data-config="action"
+                label=".openAction" ng-model="vm.changeAction.openAction"></ip-typeahead>
+        </div>
+        <div class="col-sm-6">
+            <ip-typeahead ng-class="{edited: vm.form.closeAction.$dirty}" name="closeAction" ng-disabled="::!vm.canEdit" data-config="action"
+                label=".closeAction" ng-model="vm.changeAction.closeAction" ng-change="vm.onCloseActionChange()"></ip-typeahead>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-offset-6 col-sm-6">
+            <ip-dropdown label=".relativeCycle" ng-required="!vm.isReletiveCycleDisabled()" ng-disabled="vm.isReletiveCycleDisabled()"
+                ng-class="{edited: vm.form.relativeCycle.$dirty && !vm.isReletiveCycleDisabled()}" name="relativeCycle" ng-model="vm.changeAction.relativeCycle"
+                options="option.key as option.value | translate for option in vm.relativeCycles">
+            </ip-dropdown>
+        </div>
+    </div>
+</div>

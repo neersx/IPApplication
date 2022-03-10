@@ -1,0 +1,9 @@
+<span *ngIf="hasData" class="inline-dialog" [ngClass]="{'ip-hover-help' : content}" [popover]="content" [placement]="placement" [popoverTitle]="title" triggers="mouseenter:mouseleave" [adaptivePosition]="false"  [container]="container">
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</span>
+<span *ngIf="!hasData"> 
+    <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+</span>
+<ng-template #contentTpl>
+    <ng-content></ng-content>
+</ng-template>

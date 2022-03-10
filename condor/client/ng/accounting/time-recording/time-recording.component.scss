@@ -1,0 +1,29 @@
+#timesheet {
+    .detail-view {
+        .detail-controls {
+            ipx-edit-button,
+            ipx-delete-button,
+            ipx-revert-button {
+                padding: 2px;
+            }
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+        .narrative-title {
+            margin-bottom: -2px;
+        }
+        .notes {
+            margin-top: -5px;
+        }
+    }
+}
+
+#timeRecordingPane div.fixed-detail-panel-left {
+    max-height: 80vh !important;
+}
+
+.overlap {
+    background-color: yellow;
+    font-weight: bold;
+}

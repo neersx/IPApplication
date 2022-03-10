@@ -1,0 +1,27 @@
+<div id="taskplanner-search-builder">
+    <ipx-sticky-header style="z-index: inherit;">
+        <ipx-page-title>
+            <before-title>
+                <ipx-level-up-button [tooltip]="'taskPlanner.searchBuilder.backToTaskPlanner' | translate" *ngIf="hasPreviousState" [toState]="'taskPlanner'" [additionalStateParams]="{levelUpClicked:true}">
+                </ipx-level-up-button>
+                <span> {{ 'taskPlanner.searchBuilder.pageTitle' | translate }} </span>
+                <span *ngIf="activeTabTitle">
+                    <span>{{ " – " + activeTabTitle }}</span></span>
+            </before-title>
+            <action-buttons>
+                <button style="margin-right: 3px;" class="btn btn-icon fas fa-calendar-check" id="presentation" tooltip="{{ 'caseSearch.presentationTitle' | translate }}" placement="bottom" (click)="openPresentation()">
+                    <span class="cpa-icon cpa-icon-bars-vertical"></span>
+                </button>
+                <ipx-context-menu-button [menuItems]="menuItems" (onClick)="initializeMenuItems()"></ipx-context-menu-button>
+                <span class="btn-divider"></span>
+                <ipx-save-button id="taskPlannerSaveSearch" [disabled]="saveButtonDisabled()" (onclick)="saveSearch()">
+                    {{'Save' | translate}}</ipx-save-button>
+                <ipx-clear-button (click)="clear()"></ipx-clear-button>
+                <ipx-advanced-search-button (click)="search()" [disabled]="!canSearch()" id="dueDateSearchButton"></ipx-advanced-search-button>
+            </action-buttons>
+        </ipx-page-title>
+    </ipx-sticky-header>
+
+    <ipx-topics [options]="topicOptions" *ngIf="topicOptions">
+    </ipx-topics>
+</div>

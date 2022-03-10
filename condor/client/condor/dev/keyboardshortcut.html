@@ -1,0 +1,25 @@
+<div id="test-area" tabindex="0">
+    <ip-page-title page-title="Keyboard Shortcut Test"></ip-page-title>
+    <div class="col-sm-4">
+        <label>Type in your shortcut in the field and click <i>Add</i>.</label>
+        <label>Press ? to reveal the list of already added shortcuts.</label>
+        <div id="" class="input-wrap">
+            <div>
+                <input id="test-combo" type="text" ng-model="shortcut" class="col-sm-4"></input>
+            </div>
+            <div class="row">
+                <button class="btn col-md-6" ng-click="addShortcut()" style="margin-left:5px;">Add this shortcut</button>
+            </div>
+            <div class="row">
+                <button class="btn col-md-6" ng-click="displayCheatSheet()" style="margin-left:5px;">Display Cheatsheet</button>
+            </div>
+        </div>
+
+        <div ng-repeat="s in listOfShortcuts track by $index">
+            {{ s }}
+        </div>
+    </div>
+</div>
+<script>
+$("#test-combo").focus();
+</script>

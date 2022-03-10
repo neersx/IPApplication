@@ -1,0 +1,129 @@
+<div [ipxConfirmBeforeRouteChange]="isPageDirty" [confirmMessage]="'accounting.wip.disbursements.confirmMessage' | translate">
+    <ipx-page-title [title]="'accounting.wip.disbursements.pageTitle'">
+        <action-buttons class="pull-right" style="margin-top: 4px; margin-right:7px;">
+            <ipx-save-button id="save" type="button" [disabled]="disableSave" (click)="submit()"></ipx-save-button>
+        </action-buttons>
+    </ipx-page-title>
+    <div style="padding-bottom: 5px;">
+        <form [formGroup]="formGroup">
+            <div class="search-options">
+                <h5 translate="accounting.wip.disbursements.summary" class="ng-scope"></h5>
+                <div class="container-fluid" style="padding-top: 15px; padding-bottom: 15px;">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="col-sm-4 text-right" style="margin-top: 5px;">
+                                <label>{{ 'accounting.wip.disbursements.transactionDate' | translate }}<span style="color: #CC3300;" class="required"> * </span></label>
+                            </div>
+                            <div class="col-sm-4" style="margin-left: -9px;">
+                                <ipx-date-picker required formControlName="transactionDate" id="transactionDate" name="transactionDate" (onChange)="validateItemDate($event)">
+                                </ipx-date-picker>
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-3">
+                            <ipx-text-field formControlName="invoiceNo" maxlength="20" [label]="'accounting.wip.disbursements.invoiceNo'" name="invoiceNo">
+                            </ipx-text-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <ipx-dropdown name="entity" required [label]="'accounting.wip.disbursements.entity'" [displayField]="'entityName'" [keyField]="'entityKey'" [options]="viewData?.entities" name="entityDropdown"
+                                formControlName="entity"></ipx-dropdown>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-3">
+                            <ipx-text-field formControlName="verificationNo" maxlength="20" [label]="'accounting.wip.disbursements.verificationNo'" name="verificationNo">
+                            </ipx-text-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <ipx-typeahead name="associate" formControlName="associate" [label]="'accounting.wip.disbursements.associate'" config="supplier">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-3">
+                            <div class="col-sm-4 text-right" style="margin-top:5px;">
+                                <label>{{ 'accounting.wip.disbursements.totalAmount' | translate }}<span style="color: #CC3300;" class="required"> * </span></label>
+                            </div>
+                            <div class="col-sm-8" style="margin-left: -10px;">
+                                <ipx-numeric #totalAmountEl required [isDecimal]="true" [roundUpto]="2" [customStyle]="numericStyle" name="totalAmount" formControlName="totalAmount" (onChange)="totalAmountChange($event)"
+                                    [errorStyle]="errorStyle">
+                                </ipx-numeric>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <ipx-checkbox name="isCredit" [label]="'accounting.wip.disbursements.creditWip'" formControlName="isCredit">
+                            </ipx-checkbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <ipx-typeahead name="currency" formControlName="currency" [label]="'accounting.wip.disbursements.currency'" config="currency">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-3">
+                            <div class="col-sm-4 text-right" style="margin-top: 5px;">
+                                <label>{{ 'accounting.wip.disbursements.unallocated' | translate }}</label>
+                            </div>
+                            <div class="col-sm-8 text-right" style="margin-top:5px; margin-left: -23px;">
+                                <span class="text" *ngIf="formGroup.controls.totalAmount.value">{{ unallocatedAmount$ | async | localCurrencyFormat:currency | async }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row" style="margin: 0px; overflow-x: auto;">
+        <h5 style="padding-left: 8px; margin-bottom: -25px;" translate="accounting.wip.disbursements.breakDown" class="ng-scope"></h5>
+        <ipx-kendo-grid #disbursementGrid id="disbursementsGrid" [dataOptions]="gridOptions" *ngIf="gridOptions" (deleteRowEvent)="updateChangeStatus()" (editRowEvent)="onRowAddedOrEdited($event)"
+            (addRowEvent)="onRowAddedOrEdited($event)">
+            <ng-template ipxTemplateColumnField="date" let-dataItem>
+                <span *ngIf="dataItem" class="text-nowrap">{{ dataItem.date | localeDate }}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="date" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <span *ngIf="dataItem && dataItem.date" class="text-nowrap">{{ dataItem.date | localeDate }}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="case" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <span *ngIf="dataItem && dataItem.case" class="text-nowrap">{{ (dataItem.case && dataItem.case.code)? dataItem.case.code : dataItem.case }}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="name" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <span *ngIf="dataItem && dataItem.name" class="text-nowrap">{{ (dataItem.name && dataItem.name.displayName)? dataItem.name.displayName : dataItem.name }}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="staff" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <span *ngIf="dataItem && dataItem.staff" class="text-nowrap">{{ (dataItem.staff && dataItem.staff.displayName)? dataItem.staff.displayName : dataItem.staff }}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="disbursement" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <span *ngIf="dataItem && dataItem.disbursement" class="text-nowrap">{{ (dataItem.disbursement && dataItem.disbursement.value)? dataItem.disbursement.value : dataItem.disbursement }}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="value" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div *ngIf="dataItem" class="text-right" style="margin-right: 10px;">
+                    {{ dataItem.value | localCurrencyFormat | async }}
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="foreignAmount" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div *ngIf="dataItem" class="text-right" style="margin-right: 10px;">
+                    {{ dataItem.foreignAmount | localCurrencyFormat:dataItem.currency | async }}
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="margin" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div *ngIf="dataItem" class="text-right" style="margin-right: 10px;">
+                    {{ dataItem.margin | localCurrencyFormat | async }}
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="discount" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div *ngIf="dataItem" class="text-right" style="margin-right: 10px;">
+                    {{ dataItem.discount | localCurrencyFormat | async }}
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="quantity" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div *ngIf="dataItem" class="text-right" style="margin-right: 10px;">{{ dataItem.quantity }}</div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="narrative" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <span *ngIf="dataItem && dataItem.narrative" class="text-nowrap">{{ (dataItem.narrative && dataItem.narrative.value)? dataItem.narrative.value : dataItem.narrative }}</span>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

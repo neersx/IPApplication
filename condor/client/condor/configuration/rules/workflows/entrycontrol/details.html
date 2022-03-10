@@ -1,0 +1,62 @@
+<div ng-form="vm.form" ip-form translate-namespace="workflows.entrycontrol.details">
+    <div class="text-right">
+        <ip-add-button ng-click="vm.onAddClick()" ng-if="vm.canEdit"></ip-add-button>
+    </div>
+
+    <div class="row">
+        <ip-kendo-grid 
+            data-id="detailsGrid" 
+            data-grid-options="vm.gridOptions" 
+            data-show-add="vm.canEdit" 
+            data-on-add-click="vm.onAddClick()" 
+            data-add-item-name="{{'workflows.entrycontrol.details.entryEvent' | translate}}">
+        </ip-kendo-grid>
+    </div>
+
+    <h3 translate=".entryOptions"></h3>
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="input-wrap-group group-inline" ng-class="{{vm.fieldClasses('atLeastOneEventFlag')}}">
+                    <span translate=".atleastOneDate"></span>
+                    <ip-checkbox 
+                        ng-model="vm.formData.atLeastOneEventFlag" 
+                        ng-class="{ 'input-inherited': vm.formData.atLeastOneEventFlag===vm.parentData.atLeastOneEventFlag}"
+                        ng-disabled="!vm.canEdit">
+                    </ip-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-7" ng-class="{ 'input-inherited': vm.formData.policeImmediately===vm.parentData.policeImmediately}">
+            <div class="input-wrap-group group-inline" ng-class="{{::vm.fieldClasses('policeImmediately')}}">
+                <span translate=".policeImmediately"></span>
+                <ip-radio-button label=".yes" ng-value="true" ng-model="vm.formData.policeImmediately" ng-disabled="!vm.canEdit"></ip-radio-button>
+                <ip-radio-button label=".no" ng-value="false" ng-model="vm.formData.policeImmediately" ng-disabled="!vm.canEdit"></ip-radio-button>
+            </div>
+        </div>
+    </div>
+
+    <h3 translate=".otherDetails"></h3>
+    <div class="row">
+        <div class="col-sm-6"  ng-class="{ 'input-inherited': vm.formData.officialNumberType.key===vm.parentData.officialNumberType.key}">
+            <ip-typeahead 
+                ng-disabled="!vm.canEdit" 
+                name="officialNumberType" 
+                data-config="numberType" 
+                label=".captureOfficialNumber" 
+                ng-class="{{::vm.fieldClasses('officialNumberType')}}" 
+                ng-model="vm.formData.officialNumberType">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6" ng-class="{ 'input-inherited': vm.formData.fileLocation.key===vm.parentData.fileLocation.key}">
+            <ip-typeahead 
+                ng-disabled="!vm.canEdit" 
+                name="fileLocation" 
+                data-config="fileLocation" 
+                label=".updateFileLocation" 
+                ng-class="{{::vm.fieldClasses('fileLocation')}}" 
+                ng-model="vm.formData.fileLocation">
+        </div>
+    </div>
+</div>

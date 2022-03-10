@@ -1,0 +1,178 @@
+<form name="generalForm" #generalForm="ngForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.general.include' | translate}}</label>
+            </div>
+            <div class="col-sm-10">
+                <div class="col-sm-2">
+                    <ipx-checkbox name="chkReminders" [disabled]="disableReminders" [(ngModel)]="formData.includeFilter.reminders" (click)="changeReminders()" label="taskPlanner.searchBuilder.general.reminders">
+                    </ipx-checkbox>
+                </div>
+                <div class="col-sm-2">
+                    <ipx-checkbox name="chkDueDates" [disabled]="disableDueDates" [(ngModel)]="formData.includeFilter.dueDates" (click)="changeDueDates()" label="taskPlanner.searchBuilder.general.dueDates">
+                    </ipx-checkbox>
+                </div>
+                <div class="col-sm-3">
+                    <ipx-checkbox class="col-sm-8" [disabled]="disableAdHocDates" name="chkAdHocDates" [(ngModel)]="formData.includeFilter.adHocDates" (click)="changeAdHocDates()"
+                        label="taskPlanner.searchBuilder.general.adHocDates">
+                    </ipx-checkbox>
+                    <ipx-inline-dialog class="col-sm-1" [templateRef]="dueDateInfoTemplate" [tooltipPlacement]="'right'">
+                    </ipx-inline-dialog>
+
+                    <ng-template #dueDateInfoTemplate>
+                        {{'taskPlanner.searchBuilder.general.a' | translate}}
+                        <strong> {{'taskPlanner.searchBuilder.general.dueDate' | translate}} </strong>
+                        {{'taskPlanner.searchBuilder.general.dueDateInfo1' | translate}}<br /><br />
+                        {{'taskPlanner.searchBuilder.general.a' | translate}}
+                        <strong> {{'taskPlanner.searchBuilder.general.reminder' | translate}}</strong>
+                        {{'taskPlanner.searchBuilder.general.dueDateInfo2' | translate}}<br /><br />
+                        {{'taskPlanner.searchBuilder.general.an' | translate}}
+                        <strong> {{'taskPlanner.searchBuilder.general.adHocDate' | translate}}</strong>
+                        {{'taskPlanner.searchBuilder.general.dueDateInfo3' | translate}}
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.general.belongingTo' | translate}}</label>
+            </div>
+            <div class="col-sm-9">
+                <div class="col-sm-4">
+                    <ipx-dropdown class="col-sm-11" name="belongingTo" [(ngModel)]="formData.belongingToFilter.value" [removeOptionalValue]="true" [displayField]="'value'" [keyField]="'key'"
+                        [options]="belongingToOptions" (change)="changeBelongingTo()">
+                    </ipx-dropdown>
+                    <ipx-typeahead class="col-sm-12" *ngIf="formData.belongingToFilter.value === 'otherNames'" name="belongingToStaff" multiselect multipick config="staff" [(ngModel)]="formData.belongingToFilter.names">
+                    </ipx-typeahead>
+                    <ipx-typeahead class="col-sm-12" *ngIf="formData.belongingToFilter.value === 'otherTeams'" name="belongingToNameGroup" multiselect multipick config="nameGroup"
+                        [(ngModel)]="formData.belongingToFilter.nameGroups">
+                    </ipx-typeahead>
+                </div>
+
+                <div class="col-sm-1">
+                    <label class="marginTop">{{'taskPlanner.searchBuilder.general.actingAs' | translate}}</label>
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="col-sm-12">
+                        <ipx-checkbox name="belongingToReminder" [disabled]="disabledReminderRecipient" [(ngModel)]="formData.belongingToFilter.actingAs.isReminder"
+                            label="taskPlanner.searchBuilder.general.reminderRecipient">
+                        </ipx-checkbox>
+                        <div class="label-or">
+                            {{'taskPlanner.searchBuilder.general.or' | translate}}
+                        </div>
+                        <ipx-checkbox name="belongingToDueDate" [disabled]="disabledDueDateResponsibleStaff" [(ngModel)]="formData.belongingToFilter.actingAs.isDueDate"
+                            label="taskPlanner.searchBuilder.general.dueDateResponsibleStaff">
+                        </ipx-checkbox>
+                        <div class="label-or">
+                            {{'taskPlanner.searchBuilder.general.or' | translate}}
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <ipx-typeahead class="col-sm-10" name="nameTypeKey" multiselect multipick config="nameType" placeholder="{{'taskPlanner.searchBuilder.general.nameType' | translate}}"
+                            [(ngModel)]="formData.belongingToFilter.actingAs.nameTypes">
+                        </ipx-typeahead>
+                        <ipx-inline-dialog class="col-sm-2" [templateRef]="belongingInfoTemplate" [tooltipPlacement]="'right'">
+                        </ipx-inline-dialog>
+
+                        <ng-template #belongingInfoTemplate>
+                            {{'taskPlanner.searchBuilder.general.when' | translate}}
+                            <strong> {{'taskPlanner.searchBuilder.general.nameTypes' | translate}} </strong>
+                            {{'taskPlanner.searchBuilder.general.belongingToInfo' | translate}}
+                        </ng-template>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.general.searchBy' | translate}}</label>
+            </div>
+            <div class="col-sm-10">
+                <div class="col-sm-2">
+                    <ipx-checkbox name="chkSearchByReminderDate" [disabled]="disabledReminderRecipient" [(ngModel)]="formData.searchByFilter.reminderDate" label="taskPlanner.searchBuilder.general.reminderDate">
+                    </ipx-checkbox>
+                </div>
+                <div class="col-sm-2">
+                    <ipx-checkbox name="chkSearchByDueDate" [(ngModel)]="formData.searchByFilter.dueDate" label="taskPlanner.searchBuilder.general.dueDate">
+                    </ipx-checkbox>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2 text-right">
+
+                <label class="marginTop">{{'taskPlanner.searchBuilder.general.date' | translate}}</label>
+            </div>
+            <div class="col-sm-10">
+                <ipx-radio-button class="col-md-3" (change)="toggleRangePeriod()" label="taskPlanner.searchBuilder.general.range" [value]="0" [(ngModel)]="formData.dateFilter.dateFilterType" name="rdbRange">
+                </ipx-radio-button>
+                <ipx-radio-button class="col-md-9" (change)="toggleRangePeriod()" label="taskPlanner.searchBuilder.general.period" [value]="1" [(ngModel)]="formData.dateFilter.dateFilterType" name="rdbPeriod">
+                </ipx-radio-button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-2">
+                <ipx-dropdown-operator name="dateOperator" [(ngModel)]="formData.dateFilter.operator" [operatorsGroup]="'BetweenWithLastWorkDay'" (change)="changeDateOperator()">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-sm-7" *ngIf="formData.dateFilter.dateFilterType === 0">
+                <ipx-date-picker *ngIf="formData.dateFilter.operator !== '14'" class="col-sm-3" name="dateRangeStart" id="dateRangeStart" [allowNull]="true" [earlierThan]="formData.dateFilter.dateRange.to"
+                    [includeSameDate]="true" [(ngModel)]="formData.dateFilter.dateRange.from" (onChange)="changePeriodDate()">
+                </ipx-date-picker>
+                <div class="col-sm-1">
+                    <div class="input-wrap no-background">
+                        <label>{{(formData.dateFilter.operator === '14'? 'taskPlanner.searchBuilder.general.to' : 'taskPlanner.searchBuilder.general.and') | translate}}</label>
+                    </div>
+                </div>
+                <ipx-date-picker class="col-sm-3" name="dateRangeEnd" id="dateRangeEnd" [laterThan]="formData.dateFilter.dateRange.from" [allowNull]="true" [includeSameDate]="true"
+                    [(ngModel)]="formData.dateFilter.dateRange.to" (onChange)="changePeriodDate()">
+                </ipx-date-picker>
+            </div>
+
+            <div class="col-sm-7" *ngIf="formData.dateFilter.dateFilterType === 1">
+                <ipx-text-field *ngIf="formData.dateFilter.operator !== '14'" class="col-sm-3" maxlength="4" name="datePeriodFrom" ipx-data-type="integer" [(ngModel)]="formData.dateFilter.datePeriod.from"
+                    (change)="validateRangeControl('datePeriodTo',formData.dateFilter.datePeriod.from,formData.dateFilter.datePeriod.to)">
+                </ipx-text-field>
+                <div class="col-sm-1">
+                    <div class="input-wrap no-background">
+                        <label>{{(formData.dateFilter.operator === '14'? 'taskPlanner.searchBuilder.general.to' : 'taskPlanner.searchBuilder.general.and') | translate}}</label>
+                    </div>
+                </div>
+                <ipx-text-field class="col-sm-3" maxlength="4" name="datePeriodTo" ipx-data-type="integer" [(ngModel)]="formData.dateFilter.datePeriod.to"
+                    (change)="validateRangeControl('datePeriodTo',formData.dateFilter.datePeriod.from,formData.dateFilter.datePeriod.to)" [errorParam]="formData.dateFilter.datePeriod.from">
+                </ipx-text-field>
+                <ipx-dropdown class="col-sm-3" name="periodType" [(ngModel)]="formData.dateFilter.datePeriod.periodType" [displayField]="'value'" [keyField]="'key'" [options]="periodTypes">
+                </ipx-dropdown>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.general.importanceLevel' | translate}}</label>
+            </div>
+            <div class="col-sm-2">
+                <ipx-dropdown-operator name="importanceLevelOperator" [(ngModel)]="formData.importanceLevel.operator" [operatorsGroup]="'Between'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-sm-7">
+                <ipx-dropdown class="col-sm-3" name="importanceLevelFrom" [(ngModel)]="formData.importanceLevel.from" [displayField]="'value'" [keyField]="'key'" [options]="importanceLevelOptions">
+                </ipx-dropdown>
+                <div class="col-sm-1">
+                    <div class="input-wrap no-background">
+                        <label>{{'taskPlanner.searchBuilder.general.and' | translate}}</label>
+                    </div>
+                </div>
+                <ipx-dropdown class="col-sm-3" name="importanceLevelTo" [(ngModel)]="formData.importanceLevel.to" [displayField]="'value'" [keyField]="'key'" [options]="importanceLevelOptions">
+                </ipx-dropdown>
+            </div>
+        </div>
+    </div>
+</form>

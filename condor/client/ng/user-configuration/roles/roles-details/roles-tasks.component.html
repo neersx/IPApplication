@@ -1,0 +1,73 @@
+<br/>
+<input id="hiddenInput" type="hidden">
+<div class="row">
+    <div class="col-sm-12">
+        <div class="col-sm-3">
+            <ipx-picklist-search-field (onEnter)="onSearch($event)" placeholder="roleDetails.tasks.searchText" (onSearch)="onSearch($event)" (onClear)="onClear()">
+            </ipx-picklist-search-field>
+        </div>
+        <div class="col-sm-3">
+            <action-buttons>
+                <div class="input-wrap switch">
+                    <input id="togglePermissionSets" name="togglePermissionSets" type="checkbox" [(ngModel)]="showOnlyPermissionSet" (ngModelChange)="togglePermissionSets()">
+                    <label for="togglePermissionSets" [translate]="'roleDetails.tasks.togglePermission'"></label>
+                </div>
+            </action-buttons>
+        </div>
+        <div class="col-sm-3">
+            <action-buttons>
+                <div class="input-wrap switch">
+                    <input id="toggleDescriptionColumn" name="toggleDescriptionColumn" type="checkbox" [(ngModel)]="showDescriptionColumn" (ngModelChange)="toggleDescriptionColumn($event)">
+                    <label for="toggleDescriptionColumn" [translate]="'roleDetails.tasks.toggleDescription'"></label>
+                </div>
+            </action-buttons>
+        </div>
+        <div class="col-sm-3">
+            <div class="col-sm-2" style="text-align: right;"><b>Key:</b></div>
+            <div class="col-sm-5">
+                <ul style="list-style: none;padding: 0;">
+                    <li>
+                        <ipx-multistate-checkbox [(ngModel)]="checkedCbx" style="vertical-align: sub;" [disabled]="true"></ipx-multistate-checkbox> <span style="margin-left: 4px;">Granted</span>
+                    </li>
+                    <li>
+                        <ipx-multistate-checkbox [(ngModel)]="deniedCbx" style="vertical-align: sub;" [disabled]="true"></ipx-multistate-checkbox> <span style="margin-left: 4px;">Denied</span>
+                    </li>
+                    <li>
+                        <ipx-multistate-checkbox [(ngModel)]="uncheckedCbx" style="vertical-align: sub;" [disabled]="true"></ipx-multistate-checkbox> <span style="margin-left: 4px;">Not Assigned</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <ipx-kendo-grid id="taskGrid" #resultsGrid [dataOptions]="gridOptions" (onFilterChanged)="onFilterchanged()">
+            <ng-template ipxTemplateColumnField="executePermission" let-dataItem>
+                <div style="text-align: center;">
+                    <ipx-multistate-checkbox [disabled]="!viewData.canUpdateRole" *ngIf="dataItem.isExecuteApplicable === 1" (onChange)="onValueChanged(dataItem)" [(ngModel)]="dataItem.executePermission"></ipx-multistate-checkbox>
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="insertPermission" let-dataItem>
+                <div style="text-align: center;">
+                    <ipx-multistate-checkbox [disabled]="!viewData.canUpdateRole" *ngIf="dataItem.isInsertApplicable === 1" (onChange)="onValueChanged(dataItem)" [(ngModel)]="dataItem.insertPermission"></ipx-multistate-checkbox>
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="updatePermission" let-dataItem>
+                <div style="text-align: center;">
+                    <ipx-multistate-checkbox [disabled]="!viewData.canUpdateRole" *ngIf="dataItem.isUpdateApplicable === 1" (onChange)="onValueChanged(dataItem)" [(ngModel)]="dataItem.updatePermission"></ipx-multistate-checkbox>
+                </div>
+
+            </ng-template>
+            <ng-template ipxTemplateColumnField="deletePermission" let-dataItem>
+                <div style="text-align: center;">
+                    <ipx-multistate-checkbox [disabled]="!viewData.canUpdateRole" *ngIf="dataItem.isDeleteApplicable === 1" (onChange)="onValueChanged(dataItem)" [(ngModel)]="dataItem.deletePermission"></ipx-multistate-checkbox>
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="feature" let-dataItem>
+                <p style="text-align: left;margin-left: 9px">{{dataItem.feature}}</p>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="subFeature" let-dataItem>
+                <p style="text-align: left;margin-left: 9px">{{dataItem.subFeature}}</p>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

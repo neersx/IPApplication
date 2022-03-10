@@ -1,0 +1,80 @@
+<h2>Ng Converted Controls</h2>
+<form #nextForm="ngForm">
+    <span style="font-weight: bold">Code error</span>
+    <div class="row">
+        <div class="col-md-6">
+            <ipx-text-field sqlHighlighter name="mirror" required label="mirror" placeholder="Please enter code" maxLength="2" [(ngModel)]="mirror" (onChange)="onCodeChange($event)" ipx-autofocus apply-edited>
+            </ipx-text-field>
+        </div>
+        <div>{{ mirror }}</div>
+    </div>
+
+    <span style="font-weight: bold">TextBox</span>
+    <div class="row">
+        <div class="col-md-6">
+            <ipx-text-field name="code" required label="Code" placeholder="Please enter code" maxLength="2" [(ngModel)]="code" (onChange)="onCodeChange($event)" ipx-autofocus apply-edited>
+            </ipx-text-field>
+        </div>
+        <div>{{ code }}</div>
+        <div *ngIf="codeChanged">On Change Called: {{ codeChanged }}</div>
+    </div>
+    <span style="font-weight: bold">Disabled TextBox</span>
+    <div class="row">
+        <div class="col-md-6">
+            <ipx-text-field name="disabledTextBox" disabled="true" label="Name" [(ngModel)]="devname">
+            </ipx-text-field>
+        </div>
+    </div>
+    <span style="font-weight: bold">TextBox with warning</span>
+    <div class="row">
+        <div class="col-md-6">
+            <ipx-text-field name="warningTxt" [warningText]="'This is warning'" label="Warning" placeholder="Please enter" [(ngModel)]="warning">
+            </ipx-text-field>
+        </div>
+        <div>{{ warning }}</div>
+    </div>
+    <span style="font-weight: bold">TextBox with password</span>
+    <div class="row">
+        <div class="col-md-6">
+            <ipx-text-field name="passwordText" [mask]="true" label="Password Text" placeholder="Please enter" [(ngModel)]="passwordText">
+            </ipx-text-field>
+        </div>
+        <div>{{ passwordText }}</div>
+    </div>
+    <span style="font-weight: bold">TextArea</span>
+    <div class="row">
+        <div class="col-md-6">
+            <ipx-text-field name="textArea" multiline rows='' label="MultiLine Text" placeholder="Please enter" [(ngModel)]="multiLineText">
+            </ipx-text-field>
+        </div>
+        <div [innerHTML]=" multiLineText | html"></div>
+    </div>
+    <span style="font-weight: bold">Textbox with focus</span>
+    <div class="row">
+        <div #devInput class="col-md-2">
+            <input ipx-autofocus label="focusInput" />
+        </div>
+        <div>
+            <button (click)="selectFocus()">Select Focus</button>
+        </div>
+    </div>
+
+    <span style="font-weight: bold">TextArea Required</span>
+    <div class="row">
+        <div class="col-md-6">
+            <ipx-text-field name="requiredTextArea" multiline rows="4" label="MultiLine Text" placeholder="Please enter" [(ngModel)]="multiLineTextRequired" required>
+            </ipx-text-field>
+        </div>
+        <div [innerHTML]="multiLineTextRequired | html"></div>
+
+    </div>
+    <span style="font-weight: bold">Disabled TextArea </span>
+
+    <div class="row">
+        <div class="col-md-6">
+            <ipx-text-field name="disabledTextArea" multiline rows="4" label="Disabled MultiLine Text" [(ngModel)]="devname" disabled="true">
+            </ipx-text-field>
+        </div>
+        <div [innerHTML]="devname | html"></div>
+    </div>
+</form>

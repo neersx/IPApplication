@@ -1,0 +1,9 @@
+<select id="textOperator{{column.field}}" ng-model="column.filter.operator" ng-required>
+    <option value="startswith">{{ ::'grid.columns.textoperators.startswith' | translate }}</option>
+    <option value="contains">{{ ::'grid.columns.textoperators.contains' | translate }}</option>
+    <option value="eq">{{ ::'grid.columns.textoperators.eq' | translate }}</option>
+</select>
+
+<div class="input-wrap">
+    <input id="text{{column.field}}" type="text" name="text" ng-model="column.filter.text"></input>
+</div>

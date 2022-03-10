@@ -1,0 +1,153 @@
+<div class="row">
+    <h3>
+        <span class="label-legend" translate="dataDownload.newSchedule.frequency"></span>
+    </h3>
+</div>
+
+<div class="row">
+    <div class="input-wrap">
+        <div class="input-wrap-group group-inline">
+            <label style="margin-top:2px">
+                <span translate="dataDownload.newSchedule.recurrence" ></span><span class="mandatory-asterisk">*</span>
+            </label>
+            <ip-radio-button ng-if="!vm.schedule.isContinuousAvailable" label="dataDownload.newSchedule.recurring" value="{{vm.recurrence.recurring}}" ng-model="vm.schedule.recurrence" name="recurrence2" ng-class="{edited: vm.maintenance.recurrence2.$dirty }"
+                ng-change="vm.recurrenceChanged()">
+            </ip-radio-button>
+            <ip-radio-button ng-if="!vm.schedule.isContinuousAvailable" label="dataDownload.newSchedule.runOnce" value="{{vm.recurrence.runOnce}}" ng-model="vm.schedule.recurrence" name="recurrence1" ng-class="{edited: vm.maintenance.recurrence1.$dirty }"
+                ng-change="vm.recurrenceChanged()">
+            </ip-radio-button>
+            <ip-radio-button ng-if="vm.schedule.isContinuousAvailable" label="dataDownload.newSchedule.continuous" value="{{vm.recurrence.continuous}}" ng-model="vm.schedule.recurrence" name="recurrence3" ng-class="{edited: vm.maintenance.recurrence3.$dirty }"
+                ng-change="vm.recurrenceChanged()">
+            </ip-radio-button>
+            <span ng-if="vm.schedule.continuousDuplicate === true" class="error input-action" style="width: auto; margin-top: -7px">
+                <span class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{ 'dataDownload.newSchedule.errors.duplicate-continuous' | translate }}" tooltip-class="tooltip-error"></span>
+            </span>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row" data-ng-if="vm.schedule.recurrence === vm.recurrence.recurring">
+        <div class="input-wrap-group group-inline pull-right" style="margin-right:30px; padding-bottom:10px">
+            <span class="input-wrap" data-ng-repeat="d in vm.availableDays" data-ng-class="{ edited: !d.selected, error: !vm.runOnDaysValid }">
+                <input type="checkbox" id="dayOptions{{d.day}}" ng-model="d.selected" data-ng-required="!vm.runOnDaysValid">
+                <label for="dayOptions{{d.day}}">
+                    <span style="padding-right:0px">{{d.name}}</span>
+            </label>
+            </span>
+            <span data-ng-if="!vm.runOnDaysValid" class="error input-action">
+                <span class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{ 'dataDownload.newSchedule.errors.at-least-one-day-required' | translate }}" tooltip-class="tooltip-error"></span>
+            </span>
+        </div>
+    </div>
+
+    <div class="row" data-ng-if="vm.schedule.recurrence === vm.recurrence.recurring">
+        <div class="form-group input-wrap">
+            <div class="input-group col-sm-8 col-sm-offset-2" style="padding-right: 51px; padding-left: 30px">
+                <span class="input-group-addon">{{ 'dataDownload.newSchedule.startTime' | translate }}</span>
+                <select id="starthour" name="starthour" class="form-control" data-ng-model="vm.selectedHour" data-ng-change="vm.timeSelectionChanged()" data-ng-required ng-class="{edited: vm.timeEdited() }">
+                    <option>00</option>
+                    <option>01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option>04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                </select>
+                <span class="input-group-addon">: </span>
+                <select id="startminute" name="startminute" class="form-control" data-ng-model="vm.selectedMinutes" data-ng-change="vm.timeSelectionChanged()" data-ng-required data-ng-required ng-class="{edited: vm.timeEdited() }">
+                    <option>00</option>
+                    <option>05</option>
+                    <option>10</option>
+                    <option>15</option>
+                    <option>20</option>
+                    <option>25</option>
+                    <option>30</option>
+                    <option>35</option>
+                    <option>40</option>
+                    <option>45</option>
+                    <option>50</option>
+                    <option>55</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" data-ng-if="vm.schedule.recurrence === vm.recurrence.recurring">
+        <ip-datepicker style="margin-left:7px" id="expiresAfter" data-is-dirty="vm.schedule.expiresAfter" name="expiresAfter" label="{{ 'dataDownload.newSchedule.expiresAfter' | translate }}" ng-model="vm.expiresAfter"></ip-datepicker>
+    </div>
+
+    <div class="row" data-ng-if="vm.schedule.recurrence === vm.recurrence.runOnce">
+        <ip-checkbox class="col-sm-offset-4" label="{{ 'dataDownload.newSchedule.asSoonAsPossible' | translate}}" ng-model="vm.schedule.runNow" ng-class="{edited: !vm.schedule.runNow }" ng-change="vm.runNowChanged()"></ip-checkbox>
+    </div>
+
+    <div class="row" data-ng-if="vm.schedule.recurrence === vm.recurrence.runOnce">
+        <ip-datepicker style="margin-left:7px" id="runOn" name="runOn" label="{{ 'dataDownload.newSchedule.on' | translate }}" data-is-dirty="vm.dateEdited()" data-is-disabled="vm.schedule.runNow" ng-model="vm.runOn" data-ng-required="!vm.schedule.runNow && vm.schedule.runOnce"></ip-datepicker>
+    </div>
+
+    <div class="row" data-ng-if="vm.schedule.recurrence === vm.recurrence.runOnce">
+        <div class="form-group input-wrap">
+            <div class="input-group col-sm-8 col-sm-offset-2" style="padding-right: 51px; padding-left: 30px">
+                <span class="input-group-addon">{{ 'dataDownload.newSchedule.startTime' | translate }}</span>
+                <select id="runoncestarthour" name="runoncestarthour" class="form-control" data-ng-model="vm.selectedHour" data-ng-change="vm.timeSelectionChanged()" data-ng-disabled="vm.schedule.runNow" data-ng-required ng-class="{edited: vm.timeEdited() }">
+                    <option>00</option>
+                    <option>01</option>
+                    <option>02</option>
+                    <option>03</option>
+                    <option>04</option>
+                    <option>05</option>
+                    <option>06</option>
+                    <option>07</option>
+                    <option>08</option>
+                    <option>09</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                    <option>17</option>
+                    <option>18</option>
+                    <option>19</option>
+                    <option>20</option>
+                    <option>21</option>
+                    <option>22</option>
+                    <option>23</option>
+                </select>
+                <span class="input-group-addon">: </span>
+                <select id="runoncestartminute" name="runoncestartminute" class="form-control" data-ng-model="vm.selectedMinutes" data-ng-change="vm.timeSelectionChanged()" data-ng-disabled="vm.schedule.runNow" data-ng-required ng-class="{edited: vm.timeEdited() }">
+                    <option>00</option>
+                    <option>05</option>
+                    <option>10</option>
+                    <option>15</option>
+                    <option>20</option>
+                    <option>25</option>
+                    <option>30</option>
+                    <option>35</option>
+                    <option>40</option>
+                    <option>45</option>
+                    <option>50</option>
+                    <option>55</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

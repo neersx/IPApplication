@@ -1,0 +1,87 @@
+<div>
+  <ipx-sticky-header>
+    <ipx-page-title-save [title]="'reportingServices.configuration.pageTitle' | translate" (onSave)="save()" (onDiscard)="reload()" [isSaveEnabled]="canApply()" [isDiscardEnabled]="canDiscard()">
+    </ipx-page-title-save>
+  </ipx-sticky-header>
+
+  <div class="col-sm-10 col-sm-offset-2">
+    <div class="row">
+      <h2 [translate]="'reportingServices.configuration.settings'"></h2>
+    </div>
+    <br />
+
+    <form #settingsForm="ngForm">
+      <div class="row">
+        <div class="col-lg-8 col-xs-12">
+          <ipx-text-field name="rootFolder" label="reportingServices.configuration.rootFolder" required [(ngModel)]="formData.rootFolder">
+          </ipx-text-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-xs-12">
+          <ipx-text-field name="baseUrl" label="reportingServices.configuration.baseUrl" required [(ngModel)]="formData.reportServerBaseUrl">
+          </ipx-text-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-xs-12">
+          <ipx-text-field name="maxSize" label="reportingServices.configuration.maxSize" (change)="validateMaxMessageSize()" [errorParam]="maxMessagesize" required [(ngModel)]="formData.messageSize">
+          </ipx-text-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-xs-12">
+          <ipx-text-field name="timeout" label="reportingServices.configuration.timeout" (change)="validateTimeout()" [errorParam]="maxTimeout" required [(ngModel)]="formData.timeout">
+          </ipx-text-field>
+        </div>
+      </div>
+      <div class="row">
+        <h2 [translate]="'reportingServices.configuration.security'"></h2>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-xs-12">
+          <ipx-text-field name="username" label="reportingServices.configuration.username" (change)="validateSecuritySection()" [(ngModel)]="formData.security.username">
+          </ipx-text-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-xs-12">
+          <ipx-text-field name="password" label="reportingServices.configuration.password" mask="true" (change)="validateSecuritySection()" [(ngModel)]="formData.security.password">
+          </ipx-text-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-xs-12">
+          <ipx-text-field name="domain" label="reportingServices.configuration.domain" (change)="validateSecuritySection()" [(ngModel)]="formData.security.domain">
+          </ipx-text-field>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top: 15px;">
+        <div class="col-lg-8 col-xs-12">
+          <div class="col-xs-4 col-sm-4">
+            <div class="pull-right">
+              <button type="button" id="btnTestConnection" class="btn btn-prominent clear" [disabled]="!canTest()" (click)="testConnection()">
+                {{ 'reportingServices.configuration.testConnection' | translate }}
+              </button>
+            </div>
+          </div>
+          <div class="col-xs-8 col-sm-8" style="margin-top: 2px;">
+            <span *ngIf="connectionStatus !== reportingConnectionStatus.None"
+              [ngClass]="{'alert-success': connectionStatus === reportingConnectionStatus.Success, 'alert-danger': connectionStatus === reportingConnectionStatus.Failed}">
+              <span class="cpa-icon cpa-icon-lg"
+                [ngClass]="{'cpa-icon-check-circle': connectionStatus === reportingConnectionStatus.Success, 'cpa-icon-exclamation-triangle': connectionStatus === reportingConnectionStatus.Failed}"></span>
+              <span *ngIf="connectionStatus === reportingConnectionStatus.Failed" [translate]="'reportingServices.configuration.testfailureMessage'"></span>
+              <span *ngIf="connectionStatus === reportingConnectionStatus.Success" [translate]="'reportingServices.configuration.testSuccessMessage'"></span> </span>
+            <span *ngIf="connectionStatus === reportingConnectionStatus.InProgress" [translate]="'reportingServices.configuration.inProgressMessage'"></span>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

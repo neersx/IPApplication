@@ -1,0 +1,28 @@
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="container-fluid" *ngIf="key">
+            <div id="questionId" class="col-sm-8 row">
+                <label class="col-sm-4 text-right" translate="picklist.question.number"></label>
+                <span class="col-sm-6">{{key}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <ipx-text-field id="code" class="col-sm-8" label="picklist.question.code" formControlName="code" apply-edited maxlength="10" ipx-autofocus></ipx-text-field>
+            <ipx-text-field id="question" class="col-sm-8" label="picklist.question.question" formControlName="question" apply-edited multiLine="true" [rows]="!4" maxlength="100"></ipx-text-field>
+        </div>
+        <div class="row">
+            <ipx-text-field id="instructions" class="col-sm-8" label="picklist.question.instructions" formControlName="instructions" apply-edited multiLine="true" [rows]="!4" maxlength="508"></ipx-text-field>
+            <ipx-inline-dialog [content]="'picklist.question.instructionsInfo' | translate" [tooltipPlacement]="'auto'"></ipx-inline-dialog>
+        </div>
+        <div>
+            <h3 translate="picklist.question.responseTypeCharacteristics"></h3>
+            <ipx-dropdown id="yesNo" class="col-sm-8" apply-edited name="yesNo" label="picklist.question.yesNo" formControlName="yesNo" [displayField]="'label'" [keyField]="'value'" [options]="yesNoResponseOptions"></ipx-dropdown>
+            <ipx-dropdown id="count" class="col-sm-8" apply-edited name="count" label="picklist.question.count" formControlName="count" [displayField]="'label'" [keyField]="'value'" [options]="generalResponseOptions" (change)="togglePeriod()"></ipx-dropdown>
+            <ipx-dropdown id="amount" class="col-sm-8" apply-edited name="amount" label="picklist.question.amount" formControlName="amount" [displayField]="'label'" [keyField]="'value'" [options]="generalResponseOptions"></ipx-dropdown>
+            <ipx-dropdown id="staff" class="col-sm-8" apply-edited name="staff" label="picklist.question.staff" formControlName="staff" [displayField]="'label'" [keyField]="'value'" [options]="generalResponseOptions"></ipx-dropdown>
+            <ipx-dropdown id="text" class="col-sm-8" apply-edited name="text" label="picklist.question.text" formControlName="text" [displayField]="'label'" [keyField]="'value'" [options]="generalResponseOptions"></ipx-dropdown>
+            <ipx-dropdown id="period" class="col-sm-8" apply-edited name="period" label="picklist.question.period" formControlName="period" [displayField]="'label'" [keyField]="'value'" [options]="periodResponseOptions" [disabled]="isPeriodDisabled"></ipx-dropdown>
+            <ipx-dropdown id="list" class="col-sm-8" apply-edited name="list" label="picklist.question.list" formControlName="list" [displayField]="'value'" [keyField]="'key'" [options]="tableTypes"></ipx-dropdown>
+        </div>
+    </form>
+</div>

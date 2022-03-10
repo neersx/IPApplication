@@ -1,0 +1,84 @@
+<style>
+    .remaining-height {
+        height: calc(100vh - 190px);
+    }
+    
+    .margin-top {
+        margin-top: 5px;
+    }
+    
+    textarea {
+        border: 1px solid #CCCCCC;
+        resize: none;
+    }
+    
+    textarea:focus {
+        border: 1px solid #CCCCCC !important;
+    }
+    
+    .wrap-text {
+        white-space: pre-wrap;
+    }
+    
+    ip-inline-alert>.alert {
+        display: inline-flex;
+    }
+
+    .results-pane {
+        overflow: auto;
+        max-height: calc(100vh - 100px);
+    }
+</style>
+<div ng-form="form" ip-form translate-namespace="schemaMapping">
+    <ip-sticky-header>
+        <div class="container-fluid">
+            <div class="row">
+                <ip-page-title page-title="Schema Mapping - Generate XML">
+                    <before-title>
+                        <ip-level-up-button data-to-state="schemamapping.mapping" additional-state-params="{id: id}"></ip-level-up-button>
+                    </before-title>
+                </ip-page-title>
+                </ip-page-title-save>
+            </div>
+            <div class="row title-header">
+                <div class="col-sm-8">
+                    <div class="readonly-label-group">
+                        <div class="readonly-label-value">
+                            <label translate="schemaMapping.mpLblMappingName"></label>
+                            <span>{{mappingName}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ip-sticky-header>
+    <div class="container-fluid results-pane">
+        <form ng-submit="generateXml()" class="row">
+            <ip-text-field label=".xmlLblEntryPoint" ng-model="details.entryPoint" ip-autofocus class="col-sm-5"></ip-text-field>
+            <div class="margin-top">
+                <button type="submit" data-ng-disabled="status === 'generating'" class="btn btn-prominent">{{'schemaMapping.xmlBtnGenerate' | translate}}</button>
+                <button type="button" class="btn" ng-click="downloadXml()" data-ng-disabled="status === 'generating'" class="col-sm-offset-1">{{'schemaMapping.xmlBtnDownload' | translate}}</button>
+            </div>
+        </form>
+
+        <div data-ng-if="status === 'generating'" class="row">
+            <br />
+            <span>{{ 'schemaMapping.xmlLblGenerating' | translate }}</span>
+        </div>
+
+        <div data-ng-if="status !== 'idle'" class="progress progress-striped active" class="row">
+            <div class="progress-bar" style="width: 100%" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+            </div>
+        </div>
+
+        <ip-inline-alert type="info" class="col-sm-12 wrap-text" ng-if="errorContainsTempNameSpace()" text="schemaMapping.xmlErrorContainsTempNamespaceInfo">
+        </ip-inline-alert>
+
+        <ip-inline-alert ng-if="error.length" type="danger" class="col-sm-12 margin-top ">
+            <div class="wrap-text">{{error}}</div>
+        </ip-inline-alert>
+
+        <div class="row">
+            <textarea id="generatedXml" readonly ng-show="xml.length" ng-model="xml" class="remaining-height col-sm-12 margin-top"></textarea>
+        </div>
+    </div>

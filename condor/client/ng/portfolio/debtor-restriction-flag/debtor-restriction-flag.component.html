@@ -1,0 +1,5 @@
+<span *ngIf="severity" class="cpa-icon cpa-icon-flag debtor-restrictions" [ngClass]="{
+    'error': severity === 'error',
+    'warning': severity === 'warning',
+    'info': severity === 'information' }" [tooltip]="description" [container]="'body'">
+</span>

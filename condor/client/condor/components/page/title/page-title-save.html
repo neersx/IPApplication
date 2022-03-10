@@ -1,0 +1,12 @@
+<div class="page-title" ip-confirm-before-page-change="isSaveEnabled()" data-confirm-message="{{::'ConfirmLeaveUnsavedChanges' | translate}}">
+	<h2>
+		<span ng-transclude></span>
+	    <span ng-if="pageSubtitle">{{::pageTitle | translate}} – {{::pageSubtitle | translate}}</span>
+	    <span ng-if="!pageSubtitle">{{::pageTitle | translate}}</span>
+	</h2>
+    <div class="controls">
+    <ip-icon-button ng-if="isDeleteAvailable" disabled ng-disabled="!isDeleteEnabled()" data-tooltip-placement="bottom" ip-tooltip="{{::'Delete' | translate }}" ng-click="onDelete()" button-icon="trash-o"></ip-icon-button>  
+		<ip-revert-button disabled ng-if="isDiscardAvailableInternal" ng-disabled="!isDiscardEnabled()" ng-click="doDiscard()"></ip-revert-button>
+		<ip-save-button disabled ng-if="isSaveAvailableInternal" ng-disabled="!isSaveEnabled()" ng-click="onSave()"></ip-save-button>
+    </div>
+</div>

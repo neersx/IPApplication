@@ -1,0 +1,29 @@
+<div data-ng-show="viewData.errors">
+    <div>
+        <div class="topic-header header-color-danger">
+            <h1>
+                {{ 'caseComparison.ccHeadingAttention' | translate }}
+                </h5>
+        </div>
+        <div>
+            <div class="widget-main no-padding">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div style="padding: 10px" data-ng-show="mappingErrors">
+                            <ul>
+                                <li data-ng-repeat="e in mappingErrors">{{ 'caseComparison.ccMappingError' | translate: {key: e.key} }}
+                                    <ul>
+                                        <li data-ng-repeat="m in e.message">
+                                            {{m}}
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+</div>

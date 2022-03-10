@@ -1,0 +1,63 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{'accounting.time.caseNarrative.title' | translate }}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button id="save" type="button" (click)="onSave()" [disabled]="!form.dirty || form.status === 'INVALID' || saveDisabled"></ipx-save-button>&nbsp;
+        <ipx-close-button id="close" type=" button" (click)="close()"></ipx-close-button>
+    </div>
+</div>
+<div class="title-header">
+    <div *ngIf="isLoading" class="col-sm-7 k-loading-image" style="position: absolute;top:128px;height: 56px; width: 100%;"></div>
+    <div class="label-value col-sm-6">
+        <label class="text" translate="accounting.time.caseNarrative.caseRef" for="caseReference"></label>
+        <span class="text"> {{caseReference}}</span>
+    </div>
+    <div class="label-value col-sm-6">
+        <label class="text" translate="accounting.time.caseNarrative.textType" for="textType"></label>
+        <span class="text"> {{textType}}</span>
+    </div>
+</div>
+<div class="multi-step-text-wizard">
+    <div id="wizard" class="wizard" *ngIf="steps">
+        <div id="wizard-header" name="wizard-header" class="wizard-header">
+            <div class="col-sm-4 field-label" style="margin-top: 7px; margin-left: 10px;">
+                <label>{{ 'accounting.time.caseNarrative.languageText' | translate }}</label>
+            </div>
+            <div class="col-sm-8" style="margin-top: 7px;">
+                <ul>
+                    <ng-container *ngFor="let step of steps; trackBy: trackByFn; let i = index">
+                        <ng-container>
+                            <li class="step" [ngClass]="{default: !step.selected, current: step.selected}">
+                                <ipx-step-button class="ipx-stepbutton" id="step_{{i}}" (click)="goTo(step)" stepNo="{{step.language ? step.language?.value : 'accounting.time.caseNarrative.notSpecified' | translate }}"
+                                    defaultStep="step.isDefault">
+                                </ipx-step-button>
+                                <a *ngIf="step.selected" class="btn-remove" (click)="removeStep(step)">X</a>
+                            </li>
+                        </ng-container>
+                    </ng-container>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body" *ngIf="form" style="margin-top: 7px;">
+        <form name="caseBillNarrativeForm" [formGroup]="form">
+            <div class="row">
+                <div class="col-sm-1 field-label" style="margin-top: 5px;">
+                    <label>{{ 'accounting.time.caseNarrative.language' | translate }}</label>
+                </div>
+                <div class="col-md-6" style="margin-left: 25px">
+                    <ipx-typeahead #languageRef name="language" config="language" ipx-autofocus="true" [formControl]="language" apply-edited>
+                    </ipx-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1 field-label" style="margin-top: 5px; margin-left: 15px;">
+                    <label>{{ 'accounting.time.caseNarrative.notes' | translate }}</label>
+                    <span class="filed-required"> *</span>
+                </div>
+                <div class="col-md-10" style="margin-left: 10px">
+                    <ipx-richtext-field [rows]="10" required [allowRichText]="allowRichText" name="notes" apply-edited formControlName="notes" placeholder="bulkUpdate.caseTextUpdate.placeHolder">
+                    </ipx-richtext-field>
+                </div>
+            </div>
+        </form>
+    </div>

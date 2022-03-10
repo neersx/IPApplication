@@ -1,0 +1,25 @@
+<div class="group-heading selected">
+    <span>{{ paging.available ? 'bulkactionsmenu.selectionNoTotalCount': 'bulkactionsmenu.selection' | translate: {count: items.selected, all: items.totalCount} }}</span>
+</div>
+<div class="group">
+    <ul>
+        <li ng-if="!paging.available">
+            <a name="selectall" data-ng-click="doSelectAll($event)" id="{{context}}_selectall" tabindex="{{::tabIndex}}">
+                <icon name="check"></icon>
+                <span>{{ isAllSelected() ? 'bulkactionsmenu.deselectFullSet' : 'bulkactionsmenu.selectFullSet' | translate}}</span>
+            </a>
+        </li>
+        <li ng-if="paging.available">
+            <a name="selectpage" data-ng-click="doSelectThisPage($event)" id="{{context}}_selectpage" tabindex="{{::tabIndex}}">
+                <icon name="check"></icon>
+                <span>{{(isSelectPage ? 'bulkactionsmenu.deselectPage' : 'bulkactionsmenu.selectPageOnly') | translate}}</span>
+            </a>
+        </li>
+        <li>
+            <a data-ng-click="doClear()" data-ng-class="{disabled: isClearDisabled()}" data-ng-disabled="isClearDisabled()" tabindex="{{::tabIndex+1}}">
+                <icon name="times"></icon>
+                <span translate="bulkactionsmenu.clear" translate-values="{count: items.selected}"></span>
+            </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,129 @@
+<ipx-page-title [title]="'exchangeRateVariation.maintenance.title'">
+</ipx-page-title>
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+    <form class="form" #searchForm="ngForm">
+        <ipx-search-option (search)="search()" (clear)="clear()">
+            <div class="container-fluid">
+                <div class="heading">
+                    <h5 translate="searchOptions"></h5>
+                    <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showSearchBar}" (click)="showSearchBar = !showSearchBar">
+                        <div placement="left" tooltip="{{'collapseExpand' | translate}}">
+                            <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                        </div>
+                    </a>
+                </div>
+                <div [@slideInOutVisible]="showSearchBar ? 'open' : 'closed'">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ipx-typeahead name="currency" [label]="'exchangeRateVariation.columns.currency'" config="currency" [(ngModel)]="formData.currency" class="col-sm-offset-1 col-sm-9">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-typeahead name="exchangeRateSchedule" config="exchangeRateSchedule" [label]="'exchangeRateVariation.columns.exchangeRateSchedule'" [(ngModel)]="formData.exchangeRateSchedule"
+                                class="col-sm-offset-1 col-sm-9">
+                            </ipx-typeahead>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label class="col-sm-2 col-sm-offset-2 text-right" style="line-height: 2.5;" [translate]="'exchangeRateVariation.search.useCase'"></label>
+                            <ipx-checkbox name="useCase" class="col-sm-1" [(ngModel)]="formData.useCase" (onChange)="useCaseChanged($event)">
+                            </ipx-checkbox>
+                            <ipx-typeahead name="case" #casePicklist config="case" *ngIf="formData.useCase" [(ngModel)]="formData.case" class="col-sm-5" (onChange)="onCaseChange($event)">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-typeahead name="propertyType" config="propertyType" [label]="'exchangeRateVariation.columns.propertyType'" [(ngModel)]="formData.propertyType" class="col-sm-offset-1 col-sm-9"
+                                [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" (onChange)="onCriteriaChange()" entity="propertyTypes">
+                            </ipx-typeahead>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ipx-typeahead name="caseType" config="caseType" [label]="'exchangeRateVariation.columns.caseType'" [(ngModel)]="formData.caseType" class="col-sm-offset-1 col-sm-9"
+                                [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" (onChange)="onCriteriaChange()">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-typeahead name="caseCategory" config="caseCategory" [label]="'exchangeRateVariation.columns.caseCategory'" [(ngModel)]="formData.caseCategory" class="col-sm-offset-1 col-sm-9"
+                                [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" (onChange)="onCriteriaChange()" entity="caseCategories" [disabled]="isCaseCategoryDisabled | async">
+                            </ipx-typeahead>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ipx-typeahead name="jurisdiction" config="jurisdiction" [label]="'exchangeRateVariation.columns.jurisdiction'" [(ngModel)]="formData.jurisdiction" class="col-sm-offset-1 col-sm-9"
+                                [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" (onChange)="onCriteriaChange()">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-typeahead name="subType" config="subType" [label]="'exchangeRateVariation.columns.subType'" [(ngModel)]="formData.subType" class="col-sm-offset-1 col-sm-9"
+                                [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" (onChange)="onCriteriaChange()" entity="subTypes">
+                            </ipx-typeahead>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-wrap-group group-inline">
+                                <span>
+                                    <ipx-inline-dialog [tooltipPlacement]="'top'" [templateRef]="matchTypeTooltip" [adaptivePosition]="true">
+                                    </ipx-inline-dialog>
+                                    <ng-template #matchTypeTooltip>
+                                        <div style="width: 250px">
+                                            <p>
+                                                <b translate="exchangeRateVariation.search.exactMatchs"></b>&nbsp;
+                                                <span translate="exchangeRateVariation.search.exactMatchsInfo"></span>
+                                            </p>
+                                            <p><b translate="exchangeRateVariation.search.bestMatches"></b>&nbsp;
+                                                <span translate="exchangeRateVariation.search.bestMatchesInfo"></span>
+                                            </p>
+                                        </div>
+                                    </ng-template>
+                                    <span translate="Find" style="margin-left: 5px;"></span>
+                                </span>
+                                <ipx-radio-button [value]="true" name="matchType" [(ngModel)]="formData.isExactMatch">
+                                    <span translate="screenDesignerCases.search.exactMatchs"></span>
+                                </ipx-radio-button>
+                                <ipx-radio-button [value]="false" name="matchType" [(ngModel)]="formData.isExactMatch">
+                                    <span translate="screenDesignerCases.search.bestMatches"></span>
+                                </ipx-radio-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ipx-search-option>
+    </form>
+    <br>
+    <div class="table-container">
+        <div *ngIf="viewData.canAdd" class="table-title" style="margin-top: -15px;">
+            <ipx-add-button class="pull-right" (click)="onRowAddedOrEdited(null, 'A')"> </ipx-add-button>
+        </div>
+        <div class="row" style="margin: 0px;">
+            <ipx-kendo-grid #exchangeRateVariationGrid id="exchangeRateVariationGrid" [dataOptions]="gridOptions" *ngIf="gridOptions">
+                <ng-template ipxTemplateColumnField="currency" let-dataItem>
+                    <span>{{ dataItem.currency }}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="exchangeRateSchedule" let-dataItem>
+                    <span>{{ dataItem.exchangeRateSchedule }}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="effectiveDate" let-dataItem>
+                    <span class="text-nowrap">{{ dataItem.effectiveDate | localeDate }}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="buyRate" let-dataItem>
+                    <span>{{ dataItem.buyRate | number : '1.4-4' }}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="sellRate" let-dataItem>
+                    <span>{{ dataItem.sellRate | number : '1.4-4' }}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="buyFactor" let-dataItem>
+                    <span>{{ dataItem.buyFactor | number : '1.4-4' }}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="sellFactor" let-dataItem>
+                    <span>{{ dataItem.sellFactor | number : '1.4-4' }}</span>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>

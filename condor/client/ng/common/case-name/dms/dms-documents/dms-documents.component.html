@@ -1,0 +1,94 @@
+<ipx-kendo-grid *ngIf="gridOptions" #ipxKendoGridRef id="dmsDocuments" [dataOptions]="gridOptions" (onDetailExpand)="expandRow($event)" (pageChanged)="onPageChanged()" (dataItemClicked)="documentSelected($event)">
+    <ng-template ipxTemplateName="applicationExtension" ipxTemplateColumnField="applicationExtension" let-dataItem>
+        <ipx-icon *ngIf="docTypeIconMap[dataItem.applicationExtension|lowercase]" [name]="docTypeIconMap[dataItem.applicationExtension|lowercase]" [large]="true"></ipx-icon>
+        <span *ngIf="!docTypeIconMap[dataItem.applicationExtension|lowercase]">{{dataItem.applicationExtension}}</span>
+    </ng-template>
+    <ng-template ipxTemplateName="hasAttachments" ipxTemplateColumnField="hasAttachments" let-dataItem>
+        <ipx-icon *ngIf="dataItem.hasAttachments" [large]="true" [name]="'paperclip'"></ipx-icon>
+    </ng-template>
+    <ng-template ipxTemplateName="emailDateReceived" ipxTemplateColumnField="emailDateReceived" let-dataItem>
+        <ipx-date-time *ngIf="dataItem.emailDateReceived" [model]="dataItem.emailDateReceived | removeTimezone"></ipx-date-time>
+    </ng-template>
+    <ng-template ipxTemplateName="description" ipxTemplateColumnField="description" let-dataItem>
+        <span target="_blank" *ngIf="dmsViewData.useImanageWorkLink">
+            <a *ngIf="dataItem.iwl" [href]="sanitize(dataItem.iwl)">
+                {{dataItem.description}}
+            </a>
+            <span *ngIf="!dataItem.iwl">
+                {{dataItem.description}}
+            </span>
+        </span>
+        <span *ngIf="!dmsViewData.useImanageWorkLink">
+            <a target="_blank" [href]="'api/document-management/download/' + dataItem.siteDbId + '-' + dataItem.containerId">
+                {{dataItem.description}}
+            </a>
+        </span>
+    </ng-template>
+
+    <ng-template ipxTemplateName="dateEdited" ipxTemplateColumnField="dateEdited" let-dataItem>
+        <ipx-date-time *ngIf="dataItem.dateEdited" [model]="dataItem.dateEdited"></ipx-date-time>
+    </ng-template>
+    <ng-template ipxTemplateName="dateCreated" ipxTemplateColumnField="dateCreated" let-dataItem>
+        <ipx-date-time *ngIf="dataItem.dateCreated" [model]="dataItem.dateCreated"></ipx-date-time>
+    </ng-template>
+    <ng-template ipxTemplateName="size" ipxTemplateColumnField="size" let-dataItem>
+        {{ dataItem.size | byteSizeFormat }}
+    </ng-template>
+    <ng-template ipxTemplateName="id" let-dataItem>
+        <span>{{ dataItem.id|number }}</span>
+    </ng-template>
+</ipx-kendo-grid>
+
+<ng-template #detailTemplate let-dataItem>
+    <div *ngIf="dataItem.detailLoading" class="col-sm-12" style="height: 50px;">
+        <div class="col-sm-12 k-loading-image" style="position: relative;"></div>
+    </div>
+    <div *ngIf="!dataItem.detailLoading" class="col-sm-12">
+        <div class="row">
+            <span [translate]="'caseview.caseDocumentManagementSystem.documentProfile.title'"></span>
+            <textarea class="txt-area" type="text" readonly [(ngModel)]="dataItem.comment" rows="2" id="textarea{{dataItem.id}}"></textarea>
+        </div>
+
+        <div *ngIf="!selectedId.canHaveRelatedDocuments" class="col-sm-12">&nbsp;</div>
+        <div *ngIf="selectedId.canHaveRelatedDocuments" class="col-sm-12" style="margin-top: 5px;">
+            <span style="font-weight: bold;" [translate]="'caseview.caseDocumentManagementSystem.relatedDocumentsTab.title'"></span>
+            <div>
+                <span *ngIf="!dataItem.relatedDocuments || dataItem.relatedDocuments.length === 0" [translate]="'grid.messages.noItems'"></span>
+                <section *ngIf="dataItem.relatedDocuments && dataItem.relatedDocuments.length > 0">
+                    <div class="row">
+                        <div class="k-grid">
+                            <div>
+                                <div class="k-grid-header-wrap">
+                                    <table id="relatedDocuments" role=" presentation" tabindex="0" style="table-layout: auto; word-break: break-word;">
+                                        <colgroup role="presentation">
+                                            <col style="width:50px">
+                                            <col>
+                                        </colgroup>
+                                        <thead class="k-grid-header">
+                                            <tr row="row">
+                                                <th class="k-header" *ngFor="let c of detailColumns trackBy:c">
+                                                    <ipx-icon *ngIf="c.iconName!=null" [large]="true" [name]="c.iconName"></ipx-icon>
+                                                    {{c.title | translate}}
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody role="rowgroup">
+                                            <tr class="k-master-row ng-scope errors" [ngClass]="{'k-state-selected selected': row.id === selectedRelateDocumentId}" role="row"
+                                                *ngFor="let row of dataItem.relatedDocuments trackBy:row" (click)="onSelectRelatedDocuments(row)">
+                                                <td role="gridCell" *ngFor="let c of detailColumns trackBy:c">
+                                                    <span *ngIf="c.template!==true && !c._templateResolved">{{row[c.field]}}</span>
+                                                    <ng-container *ngTemplateOutlet="c._templateResolved; context: { $implicit: row}">
+                                                    </ng-container>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</ng-template>

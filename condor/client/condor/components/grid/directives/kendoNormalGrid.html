@@ -1,0 +1,8 @@
+<div>
+    <div class="kendo-search-grid-placeholder"></div>
+    <div ng-hide="showAdd || hideNoResults" translate="grid.messages.noItems"></div>
+    <button ng-show="showAdd" ng-click="onAddClick()" ng-disabled="addDisabled" class="btn btn-link grid-message">
+        <icon name="plus-circle"></icon>
+        <em translate="grid.messages.addItem" translate-values="addLabelParams"></em>
+    </button>
+</div>

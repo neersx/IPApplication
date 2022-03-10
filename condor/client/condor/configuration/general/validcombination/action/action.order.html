@@ -1,0 +1,50 @@
+<style>
+    #validActionResults>table tbody tr {
+        cursor: move;
+    }
+    
+    tbody>.k-state-selected {
+        background-color: #D2E7F3 !important;
+        color: black !important;
+    }
+</style>
+<form name="actionOrder" novalidate>
+
+    <div class="modal-header" ng-init="ctrl.initShortcuts()">
+        <h2 class="modal-title" translate="validcombinations.setActionDisplayOrder"></h2>
+        <div class="modal-header-controls">
+            <button type="button" id="btnUp" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'validcombinations.moveUp' | translate }}" data-ng-disabled="ctrl.disableUpButton" ng-click="ctrl.moveUp()">
+                <span class="cpa-icon cpa-icon-arrow-up"></span>
+            </button>
+            <button type="button" id="btnDown" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'validcombinations.moveDown' | translate }}" data-ng-disabled="ctrl.disableDownButton" ng-click="ctrl.moveDown()">
+                <span class="cpa-icon cpa-icon-arrow-down"></span>
+            </button>
+            <ip-save-button type="button" data-ng-click="ctrl.save()" data-ng-disabled="!ctrl.hasChanges"></ip-save-button>
+            <ip-close-button data-ng-click="ctrl.dismiss()"></ip-close-button>
+        </div>
+    </div>
+
+    <div id="modal-content" class="modal-body">
+        <ip-action-order-modal-subheader all-items="ctrl.allItems" current-item="ctrl.currentItem" has-unsaved-changes="ctrl.hasUnsavedChanges" launch-src="ctrl.launchSrc">
+        </ip-action-order-modal-subheader>
+        <br/>
+        <!-- Filter Criteria -->
+        <div class="row">
+            <ip-typeahead id="pk-case-type" data-label="" data-placeholder="Case Type" class="col-sm-4" data-config='caseType' data-picklist-can-maintain="true" ng-model="ctrl.filterCriteria.caseType" ng-change="ctrl.setHeader();ctrl.onFilterCriteriaChanged()" ng-disabled="ctrl.launchSrc === 'maintenance'">
+            </ip-typeahead>
+            <ip-typeahead id="pk-jurisdiction" data-label="" data-placeholder="Jurisdiction" class="col-sm-4" data-config='jurisdiction' data-picklist-can-maintain="true" ng-model="ctrl.filterCriteria.jurisdiction" ng-change="ctrl.setHeader();ctrl.onFilterCriteriaChanged()"
+                ip-autofocus ng-disabled="ctrl.launchSrc === 'maintenance'">
+            </ip-typeahead>
+            <ip-typeahead id="pk-property-type" data-label="" data-placeholder="Property Type" class="col-sm-4" data-config='propertyType' data-picklist-can-maintain="true" ng-model="ctrl.filterCriteria.propertyType" ng-change="ctrl.setHeader();ctrl.onFilterCriteriaChanged()"
+                ng-disabled="ctrl.launchSrc === 'maintenance'" data-key-field="key" data-code-field="code" data-text-field="value">
+            </ip-typeahead>
+        </div>
+        <br/>
+        <!-- Action hint -->
+        <ip-inline-alert data-ng-if="ctrl.hint !== ''" text="{{ctrl.hint | translate}}" type="info"></ip-inline-alert>
+        <br/>
+        <!-- Valid Actions Grid -->
+        <kendo-grid id="validActionResults" k-options="ctrl.gridOptions"></kendo-grid>
+        <ip-inline-alert data-ng-if="ctrl.displayNoItems" text="{{::'noResultsFound'}}" type="info"></ip-inline-alert>
+    </div>
+</form>

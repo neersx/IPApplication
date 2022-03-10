@@ -1,0 +1,99 @@
+
+<div *ngIf="eventRuleDetails" class="topic-container">
+    <h1 translate="caseview.eventRules.eventInformation"></h1>
+    <div>
+        <div class="container-fluid">
+            <div class="col-sm-6 col-lg-4">
+                 <div class="row">
+                    <div class="field-label col-sm-4">
+                        <label translate="caseview.eventRules.eventNumber" for="eventNumber"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <a *ngIf="canMaintainWorkflow" uiSref="workflows.details.eventcontrol" target="_blank"
+                            [uiParams]="{id: eventRuleDetails.eventInformation.criteriaNumber,eventId:eventRuleDetails.eventInformation.eventNumber}">{{eventRuleDetails.eventInformation.eventNumber}}</a>
+                        <span *ngIf="!canMaintainWorkflow">{{eventRuleDetails.eventInformation.eventNumber}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field-label col-sm-4">
+                        <label translate="caseview.eventRules.criteriaNumber" for="criteriaNumber"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <a *ngIf="canMaintainWorkflow" uiSref="workflows.details"  target="_blank" [uiParams]="{id: eventRuleDetails.eventInformation.criteriaNumber}">{{eventRuleDetails.eventInformation.criteriaNumber}}</a>
+                        <span *ngIf="!canMaintainWorkflow">{{eventRuleDetails.eventInformation.criteriaNumber}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field-label col-sm-4">
+                        <label translate="caseview.eventRules.eventDate" for="eventDate"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text ng-binding">{{eventRuleDetails.eventInformation.eventDate | localeDate}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-4">
+                <div class="row">
+                    <div class="field-label col-sm-5">
+                        <label translate="caseview.eventRules.importanceLevel" for="importanceLevel"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text ng-binding">{{eventRuleDetails.eventInformation.importanceLevel}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field-label col-sm-5">
+                        <label translate="caseview.eventRules.maximumCycle" for="maximumCycle"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text ng-binding">{{eventRuleDetails.eventInformation.maximumCycle}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field-label col-sm-5">
+                        <label translate="caseview.eventRules.cycle" for="cycle"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text ng-binding">{{eventRuleDetails.eventInformation.cycle}}</span>
+                    </div>
+                </div>                
+            </div>
+            <div class="col-sm-6 col-lg-5" style="margin-left: -85px">  
+                <div class="row">
+                    <div class="field-label col-sm-6">
+                        <label translate="caseview.eventRules.lastModified" for="lastModified"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span
+                            class="text ng-binding">{{eventRuleDetails.eventInformation.lastModified | localeDate : commonUtilityService.getTimeOnlyFormat()}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field-label col-sm-6">
+                        <label translate="caseview.eventRules.byLogin" for="byLogin"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text ng-binding">{{eventRuleDetails.eventInformation.byLogin}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field-label col-sm-6">
+                        <label translate="caseview.eventRules.from" for="from"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text ng-binding">{{eventRuleDetails.eventInformation.from}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="eventRuleDetails.notes" class="container-fluid"><div class="col-sm-12 col-lg-12" style="margin-left: -57px;margin-top: 6px;">
+            <div class="field-label col-sm-2">
+                <label for="eventDate" translate="Event Notes" ></label>
+            </div>
+            <div class="col-sm-10">
+                <span class="text ng-binding" style="font-weight: bold;">{{eventRuleDetails.notes}}</span>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

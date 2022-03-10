@@ -1,0 +1,21 @@
+{
+    "extends": "../../.jshintrc",
+    "unused": "false",
+    "globals": {
+        "$": false,
+        "_": false,
+        "ko": false,
+        "Sammy": false,
+        "moment": false,
+        "utils": false,
+        "application": true,
+        "saveMode": true,
+        "caseState": true,
+        "httpClient": true,
+        "batchEventUpdate": true,
+        "dialogs": true,
+        "saveMode": true,
+        "utilities": true,
+        "localise": true
+    }
+}

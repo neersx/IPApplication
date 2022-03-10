@@ -1,0 +1,174 @@
+<style>
+    .padCurrency {
+        padding-left: 10px;
+        padding-right: 150px;
+    }
+    
+    div.vatResponse {
+        margin-bottom: 10px;
+    }
+    
+    div.declaration {
+        margin-top: 10px;
+    }
+    
+    div.vatResponse div.alert div {
+        margin-left: 28px;
+    }
+    
+    div.vatResponse div.alert ul {
+        margin-left: 5px;
+    }
+    
+    div.vatResponse div.alert-success div span {
+        margin-left: 5px;
+    }
+    
+    div.vatResponse div.alert-success label::after {
+        content: ": "
+    }
+    
+    ip-checkbox input[type="checkbox"][disabled]+label {
+        color: grey;
+    }
+</style>
+<div id="accountingVatSubmission" translate-namespace="accounting.vatSubmitter">
+    <div class="modal-header">
+        <h2 class="modal-title">
+            <div translate=".submitVatReturn"></div>
+        </h2>
+        <div class="modal-header-controls">
+            <button class="btn btn-icon cpa-icon-file-pdf-o" ng-class="{disabled: vm.pdfId == ''}" data-tooltip-placement="bottom" data-ng-disabled="vm.pdfId == ''" uib-tooltip="{{::'accounting.vatSubmitter.export' | translate }}" data-ng-click="vm.export()"></button>
+            <ip-close-button type="button" data-ng-click="vm.close()"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="vatResponse" ng-show="vm.responseError">
+            <div class="alert alert-danger">
+                <h6>
+                    <icon name="exclamation-circle"></icon><span translate=".submitFailed"></span>
+                </h6>
+                <div ng-show="vm.responseError.code || vm.responseError.message">
+                    <span>{{vm.responseError.code}}: {{vm.responseError.message}}</span>
+                </div>
+                <ul>
+                    <li ng-repeat="e in vm.responseError.errors">{{e.code}}: {{e.message}} {{e.path}}</li>
+                </ul>
+            </div>
+        </div>
+        <div class="vatResponse" ng-show="vm.responseSuccess">
+            <div class="alert alert-success">
+                <h6>
+                    <icon name="check-circle"></icon><span translate=".submitSuccessful"></span>
+                </h6>
+                <div>
+                    <label translate=".processingDate"></label><span>{{vm.responseSuccess.processingDate}}</span>
+                </div>
+                <div>
+                    <label translate=".paymentIndicator"></label><span>{{vm.responseSuccess.paymentIndicator}}</span>
+                </div>
+                <div>
+                    <label translate=".formBundleNumber"></label><span>{{vm.responseSuccess.formBundleNumber}}</span>
+                </div>
+                <div>
+                    <label translate=".chargeRefNumber"></label><span>{{vm.responseSuccess.chargeRefNumber}}</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <span translate=".vatDatePeriod"></span>
+            <span translate=".vatFromDate" translate-values="{ from: vm.fromDate }" class="text-black-bold"></span>
+            <span translate=".vatToPeriod"></span>
+            <span translate=".vatToDate" translate-values="{ to: vm.toDate }" class="text-black-bold"></span>
+            <span ng-if="vm.selectedEntitiesNames !== ''" translate=".vatDatePeriodTaxCodeGroup" translate-values="{ code: vm.entityTaxCode }"></span>
+            <span ng-if="vm.selectedEntitiesNames === ''" translate=".vatDatePeriodTaxCode" translate-values="{ entity: vm.entityName, code: vm.entityTaxCode }"></span>
+        </div>
+        <div>
+            <span ng-if="vm.selectedEntitiesNames !== ''" id="multipleEntityNames">{{ vm.selectedEntitiesNames }}</span>
+        </div>
+        <br />
+        <div class="row">
+            <div class="row data">
+                <div class="col-md-6">
+                    <span class="pull-right" translate=".vatBox1"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class="pull-right padCurrency" id="vatBox1"><span ng-if="isNaN(vm.vatValues[0]) && vm.vatValues[0] !== ''">{{vm.vatValues[0] | translate}}</span><span ng-if="!isNaN(vm.vatValues[0]) && vm.vatValues[0] !== ''">{{vm.vatValues[0] | currency:""}}</span></span>
+                </div>
+            </div>
+            <div class="row data">
+                <div class="col-md-6">
+                    <span class="pull-right" translate=".vatBox2"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class="pull-right padCurrency" id="vatBox2"><span ng-if="isNaN(vm.vatValues[1]) && vm.vatValues[1] !== ''">{{vm.vatValues[1] | translate}}</span><span ng-if="!isNaN(vm.vatValues[1]) && vm.vatValues[1] !== ''">{{vm.vatValues[1] | currency:""}}</span></span>
+                </div>
+            </div>
+            <div class="row data">
+                <div class="col-md-6">
+                    <span class="pull-right" translate=".vatBox3"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class="pull-right padCurrency" id="vatBox3"><span ng-if="isNaN(vm.vatValues[2]) && vm.vatValues[2] !== ''">{{vm.vatValues[2] | translate}}</span><span ng-if="!isNaN(vm.vatValues[2]) && vm.vatValues[2] !== ''">{{vm.vatValues[2] | currency:""}}</span></span>
+                </div>
+            </div>
+            <div class="row data">
+                <div class="col-md-6">
+                    <span class="pull-right" translate=".vatBox4"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class="pull-right padCurrency" id="vatBox4"><span ng-if="isNaN(vm.vatValues[3]) && vm.vatValues[3] !== ''">{{vm.vatValues[3] | translate}}</span><span ng-if="!isNaN(vm.vatValues[3]) && vm.vatValues[3] !== ''">{{vm.vatValues[3] | currency:""}}</span></span>
+                </div>
+            </div>
+            <div class="row data text-black-bold">
+                <div class="col-md-6">
+                    <span class="pull-right" translate=".vatBox5"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class="pull-right padCurrency" id="vatBox5"><span ng-if="isNaN(vm.vatValues[4]) && vm.vatValues[4] !== ''">{{vm.vatValues[4] | translate}}</span><span ng-if="!isNaN(vm.vatValues[4]) && vm.vatValues[4] !== ''">{{vm.vatValues[4] | currency:""}}</span></span>
+                </div>
+            </div>
+            <div class="row data">
+                <div class="col-md-6">
+                    <span class="pull-right" translate=".vatBox6"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class="pull-right padCurrency" id="vatBox6"><span ng-if="isNaN(vm.vatValues[5]) && vm.vatValues[5] !== ''">{{vm.vatValues[5] | translate}}</span><span ng-if="!isNaN(vm.vatValues[5]) && vm.vatValues[5] !== ''">{{vm.vatValues[5] | currency:""}}</span></span>
+                </div>
+            </div>
+            <div class="row data">
+                <div class="col-md-6">
+                    <span class="pull-right" translate=".vatBox7"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class="pull-right padCurrency" id="vatBox7"><span ng-if="isNaN(vm.vatValues[6]) && vm.vatValues[6] !== ''">{{vm.vatValues[6] | translate}}</span><span ng-if="!isNaN(vm.vatValues[6]) && vm.vatValues[6] !== ''">{{vm.vatValues[6] | currency:""}}</span></span>
+                </div>
+            </div>
+            <div class="row data">
+                <div class="col-md-6">
+                    <span class="pull-right" translate=".vatBox8"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class="pull-right padCurrency" id="vatBox8"><span ng-if="isNaN(vm.vatValues[7]) && vm.vatValues[7] !== ''">{{vm.vatValues[7] | translate}}</span><span ng-if="!isNaN(vm.vatValues[7]) && vm.vatValues[7] !== ''">{{vm.vatValues[7] | currency:""}}</span></span>
+                </div>
+            </div>
+            <div class="row data">
+                <div class="col-md-6">
+                    <span class="pull-right" translate=".vatBox9"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class="pull-right padCurrency" id="vatBox9"><span ng-if="isNaN(vm.vatValues[8]) && vm.vatValues[8] !== ''">{{vm.vatValues[8] | translate}}</span><span ng-if="!isNaN(vm.vatValues[8]) && vm.vatValues[8] !== ''">{{vm.vatValues[8] | currency:""}}</span></span>
+                </div>
+            </div>
+        </div>
+        <div class="declaration">
+            <ip-checkbox ip-required ng-required name="declaration" ng-model="vm.acceptDeclaration" focus-when="vm.canProceed" ng-disabled="!vm.canProceed" label="{{'.declaration' | translate}}"></ip-checkbox>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="input-wrap-group group-inline pull-right">
+            <button type="button" class="btn" data-ng-click="vm.close()" tabindex="1" translate="button.cancel"></button>
+            <button type="button" class="btn btn-primary" data-ng-disabled="!vm.acceptDeclaration || !vm.canProceed" tabindex="0" data-ng-click="vm.submit()" translate="button.submit"></button>
+        </div>
+    </div>
+</div>

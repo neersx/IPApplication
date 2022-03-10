@@ -1,0 +1,48 @@
+<ipx-kendo-grid #ipxKendoGridRef *ngIf="gridOptions" id="imanageDatabase" [dataOptions]="gridOptions" (cancelRowEditEvent)="updateChangeStatus()" (deleteRowEvent)="updateChangeStatus()"
+    (addRowEvent)="onRowAddedOrEdited($event,true)" (editRowEvent)="onRowAddedOrEdited($event,false)">
+    <grid-toolbar>
+        <div class="toolbar">
+            <button type="button" class="btn btn-prominent pull-right" name="test" style="margin-top:3px;" (click)="testConnections()"
+                [disabled]="testingConnection || databases.length == 0">{{'dmsIntegration.iManage.testConnections' | translate}}</button>
+            <span *ngIf="testingConnection" class="pull-right" translate="dmsIntegration.iManage.verifying" style="margin-right: 2px; margin-top: 6px;"></span>
+        </div>
+    </grid-toolbar>
+    <ng-template ipxTemplateColumnField="hasErrors" let-dataItem let-rowIndex="rowIndex">
+        <span *ngIf="dataItem?.hasErrors === true" class="cpa-icon cpa-icon-lg cpa-icon-exclamation-triangle" style="color:#E90101; line-height: 30px;"
+            [tooltip]="'dmsIntegration.iManage.setupConnectionErrors.' + dataItem.errorMessages[0] | translate"></span>
+        <span *ngIf="dataItem?.hasErrors === false" class="cpa-icon cpa-icon-lg cpa-icon-check-circle" style="color:#00AA00; line-height: 30px;"></span>
+    </ng-template>
+    <ng-template ipxEditTemplateColumnField="hasErrors" let-dataItem="dataItem" let-rowIndex="rowIndex">
+        <span *ngIf="dataItem?.hasErrors === true" class="cpa-icon cpa-icon-lg cpa-icon-exclamation-triangle" style="color:#E90101; line-height: 30px;"
+            [tooltip]="'dmsIntegration.iManage.setupConnectionErrors.' + dataItem.errorMessages[0] | translate"></span>
+        <span *ngIf="dataItem?.hasErrors === false" class="cpa-icon cpa-icon-lg cpa-icon-check-circle" style="color:#00AA00; line-height: 30px;"></span>
+    </ng-template>
+    <ng-template ipxTemplateColumnField="server" let-dataItem let-rowIndex="rowIndex">
+        <a *ngIf="dataItem?.integrationType !== 'iManage COM'" target="_blank" [href]="dataItem?.server">
+            {{dataItem?.server}}
+        </a>
+        <span *ngIf="dataItem?.integrationType === 'iManage COM'">
+            {{dataItem?.server}}
+        </span>
+    </ng-template>
+    <ng-template ipxEditTemplateColumnField="server" let-dataItem="dataItem" let-rowIndex="rowIndex">
+        <a *ngIf="dataItem?.integrationType !== 'iManage COM'" target="_blank" [href]="dataItem?.server">
+            {{dataItem?.server}}
+        </a>
+        <span *ngIf="dataItem?.integrationType === 'iManage COM'">
+            {{dataItem?.server}}
+        </span>
+    </ng-template>
+
+    <ng-template ipxTemplateColumnField="manifest" let-dataItem let-rowIndex="rowIndex">
+        <button *ngIf="dataItem?.loginType  === 'OAuth 2.0'" class="btn" (click)="getManifest(dataItem)">
+            {{'dmsIntegration.iManage.downloadManifest' | translate}}
+        </button>
+    </ng-template>
+
+    <ng-template ipxEditTemplateColumnField="manifest" let-dataItem="dataItem" let-rowIndex="rowIndex">
+        <button *ngIf="dataItem?.loginType === 'OAuth 2.0'" class="btn" (click)="getManifest(dataItem)">
+            {{'dmsIntegration.iManage.downloadManifest' | translate}}
+        </button>
+    </ng-template>
+</ipx-kendo-grid>

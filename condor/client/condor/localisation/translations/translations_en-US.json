@@ -1,0 +1,61 @@
+{
+  "signin": {
+    "no-licence-found": "No license found for this module.  Please check that your license has been installed."
+  },
+  "picklist": {
+    "office": {
+      "Organisation": "Organization"
+    },
+    "profitCentre": {
+      "type": "Profit Centre"
+    }
+  },
+  "nameType": {
+    "maintenance": {
+      "organisation": "Organization"
+    }
+  },
+  "textType": {
+    "organisation": "Organization"
+  },
+  "caseview": {
+    "summary": {
+      "profitCentre": "Profit Centre"
+    }
+  },
+  "caseSearch": {
+    "profitCentre": "Profit Centre",
+    "topics": {
+      "names": {
+        "organisation": "Organization",
+        "profitCenter": "Profit Center"
+      }
+    }
+  },
+  "namerelation": {
+    "organisation": "Organization"
+  },
+  "bulkUpdate": {
+    "fieldUpdate": {
+      "profitCentre": "Profit Centre"
+    }
+  },
+  "nameview": {
+    "supplierDetails": {
+      "profitCentre": "Profit Center"
+    }
+  },
+  "taskPlannerTaskMenu": {
+    "finaliseAdHocDate": "Finalize Ad Hoc Date"
+  },
+  "taskPlanner": {
+    "finaliseAdHocDate": {
+      "finalise": "Finalize"
+    }
+  },
+  "office": {
+    "column": {
+      "organisation": "Organization"
+    }
+  }
+}

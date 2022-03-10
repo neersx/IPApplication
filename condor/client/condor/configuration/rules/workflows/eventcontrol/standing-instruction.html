@@ -1,0 +1,24 @@
+<div ng-form="vm.form" ng-class="{ 'input-inherited': vm.isInherited()}"
+    ip-form>
+
+    <div class="row">
+        <ip-typeahead class="col-sm-6" ng-class="{edited: vm.form.instructionType.$dirty}" name="instructionType" ng-model="vm.formData.instructionType"
+            ng-disabled="!vm.canEdit" ng-change="vm.onInstructionTypeChange()" data-config="instructionType" ip-autofocus="vm.topic.isActive">
+        </ip-typeahead>
+    </div>
+
+    <div class="row">
+        <ip-dropdown class="col-sm-6" ng-class="{edited: vm.form.characteristic.$dirty}"
+            name="characteristic" label=".standingInstruction.requiredCharacteristic" ng-disabled="vm.isCharacteristicDisabled()"
+            ng-required="vm.isCharacteristicRequired()" ng-change="vm.onCharacteristicChange()" ng-model="vm.formData.requiredCharacteristic"
+            options="option.key as option.value for option in vm.characteristicsOptions">
+        </ip-dropdown>
+
+        <div class="input-wrap-group col-sm-6">
+            <div class="input-wrap readonly-label-value label-sm-2" ng-show="vm.displayInstructions()">
+                <label class="col-sm-2">{{::'workflows.eventcontrol.standingInstruction.instructionsLabel' | translate}}:</label>
+                <span class="col-sm-10" ng-bind="vm.displayInstructions()"></span>
+            </div>
+        </div>
+    </div>
+</div>

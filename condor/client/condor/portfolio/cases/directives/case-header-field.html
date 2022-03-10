@@ -1,0 +1,9 @@
+<div class="row" ng-if="!vm.screenControl.hidden">
+    <div class="field-label" ng-class="::{ 'col-sm-6': vm.isFirstColumn, 'col-sm-4': !vm.isFirstColumn}">
+        <label ng-if="vm.screenControl">{{vm.screenControl.label}}</label>
+        <label ng-if="!vm.screenControl" translate="{{vm.labelId}}"></label>
+    </div>
+    <div ng-class="::{ 'col-sm-6': vm.isFirstColumn, 'col-sm-8': !vm.isFirstColumn}" ng-transclude>
+        <span class="text">{{::vm.value}}</span>
+    </div>
+</div>

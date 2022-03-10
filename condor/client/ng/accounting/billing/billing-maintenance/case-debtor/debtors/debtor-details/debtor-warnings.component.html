@@ -1,0 +1,13 @@
+<ipx-kendo-grid #debtorWarningsGrid id="debtorWarningsGrid" [dataOptions]="gridOptions">
+    <ng-template ipxTemplateColumnField="detail" let-dataItem>
+        <span>{{ dataItem.detail | translate}}</span>
+        <span class="badge topics" style="margin-left: 7px;">{{ warningsCount }}</span>
+    </ng-template>
+    <ng-template #detailsTemplate let-dataItem>
+        <div *ngFor="let warning of debtorWarnings;trackBy:trackByFn">
+            <span class="text-bold">- {{warning.WarningError}}</span>
+        </div>
+        <div *ngIf="showMultiCase"><span class="text-bold">- {{'accounting.billing.step1.debtors.debtorWarningAllowMultipleCase' | translate}}</span></div>
+        <div *ngIf="hasDiscounts"><span class="text-bold">- {{'accounting.billing.step1.debtors.debtorWarningDiscountsExist' | translate}}</span></div>
+    </ng-template>
+</ipx-kendo-grid>

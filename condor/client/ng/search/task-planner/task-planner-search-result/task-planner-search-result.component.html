@@ -1,0 +1,173 @@
+<div class="container-fluid">
+    <div class="heading">
+        <div class="pull-right">
+            <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !activeTab.showFilterArea}" (click)="toggleFilterArea()">
+                <div placement="left" [tooltip]="(activeTab.showFilterArea? 'collapse' : 'expand') | translate">
+                    <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div id="task-planner-search-list" style="clear: both;">
+        <div *ngIf="showLoading()" class="col-sm-12 k-loading-image" style="position: absolute;top:200px;height: 56px;"></div>
+        <div class="row task-planner-filter" id="taskplanner-filters" [@slideInOutVisible]="activeTab.showFilterArea ? 'open' : 'closed'">
+            <form name="searchFilter" #filterForm="ngForm">
+                <div class="col-sm-3">
+                    <label class="col-sm-1" style="margin-top: 10px;">
+                        {{'taskPlanner.for' | translate}}
+                    </label>
+                    <div class="col-sm-11" id="picklistGroup">
+                        <ipx-typeahead tabindex="0" [ngClass]="{'edited' : isQuickFilterDirty('nameKey')}" *ngIf="!activeTab.savedSearch.criteria.hasNameGroup" id="nameKey" name="nameKey" multiselect multipick
+                            config="staff" [(ngModel)]="activeTab.names" (onChange)="onNameChanged()">
+                        </ipx-typeahead>
+                        <ipx-typeahead tabindex="0" [ngClass]="{'edited' : isQuickFilterDirty('nameGroups')}" *ngIf="activeTab.savedSearch.criteria.hasNameGroup" id="nameGroups" name="nameGroups" multiselect multipick
+                            config="nameGroup" [(ngModel)]="activeTab.nameGroups" (onChange)="onNameGroupChanged()">
+                        </ipx-typeahead>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="col-md-3">
+                        <ipx-dropdown tabindex="1" [ngClass]="{'edited' : isQuickFilterDirty('timePeriod')}" name="timePeriod" [(ngModel)]="activeTab.selectedPeriodId" [removeOptionalValue]="true"
+                            (onChange)="onTimePeriodChange($event)" [options]="activeTab.timePeriods" label="" displayField="description" keyField="id">
+                        </ipx-dropdown>
+                    </div>
+                    <div class="col-md-4">
+                        <ipx-date-picker tabindex="2" id="fromDate" [ngClass]="{'edited' : isQuickFilterDirty('from')}" [label]="'taskPlanner.from' | translate" name="fromDate" [allowNull]="true"
+                            [earlierThan]="activeTab.savedSearch.criteria.dateFilter.to" [includeSameDate]="true" [(ngModel)]="activeTab.savedSearch.criteria.dateFilter.from"
+                            (onChange)="onDateRangeChange($event,'from')">
+                        </ipx-date-picker>
+                    </div>
+                    <div class="col-md-4">
+                        <ipx-date-picker tabindex="3" [ngClass]="{'edited' : isQuickFilterDirty('to')}" id="toDate" name="toDate" [label]="'taskPlanner.to' | translate" [allowNull]="true"
+                            [laterThan]="activeTab.savedSearch.criteria.dateFilter.from" [includeSameDate]="true" [(ngModel)]="activeTab.savedSearch.criteria.dateFilter.to" (onChange)="onDateRangeChange($event,'to')">
+                        </ipx-date-picker>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12" style="text-align: right;">
+            <button id="btnRefresh" style="margin-right: 3px;" [tooltip]="'taskPlanner.refresh' | translate" class="btn btn-icon " (click)="refreshGrid(true)">
+                <span class="cpa-icon-refresh"></span>
+            </button>
+            <button id="btnRevert" tooltip="{{ activeTab.canRevert?('taskPlanner.revert' | translate):''}}" class="btn btn-icon" (click)="revertQuickFilters()" [disabled]="!activeTab.canRevert">
+                <span class="cpa-icon-revert"></span>
+            </button>
+            <span class="btn-divider "></span>
+            <button style="margin-right: 3px;" *ngIf="viewData && viewData.canCreateAdhocDate" class="btn btn-icon" id="btnAdhocDate" tooltip="{{ openAdhocDisabled ? '' : 'taskPlanner.createAdhoc' | translate }}"
+                (click)="openAdHocDate()" [disabled]="openAdhocDisabled">
+                <span class="cpa-icon cpa-icon-calendar-plus-o"></span>
+            </button>
+            <button style="margin-right: 3px;" class="btn btn-icon fas fa-calendar-check " id="presentation" tooltip="{{ 'caseSearch.presentationTitle' | translate }}" (click)="openPresentation()">
+                <span class="cpa-icon cpa-icon-bars-vertical"></span>
+            </button>
+            <button uiSref="taskPlannerSearchBuilder" [uiParams]="getTaskPlannerStateParams()" id="btnSearchBuilder" (click)="navigateTo('SearchBuilder')" [tooltip]="'taskPlanner.searchBuilder.toolTip' | translate"
+                class="btn btn-icon">
+                <span class="cpa-icon k-icon k-i-filter"></span>
+            </button>
+        </div>
+        <div class="splitter-container">
+            <kendo-splitter id="searchResultsPane" orientation="horizontal">
+                <kendo-splitter-pane>
+                    <div class="pane-content">
+                        <div class="table-container fixed-detail-panel-left" #resizeDirective=resizeHandlerDirective ipx-resize-handler [resize-handler-type]="'Panel'" [resize-header-height]="-195">
+
+                            <ipx-kendo-grid #resultsGrid id="searchResults" *ngIf="loaded" (dataItemClicked)="dataItemClicked($event)" [autoApplySelection]="false" [showPreview]="showPreview" [dataOptions]="gridOptions"
+                                (onDetailCollapse)="onCollapse($event)" (onDetailExpand)="onExpand($event)" [items]="taskItems" (menuItemSelected)="onMenuItemSelected($event)" (popupOpen)="displayTaskItems($event)">
+                                <ng-template ipxTemplateColumnField="attachmentCount" let-dataItem>
+                                    <ipx-attachments-popover *ngIf="dataItem.attachmentCount>0" (click)="openAttachmentWindow(dataItem)" [caseKey]="dataItem.caseKey" [eventNo]="dataItem.eventKey"
+                                        [eventCycle]="dataItem.eventCycle" [total]="dataItem.attachmentCount">
+                                    </ipx-attachments-popover>
+                                </ng-template>
+                            </ipx-kendo-grid>
+                            <ng-template #detailTemplate let-dataItem>
+                                <ipx-task-detail [taskPlannerRowKey]="dataItem.taskPlannerRowKey" [showEventNotes]="dataItem.taskPlannerRowKey.substring(0, 1) !== 'A'" [expandAction]="expandAction"
+                                    [showReminderComments]="dataItem.showReminderComments && this.viewData.showReminderComments" [maintainReminderComments]="viewData.maintainReminderComments"
+                                    [replaceEventNotes]="viewData.replaceEventNotes" [maintainEventNotesPermissions]="viewData.maintainEventNotesPermissions" [maintainEventNotes]="viewData.maintainEventNotes"
+                                    (onEventNoteUpdate)="handelOnEventNoteUpdate($event)" (onTaskDetailChange)="handleOnTaskDetailChange($event)" (onReminderCommentUpdate)="handelOnReminderCommentUpdate($event)">
+                                </ipx-task-detail>
+                            </ng-template>
+                            <ng-template #ipxHasNotesAndCommentsColumn let-rowIndex="rowIndex" let-dataItem>
+                                <a *ngIf="prepareNotesAndCommentsText(dataItem)" (click)="expandNotesAndReminder(dataItem)" class="cpa-icon text-grey-highlight cpa-icon-file-o" [tooltip]=notesAndCommentsTooltip>
+                                </a>
+                            </ng-template>
+                            <ng-template #notesAndCommentsTooltip let-dataItem>
+                                <span *ngIf="notesHoverText">{{ notesHoverText }} <br /></span>
+                                <span *ngIf="commentsHoverText">{{ commentsHoverText }} <br /></span>
+                                <span>{{ 'taskPlanner.eventNoteHoverMaintain' | translate }}</span>
+                            </ng-template>
+                            <ng-template #columnTemplate let-dataItem let-c="ctx">
+                                <ng-container [ngSwitch]="c.format">
+                                    <ng-container *ngSwitchCase="'Date'">
+                                        <span *ngIf="dataItem[c.id]" [ngClass]="getCssClassForDueDate(c, dataItem)">
+                                            {{ dataItem[c.id] | localeDate }}
+                                        </span>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Formatted Text'">
+                                        <span style="white-space: pre-wrap;" *ngIf="dataItem[c.id]" [innerHTML]="dataItem[c.id]"></span>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Boolean'">
+                                        <span style="text-align: center;">
+                                            <ipx-checkbox [(ngModel)]="dataItem[c.id]" class="text-center" [disabled]="true" [ngModelOptions]="{standalone: true}">
+                                            </ipx-checkbox>
+                                        </span>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Url'">
+                                        <ipx-user-column-url [userUrl]="dataItem[c.id]"></ipx-user-column-url>
+                                    </ng-container>
+
+                                    <ng-container *ngSwitchDefault>
+                                        <div *ngIf="c.linkType && c.linkArgs" [ngClass]="{'event-category-icon' : c.linkType === 'EventCategoryIconKey'}">
+                                            <ipx-hosted-url *ngIf="dataItem[c.id] && dataItem[c.id].link[c.linkArgs[0]]" [showLink]="dataItem[c.id].link[c.linkArgs[0]]" [action]="c.linkType"
+                                                [key]="dataItem[c.id].link[c.linkArgs[0]]" [description]="dataItem[c.id]?.value" [programId]="defaultProgram" [linkType]="c.linkType" [dataField]="dataItem[c.id]"
+                                                [linkArgs]="c.linkArgs" [xmlFilterCriteria]="xmlFilterCriteriaExecuted" [debtorAction]="dataItem[c.linkArgs[0]]" [format]="c.format" [decimalPlaces]="c.decimalPlaces"
+                                                [currencyCode]="dataItem[c.currencyCodeColumnName]">
+                                                <ng-container *ngIf="c.linkType === 'CaseDetails'">
+                                                    <a class="result-cell-link" target="_blank" uiSref="caseview"
+                                                        [uiParams]="{id: dataItem[c.id].link[c.linkArgs[0]],rowKey:dataItem.rowKey, programId: defaultProgram}">{{dataItem[c.id].value}}</a>
+                                                </ng-container>
+                                                <ng-container *ngIf="c.linkType === 'NameDetails'">
+                                                    <ipx-ie-only-url class="result-cell-link" style="cursor: pointer;" [url]="getEncodeLinkData(c,dataItem[c.id].link)" [text]="dataItem[c.id].value"></ipx-ie-only-url>
+                                                </ng-container>
+                                                <ng-container *ngIf="c.linkType === 'EventCategoryIconKey'">
+                                                    <ipx-event-category-icon [imageKey]="dataItem[c.id].link[c.linkArgs[0]]" [maxWidth]="80" [maxHeight]="80" [tooltipText]="dataItem[c.id].value">
+                                                    </ipx-event-category-icon>
+                                                </ng-container>
+                                            </ipx-hosted-url>
+                                        </div>
+                                        <span *ngIf="!c.isHyperlink">
+                                            <span style="text-align: center;" *ngIf="c.format === 'Integer' && hasBooleanValue(dataItem[c.id]); else content">
+                                                <ipx-boolean-column [presentationType]="viewData.presentationType" [dataItem]="dataItem[c.id]"></ipx-boolean-column>
+                                            </span>
+                                            <ng-template #content>
+                                                <span *ngIf="c.format === 'Currency' || c.format === 'Local Currency'; else defaultContent">
+                                                    <ipx-currency [renderHyperlink]="false" [value]="dataItem[c.id]" [decimalPlaces]="c.decimalPlaces" [currencyCode]="dataItem[c.currencyCodeColumnName]"></ipx-currency>
+                                                </span>
+                                            </ng-template>
+                                            <ng-template #defaultContent><span style="white-space: pre-wrap;">{{ dataItem[c.id] }}</span></ng-template>
+                                        </span>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-template>
+                            <ng-template #groupDetailTemplate let-dataItem>
+                                <ipx-group-detail *ngIf="gridOptions.columns" [items]="dataItem.items" [columns]="gridOptions.columns" [detailTemplate]="detailTemplate"
+                                    [detailTemplateShowCondition]="gridOptions.detailTemplateShowCondition" [contextMenuParams]="contextMenuParams" [isShowContextMenu]="gridOptions.showContextMenu"
+                                    (groupItemClicked)="dataItemClicked($event)">
+                                </ipx-group-detail>
+                            </ng-template>
+                        </div>
+                    </div>
+                </kendo-splitter-pane>
+                <kendo-splitter-pane size="30%" *ngIf="showPreview" [collapsible]="true">
+                    <div class="pane-content">
+                        <div class="fixed-detail-panel-right detail-view">
+                            <ipx-case-summary [caseKey]="selectedCaseKey" [taskPlannerKey]="taskPlannerKey" [isDisplayed]="true" [showLinksForInprotechWeb]="viewData.showLinksForInprotechWeb" [showLink]="true"
+                                [isExternal]="false">
+                            </ipx-case-summary>
+                        </div>
+                    </div>
+                </kendo-splitter-pane>
+            </kendo-splitter>
+        </div>
+    </div>
+</div>

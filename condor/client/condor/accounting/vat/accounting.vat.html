@@ -1,0 +1,63 @@
+<ip-page-title page-title="accounting.vat.title">
+    <action-buttons>
+        <button id="configureHMRC" class="btn cpa-icon-wrench pull-right" ui-sref="hmrcsettings">
+            <span translate="accounting.vat.configureSettings"></span>
+        </button>
+    </action-buttons>
+</ip-page-title>
+<div class="search-options" ng-form="vm.form" ip-form>
+    <div class="container-fluid">
+        <br />
+        <div class="row">
+            <div class="col-lg-6 col-md-8 input-wrap" ng-class="{'error': vm.noVatNumber() && !vm.noEntitySelected()}">
+                <ip-dropdown ip-required required label="{{ 'accounting.vat.entity' | translate }}" id="entityName" name="entityName" ng-model="vm.formData.entityName" options="e.formattedName for e in vm.viewData.entityNames track by e.formattedName" ng-change="vm.onEntitySelected()"
+                    error-text="vm.entityError()" ip-autofocus>
+                </ip-dropdown>
+            </div>
+            <div class="col-lg-6 col-md-4">
+                <div class="display-inline">
+                    <div class="input-wrap pull-left">
+                        <label>{{'accounting.vat.status' | translate}}</label>
+                    </div>
+                    <ip-checkbox label="{{'accounting.vat.open' | translate}}" name="open" ng-model="vm.formData.open" ng-change="vm.clickStatus('open')"></ip-checkbox>
+                    </span>
+                    <span>
+                        <ip-checkbox label="{{'accounting.vat.fulfilled' | translate}}" name="fulfilled" ng-model="vm.formData.fulfilled" ng-change="vm.clickStatus('fulfilled')"></ip-checkbox>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="taxCode" class="col-sm-8 col-sm-offset-2" ng-if="vm.formData.multipleEntitiesSelected">
+                <div class="pull-left">
+                    <label>{{'accounting.vat.vatGroupHeading' | translate}}</label>
+                    <br />
+                    <label>{{ vm.formData.selectedEntitiesNames }}</label>
+                    <br /><br />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-8">
+                <ip-datepicker ip-required class="col-md-4  col-md-offset-4" id="fromDate" name="fromDate" label="{{'accounting.vat.fromDate' | translate}}" ng-model="vm.formData.fromDate" data-no-edit-state="true"></ip-datepicker>
+                <ip-datepicker ip-required class="col-md-4" id="toDate" name="toDate" label="{{'accounting.vat.toDate' | translate}}" ng-model="vm.formData.toDate" later-than="vm.formData.fromDate" data-no-edit-state="true"></ip-datepicker>
+            </div>
+            <div class="col-lg-6 col-md-4">
+            </div>
+        </div>
+    </div>
+    <div class="controls">
+        <button type="button" id="clear" class="btn" ng-click="vm.clear();" tabindex="-1">{{:: 'Clear' | translate}}</button>
+        <button type="submit" id="submit" class="btn btn-primary" ng-click="vm.search();" aria-label="{{:: 'Search' | translate }}">{{:: 'Search' | translate}}</button>
+    </div>
+</div>
+<div class="table-container">
+    <div id="results-header" class="table-title" ng-show="vm.viewData.hasResults">
+        <h2>
+            <span>{{'accounting.vat.vatObligationsFor' | translate}}</span>
+            <span ng-if="vm.formData.multipleEntitiesSelected">{{'accounting.vat.vatGroup' | translate}} ({{'accounting.vat.vrn' | translate}}: {{vm.searchedEntity.taxCode}})</span>
+            <span ng-if="!vm.formData.multipleEntitiesSelected">{{vm.searchedEntity.displayName}} ({{'accounting.vat.vrn' | translate}}: {{vm.searchedEntity.taxCode}})</span>
+        </h2>
+    </div>
+    <ip-kendo-grid id="accounting-vat-obligations" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+</div>

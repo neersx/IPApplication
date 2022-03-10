@@ -1,0 +1,78 @@
+<div ng-form="vm.form" ip-form class="container-fluid">
+    <div class="readonly-label-group">
+        <div class="input-wrap large readonly-label-value">
+            <label translate="workflows.common.eventNumber"></label>
+            <span ng-bind="::vm.eventId"></span>
+        </div>
+    </div>
+    <div class="readonly-label-group">
+        <div class="input-wrap large readonly-label-value">
+            <label translate=".baseDescription"></label>
+
+            <span ng-if='!vm.canEdit' ng-bind="vm.baseDescription"></span>
+
+            <span ng-if='vm.canEdit'>
+                <a href="javascript:void(0)" 
+                   ng-bind="vm.baseDescription" 
+                   ng-click="vm.onEditBaseEvent()"
+                   ip-tooltip="{{:: 'workflows.eventcontrol.baseEventTooltip' | translate }}">
+                </a>
+            </span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <ip-text-field ng-disabled="::!vm.canEdit" name="description" label="workflows.common.eventDescription" ip-autofocus="{{!!vm.topic.isActive}}"
+                ng-model="vm.formData.description" required ng-class="{edited: vm.formData.isDirty('description'), 'input-inherited': vm.formData.description===vm.parentData.description}"
+                ng-maxlength="100" ng-change="vm.ensureDescriptionIsNotEmpty()"></ip-text-field>
+        </div>
+        <div class="col-lg-5">
+            <span>{{vm.parent}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <ip-text-field ip-data-type="positiveinteger" ng-disabled="vm.isMaxCyclesDisabled()" name="maxCycles" label=".maxCycles"
+                ng-model="vm.formData.maxCycles" ng-change="vm.maxCyclesChanged()" required ng-class="{edited: vm.formData.isDirty('maxCycles'), 'input-inherited': vm.formData.maxCycles===vm.parentData.maxCycles}"></ip-text-field>
+        </div>
+        <ip-checkbox ng-disabled="::!vm.canEdit" ng-model="vm.unlimitedCycles" data-label=".unlimited" ng-change="vm.unlimitedCyclesChecked()"
+            ng-class="{ 'input-inherited': vm.unlimitedCycles===vm.parentData.unlimitedCycles}"></ip-checkbox>
+    </div>
+    <div class="row">
+        <ip-dropdown required name="importanceLevel" label=".importanceLevel" class="col-lg-6" ng-class="{edited: vm.formData.isDirty('importanceLevel'),'input-inherited': vm.formData.importanceLevel===vm.parentData.importanceLevel}"
+            ng-disabled="::!vm.canEdit" ng-model="vm.formData.importanceLevel" options="option.key as option.value for option in vm.importanceLevelOptions">
+        </ip-dropdown>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 input-wrap-group group-inline text-nowrap" ng-class="{edited: vm.formData.isDirty('dueDateRespType'), 
+             'input-inherited': vm.formData.dueDateRespType===vm.parentData.dueDateRespType}">
+            <span translate=".responsibility"></span>
+            <ip-radio-button label=".nameType" value="nameType" ng-model="vm.formData.dueDateRespType" ng-change="vm.onRespTypeChange()"
+                ng-disabled="!vm.canEdit">
+            </ip-radio-button>
+            <ip-radio-button label=".name" value="name" ng-model="vm.formData.dueDateRespType" ng-change="vm.onRespTypeChange()" ng-disabled="!vm.canEdit">
+            </ip-radio-button>
+            <ip-radio-button label=".notApplicable" value="notApplicable" ng-model="vm.formData.dueDateRespType" ng-change="vm.onRespTypeChange()"
+                ng-disabled="!vm.canEdit">
+            </ip-radio-button>
+        </div>
+    </div>
+    <div ng-if="vm.formData.dueDateRespType === 'name'" class="row">
+        <ip-typeahead class="col-lg-6 hide-label" ng-class="{edited: vm.formData.isDirty('name'), 
+                    'input-inherited': vm.formData.name.key===vm.parentData.name.key}" name="name" ng-model="vm.formData.name"
+            data-config="staff">
+        </ip-typeahead>
+    </div>
+    <div ng-if="vm.formData.dueDateRespType === 'nameType'" class="row">
+        <ip-typeahead class="col-lg-6 hide-label" ng-class="{edited: vm.formData.isDirty('nameType'),
+                 'input-inherited': vm.formData.nameType.key===vm.parentData.nameType.key}" name="nameType" ng-model="vm.formData.nameType"
+            data-config="nameType">
+        </ip-typeahead>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 large">
+            <ip-text-field ng-disabled="::!vm.canEdit" multiline data-rows="6" name="notes" label=".notes" ng-model="vm.formData.notes"
+                ng-class="{edited: vm.formData.isDirty('notes'), 'input-inherited': vm.formData.notes===vm.parentData.notes}"></ip-text-field>
+        </div>
+    </div>
+</div>

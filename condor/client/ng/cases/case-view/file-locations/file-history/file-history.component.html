@@ -1,0 +1,19 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{fileHistoryFromMaintenance ? 'caseview.fileLocations.lastFileLocation' : 'caseview.fileLocations.historyTitle' | translate }}"></h2>
+    <div class="modal-header-controls">
+        <ipx-close-button id="{{fileHistoryFromMaintenance ? 'lastLocationModal' : 'fileHistoryModal' }}" type=" button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="field-label col-sm-2" style="margin-left: -64px">
+            <label [translate]="'caseview.fileLocations.caseReference'" class="checkbox"></label>
+        </div>
+        <div class="col-sm-6">
+            <span class="text" name="caseStatus" class="checkbox">{{irn}}</span>
+        </div>
+    </div>
+    <div class="row">
+        <file-locations-grid [showHistory]="true" [topic]="topic" [permissions]="permissions" [fileHistoryFromMaintenance]="fileHistoryFromMaintenance" [filePartId]="filePartId"></file-locations-grid>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div>
+    <div class="modal-header">
+        <h2 class="modal-title">
+            Image
+        </h2>
+        <div class="modal-header-controls">
+            <ip-close-button type="button" data-ng-click="dismiss(importDocumentForm)"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="scrollable text-center" dialog-inflate-height>
+            <img ng-src="{{caseImage.getDetailUrl()}}" />
+        </div>
+    </div>
+</div>

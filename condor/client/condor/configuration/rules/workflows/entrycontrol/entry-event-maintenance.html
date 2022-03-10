@@ -1,0 +1,77 @@
+<div ng-form="vm.form" ip-form translate-namespace="workflows.entrycontrol.details.maintenance">
+    <ip-maintenance-modal-header 
+        data-page-title="{{:: vm.title}}" 
+        data-dismiss="vm.dismiss()" 
+        data-on-apply="vm.apply()" 
+        data-is-apply-enabled="vm.isApplyEnabled()" 
+        data-has-unsaved-changes="vm.hasUnsavedChanges()"
+        data-is-add-another="vm.isAddAnother"
+        is-edit-mode="vm.isEditMode"
+    ></ip-maintenance-modal-header>
+
+     <ip-workflows-entrycontrol-modal-subheader
+        is-edit-mode="vm.isEditMode"
+        all-items="vm.allItems" 
+        current-item="vm.currentItem"         
+        criteria-number="vm.criteriaId"
+        entry-description="vm.entryDescription"
+        on-navigate="vm.onNavigate">            
+    </ip-workflows-entrycontrol-modal-subheader>
+
+    <div class="modal-body">
+        <div class="row">
+            <h3>
+                <span translate=".chooseEvent"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <ip-typeahead label=".entryEvent" ip-required ng-class="{edited: vm.form.entryEvent.$dirty}" name="entryEvent" ng-model="vm.formData.entryEvent" ip-autofocus data-config="eventsFilteredByCriteria" data-picklist-can-maintain="true" data-external-scope="vm.eventPicklistScope" data-extend-query="vm.eventPicklistScope.extendQuery">
+            </ip-typeahead>
+        </div>
+        <div class="row">
+            <ip-typeahead label=".eventToUpdate" ng-class="{edited: vm.form.eventToUpdate.$dirty}" name="eventToUpdate" ng-model="vm.formData.eventToUpdate" data-config="eventsFilteredByCriteria" data-picklist-can-maintain="true" data-external-scope="vm.eventPicklistScope" data-extend-query="vm.eventPicklistScope.extendQuery">
+            </ip-typeahead>
+        </div>
+
+        <div class="row">
+            <h3>
+                <span class="label-legend" translate=".attributes"></span>
+            </h3>
+        </div>
+
+        <div class="row">
+            <ip-dropdown ng-class="{edited: vm.form.eventDate.$dirty}" name="eventDate" label="workflows.common.eventDate" ng-model="vm.formData.eventDate" options="option.key as option.value | translate for option in vm.dateOptions">
+            </ip-dropdown>
+        </div>
+
+        <div class="row">
+            <ip-dropdown ng-class="{edited: vm.form.dueDate.$dirty}" name="dueDate" label="workflows.common.dueDate" ng-model="vm.formData.dueDate" options="option.key as option.value | translate for option in vm.dateOptions">
+            </ip-dropdown>
+        </div>
+
+        <div class="row">
+            <ip-dropdown ng-class="{edited: vm.form.period.$dirty}" name="period" label=".period" ng-model="vm.formData.period" options="option.key as option.value | translate for option in vm.controlOptions">
+            </ip-dropdown>
+        </div>
+
+        <div class="row">
+            <ip-dropdown ng-class="{edited: vm.form.stopPolicing.$dirty}" name="stopPolicing" label=".stopPolicing" ng-model="vm.formData.policing" options="option.key as option.value | translate for option in vm.controlOptions">
+            </ip-dropdown>
+        </div>
+
+        <div class="row">
+            <ip-dropdown ng-class="{edited: vm.form.dueDateResp.$dirty}" name="dueDateResp" label=".dueDateResponsibility" ng-model="vm.formData.dueDateResp" options="option.key as option.value | translate for option in vm.dueDateRespOptions">
+            </ip-dropdown>
+        </div>
+
+        <div class="row">
+            <ip-dropdown ng-class="{edited: vm.form.overrideEventDate.$dirty}" name="overrideEventDate" label=".overridingEventDate" ng-model="vm.formData.overrideEventDate" options="option.key as option.value | translate for option in vm.dateOptions">
+            </ip-dropdown>
+        </div>
+
+        <div class="row">
+            <ip-dropdown ng-class="{edited: vm.form.overrideDueDate.$dirty}" name="overrideDueDate" label=".overridingDueDate" ng-model="vm.formData.overrideDueDate" options="option.key as option.value | translate for option in vm.dateOptions">
+            </ip-dropdown>
+        </div>
+    </div>
+</div>

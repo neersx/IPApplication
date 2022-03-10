@@ -1,0 +1,266 @@
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+    <h2>Webpart Typeahead</h2>
+    <div class="row">
+        <div class="input-wrap col-md-6">
+            <ipx-typeahead id="webPartPicklist" name="webPart" ngModel="webParts" apply-edited label="{{ 'picklist.webParts.label' | translate }}" config="webParts"> </ipx-typeahead>
+        </div>
+    </div>
+    <h2>TaskList Typeahead</h2>
+    <div class="row">
+        <div class="input-wrap col-md-6">
+            <ipx-typeahead id="tasktPicklist" name="TaskList" [extend-query]="vm.taskExtendQuery" ngModel="taskList" apply-edited label="{{ 'picklist.taskList.label' | translate }}" config="taskList"> </ipx-typeahead>
+        </div>
+    </div>
+
+    <h2>SubjectList Typeahead</h2>
+    <div class="row">
+        <div class="input-wrap col-md-6">
+            <ipx-typeahead id="subjectPicklist" name="subjectList"   ngModel="subjectList"  apply-edited label="{{ 'picklist.subjectList.label' | translate }}"
+                config="subjectList"> </ipx-typeahead>
+        </div>
+    </div>
+
+
+    <h2>filepart Typeahead</h2>
+    <div class="row">
+        <div class="input-wrap col-md-6">
+            <ipx-typeahead id="filePartPicklist" name="filePart" picklistCanMaintain ngModel="filePart" [extend-query]="vm.filePartExtendQuery" [external-scope]="vm.filePartExternalScopeData"
+                [extended-params]="filePartextendedParam" apply-edited label="{{ 'caseview.fileLocations.filePart' | translate }}" config="filePart"> </ipx-typeahead>
+        </div>
+    </div>
+
+    <span style="font-weight: bold">Designation Stage Pick List - with External Scope</span>
+    <div class="row">
+        <ipx-typeahead class="col-sm-6" config="designationStage" label='picklist.designationStage.label' [extend-query]="vm.designationStageExtendQuery" [external-scope]="vm.designationStageExternalScope"
+            [(ngModel)]="vm.designationStage"></ipx-typeahead>
+        <div class="col-sm-4">
+            <div>model: {{vm.designationStage | json}}</div>
+        </div>
+    </div>
+
+    <h2>DataItem Typeahead</h2>
+    <div class="row">
+        <div class="input-wrap col-md-6">
+            <ipx-typeahead id="dataItem-picklist" [can-navigate]="true" name="dataItem" apply-edited label="Data Item" picklistCanMaintain config="dataItem" [(ngModel)]="userColumnTypehead" [is-addanother]="true">
+            </ipx-typeahead>
+        </div>
+    </div>
+    <h2>Search Column Typeahead</h2>
+    <div class="row">
+        <div class="input-wrap col-md-6">
+            <ipx-typeahead id="dataItem-picklist" name="searchColumn" label="Column Name" [can-navigate]="true" config="searchColumn" picklistCanMaintain [extend-query]="vm.columnGroupExtendQuery"
+                [extended-params]="extendedParamGroupPicklist" [(ngModel)]="searchColumnTypeahead"></ipx-typeahead>
+        </div>
+        <div class="col-sm-4">
+            <div>model: {{ searchColumnTypeahead | json }}</div>
+        </div>
+    </div>
+    <h2>Ng Converted Typeahead - Single Select</h2>
+    <div class="row">
+        <div class="input-wrap col-md-6">
+            <label [attr.for]="selectedPicklistConfig">Select a typeahead</label>
+            <select ipx-autofocus id="selectedPicklistConfig" [(ngModel)]="selectedPicklistConfig">
+                <option [ngValue]="item" *ngFor="let item of picklistConfigs; trackBy: byConfigKey">
+                    {{item.label | translate}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row" *ngIf="!!selectedPicklistConfig">
+        <div class="col-md-6">
+            <ng-container #vc *ngTemplateOutlet="testPicklist; context: { selectedPicklistConfig: selectedPicklistConfig }">
+            </ng-container>
+            <ng-template #testPicklist let-config="selectedPicklistConfig">
+                <ipx-typeahead name="picklistSelection" [label]="config.label" [config]="config.configKey" apply-edited [(ngModel)]="picklistSelection">
+                </ipx-typeahead>
+            </ng-template>
+        </div>
+        <div class="col-sm-4">
+            <div>model: {{picklistSelection | json}}</div>
+        </div>
+    </div>
+
+    <span style="font-weight: bold">Column Group Pick List</span>
+    <div class="row">
+        <ipx-typeahead class="col-sm-6" config="columnGroup" label='Column Group' picklistCanMaintain [extend-query]="vm.columnGroupExtendQuery" [(ngModel)]="vm.columnGroup" [extended-params]="extendedParamGroupPicklist"
+            [is-addanother]="true"></ipx-typeahead>
+        <div class="col-sm-4">
+            <div>model: {{vm.columnGroup | json}}</div>
+        </div>
+    </div>
+
+
+    <form #nextForm="ngForm">
+        <span style="font-weight: bold">Jurisdiction Typeahead</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="jurisdiction" label="Jurisdiction" config="jurisdiction" apply-edited [(ngModel)]="vm.searchCriteria.jurisdiction1">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.jurisdiction1 | json }}
+            </div>
+        </div>
+
+        <span style="font-weight: bold">Name Typeahead</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="name" label="Name" config="name" apply-edited [(ngModel)]="vm.searchCriteria.names">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.names | json }}
+            </div>
+        </div>
+
+        <span style="font-weight: bold">Name Relationship Typeahead</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="nameRelationship" label="picklist.nameRelationship.type" config="nameRelationship" apply-edited [(ngModel)]="vm.searchCriteria.nameRelationships">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.nameRelationship | json }}
+            </div>
+        </div>
+    </form>
+    <h2>Ng Converted Typeahead - Multi Select and Multi Pick</h2>
+    <form #nextForm2="ngForm">
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead multiselect name="multiselectjurisdiction" label="Jurisdiction" config="jurisdiction" apply-edited [(ngModel)]="vm.searchCriteria.jurisdictions">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.jurisdictions | json }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead multiselect multipick name="multiselectjurisdiction" label="Jurisdiction" config="jurisdiction" apply-edited [(ngModel)]="vm.searchCriteria.jurisdictions2">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.jurisdictions | json }}
+            </div>
+        </div>
+    </form>
+    <h2>Ng Converted Typeahead - Single Select with Extend Query</h2>
+
+    <form #nextForm3="ngForm">
+        <span style="font-weight: bold">Extend Query defined in container component</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="jurisdiction1" label="Jurisdiction" config="jurisdiction" [(ngModel)]="vm.searchCriteria.jurisdictions1" [extend-query]="vm.extendJurisdictionQuery">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                outgoingcall: {{ vm.extendJurisdictionQuery.outgoingcall | json }} <br /> model: {{ vm.searchCriteria.jurisdictions1 | json }}
+            </div>
+        </div>
+        <span style="font-weight: bold">Extend Query defined in config</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="language" label="Language" config="language" [(ngModel)]="vm.searchCriteria.language">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.language | json }}
+            </div>
+        </div>
+        <span style="font-weight: bold">Extend Query based on related typeahead</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="case" [label]="'picklist.case.Type' | translate" config="case" multiselect multipick [(ngModel)]="vm.wipTemplateCase"></ipx-typeahead>
+                <ipx-typeahead name="wipTemplate" [label]="'picklist.wipTemplate.label' | translate" config="wipTemplate" [(ngModel)]="vm.wipTemplate" [extend-query]="vm.extendWipTemplatePicklist">
+                </ipx-typeahead>
+            </div>
+        </div>
+    </form>
+    <h2>Ng Converted Typeahead - Single Select with Default Item Template</h2>
+    <form #nextForm4="ngForm">
+        <span style="font-weight: bold">Typeahead on the fly without config</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="relationship" label="nameType.maintenance.relationship" key-field="key" text-field="value" api-url="api/configuration/nameRelationships" [(ngModel)]="vm.searchCriteria.nameRelations">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.nameRelations | json }}
+            </div>
+        </div>
+    </form>
+
+    <h2>Ng Converted Typeahead - Default column Templates</h2>
+    <form #nextForm5="ngForm">
+        <!-- <span style="font-weight: bold">Picklist with default icon column</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="validPropertyType" label="Valid Property Type" multiselect config="validPropertyType" [(ngModel)]="vm.searchCriteria.propertyType">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.nameRelations | json }}
+            </div>
+        </div> -->
+        <span style="font-weight: bold">Picklist with default image column</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="images" label="Image" multiselect multipick config="images" [(ngModel)]="vm.searchCriteria.images">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.nameRelations | json }}
+            </div>
+        </div>
+        <span style="font-weight: bold">Picklist with default selection column</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="numberType" label="Number Type" multiselect config="numberType" [(ngModel)]="vm.searchCriteria.numberType">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.nameRelations | json }}
+            </div>
+        </div>
+    </form>
+
+    <h2>Ng Converted Typeahead - Maintenable picklist</h2>
+    <form #nextForm21="ngForm">
+        <span style="font-weight: bold">Maintenable Picklist</span>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-typeahead name="instructionType" config="instructionType" label="Instruction Type" picklistCanMaintain [(ngModel)]="vm.searchCriteria.instructionType" [is-addanother]="true">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                model: {{ vm.searchCriteria.instructionType | json }}
+            </div>
+        </div>
+    </form>
+    <br />
+    <h2>DocGen Templates Typeahead</h2>
+    <div class="row">
+        <div class="input-wrap col-md-6">
+            <ipx-checkbox name="isCase" [label]="'Is Case / Name'" [(ngModel)]="docGenOptions.isCase">
+            </ipx-checkbox>
+            <ipx-checkbox name="isWord" [label]="'Is Word/ Pdf'" [(ngModel)]="docGenOptions.isWord">
+            </ipx-checkbox>
+            <ipx-typeahead *ngIf="docGenOptions.isCase" name="case" [label]="'Case'" config="case" [(ngModel)]="docGenOptions.case" required></ipx-typeahead>
+            <ipx-typeahead *ngIf="!docGenOptions.isCase" name="name" [label]="'Name'" config="name" [(ngModel)]="docGenOptions.name" required></ipx-typeahead>
+            <ipx-typeahead id="documents" [disabled]="docGenOptions.case == null && docGenOptions.name == null" name="documents" ngModel="docGenTemplate" [extend-query]="vm.docGenTemplatesExtendedQuery" apply-edited
+                label="{{ 'picklist.document.label' | translate }}" config="document">
+            </ipx-typeahead>
+        </div>
+    </div>
+    <h2>Ad Hoc Templates Typeahead</h2>
+    <div class="row">
+        <div class="input-wrap col-md-6">
+            <ipx-typeahead name="alertTemplate" ngModel="adHocTemplate" label="Ad Hoc Template" config="alertTemplate">
+            </ipx-typeahead>
+        </div>
+        <div class="col-md-6">
+            model: {{ adHocTemplate | json }}
+        </div>
+    </div>
+    <br />
+</div>

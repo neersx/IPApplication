@@ -1,0 +1,67 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{this.isAdding ? 'caseview.fileLocations.addMaintenanceTitle' : 'caseview.fileLocations.editMaintenanceTitle' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-checkbox *ngIf="this.isAdding" name="addAnother" label="modal.addAnother" [(ngModel)]="isAddAnotherChecked" (click)="onCheckChanged($event)">
+        </ipx-checkbox>
+        <ipx-apply-button type="button" [disabled]="!formGroup.dirty || formGroup.status === 'INVALID'" (click)="apply()"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-11">
+            <form [formGroup]="formGroup">
+                <div class="row">
+                    <div class="row" style="margin-left: 71px;">
+                        <div class="col-md-3">
+                            <label [translate]="'caseview.fileLocations.caseReference'" class="checkbox" style="padding-left: 57px;"></label>
+                        </div>
+                        <div class="col-md-4" style="margin-left: -8px;">
+                            <span class="text" name="caseStatus" class="checkbox">{{this.topic.params.viewData.irn}}</span>
+                        </div>
+                    </div>
+                    <div class="row col-md-12">
+                        <div class="col-md-10" style="margin-left: 31px">
+                            <ipx-typeahead id="filePartPicklist" name="filePart" [formControl]="filePart" #filePartEl apply-edited picklistCanMaintain (onChange)="resetValidationErrors()"
+                                label="{{ 'caseview.fileLocations.filePart' | translate }}" config="filePart" [can-navigate]="true" [extend-query]="filePartExtendQuery" [external-scope]="filePartExternalScope"
+                                [extended-params]="filePartextendedParam"> </ipx-typeahead>
+                        </div>
+                        <div class="col-md-1" style="margin-top: 7px; margin-left: -6px;">
+                            <a (click)="openFileLocationHistory()" class="cpa-icon text-grey-highlight cpa-icon-history" [tooltip]="'caseview.fileLocations.viewLastLocation' | translate"></a>
+                        </div>
+                    </div>
+                    <div class="row col-md-12" style="margin-left: -11px">
+                        <ipx-typeahead name="fileLocation" [formControl]="fileLocation" (onChange)="onFileLocationChanged($event)" #fileLocEl apply-edited label="{{ 'caseview.fileLocations.fileLocation' | translate }}"
+                            config="fileLocation" required> </ipx-typeahead>
+                    </div>
+                    <div class="row col-md-12" style="margin-left: -11px">
+                        <ipx-text-field name="bayNo" formControlName="bayNo" apply-edited label="{{ 'caseview.fileLocations.bayNo' | translate }}" autocomplete="off">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row col-md-7" style="margin-left: 87px">
+                        <ipx-typeahead formControlName="issuedBy" label="caseview.fileLocations.issuedBy" name="issuedBy" apply-edited config="staffWithTimesheetViewAccess" picklist-display-name="picklist.staff">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="row" style="margin-left: 83px">
+                        <div class="col-md-8">
+                            <ipx-date-picker name="whenMoved" #whenMoved id="whenMoved" apply-edited formControlName="whenMoved" label="caseview.fileLocations.whenMoved" (onChange)="onChangeWhenMoved($event)"
+                                [disabled]="isMovedDateDisabled()" required>
+                            </ipx-date-picker>
+                        </div>
+                        <div class="col-md-4" style="margin-top:5px;margin-left: -6px;">
+                            <ipx-time-picker formControlName="whenMovedTime" id="whenMovedTime" #whenMovedTime apply-edited [showSeconds]="false" (onChange)="onChangeMovedTime($event)" [is12HoursFormat]="false"
+                                [format]="timeFormat" [disabled]="isMovedTimeDisabled()"></ipx-time-picker>
+                        </div>
+                    </div>
+                    <ipx-text-field *ngIf="permissions.CAN_REQUEST_CASE_FILE" name="barCode" [disabled]="true" formControlName="barCode" (onChange)="resetValidationErrors()" apply-edited
+                        label="{{ 'caseview.fileLocations.barCode' | translate }}" autocomplete="off">
+                    </ipx-text-field>
+                    <input style="display: none;" formControlName="issuedById" />
+                    <input style="display: none;" formControlName="filePartId" />
+                    <input style="display: none;" formControlName="rowKey" />
+                    <input style="display: none;" formControlName="status" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

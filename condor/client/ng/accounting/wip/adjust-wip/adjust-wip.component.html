@@ -1,0 +1,209 @@
+<div class="label20" id="adjust-wip" name="adjust-wip">
+    <ipx-sticky-header style="background-color: #E6E6E6; height: 33px;">
+        <action-buttons class="pull-right" style="margin-top: 4px; margin-right:6px;">
+            <ipx-save-button id="save" type="button" (click)="submit()" [disabled]="formGroup.status === 'INVALID' || !formGroup.dirty" style="padding-right: 4px;"></ipx-save-button>
+            <ipx-close-button id="close" type=" button" (click)="close()"></ipx-close-button>
+        </action-buttons>
+    </ipx-sticky-header>
+    <div>
+        <form [formGroup]="formGroup">
+            <div>
+                <div class="container-fluid" style="padding-top: 15px; padding-bottom: 15px;">
+                    <div class="row col-sm-12">
+                        <div class="col-sm-5" style="margin-left: 29px;">
+                            <ipx-typeahead name="requestedByStaff" required formControlName="requestedByStaff" [label]="'wip.adjustWip.requestedByStaff'" config="staff">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="col-sm-5" style="margin-left: 86px;">
+                            <ipx-text-field [disabled]="true" formControlName="wipCode" [label]="'wip.adjustWip.wipCode'" name="wipCode">
+                            </ipx-text-field>
+                        </div>
+                    </div>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-2" style="margin-top: 5px;margin-left: 65px;">
+                            <label>{{ 'wip.adjustWip.transactionDate' | translate }}</label>
+                        </div>
+                        <div class="col-sm-2" style="margin-left: -74px;">
+                            <ipx-date-picker formControlName="transactionDate" id="transactionDate" name="transactionDate" (onChange)="validateItemDate($event)">
+                            </ipx-date-picker>
+                        </div>
+                        <div class="col-sm-2" style="margin-top: 5px;margin-left: 233px;">
+                            <label>{{ 'wip.adjustWip.originalTransDate' | translate }}</label>
+                        </div>
+                        <div class="col-sm-2" style="margin-left: -59px;">
+                            <ipx-date-picker [disabled]="true" formControlName="originalTransDate" id="originalTransDate" name="originalTransDate">
+                            </ipx-date-picker>
+                        </div>
+                    </div>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-5" style="margin-left: 26px;">
+                            <ipx-dropdown *ngIf="viewData" required formControlName="reason" id="reason" name="reason" apply-edited [label]="'wip.adjustWip.reason'" [options]="viewData.reasonSupportCollection"
+                                [keyField]="'reasonKey'" [displayField]="'reasonDescription'">
+                            </ipx-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix" style="border: 2px solid #e0e0e0 !important;">
+                <div class="col-sm-2" style="border-right: 1px solid #e0e0e0;" [ngStyle]="{'height.px': originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.foreignCurrency ? 442 : 383}">
+                    <div class="heading">
+                        <h5 translate="wip.adjustWip.type"></h5>
+                    </div>
+                    <div class="container-fluid">
+                        <ipx-radio-button id="rdbDebit" [ngModelOptions]="{standalone: true}" [(ngModel)]="formData.transactionType" [value]="transactionTypeEnum.debit"
+                            (change)="onTransactionTypeChange(transactionTypeEnum.debit)" apply-edited>
+                            {{ "wip.adjustWip.debit" | translate }}
+                        </ipx-radio-button>
+                        <ipx-radio-button id="rdbCredit" [ngModelOptions]="{standalone: true}" [(ngModel)]="formData.transactionType" [value]="transactionTypeEnum.credit"
+                            (change)="onTransactionTypeChange(transactionTypeEnum.credit)" apply-edited>
+                            {{ "wip.adjustWip.credit" | translate }}
+                        </ipx-radio-button>
+                    </div>
+                    <div class="heading" [ngStyle]="{'margin-top.px': originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.foreignCurrency ? 85 : 17}">
+                        <h5> {{ "wip.adjustWip.transfers" | translate }}</h5>
+                    </div>
+                    <div class="container-fluid">
+                        <ipx-radio-button id="rdbCase" [ngModelOptions]="{standalone: true}" *ngIf="originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.caseKey"
+                            [(ngModel)]="formData.transactionType" [value]="transactionTypeEnum.case" (change)="onTransactionTypeChange(transactionTypeEnum.case)" apply-edited>
+                            {{ "wip.adjustWip.case" | translate }}
+                        </ipx-radio-button>
+                        <ipx-radio-button id="rdbDebtor" *ngIf="originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.acctClientKey" [ngModelOptions]="{standalone: true}"
+                            [(ngModel)]="formData.transactionType" [value]="transactionTypeEnum.debtor" (change)="onTransactionTypeChange(transactionTypeEnum.debtor)" apply-edited>
+                            {{ "wip.adjustWip.debtor" | translate }}
+                        </ipx-radio-button>
+                        <ipx-radio-button id="rdbStaff" [ngModelOptions]="{standalone: true}" [(ngModel)]="formData.transactionType" [value]="transactionTypeEnum.staff"
+                            (change)="onTransactionTypeChange(transactionTypeEnum.staff)" apply-edited>
+                            {{ "wip.adjustWip.staff" | translate }}
+                        </ipx-radio-button>
+                        <ipx-radio-button id="rdbProduct" *ngIf="viewData && viewData.productRecordedOnWIP" [ngModelOptions]="{standalone: true}" [(ngModel)]="formData.transactionType"
+                            [value]="transactionTypeEnum.product" (change)="onTransactionTypeChange(transactionTypeEnum.product)" apply-edited>
+                            {{ "wip.adjustWip.product" | translate }}
+                        </ipx-radio-button>
+                    </div>
+                    <div class="heading" style="margin-top:52px">
+                        <h5> {{ "wip.adjustWip.narrativeOnly" | translate }}</h5>
+                    </div>
+                    <div class="container-fluid">
+                        <ipx-radio-button id="rdbNarrative" [ngModelOptions]="{standalone: true}" [(ngModel)]="formData.transactionType" [value]="transactionTypeEnum.narrative"
+                            (change)="onTransactionTypeChange(transactionTypeEnum.narrative)" apply-edited>
+                            {{ "wip.adjustWip.narrative" | translate }}
+                        </ipx-radio-button>
+                    </div>
+                </div>
+                <div class="col-sm-5" style="border-right: 1px solid #e0e0e0; border-bottom: 1px solid #e0e0e0;">
+                    <div class="container-fluid">
+                        <div class="heading">
+                            <h5 translate="wip.adjustWip.adjustedValues"></h5>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <ipx-numeric #localValueEl [customStyle]="numericStyle" [isCurrency]="true"
+                                    [disabled]="formData.transactionType !== transactionTypeEnum.debit && formData.transactionType !== transactionTypeEnum.credit" [currency]="localCurrency" name="localValue"
+                                    [label]="'wip.adjustWip.localValue'" formControlName="localValue" (onChange)="calculateByLocalValue()" apply-edited>
+                                </ipx-numeric>
+                            </div>
+                            <div class="row">
+                                <ipx-numeric #localAdjustmentEl [isCurrency]="true" [customStyle]="numericStyle"
+                                    [disabled]="formData.transactionType !== transactionTypeEnum.debit && formData.transactionType !== transactionTypeEnum.credit" [maxLength]="14" [currency]="localCurrency"
+                                    name="localAdjustment" [label]="'wip.adjustWip.localAdjustment'" formControlName="localAdjustment" [maxLength]="14" (onChange)="calculateByLocalAdjustedValue()" apply-edited>
+                                </ipx-numeric>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="row" *ngIf="originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.foreignCurrency">
+                                <ipx-numeric #foreignValueEl [isCurrency]="true" [customStyle]="numericStyle"
+                                    [disabled]="formData.transactionType !== transactionTypeEnum.debit && formData.transactionType !== transactionTypeEnum.credit" [maxLength]="14" [currency]="foreignCurrency"
+                                    name="foreignValue" [label]="'wip.adjustWip.foreignValue'" formControlName="foreignValue" [maxLength]="14" (onChange)="calculateByForeignValue()" apply-edited></ipx-numeric>
+                            </div>
+                            <div class="row" *ngIf="originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.foreignCurrency">
+                                <ipx-numeric #foreignAdjustmentEl [isCurrency]="true" [customStyle]="numericStyle"
+                                    [disabled]="formData.transactionType !== transactionTypeEnum.debit && formData.transactionType !== transactionTypeEnum.credit" [maxLength]="14" [currency]="foreignCurrency"
+                                    name="foreignAdjustment" [label]="'wip.adjustWip.foreignAdjustment'" formControlName="foreignAdjustment" [maxLength]="14" (onChange)="calculateByForeignAdjustedValue()" apply-edited>
+                                </ipx-numeric>
+                            </div>
+                        </div>
+                        <div [ngStyle]="{'margin-top.px': originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.foreignCurrency ? 32 : 38}">
+                            <div class="row" *ngIf="originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.caseKey">
+                                <ipx-typeahead #newCaseEl name="newCase" [disabled]="formData.transactionType !== transactionTypeEnum.case" apply-edited formControlName="newCase" [label]="'wip.adjustWip.case'"
+                                    config="case" (onChange)="onCaseChanged($event)">
+                                </ipx-typeahead>
+                            </div>
+                            <div class="row" *ngIf="originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.acctClientKey">
+                                <ipx-typeahead #newDebtorEl name="newDebtor" [disabled]="formData.transactionType !== transactionTypeEnum.debtor" apply-edited formControlName="newDebtor" [label]="'wip.adjustWip.debtor'"
+                                    config="debtor" (onChange)="onDebtorChanged($event)">
+                                </ipx-typeahead>
+                            </div>
+                            <div class="row">
+                                <ipx-typeahead #newStaffEl name="newStaff" [disabled]="formData.transactionType !== transactionTypeEnum.staff" apply-edited formControlName="newStaff" [label]="'wip.adjustWip.staff'"
+                                    config="staff">
+                                </ipx-typeahead>
+                            </div>
+                            <div class="row" style="margin-left: 25px;" *ngIf="viewData && viewData.productRecordedOnWIP">
+                                <ipx-typeahead #newProductEl name="newProduct" [disabled]="formData.transactionType !== transactionTypeEnum.product" apply-edited formControlName="newProduct"
+                                    [label]="'wip.adjustWip.product'" config="staff">
+                                </ipx-typeahead>
+                            </div>
+                            <div class="row" style="margin-left: 132px;">
+                                <ipx-checkbox name="isAssociatedDiscount" [disabled]="originalWipAdjustmentData && !originalWipAdjustmentData.adjustWipItem.isDiscountItemAvailable" id="isAssociatedDiscount"
+                                    [label]="'wip.adjustWip.transferAssociatedDiscount'" formControlName="isAssociatedDiscount" apply-edited>
+                                </ipx-checkbox>
+                                <div class="col-sm-1 pull-right" style="margin-right: 46px;">
+                                    <ipx-inline-dialog [content]="'wip.adjustWip.associatedDiscountInfo' | translate" [tooltipPlacement]="'auto'">
+                                    </ipx-inline-dialog>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5" [ngStyle]="{'height.px': originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.foreignCurrency ? 319.5 : 254}"
+                    style="border-bottom: 1px solid #e0e0e0; height: 319.5px">
+                    <div class="container-fluid">
+                        <div class="heading">
+                            <h5 translate="wip.adjustWip.currentValues"></h5>
+                        </div>
+                        <div class="row">
+                            <ipx-numeric [isCurrency]="true" [customStyle]="numericStyle" [currency]="localCurrency" [disabled]="true" name="currentLocalValue" [label]="'wip.adjustWip.localValue'"
+                                formControlName="currentLocalValue" [maxLength]="14"></ipx-numeric>
+                        </div>
+                        <div class="row" *ngIf="this.originalWipAdjustmentData && this.originalWipAdjustmentData.adjustWipItem.originalWIPItem.foreignCurrency">
+                            <ipx-numeric [isCurrency]="true" [customStyle]="numericStyle" [currency]="foreignCurrency" [disabled]="true" name="currentForeignValue" [label]="'wip.adjustWip.foreignValue'"
+                                formControlName="currentForeignValue" [maxLength]="14"></ipx-numeric>
+                        </div>
+                        <div [ngStyle]="{'margin-top.px': originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.foreignCurrency ? 104 : 73}">
+                            <div class="row" *ngIf="originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.acctClientKey">
+                                <ipx-typeahead name="currentDebtor" [disabled]="true" formControlName="currentDebtor" [label]="'wip.adjustWip.debtor'" config="debtor">
+                                </ipx-typeahead>
+                            </div>
+                            <div class="row" *ngIf="originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.caseKey">
+                                <ipx-typeahead name="currentCase" [disabled]="true" formControlName="currentCase" [label]="'wip.adjustWip.case'" config="case">
+                                </ipx-typeahead>
+                            </div>
+                            <div class="row" *ngIf="originalWipAdjustmentData && originalWipAdjustmentData.adjustWipItem.originalWIPItem.staffKey">
+                                <ipx-typeahead name="currentStaff" [disabled]="true" formControlName="currentStaff" [label]="'wip.adjustWip.staff'" config="staff">
+                                </ipx-typeahead>
+                            </div>
+                            <div class="row" *ngIf="viewData && viewData.productRecordedOnWIP">
+                                <ipx-typeahead name="currentProduct" [disabled]="true" formControlName="currentProduct" [label]="'wip.adjustWip.product'" config="staff">
+                                </ipx-typeahead>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10" style="padding-top: 12px;">
+                    <div class="row col-sm-6">
+                        <ipx-typeahead name="newNarrative" apply-edited formControlName="newNarrative" [label]="'wip.adjustWip.narrative'" config="narrative" apply-edited (onChange)="onNarrativeChange($event)">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="row col-sm-12">
+                        <div class="col-sm-2" style="margin-left: 41px;">
+                            <label>{{ 'wip.adjustWip.debitNoteText' | translate }}</label>
+                        </div>
+                        <div class="col-sm-8" style="margin-left: -52px;">
+                            <ipx-text-field #debitNoteTextEl name="debitNoteText" formControlName="debitNoteText" multiLine="true" rows="3" apply-edited></ipx-text-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<ipx-page-title [title]="'taxCode.pageTitle'">
+
+</ipx-page-title>
+
+<div class="row" style="margin-top: 10px;">
+    <div class="col-sm-7">
+        <ipx-picklist-search-field [model]="searchCriteria.text" (onEnter)="search($event)" placeholder="taxCode.EnterTextToSearch" (onSearch)="search($event)" (onClear)="clear()">
+        </ipx-picklist-search-field>
+    </div>
+</div>
+<br />
+<div class="table-container">
+    <action-buttons>
+        <ipx-add-button *ngIf=viewData.canCreateTaxCode (click)="openModal(null,taxCodeState.Adding)" class="pull-right"></ipx-add-button>
+    </action-buttons>
+    <div ipx-resize-handler [resize-handler-type]="'Panel'">
+        <ipx-kendo-grid [dataOptions]="gridOptions" id="searchResults" #taxCodeGrid>
+            <ng-template ipxTemplateColumnField="taxCode" let-dataItem>
+                <span><a (click)="openTaxDetails(dataItem)">{{ dataItem.taxCode }}</a></span>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

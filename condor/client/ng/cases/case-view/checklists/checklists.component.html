@@ -1,0 +1,167 @@
+<div name="caseChecklists" class="container-fluid" [ngClass]="{'divDisplay': isHosted}">
+    <div class="row" *ngIf="!hasValidChecklistTypes">
+        <div class="alert alert-info">
+            <i class="cpa-icon cpa-icon-info-circle"></i>
+            <span class="info-circle text-grey-highlight" [translate]="'caseview.checklists.noValidChecklists'"></span>
+        </div>
+    </div>
+    <div class="row" *ngIf="hasValidChecklistTypes">
+        <div class="col-sm-6">
+            <ipx-dropdown name="ChecklistType" label="caseview.checklists.type" #ipxDropdownRef
+                [(ngModel)]="selectedChecklistTypeId" [options]="checklistTypes" [removeOptionalValue]="true"
+                [displayField]="'checklistTypeDescription'" [keyField]="'checklistType'" (ngModelChange)="changeChecklistType()">
+            </ipx-dropdown>
+        </div>
+        <div class="col-sm-6">
+            <ipx-inline-dialog class="padProcessingInfo" *ngIf="hasGeneralDocuments" [templateRef]="popDocumentInfo" container="body" [tooltipPlacement]="'right'"
+                [icon]="'cpa-icon cpa-icon-info-circle'">
+            </ipx-inline-dialog>
+            <ng-template #popDocumentInfo>
+                <b>{{ this.checklistTypeDocuments }}</b>{{'caseview.checklists.regenerateChecklist.generalDocuments' | translate }}
+            </ng-template>
+        </div>
+    </div>
+    <div class="row" *ngIf="hasValidChecklistTypes">
+        <ipx-kendo-grid #ipxKendoGridRef [dataOptions]="gridOptions" id="checklist" *ngIf="gridOptions" ipxGridFocus>
+            <!-- read only -->
+            <ng-template ipxTemplateColumnField="question" let-dataItem>
+                <ipx-hover-help [ngClass]="{'padQuestion': dataItem.sourceQuestion}" [content]="dataItem.sourceQuestion" [placement]="'top'">
+                    <span [ngClass]="{'vertical': dataItem.sourceQuestion}">{{ dataItem.question }}</span>
+                    <span *ngIf="dataItem.isAnswerRequired" class="text-red"> *</span>
+                </ipx-hover-help>
+                <ipx-inline-dialog class="padProcessingInfo" *ngIf="showProcessingInfo(dataItem)" [templateRef]="popProcessingInfo" container="body" [tooltipPlacement]="'right'" [icon]="'cpa-icon cpa-icon-info-circle'">
+                </ipx-inline-dialog>
+                <ng-template #popProcessingInfo>
+                    <div *ngIf="dataItem.yesEventDesc">
+                        <b>{{ dataItem.yesEventDesc }}{{ dataItem.yesEventNumber ? '(' : null }}{{ dataItem.yesEventNumber }}{{ dataItem.yesEventNumber ? ')' : null }}</b>{{ 'caseview.checklists.processInfo.yesEventAnswered' | translate }}
+                    </div>
+                    <div *ngIf="dataItem.noEventDesc">
+                        <b>{{ dataItem.noEventDesc }}{{ dataItem.noEventNumber ? '(' : null }}{{ dataItem.noEventNumber }}{{ dataItem.noEventNumber ? ')' : null }}</b>{{'caseview.checklists.processInfo.noEventAnswered' | translate }}
+                    </div>
+                    <div *ngIf="dataItem.yesRateDesc"><b>{{ dataItem.yesRateDesc }}</b>{{'caseview.checklists.processInfo.yesRateAnswered' | translate }}</div>
+                    <div *ngIf="dataItem.noRateDesc"><b>{{ dataItem.noRateDesc }}</b>{{'caseview.checklists.processInfo.noRateAnswered' | translate }}</div>
+                    <div *ngIf="dataItem.letters"><b>{{ dataItem.letters }}</b>{{'caseview.checklists.processInfo.letters' | translate }}</div>
+                    <div *ngIf="dataItem.instructions"><b>{{'caseview.checklists.processInfo.instructions' | translate }}</b> {{ dataItem.instructions }}</div>
+                </ng-template>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="yesNoAnswer" let-dataItem>
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <ipx-checkbox [ngModel]="dataItem.yesAnswer && dataItem.isAnswered" disabled></ipx-checkbox>
+                    </div>
+                    <div class="col-sm-6">
+                        <ipx-checkbox [ngModel]="dataItem.noAnswer && dataItem.isAnswered" disabled></ipx-checkbox>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="isProcessed" let-dataItem>
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <span *ngIf="dataItem.isProcessed" [tooltip]="'caseview.checklists.processed' | translate" class="text-green cpa-icon-check-circle cpa-icon-md"></span>
+                        <span *ngIf="!dataItem.isProcessed" [tooltip]="'caseview.checklists.unprocessed' | translate" class="text-grey-dark cpa-icon-minus-circle cpa-icon-md"></span>
+                    </div>
+                    <div class="col-sm-6 pull-right">
+                        <span *ngIf="!dataItem.isAnswered" [tooltip]="'caseview.checklists.unanswered' | translate" class="text-grey-dark cpa-icon-arrow-right cpa-icon-md"></span>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="countValue" let-dataItem>
+                <span>{{ dataItem.countValue }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="periodTypeDescription" let-dataItem>
+                <span>{{ dataItem.periodTypeDescription }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="listSelection" let-dataItem>
+                <span>{{ dataItem.listSelection }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="amountValue" let-dataItem>
+                <span class="pull-right">{{ dataItem.amountValue | number : '1.2-2' }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="dateValue" let-dataItem>
+                <span>{{ dataItem.dateValue | localeDate }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="staffName" let-dataItem>
+                <span>{{ dataItem.staffName }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="textValue" let-dataItem>
+                <div class="overflow-column" title="{{ dataItem.textValue }}">{{ dataItem.textValue }}</div>
+            </ng-template>
+            <!-- maintainable -->
+            <ng-template ipxEditTemplateColumnField="isProcessed" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <span *ngIf="dataItem.isProcessed && !formGroup.dirty" [tooltip]="'caseview.checklists.processed' | translate" class="text-green cpa-icon-check-circle cpa-icon-md"></span>
+                        <span *ngIf="!dataItem.isProcessed && !formGroup.dirty" [tooltip]="'caseview.checklists.unprocessed' | translate" class="text-grey-dark cpa-icon-minus-circle cpa-icon-md"></span>
+                        <span *ngIf="formGroup.dirty" [tooltip]="'caseview.checklists.changed' | translate" class="text-orange cpa-icon-check-circle cpa-icon-md"></span>
+                    </div>
+                    <div class="col-sm-6 pull-right">
+                        <span *ngIf="!dataItem.isAnswered && !formGroup.dirty" [tooltip]="'caseview.checklists.unanswered' | translate" class="text-grey-dark cpa-icon-arrow-right cpa-icon-md"></span>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="question" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-hover-help [ngClass]="{'padQuestion': dataItem.sourceQuestion}" [content]="dataItem.sourceQuestion" [placement]="'top'">
+                    <span class="question" [ngClass]="{'vertical': dataItem.sourceQuestion}">{{ dataItem.question }}</span>
+                    <span *ngIf="dataItem.isAnswerRequired" class="text-red"> *</span>
+                </ipx-hover-help>
+                <ipx-inline-dialog class="padProcessingInfo" *ngIf="showProcessingInfo(dataItem)" [templateRef]="editPopProcessingInfo" container="body" [tooltipPlacement]="'right'"
+                    [icon]="'cpa-icon cpa-icon-info-circle'">
+                </ipx-inline-dialog>
+                <span class="cpa-icon cpa-icon-exclamation-triangle" style="color:#E90101; line-height: 30px;" *ngIf="(formGroup.invalid || isYesNoRequired(formGroup)) && dataItem.isAnswerRequired && !isValidData" tooltip="{{'caseview.checklists.requiredFields' | translate}}" containerClass="tooltip-error" tooltipPlacement="top"></span>
+                <ng-template #editPopProcessingInfo>
+                    <div *ngIf="dataItem.yesEventDesc">
+                        <b>{{ dataItem.yesEventDesc }}{{ dataItem.yesEventNumber ? '(' : null }}{{ dataItem.yesEventNumber }}{{ dataItem.yesEventNumber ? ')' : null }}</b>{{ 'caseview.checklists.processInfo.yesEventAnswered' | translate }}
+                    </div>
+                    <div *ngIf="dataItem.noEventDesc">
+                        <b>{{ dataItem.noEventDesc }}{{ dataItem.noEventNumber ? '(' : null }}{{ dataItem.noEventNumber }}{{ dataItem.noEventNumber ? ')' : null }}</b>{{'caseview.checklists.processInfo.noEventAnswered' | translate }}
+                    </div>
+                    <div *ngIf="dataItem.yesRateDesc"><b>{{ dataItem.yesRateDesc }}</b>{{'caseview.checklists.processInfo.yesRateAnswered' | translate }}</div>
+                    <div *ngIf="dataItem.noRateDesc"><b>{{ dataItem.noRateDesc }}</b>{{'caseview.checklists.processInfo.noRateAnswered' | translate }}</div>
+                    <div *ngIf="dataItem.letters"><b>{{ dataItem.letters }}</b>{{'caseview.checklists.processInfo.letters' | translate }}</div>
+                    <div *ngIf="dataItem.instructions"><b>{{'caseview.checklists.processInfo.instructions' | translate }}</b> {{ dataItem.instructions }}</div>
+                </ng-template>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="yesNoAnswer" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <ipx-checkbox name="yesAnswer" [formControl]="formGroup.controls.yesAnswer" (onChange)="changeAnswer('yes', $event, formGroup, dataItem)"
+                        [ngClass]="{'error': isYesNoRequired(formGroup) && !this.isValidData}" apply-edited></ipx-checkbox>
+                    </div>
+                    <div class="col-sm-6">
+                        <ipx-checkbox name="noAnswer" [formControl]="formGroup.controls.noAnswer" (onChange)="changeAnswer('no', $event, formGroup, dataItem)"
+                        [ngClass]="{'error': isYesNoRequired(formGroup) && !this.isValidData}" apply-edited></ipx-checkbox>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="countValue" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-numeric [isCurrency]="false" [minValue]="0" name="countValue" *ngIf="dataItem.countOption && dataItem.countOption !== 0" [maxLength]="10" [formControl]="formGroup.controls.countValue" (onChange)="checkValidationAndEnableSave()" apply-edited></ipx-numeric>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="periodTypeDescription" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+               <span name="periodTypeDescription">{{ dataItem.periodTypeDescription }}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="listSelection" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-dropdown *ngIf="dataItem.listSelectionTypeId" name="listSelection" apply-edited [formControl]="formGroup.controls.listSelection"
+                    [options]="dataItem.listSelectionType" [displayField]="'value'" (change)="checkValidationAndEnableSave()" [keyField]="'key'">
+                </ipx-dropdown>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="amountValue" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-numeric [isCurrency]="true" name="amountValue" [maxlength]="9" *ngIf="dataItem.amountOption && dataItem.amountOption !== 0" [currency]="' '"
+                (onChange)="checkValidationAndEnableSave()" [formControl]="formGroup.controls.amountValue" apply-edited>
+                </ipx-numeric>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="dateValue" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-date-picker name="dateValue" id="dateValue" [formControl]="formGroup.controls.dateValue" *ngIf="dataItem.yesDateOption || dataItem.noDateOption" [hidden]="hideDate(dataItem, formGroup)"
+                (onChange)="changeAnswer('dateValue', dataItem.dateValue, formGroup, rowIndex)" (change)="changeAnswer('dateValue', dataItem.dateValue, formGroup, dataItem)" [displayError]="true" apply-edited>
+                </ipx-date-picker>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="staffName" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-typeahead name="staffName" *ngIf="dataItem.staffNameOption && dataItem.staffNameOption !== 0" config="staff" apply-edited [formControl]="formGroup.controls.staffName"
+                    picklist-display-name="picklist.staff" apply-edited (onChange)="checkValidationAndEnableSave()"></ipx-typeahead>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="textValue" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-text-field name="textValue" multiline="true" rows="2" *ngIf="dataItem.textOption && dataItem.textOption !== 0" [formControl]="formGroup.controls.textValue"
+                (onChange)="checkValidationAndEnableSave()" apply-edited></ipx-text-field>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

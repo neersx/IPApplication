@@ -1,0 +1,102 @@
+<style>
+    #action-priority-link {
+        cursor: pointer;
+    }
+</style>
+<ip-sticky-header>
+    <ip-page-title page-title="Valid Combinations"></ip-page-title>
+    <ip-search-options-header></ip-search-options-header>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <ip-search-options on-clear="vm.reset(true)" on-search="vm.search(true)" is-search-disabled="vm.isDefaultSelection() || vm.hasErrors()" is-reset-disabled="vm.isResetDisabled()">
+        <div class="row">
+            <div class="input-wrap col-sm-6">
+                <label translate="validcombinations.characteristic"></label>
+                <select name="searchcharacteristic" ng-options="r.description for r in vm.searchOptions track by r.type" ng-model="vm.selectedSearchOption" ng-change="vm.onSearchbyChanged()" data-placement="right" ip-autofocus></select>
+            </div>
+            <div class="col-sm-2">
+                <ip-inline-dialog data-content="{{::'validcombinations.characteristicInstruction' | translate}}" data-placement="right"></ip-inline-dialog>
+            </div>
+        </div>
+        <hr/>
+        <div ng-form="vm.form" ip-form>
+            <div class="row">
+                <div class="col-sm-6" ng-if="vm.evalPicklistVisibility('casetype')">
+                    <ip-typeahead id='case-type-picklist' name="caseType" data-config='caseType' data-picklist-can-maintain="true" ng-model="vm.searchCriteria.caseType" ng-change="vm.caseTypeChanged()">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div ng-if="vm.evalPicklistVisibility('jurisdiction')">
+                    <div class="col-sm-6">
+                        <ip-typeahead id="jurisdiction-picklist" data-multiselect name="jurisdictions" data-config='jurisdiction' data-picklist-can-maintain="true" ng-model="vm.searchCriteria.jurisdictions" ng-change="vm.onCountryChange()"></ip-typeahead>
+                    </div>
+                    <div class="col-sm-5">
+                        <ip-checkbox label="validcombinations.defaultJurisdiction" ng-model="vm.searchCriteria.viewDefault" ng-change="vm.onViewDefaultChange()"></ip-checkbox>
+                        <ip-inline-dialog class="col-sm-offset-1" data-content="{{::'validcombinations.defaultJurisdictionHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" ng-if="vm.evalPicklistVisibility('propertytype')">
+                    <ip-typeahead id='property-type-picklist' name="propertyType" data-config='propertyType' data-picklist-can-maintain="true" ng-model="vm.searchCriteria.propertyType" data-key-field="key" data-code-field="code" data-text-field="value">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" ng-if="vm.evalPicklistVisibility('casecategory')">
+                    <ip-typeahead id='case-category-picklist' name="caseCategory" ng-disabled="vm.isCaseCategoryDisabled()" data-config='caseCategory' data-picklist-can-maintain="true" ng-model="vm.searchCriteria.caseCategory" data-extend-query="vm.extendCaseCategoryPicklsit"
+                        data-key-field="key" data-code-field="code" data-text-field="value">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" ng-if="vm.evalPicklistVisibility('subtype')">
+                    <ip-typeahead id='sub-type-picklist' name="subType" data-config='subType' data-picklist-can-maintain="true" ng-model="vm.searchCriteria.subType" data-key-field="key" data-code-field="code" data-text-field="value">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" ng-if="vm.evalPicklistVisibility('basis')">
+                    <ip-typeahead id='basis-picklist' name="basis" data-config='basis' data-picklist-can-maintain="true" ng-model="vm.searchCriteria.basis" data-key-field="key" data-code-field="code" data-text-field="value">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" ng-if="vm.evalPicklistVisibility('relationship')">
+                    <ip-typeahead id='relationship-picklist' name="relationship" data-config='relationship' data-picklist-can-maintain="true" ng-model="vm.searchCriteria.relationship">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" ng-if="vm.evalPicklistVisibility('status')">
+                    <ip-typeahead id='status-picklist' name="status" data-config='status' data-picklist-can-maintain="false" ng-model="vm.searchCriteria.status">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6" ng-if="vm.evalPicklistVisibility('checklist')">
+                    <ip-typeahead id='checklist-picklist' name="checklist" data-config='checklist' data-picklist-can-maintain="true" ng-model="vm.searchCriteria.checklist">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div ng-if="vm.evalPicklistVisibility('action')">
+                    <ip-typeahead class="col-sm-6" id='action-picklist' data-config='action' data-picklist-can-maintain="true" ng-model="vm.searchCriteria.action"></ip-typeahead>
+                    <span style="line-height: 30px;">
+                        <a id="action-priority-link" translate="validcombinations.setActionDisplayOrder" data-ng-click="vm.launchActionOrder()"></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </ip-search-options>
+
+    <div ng-if="vm.isDefaultSelection()">
+        <div class="table-container">
+            <ipt-valid-combination-summary add-valid-combination="vm.add()" search-type="default">
+                <ip-kendo-search-grid data-id="validCombinationSearchResults" data-grid-options="vm.gridOptions" data-search-hint="validcombinations.validCombinationSearchHint"></ip-kendo-search-grid>
+            </ipt-valid-combination-summary>
+        </div>
+    </div>
+    <div ui-view></div>
+</div>

@@ -1,0 +1,24 @@
+<div class="dd-menu">
+    <!-- Use base uib-tooltip because ip-tooltip has issues with style.js in design guide -->
+    <button class="btn btn-icon btn-next dd-link" ng-disabled="isEmptyList()" uib-tooltip="{{::'bulkactionsmenu.tooltip' | translate }}">
+        <icon name="list-ul"></icon>
+        <span class="badge" data-ng-show="isManualSelection()">{{ items.selected }}</span>
+    </button>
+    <div class="dd-dropdown" style="display: none;" data-ng-if="actionItems.length > 0">
+
+        <div data-ng-include="'condor/components/bulkactions/directives/standardmenu.html'"></div>
+        <div class="group-heading" data-ng-if="actionItems.length > 0">
+            <span translate="bulkactionsmenu.actions"></span>
+        </div>
+        <div class="group">
+            <ul>
+                <li ng-repeat="a in actionItems">
+                    <a id="bulkaction_{{context}}_{{a.id}}" ng-click="a.invokeIfEnabled()" data-ng-class="{disabled: a.shouldDisable()}">
+                        <icon name="{{a.icon}}" large></icon>
+                        <span translate="{{ a.text }}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

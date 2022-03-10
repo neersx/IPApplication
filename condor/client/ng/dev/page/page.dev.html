@@ -1,0 +1,18 @@
+<ipx-sticky-header>
+<div>
+        <ipx-page-title-save title="{{ 'Detail Page Tests' | translate}}" 
+            (onSave)="save()" (onDiscard)="discard()" [isSaveEnabled]="isSaveEnabled" 
+            [isDiscardEnabled]="isDiscardEnabled">                
+        </ipx-page-title-save>
+
+        <p>Button clicked: {{ btnName }} </p>
+</div>
+<div>
+    <ipx-page-title title="Detail Page Navigation"></ipx-page-title>
+
+    <ipx-detail-page-nav [lastSearch]="lastSearch">
+    </ipx-detail-page-nav>
+
+    <p>Page: {{ id }}</p>
+</div>
+</ipx-sticky-header>

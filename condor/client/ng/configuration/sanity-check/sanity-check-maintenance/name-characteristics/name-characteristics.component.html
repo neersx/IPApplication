@@ -1,0 +1,50 @@
+<form #frm="ngForm">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="name" label="picklist.name.Name" config="name" [(ngModel)]="formData.name" (onChange)="nameChange()"></ipx-typeahead>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="nameGroup" label="picklist.nameGroup.Type" config="nameGroup" [(ngModel)]="formData.nameGroup" (onChange)="nameGroupChange()"></ipx-typeahead>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="jurisdiction" label="sanityCheck.configurations.country" config="jurisdiction" [(ngModel)]="formData.jurisdiction">
+                </ipx-typeahead>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="category" label="sanityCheck.configurations.category" config="tableColumnName" [(ngModel)]="formData.category" [extend-query]="tableColumnForCategory">
+                </ipx-typeahead>   
+            </div>
+            <div class="row">
+                <ipx-dropdown apply-edited class="col-sm-10" name="applyTo" label="sanityCheck.configurations.localOrForeignDropdown.label" [(ngModel)]="formData.applyTo" [displayField]="'label'" [keyField]="'value'" [options]="appliesToOptions">
+                </ipx-dropdown>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="input-wrap" name="entityType" style="padding-top: 0px;padding-bottom: 0px; margin-bottom: 0px;" [ngClass]="{'required': isTypeOfEntityMandatory$ | async , 'error': (isTypeOfEntityMandatory$ | async) && !entityTypeSelected}">
+                    <label class="col-sm-3 col-sm-offset-1" translate="sanityCheck.configurations.entityType" style="text-align: right; margin-top:3px;"></label>
+                    <ipx-checkbox apply-edited label="sanityCheck.configurations.entityTypes.organisation" name="organisation" [(ngModel)]="formData.typeIsOrganisation" [disabled]="formData.typeIsIndividual === true || formData.typeIsStaff === true" [required]="!(formData.typeIsIndividual === true || formData.typeIsStaff === true) && (isTypeOfEntityMandatory$ | async) && !entityTypeSelected"
+                        (onChange)="entityTypeChanged()"></ipx-checkbox>
+                    <ipx-checkbox apply-edited label="sanityCheck.configurations.entityTypes.individual" name="individual" [(ngModel)]="formData.typeIsIndividual" [disabled]="formData.typeIsOrganisation === true" [required]="(isTypeOfEntityMandatory$ | async) && !entityTypeSelected"
+                        (onChange)="entityTypeChanged()"></ipx-checkbox>
+                    <span class="input-action tooltip-error" *ngIf="(isTypeOfEntityMandatory$ | async) && !entityTypeSelected" style="position: relative;top:-2px">
+                            <span class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="'sanityCheck.configurations.entityTypeMandatory' | translate"
+                                containerClass="tooltip-error">
+                            </span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-wrap" name="usedAs" style="padding-top: 0px;padding-bottom: 0px; margin-bottom: 0px;">
+                    <label class="col-sm-3 col-sm-offset-1" translate="sanityCheck.configurations.usedAs" style="text-align: right; margin-top:3px;"></label>
+                    <ipx-checkbox apply-edited label="sanityCheck.configurations.entityTypes.clientOnly" name="clientOnly" [(ngModel)]="formData.typeIsClientOnly" [disabled]="formData.typeIsStaff === true" (onChange)="usedAsChanged()"></ipx-checkbox>
+                    <ipx-checkbox apply-edited label="sanityCheck.configurations.entityTypes.staff" name="staff" [(ngModel)]="formData.typeIsStaff" [disabled]="formData.typeIsOrganisation === true || formData.typeIsClientOnly === true" (onChange)="usedAsChanged()"></ipx-checkbox>
+                    <ipx-checkbox apply-edited label="sanityCheck.configurations.entityTypes.supplierOnly" name="supplierOnly" [(ngModel)]="formData.typeIsSupplierOnly"></ipx-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

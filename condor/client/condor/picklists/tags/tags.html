@@ -1,0 +1,10 @@
+<div data-ng-controller="tagsController as c">
+<div translate-namespace="picklist.tags">
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="tagName" ip-required ip-autofocus label=".TagName" ng-model="vm.entry.tagName" data-ng-maxlength="30" ng-class="{edited: vm.maintenance.tagName.$dirty}" ip-field-error="{{vm.entry.$error('tagName').message | translate}}">
+            </ip-text-field>
+        </div>
+    </div>
+</div>
+</div>

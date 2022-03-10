@@ -1,0 +1,3 @@
+<ipx-kendo-grid #ipxKendoGridRef *ngIf="gridOptions" id="networkDriveMapping" [dataOptions]="gridOptions" (addRowEvent)="onRowAddedEdited($event,true)" (editRowEvent)="onRowAddedEdited($event,false)"
+    (deleteRowEvent)="updateChangeStatus()">
+</ipx-kendo-grid>

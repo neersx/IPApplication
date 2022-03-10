@@ -1,0 +1,77 @@
+<form name="adhocDateForm" #adhocDateForm="ngForm">
+  <div class="container-fluid">
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.adhocDate.include' | translate}}</label>
+      </div>
+      <div class="col-sm-10">
+        <div class="col-sm-2">
+          <ipx-checkbox name="chkAdhocDateIncludeCase" [disabled]="formData.includeCase && !formData.includeName && !formData.includeGeneral" [(ngModel)]="formData.includeCase"
+            label="taskPlanner.searchBuilder.adhocDate.case">
+          </ipx-checkbox>
+        </div>
+        <div class="col-sm-2">
+          <ipx-checkbox name="chkAdhocDateIncludeName" [disabled]="!formData.includeCase && formData.includeName && !formData.includeGeneral" (click)="changeInclude(formData.includeName,'names')"
+            [(ngModel)]="formData.includeName" label="taskPlanner.searchBuilder.adhocDate.name">
+          </ipx-checkbox>
+        </div>
+        <div class="col-sm-2">
+          <ipx-checkbox name="chkAdhocDateIncludeGeneral" [disabled]="!formData.includeCase && !formData.includeName && formData.includeGeneral" (click)="changeInclude(formData.includeGeneral,'generalRef')"
+            [(ngModel)]="formData.includeGeneral" label="taskPlanner.searchBuilder.adhocDate.general">
+          </ipx-checkbox>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.adhocDate.names' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator [disabled]="!formData.includeName" class="col-sm-2" name="adhocDateNamesOperator" [(ngModel)]="formData.names.operator" [operatorsGroup]="operatorCombinations.Equal">
+      </ipx-dropdown-operator>
+      <ipx-typeahead class="col-sm-6" name="adhocDateNames" [disabled]="!formData.includeName" multiselect multipick config="name" [(ngModel)]="formData.names.value">
+      </ipx-typeahead>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.adhocDate.generalRef' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator class="col-sm-2" [disabled]="!formData.includeGeneral" name="adhocDateGeneralRefOperator" [(ngModel)]="formData.generalRef.operator" [operatorsGroup]="operatorCombinations.FullNoExist">
+      </ipx-dropdown-operator>
+      <ipx-text-field class="col-sm-6" name="adhocDateGeneralRef" [disabled]="!formData.includeGeneral" label="" [(ngModel)]="formData.generalRef.value"></ipx-text-field>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.adhocDate.message' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator class="col-sm-2" name="adhocDateMessageOperator" [(ngModel)]="formData.message.operator" [operatorsGroup]="operatorCombinations.FullNoExist">
+      </ipx-dropdown-operator>
+      <ipx-text-field class="col-sm-6" name="adhocDateMessage" label="" [(ngModel)]="formData.message.value"></ipx-text-field>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.adhocDate.emailSubject' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator class="col-sm-2" name="adhocDateEmailSubjectOperator" [(ngModel)]="formData.emailSubject.operator" [operatorsGroup]="operatorCombinations.FullNoExist">
+      </ipx-dropdown-operator>
+      <ipx-text-field class="col-sm-6" name="adhocDateEmailSubject" label="" [(ngModel)]="formData.emailSubject.value"></ipx-text-field>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+
+      </div>
+      <div class="col-sm-10">
+        <div class="col-sm-4">
+          <ipx-checkbox name="chkIncludeFinalizedAdHocDates" [(ngModel)]="formData.includeFinalizedAdHocDates" label="taskPlanner.searchBuilder.adhocDate.includeFinalizedAdHocDates">
+          </ipx-checkbox>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,25 @@
+<div id="test-area" tabindex="0">
+    <h1 page-title="Keyboard Shortcut Test"></h1>
+    <div class="col-sm-4">
+        <label>Type in your shortcut in the field and click <i>Add</i>.</label>
+        <label>Press h to reveal the list of already added shortcuts.</label>
+        <div id="" class="input-wrap">
+            <div>
+                <input id="test-combo" type="text" [(ngModel)]="shortcut" class="col-sm-4" />
+            </div>
+            <div class="row">
+                <button class="btn col-md-6" (click)="addShortcut();" style="margin-left:5px;">Add this shortcut</button>
+            </div>
+            <div class="row">
+                <button class="btn col-md-6" (click)="displayCheatSheet();" style="margin-left:5px;">Display Cheatsheet</button>
+            </div>
+        </div>
+
+        <div *ngFor="let item of listOfShortcuts; trackBy: byItem">
+            {{ item }}
+        </div>
+    </div>
+</div>
+<script>
+$("#test-combo").focus();
+</script>

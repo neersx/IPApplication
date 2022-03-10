@@ -1,0 +1,52 @@
+<div id="createEntriesModal" ng-form="vm.form" ip-form translate-namespace="workflows.maintenance.entries.createEntry">
+    <div class="modal-header">
+        <h2 class="modal-title" translate=".title"></h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+            <ip-save-button ng-click="vm.save()" id="Save" ng-disabled="!vm.isSaveEnabled()"></ip-save-button>
+            <ip-close-button ng-click="vm.dismissAll()" id="dismissAll"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid" style="padding-bottom:15px">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-wrap large required" ng-class="{error:vm.form.entryDescription.$dirty && vm.form.entryDescription.$invalid}">
+                        <label translate=".description"></label>
+                        <textarea id="workflow-entry-entryDescription" type="text" rows="2" name="entryDescription" required ip-autofocus="true" ng-model="vm.entryDescription" ng-change="vm.resetUniqueError()"
+                            data-ng-maxlength="100" ng-trim="false">
+                        </textarea>
+                        <span ng-if="vm.form.entryDescription.$error.required" class="input-action tooltip-error" ip-tooltip="{{:: 'field.errors.required' | translate }}" data-tooltip-placement="right">
+                            <icon name="exclamation-triangle"></icon>
+                        </span>
+                        <span ng-if="vm.form.entryDescription.$error.notunique" class="input-action tooltip-error" ip-tooltip="{{:: 'field.errors.notunique' | translate }}" data-tooltip-placement="right">
+                            <icon name="exclamation-triangle"></icon>
+                        </span>
+                        <span data-ng-if="vm.form.entryDescription.$error.maxlength" class="input-action tooltip-error" ip-tooltip="{{:: 'field.errors.maxlength' | translate:{ length: 100 } }}"
+                            data-tooltip-placement="right">
+                            <icon name="exclamation-triangle"></icon>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-if="!vm.events">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <ip-checkbox name="isSeparator" label=".isSeparator" ng-model="vm.isSeparator" ng-change="vm.resetUniqueError(); vm.resetRequiredError()"></ip-checkbox>
+                    <ip-inline-dialog class="col-sm-offset-1" data-content="{{::'workflows.maintenance.entries.createEntry.separatorInfo' | translate}}" data-placement="bottom"></ip-inline-dialog>
+                </div>
+            </div>
+            <div ng-if="vm.events">
+                <div class="input-wrap">
+                    <h5> {{:: 'workflows.maintenance.entries.createEntry.events' | translate }}</h5>
+                </div>
+                <div class="row" ng-repeat="item in vm.events">
+                    <div class="col-sm-2 col-sm-offset-1">
+                        <a href="#/configuration/rules/workflows/{{vm.criteriaId}}/eventcontrol/{{item.eventNo}}" target="_blank">{{item.eventNo}}</a>
+                    </div>
+                    <div class="col-sm-9">
+                        <a href="#/configuration/rules/workflows/{{vm.criteriaId}}/eventcontrol/{{item.eventNo}}" target="_blank">{{item.description}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

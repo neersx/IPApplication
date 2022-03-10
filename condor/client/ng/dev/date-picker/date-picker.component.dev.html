@@ -1,0 +1,70 @@
+<div class="container-fluid">
+    <h2>Date Picker</h2>
+
+    <form class="row" #formEmpty="ngForm">
+        <ip-datepicker-ng name="empty" label="Empty" [ngModel]="empty.date" class="col-sm-6" [isDisabled]="true" [readonly]="false" inlineDataItemId="2002" ngDefaultControl></ip-datepicker-ng>
+        <div class="col-sm-4 col-sm-offset-2">
+            <pre> {{ { model: empty } | json }} </pre>
+        </div>
+    </form>
+    <hr />
+    <div class="row">
+        <ip-datepicker-ng #defaulttoToday label="Default to Today" [ngModel]="initialised.date" class="col-sm-6" [earlierThan]="now" includeSameDate="true" (onblur)="UpdateValue($event,'initialised')" ngDefaultControl></ip-datepicker-ng>
+        <div class="col-sm-4 col-sm-offset-2">
+            <pre> {{ initialised | json }} </pre>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker-ng label="Disabled" [ngModel]="disabled.date" [isDisabled]="disabled.isDisabled" class="col-sm-6" ngDefaultControl></ip-datepicker-ng>
+        <div class="col-sm-2">
+            <label>
+                <input type="checkbox" [(ngModel)]="disabled.isDisabled" />
+                <span>Disabled</span>
+            </label>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker-ng label="Readonly" [ngModel]="readonly.date" [readonly]="readonly.isReadOnly" class="col-sm-6" ngDefaultControl></ip-datepicker-ng>
+        <div class="col-sm-2">
+            <label>
+                <input type="checkbox" [(ngModel)]="readonly.isReadOnly" />
+                <span>Read Only</span>
+            </label>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <form #form0="ngForm">
+            <ip-datepicker-ng #requiredctrl name="required" label="Required" [ngModel]="required.date" class="col-sm-6" isRequired="true" (onblur)="UpdateValue($event,'required')" ngDefaultControl></ip-datepicker-ng>
+            <div class="col-sm-4 col-sm-offset-2">
+                <pre> {{ required | json }} </pre>
+            </div>
+        </form>
+    </div>
+    <hr />
+    <div class="row">
+        <form #form2="ngForm">
+            <ip-datepicker-ng #externalctrl name="external" [earlierThan]="now" label="external" [ngModel]="external.date" class="col-sm-6" (onblur)="UpdateValue($event,'external')" ngDefaultControl></ip-datepicker-ng>
+            <div class="col-sm-2">   
+                <button (click)="Reset('external')">Reset</button>
+            </div>
+            <div class="col-sm-4 col-sm-offset-2">
+                <pre> {{ external | json }} </pre>
+            </div>
+        </form>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker-ng label="Saved" [ngModel]="saved.date" class="col-sm-6 saved" [isSaved]="true" ngDefaultControl></ip-datepicker-ng>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker-ng label="Edited" [ngModel]="modified.date" class="col-sm-6 edited" ngDefaultControl></ip-datepicker-ng>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker-ng label="'No Edit State'" [ngModel]="modified.date" class="col-sm-6" [noEditState]="true" ngDefaultControl></ip-datepicker-ng>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+.kendo-tree-container {
+    border-top: 3px solid $grey-lighter-er;
+}
+
+/* 
+* Moved outside of page-state to fix issue with resizeHandler triggering on load before angular resolves page-state class
+*/
+.fixed-detail-view-container {
+    position: fixed;
+}
+
+body[page-state~="workflows"][page-state~="inheritance"] {
+    .fixed-detail-view-container {
+        div {
+            overflow-y: auto;
+        }
+        .detail-view {
+            border: 8px solid #F5F5F5;
+            padding: 8px;
+            position: relative;
+            header {
+                margin-top: 5px;
+                a {
+                    display:inline-block;
+                    margin-right: 27px
+                }
+            }
+            button {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+            }
+            .input-wrap-group {
+                .text {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}

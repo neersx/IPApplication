@@ -1,0 +1,40 @@
+body[page-state~="policing-dashboard"], 
+body[page-state~="policing-queue"], 
+body[page-state~="policing-request-log"], 
+body[page-state~="policing-error-log"] {
+    .policing-exclamation-square .cpa-icon-exclamation-square {
+        color: #CC3300;
+    }
+    .policing-exclamation-square-noerror .cpa-icon-exclamation-square {
+        color: #909090;
+    }
+    .policing-title-header {
+        border: none;
+        background-color: #F5F5F5;
+        position: relative;
+        h2 {
+            margin-top: 9px;
+        }
+    }
+    .input-wrap.switch [type="checkbox"]+label {
+        padding-left: 45px !important;
+    }
+}
+
+.k-chart-tooltip {
+    color: #1A1A1A !important;
+}
+
+.policing-warning-icon {
+    color: #F46604;
+    &:focus {
+        color: #F46604 !important;
+    }
+    &:hover {
+        color: #F46604 !important;
+    }
+}
+
+.fixed-datepicker [uib-datepicker-popup-wrap] {
+    position: fixed;
+}

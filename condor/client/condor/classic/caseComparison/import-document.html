@@ -1,0 +1,85 @@
+<div ng-form="importDocumentForm" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title">
+            {{ title }}
+        </h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts(vm.maintenance)">
+            <ip-save-button type="button" data-ng-click="save(importDocumentForm)" data-ng-disabled="!importDocumentForm.$dirty">
+            </ip-save-button>
+            <ip-close-button type="button" data-ng-click="dismiss(importDocumentForm)"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-subheader">
+        <div class="readonly-label readonly-label-navy">
+            <label>To Case:</label>
+            <span ng-bind="viewData.caseRef"></span>
+        </div>
+        <div class="readonly-label readonly-label-navy">
+            <label>|</label>
+        </div>
+        <div class="readonly-label readonly-label-navy">
+            <span ng-bind=" viewData.title"></span>
+        </div>
+    </div>
+    <div class="modal-body" ng-if="!imported">
+        <div class="row">
+            <ip-inline-alert type="info" text="{{ 'caseComparison.idLblSubtitle' | translate }}" class="col-sm-12"></ip-inline-alert>
+        </div>
+        <div class="row" style="margin-top:5px;">
+            <div class="col-sm-12">
+                <ip-dropdown label="{{ 'caseComparison.idLblEvent' | translate }}" ng-class="{edited: importDocumentForm.caseEvent.$dirty}" name="caseEvent" ng-model="viewData.selectedEvent" options="e.description for e in viewData.occurredEvents" ng-change="setCycle(importDocumentForm)"
+                    ip-autofocus ip-field-error="{{getEventError(importDocumentForm.caseEvent)}}">
+                </ip-dropdown>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ip-text-field name="caseEventCycle" label="{{ 'caseComparison.idLblCycle' | translate }}" ip-required="viewData.selectedEvent" ng-model="attachment.cycle" ng-class="{edited: importDocumentForm.caseEventCycle.$dirty}" min="1" ip-data-type="positiveinteger"
+                    ng-change="cycleChanged(importDocumentForm)"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ip-text-field name="attachmentName" label="{{ 'caseComparison.idLblAttachmentName' | translate }}" ip-required ng-model="attachment.attachmentName" ng-class="{edited: importDocumentForm.attachmentName.$dirty}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-4" style="margin-top:6px;">
+                    <label class="pull-right">{{ 'caseComparison.idLblAttachmentIsPublic' | translate }}</label>
+                </div>
+                <div class="col-sm-8">
+                    <ip-checkbox name="isPublic" label="" ng-model="attachment.isPublic" ng-class="{edited: importDocumentForm.isPublic.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ip-dropdown label="{{ 'caseComparison.idLblActivityType' | translate }}" ng-class="{edited: importDocumentForm.activityType.$dirty}" name="activityType" ng-model="viewData.selectedActivity" options="e.description for e in viewData.activityTypes" ip-required>
+                </ip-dropdown>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ip-dropdown label="{{ 'caseComparison.idLblActivityCategory' | translate }}" ng-class="{edited: importDocumentForm.activityCategory.$dirty}" name="activityCategory" ng-model="viewData.selectedCategory" options="e.description for e in viewData.categories"
+                    ip-required>
+                </ip-dropdown>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ip-dropdown label="{{ 'caseComparison.idLblAttachmentType' | translate }}" ng-class="{edited: importDocumentForm.attachmentType.$dirty}" name="attachmentType" ng-model="viewData.selectedAttachmentType" options="e.description for e in viewData.attachmentTypes"
+                    ip-required>
+                </ip-dropdown>
+            </div>
+        </div>
+        <div class="row" style="margin-top:8px;">
+            <div class="col-sm-4">
+                <label class="pull-right">{{ 'caseComparison.idLblActivityDate' | translate }}</label>
+            </div>
+            <span class="col-sm-8">
+                <label> {{ viewData.activityDate | localeDate}}</label>
+            </span>
+        </div>
+    </div>
+</div>

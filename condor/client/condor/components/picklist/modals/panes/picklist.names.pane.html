@@ -1,0 +1,140 @@
+<style>
+    .break-text {
+        word-wrap: break-word;
+    }
+    
+    .ceased-date {
+        color: red;
+    }
+    
+    textarea {
+        border: 0px;
+        resize: none;
+    }
+</style>
+<article class="detail-view" ng-if="vm.nameId === undefined">
+    <header>
+        <ip-inline-alert type="info" text="caseSearch.topics.names.selectAName">
+        </ip-inline-alert>
+    </header>
+</article>
+<article class="detail-view data" ng-if="vm.nameId">
+    <header>
+        <h5>{{vm.nameDetailData.displayName}} <span ng-if="vm.nameDetailData.code">({{vm.nameDetailData.code}})</span>
+            <ip-debtor-restriction-flag debtor="vm.nameId" ng-if="vm.nameDetailData.debtorRestrictionFlag" style="margin-left: 5px"></ip-debtor-restriction-flag>
+        </h5>
+    </header>
+    <hr>
+    <div class="container-fluid" ng-if="vm.nameDetailData.isIndividual && !vm.nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.organisation"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{vm.nameDetailData.organisationName}}</span><span ng-if="vm.nameDetailData.organisationCode"> ({{vm.nameDetailData.organisationCode}})</span>
+                <ip-debtor-restriction-flag debtor="vm.nameId" ng-if="vm.nameDetailData.debtorRestrictionFlag" style="margin-left: 5px"></ip-debtor-restriction-flag>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.postalAddress"></span>
+            </div>
+            <div class="col-lg-8">
+                <ip-text-area content="vm.nameDetailData.postalAddress"></ip-text-area>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" ng-if="!vm.nameDetailData.isExternalView || (vm.nameDetailData.isExternalView && !vm.nameDetailData.isStaff)">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.streetAddress"></span>
+            </div>
+            <div class="col-lg-8">
+                <ip-text-area content="vm.nameDetailData.streetAddress"></ip-text-area>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.phone"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{vm.nameDetailData.mainPhone}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.email"></span>
+            </div>
+            <div class="col-lg-8 break-text">
+                <span class="text">{{vm.nameDetailData.mainEmail}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" ng-if="vm.nameDetailData.isOrganisation">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.mainContact"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{vm.nameDetailData.mainContact}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" ng-if="!vm.nameDetailData.isExternalView && vm.nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.startDate"></span>
+            </div>
+            <div class="col-lg-8">
+                <ip-date model="vm.nameDetailData.startDate"></ip-date>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" ng-if="!vm.nameDetailData.isExternalView">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.ceasedDate"></span>
+            </div>
+            <div class="col-lg-8" ng-class="{'ceased-date': vm.nameDetailData.ceasedDateInPast}">
+                <ip-date model="vm.nameDetailData.dateCeased"></ip-date>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" ng-if="!vm.nameDetailData.isExternalView && vm.nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.staffClassification"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{vm.nameDetailData.staffClassification}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" ng-if="!vm.nameDetailData.isExternalView && vm.nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.profitCenter"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{vm.nameDetailData.profitCenter}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" ng-if="!vm.nameDetailData.isExternalView">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.group"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{vm.nameDetailData.group}}</span>
+            </div>
+        </div>
+    </div>
+    <br>
+</article>

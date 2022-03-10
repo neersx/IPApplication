@@ -1,0 +1,98 @@
+<style>
+    .inherited-checkbox {
+        float: left;
+    }
+    
+    .inherited-checkbox .input-wrap {
+        padding-top: 0px;
+        margin-top: -3px;
+    }
+</style>
+<div class="content row col-sm-11 detail-offset" translate-namespace="caseview.names.details">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row" ng-if="::vm.show('address')">
+                <div class="col-sm-3 field-label">
+                    <label translate=".address"></label>
+                </div>
+                <div class="col-sm-9">
+                    <ip-text-area readonly row="3" class="display-wrap cn-address" ng-class="::{ 'input-inherited': vm.details.isAddressInherited}" content="::vm.details.address"></ip-text-area>
+                </div>
+            </div>
+            <div class="row" ng-if="::vm.show('nationality')">
+                <div class="col-sm-3 field-label">
+                    <label translate=".nationality"></label>
+                </div>
+                <div class="col-sm-9">
+                    <span class="text cn-nationality">{{::vm.details.nationality}}</span>
+                </div>
+            </div>
+            <div class="row" ng-if="::vm.show('billPercentage')">
+                <div class="col-sm-3 field-label">
+                    <label translate=".billPercent"></label>
+                </div>
+                <div class="col-sm-9">
+                    <span class="text cn-bill-percentage">{{::vm.details.billingPercentage}}</span>
+                </div>
+            </div>
+            <div class="row" ng-if="::vm.show('remarks')">
+                <div class="col-sm-3 field-label">
+                    <label translate=".remarks"></label>
+                </div>
+                <div class="col-sm-9">
+                    <ip-text-area readonly row="3" class="display-wrap cn-remarks" content="::vm.details.comments"></ip-text-area>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row" ng-if="::vm.show('telecom')">
+                <div class="col-sm-3 field-label">
+                    <label translate=".phone"></label>
+                </div>
+                <div class="col-sm-9">
+                    <span class="text cn-phone">{{::vm.details.phone}}</span>
+                </div>
+            </div>
+            <div class="row" ng-if="::vm.show('telecom')">
+                <div class="col-sm-3 field-label">
+                    <label translate=".email"></label>
+                </div>
+                <div class="col-sm-9">
+                    <ip-email-link class="cn-email" model="vm.email" text="::vm.details.email"></ip-email-link>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 field-label">
+                    <label translate=".website"></label>
+                </div>
+                <div class="col-sm-9">
+                    <a *ngIf="::vm.details.website != null" class="cn-website" target="_blank" href="http://{{::vm.details.website}}">{{::vm.details.website}}</a>
+                </div>
+            </div>
+            <div class="row" ng-if="::vm.show('assignDate')">
+                <div class="col-sm-3 field-label">
+                    <label translate=".assignDate"></label>
+                </div>
+                <div class="col-sm-9">
+                    <ip-date model="::vm.details.assignDate" class="cn-assignment-date"></ip-date>
+                </div>
+            </div>
+            <div class="row" ng-if="::vm.show('dateCommenced')">
+                <div class="col-sm-3 field-label">
+                    <label translate=".commenceDate"></label>
+                </div>
+                <div class="col-sm-9">
+                    <ip-date model="::vm.details.commenceDate" class="cn-commence-date"></ip-date>
+                </div>
+            </div>
+            <div class="row" ng-if="::vm.show('dateCeased')">
+                <div class="col-sm-3 field-label">
+                    <label translate=".expiryDate"></label>
+                </div>
+                <div class="col-sm-9">
+                    <ip-date model="::vm.details.expiryDate" class="cn-cease-date"></ip-date>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

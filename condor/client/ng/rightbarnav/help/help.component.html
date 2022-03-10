@@ -1,0 +1,43 @@
+<div id="help" class="col-sm-12">
+    <div *ngIf="helpData">
+        <h3 translate="help.helpTitle"></h3>
+        <div class="text-wrap" *ngIf="helpData.inprotechHelpLink">
+            <div>
+                <a href="{{helpData.inprotechHelpLink}}" target="_blank" translate="help.inprotechHelp"></a>
+            </div>
+            <div *ngIf="helpData.wikiHelpLink">
+                <a href="{{helpData.wikiHelpLink}}" target="_blank" translate="help.wiki"></a>
+            </div>
+        </div>
+        <div *ngIf="helpData.contactUsEmailAddress">
+            <h3 translate="help.contactUs"></h3>
+            <div class="text-wrap">
+                <a href="{{'mailto:'+helpData.contactUsEmailAddress}}">{{helpData.contactUsEmailAddress}}</a>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h3 translate="help.systemInfo"></h3>
+        <div class="text-wrap" *ngIf="appContext">
+            <div>{{'help.version.inprotech'|translate}}: {{appContext.systemInfo.inprotechVersion}}</div>
+            <div>{{'help.version.database'|translate}}: {{appContext.systemInfo.databaseVersion}}</div>
+            <div>{{'help.version.app'|translate}}: {{appContext.systemInfo.appVersion}}</div>
+            <div *ngIf="hasintegrationDBVersion()">{{'help.version.integrationVersion'|translate}}:
+                {{appContext.systemInfo.integrationVersion}}</div>
+            <div>© {{appContext.systemInfo.releaseYear}} CPA Global Software Solutions Australia Pty Ltd</div>
+
+        </div>
+    </div>
+    <div *ngIf="helpData">
+        <h3 translate="help.credits"></h3>
+        <div class="text-wrap">
+            <a href="" class="third-party-software-licenses" (click)="showCredits()" translate="help.thirdPartySoftwareLicenses"></a>
+        </div>
+    </div>
+    <div *ngIf="helpData?.cookieConsentActive">
+        <h3 translate="help.cookieDeclaration"></h3>
+        <div class="text-wrap">
+            <a (click)="showCookies()" translate="help.cookieDeclaration"></a>
+        </div>
+    </div>
+</div>

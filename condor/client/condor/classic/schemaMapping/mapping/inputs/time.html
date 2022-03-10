@@ -1,0 +1,20 @@
+<div class="col-sm-5 col-sm-offset-4 no-padding-horizontal">
+    <div class="col-sm-4">
+        <select data-ng-model="selectedHour" ng-init="selectedHour = dateHelper.getTime(model.fixedValues[current.node.id]).hours" ng-change="model.fixedValues[current.node.id] = dateHelper.setTime(model.fixedValues[current.node.id], selectedHour, null)">
+            <option ng-repeat="n in [].constructor(24) track by $index" ng-value="$index">
+                 {{padZero($index)}}
+            </option>
+        </select>
+    </div>
+    <div class="col-sm-1 text-center">
+        <label>:</label>
+    </div>
+    <div class="col-sm-4">
+        <select data-ng-model="selectedMinutes" ng-init="selectedMinutes = dateHelper.getTime(model.fixedValues[current.node.id])
+        .minutes" ng-change="model.fixedValues[current.node.id] = dateHelper.setTime(model.fixedValues[current.node.id], null, selectedMinutes)">    
+            <option ng-repeat="n in [].constructor(60) track by $index" ng-value="$index">
+                 {{padZero($index)}}
+            </option>
+        </select>
+    </div>
+</div>

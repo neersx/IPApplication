@@ -1,0 +1,14 @@
+<div>
+    
+    <div class="wizard-navigation-progress">
+        <ul>
+            <li [ngClass]="{'active': index < (currentStep)}" *ngFor="let step of steps; let index = index; trackBy: trackStep" [style.width]="(100 /steps.length) + '%'">
+                <div class="step-label">
+                    {{ step.data.title | translate }}
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div *ngIf="errorMessage" class="login-alert login-alert-error"> {{ errorMessage | translate }} </div>
+    <ng-template wizardComponentHost></ng-template>
+</div>

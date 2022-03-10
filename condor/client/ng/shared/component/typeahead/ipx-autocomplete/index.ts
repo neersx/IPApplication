@@ -1,0 +1,12 @@
+export { DynamicItemTemplateComponent } from './autocomplete/dynamic.item.template.component';
+export { ItemCodeDescComponent } from './autocomplete/item-code-desc.component';
+export { ItemCodeValueComponent } from './autocomplete/item-code-value.component';
+export { ItemCodeDescKeyComponent } from './autocomplete/item-code-desc-key.component';
+export { ItemCodeComponent } from './autocomplete/item-code.component';
+export { ItemDescComponent } from './autocomplete/item-desc.component';
+export { ItemIdDescComponent } from './autocomplete/item-id-desc.component';
+export { ItemNameDescComponent } from './autocomplete/item-name-desc.component';
+export { TemplateHostDirective } from './autocomplete/template.host.directive';
+export { TemplateType } from './autocomplete/template.type';
+export { IpxAutocompleteComponent } from './ipx-autocomplete';
+export { AutoCompleteHighlightedDirective } from './autocomplete.highlighted.directive';

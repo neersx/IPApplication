@@ -1,0 +1,4 @@
+<ipx-checkbox *ngIf="presentationType === null" [(ngModel)]="item" [disabled]="true">
+</ipx-checkbox>
+<div *ngIf="presentationType !== null" class="cpa-icon" [ngClass]="item ? 'cpa-icon-check-circle' : 'cpa-icon-times-circle'" [ngStyle]="{'color': item ? 'green' : '#909090'}">
+</div>

@@ -1,0 +1,54 @@
+<div ng-form="vm.form" ip-form translate-namespace="jurisdictions.maintenance.groupMemberships.maintenance">
+    <ip-maintenance-modal-header data-page-title="{{::vm.title}}" data-dismiss="vm.dismiss()" data-on-apply="vm.apply()" data-is-apply-enabled="vm.isApplyEnabled()" data-has-unsaved-changes="vm.hasUnsavedChanges()" data-is-add-another="vm.isAddAnother" is-edit-mode="vm.isEdit">
+    </ip-maintenance-modal-header>
+    <div class="modal-body">
+        <ip-group-modal-subheader ng-if="vm.isEdit" is-edit-mode="vm.isEdit" all-items="vm.options.allItems" current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges" on-navigate="vm.onNavigate"></ip-group-modal-subheader>
+        <div class="row">
+            <div class="col-md-12" style="margin-left: -8.5%">
+                <ip-typeahead id="jurisdictiongrouppicklist" ng-disabled="vm.isEdit && vm.isGroupDisabled" name="jurisdictiongrouppicklist" label="{{vm.isGroup ? '.group' : '.jurisdiction'}}" ip-required ip-autofocus ng-class="{edited: vm.form.jurisdictiongrouppicklist.$dirty}" data-config='jurisdiction' data-picklist-can-maintain="true" 
+                ng-change="vm.onJurisdictionChange()" ng-model="vm.formData.group" data-extend-query="vm.extendJurisdictionPicklist"></ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ip-datepicker id="datejoinedgroup" name="datejoinedgroup" style="margin-left: 5%;width:375px" label="{{ 'jurisdictions.maintenance.groupMemberships.maintenance.datejoinedgroup' | translate }}" ng-model="vm.formData.dateCommenced"></ip-datepicker>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ip-datepicker id="dateleftgroup" name="dateleftgroup" style="margin-left: 5%;width:375px" label="{{ 'jurisdictions.maintenance.groupMemberships.maintenance.dateleftgroup' | translate }}" ng-model="vm.formData.dateCeased"></ip-datepicker>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ip-datepicker id="datefullmember" data-is-disabled="vm.formData.isAssociateMember" name="datefullmember" style="margin-left: 5%;width:375px" label="{{ 'jurisdictions.maintenance.groupMemberships.maintenance.datefullmember' | translate }}" ng-model="vm.formData.fullMembershipDate"></ip-datepicker>
+            </div>
+        </div>
+        <div class="row col-md-12 control-group">
+            <div class="inline pull-left">
+                <ip-datepicker id="dateassociatemember" data-is-disabled="!vm.formData.isAssociateMember" name="dateassociatemember" style="margin-left: 8.5%;width:375px;" label="{{ 'jurisdictions.maintenance.groupMemberships.maintenance.dateAssociateMember' | translate }}" ng-model="vm.formData.associateMemberDate"></ip-datepicker>
+            </div>
+            <div class="inline">
+                <ip-checkbox class="" name="associateMember" style="margin-left: 5%;" label=".chkAssosiateMember" ng-checked="false" ng-model="vm.formData.isAssociateMember" ng-disabled="false" ng-change="vm.onAssociateMemberChange()" ng-class="{'edited': vm.form.associateMember.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <div class="col-md-12" style="margin-left: -9%">
+            <ip-typeahead label="{{ 'jurisdictions.maintenance.groupMemberships.maintenance.propertyType' | translate }}" id='propertyTypePicklsit' name="propertyTypePicklsit" data-config='propertyType' ng-model="vm.formData.propertyTypeCollection" data-multiselect data-ng-class="{edited: vm.form.propertyType.$dirty}" data-extend-query="vm.extendPropertyTypePicklist"
+                data-picklist-can-maintain="true" ng-disabled="vm.propertyTypeDisabled()" data-external-scope="vm.picklistValidCombination">
+            </ip-typeahead>
+        </div>
+        <div class="col-md-1">                
+            <ip-inline-dialog data-html="true" data-content="{{::'jurisdictions.maintenance.groupMemberships.maintenance.propertyTypeHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>        
+        <div class="row">
+            <div class="col-md-8 col-md-push-4" style="margin-left: -10%">
+                <ip-checkbox name="defaultSelection" label=".chkDefaultSelection" ng-checked="false" ng-model="vm.formData.isGroupDefault" ng-disabled="false" ng-class="{'edited': vm.form.defaultSelection.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-push-4" style="margin-left: -10%">
+                <ip-checkbox name="preventEntry" label=".chkPreventEntry" ng-checked="false" ng-model="vm.formData.preventNationalPhase" ng-disabled="false" ng-class="{'edited': vm.form.preventEntry.$dirty}"></ip-checkbox>
+            </div>
+        </div>       
+    </div>
+</div>

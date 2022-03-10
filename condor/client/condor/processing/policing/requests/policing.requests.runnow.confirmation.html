@@ -1,0 +1,95 @@
+<div id="requestRunNowModal" translate-namespace="policing.request.runNow">
+    <div class="modal-header">
+        <h2 class="modal-title" translate=".title"></h2>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <p ng-if="isStartDateInFuture()" style="padding:4px 2px 5px 9px;font-weight:bold;" translate=".futurePolicing"></p>
+            <p style="padding:4px 2px 5px 9px" translate=".description"></p>
+        </div>
+
+        <div class="row text-wrap">
+            <div class="col-sm-3 text-right" translate=".request">
+            </div>
+            <div class="col-sm-9">
+                <strong>{{request.title}}</strong>
+            </div>
+        </div>
+
+        <div class="row" ng-show="canCalculateAffectedCases">
+            <div ng-if="!isAffectedCasesAvailable()" class="text-wrap col-sm-offset-2">
+                <span translate=".calculatingCases"></span>
+                <span class="cpa-icon loading-circle"></span>
+            </div>
+            <div ng-if="isAffectedCasesAvailable()" class="text-wrap col-sm-offset-2" translate=".affectedCases" translate-values="{cases:request.noOfAffectedCases}">
+
+            </div>
+            <div class="col-sm-offset-2">
+                <div>
+                    <ip-radio-button id="runType-oneRequest" label=".runTypeOneRequest" ng-model="runMode.type" ng-value="1"></ip-radio-button>
+
+                </div>
+                <div>
+                    <ip-radio-button class="col-sm-11" style="padding-left:0px;" id="runType-seperateCases" label=".runTypeSeparateCases" ng-disabled="!(request.noOfAffectedCases >0)" ng-model="runMode.type" ng-value="2">
+                    </ip-radio-button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row text-wrap">
+            <div class="col-sm-3 text-right" style="padding-left:0px;">
+                <span class="text-grey-dark" translate=".start"></span>
+            </div>
+            <div class="col-sm-4">
+                <span id="startDate" class="text-grey-dark">
+                    <ip-date model="request.startDate|| 'Oldest'"></ip-date>
+                </span>
+            </div>
+
+
+        </div>
+
+        <div class="row text-wrap">
+            <div class="col-sm-3 text-right">
+                <span class="text-grey-dark" translate=".forDays"></span>
+
+            </div>
+            <div class="col-sm-4">
+                <span id="forDays" ng-if="request.forDays && request.forDays!==0" class="text-grey-dark">
+                    {{request.forDays}}
+                </span>
+                <span id="forDays" ng-if="!request.forDays || request.forDays===0" class="text-grey-dark">
+                    {{defaultDays | translate}}
+                </span>
+            </div>
+        </div>
+
+        <div class="row text-wrap">
+            <div class="col-sm-3 text-right">
+                <span class="text-grey-dark" translate=".until"></span>
+            </div>
+            <div class="col-sm-4">
+                <span id="endDate" class="text-grey-dark">
+                    <ip-date model="request.endDate||today"></ip-date>
+                </span>
+            </div>
+        </div>
+
+        <div class="row text-wrap">
+            <div class="col-sm-3 text-right">
+                <span class="text-grey-dark" translate=".dateLetters"></span>
+            </div>
+            <div class="col-sm-4">
+                <span id="dateLetters" class="text-grey-dark">
+                    <ip-date model="request.dateLetters||today"></ip-date>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn" data-ng-click="cancel()" translate="Cancel"></button>
+        <button type="button" class="btn btn-primary" data-ng-click="proceed()" translate="Proceed"></button>
+    </div>
+</div>

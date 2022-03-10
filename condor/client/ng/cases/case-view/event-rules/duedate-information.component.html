@@ -1,0 +1,98 @@
+<div class="topic-container">    
+    <h1 translate="caseview.eventRules.dueDateCalculations.header"></h1>
+    <div>
+        <div *ngIf="!dueDateCalculationInfo" class="no-info">
+            <span style="width: 20px; display: inline-block;">&nbsp;</span>
+            <span>{{'caseview.eventRules.noInformation' | translate }}</span>
+        </div>
+        <div class="container-fluid" *ngIf="dueDateCalculationInfo">
+            <div class="row" *ngIf="dueDateCalculationInfo.heading">
+                <strong><span>{{dueDateCalculationInfo.heading | translate}}</span></strong>
+            </div>
+            <div class="row" style="margin-top:5px;">
+                <div *ngFor="let dd of dueDateCalculationInfo.dueDateCalculation; index as divrow;trackBy: byItem" [ngClass]="divrow % 2 == 0 ? '' : 'bg-color'">
+                    <div class="row margin-bottom">                        
+                        <label style="min-width: 50px;">&nbsp;</label>
+                        <label id="calculatedFromLabel">{{ dd.formattedDescription | translate}}</label>
+                    </div>
+                    <div class="row margin-bottom" *ngIf="dd.mustExist">
+                        <label style="min-width: 50px;">&nbsp;</label>
+                        <label>{{ 'caseview.eventRules.dueDateCalculations.mustExistCalculation' | translate }}</label>
+                    </div>
+                    <div class="row margin-bottom" *ngIf="dd.fromDateFormatted">
+                        <div class="field-label col-sm-3">
+                            <label>{{ dd.calculatedFromLabel | translate }}</label>
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="text ng-binding text-nowrap">{{dd.fromDateFormatted}}</span>
+                        </div>
+                        <div class="field-label col-sm-2">
+                            <label translate="caseview.eventRules.eventNumber"> </label>
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="text ng-binding">{{dd.eventKey}}</span>
+                        </div>
+                        <div class="field-label col-sm-1">
+                            <label translate="caseview.eventRules.cycle"> </label>
+                        </div>
+                        <div class="col-sm-1">
+                            <span class="text ng-binding">{{dd.cycle}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div  *ngIf="dueDateCalculationInfo.standingInstructionInfo">
+                <div class="row" style="margin-top: 15px;">
+                    <strong><span>{{'caseview.eventRules.dueDateCalculations.standingInstructionHeader' | translate}}</span></strong>
+                </div>
+
+                <div class="row" style="margin-top:5px;">
+                    <label id="standingInstructionInfo">{{dueDateCalculationInfo.standingInstructionInfo | translate}}</label>
+                </div>
+            </div>
+
+            <div *ngIf="dueDateCalculationInfo.dueDateComparison">
+                <div class="row" style="margin-top: 15px;">
+                    <strong><span>{{dueDateCalculationInfo.dueDateComparisonInfo | translate}}</span></strong>
+                </div>
+
+                <div class="row">
+                    <ipx-kendo-grid id="dateComparison" [dataOptions]="dateComparisonGridOptions"
+                        *ngIf="dateComparisonGridOptions">
+                    </ipx-kendo-grid>
+                </div>
+            </div>
+
+            <div *ngIf="dueDateCalculationInfo.dueDateSatisfiedBy">
+                <div class="row" style="margin-top: 15px;">
+                    <strong><span>{{'caseview.eventRules.dueDateCalculations.dueDateSatisfied_Literal' | translate}}</span></strong>
+                </div>
+
+                <div class="row">
+                    <ipx-kendo-grid id="satisfiedEvents" [dataOptions]="satisfyingEventGridOptions"
+                        *ngIf="satisfyingEventGridOptions">
+                    </ipx-kendo-grid>
+                </div>
+            </div>
+
+            <div  *ngIf="dueDateCalculationInfo.extensionInfo || dueDateCalculationInfo.hasSaveDueDateInfo || dueDateCalculationInfo.hasRecalculateInfo">
+                <div class="row" style="margin-top: 15px;">
+                    <strong><span>{{'caseview.eventRules.dueDateCalculations.dueDateSettings' | translate}}</span></strong>
+                </div>
+            <div class="row" style="margin-top: 10px;" *ngIf="dueDateCalculationInfo.extensionInfo">
+                <label>{{'caseview.eventRules.dueDateCalculations.dueDateExtension_Literal' | translate}}</label>
+                <span>&nbsp;</span>
+                <label>{{dueDateCalculationInfo.extensionInfo | translate}}</label>
+            </div>
+
+            <div class="row" style="margin-top: 10px;" *ngIf="dueDateCalculationInfo.hasSaveDueDateInfo">
+                <label id="saveDueDate">{{'caseview.eventRules.dueDateCalculations.saveDueDate_Literal' | translate}}</label>
+            </div>
+
+            <div class="row" style="margin-top: 10px;" *ngIf="dueDateCalculationInfo.hasRecalculateInfo">
+                <label id="recalculateDueDate">{{'caseview.eventRules.dueDateCalculations.recalculateEventDate_Literal' | translate}}</label>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>

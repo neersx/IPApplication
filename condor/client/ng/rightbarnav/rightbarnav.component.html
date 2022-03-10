@@ -1,0 +1,47 @@
+<div id="quick-links-container" [ngClass]="{'opened':isOpened}">
+    <div class="quick-links-backdrop" (click)="close()"></div>
+    <div id="quick-links" style="text-align: center">
+        <div *ngFor="let btn of defaults | keyvalue: asIsOrder; trackBy: btn">
+            <button *ngIf="btn.value.options.id !== 'backgroundNotification'" (click)="click(btn.value.options)" type="button" class="btn btn-icon btn-no-bg" id="{{btn.value.options.id}}"
+                tooltip="{{ btn.value.options.tooltip | translate}}" placement="left" [ngClass]="{'active-link':isActive(btn.value.options.id)}">
+                <div class="cpa-icon" [ngClass]="btn.value.options.icon" style="color: white;">
+                </div>
+            </button>
+            <button *ngIf="btn.value.options.id == 'backgroundNotification'" (click)="click(btn.value.options)" type="button" class="btn btn-icon btn-no-bg" id="{{btn.value.options.id}}"
+                tooltip="{{ btn.value.options.tooltip | translate}}" placement="left" [ngClass]="{'active-link':isActive(btn.value.options.id)}">
+                <div class="cpa-icon" [ngClass]="btn.value.options.icon" [ngStyle]="{'color': hasBackgroundMessage()? '#FFC21F' : 'white'}"></div>
+                <span *ngIf="hasBackgroundMessage()" class="notification-count">{{backgroundMessageCount}}</span>
+            </button>
+        </div>
+        <div class="contextual" *ngIf="contextual">
+            <div *ngFor="let btn of contextual | keyvalue: asIsOrder; trackBy: btn">
+                <button (click)="click(btn.value.options,true)" type="button" class="btn btn-icon btn-no-bg" id="{{btn.value.options.id}}" tooltip="{{ btn.value.options.tooltip | translate}}" placement="left"
+                    [ngClass]="{'active-link':isActive(btn.value.options.id)}">
+                    <div class="cpa-icon" [ngClass]="btn.value.options.icon" style="color: black"></div>
+                </button>
+            </div>
+        </div>
+        <div class="kot-button" *ngIf="hasKot" style="vertical-align: bottom;">
+            <button (click)="kotChange()" type="button" class="btn btn-icon btn-no-bg" id="btnKot" tooltip="{{ 'menu.keepOnTopNotesButton' | translate }}" placement="left" [ngClass]="{'active-link':kotActive}">
+                <span id="kotCount" class="badge topics pull-right kot-button-badge">{{kotNotesCount}}</span>
+                <div class="cpa-icon cpa-icon-notes-o" style="color: black"></div>
+            </button>
+        </div>
+    </div>
+    <div id="quick-links-content">
+        <div class="page-title">
+            <h1 *ngIf="isOpened"> {{active.options.title | translate }} </h1>
+            <div class="controls">
+                <button id="dismiss-quick-link" class="btn btn-icon btn-discard" (click)="close()">
+                    <span class="cpa-icon cpa-icon-times"></span>
+                </button>
+            </div>
+        </div>
+        <div id="quick-links-content-body">
+            <ng-template #dynamiccontentbody></ng-template>
+        </div>
+    </div>
+    <div id="kotContent" class="kot-content" *ngIf="kotActive">
+        <ipx-kot-panel [notes]="kotNotes"></ipx-kot-panel>
+    </div>
+</div>

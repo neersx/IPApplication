@@ -1,0 +1,147 @@
+<style>
+    div~ip-checkbox {
+        margin-left: 15px;
+    }
+
+    .custom-class {
+        color: #4682b4;
+    }
+</style>
+<div ng-form="vm.form" ip-form translate-namespace=".eventOccurrence">
+    <div class="row">
+        <div class="col-sm-6" ng-class="{'input-inherited': vm.isInherited()}">
+            <div class="row" ip-tooltip="{{!vm.isEventOccurrenceDisabled() ? '' : ('workflows.eventcontrol.eventOccurrence.disabledTooltip' | translate)}}">
+                <div class="input-wrap-group group-inline text-nowrap">                        
+                    <ip-radio-button name="onDueDateOption" label=".onTheDueDate" ng-model="vm.formData.dueDateOccurs" value="OnDueDate"
+                        ng-class="{edited: vm.form.onDueDateOption.$dirty, 'input-inherited': vm.parentData.dueDateOccurs === 'OnDueDate'}"
+                        ng-disabled="vm.isEventOccurrenceDisabled()"></ip-radio-button>
+                    <ip-radio-button name="immediatelyOnCalculatingDueDateOption" label=".immediatelyOnCalculatingTheDueDate" ng-model="vm.formData.dueDateOccurs"
+                        value="Immediate" ng-class="{edited: vm.form.immediatelyOnCalculatingDueDateOption.$dirty, 'input-inherited': vm.parentData.dueDateOccurs === 'Immediate'}"
+                        ng-disabled="vm.isEventOccurrenceDisabled()"></ip-radio-button>
+                    <ip-radio-button name="notApplicableOption" label="workflows.eventcontrol.notApplicable" ng-model="vm.formData.dueDateOccurs"
+                        value="NotApplicable" ng-class="{edited: vm.form.notApplicableOption.$dirty, 'input-inherited': vm.parentData.dueDateOccurs === 'NotApplicable'}"
+                        ng-disabled="vm.isEventOccurrenceDisabled()"></ip-radio-button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-wrap-group">
+                    <ip-checkbox name="whenAnotherCaseExists"  ng-class="{edited: vm.form.whenAnotherCaseExists.$dirty}" label=".whenAnotherCaseExists" data-info="workflows.eventcontrol.eventOccurrence.whenAnotherCaseExistsInfo"
+                        ng-model="vm.isWhenAnotherCaseExists" ng-disabled="vm.isWhenAnotherCaseExistsDisabled()"></ip-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="vm.isWhenAnotherCaseExists">
+        <div class="row">
+            <div class="col-sm-6">
+                <h2 translate=".characteristicsHeader"></h2>
+            </div>
+            <div class="col-sm-6">
+                <h2 translate=".matchCharacteristicsHeader"></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ip-typeahead name="office" ng-model="vm.formData.characteristics.office" ng-disabled="!vm.canEdit || vm.formData.matchOffice"
+                            ng-class="{'input-inherited': vm.isCharacteristicInherited()}"
+                            data-config="office" ng-if="::vm.hasOffices">
+                        </ip-typeahead>
+                    </div>
+                    <ip-checkbox name="matchOffice" ng-model="vm.formData.matchOffice" ng-disabled="::!vm.canEdit" ng-change="vm.matchBoxChanged()"
+                        ng-class="{'input-inherited': vm.isCharacteristicInherited(), 'edited': vm.form.matchOffice.$dirty}"></ip-checkbox>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ip-typeahead name="caseType" ng-model="vm.formData.characteristics.caseType" ng-disabled="::!vm.canEdit"
+                            ng-class="{'input-inherited': vm.isCharacteristicInherited()}"
+                            ng-change="vm.validateValidCombinations()" data-config="caseType" data-extend-query="vm.extendValidCombinationPickList"
+                            data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true"></ip-typeahead>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ip-typeahead name="jurisdiction" ng-model="vm.formData.characteristics.jurisdiction" ng-disabled="!vm.canEdit || vm.formData.matchJurisdiction"
+                            ng-class="{'input-inherited': vm.isCharacteristicInherited()}" data-config="jurisdiction"
+                            ng-change="vm.validateValidCombinations()" data-picklist-can-maintain="true"
+                            data-extend-query="vm.extendValidCombinationPickList" data-external-scope="vm.picklistValidCombination">
+                        </ip-typeahead>
+                    </div>
+                    <ip-checkbox name="matchJurisdiction" ng-model="vm.formData.matchJurisdiction" ng-disabled="::!vm.canEdit" ng-change="vm.matchBoxChanged()"
+                        ng-class="{'input-inherited': vm.isCharacteristicInherited(), 'edited': vm.form.matchJurisdiction.$dirty}"></ip-checkbox>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ip-typeahead name="propertyType" ng-model="vm.formData.characteristics.propertyType" ng-disabled="!vm.canEdit || vm.formData.matchPropertyType"
+                            ng-class="{'input-inherited': vm.isCharacteristicInherited()}" data-config="propertyType"
+                            ng-change="vm.validateValidCombinations()"
+                            data-extend-query="vm.extendValidCombinationPickList" data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true"
+                            data-key-field="key" data-code-field="code" data-text-field="value"></ip-typeahead>
+                    </div>
+                    <ip-checkbox name="matchPropertyType" ng-model="vm.formData.matchPropertyType" ng-disabled="::!vm.canEdit" ng-change="vm.matchBoxChanged()"
+                        ng-class="{'input-inherited': vm.isCharacteristicInherited(), 'edited': vm.form.matchPropertyType.$dirty}"></ip-checkbox>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ip-typeahead name="caseCategory" ng-model="vm.formData.characteristics.caseCategory" ng-disabled="!vm.canEdit || vm.isCaseCategoryDisabled() || vm.formData.matchCaseCategory"
+                            ng-class="{'input-inherited': vm.isCharacteristicInherited()}" data-config="caseCategory"
+                            ng-change="vm.validateValidCombinations()"
+                            data-extend-query="vm.extendValidCombinationPickList" data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true">
+                        </ip-typeahead>
+                    </div>
+                    <ip-checkbox name="matchCaseCategory" ng-model="vm.formData.matchCaseCategory" ng-disabled="::!vm.canEdit" ng-change="vm.matchBoxChanged()"
+                        ng-class="{'input-inherited': vm.isCharacteristicInherited(), 'edited': vm.form.matchCaseCategory.$dirty}"></ip-checkbox>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ip-typeahead name="subType" ng-model="vm.formData.characteristics.subType" ng-disabled="!vm.canEdit || vm.formData.matchSubType"
+                            ng-class="{'input-inherited': vm.isCharacteristicInherited()}"
+                            ng-change="vm.validateValidCombinations()"
+                            data-config="subType" data-picklist-can-maintain="true" data-extend-query="vm.extendValidCombinationPickList"
+                            data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true" data-key-field="key"
+                            data-code-field="code" data-text-field="value">
+                        </ip-typeahead>
+                    </div>
+                    <ip-checkbox name="matchSubType" ng-model="vm.formData.matchSubType" ng-disabled="::!vm.canEdit" ng-change="vm.matchBoxChanged()"
+                        ng-class="{'input-inherited': vm.isCharacteristicInherited(),'edited': vm.form.matchSubType.$dirty}"></ip-checkbox>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ip-typeahead name="basis" ng-model="vm.formData.characteristics.basis" ng-disabled="!vm.canEdit || vm.formData.matchBasis"
+                            ng-class="{'input-inherited': vm.isCharacteristicInherited()}"
+                            ng-change="vm.validateValidCombinations()"
+                            data-config="basis" data-extend-query="vm.extendValidCombinationPickList" data-external-scope="vm.picklistValidCombination"
+                            data-picklist-can-maintain="true" data-key-field="key" data-code-field="code" data-text-field="value">
+                        </ip-typeahead>
+                    </div>
+                    <ip-checkbox name="matchBasis" ng-model="vm.formData.matchBasis" ng-disabled="::!vm.canEdit" ng-change="vm.matchBoxChanged()"
+                        ng-class="{'input-inherited': vm.isCharacteristicInherited(), 'edited': vm.form.matchBasis.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <h2 translate=".matchingNamesHeader"></h2>
+        </div>
+        <div class="text-right">
+            <ip-add-button ng-click="vm.onAddClick()" ng-if="vm.canEdit"></ip-add-button>
+        </div>
+        <div class="row inline-editing">
+            <ip-kendo-grid data-id="matchNames" data-grid-options="vm.gridOptions" data-show-add="vm.canEdit" data-on-add-click="vm.onAddClick()"
+                data-add-disabled="vm.topic.hasError()" data-add-item-name="{{'workflows.eventcontrol.eventOccurrence.nameTypeMatch' | translate}}">
+            </ip-kendo-grid>
+        </div>
+        <div class="row">
+            <h2 translate=".matchingEventsHeader"></h2>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead name="eventsExist" label=".events" ng-class="{edited: vm.formData.eventsExist.$dirty}" ng-model="vm.formData.eventsExist"
+                    data-config="eventsFilteredByCriteria" data-picklist-can-maintain="true" data-external-scope="vm.eventPicklistScope"
+                    data-extend-query="vm.eventPicklistScope.extendQuery" data-multiselect data-multipick ng-disabled="::!vm.canEdit">
+                </ip-typeahead>
+            </div>
+        </div>
+    </div>
+</div>

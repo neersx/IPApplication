@@ -1,0 +1,11 @@
+<ng-container *ngTemplateOutlet="hasChildren ? groupHeaderTemplate : groupItemsTemplate"></ng-container>
+
+<ng-template #groupHeaderTemplate>
+    <ipx-group-header-item [items]="items" [columns]="columns" [contextMenuParams]="contextMenuParams" [isShowContextMenu]="isShowContextMenu" [detailTemplate]="detailTemplate" (groupItemClicked)="onGroupItemClicked($event)" [detailTemplateShowCondition]="detailTemplateShowCondition">
+    </ipx-group-header-item>
+</ng-template>
+
+<ng-template #groupItemsTemplate>
+    <ipx-group-items *ngIf="items && items.length > 0" [items]="items" [columns]="columns" [contextMenuParams]="contextMenuParams" [isShowContextMenu]="isShowContextMenu" [detailTemplate]="detailTemplate" [detailTemplateShowCondition]="detailTemplateShowCondition"
+        (groupItemClicked)="onGroupItemClicked($event)"></ipx-group-items>
+</ng-template>

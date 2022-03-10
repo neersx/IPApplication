@@ -1,0 +1,63 @@
+<div data-ng-controller="relationshipController as rCtrl">
+    <div translate-namespace="picklist.relationship">
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-text-field name="code" ip-required ip-autofocus label=".Code" ng-model="vm.entry.code" data-ng-maxlength="3" ng-disabled="vm.maintenanceState === 'updating' || vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.code.$dirty}" ip-field-error="{{vm.entry.$error('code').message}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-text-field name="value" ip-required label=".Description" ng-model="vm.entry.value" ng-class="{edited: vm.maintenance.value.$dirty}" data-ng-maxlength="50" ng-disabled="vm.maintenanceState === 'viewing'" ip-field-error="{{vm.entry.$error('value').message}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-typeahead class="col-sm-8" name="fromEvent" ng-model="vm.entry.fromEvent" data-config="event" data-label=".fromEvent" data-picklist-can-maintain="true" ng-disabled="vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.fromEvent.$dirty}"
+                    ng-change="rCtrl.onEventChange(vm.entry, 'fromEvent', vm.maintenance)" ip-field-error="{{vm.entry.$error('fromEvent').message}}"></ip-typeahead>
+                <ip-inline-dialog class="col-sm-1" data-content="{{::'picklist.relationship.fromEventHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-typeahead class="col-sm-8" name="toEvent" ng-model="vm.entry.toEvent" data-config="event" data-label=".toEvent" data-picklist-can-maintain="true" ng-disabled="vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.toEvent.$dirty}" ng-change="rCtrl.onEventChange(vm.entry, 'toEvent', vm.maintenance)"
+                    ip-field-error="{{vm.entry.$error('toEvent').message}}"></ip-typeahead>
+            </div>
+            <ip-inline-dialog class="col-sm-1" data-content="{{::'picklist.relationship.toEventHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row">
+            <div>
+                <ip-typeahead class="col-sm-8" name="displayEvent" ng-model="vm.entry.displayEvent" data-config="event" data-label=".displayEvent" data-picklist-can-maintain="true" ng-disabled="vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.displayEvent.$dirty}"></ip-typeahead>
+                <ip-inline-dialog class="col-sm-1" data-content="{{::'picklist.relationship.displayEventHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-text-field multiline name="notes" label=".notes" ng-model="vm.entry.notes" ng-class="{edited: vm.maintenance.notes.$dirty}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-3">
+                <ip-checkbox name="earliestDateFlag" ng-model="vm.entry.earliestDateFlag" label=".earliestDateFlag" ng-disabled="vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.earliestDateFlag.$dirty}"></ip-checkbox>
+                <ip-inline-dialog class="col-sm-offset-1" data-content="{{::'picklist.relationship.earliestDataFlagHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-3">
+                <ip-checkbox name="pointsToParent" ng-model="vm.entry.pointsToParent" label=".pointsToParent" ng-disabled="vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.pointsToParent.$dirty}" ></ip-checkbox>
+            </div>
+            <ip-inline-dialog data-content="{{::'picklist.relationship.pointsToParentHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-3">
+                <ip-checkbox name="showFlag" ng-model="vm.entry.showFlag" label=".showFlag" ng-disabled="vm.maintenanceState === 'viewing'" ng-init="rCtrl.init(vm)" ng-class="{edited: vm.maintenance.showFlag.$dirty}" ></ip-checkbox>
+            </div>
+            <ip-inline-dialog data-content="{{::'picklist.relationship.showFlagHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 col-sm-offset-3">
+                <ip-checkbox name="reportPriorArt" ng-model="vm.entry.priorArtFlag" label=".reportPriorArt" ng-disabled="vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.reportPriorArt.$dirty}" ></ip-checkbox>
+            </div>
+            <ip-inline-dialog data-content="{{::'picklist.relationship.reportPriorArtHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+    </div>
+</div>

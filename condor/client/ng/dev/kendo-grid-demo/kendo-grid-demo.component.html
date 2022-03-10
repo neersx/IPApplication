@@ -1,0 +1,48 @@
+<ip-resize-handler-upg>
+
+    <div>
+        <h3>Ipx Kendo Grid</h3>
+        <ipx-kendo-grid [dataOptions]="gridoptions" [items]="taskItems" (menuItemSelected)="onMenuItemSelected($event)">
+            <ng-template ipxTemplateColumnField="name" let-dataItem>
+                <b>{{ dataItem.name }}</b>
+                <span class="pull-right"><a target="_blank"
+                        [href]="'https://www.google.com/search?q='+dataItem.name">Google
+                        it!</a></span>
+            </ng-template>
+
+            <ng-template ipxTemplateColumnField="isPosted" let-dataItem>
+                <b>{{ dataItem.type }}</b>                
+            </ng-template>
+        </ipx-kendo-grid>
+
+        <ng-template #lastCol let-dataItem>
+            <span [ngStyle]="typeStyles(dataItem.type)">{{ dataItem.type }}</span>
+            <button class="btn btn-small" (click)="showAlert(dataItem.type)"> Click for Alert</button>
+        </ng-template>
+
+
+
+        <ng-template #detailTemplate let-dataItem>
+            <section>
+                <p><strong>Country Code:</strong> {{ dataItem.id }}</p>
+                <p><strong>{{ 'picklist.case.CaseRef' | translate }}</strong> {{ dataItem.name }}</p>
+                <p><strong>Type:</strong> {{ dataItem.type }}</p>
+            </section>
+        </ng-template>
+    </div>
+
+    <div>
+        <h3>Ipx Kendo Grid - On Click Search</h3>
+        <div><button (click)="gridoptionsOnClickSearch._search()">Load Grid Data</button></div>
+        <ipx-kendo-grid [dataOptions]="gridoptionsOnClickSearch">
+        </ipx-kendo-grid>
+    </div>
+
+    <div>
+        <h3>Ipx Kendo Grid - Paged</h3>
+        <ipx-kendo-grid [dataOptions]="gridoptionsPaged"></ipx-kendo-grid>
+    </div>
+
+    
+
+</ip-resize-handler-upg>

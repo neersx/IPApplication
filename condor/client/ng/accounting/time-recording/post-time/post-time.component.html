@@ -1,0 +1,49 @@
+<div id="postTimeModal">
+    <form #postTimeForm="ngForm">
+        <div id="postTimeModal" name="postTimeModal">
+            <div class="modal-header">
+                <h2 class="modal-title">{{'accounting.time.postTime.title' | translate}}</h2>
+                <div class="modal-header-controls">
+                    <button class="btn btn-primary" [disabled]="selectedPostType === '1' && !areRecordsSelected" name="postButton" (click)="postTime()">Post</button>
+                    <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+                </div>
+            </div>
+            <div class="modal-body" *ngIf="view$ | async as view;">
+                <div *ngIf="!isEntityHidden">
+                    <div *ngIf="isEntityDisabled" class="label-value col-sm-12">
+                        <label class="col-sm-4 text-right" translate="accounting.time.postTime.toEntity"></label>
+                        <span class="col-sm-8 text">{{selectedEntity.displayName}}</span>
+                    </div>
+                    <ipx-dropdown name="entity" *ngIf="!isEntityDisabled && view?.entities.length >= 0" required [label]="'accounting.time.postTime.toEntity'" [displayField]="'displayName'" [keyField]="'id'"
+                        [options]="view?.entities" (onChange)="onEntityChange($event)" [(ngModel)]="selectedEntityKey" name="entityDropdown" ipx-autofocus="true"></ipx-dropdown>
+                </div>
+                <div *ngIf="!postAllStaff" class="label-value" [ngClass]="{'col-sm-12': !isEntityHidden, 'col-sm-6': isEntityHidden }">
+                    <label class="col-sm-4" [ngClass]="{'text-right': !isEntityHidden}" translate="accounting.time.recording.timeFor"></label>
+                    <span class="col-sm-8 text" id="staffName">{{(userInfo$| async)?.displayName }}</span>
+                </div>
+                <div *ngIf="!postEntryDetails" class="col-sm-12">
+                    <div class="col-sm-offset-4 col-sm-8 pull-right">
+                        <div class="input-wrap-group group-inline">
+                            <ipx-checkbox *ngIf="canPostForAllStaff" name="postAllStaff" [label]="'accounting.time.postTime.postAllStaff.label'" [(ngModel)]="postAllStaff"
+                            [disabled]="false" class="pull-left"></ipx-checkbox>
+                            <ipx-radio-button id="postAll" name="postRadio" value="0" [label]="'accounting.time.postTime.postAll.label'" [(ngModel)]="selectedPostType">
+                            </ipx-radio-button>
+                            <ipx-radio-button id="postSelected" name="postRadio" value="1" [label]="'accounting.time.postTime.postSelected.label'" [(ngModel)]="selectedPostType">
+                                {{ 'Post Selected' }}</ipx-radio-button>
+                        </div>
+                    </div>
+                    <div *ngIf="postAllStaff && selectedPostType === '1'" class="input-wrap-group group-inline pull-right">
+                        <ipx-date-picker required id="fromDate" name="fromDate" [(ngModel)]="postAllStaffFromDate" [label]="'accounting.time.postTime.postAllStaff.fromLabel'"
+                         (onChange)="changeDate($event)" [earlierThan]="tomorrow"></ipx-date-picker>
+                        <ipx-date-picker required id="toDate" name="toDate" [(ngModel)]="postAllStaffToDate" [label]="'accounting.time.postTime.postAllStaff.toLabel'"
+                         (onChange)="changeDate($event)" [earlierThan]="tomorrow" [laterThan]="postAllStaffFromDate" [includeSameDate]="true"></ipx-date-picker>
+                    </div>
+                    <div class="col-sm-12">
+                        <span *ngIf="selectedPostType === '0'">{{'accounting.time.postTime.postAll.text' | translate}}</span>
+                        <post-selected #postSelectedRef *ngIf="selectedPostType === '1'" (recordsSelected)="recordSelectionChanged($event)" [postAllStaff]="postAllStaff" [fromDate]="postAllStaffFromDate" [toDate]="postAllStaffToDate"></post-selected>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

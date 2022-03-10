@@ -1,0 +1,57 @@
+<div class="container-fluid detail">
+    <div class="row data">
+        <div class="article-label">
+            <span translate="accounting.agedBalance.title"></span>
+        </div>
+    </div>
+    <div class="row" *ngFor="let m of (agedTotals$ | async); trackBy: byEntity">
+        <div class="row data">
+            <div class="col-lg-6 article-label">
+                <span translate="accounting.agedBalance.entity"></span>
+            </div>
+            <div class="col-lg-6">
+                <span class="text">{{ m.entityName }}</span>
+            </div>
+        </div>
+        <div class="row data">
+            <div class="col-lg-4" style="padding-left: 10px">
+                <span translate="accounting.agedBalance.current"></span>
+            </div>
+            <div class="col-lg-6 col-lg-2-offset text-right">
+                <span class="text">{{ m.bracket0Total | localCurrencyFormat | async }}</span>
+            </div>
+        </div>
+        <div class="row data">
+            <div class="col-lg-4" style="padding-left: 10px">
+                <span translate="accounting.agedBalance.bracket1"></span>
+            </div>
+            <div class="col-lg-6 col-lg-2-offset  text-right">
+                <span class="text">{{ m.bracket1Total | localCurrencyFormat| async }}</span>
+            </div>
+        </div>
+        <div class="row data">
+            <div class="col-lg-4" style="padding-left: 10px">
+                <span translate="accounting.agedBalance.bracket2"></span>
+            </div>
+            <div class="col-lg-6 col-lg-2-offset text-right">
+                <span class="text">{{ m.bracket2Total | localCurrencyFormat| async }}</span>
+            </div>
+        </div>
+        <div class="row data">
+            <div class="col-lg-4" style="padding-left: 10px">
+                <span translate="accounting.agedBalance.bracket3"></span>
+            </div>
+            <div class="col-lg-6 col-lg-2-offset text-right">
+                <span class="text">{{ m.bracket3Total | localCurrencyFormat| async }}</span>
+            </div>
+        </div>
+        <div class="row data">
+            <div class="col-lg-4 article-label" style="padding-left: 10px">
+                <span translate="accounting.agedBalance.total"></span>
+            </div>
+            <div class="col-lg-6 col-lg-2-offset text-right">
+                <span class="text text-black-bold">{{ m.total | localCurrencyFormat| async }}</span>
+            </div>
+        </div>
+    </div>
+</div>

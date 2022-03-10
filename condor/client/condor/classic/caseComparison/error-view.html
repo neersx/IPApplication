@@ -1,0 +1,47 @@
+<div>
+    <div>
+        <div class="topic-header header-color-danger">
+
+            <h1>
+                {{ 'caseComparison.ccHeadingError' | translate }}
+            </h1>
+        </div>
+        <div>
+            <div class="widget-main no-padding">
+                <div class="row col-xs-12 i-paddingTop">
+                    <label class="col-xs-12">{{'caseComparison.ipErrorInfo'| translate}}</label>
+                </div>
+
+                <div class="row col-xs-12">
+                    <label class="col-xs-12">{{'caseComparison.ipErrorSubinfo'| translate}}</label>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 i-paddingTop">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th data-in-sort by="date" defaultsortdesc>{{ 'caseComparison.errLblDateOccurred' | translate }}</th>
+                                    <th width="80%">{{ 'caseComparison.errLblMessage' | translate }}</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="item in details | orderBy:order:reverse track by $index">
+                                    <td nowrap><ip-date-time model="item.date"></ip-date-time></td>
+                                    <td>
+                                        {{ item.message }}
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-info pull-right" data-ng-click="showStackTrace(item)">{{ 'caseComparison.errBtnMoreDetails' | translate }}</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+</div>

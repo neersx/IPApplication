@@ -1,0 +1,10 @@
+<div class="row">
+    <form #dataItemForm="ngForm">
+        <div class="row">
+            <ipx-typeahead name="caseSearch" picklistCanMaintain class="col-sm-6" config="dataItem" label='dmsIntegration.iManage.dataItems.caseSearch' [(ngModel)]="caseSearch" apply-edited [is-addanother]="true" [can-navigate]="true"></ipx-typeahead>
+        </div>
+        <div class="row">
+            <ipx-typeahead name="nameSearch" picklistCanMaintain class="col-sm-6" config="dataItem" label='dmsIntegration.iManage.dataItems.nameSearch' [(ngModel)]="nameSearch" apply-edited [is-addanother]="true" [can-navigate]="true"></ipx-typeahead>
+        </div>
+    </form>
+</div>

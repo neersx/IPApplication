@@ -1,0 +1,29 @@
+<form name="overViewForm" #overViewForm="ngForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-text-field [disabled]="!viewData.canUpdateRole" required [label]="'roleDetails.overview.roleName'" [(ngModel)]="formData.roleName" name="rolename"></ipx-text-field>
+            </div>
+            <div class="input-wrap-group group-inline col-md-6">
+                <ipx-radio-button  [disabled]="true" label="roleDetails.overview.internal" [value]="false" [(ngModel)]="formData.isInternal" name="internalOrExternal" id="isInternal">
+                </ipx-radio-button>
+                <ipx-radio-button [disabled]="true" label="roleDetails.overview.external" [value]="true" [(ngModel)]="formData.isExternal" name="internalOrExternal" id="isExternal">
+                </ipx-radio-button>
+                <div class="input-wrap">
+                    <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" container="body" [tooltipPlacement]="'right'" [templateRef]="toolTip">
+                    </ipx-inline-dialog>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-text-field [disabled]="!viewData.canUpdateRole" label="{{ 'roleDetails.overview.roleDescription'}}" [(ngModel)]="formData.description" name="roledescription" multiLine="true" rows="2">
+                </ipx-text-field>
+            </div>
+        </div>
+    </div>
+</form>
+<ng-template #toolTip>
+    <p><b>{{'roleDetails.overview.internal' | translate}}</b>{{'roleDetails.overview.toolTipPart1' | translate}}<b>{{'roleDetails.overview.external' | translate}}</b>{{'roleDetails.overview.toolTipPart2' | translate}}
+    </p>
+</ng-template>

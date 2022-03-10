@@ -1,0 +1,23 @@
+<div class="multistep-wizard-compact">
+    <div id="billing-wizard-multi-step" class="wizard searchOptions">
+        <div id="billing-wizard-multi-header" class="wizard-header">
+            <ul class="steps-indicator">
+                <li class="first" [ngClass]="{current: steps[0].selected}">
+                    <ipx-step-button class="ipx-stepbutton" id="step_0" (onclick)="goTo(1)" stepNo="1" title="{{ steps[0].title }}"></ipx-step-button>
+                </li>
+                <ng-container *ngFor="let step of steps; trackBy: trackByFn; let i = index">
+                    <ng-container *ngIf="i > 0">
+                        <li class="step" [ngClass]="{default: !step.selected, current: step.selected}">
+                            <ipx-step-button class="ipx-stepbutton" id="step_{{i}}" (click)="goTo(step.id)" stepNo="{{ i + 1 }}" title="{{ step.title }}"></ipx-step-button>
+                        </li>
+                    </ng-container>
+                </ng-container>
+            </ul>
+        </div>
+    </div>
+    <div class="steps">
+        <ng-content select="ipx-case-debtor" *ngIf="currentStep.id===1"></ng-content>
+        <ng-content select="ipx-billing-references" *ngIf="currentStep.id===2"></ng-content>
+        <ng-content select="ipx-wip-selection" *ngIf="currentStep.id===3"></ng-content>
+    </div>
+</div>

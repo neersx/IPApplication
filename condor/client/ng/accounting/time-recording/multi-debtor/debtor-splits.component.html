@@ -1,0 +1,36 @@
+<div id="debtorValuationSummary">
+    <div class="modal-header">
+        <h2 class="modal-title">{{'accounting.time.multiDebtor.debtorValuation.title' | translate}}</h2>
+        <div class="modal-header-controls">
+            <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="widget-frame">
+            <div class="row" class="widget-title">
+                <div>
+                    <span>{{'accounting.time.multiDebtor.debtorValuation.topic' | translate}}</span>
+                </div>
+            </div>
+            <div class="row" class="widget-body">
+                <div class="col-sm-12" style="border-bottom: solid 1px #F5F5F5; padding-bottom: 5px">
+                    <div class="col-sm-6">{{'accounting.time.fields.name' | translate}}</div>
+                    <div class="col-sm-2 text-right">{{'accounting.time.fields.chargeOutRate' | translate}}</div>
+                    <div class="col-sm-2 text-right">{{'accounting.time.fields.localValue' | translate}}</div>
+                    <div class="col-sm-2 text-right">{{'accounting.time.fields.foreignValue' | translate}}</div>
+                </div>
+                <div class="col-sm-12" style="padding-bottom: 3px; padding-top: 3px;" id="split_{{item.debtorNameNo}}" *ngFor="let item of timeEntry.debtorSplits; trackBy: trackDebtorSplitsBy">
+                    <div class="col-sm-6">{{ item.debtorName }}</div>
+                    <div class="col-sm-2 text-right">{{ item.chargeOutRate | localCurrencyFormat:item.foreignCurrency || timeEntry.localCurrencyCode | async }}</div>
+                    <div class="col-sm-2 text-right">{{ item.localValue | localCurrencyFormat | async }}</div>
+                    <div class="col-sm-2 text-right">{{ item.foreignValue | localCurrencyFormat:item.foreignCurrency || timeEntry.localCurrencyCode | async }}</div>
+                </div>
+                <div class="col-sm-12" id="split-totals" style="border-top: solid 1px #F5F5F5; padding-top: 5px">
+                    <div class="col-sm-8"><strong>{{'Total' | translate}}</strong></div>
+                    <div class="col-sm-2 text-right"><strong>{{ timeEntry.localValue | localCurrencyFormat | async }}</strong></div>
+                    <div class="col-sm-2 text-right"><strong>{{ timeEntry.foreignValue | localCurrencyFormat:timeEntry.foreignCurrency | async }}</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

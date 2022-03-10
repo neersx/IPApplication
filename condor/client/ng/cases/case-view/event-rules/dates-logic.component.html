@@ -1,0 +1,32 @@
+<div class="topic-container">
+    <h1 translate="caseview.eventRules.dateslogic.header"></h1>
+    <span class="badge topics header" id="datesLogicCount">{{datesLogicInfo.length}}</span>
+    <div>
+        <div class="container-fluid" id="datesLogic">
+            <div class="row" *ngFor="let dl of datesLogicInfo; index as i;trackBy: byItem" [ngClass]="i % 2 == 0 ? '' : 'bg-color'">
+                <div class="row margin-vertical">
+                    <div class="col-sm-12">                        
+                        <strong><span id="datesLogicText">{{ dl.formattedDescription }}</span></strong>
+                    </div>
+                 </div>
+                 <div class="row" style="margin-top: 5px;">
+                    <div class="col-sm-12">
+                       <span>{{ dl.testFailureAction }}</span>
+                    </div>
+                 </div>
+                 <div class="row margin-vertical">
+                    <div class="col-sm-12" id="failureMessage">
+                        <span class="input-action text-red-dark" *ngIf="dl.failureActionType == failureActionType.Error">
+                            <span class="cpa-icon cpa-icon-exclamation-triangle"></span>
+                            <span style="margin-left: 5px;">{{ dl.messageDisplayed }}</span>
+                        </span>
+                        <span class="input-action text-orange-dark" *ngIf="dl.failureActionType == failureActionType.Warning">
+                            <span class="cpa-icon cpa-icon-exclamation-circle"></span>
+                            <span style="margin-left: 5px;">{{ dl.messageDisplayed }}</span>
+                        </span>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

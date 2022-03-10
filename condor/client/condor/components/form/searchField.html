@@ -1,0 +1,9 @@
+<div class="input-wrap">
+    <input class="basic-addon-r-2" type="text" placeholder="Enter text to search" data-ng-model="value" data-on-enter="search()" />
+    <span class="input-wrap-addon">
+        <ip-icon-button class="btn-no-bg" button-icon="eraser" type="button" data-tooltip-placement="bottom" ip-tooltip="{{:: 'picklistmodal.clearItem' | translate }}" data-ng-click="clear()" aria-label="search"></ip-icon-button>
+    </span>
+    <span class="input-wrap-addon">
+        <ip-icon-button class="btn-no-bg" button-icon="search" type="button" data-tooltip-placement="bottom" ip-tooltip="{{:: 'picklistmodal.searchItems' | translate }}" ng-click="search()" aria-label="clear"></ip-icon-button>
+    </span>
+</div>

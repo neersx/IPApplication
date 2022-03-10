@@ -1,0 +1,41 @@
+<div ng-form="vm.form" translate-namespace=".changeStatus">
+    <div ng-if="::vm.enableRenewalStatus">
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead name="caseStatus" ng-class="{edited: vm.form.caseStatus.$dirty, 'input-inherited': vm.changeStatus.key===vm.parentData.changeStatus.key}" ng-disabled="::!vm.canEdit" data-config="statusFiltered" data-extend-query="vm.caseStatusScope.extendQuery"
+                    data-external-scope="vm.caseStatusScope" label=".changeCaseStatus" data-picklist-display-name="picklist.status.caseStatus" ng-model="vm.changeStatus" ng-change="vm.changedStatus(vm.changeStatus)"></ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead name="renewalStatus" ng-class="{edited: vm.form.renewalStatus.$dirty, 'input-inherited': vm.changeRenewalStatus.key===vm.parentData.changeRenewalStatus.key}" ng-disabled="::!vm.canEdit" data-config="statusFiltered" data-extend-query="vm.renewalStatusScope.extendQuery"
+                    data-external-scope="vm.renewalStatusScope" label=".changeRenewalStatus" data-picklist-display-name="picklist.status.renewalStatus" ng-model="vm.changeRenewalStatus" ng-change="vm.changedStatus(vm.changeRenewalStatus)"></ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-text-field ng-disabled="::!vm.canEdit" name="userDefinedStatus" label=".changeUserDefinedActionStatus" ng-model="vm.userDefinedStatus" ng-class="{edited: vm.form.userDefinedStatus.$dirty, 'input-inherited': vm.userDefinedStatus===vm.parentData.userDefinedStatus}"
+                    ng-maxlength="100"></ip-text-field>
+            </div>
+        </div>
+    </div>
+    <div ng-if="::!vm.enableRenewalStatus">
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead name="changeStatus" ng-class="{edited: vm.form.changeStatus.$dirty, 'input-inherited': vm.changeStatus.key===vm.parentData.changeStatus.key}" ng-disabled="::!vm.canEdit" data-config="statusFiltered" data-extend-query="vm.validStatusScope.extendQuery"
+                    data-external-scope="vm.validStatusScope" label=".changeStatus" ng-model="vm.changeStatus" ng-change="vm.changedStatus(vm.changeStatus)"></ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead data-disabled="true" uib-popover="{{'workflows.eventcontrol.changeStatus.info' | translate}}" popover-placement="right" label=".changeRenewalStatus" ng-model="vm.changeRenewalStatus" ng-class="{'input-inherited': vm.changeRenewalStatus.key===vm.parentData.changeRenewalStatus.key}"></ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-text-field ng-disabled="::!vm.canEdit" name="userDefinedStatus" label=".changeUserDefinedActionStatus" ng-model="vm.userDefinedStatus" ng-class="{edited: vm.form.userDefinedStatus.$dirty, 'input-inherited': vm.userDefinedStatus===vm.parentData.userDefinedStatus}"
+                    ng-maxlength="100"></ip-text-field>
+            </div>
+        </div>
+    </div>
+</div>

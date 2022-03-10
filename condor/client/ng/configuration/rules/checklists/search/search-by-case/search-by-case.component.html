@@ -1,0 +1,11 @@
+<form #caseSearchForm="ngForm">
+    <ipx-search-option (search)="submitForm()" (clear)="resetFormData()" [isSearchDisabled]="caseSearchForm.invalid || disableSearch">
+        <div class="row">
+            <div class="col-sm-6">
+                <h5 translate="checklistConfiguration.search.selectACase"></h5>
+                <ipx-typeahead name="case" [label]="'picklist.case.Type' | translate" config="case" [(ngModel)]="formData.caseRef" required (onChange)="onCaseChange($event)"></ipx-typeahead>
+            </div>
+        </div>
+        <ipx-common-checklist-characteristics [viewData]="viewData" #characteristics></ipx-common-checklist-characteristics>
+    </ipx-search-option>
+</form>

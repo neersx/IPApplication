@@ -1,0 +1,6 @@
+<span translate="{{topic.title}}" title="{{:: 'sections.emptySection' | translate}}" class="emptyTopic"
+    ng-if="topic.isEmpty()"></span>
+<span translate="{{topic.title}}" ng-if="!topic.isEmpty()"></span>
+<span id="topicDataCount" class="badge topics pull-right"></span>
+<span ng-if="topic.hasError === true || topic.hasError()" class="cpa-icon cpa-icon-exclamation-triangle"
+    name="exclamation-triangle"></span>

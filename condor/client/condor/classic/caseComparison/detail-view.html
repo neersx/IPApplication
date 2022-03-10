@@ -1,0 +1,21 @@
+<div class="comparison-container nf-detailView col-sm-9" scroll="scrollTo">
+    <div ng-show="!notification || !notification.type" class="text-muted explanations">
+        <h5 class="lighter">{{ 'caseComparison.ipInstructionsNoSelection' | translate }}</h5>
+        <p>
+            <h5 class="lighter">{{ 'caseComparison.ipInstructionsCompare' | translate }}</h5>
+
+        </p>
+        <p data-ng-if="canUpdateCase">
+            <h5 class="lighter" data-ng-if="canUpdateCase">{{ 'caseComparison.ipInstructionsUpdate' | translate }}</h5>
+        </p>
+    </div>
+    <div id="caseComparisonView" ng-show="notification.type == 'case-comparison' || notification.type == 'rejected'">
+        <div ng-include=" 'condor/classic/caseComparison/case-comparison-view.html' " ng-controller="caseComparisonViewController" style="margin-bottom:20px;" id="caseComparisonDetailView" tabIndex="10" ng-init="initialInit(notification)">
+        </div>
+    </div>
+    <div id="errorView" ng-show="notification.type == 'error'" ng-include=" 'condor/classic/caseComparison/error-view.html' " ng-controller="errorViewController">
+    </div>
+    <div id="caseNotFoundView" ng-show="notification.type == 'new-case'" class="text-muted explanations">
+        <h5 class="lighter" style="white-space:normal">{{ 'caseComparison.ipNoMatchingCase' | translate }}</h5>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<div class="content row col-sm-11 detail-offset">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row" *ngIf="show('address')">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.renewals.names.details.address' |translate}}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <ipx-text-area [content]="details.address" class="display-wrap cn-address"  [class.input-inherited]="details.isAddressInherited"></ipx-text-area>
+                    </div>
+                </div>
+                <div class="row" *ngIf="show('nationality')">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.renewals.names.details.nationality' |translate}}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <span class="text cn-nationality">{{details.nationality}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="show('billPercentage')">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.renewals.names.details.billPercent' |translate}}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <span class="text cn-bill-percentage">{{details.billingPercentage}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="show('remarks')">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.renewals.names.details.remarks' |translate}}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <ipx-text-area [content]="details.comments" class="display-wrap cn-remarks"></ipx-text-area>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row" *ngIf="show('telecom')">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.renewals.names.details.phone' |translate}}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <span class="text cn-phone">{{details.phone}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="show('telecom')">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.renewals.names.details.email' |translate}}</label>
+                    </div>
+                    <div class="col-sm-9 break-text">
+                        <ipx-email-link class="cn-email" [model]="email" [text]="details.email" [showIcon]="false"></ipx-email-link>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.renewals.names.details.website' | translate}}</label>
+                    </div>
+                    <div class="col-sm-9 break-text">
+                        <a *ngIf="details.website != null" class="cn-website" target="_blank" href="http://{{details.website}}">{{details.website}}</a>
+                    </div>
+                </div>
+                <div class="row" *ngIf="show('assignDate')">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.renewals.names.details.assignDate' |translate}}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <ipx-date [model]="details.assignDate"></ipx-date>
+                    </div>
+                </div>
+                <div class="row" *ngIf="show('dateCommenced')">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.renewals.names.details.commenceDate' |translate}}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <ipx-date [model]="details.commenceDate"></ipx-date>
+                    </div>
+                </div>
+                <div class="row" *ngIf="show('dateCeased')">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.renewals.names.details.expiryDate' |translate}}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <ipx-date [model]="details.expiryDate"></ipx-date>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

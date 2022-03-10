@@ -1,0 +1,20 @@
+<div translate-namespace="picklist.casetype" data-ng-controller="caseTypesController as c">
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="code" ip-required ip-autofocus label=".Code" ng-model="vm.entry.code" data-ng-maxlength="1" ng-disabled="vm.maintenanceState === 'updating' || vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.code.$dirty}" ip-field-error="{{vm.entry.$error('code').message | translate}}"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="value" ip-required label=".Description" ng-model="vm.entry.value" data-ng-maxlength="50" ng-class="{edited: vm.maintenance.value.$dirty}" ng-disabled="vm.maintenanceState === 'viewing'" ip-field-error="{{vm.entry.$error('value').message | translate}}"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-typeahead name="pkActualCaseType" data-label=".ActualCaseType" data-key-field="key" data-text-field="value" ip-field-error="{{vm.entry.$error('pkActualCaseType').message | translate}}" ng-class="{edited: vm.maintenance.pkActualCaseType.$dirty}" data-api-url="api/picklists/casetypes/actual" data-picklist-display-name="Actual Case Type" data-picklist-columns="[{title:'Description', field:'value'}, {title:'Code', field:'code'}]" ng-model="vm.entry.actualCaseType" ></ip-typeahead>
+        </div>
+        <div class="col-sm-2">
+            <ip-inline-dialog data-content="{{::'validcombinations.actualCaseTypeIcon' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+    </div>
+</div>

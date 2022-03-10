@@ -1,0 +1,21 @@
+<ip-page-title page-title="Grid Examples"></ip-page-title>
+<div ip-resize-handler resize-handler-type="Panel">
+    <h2>Delete Grid</h2>
+    <button ng-click="vm.save()">Save</button>
+    <kendo-grid k-options="vm.deleteGridOptions"></kendo-grid>
+
+    <h2>Grid with Sorting, Paging, and Filtering</h2>
+    <kendo-grid k-options="vm.gridOptions"></kendo-grid>
+
+    <h2>Search Grid</h2>
+    <button ng-click="vm.runSearch()">Search</button>
+    <button ng-click="vm.resetSearch()">Reset</button>
+    <button ng-click="vm.runSearchNoResults()">Search With No Results</button>
+    <ip-kendo-search-grid data-grid-options="vm.searchGridOptions"></ip-kendo-search-grid>
+
+    <h2>Add Grid</h2>
+    <ip-kendo-grid data-grid-options="vm.addGridOptions" data-show-add="true" data-on-add-click="vm.onAdd()" data-add-item-name="{{'Instructor' | translate}}"></ip-kendo-grid>
+
+    <br />
+    <span>Add Count: {{vm.addCount}}</span>
+</div>

@@ -1,0 +1,144 @@
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+    <div id="quick-search-list">
+        <ipx-sticky-header>
+            <ipx-page-title>
+                <before-title>
+                    <span *ngIf="!isHosted" id="caseSearchTotalRecords"> {{ totalRecords }} </span>
+                    <span *ngIf="!isHosted"> {{ pageTitle | translate }} </span>
+                    <span *ngIf="!isHosted && searchTerm != null">{{ 'caseSearchResults.for' | translate }}
+                        &quot;<span class="search-term">{{ searchTerm }}</span>&quot;</span>
+                </before-title>
+                <action-buttons>
+                    <div>
+                        <div class="col-sm-6 input-wrap switch" *ngIf="searchConfiguration.hasPreview">
+                            <input id="moreDetailsSwitch" name="moreDetailsSwitch" type="checkbox" [(ngModel)]="showPreview" (ngModelChange)="setStoreOnToggle($event)">
+                            <label for="moreDetailsSwitch" [translate]="'caseSearchResults.togglePreview'"></label>
+
+                        </div>
+                        <div [ngClass]="searchConfiguration.hasPreview?'col-sm-6':'col-sm-12'" style="text-align: right;">
+                            <button name="refreshColumns" (click)="refresh()" class="btn btn-icon" id="refreshColumns" tooltip="{{ 'caseSearch.presentationColumns.refresh' | translate }}" placement="bottom">
+                                <span class="cpa-icon-refresh"></span>
+                            </button>
+                            <button style="margin:0 8px;" placement="bottom" tooltip="{{ 'caseSearch.presentationTitle' | translate }}" class="btn btn-icon fas fa-calendar-check" id="presentation"
+                                (click)="openPresentation()">
+                                <span class="cpa-icon cpa-icon-bars-vertical"></span>
+                            </button>
+                            <button *ngIf="!isHosted" id="closeSearch" class="btn btn-icon" placement="bottom" tooltip="{{'button.close' | translate}}" (click)="close()"
+                                [disabled]="!previousState || viewData.presentationType!==null">
+                                <span class="cpa-icon cpa-icon-times"></span>
+                            </button>
+                        </div>
+
+                    </div>
+                </action-buttons>
+            </ipx-page-title>
+        </ipx-sticky-header>
+        <div class="splitter-container">
+            <kendo-splitter id="searchResultsPane" orientation="horizontal">
+                <kendo-splitter-pane>
+                    <div class="pane-content">
+                        <div #hybridResultDiv class="table-container fixed-detail-panel-left" [ngClass]="{'ipx-kendo-grid-locked': anyColumnLocked==true,'hosted':isHosted}">
+                            <ipx-kendo-grid #resultsGrid id="searchResults" *ngIf="loaded" [autoApplySelection]="false" [showPreview]="showPreview" [dataOptions]="gridOptions" (dataItemClicked)="dataItemClicked($event)"
+                                (pageChanged)="onPageChanged($event)" [items]="taskItems" (menuItemSelected)="onMenuItemSelected($event)" (popupOpen)="initializeTaskItems($event)">
+                            </ipx-kendo-grid>
+                            <ng-template #columnTemplate let-dataItem let-c="ctx">
+                                <ng-container [ngSwitch]="c.format">
+                                    <ng-container *ngSwitchCase="'Date'">
+                                        <span *ngIf="dataItem[c.id] ">
+                                            {{ dataItem[c.id] | localeDate }}
+                                        </span>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Formatted Text'">
+                                        <span style="white-space: pre-wrap;" *ngIf="dataItem[c.id]" [innerHTML]="dataItem[c.id]"></span>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Image Key'">
+                                        <ipx-image *ngIf="dataItem[c.id]" [itemKey]="dataItem[searchConfiguration.rowKeyField]" [type]="searchConfiguration.imageApiKey" [imageKey]="dataItem[c.id]" [maxWidth]="80"
+                                            [maxHeight]="anyColumnLocked ? 20 : 80" [isThumbnail]="true"></ipx-image>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Boolean'">
+                                        <span style="text-align: center;" *ngIf="c.linkType !== 'RestrictedCasesIcon'">
+                                            <ipx-boolean-column [presentationType]="viewData.presentationType" [dataItem]="dataItem[c.id]"></ipx-boolean-column>
+                                        </span>
+                                        <div style="text-align: center;" *ngIf="c.linkType === 'RestrictedCasesIcon' && dataItem[c.id]?.value" class="cpa-icon-flag" [tooltip]="getToolTipMessage(c.linkType)"
+                                            [ngStyle]="getFlagStyle(c.linkType)">
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngSwitchCase="'Url'">
+                                        <ipx-user-column-url [userUrl]="dataItem[c.id]"></ipx-user-column-url>
+                                    </ng-container>
+                                    <ng-container *ngSwitchDefault>
+                                        <div *ngIf="c.linkType && c.linkArgs">
+                                            <ipx-hosted-url *ngIf="dataItem[c.id] && dataItem[c.id].link[c.linkArgs[0]]" [showLink]="dataItem[c.id].link[c.linkArgs[0]]" [action]="c.linkType"
+                                                [key]="dataItem[c.id].link[c.linkArgs[0]]" [description]="dataItem[c.id]?.value" [programId]="defaultProgram" [linkType]="c.linkType" [dataField]="dataItem[c.id]"
+                                                [linkArgs]="c.linkArgs" [xmlFilterCriteria]="xmlFilterCriteriaExecuted" [debtorAction]="dataItem[c.linkArgs[0]]" [format]="c.format" [decimalPlaces]="c.decimalPlaces"
+                                                [currencyCode]="dataItem[c.currencyCodeColumnName]">
+                                                <ng-container *ngIf="c.linkType === 'CaseDetails' || c.linkType === 'CaseDetailsOptional'">
+                                                    <a class="result-cell-link" uiSref="caseview"
+                                                        [uiParams]="{id: dataItem[c.id].link[c.linkArgs[0]],rowKey: dataItem.rowKey, programId: defaultProgram}">{{dataItem[c.id].value}}</a>
+                                                </ng-container>
+                                                <ng-container *ngIf="c.linkType === 'NameDetails'">
+                                                    <ipx-ie-only-url *ngIf="showWebLink" class="result-cell-link" style="cursor: pointer;" [url]="encodeLinkData(dataItem[c.id].link)" [text]="dataItem[c.id].value">
+                                                    </ipx-ie-only-url>
+                                                    <span *ngIf="!showWebLink">{{ dataItem[c.id].value }}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="c.linkType === 'NameSummary'">
+                                                    <span>{{ dataItem[c.id].value }}</span>
+                                                </ng-container>
+                                                <ng-container *ngIf="c.linkType === 'CaseBillingItems' || c.linkType === 'CaseOrNameWIPItems'">
+                                                    <ipx-currency [renderHyperlink]="false" [value]="dataItem[c.id].value" [decimalPlaces]="c.decimalPlaces" [currencyCode]="dataItem[c.currencyCodeColumnName]">
+                                                    </ipx-currency>
+                                                </ng-container>
+                                                <ng-container *ngIf="c.linkType === 'DebtorStatusIcon'">
+                                                    <ipx-debtor-status-icon style="text-align: center;" [flagDescription]="dataItem[c.id].value" [debtorAction]="dataItem[c.linkArgs[0]]">
+                                                    </ipx-debtor-status-icon>
+                                                </ng-container>
+                                                <ng-container *ngIf="c.linkType === 'IconImageKey' || c.linkType === 'ROIMoreInfo' || c.linkType === 'SupplierRestrictionIcon'">
+                                                    <div>{{dataItem[c.id].value}}
+                                                    </div>
+                                                </ng-container>
+                                            </ipx-hosted-url>
+                                        </div>
+                                        <span *ngIf="!c.isHyperlink">
+                                            <span style="text-align: center;" *ngIf="c.format === 'Integer' && hasBooleanValue(dataItem[c.id]); else content">
+                                                <ipx-boolean-column [presentationType]="viewData.presentationType" [dataItem]="dataItem[c.id]"></ipx-boolean-column>
+                                            </span>
+                                            <ng-template #content>
+                                                <span *ngIf="c.format === 'Currency' || c.format === 'Local Currency'; else defaultContent">
+                                                    <ipx-currency [ngClass]="{'pull-right': isHosted}" [renderHyperlink]="false" [value]="dataItem[c.id]" [decimalPlaces]="c.decimalPlaces"
+                                                        [currencyCode]="dataItem[c.currencyCodeColumnName]"></ipx-currency>
+                                                </span>
+                                            </ng-template>
+                                            <ng-template #defaultContent>
+                                                <span style="white-space: pre-wrap;">{{ dataItem[c.id] }}</span>
+                                            </ng-template>
+                                        </span>
+                                    </ng-container>
+                                </ng-container>
+                            </ng-template>
+                            <ng-template #groupDetailTemplate let-dataItem>
+                                <ipx-group-detail *ngIf="gridOptions.columns" [items]="dataItem.items" [contextMenuParams]="contextMenuParams" [columns]="gridOptions.columns"
+                                    [isShowContextMenu]="gridOptions.showContextMenu" (groupItemClicked)="dataItemClicked($event)">
+                                </ipx-group-detail>
+                            </ng-template>
+                        </div>
+                    </div>
+                </kendo-splitter-pane>
+                <kendo-splitter-pane size="30%" *ngIf="showPreview && searchConfiguration.hasPreview" [collapsible]="true">
+                    <div class="pane-content" [ngSwitch]="searchConfiguration.searchType">
+                        <div *ngIf="loaded">
+                            <div class="fixed-detail-panel-right detail-view" id="casePreviewPane" *ngSwitchCase="'case'">
+                                <ipx-case-search-summary [caseKey]="selectedRowKey" [isExternal]="isExternal" [hasOffices]="hasOffices" [hasFileLocation]="hasFileLocation" [showLink]="showWebLink"
+                                    [rowKey]="getHighlightedRowKey()" [programId]="defaultProgram">
+                                </ipx-case-search-summary>
+                            </div>
+                            <div class="fixed-detail-panel-right detail-view" id="namePreviewPane" *ngSwitchCase="'name'">
+                                <ipx-names-summary-pane [nameId]="selectedRowKey" [showLink]="showWebLink">
+                                </ipx-names-summary-pane>
+                            </div>
+                        </div>
+                    </div>
+                </kendo-splitter-pane>
+            </kendo-splitter>
+        </div>
+    </div>
+</div>

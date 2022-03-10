@@ -1,0 +1,291 @@
+<div class="table-container">
+    <div class="search-options search-options-header">
+        <div class="heading">
+            <h5 translate="accounting.billing.step3.filterHeader" class="ng-scope"></h5>
+            <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showSearchBar}" (click)="showSearchBar = !showSearchBar">
+                <div placement="left" tooltip="{{'collapseExpand' | translate}}">
+                    <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="search-options" [@slideInOutVisible]="showSearchBar ? 'open' : 'closed'">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="col-sm-2 input-wrap" style="padding-top: 7px; padding-left: 20px;">
+                    <span class="text-bold" translate="accounting.billing.step3.filterInclude"></span>
+                </div>
+                <div class="col-sm-10 input-wrap-group group-inline" style="margin-left: -40px;">
+                    <ipx-radio-button [ngModelOptions]="{standalone: true}" [value]="filterByRenewalEnum.nonRenewal" id="non-renewal" name="non-renewal" [(ngModel)]="filterByRenewal" (change)="changeFilterByRenewal()"
+                        [disabled]="isFinalised">
+                        {{'accounting.billing.step3.filterByNonRenewal' | translate}}
+                    </ipx-radio-button>
+                    <ipx-radio-button [ngModelOptions]="{standalone: true}" [value]="filterByRenewalEnum.renewal" id="renewal" name="renewal" [(ngModel)]="filterByRenewal" (change)="changeFilterByRenewal()"
+                        [disabled]="isFinalised">
+                        {{'accounting.billing.step3.filterByRenewal' | translate}}
+                    </ipx-radio-button>
+                    <ipx-radio-button [ngModelOptions]="{standalone: true}" [value]="filterByRenewalEnum.both" id="bothRenewalNonRenewal" name="bothRenewalNonRenewal" [(ngModel)]="filterByRenewal"
+                        (change)="changeFilterByRenewal()" [disabled]="isFinalised">
+                        {{'accounting.billing.step3.filterByBoth' | translate}}
+                    </ipx-radio-button>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-3 input-wrap" style="padding-top: 7px; padding-left: 20px;">
+                    <span class="text-bold" translate="accounting.billing.step3.showAmountsIn"></span>
+                </div>
+                <div class="col-sm-8 input-wrap-group group-inline" style="margin-left: -40px;">
+                    <ipx-radio-button [ngModelOptions]="{standalone: true}" [value]="showAmountColumnEnum.local" id="foreign" name="foreign" [(ngModel)]="showAmountColumn" (change)="changeAmountColumns()"
+                        [disabled]="isFinalised">
+                        {{'accounting.billing.step3.local' | translate}}
+                    </ipx-radio-button>
+                    <ipx-radio-button [ngModelOptions]="{standalone: true}" [value]="showAmountColumnEnum.foreign" id="bothLocalAndForeign" name="bothLocalAndForeign" [(ngModel)]="showAmountColumn"
+                        (change)="changeAmountColumns()" [disabled]="isFinalised">
+                        {{'accounting.billing.step3.foreign' | translate}}
+                    </ipx-radio-button>
+                    <ipx-radio-button [ngModelOptions]="{standalone: true}" [value]="showAmountColumnEnum.both" id="local" name="local" [(ngModel)]="showAmountColumn" (change)="changeAmountColumns()"
+                        [disabled]="isFinalised">
+                        {{'accounting.billing.step3.localAndForeign' | translate}}
+                    </ipx-radio-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 5px;">
+        <ng-template #popTemplate>
+            <div>
+                <p><b translate="accounting.billing.step3.infoMessage.selectAll"></b>
+                    <span translate="accounting.billing.step3.infoMessage.selectAllMessage"></span>
+                </p>
+                <p><b translate="accounting.billing.step3.infoMessage.deselectAll"></b>
+                    <span translate="accounting.billing.step3.infoMessage.delectAllMessage"></span>
+                </p>
+                <p> <span translate="accounting.billing.step3.infoMessage.doubleClickMessage"></span>
+                </p>
+            </div>
+        </ng-template>
+        <div class="col-sm-2">
+            <button class="btn" id="btnSelectAll" [ngClass]="{'btn-selected': selectAllEnabled}" [disabled]="isFinalised" (click)="onSelectAll()" style="padding: 5px;"> Select All</button> &nbsp;
+            <button class="btn" id="btnDeSelectAll" [ngClass]="{'btn-selected': deselectAllEnabled}" [disabled]="isFinalised" (click)="onDeSelectAll()" style="padding: 5px;"> Deselect All</button>
+            <div style="margin-left: 150px; margin-top: -30px">
+                <ipx-inline-dialog container="body" [tooltipPlacement]="'right'" [templateRef]="popTemplate" style="margin-left: 7px"></ipx-inline-dialog>
+            </div>
+        </div>
+        <div class="col-sm-10">
+            <div id="totalHours" class="label-value col-sm-2 summary">
+                <div>
+                    {{ 'accounting.billing.step3.totalHours' | translate}}
+                </div>
+                <div>
+                    <span class="text">{{ totalHours }}</span>
+                </div>
+            </div>
+            <div id="totalBalance" class="label-value col-sm-3 summary">
+                <div>
+                    {{ 'accounting.billing.step3.totalBalance' | translate}}
+                </div>
+                <div>
+                    <span class="text">{{ totalBalance | localCurrencyFormat | async }}</span>
+                </div>
+            </div>
+            <div id="totalBilled" class="label-value col-sm-3 summary">
+                <div>
+                    {{ 'accounting.billing.step3.totalBilled' | translate}}
+                </div>
+                <div>
+                    <span class="text">{{ totalBilled | localCurrencyFormat | async }}</span>
+                </div>
+            </div>
+            <div id="totalVariation" class="label-value col-sm-3 summary">
+                <div>
+                    {{ 'accounting.billing.step3.totalVariation' | translate}}
+                </div>
+                <div>
+                    <span class="text">{{ totalVariation | localCurrencyFormat | async }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #popUpTemplate>
+        <div>
+            <p><span class="cpa-icon cpa-icon-lg cpa-icon-info-circle" [ngStyle]="{'color': draftItemColorEnum.blue}" name="info-circle">
+                </span>&nbsp;&nbsp;
+                <span>{{ 'accounting.billing.step3.gridHeaderLegends.draftWIP' | translate }}</span>
+            </p>
+            <p><span class="cpa-icon cpa-icon-lg cpa-icon-info-circle" [ngStyle]="{'color': draftItemColorEnum.purple}" name="info-circle">
+                </span>&nbsp;&nbsp;
+                <span>{{ 'accounting.billing.step3.gridHeaderLegends.advanceBill' | translate }}</span>
+            </p>
+            <p><span class="cpa-icon cpa-icon-lg cpa-icon-info-circle" [ngStyle]="{'color': draftItemColorEnum.green}" name="info-circle">
+                </span>&nbsp;&nbsp;
+                <span>{{ 'accounting.billing.step3.gridHeaderLegends.minimumWIP' | translate }} </span>
+            </p>
+            <p><span class="cpa-icon cpa-icon-lg cpa-icon-info-circle" [ngStyle]="{'color': draftItemColorEnum.orange}" name="info-circle">
+                </span>&nbsp;&nbsp;
+                <span>{{ 'accounting.billing.step3.gridHeaderLegends.variationFee' | translate }}</span>
+            </p>
+            <p><span class="cpa-icon cpa-icon-lg cpa-icon-info-circle" [ngStyle]="{'color': draftItemColorEnum.gray}" name="info-circle">
+                </span>&nbsp;&nbsp;
+                <span>{{ 'accounting.billing.step3.gridHeaderLegends.wipVariableFee' | translate }}</span>
+            </p>
+            <p><span class="cpa-icon cpa-icon-lg cpa-icon-info-circle" [ngStyle]="{'color': draftItemColorEnum.yellow}" name="info-circle">
+                </span>&nbsp;&nbsp;
+                <span>{{ 'accounting.billing.step3.gridHeaderLegends.billingDiscount' | translate }}</span>
+            </p>
+            <p><span class="cpa-icon cpa-icon-lg cpa-icon-info-circle" [ngStyle]="{'color': draftItemColorEnum.red}" name="info-circle">
+                </span>&nbsp;&nbsp;
+                <span>{{ 'accounting.billing.step3.gridHeaderLegends.discountPositiveNegativeText' | translate }} </span>
+            </p>
+        </div>
+    </ng-template>
+    <ng-template #headerPopupTemplate>
+        <ipx-inline-dialog container="body" [icon]="'cpa-icon cpa-icon-info-circle'" [tooltipPlacement]="'auto'" [templateRef]="popUpTemplate"></ipx-inline-dialog>
+    </ng-template>
+
+    <div class="row" style="margin: 0px;">
+        <ipx-kendo-grid #wipGrid id="wipGrid" [dataOptions]="gridOptions" (onCellDbClick)="handleCellClick($event)" (editRowEvent)="onRowAddedOrEdited($event)">
+            <ng-template ipxTemplateColumnField="DraftItemColor" let-dataItem>
+                <ipx-inline-dialog *ngIf="dataItem.DraftItemColor" container="body" [icon]="'cpa-icon cpa-icon-info-circle'" [tooltipPlacement]="'auto'" [content]="dataItem.DraftItemToolTip | translate"
+                    [colorStyle]="{'color': dataItem.DraftItemColor}">
+                </ipx-inline-dialog>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="CaseRef" let-dataItem>
+                <a class="result-cell-link" target="_blank" uiSref="caseview" [uiParams]="{id: dataItem.CaseId}">{{dataItem.CaseRef}}</a>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="StaffName" let-dataItem>
+                <div *ngIf="dataItem && dataItem.StaffName && dataItem.StaffId">
+                    <ipx-hosted-url [action]="'NameDetails'" [key]="dataItem.StaffId" [description]="dataItem.StaffName" [showLink]="dataItem.StaffId" [linkArgs]="['StaffId', 'StaffName']"
+                        [dataField]="{ link: dataItem }" [linkType]="'NameDetails'">
+                        <ipx-ie-only-url *ngIf="showWebLink" class="result-cell-link" style="cursor: pointer;" [url]="encodeLinkData(dataItem.StaffId)" [text]="dataItem.StaffName">
+                        </ipx-ie-only-url>
+                        <span *ngIf="!showWebLink">{{ dataItem.StaffName }}</span>
+                    </ipx-hosted-url>
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="TotalTime" let-dataItem>
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.TotalTime | date:'HH:mm' }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="Balance" let-dataItem>
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.Balance | localCurrencyFormat:currency | async }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="LocalBilled" let-dataItem>
+                <div class="text-right">
+                    <div *ngIf="isFinalised"><span class="margin-right: 8px; font-weight: bold;">{{ dataItem.LocalBilled | localCurrencyFormat:currency |
+                            async }}</span></div>
+                    <div *ngIf="!isFinalised">
+                        <a style="font-weight: bold;" [ngStyle]="{'margin-right.px': !dataItem.TransactionType || dataItem.TransactionType === transactionTypeEnum.none ? 15 : 3}" *ngIf="dataItem.LocalBilled !== null"
+                            (click)="openBilledModal(dataItem)">{{ dataItem.LocalBilled |
+                            localCurrencyFormat:currency |
+                            async }}</a>
+                        <div class="pull-right">
+                            <span style="color: #0A0" *ngIf="dataItem.TransactionType === transactionTypeEnum.writeUp" class="cpa-icon-arrow-up" tooltip="{{'accounting.billing.step3.writeUp' | translate}}"></span>
+                            <span style="color: #E90101;" *ngIf="dataItem.TransactionType === transactionTypeEnum.writeDown" class="cpa-icon-arrow-down"
+                                tooltip="{{'accounting.billing.step3.writeDown' | translate}}"></span>
+                            <span *ngIf="dataItem.TransactionType === transactionTypeEnum.partialBilling" class="cpa-icon-arrow-down" tooltip="{{'accounting.billing.step3.partialBilling' | translate}}"></span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="LocalVariation" let-dataItem>
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.LocalVariation | localCurrencyFormat:currency | async }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="ForeignBalance" let-dataItem>
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.ForeignBalance | localCurrencyFormat:dataItem.ForeignCurrency | async }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="ReasonCode" let-dataItem>
+                <span>{{ dataItem.ReasonCode }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="ForeignBilled" let-dataItem>
+                <div class="text-right" *ngIf="dataItem.ForeignBilled">
+                    <div *ngIf="isFinalised"><span class="margin-right: 8px; font-weight: bold;">{{ dataItem.ForeignBilled | localCurrencyFormat:dataItem.ForeignCurrency |
+                            async }}</span></div>
+                    <div *ngIf="!isFinalised">
+                        <a style="font-weight: bold;" [ngStyle]="{'margin-right.px': !dataItem.TransactionType || dataItem.TransactionType === transactionTypeEnum.none || !dataItem.ForeignVariation ? 15 : 3}"
+                            *ngIf="dataItem.ForeignBilled !== null" (click)="openBilledModal(dataItem)">{{ dataItem.ForeignBilled |
+                            localCurrencyFormat:dataItem.ForeignCurrency |
+                            async }}</a>
+                        <div class="pull-right" *ngIf="dataItem.ForeignVariation">
+                            <span style="color: #0A0" *ngIf="dataItem.TransactionType === transactionTypeEnum.writeUp" class="cpa-icon-arrow-up" tooltip="{{'accounting.billing.step3.writeUp' | translate}}"></span>
+                            <span style="color: #E90101;" *ngIf="dataItem.TransactionType === transactionTypeEnum.writeDown" class="cpa-icon-arrow-down"
+                                tooltip="{{'accounting.billing.step3.writeDown' | translate}}"></span>
+                            <span *ngIf="dataItem.TransactionType === transactionTypeEnum.partialBilling" class="cpa-icon-arrow-down" tooltip="{{'accounting.billing.step3.partialBilling' | translate}}"></span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="ForeignVariation" let-dataItem>
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.ForeignVariation | localCurrencyFormat:dataItem.ForeignCurrency | async }}</div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="Balance" let-dataItem="dataItem">
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.Balance | localCurrencyFormat:currency | async }}</div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="CaseRef" let-dataItem="dataItem">
+                <a class="result-cell-link" target="_blank" uiSref="caseview" [uiParams]="{id: dataItem.CaseId}">{{dataItem.CaseRef}}</a>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="TransactionDate" let-dataItem="dataItem">
+                <span *ngIf="dataItem">{{dataItem.TransactionDate | localeDate }}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="StaffName" let-dataItem="dataItem">
+                <div *ngIf="dataItem && dataItem.StaffName && dataItem.StaffId">
+                    <ipx-hosted-url [action]="'NameDetails'" [key]="dataItem.StaffId" [description]="dataItem.StaffName" [showLink]="dataItem.StaffId" [linkArgs]="['StaffId', 'StaffName']"
+                        [dataField]="{ link: dataItem }" [linkType]="'NameDetails'">
+                        <ipx-ie-only-url *ngIf="showWebLink" class="result-cell-link" style="cursor: pointer;" [url]="encodeLinkData(dataItem.StaffId)" [text]="dataItem.StaffName">
+                        </ipx-ie-only-url>
+                        <span *ngIf="!showWebLink">{{ dataItem.StaffName }}</span>
+                    </ipx-hosted-url>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="TotalTime" let-dataItem="dataItem">
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.TotalTime | date:'HH:mm' }}</div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="ReasonCode" let-dataItem="dataItem">
+                <span>{{ dataItem.ReasonCode }}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="LocalBilled" let-dataItem="dataItem">
+                <div class="text-right">
+                    <div *ngIf="isFinalised"><span class="margin-right: 8px; font-weight: bold;">{{ dataItem.LocalBilled | localCurrencyFormat:currency |
+                            async }}</span></div>
+                    <div *ngIf="!isFinalised">
+                        <a style="font-weight: bold;" [ngStyle]="{'margin-right.px': !dataItem.TransactionType || dataItem.TransactionType === transactionTypeEnum.none ? 15 : 3}" *ngIf="dataItem.LocalBilled !== null"
+                            (click)="openBilledModal(dataItem)">{{ dataItem.LocalBilled |
+                            localCurrencyFormat:currency |
+                            async }}</a>
+                        <div class="pull-right">
+                            <span style="color: #0A0" *ngIf="dataItem.TransactionType === transactionTypeEnum.writeUp" class="cpa-icon-arrow-up" tooltip="{{'accounting.billing.step3.writeUp' | translate}}"></span>
+                            <span style="color: #E90101;" *ngIf="dataItem.TransactionType === transactionTypeEnum.writeDown" class="cpa-icon-arrow-down"
+                                tooltip="{{'accounting.billing.step3.writeDown' | translate}}"></span>
+                            <span *ngIf="dataItem.TransactionType === transactionTypeEnum.partialBilling" class="cpa-icon-arrow-down" tooltip="{{'accounting.billing.step3.partialBilling' | translate}}"></span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="ForeignBilled" let-dataItem="dataItem">
+                <div class="text-right" *ngIf="dataItem.ForeignBilled">
+                    <div *ngIf="isFinalised"><span class="margin-right: 8px; font-weight: bold;">{{ dataItem.ForeignBilled | localCurrencyFormat:dataItem.ForeignCurrency |
+                            async }}</span></div>
+                    <div *ngIf="!isFinalised">
+                        <a style="font-weight: bold;" [ngStyle]="{'margin-right.px': !dataItem.TransactionType || dataItem.TransactionType === transactionTypeEnum.none || !dataItem.ForeignVariation ? 15 : 3}"
+                            *ngIf="dataItem.ForeignBilled !== null" (click)="openBilledModal(dataItem)">{{ dataItem.ForeignBilled |
+                            localCurrencyFormat:dataItem.ForeignCurrency |
+                            async }}</a>
+                        <div class="pull-right" *ngIf="dataItem.ForeignVariation">
+                            <span style="color: #0A0" *ngIf="dataItem.TransactionType === transactionTypeEnum.writeUp" class="cpa-icon-arrow-up" tooltip="{{'accounting.billing.step3.writeUp' | translate}}"></span>
+                            <span style="color: #E90101;" *ngIf="dataItem.TransactionType === transactionTypeEnum.writeDown" class="cpa-icon-arrow-down"
+                                tooltip="{{'accounting.billing.step3.writeDown' | translate}}"></span>
+                            <span *ngIf="dataItem.TransactionType === transactionTypeEnum.partialBilling" class="cpa-icon-arrow-down" tooltip="{{'accounting.billing.step3.partialBilling' | translate}}"></span>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="LocalVariation" let-dataItem="dataItem">
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.LocalVariation | localCurrencyFormat:currency | async }}</div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="ForeignBalance" let-dataItem="dataItem">
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.ForeignBalance | localCurrencyFormat:dataItem.ForeignCurrency | async }}</div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="ForeignVariation" let-dataItem="dataItem">
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.ForeignVariation | localCurrencyFormat:dataItem.ForeignCurrency | async }}</div>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

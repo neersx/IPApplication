@@ -1,0 +1,11 @@
+<div translate-namespace=".documents">
+    <div class="text-right">
+        <ip-add-button ng-click="vm.onAddClick()" ng-if="vm.canEdit"></ip-add-button>
+    </div>
+    <div class="row">
+        <ip-kendo-grid data-id="documentsGrid" data-grid-options="vm.gridOptions" 
+            data-show-add="vm.canEdit" 
+            data-on-add-click="vm.onAddClick()" 
+            data-add-item-name="{{'workflows.eventcontrol.documents.title' | translate}}"></ip-kendo-grid>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="content row" *ngIf="event.eventDueDate || event.eventDefinition || event.name || event.fromCaseKey ">
+    <div class="container-fluid col-md-6">
+        <div class="row" *ngIf="event.eventDueDate">
+            <div class="field-label col-sm-5">
+                <label translate="caseview.events.orignialDueDate"></label>
+            </div>
+            <div class="col-sm-6">
+                <ipx-date model="event.eventDueDate"></ipx-date>
+            </div>
+        </div>
+        <div class="row" *ngIf="event.eventDefinition">
+            <div class="field-label col-sm-5">
+                <label translate="caseview.events.definition"></label>
+            </div>
+            <div class="col-sm-6">
+                <span class="text">{{event.eventDefinition}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid col-md-6">
+        <div class="row" *ngIf="event.responsibility">
+            <div class="field-label col-sm-5">
+                <label translate="caseview.events.responsibility"></label>
+            </div>
+            <div class="col-sm-6">
+                <a target="_blank" href="api/search/redirect?linkData={{ encodeLinkData({nameKey: event.nameId}) }}" *ngIf="event.nameId" class="text">{{event.responsibility}}</a>
+                <span class="text" *ngIf="!event.nameId && event.responsibility">{{event.responsibility}}</span>
+            </div>
+        </div>
+        <div class="row" *ngIf="event.fromCaseKey">
+            <div class="field-label col-sm-5">
+                <label translate="caseview.events.fromCase"></label>
+            </div>
+            <div class="col-sm-6">
+                <a target="_blank" uiSref="caseview" [uiParams]="{id: event.fromCaseKey}" *ngIf="event.fromCaseKey">{{event.fromCaseIrn}}</a>
+                <span *ngIf="!event.fromCaseKey && event.fromCaseIrn">{{event.fromCaseIrn}}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "paths": {
+            "*": ["types/*"]
+        },
+        "baseUrl": ".",
+        "outDir": "../../out-tsc/signin-app",
+        "types": [
+            "angular"
+        ]
+    },
+    "include": [
+        "src/main.ts",
+        "src/polyfills.ts",
+        "./**/*.ts"
+    ],
+    "exclude": [
+        "test.ts",
+        "**/*.spec.ts",
+        "**/*.mock.ts"
+    ]
+}

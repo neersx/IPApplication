@@ -1,0 +1,58 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{title | translate }}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button id="save" type="button" (click)="onSave()" [disabled]="isSaveDisabled"></ipx-save-button>&nbsp;
+        <ipx-close-button id="close" type=" button" (click)="close()"></ipx-close-button>
+    </div>
+</div>
+<div class="title-header">
+    <div class="label-value col-sm-12">
+        <label class="text" translate="caseview.affectedCases.requestRecordal.caseRef" for="caseReference"></label>
+        <span class="text"> {{caseReference | async}}</span>
+    </div>
+</div>
+<div class="col-sm-12">
+    <div class="col-sm-5" style="margin-left: 13px;">
+        <ipx-date-picker required ngModel #requestDateCtrl="ngModel" id="requestDate" ngDefaultControl name="requestDate" [label]="dateTitle" [displayError]="true" [(ngModel)]="requestedDate"
+            (onChange)="onDateChanged($event)">
+        </ipx-date-picker>
+    </div>
+    <div class="col-sm-6">
+        <div style="float: right;">
+            <action-buttons>
+                <div class="input-wrap switch">
+                    <input id="showNextSteps" name="showNextSteps" type="checkbox" [(ngModel)]="showNextSteps" (ngModelChange)="toggleSteps($event, StepType.NextSteps)">
+                    <label for="showNextSteps" [translate]="showNextTitle"></label>
+                </div>
+            </action-buttons>
+            <action-buttons>
+                <div class="input-wrap switch">
+                    <input id="showAllSteps" name="showAllSteps" type="checkbox" [(ngModel)]="showAllSteps" (ngModelChange)="toggleSteps($event, StepType.AllSteps)">
+                    <label for="showAllSteps" [translate]="'caseview.affectedCases.requestRecordal.showAllSteps'"></label>
+                </div>
+            </action-buttons>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row" *ngIf="isSaving || isLoading">
+        <div class="col-sm-12 k-loading-image" style="min-height: 50px;"></div>
+    </div>
+    <div class="row">
+        <ipx-kendo-grid id="requestRecordalGrid" #requestRecordalGrid *ngIf="gridOptions" [dataOptions]="gridOptions">
+            <ng-template ipxTemplateColumnField="caseReference" let-dataItem>
+                <ipx-hosted-url *ngIf="dataItem.caseReference && dataItem.caseId" [action]="'CaseDetails'" [key]="dataItem.caseId" [description]="dataItem.caseReference" [showLink]="dataItem.caseId"
+                    [linkArgs]="[dataItem.caseId, dataItem.caseReference]" [linkType]="'CaseDetails'">
+                    <a uiSref="caseview" class="result-cell-link" [uiParams]="{id: dataItem.caseId}" target="_blank">{{dataItem.caseReference}}</a>
+                </ipx-hosted-url>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="officialNo" let-dataItem>
+                <ipx-hosted-url *ngIf="dataItem.officialNo && dataItem.caseId" [action]="'CaseDetails'" [key]="dataItem.officialNo && dataItem.caseId" [description]="dataItem.officialNo" [showLink]="dataItem.caseId"
+                    [linkArgs]="[dataItem.caseId, dataItem.officialNo]" [linkType]="'CaseDetails'">
+                    <a uiSref="caseview" class="result-cell-link" [uiParams]="{id: dataItem.caseId}" target="_blank">{{dataItem.officialNo}}</a>
+                </ipx-hosted-url>
+                <span *ngIf="dataItem.officialNo && !dataItem.caseId" style="white-space: pre-wrap;">{{ dataItem.officialNo }}</span>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

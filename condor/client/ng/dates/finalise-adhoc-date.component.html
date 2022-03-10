@@ -1,0 +1,76 @@
+<div class="modal-header">
+    <h2 *ngIf="!finaliseData.isBulkUpdate" class="modal-title"> {{ 'taskPlannerTaskMenu.finaliseAdHocDate' | translate }}</h2>
+    <h2 *ngIf="finaliseData.isBulkUpdate" class="modal-title"> {{ 'taskPlannerTaskMenu.finaliseAdHocDates' | translate }}</h2>
+</div>
+<div *ngIf="isLoading" class="col-sm-7 k-loading-image" style="position: absolute;top:128px;height: 56px; width: 100%;"></div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="form">
+                <div style="line-height:2" *ngIf="!finaliseData.isBulkUpdate">
+                    <div class="col-md-12">
+                        <div class="col-md-4 text-right">
+                            <label>
+                                {{'taskPlanner.finaliseAdHocDate.adHocDateFor' | translate}}:
+                            </label>
+                        </div>
+                        <div class="col-md-8">
+                            <label>
+                                {{finaliseData.adHocDateFor}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4 text-right">
+                            <label>
+                                {{'taskPlanner.finaliseAdHocDate.reference' | translate}}:
+                            </label>
+                        </div>
+                        <div class="col-md-8">
+                            <label>
+                                {{finaliseData.finaliseReference}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4 text-right">
+                            <label>
+                                {{'taskPlanner.finaliseAdHocDate.message' | translate}}:
+                            </label>
+                        </div>
+                        <div class="col-md-8">
+                            <label>
+                                {{finaliseData.message}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-4 text-right">
+                            <label>
+                                {{'taskPlanner.finaliseAdHocDate.dueDate' | translate}}:
+                            </label>
+                        </div>
+                        <div class="col-md-8">
+                            <label>
+                                {{finaliseData.dueDate | date: dateFormat}}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12">
+                    <ipx-dropdown name="reason" label="taskPlanner.finaliseAdHocDate.reason" formControlName="reason" [options]="finaliseData.resolveReasons" displayField="description" keyField="userCode" formControlName="reason">
+                    </ipx-dropdown>
+                </div>
+                <div class="col-md-10" style="margin-left: 19px;">
+                    <ipx-date-picker id="finalisedOn" label="taskPlanner.finaliseAdHocDate.finalisedOn" name="finalisedOn" formControlName="finalisedOn" [includeSameDate]="true" apply-edited>
+                    </ipx-date-picker>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn" name="cancel" [disabled]="isLoading" (click)="onClose()">{{'Cancel' | translate}}</button>
+    <button type="button" class="btn btn-save" name="finalise" [disabled]="disableFinalise() || isLoading" (click)="finalise()">{{'taskPlanner.finaliseAdHocDate.finalise' | translate}}</button>
+</div>

@@ -1,0 +1,55 @@
+<style>
+    .header-info {
+        float: right;
+        margin-right: -20px;
+        margin-top: -35px;
+    }
+</style>
+<div id="createMapping" ng-form="vm.form" translate-namespace="schemaMapping" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title" translate=".usTitleAddMapping" ></h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+            <ip-save-button ng-click="vm.save()" id="Save" ng-disabled="!(vm.form.$dirty && vm.form.$valid)"></ip-save-button>
+            <ip-close-button ng-click="vm.dismissAll()" id="dismissAll"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <ip-text-field name="packageName" label=".usLblForSchema" ng-model="vm.newMapping.schemaPackage.name" ng-disabled="true">
+                </ip-text-field>
+            </div>
+            <div class="row">
+                <ip-text-field name="mappingName" label=".usLblMappingName" ng-model="vm.newMapping.mappingName" ip-required auto-focus ip-field-error="{{ vm.newMapping.error | translate }}" ng-class="{'edited': vm.form.mappingName.$dirty}" data-ng-change="vm.newMapping.error= null">
+                </ip-text-field>
+            </div>
+            <div class="row">
+                <ip-dropdown ng-class="{edited: vm.form.rootNode.$dirty}" name="rootNode" label=".usLblSelectRootNode" ng-model="vm.newMapping.selectedNode" options="nodes.name for nodes in vm.newMapping.rootNodes" class="ip-dropdown" ip-required>
+                </ip-dropdown>
+            </div>
+            <div class="row">
+                <ip-dropdown ng-class="{edited: vm.form.copyFrom.$dirty}" name="copyFrom" label=".usLblImportMapping" ng-model="vm.newMapping.copyMappingFrom" options="mapping.name for mapping in vm.mappings" class="ip-dropdown">
+                </ip-dropdown>
+            </div>
+            <div ng-if="vm.newMapping.selectedNode.isDtdFile">
+                <div class="row">
+                    <div class="input-wrap-group group-inline">
+                        <span translate=".usLblIncludeHeader" class="ng-scope"></span>
+                        <ip-checkbox ng-model="vm.newMapping.selectedNode.shouldAddDocType" name="shouldAddDocType" ng-class="{edited: vm.form.shouldAddDocType.$dirty}"></ip-checkbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <ip-text-field name="fileRef" ng-model="vm.newMapping.selectedNode.fileRef" ng-class="{'edited': vm.form.fileRef.$dirty}" ip-required="vm.newMapping.selectedNode.shouldAddDocType" ng-disabled="!vm.newMapping.selectedNode.shouldAddDocType" label="schemaMapping.usLblXmlHeaderToInclude">
+                    </ip-text-field>
+                </div>
+                <div class="row">
+                    <div class="readonly-label-group" ng-if="vm.newMapping.selectedNode.shouldAddDocType">
+                        <div class="input-wrap medium readonly-label-value">
+                            <label style="visibility: hidden">Doc Type</label>
+                            <span class="col-sm-7 text-muted">{{vm.getDocTypeText()}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

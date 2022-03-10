@@ -1,0 +1,17 @@
+<div class="table-container">
+    <div class="table-title row">
+        <h2 translate="policing.request.log.summaryTitle"></h2>
+        <div class="pull-right" data-ng-if="vm.showRequestLink">
+            <button id="viewRequests" class="btn btn-prominent" ui-sref="policingRequestMaintenance">
+                <span translate="policing.request.log.viewRequests"></span>
+            </button>
+        </div>
+    </div>
+    <ip-kendo-grid data-id="requestlog" data-grid-options="vm.gridOptions" data-search-hint="{{ 'policing.request.log.emptyGridHint' | translate }}"></ip-kendo-grid>
+    
+        <a id="viewAllLogs" class="btn btn-link" data-ng-class="pointerCursor" href="#/policing-request-log" class="no-underline">
+            <span class="cpa-icon cpa-icon-exclamation-circle" style="font-size: 12pt"></span>
+            <span translate="policing.request.log.viewLogs" style="font-style: italic"></span>
+        </a>
+    
+</div>

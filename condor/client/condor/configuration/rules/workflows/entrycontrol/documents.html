@@ -1,0 +1,8 @@
+<div class="text-right">
+    <ip-add-button ng-click="vm.onAddClick()" ng-if="vm.canEdit"></ip-add-button>
+</div>
+
+<div class="row inline-editing" ng-form="vm.form" ip-form translate-namespace="workflows.entrycontrol.documents">
+    <ip-kendo-grid data-id="documentsGrid" data-grid-options="vm.gridOptions" data-show-add="vm.canEdit" data-on-add-click="vm.onAddClick()" data-add-item-name="{{'workflows.entrycontrol.documents.document' | translate}}">
+    </ip-kendo-grid>
+</div>

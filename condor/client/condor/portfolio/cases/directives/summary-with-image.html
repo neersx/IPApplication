@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    <div class="row col-sm-12" ng-if="::!vm.hasScreenControl">
+        <ip-inline-alert id="NoScreenControlCriteria" text="caseview.message.noScreenControlCriteria" type="info">
+        </ip-inline-alert>
+        <br />
+    </div>
+    <div class="col-sm-4 col-lg-3">
+        <ip-case-header-field is-first-column="true" value="::viewData.irn" data-label-id="'caseview.summary.caseReference'" data-screen-control="::vm.screenControl.irn">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.yourReference" data-label-id="'caseview.summary.yourReference'" ng-if="::vm.isExternal">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.officialNumber" data-label-id="'caseview.summary.officialNumber'" data-screen-control="::vm.screenControl.officialNumber">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.caseType" data-label-id="'caseview.summary.caseType'" data-screen-control="::vm.screenControl.caseType">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.country" data-label-id="'caseview.summary.jurisdiction'" data-screen-control="::vm.screenControl.country">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.propertyType" data-label-id="'caseview.summary.propertyType'" data-screen-control="::vm.screenControl.propertyType">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.caseCategory" data-label-id="'caseview.summary.category'" data-screen-control="::vm.screenControl.caseCategory">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.subType" data-label-id="'caseview.summary.subType'" data-screen-control="::vm.screenControl.subType">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.basis" data-label-id="'caseview.summary.basis'" data-screen-control="::vm.screenControl.basis">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.caseStatus" data-label-id="'caseview.summary.caseStatus'" data-screen-control="::vm.screenControl.caseStatus">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.renewalStatus" data-label-id="'caseview.summary.renewalStatus'" data-screen-control="::vm.screenControl.renewalStatus">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="true" value="::viewData.applicationFilingDate | localeDate" data-label-id="'caseview.summary.applicationFilingDate'" data-screen-control="::vm.screenControl.applicationFilingDate">
+        </ip-case-header-field>
+    </div>
+    <div class="col-sm-4 col-lg-5">
+        <ip-case-header-field is-first-column="false" value="::viewData.title" data-label-id="'caseview.summary.title'" data-screen-control="::vm.screenControl.title">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.staff.name" data-label-id="'caseview.summary.workingAttorney'" data-screen-control="::vm.screenControl.staff">
+            <ip-case-name-link data-case-key="::viewData.caseKey" data-name="::viewData.staff.name" data-name-key="::viewData.staff.nameKey" data-name-code="::viewData.staff.nameCode" data-name-type="::viewData.staff.nameType" data-show-code="::viewData.staff.showCode"
+                data-can-link="::vm.showWebLink" data-show-email-link="true"></ip-case-name-link>
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.firstApplicant" data-label-id="'caseview.summary.firstApplicant'" data-screen-control="::vm.screenControl.firstApplicant">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.instructor" data-label-id="'caseview.summary.clientName'" data-screen-control="::vm.screenControl.instructor">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.clientMainContact.name" data-label-id="'caseview.summary.clientMainContact'" ng-if="::vm.isExternal">
+            <ip-case-name-link data-name="::viewData.clientMainContact.name" data-name-key="::viewData.clientMainContact.nameKey" data-name-code="::viewData.clientMainContact.nameCode" data-can-link="::vm.showWebLink">
+            </ip-case-name-link>
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.ourContact.name" data-label-id="'caseview.summary.ourContact'" ng-if="::vm.isExternal">
+            <ip-case-name-link data-case-key="::viewData.caseKey" data-name="::viewData.ourContact.name" data-name-key="::viewData.ourContact.nameKey" data-name-code="::viewData.ourContact.nameCode" data-show-code="::viewData.ourContact.showCode" data-name-type="::viewData.ourContact.nameType"
+                data-can-link="::vm.showWebLink" data-show-email-link="true">
+            </ip-case-name-link>
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.classes" data-label-id="'caseview.summary.classes'" data-screen-control="::vm.screenControl.classes">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.typeOfMark" data-label-id="'caseview.summary.typeOfMark'" data-screen-control="::vm.screenControl.typeOfMark">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.numberInSeries" data-label-id="'caseview.summary.noInSeries'" data-screen-control="::vm.screenControl.numberInSeries">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.family" data-label-id="'caseview.summary.family'" data-screen-control="::vm.screenControl.family">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.caseOffice" data-label-id="'caseview.summary.office'" data-screen-control="::vm.screenControl.caseOffice">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.fileLocation" data-label-id="'caseview.summary.fileLocation'" data-screen-control="::vm.screenControl.fileLocation">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.profitCentre" data-label-id="'caseview.summary.profitCentre'" data-screen-control="::vm.screenControl.profitCentre">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.localClientFlag ? 'Yes' : 'No'" data-label-id="'caseview.summary.localClientFlag'" data-screen-control="::vm.screenControl.localClientFlag">
+        </ip-case-header-field>
+        <ip-case-header-field is-first-column="false" value="::viewData.entitySize" data-label-id="'caseview.summary.entitySize'" data-screen-control="::vm.screenControl.entitySize">
+        </ip-case-header-field>
+    </div>
+    <div class="col-sm-4">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <div class="image-container" uib-tooltip="{{::'caseview.summary.caseImageTip' | translate }}">
+                    <ip-case-image data-case-key="::viewData.caseKey" data-image-key="::viewData.imageKey" data-image-desc="::viewData.imageDescription" data-image-title="'caseview.caseImages.imageView' | translate" data-max-width="280" data-max-height="280" data-is-thumbnail="true"
+                        data-is-responsive="true" data-is-clickable="true"></ip-case-image>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

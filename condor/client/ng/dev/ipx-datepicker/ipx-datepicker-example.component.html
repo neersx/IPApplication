@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <h2>Date Picker</h2>
+
+  <div class="row">
+    <ipx-date-picker label="Disabled Date Picker" [ngModel]="initDate" class="col-sm-4" disabled="true"></ipx-date-picker>
+    <div class="col-sm-4 col-sm-offset-2">
+      <pre> {{ initDate | json }} </pre>
+    </div>
+  </div>
+  <hr />
+
+  <div class="row">
+    <ipx-date-picker label="Default to Today" [ngModel]="default.date" class="col-sm-4" (onChange)="UpdateDefault($event)" apply-edited></ipx-date-picker>
+    <div class="col-sm-4 col-sm-offset-2">
+      <pre> {{ default | json }} </pre>
+    </div>
+  </div>
+  <hr />
+  <div class="row">
+    <ipx-date-picker label="Disabled" [ngModel]="disabled.date" [disabled]="disabled.isDisabled" class="col-sm-4"></ipx-date-picker>
+    <div class="col-sm-2">
+        <label>
+            <input type="checkbox" [(ngModel)]="disabled.isDisabled" />
+            <span>Disabled</span>
+        </label>
+    </div>
+</div>
+</div>

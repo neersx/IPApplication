@@ -1,0 +1,33 @@
+<ipx-widget-frame *ngIf="loaded" [expandSetting]="expandSetting" [title]="'portal.recentCases.title'" class="recent-cases-widget">
+    <ipx-kendo-grid *ngIf="loaded" id="recentCasesWidget" [dataOptions]="gridOptions"></ipx-kendo-grid>
+</ipx-widget-frame>
+<ipx-inline-alert *ngIf="!showRecentCases" [type]="'info'" [text]="'NoAccessToScreen'"></ipx-inline-alert>
+<ng-template #columnTemplate let-dataItem let-c="ctx">
+    <ng-container *ngIf="c.format === 'Date'">
+        <span *ngIf="dataItem[c.id] ">
+            {{ dataItem[c.id] | localeDate }}
+        </span>
+    </ng-container>
+
+    <ng-container *ngIf="c.format === 'Formatted Text'">
+        <span style="white-space: pre-wrap;" *ngIf="dataItem[c.id]" [innerHTML]="dataItem[c.id]"> </span>
+    </ng-container>
+
+    <ng-container *ngIf="c.isHyperlink">
+        <a *ngIf="dataItem[c.id] && dataItem[c.id].link && dataItem[c.id].link.caseKey" class="result-cell-link" uiSref="caseview"
+            [uiParams]="{id: dataItem[c.id].link.caseKey,rowKey:dataItem.rowKey, programId: defaultProgram}">{{dataItem[c.id].value}}
+        </a>
+        <ipx-ie-only-url *ngIf="dataItem[c.id ] && !dataItem[ c.id].link.caseKey && showWebLink" class="result-cell-link" style="cursor: pointer;" [url]="encodeLinkData(dataItem[c.id].link)"
+            [text]="dataItem[c.id].value"></ipx-ie-only-url>
+        <span *ngIf="dataItem[c.id ] && !dataItem[ c.id].link.caseKey && !showWebLink">
+            {{ dataItem[c.id].value }}
+        </span>
+    </ng-container>
+    <ng-container *ngIf="c.format === 'Image Key'">
+        <ipx-image *ngIf="dataItem[c.id]" [imageKey]="dataItem[c.id]" [maxWidth]="80" [maxHeight]="80" [isThumbnail]="true" [itemKey]="dataItem[c.id].caseKey" [type]="'case'"></ipx-image>
+    </ng-container>
+
+    <span *ngIf="!c.isHyperlink && c.format === 'String'">
+        {{ dataItem[c.id] }}
+    </span>
+</ng-template>

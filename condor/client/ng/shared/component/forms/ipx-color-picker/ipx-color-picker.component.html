@@ -1,0 +1,5 @@
+<div class="input-wrap" [ngClass]="{'edited':controledited()}">
+    <label *ngIf="label" [translate]="label" [translateParams]="labelValue" [attr.for]="identifier"></label>
+    <kendo-colorpicker [view]="view" [format]="format" [paletteSettings]="settings" [ngModelOptions]="{standalone: true}" [(ngModel)]="value" [(value)]="value" (valueChange)="change($event)" [disabled]="disabled">
+    </kendo-colorpicker>
+</div>

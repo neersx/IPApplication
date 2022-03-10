@@ -1,0 +1,31 @@
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th class="text-center cc-datecolumn" nowrap>{{ 'caseComparison.ccLblEpoDocumentDate' | translate }}</th>
+            <th style="width:auto">{{ 'caseComparison.ccLblEpoDocumentType' | translate }}</th>
+            <th class="text-center" style="width:15%">{{ 'caseComparison.ccLblEpoDocumentProcedure' | translate }}</th>
+            <th class="text-center" style="width:15%">{{ 'caseComparison.ccLblEpoNumberOfPages' | translate }}</th>
+            <th style="width:120px" data-ng-show="!viewData.errors">&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-repeat="d in documentsViewData" ng-class="{'cc-redRow': documentHasErrors(d)}">
+            <td class="text-center cc-datecolumn">{{d.mailRoomDate | localeDate}}</td>
+            <td>
+                <div ng-include="'condor/classic/caseComparison/doctemplates/document-description-template.html'"></div>
+            </td>
+            <td class="text-center">{{d.category}}</td>
+            <td class="text-center">{{d.pageCount}}</td>
+            <td class="text-center" ng-show="!viewData.errors">
+                <span data-ng-if="d.status == 'Failed'" class="btn btn-danger cc-fixedwidth" ng-click="setErrors(d.errors)">{{ 'caseComparison.ccDocDownloadFailed' | translate }}
+                </span>
+                <span data-ng-if="d.status == 'Downloaded'">
+                    <button data-ng-if="!d.imported && viewData.updateable" class="btn btn-info diff" ng-click="importDocument(d)">{{ 'caseComparison.ccBtnAttach' | translate }}</button>
+                    <span data-ng-if="d.imported" class="btn disabled">{{ 'caseComparison.ccLblAttached' | translate }}</span>
+                <span data-ng-if="!d.imported && !viewData.updateable" class="btn disabled">{{ 'caseComparison.ccLblNotAttached' | translate }}</span>
+                </span>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,30 @@
+<div class="row">
+    <ipx-kendo-grid #ipxKendoGridRef id="{{fileHistoryFromMaintenance ? 'lastLocation' : 'fileLocations'}}" [dataOptions]="gridOptions" *ngIf="gridOptions" (cancelRowEditEvent)="updateChangeStatus()"
+        (deleteRowEvent)="updateChangeStatus()" (addRowEvent)="onRowAddedOrEdited($event)" (pageChanged)="onPageChanged()" (deleteRowEvent)="updateChangeStatus()" (editRowEvent)="onRowAddedOrEdited($event)">
+        <ng-template ipxTemplateColumnField="whenMoved" let-dataItem>
+            <span class="text-nowrap">{{ dataItem.whenMoved | localeDate: 'HH:mm' }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="filePart" let-dataItem>
+            <span class="text-nowrap">{{ dataItem.filePart }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="fileLocation" let-dataItem>
+            <span class="text-nowrap">{{ dataItem.fileLocation }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="issuedBy" let-dataItem>
+            <span class="text-nowrap">{{ dataItem.issuedBy }}</span>
+        </ng-template>
+
+        <ng-template ipxEditTemplateColumnField="whenMoved" let-dataItem="dataItem" let-rowIndex="rowIndex">
+            <span class="text-nowrap">{{ dataItem.whenMovedTime | localeDate: 'HH:mm' }}</span>
+        </ng-template>
+        <ng-template ipxEditTemplateColumnField="filePart" let-dataItem="dataItem" let-rowIndex="rowIndex">
+            <span *ngIf="dataItem.filePart" class="text-nowrap">{{ (dataItem.filePart && dataItem.filePart.value)? dataItem.filePart.value : dataItem.filePart }}</span>
+        </ng-template>
+        <ng-template ipxEditTemplateColumnField="fileLocation" let-dataItem="dataItem" let-rowIndex="rowIndex">
+            <span *ngIf="dataItem.fileLocation" class="text-nowrap">{{ (dataItem.fileLocation && dataItem.fileLocation.value) ?  dataItem.fileLocation.value : dataItem.fileLocation }}</span>
+        </ng-template>
+        <ng-template ipxEditTemplateColumnField="issuedBy" let-dataItem="dataItem" let-rowIndex="rowIndex">
+            <span *ngIf="dataItem.issuedBy" class="text-nowrap">{{ (dataItem.issuedBy && dataItem.issuedBy.displayName)? dataItem.issuedBy.displayName : dataItem.issuedBy }}</span>
+        </ng-template>
+    </ipx-kendo-grid>
+</div>

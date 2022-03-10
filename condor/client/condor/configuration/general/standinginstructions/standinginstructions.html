@@ -1,0 +1,113 @@
+<ip-sticky-header>
+    <ip-page-title-save page-title="Standing Instructions Maintenance" on-save="si.save()" on-discard="si.discard()" is-save-enabled="si.savable()"
+        is-discard-enabled="si.isDirty()"></ip-page-title-save>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <h5 translate="SelectInstructionType" style="margin-left:8px"></h5>
+    <div class="container-fluid">
+        <div class="row" ng-form="si.instrTypeForm" ip-form>
+            <ip-typeahead class="col-sm-6" id="instructiontype-picklist" data-config="instructionType" data-picklist-can-maintain="true"
+                ng-disabled="si.isDirty()" ng-change="si.typeChanged()" ng-model="si.selectedInstrType" ip-autofocus>
+            </ip-typeahead>
+        </div>
+
+        <hr />
+        <div class="row" ng-form name="si.form" form-ext>
+            <div class="col-sm-6">
+                <div class="table-container" id="instructions-grid">
+                    <div class="table-title">
+                        <h2 translate="Standing Instructions"></h2>
+                        <div class="pull-right">
+                            <a href="" class="btn btn-icon add-row" data-tooltip-placement="top" ip-tooltip="{{:: 'addRow'| translate}}" ng-click="si.addInstruction()"
+                                ng-disabled="!si.instrType.id">
+                                <icon name="plus-circle"></icon>
+                            </a>
+                        </div>
+                    </div>
+                    <table class="table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="icon-column"></th>
+                                <th translate="Description"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="instr in si.instrType.instructions.items track by $index" ng-click="si.selectInstruction(instr)" ng-class="{'selected': si.selectedInstr === instr}">
+                                <td>
+                                    <span class="cpa-icon cpa-icon-trash-o" ng-click="si.confirmDelete(instr,'instr', $index)"></span>
+                                </td>
+                                <td>
+                                    <div class="input-wrap" ng-class="{ 'error': (!instr.newlyAdded &amp;&amp; si.form.instr{{$index}}.$invalid) || (instr.newlyAdded &amp;&amp; !si.form.instr{{$index}}.$error.required &amp;&amp; si.form.instr{{$index}}.$invalid) || instr.serverError, 'deleted': instr.isDeleted , 'saved': instr.isSaved &amp;&amp; !instr.isDeleted}">
+                                        <input input-ext type="text" ng-model="instr.obj.description" ng-class="{ 'edited' : si.form.instr{{$index}}.$dirty }" name="instr{{$index}}"
+                                            ng-focus="si.selectInstruction(instr)" ng-maxlength="50" required on-value-change="instr.changeStatus(isReverted);si.resetUniquenessError('instr', si.instrType.instructions.items.length)"
+                                            validator-funcs="{isUnique: si.UniqueInstruction}" ng-model-options="{ allowInvalid: true }"
+                                            focus-if="instr.newlyAdded" ng-blur="instr.resetNewlyAdded()" data-ng-disabled="instr.isDeleted"
+                                        />
+                                        <span class="input-action tooltip-error" data-tooltip-placement="bottom" ng-show="(!instr.newlyAdded &amp;&amp; si.form.instr{{$index}}.$invalid) || (instr.newlyAdded &amp;&amp; !si.form.instr{{$index}}.$error.required &amp;&amp; si.form.instr{{$index}}.$invalid) || instr.serverError"
+                                            ip-tooltip="{{si.getErrorText(instr, 'instr', $index) | translate:'{ length: 50 }' }}">
+                                            <span class="cpa-icon cpa-icon-exclamation-triangle"></span>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ip-inline-alert data-ng-hide="si.instrType.id" text="ChooseInstructionType" type="info"></ip-inline-alert>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="table-container" id="characteristics-grid">
+                    <div class="table-title">
+                        <h2 translate="Characteristics"></h2>
+                        <div class="pull-right">
+                            <a href="" class="btn btn-icon add-row" data-tooltip-placement="top" ip-tooltip="{{:: 'addRow'| translate}}" ng-click="si.addCharacteristics()"
+                                ng-disabled="!si.instrType.id">
+                                <icon name="plus-circle"></icon>
+                            </a>
+                        </div>
+                    </div>
+                    <table class="table table-striped" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="icon-column"></th>
+                                <th translate="Description"></th>
+                                <th translate="Assigned" class="col-sm-2"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="characteristic in si.instrType.characteristics.items track by $index">
+                                <td>
+                                    <span class="cpa-icon cpa-icon-trash-o" ng-click="si.confirmDelete(characteristic, 'char', $index)"></span>
+                                </td>
+                                <td>
+                                    <div class="input-wrap required" ng-class="{ 'error': (!characteristic.newlyAdded &amp;&amp; si.form.char{{$index}}.$invalid) || (characteristic.newlyAdded &amp;&amp; !si.form.char{{$index}}.$error.required &amp;&amp; si.form.char{{$index}}.$invalid) || characteristic.serverError, 'deleted': characteristic.isDeleted, 'saved': characteristic.isSaved &amp;&amp; !characteristic.isDeleted}">
+                                        <input input-ext type="text" ng-model="characteristic.obj.description" name="char{{$index}}" ng-class="{ 'edited' : {{ 'si.form.char'+ $index}}.$dirty}"
+                                            focus-if="characteristic.newlyAdded" ng-blur="characteristic.resetNewlyAdded()" on-value-change="characteristic.changeStatus(isReverted); si.resetUniquenessError('char', si.instrType.characteristics.items.length)"
+                                            required ng-maxlength="50" validator-funcs="{isUnique: si.UniqueCharacteristic}"
+                                            ng-model-options="{ allowInvalid: true }" data-ng-disabled="characteristic.isDeleted"
+                                        />
+                                        <span class="input-action tooltip-error" data-tooltip-placement="bottom" ip-tooltip="{{si.getErrorText(characteristic, 'char', $index) | translate:'{ length: 50 }' }}"
+                                            ng-show="(!characteristic.newlyAdded &amp;&amp; si.form.char{{$index}}.$invalid) || (characteristic.newlyAdded &amp;&amp; !si.form.char{{$index}}.$error.required &amp;&amp; si.form.char{{$index}}.$invalid) || characteristic.serverError">
+                                            <span class="cpa-icon cpa-icon-exclamation-triangle"></span>
+                                        </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-wrap switch" ng-class="{ 'saved' : si.isSaved(characteristic.obj.id), 'edited': si.isUpdated(characteristic.obj.id)}">
+                                        <input input-ext type="checkbox" id="selected{{$index}}" name="selected{{$index}}" ng-model="characteristic.obj.selected"
+                                            ng-disabled="!si.selectedInstr.obj.id || si.selectedInstr.isDeleted || characteristic.isDeleted"
+                                            on-value-change="si.valueChangedAssignedChar(characteristic, isReverted)">
+                                        <label for="selected{{$index}}">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ip-inline-alert data-ng-hide="si.instrType.id" text="ChooseInstructionTypeChar" type="info"></ip-inline-alert>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

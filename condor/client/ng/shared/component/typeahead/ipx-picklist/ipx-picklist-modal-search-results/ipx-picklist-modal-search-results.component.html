@@ -1,0 +1,8 @@
+<div id="picklistResults" style="max-width: 975px;">
+    <ipx-kendo-grid #searchResultGrid *ngIf="isGridOptionsSet" [dataOptions]="gridOptions" (dataItemClicked)="dataItemClicked($event)" (rowSelectionChanged)="onRowSelectionChanged($event)" (pageChanged)="onPageChanged($event)" (rowOnMaintnance)="rowOnMaintnanceTriggered($event)"
+        [autoApplySelection]="autoApplySelection">
+        <grid-toolbar>
+            <ng-content class="picklist-toolbar"></ng-content>
+        </grid-toolbar>
+    </ipx-kendo-grid>
+</div>

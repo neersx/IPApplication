@@ -1,0 +1,6 @@
+<span [translate]="topic.title" title="{{'sections.emptySection' | translate}}" class="emptyTopic" *ngIf="topic.isEmpty && topic.isEmpty()"></span>
+<span [translate]="topic.title" *ngIf="topic.isGroupSection || !(topic.isEmpty && topic.isEmpty())"></span>
+<span id="topicDataCount" class="badge topics pull-right" style="margin-top: 2px;">{{topic.count}}</span>
+<span *ngIf="topic.hasErrors$ | async">
+    &nbsp;<span class="cpa-icon cpa-icon-exclamation-triangle" name="exclamation-triangle"></span>
+</span>

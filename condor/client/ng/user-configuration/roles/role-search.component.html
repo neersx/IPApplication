@@ -1,0 +1,107 @@
+<ipx-sticky-header>
+    <ipx-page-title [title]="'roleSearch.roleTitle'">
+    </ipx-page-title>
+</ipx-sticky-header>
+
+<ipx-header></ipx-header>
+<ipx-search-option [isSearchDisabled]=false [isResetDisabled]=false (search)="search()" (clear)="clear()">
+    <form name="configuration" #configurationForm="ngForm">
+        <div class="input-wrap">
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ipx-text-field label="{{ 'roleSearch.roleName'}}" name="rolename" [(ngModel)]="formData.roleName"></ipx-text-field>
+                            </div>
+                            <div class="input-wrap-group group-inline col-md-6">
+                                <ipx-checkbox [(ngModel)]="formData.isInternal" (onChange)="toggleInternal($event,0)" name="isInternal" label="{{ 'roleSearch.internal'}}">
+                                </ipx-checkbox>
+                                <ipx-checkbox [(ngModel)]="formData.isExternal" (onChange)="toggleInternal($event,1)" name="isExternal" label="{{'roleSearch.external'}}">
+                                </ipx-checkbox>
+                                <div class="input-wrap">
+                                    <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" container="body" [tooltipPlacement]="'right'" [templateRef]="toolTip">
+                                    </ipx-inline-dialog>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ipx-text-field label="{{ 'roleSearch.roleDescription'}}" name="roledescription" [(ngModel)]="formData.roleDescription">
+                                </ipx-text-field>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ipx-typeahead id="tasktPicklist" name="TaskList" (onChange)="onChangeTask()" [(ngModel)]="formData.task.Picklist" label="{{ 'picklist.taskList.label' | translate }}" config="taskList">
+                                </ipx-typeahead>
+
+                            </div>
+                            <div class="input-wrap-group group-inline col-md-6">
+                                <ipx-dropdown name="taskPermission" (onChange)="onChangeTask()" label="" displayField="name" keyField="id" [(ngModel)]="formData.task.permissions" [options]="permission">
+                                </ipx-dropdown>
+                                <ipx-checkbox [(ngModel)]="formData.task.execute" name="execute" [disabled]="!formData.task.Picklist?.executePermission || !formData.task.permissions" label="{{ 'roleSearch.execute'}}">
+                                </ipx-checkbox>
+                                <ipx-checkbox [(ngModel)]="formData.task.insert" name="insert" [disabled]="!formData.task.Picklist?.insertPermission || !formData.task.permissions" label="{{ 'roleSearch.insert'}}">
+                                </ipx-checkbox>
+                                <ipx-checkbox [(ngModel)]="formData.task.update" name="update" [disabled]="!formData.task.Picklist?.updatePermission || !formData.task.permissions" label="{{ 'roleSearch.update'}}">
+                                </ipx-checkbox>
+                                <ipx-checkbox [(ngModel)]="formData.task.delete" name="delete" [disabled]="!formData.task.Picklist?.deletePermission || !formData.task.permissions" label="{{ 'roleSearch.delete'}}">
+                                </ipx-checkbox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ipx-typeahead id="webPartPicklist" name="webPart" (onChange)="onChangeWebpart()" [(ngModel)]="formData.webPart.Picklist" label="{{ 'picklist.webParts.label' | translate }}"
+                                    config="webParts">
+                                </ipx-typeahead>
+                            </div>
+                            <div class="input-wrap-group group-inline col-md-6">
+                                <ipx-dropdown name="webPartPermission" (onChange)="onChangeWebpart()" label="" displayField="name" keyField="id" [(ngModel)]="formData.webPart.permissions" [options]="permission">
+                                </ipx-dropdown>
+                                <ipx-checkbox [(ngModel)]="formData.webPart.access" [disabled]="!formData.webPart.Picklist || !formData.webPart.permissions" name="access" label="{{ 'roleSearch.access'}}">
+                                </ipx-checkbox>
+                                <ipx-checkbox style="margin-left: 6px;" [(ngModel)]="formData.webPart.mandatory" [disabled]="!formData.webPart.Picklist || !formData.webPart.permissions" name="mandatory"
+                                    label="{{ 'roleSearch.mandatory'}}">
+                                </ipx-checkbox>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <ipx-typeahead id="subjectPicklist" name="subjectList" (onChange)="onChangeSubject()" [(ngModel)]="formData.subject.Picklist" label="{{ 'picklist.subjectList.label' | translate }}"
+                                    config="subjectList">
+                                </ipx-typeahead>
+                            </div>
+                            <div class="input-wrap-group group-inline col-md-6">
+                                <ipx-dropdown name="subjectPermission" (onChange)="onChangeSubject()" label="" displayField="name" keyField="id" [(ngModel)]="formData.subject.permissions" [options]="permission">
+                                </ipx-dropdown>
+                                <ipx-checkbox [(ngModel)]="formData.subject.access" [disabled]="!formData.subject.Picklist || !formData.subject.permissions" name="subjectaccess" label="{{ 'roleSearch.access'}}">
+                                </ipx-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</ipx-search-option>
+
+<div>
+    <div class="table-container">
+        <div class="table-title">
+            <ipx-add-button *ngIf=viewData.canCreateRole (click)="openModal(null,roleSearchState.Adding)" class="pull-right"></ipx-add-button>
+        </div>
+        <div ipx-resize-handler [resize-handler-type]="'Panel'">
+            <ipx-kendo-grid [dataOptions]="gridOptions" id="roleSearch" #roleSearchGrid>
+                <ng-template ipxTemplateColumnField="roleName" let-dataItem>
+                    <span><a (click)="openRoleDetails(dataItem)">{{ dataItem.roleName }}</a></span>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>
+
+<ng-template #toolTip>
+    <p>{{'roleSearch.toolTip' | translate}}<b>{{'SearchColumns.internal' | translate}}</b>{{'roleSearch.toolTipOr' | translate}} <b>{{'SearchColumns.external' | translate}}</b>{{'roleSearch.toolTipIf' | translate}}</p>
+</ng-template>

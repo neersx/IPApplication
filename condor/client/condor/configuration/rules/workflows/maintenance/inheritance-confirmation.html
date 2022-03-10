@@ -1,0 +1,33 @@
+<div id="inheritanceConfirmationModal" translate-namespace="workflows.maintenance.inheritanceConfirmation">
+    <div class="modal-header">
+        <h2 class="modal-title" translate=".title"></h2>
+    </div>
+    <div class="modal-body">
+        <div class="input-wrap">
+            {{:: 'workflows.maintenance.inheritanceConfirmation.message' | translate:vm.translationData }}
+        </div>
+        <div class="input-wrap">
+            {{:: 'workflows.maintenance.inheritanceConfirmation.detail' | translate:vm.translationData }}
+        </div>
+        <div class="row" ng-repeat="item in items">
+            <div class="col-sm-2 col-sm-offset-1">
+                <a href="#/configuration/rules/workflows/{{item.id}}" target="_blank">{{item.id}}</a>
+            </div>
+            <div class="col-sm-9">
+                <a href="#/configuration/rules/workflows/{{item.id}}" target="_blank">{{item.description}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="pull-right col-sm-12 modal-footer-buttons">
+                <div class="footerCheckBox withInfo">
+                    <ip-checkbox label="workflows.maintenance.applyToDescendants" ng-model="vm.inherit" data-info="workflows.maintenance.inheritanceConfirmation.blurb" data-info-data="vm.translationData">
+                    </ip-checkbox>
+                </div>
+                <button type="button" class="btn" data-ng-click="cancel()" translate="button.cancel"></button>
+                <button type="button" class="btn btn-primary" data-ng-click="vm.proceed()" translate="button.proceed"></button>
+            </div>
+        </div>
+    </div>
+</div>

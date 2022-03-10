@@ -1,0 +1,54 @@
+<div class="title-header" ng-form>
+    <div class="col-sm-6" style="display: flex;">
+        <div name="staffName" class="col-sm-8 label-value">
+            <label translate="accounting.time.recording.timeFor"></label>
+            <span class="text">{{ viewData.displayName }}</span>
+        </div>
+        <div name="selectedDate" class="col-sm-6 label-value">
+            <label translate="accounting.time.recording.viewing"></label>
+            <span class="text">{{ viewData.selectedDate | localeDate }}</span>
+        </div>
+    </div>
+    <div class="input-wrap-group group-inline col-sm-8" [formGroup]="form" *ngIf="form" style="margin-top: 5px">
+        <span style="text-align: left; width: auto;">{{ 'accounting.time.gaps.selectTimeRange' | translate }}:</span>
+        <div class="input-wrap">
+            <label translate="accounting.time.gaps.fromTime" style="padding-left: 0px; padding-right: 10px;"></label>
+            <ipx-time-picker id="rangeFrom" [format]="settingsService.timeFormat" [is12HoursFormat]="settingsService.is12HourFormat"
+                [showNowButton]="false" [canBeEmpty]="false" class="col-sm-4" formControlName="timeRangeFrom">
+            </ipx-time-picker>
+        </div>
+        <div class="input-wrap">
+            <label translate="accounting.time.gaps.toTime"></label>
+            <ipx-time-picker id="rangeTo" [format]="settingsService.timeFormat"
+                [is12HoursFormat]="settingsService.is12HourFormat" [showNowButton]="false" [canBeEmpty]="false"
+                class="col-sm-4" formControlName="timeRangeTo" [min]="minToAllowed">
+            </ipx-time-picker>
+        </div>
+    </div>
+    <div class="col-sm-4" style="margin-top: 5px">
+        <button class="btn btn-primary pull-right" name="add" (click)="createItems()" [disabled]="disableAdd" translate="Add"></button>
+    </div>
+</div>
+<div>
+    <ipx-kendo-grid id="timeGaps" [dataOptions]="gridOptions" *ngIf="gridOptions" (rowSelectionChanged)="onRowSelectionChanged($event)" #timeGaps>
+        <ng-template ipxTemplateColumnField="startTime" let-dataItem>
+            <span class="text-nowrap">{{ dataItem.startTime | date: settingsService.timeFormat }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="finishTime" let-dataItem>
+            <span class="text-nowrap">{{ dataItem.finishTime | date: settingsService.timeFormat }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="durationInSeconds" let-dataItem>
+            <span>{{ dataItem.durationInSeconds | durationFormat: settingsService.displaySeconds }}</span>
+        </ng-template>
+    </ipx-kendo-grid>
+</div>
+<ng-template #durationFooter>
+    <div class="label-value col-sm-5" *ngIf="!!totalSeconds && !!totalSeconds.durationInSeconds">
+        <span class="text">{{ totalSeconds.durationInSeconds.sum | durationFormat: settingsService.displaySeconds }}</span>
+    </div>
+</ng-template>
+<ng-template #toTimeFooter>
+    <div class="label-value col-sm-5 pull-right" *ngIf="!!totalSeconds && !!totalSeconds.durationInSeconds">
+        <span class="text">{{ 'accounting.time.gaps.total' | translate }}:</span>
+    </div>
+</ng-template>

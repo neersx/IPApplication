@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <h2 class="modal-title">
+        <div>
+            {{'externalApplication.iealblEdit' | translate}}
+        </div>
+    </h2>
+    <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+        <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+        <ip-close-button data-ng-click="vm.dismissAll()"></ip-close-button>
+    </div>
+</div>
+
+<div class="modal-body" ng-form="vm.form" ip-form>
+        <div class="row">
+                <div class="readonly-label-group">
+                    <div class="input-wrap readonly-label-value">
+                        <label for="token">{{'externalApplication.iealblName' | translate}}</label>
+                        <span id="token" ng-bind="::vm.externalApp.name"></span>
+                    </div>
+                </div>
+            </div>
+
+    <div class="row">
+        <div class="readonly-label-group">
+            <div class="input-wrap readonly-label-value">
+                <label for="token">{{'externalApplication.iealblToken' | translate}}</label>
+                <span id="token" ng-bind="::vm.externalApp.token"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="input-wrap">
+            <ip-datepicker id="expiryDate" name="expiryDate" ng-model="vm.selectedDate" later-than="vm.minStartDate" label="{{'externalApplication.iealblExpiredDate' | translate}}"></ip-datepicker>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-wrap-group group-inline">
+            <span></span>
+            <div class="input-wrap" ng-class="{'edited': vm.form.isActive.$dirty}">
+                <input type="checkbox" id="isActive" name="isActive" ng-model="vm.externalApp.isActive" />
+                <label for="isActive">{{'externalApplication.iealblActive' | translate}}</label>
+            </div>
+        </div>
+    </div>
+
+</div>

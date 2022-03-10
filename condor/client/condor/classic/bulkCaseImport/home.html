@@ -1,0 +1,114 @@
+<ip-sticky-header>
+    <ip-page-title page-title="{{ 'bulkCaseImport.glbLblTitle' | translate }}" page-subtitle="{{ 'bulkCaseImport.bciLblTitle' | translate }}">
+        <before-title>
+            <ip-level-up-button data-to-state="classicBulkCaseImportStatus"></ip-level-up-button>
+        </before-title>
+    </ip-page-title>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <h5>
+                        {{ 'bulkCaseImport.bciLblSubtitle' | translate }}
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        div.dropzone {
+            padding-top: 50px;
+            padding-bottom: 80px;
+            border-radius: 10px;
+            border-width: 3px;
+            border-style: dashed;
+        }
+
+        div.dragover {
+            background: #e8e8e8;
+        }
+    </style>
+    <div class="table-container col-sm-12">
+        <div class="row">
+            <div data-ng-class="{'col-sm-12': noTemplates, 'col-sm-8': !noTemplates}">
+                <form name="selectFile" class="form-horizontal" role="form" ng-submit="save()">
+                    <div data-in-drag-and-drop="onSelectFile" class="alert-info dropzone text-center" id="fileDragDrop">
+                        <div>
+                            <h3>{{ 'bulkCaseImport.bciLblDropToUpload' | translate }}</h3>
+                        </div>
+                        <div>
+                            <h4>{{ 'bulkCaseImport.bciLblOr' | translate }}</h4>
+                        </div>
+                        <p/>
+                        <label class="btn btn-default">
+                            {{ 'bulkCaseImport.bciBtnSelectFile' | translate }}
+                            <div id="filePath" data-in-input-file data-selected="onSelectFile" data-accept=".xml,.csv" style="display:none" ng-disabled="status === 'initialcheck' || status === 'upload' "></div>
+                        </label>
+                        <p/>
+                        <div>
+                            <h6>{{ 'bulkCaseImport.bciLblSizeLimit' | translate }}</h6>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-4" data-ng-if="!noTemplates">
+                <h5 class="bigger">
+                    <span>{{'bulkCaseImport.bciLblAvailableTemplates' | translate}}</span>
+                </h5>
+                <span class="text-muted small">{{ 'bulkCaseImport.bciAvailableTemplatesInfo' | translate }}</span>
+                <hr />
+                <h6 data-ng-if="!singleSetTemplates">
+                    <span>{{'bulkCaseImport.bciLblAvailableDefaultTemplates' | translate}}</span>
+                </h6>
+                <ul>
+                    <li data-ng-repeat="i in standardTemplates track by $index">
+                        <a class="lighter smaller" href="{{i.link}}" target="_blank">{{i.name}}</a>
+                    </li>
+                </ul>
+                <br data-ng-if="!singleSetTemplates" />
+                <h6 data-ng-if="!singleSetTemplates">
+                    <span>{{'bulkCaseImport.bciLblAvailableCustomTemplates' | translate}}</span>
+                </h6>
+                <ul>
+                    <li data-ng-repeat="i in customTemplates track by $index">
+                        <a class="lighter smaller" href="{{i.link}}" target="_blank">{{i.name}}</a>
+                    </li>
+                </ul>
+                </span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div data-ng-class="{'col-sm-12': noTemplates, 'col-sm-8': !noTemplates}">
+                <div ng-show="status === 'upload' || status === 'error' || status === 'initialcheck' ">
+                    <p text="" ng-show="status === 'initialcheck'">{{ 'bulkCaseImport.bciLblChecking' | translate }}</p>
+                    <p text="" ng-show="status === 'upload'" translate="{{'bulkCaseImport.bciLblUploading'}}" translate-values="{ fileName: fileName}"></p>
+                    <p text="" ng-show="status === 'error'">{{ 'bulkCaseImport.bciLblError' | translate }} </p>
+                    <div>
+                        <div ng-class="{'active': (status === 'initialcheck' || status ==='upload')}" class="progress progress-striped">
+                            <div id="progressbar" style="width: 100%" ng-class="{'progress-bar-danger': status === 'error'}" class="progress-bar" role="progressbar"
+                                aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+                            </div>
+                        </div>
+                        <div class="alert alert-danger" ng-show="status === 'error'">
+                            <button type="button" class="close" ng-click="status = 'idle'">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <div>
+                                <p>
+                                    <strong>{{ errorHeading }}</strong>
+                                </p>
+                                <ul>
+                                    <li data-ng-repeat="e in errors">{{ e.errorMessage }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

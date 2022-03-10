@@ -1,0 +1,16 @@
+<form #frm="ngForm">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <div class="row">
+                <ipx-typeahead apply-edited name="nameGroup" label="picklist.nameGroup.Type" config="nameGroup" [(ngModel)]="formData.nameGroup" [disabled]="!!formData.name?.key" (onChange)="markForCheck()"></ipx-typeahead>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited name="name" label="picklist.name.Name" config="name" [(ngModel)]="formData.name" [disabled]="!!formData.nameGroup?.key" (onChange)="markForCheck()"></ipx-typeahead>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited name="nameType" label="picklist.nameType.type" config="nameType" [(ngModel)]="formData.nameType">
+                </ipx-typeahead>
+            </div>
+        </div>
+    </div>
+</form>

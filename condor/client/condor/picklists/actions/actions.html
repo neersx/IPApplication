@@ -1,0 +1,63 @@
+<style>
+    .radio-width-small {
+        width: 27% !important;
+    }
+</style>
+<div data-ng-controller="actionsController as aCtrl" ng-init="aCtrl.init(vm.maintenanceState, vm.entry)">
+    <div translate-namespace="picklist.action" ng-if="!vm.externalScope[(vm.entity || 'combination')]()">
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-text-field name="code" ip-required ip-autofocus label=".Code" ng-model="vm.entry.code" data-ng-maxlength="2" ng-disabled="vm.maintenanceState === 'updating' || vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.code.$dirty}" ip-field-error="{{vm.entry.$error('code').message | translate}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-text-field name="value" ip-required label=".Description" ng-model="vm.entry.value" data-ng-maxlength="50" ng-class="{edited: vm.maintenance.value.$dirty}" ng-disabled="vm.maintenanceState === 'viewing'" ip-field-error="{{vm.entry.$error('value').message | translate}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="input-wrap" data-ng-class="{ required: !vm.maintenance.cycles, 'error': vm.maintenance.cycles.$touched && !vm.maintenance.cycles.$valid || !vm.maintenance.cycles.$pristine && !vm.maintenance.cycles.$valid}">
+                    <label translate=".NoOfCycles"></label>
+                    <input name="cycles" data-ng-model="vm.entry.cycles" required="!vm.maintenance.cycles" type="number" ng-disabled="vm.maintenanceState === 'viewing' || vm.entry.unlimitedCycles || !aCtrl.canEnterMaxCycles" data-ng-class="{'edited': vm.maintenance.cycles.$dirty }" ng-maxlength="4" min="1" max="9999" />
+                    <span data-ng-if="vm.maintenance.cycles.$touched && !vm.maintenance.cycles.$valid || !vm.maintenance.cycles.$pristine && !vm.maintenance.cycles.$valid">
+                        <span class="input-action tooltip-error custom-size" data-ng-if="!vm.maintenance.cycles.$valid || vm.entry.$error('cycles')">
+                            <span data-ng-if="vm.maintenance.cycles.$error.required" class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{::'field.errors.required' | translate}}" tooltip-class="tooltip-error"></span>
+                        <span data-ng-if="vm.maintenance.cycles.$error.max" class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{::'field.errors.max' | translate:{ max: 9999 } }}" tooltip-class="tooltip-error">
+                            </span>
+                        <span data-ng-if="vm.maintenance.cycles.$error.min" class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{::'field.errors.min' | translate:{ min: 1 } }}" tooltip-class="tooltip-error">
+                            </span>
+                        <span data-ng-if="vm.maintenance.cycles.$error.maxlength" class="input-action tooltip-error" data-tooltip-placement="right" ip-tooltip="{{::'field.errors.maxlength' | translate:{ length: 4 } }}">
+                            <icon name="exclamation-triangle"></icon>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <ip-checkbox name="unlimitedCycles" label="picklist.event.maintenance.unlimited" ng-model="vm.entry.unlimitedCycles" ng-change="aCtrl.toggleMaxCycle(vm); vm.maintenance.cycles.$dirty = true;"></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="input-wrap">
+                    <ip-dropdown ip-required name="importanceLevel" label=".ImportanceLevel" data-ng-model="vm.entry.importanceLevel" options="il.level as il.description for il in aCtrl.importanceLevels" ng-class="{'edited': vm.maintenance.importanceLevel.$dirty}" ng-disabled="vm.maintenanceState === 'viewing'">
+                    </ip-dropdown> 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group group-inline col-sm-9">
+                <span class="input-wrap radio-width-small"></span>
+                <ip-radio-button label=".Renewal" value="renewal" ng-model="vm.entry.actionType" name="Renewal" ng-class="{edited: vm.maintenance.Renewal.$dirty}" ng-disabled="vm.maintenanceState === 'viewing'">
+                </ip-radio-button>
+                <ip-radio-button label=".Examination" value="examination" ng-model="vm.entry.actionType" name="Examination" ng-class="{edited: vm.maintenance.Examination.$dirty}" ng-disabled="vm.maintenanceState === 'viewing'">
+                </ip-radio-button>
+                <ip-radio-button label=".Other" value="other" ng-model="vm.entry.actionType" name="Other" ng-class="{edited: vm.maintenance.Other.$dirty}" ng-disabled="vm.maintenanceState === 'viewing'">
+                </ip-radio-button>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!!vm.externalScope[(vm.entity || 'combination')]()">
+        <ip-valid-picklist-maintenance data-model="vm.entry" data-maintenance="vm.maintenance" data-state="vm.maintenanceState" data-can-maintain="false" data-entity-type='action'></ip-valid-picklist-maintenance>
+    </div>
+</div>

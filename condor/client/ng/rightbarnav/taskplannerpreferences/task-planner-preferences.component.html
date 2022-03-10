@@ -1,0 +1,49 @@
+<form #userPreferencesForm="ngForm">
+  <div class="container-fluid" style="margin-left: 7px;">
+    <div class="row">
+      <h3>
+        {{ 'taskPlanner.contextMenu.pcPageText' | translate }}
+      </h3>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="input-wrap switch">
+          <ipx-checkbox apply-edited id="chkAutoRefresh" name="chkAutoRefresh" [(ngModel)]="formData.autoRefreshGrid" (ngModelChange)="toggle($event)" [label]="'taskPlanner.contextMenu.pcRefreshButtonText'"
+            tooltip="{{'taskPlanner.contextMenu.pcRefreshButtonTextHelp'| translate}}" placement="right"></ipx-checkbox>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="viewData.maintainTaskPlannerSearch">
+      <hr>
+      <div class="col-sm-12">
+        <label>{{'taskPlanner.contextMenu.taskPlannerTabsText' | translate}}</label>
+      </div>
+      <div class="row">
+        <div *ngFor="let tab of formData.tabs;trackBy:tackByFn">
+          <ipx-typeahead required class="col-sm-8" id="tabSavedSearch{{tab.tabSequence}}" name="tabSavedSearch{{tab.tabSequence}}" [disabled]="tab.isLocked" [label]="'taskPlanner.contextMenu.tab'+tab.tabSequence"
+            config="taskPlannerSavedSearch" [(ngModel)]="tab.savedSearch">
+          </ipx-typeahead>
+          <div class="col-sm-4" *ngIf="tab.isLocked">
+            <ipx-inline-dialog [content]="'taskPlanner.contextMenu.taskPlannerTabsHelpText'| translate" [tooltipPlacement]="'right'">
+            </ipx-inline-dialog>
+          </div>
+        </div>
+        <div class="col-sm-8" style="padding-right: 33px;">
+          <button type="button" id="btnResetToDefault" class="btn btn-danger pull-right" [disabled]="areAllLockedTab" (click)="resetToDefault()">
+            {{ 'taskPlanner.contextMenu.resetToDefault' | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <br />
+      <div class="col-sm-5">
+        <button type="button" id="btnSubmit" [disabled]="!canSave()" class="btn btn-primary" (click)="submit()">
+          {{ 'button.apply' | translate }}
+        </button> &nbsp;
+        <button type="button" id="btnCancel" class="btn btn-cancel" (click)="close()">
+          {{ 'button.cancel' | translate }}</button>
+      </div>
+    </div>
+  </div>
+</form>

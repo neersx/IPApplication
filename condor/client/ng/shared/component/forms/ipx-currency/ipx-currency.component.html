@@ -1,0 +1,4 @@
+<ng-container>
+    <a *ngIf="renderHyperlink" (click)="onClickHyperLink($event);">{{ value | localCurrencyFormat: currencyCode: decimalPlaces | async }}</a>
+    <span *ngIf="!renderHyperlink">{{ value | localCurrencyFormat: currencyCode: decimalPlaces | async }}</span>
+</ng-container>

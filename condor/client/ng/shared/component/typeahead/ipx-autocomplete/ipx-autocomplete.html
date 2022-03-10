@@ -1,0 +1,19 @@
+<div *ngIf="results?.length > 0 || recentResult?.length > 0" class="autocomplete">
+    <ul class="suggestion-list" (mousedown)="onClick(true);" (mouseup)="onClick(false)">
+        <li class="suggestion-item" autoHighlighted *ngFor="let item of getResultSet(); trackBy: item; let i = index" (mousedown)="setSelectedRow(item)" (mouseover)="resetClass()" [ngClass]="{selected: item.$selected}" [id]="i">
+            <dynamic-item-template [templateType]="templateType" [item]="item" [keyField]="keyField" [codeField]="codeField" [textField]="textField" [searchValue]="text">
+            </dynamic-item-template>
+            <hr style="margin-top: 10px; margin-bottom: 5px" *ngIf="item.lastRecentResult">
+        </li>
+    </ul>
+    <div *ngIf="displayCount()" class="suggestion-view-all">
+        <span>Showing {{ results.length }} of {{ total }} items</span>
+    </div>
+</div>
+<div *ngIf="(results != null || recentResult != null) && ( !results?.length && !recentResult?.length)" class="autocomplete">
+    <ul class="suggestion-list">
+        <li class="suggestion-item">
+            <i>No results found</i>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,43 @@
+<ip-sticky-header>
+    <ip-page-title page-title="{{ 'bulkCaseImport.glbLblTitle' | translate }}" page-subtitle="{{ 'bulkCaseImport.miLblTitle' | translate }}">
+        <before-title>
+            <ip-level-up-button data-to-state="classicBulkCaseImportStatus"></ip-level-up-button>
+        </before-title>
+    </ip-page-title>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <h5 data-ng-if="data.mappingIssues.length > 0" class="bigger lighter bci-instructions">
+                        <i class="fa fa-info"></i>&nbsp;
+                        <span id="batchIdentifier">{{'bulkCaseImport.miLblSubTitle' | translate}} -
+                            <b>'{{data.batchIdentifier}}'</b>. </span>
+                        <a id="miTransactionLink" href="#/bulkcaseimport/batchSummary/{{data.batchId}}/mappingIssuesCases" target="_blank">{{ 'bulkCaseImport.gLblViewAffectedTransactionsInNewTab' | translate: {issueCount: data.mappingIssueCaseCount} }}</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-container col-sm-12">
+        <div class="widget-box">
+            <div>
+                <div class="widget-main no-padding" data-ng-if="data.mappingIssues.length > 0" style="overflow-x: auto">
+                    <table class="table table-striped table-blue">
+                        <thead>
+                            <tr>
+                                <th>{{ data.issueDescription }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="n in data.mappingIssues">
+                                <td>{{n}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

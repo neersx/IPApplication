@@ -1,0 +1,23 @@
+<style>
+  .item-label {
+    margin-right: 20px;
+  }
+</style>
+
+<div class="col-sm-12" id="user-info-and-two-factor">
+  <h6>
+    <span class="cpa cpa-icon-user"></span>
+    {{appContext.user.displayName}} ({{appContext.user.name}})
+  </h6>
+  <div class="text-wrap">
+    {{appContext.user.preferences.cultureName}}
+  </div>
+  <div class="text-wrap" *ngIf="appContext.user.permissions.canChangeMyPassword">
+    <button id="changePassword" class="btn btn-default" (click)="openChangePasswordModal()">
+      <span class="cpa-icon cpa-icon-key"></span> {{ 'signin.password' | translate }}
+    </button>
+  </div>
+
+  <user-preference>
+  </user-preference>
+</div>

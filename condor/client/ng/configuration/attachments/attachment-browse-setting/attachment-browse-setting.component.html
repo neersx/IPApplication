@@ -1,0 +1,8 @@
+<div class="row">
+  <div class="input-wrap-group group-inline col-sm-7">
+    <div class="input-wrap switch" [ngClass]="{edited: enableChanged}">
+      <input id="browseFiles" name="browseFiles" type="checkbox" [(ngModel)]="enableBrowseButton" (ngModelChange)="changeStatus($event)">
+      <label for="browseFiles" [translate]="'attachmentsIntegration.attachmentBrowseSetting.label'"></label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="row">
+    <br>
+    <br>
+    <div class="alert alert-info" id="validCombinationAlert">
+        <icon name="info-circle"></icon>
+        <span translate="{{ vm.hasValidCombinations ? 'jurisdictions.maintenance.validCombinations.exist' : 'jurisdictions.maintenance.validCombinations.notExist'}}" translate-values="{ name: vm.parentName }"></span>
+        <a ui-sref="validcombination.allcharacteristics({searchKey: vm.parentId, searchName: vm.parentName})" target="_blank" id="validCombinationLink" translate="jurisdictions.maintenance.validCombinations.link" ip-tooltip="{{::'jurisdictions.maintenance.validCombinations.tooltip' | translate }}" ng-if="vm.displayLink"></a>
+    </div>
+</div>
+<hr />

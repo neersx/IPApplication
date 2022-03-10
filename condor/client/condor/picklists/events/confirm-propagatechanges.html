@@ -1,0 +1,44 @@
+<style>
+    .propagechanges-chkbox-margin {
+        margin-left: 20%;
+    }
+    .info-dialog-margin {
+        margin-left: -20%;
+        margin-top: 1%;
+    }
+    .confirm-btn-margin {
+        margin-top: 1%;
+    }
+</style>
+<div id="confirmPropagateEventChanges" translate-namespace="picklist.event.maintenance.confirmPropagateChanges">
+<div class="modal-header">
+    <h2 class="modal-title" translate=".title"></h2>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <span translate=".message"></span>
+    </div>
+    <br>
+    <div id="updatedFields" class="row input-wrap-group">
+        <ul>
+            <li ng-repeat="item in vm.updatedFields">{{'picklist.event.maintenance.' + item.id | translate}}</li>
+        </ul>
+    </div>
+    <div class="row" translate=".confirm">
+    </div>
+</div>
+<div class="modal-footer">
+        <div class="row">
+                <div class="col-sm-6 propagechanges-chkbox-margin">
+                <ip-checkbox label=".checkboxLabel" ng-model="vm.propagateChanges"></ip-checkbox>
+            </div>
+            <div  class="col-sm-3 info-dialog-margin">
+                <ip-inline-dialog data-content="{{:: 'picklist.event.maintenance.confirmPropagateChanges.information' | translate}}" popover-placement="auto"></ip-inline-dialog>
+            </div>
+            <div class="input-wrap-group group-inline pull-right confirm-btn-margin">
+                    <button type="button" class="btn" data-ng-click="vm.cancel()" translate="button.cancel"></button>
+                    <button type="button" class="btn btn-primary" data-ng-click="vm.proceed()" translate="button.proceed"></button>
+                </div>
+        </div>
+</div>
+</div>

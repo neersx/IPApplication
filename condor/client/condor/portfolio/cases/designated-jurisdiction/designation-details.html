@@ -1,0 +1,83 @@
+<div ng-if="!vm.loaded">
+    <p translate="Loading"></p>
+</div>
+<div ng-if="vm.loaded" class="row col-sm-11 detail-offset" translate-namespace="caseview.designatedJurisdiction.details">
+    <div class="row">
+        <div class="col-sm-1 margin-col-half field-label">
+            <label translate=".notes"></label>
+        </div>
+        <div class="col-sm-10 full-width">
+            <span style="white-space: pre-wrap;">{{::vm.viewData.notes}}</span>
+        </div>
+    </div>
+    <div class="row" ng-if="vm.viewData.caseKey">
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-3 field-label">
+                    <label translate=".propertyType"></label>
+                </div>
+                <div class="col-sm-9">
+                    <span class="text">{{::vm.details.propertyType}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 field-label">
+                    <label translate=".caseCategory"></label>
+                </div>
+                <div class="col-sm-9">
+                    <span class="text">{{::vm.details.caseCategory}}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 field-label">
+                    <label translate=".title"></label>
+                </div>
+                <div class="col-sm-9">
+                    <span class="text">{{::vm.details.title}}</span>
+                </div>
+            </div>
+            <div name="names">
+                <div class="row" ng-repeat="n in vm.details.names">
+                    <div class="col-sm-3 field-label">
+                        <label>{{::n.nameType}}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <span ng-if="::n.canView" class="cpa-icon cpa-icon-ban" ip-tooltip="{{::'caseview.designatedJurisdiction.nameAccessDenied' | translate }}"></span>
+                        <div ng-if="::!n.canView">
+                            <ip-ie-only-url ng-if="::n.nameId && vm.showWebLink" data-url="vm.getNameLink(n.nameId)" data-text="n.name"></ip-ie-only-url>
+                            <span ng-if="::!n.nameId || !vm.showWebLink">{{ ::n.name }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="container-fluid">
+                <div class="row data critical-dates-spacing" ng-repeat="event in vm.details.criticalDates">
+                    <div class="col-sm-6 right-bold-label">
+                        <span ng-class="{'ip-hover-help' : event.eventDefinition}" uib-popover="{{::event.eventDefinition}}">
+                            <span ng-if="::!event.isLastEvent && !event.isNextDueEvent">{{::event.eventDescription}}</span>
+                            <span ng-if="::event.countryCode" translate="caseview.criticalDates.isPriorityEvent" translate-values="{countryCode: event.countryCode }"></span>
+                            <span ng-if="::event.renewalYear" translate="caseview.criticalDates.renewalYear" translate-values="{year: (event.countryCode)?event.renewalYear + ', ' + event.countryCode :event.renewalYear}"></span>
+                            <span ng-if="::event.isLastEvent" translate="caseview.criticalDates.lastEvent" translate-values="{description: (event.countryCode)?event.eventDescription + ', ' + event.countryCode :event.eventDescription}"></span>
+                            <span ng-if="::event.isNextDueEvent" translate="caseview.criticalDates.nextEventDue" translate-values="{description: (event.countryCode)?event.eventDescription + ', ' + event.countryCode :event.eventDescription}"></span>
+                        </span>
+                    </div>
+                    <div class="col-sm-2 criticalDateField">
+                        <ip-due-date ng-if="::!event.isOccurred" data-date="::event.date" data-show-tool-tip="true"></ip-due-date>
+                        <span ng-if="::event.isOccurred" class="text">{{::event.date | localeDate}}</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <a ng-if="::event.externalInfoLink" href="{{::event.externalInfoLink}}" target="_blank">
+                            <span class="non-breaking">{{::event.officialNumber}}</span>
+                        </a>
+                        <span class="non-breaking" ng-if="::!event.externalInfoLink">{{::event.officialNumber}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <ip-kendo-grid id="caseview-designations-classes" ng-if="vm.classes" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+    </div>
+</div>

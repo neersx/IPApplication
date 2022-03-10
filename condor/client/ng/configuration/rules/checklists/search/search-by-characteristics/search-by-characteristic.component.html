@@ -1,0 +1,5 @@
+<form #characteristicSearchForm="ngForm">
+    <ipx-search-option [isSearchDisabled]="characteristicSearchForm.invalid || disableSearch" (search)="submitForm()" (clear)="resetFormData()">
+        <ipx-common-checklist-characteristics [viewData]="viewData" #characteristics></ipx-common-checklist-characteristics>
+    </ipx-search-option>
+</form>

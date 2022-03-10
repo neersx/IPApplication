@@ -1,0 +1,65 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{ 'accounting.billing.step3.adjustBilledAmount'}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-apply-button type="button" [disabled]="!formGroup.dirty || formGroup.status === 'INVALID'" (click)="apply()"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <br>
+    <div>
+        <form [formGroup]="formGroup">
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-sm-4">
+                            <label style="float: right;" class="text label-value" translate="accounting.billing.step3.columns.localBalance" for="localBalance"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <span *ngIf="dataItem" style="float: right; margin-right: 12px;"> {{dataItem.Balance | localCurrencyFormat:currency | async}}</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="dataItem.ForeignBalance">
+                        <div class="col-sm-4">
+                            <label style="float: right;" class="text label-value" translate="accounting.billing.step3.columns.foreignBalance" for="foreignBalance"></label>
+                        </div>
+                        <div class="col-sm-6">
+                            <span *ngIf="dataItem" style="float: right; margin-right: 12px;"> {{dataItem.ForeignBalance | localCurrencyFormat:dataItem.ForeignCurrency | async}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ipx-numeric id="localBilledNumeric" #localBilled [isCurrency]="true" [customStyle]="numericStyle" [errorStyle]="errorStyle" [currency]="localCurrency" name="localBilled"
+                            [label]="'accounting.billing.step3.columns.localBilled'" formControlName="LocalBilled" [maxLength]="14" [roundUpto]="localDecimalPlaces"></ipx-numeric>
+                    </div>
+                    <div class="col-md-6" *ngIf="dataItem.ForeignBalance">
+                        <ipx-numeric id="foreignBilledNumeric" #foreignBilled [isCurrency]="true" [customStyle]="numericStyle" [errorStyle]="errorStyle" [currency]="dataItem.ForeignCurrency" name="foreignBilled"
+                            [label]="'accounting.billing.step3.columns.foreignBilled'" formControlName="ForeignBilled" [maxLength]="14" [roundUpto]="dataItem.ForeignDecimalPlaces"></ipx-numeric>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-9" style="margin-left: 100px;" *ngIf="formData.transactionType !== transactionTypeEnum.none">
+                <ipx-radio-button *ngIf="showWriteUp" id="rdbWriteUp" [ngModelOptions]="{standalone: true}" [(ngModel)]="formData.transactionType" [value]="transactionTypeEnum.writeUp" apply-edited
+                    [label]="'accounting.billing.step3.writeUp'" (change)="onTransactionTypeChange()"></ipx-radio-button>
+                <div *ngIf="!showWriteUp">
+                    <div class="col-md-4">
+                        <ipx-radio-button id="rdbWriteDown" [ngModelOptions]="{standalone: true}" [(ngModel)]="formData.transactionType" [value]="transactionTypeEnum.writeDown" apply-edited
+                            (change)="onTransactionTypeChange()" [label]="'accounting.billing.step3.writeDown'">
+                        </ipx-radio-button>
+                    </div>
+                    <div class="col-md-5" *ngIf="shouldShowPartialBilling">
+                        <ipx-radio-button id="rdbPartialBilling" [ngModelOptions]="{standalone: true}" [(ngModel)]="formData.transactionType" [value]="transactionTypeEnum.partialBilling" apply-edited
+                            (change)="onTransactionTypeChange()" [label]="'accounting.billing.step3.partialBilling'">
+                        </ipx-radio-button>
+                    </div>
+                </div>
+            </div>
+            <div class="row col-md-9" style="margin-left: -58px;">
+                <ipx-dropdown #reasonElement *ngIf="formData.transactionType !== transactionTypeEnum.none && formData.transactionType !== transactionTypeEnum.partialBilling" formControlName="ReasonCode" id="reason"
+                    name="reason" apply-edited [label]="'accounting.billing.step3.columns.reason'" [options]="reasons" [keyField]="'ReasonKey'" [displayField]="'ReasonDescription'">
+                </ipx-dropdown>
+            </div>
+        </form>
+    </div>
+</div>

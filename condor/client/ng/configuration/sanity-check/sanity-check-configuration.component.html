@@ -1,0 +1,134 @@
+<ipx-sticky-header>
+    <ipx-page-title [title]="'sanityCheck.configurations.pageTitle'" [subtitle]="'sanityCheck.configurations.search.' + matchType">
+    </ipx-page-title>
+    <div class="search-options search-options-header">
+        <div class="heading">
+            <h5 translate="searchOptions" class="ng-scope"></h5>
+            <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showSearchBar}" (click)="showSearchBar = !showSearchBar">
+                <div placement="left" tooltip="{{'collapseExpand' | translate}}">
+                    <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+</ipx-sticky-header>
+<div ipx-resize-handler [resize-handler-type]="'Panel'" style="margin-top: 80px;">
+    <div class="search-options" [@slideInOutVisible]="showSearchBar ? 'open' : 'closed'">
+        <form #searchFormExtend="ngForm">
+            <ipx-search-option (search)="search()" (clear)="resetFormData()" [isSearchDisabled]="!searchFormExtend.form.valid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ipx-radio-button-group class="input-wrap-group group-inline">
+                            <span style="width: 16.6667%" translate="sanityCheck.configurations.search.searchBy"></span>
+                            <ipx-radio-button value="case" name="searchTypeCase" [(ngModel)]="matchType" [disabled]="!canSelectCase" (changeRadio)="subscribeGridChange()">
+                                {{'sanityCheck.configurations.search.case' | translate}}
+                            </ipx-radio-button>
+                            <ipx-radio-button value="name" name="searchTypeName" [(ngModel)]="matchType" [disabled]="!canSelectName" (changeRadio)="subscribeGridChange()">
+                                {{'sanityCheck.configurations.search.name' | translate}}
+                            </ipx-radio-button>
+                        </ipx-radio-button-group>
+                    </div>
+                </div>
+                <hr />
+                <ipx-sanity-check-search-by-case #searchByCase [hidden]="matchType !== 'case'">
+                </ipx-sanity-check-search-by-case>
+                <ipx-sanity-check-search-by-name #searchByName [hidden]="matchType !== 'name'">
+                </ipx-sanity-check-search-by-name>
+
+
+                <hr style="margin-top:5px" />
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <ipx-text-field class="col-sm-10" name="displayMessage" [(ngModel)]="formData.displayMessage" [label]="'sanityCheck.configurations.search.displayMessage'" multiline [rows]="1">
+                            </ipx-text-field>
+                        </div>
+                        <div class="row">
+                            <ipx-typeahead class="col-sm-10" name="sanityCheckSql" [label]="'sanityCheck.configurations.search.sanityCheckSql'" config="dataItem" [(ngModel)]="formData.sanityCheckSql">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="row">
+                            <ipx-text-field class="col-sm-10" name="ruleDescription" label="sanityCheck.configurations.search.ruleDescription" [(ngModel)]="formData.ruleDescription">
+                            </ipx-text-field>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <ipx-text-field name="Notes" label="sanityCheck.configurations.search.notes" [(ngModel)]="formData.notes" multiline [rows]="1">
+                            </ipx-text-field>
+                        </div>
+                        <div class="row">
+                            <ipx-typeahead inputRef id="mayBypassError" name="mayBypassError" [(ngModel)]="formData.mayBypassError" label="sanityCheck.configurations.mayBypassError" config="roles">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="row">
+                            <div class="input-wrap-group">
+                                <span translate="sanityCheck.configurations.informationOnly"></span>
+                                <ipx-checkbox name="informationOnly" [(ngModel)]="formData.informationOnly"></ipx-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-10" name="include">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span class="col-sm-4" translate="Include" style="text-align: right; margin-top:5px;margin-right:5px;padding-right:10px"></span>
+                            <ipx-checkbox name="inUse" [(ngModel)]="formData.inUse" [label]="'sanityCheck.configurations.search.inUse'"></ipx-checkbox>
+                            <ipx-checkbox name="deferred" [(ngModel)]="formData.deferred" [label]="'sanityCheck.configurations.search.deferred'"></ipx-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                    </div>
+                </div>
+            </ipx-search-option>
+        </form>
+    </div>
+    <div class="table-container">
+        <div class="table-title">
+            <h2 class="ng-scope"></h2>
+        </div>
+        <ipx-kendo-grid #ipxKendoGridRefCase [dataOptions]="gridOptionsCase" id="sanityChecks" *ngIf="matchType === 'case'">
+            <ng-template ipxTemplateColumnField="ruleDescription" let-dataItem>
+                <a href="javascript:void(0);" (click)="navigateToEdit(dataItem)" *ngIf="canUpdate"><span>{{dataItem.ruleDescription}}</span></a>
+                <span *ngIf="!canUpdate">{{dataItem.ruleDescription}}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="caseType" let-dataItem>
+                <span>{{ dataItem.caseType }}</span>
+                <ipx-icon class="pull-right" [name]="'minus-circle'" *ngIf="dataItem.excludeCaseType" tooltip="{{ 'sanityCheck.configurations.exclude' | translate }}"></ipx-icon>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="caseOffice" let-dataItem>
+                <span>{{ dataItem.caseOffice }}</span>
+                <ipx-icon class="pull-right" [name]="'minus-circle'" *ngIf="dataItem.excludeCaseOffice" tooltip="{{ 'sanityCheck.configurations.exclude' | translate }}"></ipx-icon>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="jurisdiction" let-dataItem>
+                <span>{{ dataItem.jurisdiction }}</span>
+                <ipx-icon class="pull-right" [name]="'minus-circle'" *ngIf="dataItem.excludeJurisdiction" tooltip="{{ 'sanityCheck.configurations.exclude' | translate }}"></ipx-icon>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="propertyType" let-dataItem>
+                <span>{{ dataItem.propertyType }}</span>
+                <ipx-icon class="pull-right" [name]="'minus-circle'" *ngIf="dataItem.excludePropertyType" tooltip="{{ 'sanityCheck.configurations.exclude' | translate }}"></ipx-icon>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="caseCategory" let-dataItem>
+                <span>{{ dataItem.caseCategory }}</span>
+                <ipx-icon class="pull-right" [name]="'minus-circle'" *ngIf="dataItem.excludeCaseCategory" tooltip="{{ 'sanityCheck.configurations.exclude' | translate }}"></ipx-icon>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="subType" let-dataItem>
+                <span>{{ dataItem.subType }}</span>
+                <ipx-icon class="pull-right" [name]="'minus-circle'" *ngIf="dataItem.excludeSubType" tooltip="{{ 'sanityCheck.configurations.exclude' | translate }}"></ipx-icon>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="basis" let-dataItem>
+                <span>{{ dataItem.basis }}</span>
+                <ipx-icon class="pull-right" [name]="'minus-circle'" *ngIf="dataItem.excludeBasis" tooltip="{{ 'sanityCheck.configurations.exclude' | translate }}"></ipx-icon>
+            </ng-template>
+        </ipx-kendo-grid>
+
+        <ipx-kendo-grid #ipxKendoGridRefName [dataOptions]="gridOptionsName" id="sanityChecksName" *ngIf="matchType === 'name'">
+            <ng-template ipxTemplateColumnField="ruleDescription" let-dataItem>
+                <a href="javascript:void(0);" (click)="navigateToEdit(dataItem)" *ngIf="canUpdate"><span>{{dataItem.ruleDescription}}</span></a>
+                <span *ngIf="!canUpdate">{{dataItem.ruleDescription}}</span>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>

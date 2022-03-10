@@ -1,0 +1,78 @@
+<form>
+    <div class="container-fluid" translate-namespace="caseSearch.topics.designElement">
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="firmElementIdOperator" label="caseSearch.topics.designElement.firmElementId" [(ngModel)]="formData.firmElementOperator" [operatorsGroup]="'FullNoExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <ipx-text-field name="firmElementId" label="" [(ngModel)]="formData.firmElement" ipx-autofocus="{{!!topic.isActive}}">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="clientElementRefOperator" label="{{!isExternal ? 'caseSearch.topics.designElement.clientElementReference' : 'caseSearch.topics.designElement.yourElementReference'}}" [(ngModel)]="formData.clientElementOperator" [operatorsGroup]="'FullNoExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <ipx-text-field name="clientElementReference" label="" [(ngModel)]="formData.clientElement">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="officialElementIdOperator" label="caseSearch.topics.designElement.officialElementId" [(ngModel)]="formData.officialElementOperator" [operatorsGroup]="'FullNoExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <ipx-text-field name="officialElementId" label="" [(ngModel)]="formData.officialElement">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="registrationNoOperator" label="caseSearch.topics.designElement.registrationNo" [(ngModel)]="formData.registrationNoOperator" [operatorsGroup]="'FullNoExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <ipx-text-field name="registrationNo" label="" [(ngModel)]="formData.registrationNo">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="typefaceOperator" label="caseSearch.topics.designElement.typeface" [(ngModel)]="formData.typefaceOperator" [operatorsGroup]="'FullNoExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div>
+                <div>
+                    <ipx-text-field [ipx-data-type]="dataType.nonnegativeinteger" class="col-md-4" name="typeface" label="" [(ngModel)]="formData.typeface">
+                    </ipx-text-field>
+                    <ipx-checkbox class="col-md-2" label="{{ 'caseSearch.topics.designElement.renew' | translate}}" [(ngModel)]="formData.isRenew" name="isRenew">
+                    </ipx-checkbox>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="descriptionOperator" label="caseSearch.topics.designElement.description" [(ngModel)]="formData.elementDescriptionOperator" [operatorsGroup]="'FullNoExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <ipx-text-field multiline rows="2" name="description" label="" [(ngModel)]="formData.elementDescription">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

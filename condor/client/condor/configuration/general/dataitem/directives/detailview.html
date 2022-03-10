@@ -1,0 +1,20 @@
+<style>
+.input-left-margin {
+    margin-left: -4%;
+}
+</style>
+
+<div class="row input-left-margin">
+    <div class="col-md-6">
+        <div class="input-wrap large">
+            <label translate="{{item.isSql ? 'dataItem.sql' : 'dataItem.storedProcedure'}}"></label>
+            <textarea name="sql" type="text" rows="6" ng-model="item.sql" ng-disabled="true"></textarea>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="input-wrap large">
+            <label translate="notes"></label>
+            <textarea name="notes" type="text" rows="6" ng-model="item.notes" ng-disabled="true"></textarea>
+        </div>
+    </div>
+</div>

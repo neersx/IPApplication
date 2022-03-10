@@ -1,0 +1,58 @@
+<div class="row" ng-form="vm.form" translate-namespace="workflows.eventcontrol.charges">
+    <div ng-if="vm.wrapOptions">
+        <div class="row">
+            <ip-typeahead ng-disabled="::!vm.canEdit" name="chargeType" data-config="chargeType" data-label="{{::vm.chargeTypeLabel}}" ng-model="vm.charge.chargeType" ng-class="{edited: vm.form.chargeType.$dirty}" ng-change="vm.onChargeTypeChanged()">
+            </ip-typeahead>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-4 col-sm-2">
+                <div class="input-wrap-group group-inline">
+                    <ip-checkbox name="isPayFee" label=".isPayFee" ng-model="vm.charge.isPayFee" ng-disabled="vm.isCheckboxDisabled()" ng-change="vm.onPayFeeChanged()" ng-class="{edited: vm.form.isPayFee.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="input-wrap-group group-inline">
+                    <ip-checkbox name="isRaiseCharge" label=".isRaiseCharge" ng-model="vm.charge.isRaiseCharge" ng-disabled="vm.isCheckboxDisabled()" ng-change="vm.onRaiseChargeChanged()" ng-class="{edited: vm.form.isRaiseCharge.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="input-wrap-group group-inline">
+                    <ip-checkbox name="isEstimate" label="{{ vm.charge.isRaiseCharge ? '.isUseEstimate' : '.isCreateEstimate'}}" ng-model="vm.charge.isEstimate" ng-disabled="vm.isCheckboxDisabled()" ng-change="vm.onEstimateChanged()" ng-class="{edited: vm.form.isEstimate.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="input-wrap-group group-inline">
+                    <ip-checkbox name="isDirectPay" label=".isDirectPay" ng-model="vm.charge.isDirectPay" ng-disabled="vm.isDirectPayDisabled()" ng-change="vm.onDirectPayChange()" ng-class="{edited: vm.form.isDirectPay.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!vm.wrapOptions" class="row">
+        <ip-typeahead class="col-sm-6" ng-disabled="::!vm.canEdit" name="chargeType" data-config="chargeType" data-label="{{::vm.chargeTypeLabel}}" ng-model="vm.charge.chargeType" ng-class="{edited: vm.form.chargeType.$dirty}" ng-change="vm.onChargeTypeChanged()">
+        </ip-typeahead>
+        <div class="col-sm-6">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="input-wrap-group group-inline">
+                        <ip-checkbox name="isPayFee" label=".isPayFee" ng-model="vm.charge.isPayFee" ng-disabled="vm.isCheckboxDisabled()" ng-change="vm.onPayFeeChanged()" ng-class="{edited: vm.form.isPayFee.$dirty}"></ip-checkbox>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="input-wrap-group group-inline">
+                        <ip-checkbox name="isRaiseCharge" label=".isRaiseCharge" ng-model="vm.charge.isRaiseCharge" ng-disabled="vm.isCheckboxDisabled()" ng-change="vm.onRaiseChargeChanged()" ng-class="{edited: vm.form.isRaiseCharge.$dirty}"></ip-checkbox>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="input-wrap-group group-inline">
+                        <ip-checkbox name="isEstimate" label="{{ vm.charge.isRaiseCharge ? '.isUseEstimate' : '.isCreateEstimate'}}" ng-model="vm.charge.isEstimate" ng-disabled="vm.isCheckboxDisabled()" ng-change="vm.onEstimateChanged()" ng-class="{edited: vm.form.isEstimate.$dirty}"></ip-checkbox>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="input-wrap-group group-inline">
+                        <ip-checkbox name="isDirectPay" label=".isDirectPay" ng-model="vm.charge.isDirectPay" ng-disabled="vm.isDirectPayDisabled()" ng-change="vm.onDirectPayChange()" ng-class="{edited: vm.form.isDirectPay.$dirty}"></ip-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

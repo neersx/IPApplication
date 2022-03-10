@@ -1,0 +1,413 @@
+<ip-sticky-header>
+    <ip-page-title page-title="Typeaheads and Picklists"></ip-page-title>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <h1>Testing with different Typeaheads</h1>
+
+    <div class="container-fluid">
+        <div class="background-image">
+            <div class="row  background-image">
+                <label for="chooseConfig">
+                    <h3>Choose Typeahead Config:</h3>
+                </label>
+                <select name="chooseConfig" id="chooseConfig" ng-model="vm.selectedConfig" ng-options="config.label for config in vm.availableConfigs track by config.config" ></select>
+            </div>
+            <div class="row">
+                <dev-typeahead-dynamic-presenter config="vm.selectedConfig.config" label="vm.selectedConfig.label" ></dev-typeahead-dynamic-presenter>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    <div class="container-fluid">
+
+        <h2>Designation Stage Pick List</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-config="designationStage" data-extend-query="vm.designationStage.extendQuery" data-external-scope="vm.designationStage.externalScope" ng-model="vm.designationStage"></ip-typeahead>
+            <div class="col-sm-4">
+                <div>model: {{vm.designationStage | json}}</div>
+            </div>
+        </div>
+
+        <h2>Additional Number Pattern Validation Pick List</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-config="additionalNumberValidation" data-extend-query="vm.additionalNumberValidation.extendQuery" ng-model="vm.additionalNumberValidation" data-picklist-can-maintain="true"></ip-typeahead>
+            <div class="col-sm-4">
+                <div>model: {{vm.additionalNumberValidation | json}}</div>
+            </div>
+        </div>
+
+        <h2>Text Type Pick List</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-config="textType" data-extend-query="vm.textType.extendQuery" ng-model="vm.textType"></ip-typeahead>
+            <div class="col-sm-2">
+                <input type="checkbox" ng-model="vm.textType.caseOnly">Case Only</button>
+            </div>
+            <div class="col-sm-4">
+                <div>model: {{vm.textType | json}}</div>
+            </div>
+        </div>
+
+        <h2>International Trade Mark Classes</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-key-field="key" data-code-field="code" data-text-field="code" data-config="tmClass" ng-model="vm.tmClass"></ip-typeahead>
+        </div>
+
+        <h2>WIP Template Pick List with Case</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-config="case" ng-model="vm.wipTemplateCase"></ip-typeahead>
+            <ip-typeahead class="col-sm-6" data-config="wipTemplate" ng-model="vm.wipTemplate" data-extend-query="vm.extendWipTemplatePicklist"></ip-typeahead>
+        </div>
+    </div>
+
+    <hr />
+
+
+    <h1>Interaction States and Behaviour</h1>
+
+    <div class="container-fluid">
+        <h2>Single Select with autofocus (Restmod Api)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-config="document" data-state="vm.state1" ip-autofocus ng-model="vm.model1">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state1}}</div>
+                <div>model: {{vm.model1 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Multiple Select (Restmod Api)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-multiselect="true" data-label="Jurisdiction" data-placeholder="Instruction Type" data-max-results="20" data-key-field="id" data-code-field="id" data-text-field="description" data-restmod-api="jurisdictions" data-picklist-display-name="Jurisdiction"
+                data-item-template-url="condor/components/form/autocomplete-item-code-desc.html" data-state="vm.state2" ng-model="vm.countries">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state2}}</div>
+                <div>model: {{vm.countries | json}}</div>
+            </div>
+        </div>
+
+        <h2>Single Select (Simple Api abc)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-picklist-can-maintain="true" data-label="Criteria" data-key-field="id" data-text-field="description" data-api-url="api/configuration/rules/workflows/typeaheadSearch" data-picklist-display-name="Criteria" data-picklist-columns="[{title:'Criteria No', field:'id'}, {title:'Description', field:'description'}]"
+                data-state="vm.state3" ng-model="vm.model3">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state3}}</div>
+                <div>model: {{vm.model3 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Multiple Select (Simple Api)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-multiselect data-label="Criteria" data-key-field="id" data-text-field="description" data-api-url="api/configuration/rules/workflows/typeaheadSearch" data-state="vm.state4" data-picklist-display-name="Criteria" data-picklist-columns="[{title:'Criteria No', field:'id'}, {title:'Description', field:'description'}]"
+                ng-model="vm.model4">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state4}}</div>
+                <div>model: {{vm.model4 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Multiple Select with Multi-pick pick list (Simple Api)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-multipick data-multiselect data-label="Criteria" data-key-field="id" data-text-field="description" data-api-url="api/configuration/rules/workflows/typeaheadSearch" data-state="vm.state4a" data-picklist-display-name="Criteria"
+                data-picklist-columns="[{title:'Criteria No', field:'id'}, {title:'Description', field:'description'}]" ng-model="vm.model4a">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state4a}}</div>
+                <div>model: {{vm.model4a | json}}</div>
+            </div>
+        </div>
+
+        <h2>Custom Template</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-multiselect data-label="Criteria" data-key-field="id" data-tag-field="id" data-api-url="api/configuration/rules/workflows/typeaheadSearch" data-item-template-url="condor/dev/typeahead/custom-autocomplete-item.html"
+                data-state="vm.state5" data-picklist-display-name="Criteria" data-picklist-columns="[{title:'Description', field:'description'}]" ng-model="vm.model5">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state5}}</div>
+                <div>model: {{vm.model5 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Use pre-defined configuration (Simple Api)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-multiselect data-config="dev.criteria" data-state="vm.state7" ng-model="vm.model7">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state7}}</div>
+                <div>model: {{vm.model7 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Use pre-defined configuration (Restmod Api)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-multiselect data-config="instructionType" data-picklist-can-maintain="true" data-state="vm.state7a" ng-model="vm.model7a">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state7a}}</div>
+                <div>model: {{vm.model7a | json}}</div>
+            </div>
+        </div>
+
+        <h2>Integrate with ng-change (Simple Select)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-config="dev.criteria" data-state="vm.state8" ng-change="vm.selectedModel1 = vm.model8" ng-model="vm.model8">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state8}}</div>
+                <div>selected item (ng-change): {{vm.selectedModel1 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Integrate with ng-change (Multiple Select)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-multiselect data-config="dev.criteria" data-state="vm.state9" ng-change="vm.selectedModel2 = vm.model9" ng-model="vm.model9">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state9}}</div>
+                <div>selected item (ng-change): {{vm.selectedModel2 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Disabled (Single Select)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" ng-disabled="vm.disabled1" data-config="instructionType" data-picklist-can-maintain="true" data-state="vm.state10" ng-model="vm.model10">
+            </ip-typeahead>
+            <div class="col-sm-2">
+                <label>
+                    <input type="checkbox" ng-model="vm.disabled1" />
+                    <span>Disabled</span>
+                </label>
+            </div>
+            <div class="col-sm-4">
+                <div>state: {{vm.state10}}</div>
+                <div>model: {{vm.model10 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Disabled (Multiple Select)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-multiselect ng-disabled="vm.disabled2" data-config="instructionType" data-picklist-can-maintain="true" data-state="vm.state11" ng-model="vm.model11">
+            </ip-typeahead>
+            <div class="col-sm-2">
+                <label>
+                    <input type="checkbox" ng-model="vm.disabled2" />
+                    <span>Disabled</span>
+                </label>
+            </div>
+            <div class="col-sm-4">
+                <div>state: {{vm.state11}}</div>
+                <div>model: {{vm.model11 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Internal error integrated with ng-form</h2>
+        <div class="row" ng-form="vm.form1">
+            <ip-typeahead name="jurisdiction" class="col-sm-6" data-config="jurisdiction" data-state="vm.state12" ng-model="vm.country" data-picklist-can-maintain="true">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state12}}</div>
+                <div>errors: {{vm.form1.jurisdiction.$error | json}}</div>
+                <div>model: {{vm.country | json}}</div>
+            </div>
+        </div>
+
+        <h2>External error integrated with ng-form</h2>
+        <div class="row" ng-form="vm.form2">
+            <ip-typeahead name="jurisdiction2" class="col-sm-6" data-config="jurisdiction" data-state="vm.state13" ng-model="vm.model13" data-picklist-can-maintain="true">
+            </ip-typeahead>
+            <div class="col-sm-2">
+                <button ng-click="vm.form2.jurisdiction2.$setValidity('maxlength', false)">Add error</button>
+
+                <button ng-click="vm.form2.jurisdiction2.$reset()">Reset</button>
+            </div>
+            <div class="col-sm-4">
+                <div>state: {{vm.state13}}</div>
+                <div>errors: {{vm.form2.jurisdiction2.$error | json}}</div>
+                <div>model: {{vm.model13 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Integrate with angular validators (Single Select)</h2>
+        <div class="row" ng-form="vm.form3">
+            <ip-typeahead name="jurisdiction3" required class="col-sm-6" data-label="Country" data-picklist-display-name="Country" data-config="jurisdiction" data-state="vm.state14" ng-model="vm.model14" data-picklist-can-maintain="true">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state14}}</div>
+                <div>errors: {{vm.form3.jurisdiction3.$error | json}}</div>
+                <div>model: {{vm.model14 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Integrate with angular validators (Multiple Select)</h2>
+        <div class="row" ng-form="vm.form4">
+            <ip-typeahead name="jurisdiction4" class="col-sm-6" required data-multiselect data-config="jurisdiction" data-state="vm.state15" ng-model="vm.model15" data-picklist-can-maintain="true">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state15}}</div>
+                <div>errors: {{vm.form4.jurisdiction4.$error | json}}</div>
+                <div>model: {{vm.model15 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Custom picklist template</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-config="instructionType" data-state="vm.state16" data-picklist-template-url="condor/dev/typeahead/custom-picklist-modal.html" data-external-scope="vm.customPicklistModal" data-extend-query="vm.customPicklistModal.extendQuery"
+                ng-model="vm.model16">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state16}}</div>
+                <div>model: {{vm.model16 | json}}</div>
+                <div>outgoing request: {{vm.customPicklistModal.outgoingRequest | json}}</div>
+                <div>selected items: {{vm.customPicklistModal.selectedItem | json}}</div>
+            </div>
+        </div>
+
+        <h2>Check loading state</h2>
+        <div class="row" ng-form="vm.form5" ip-form>
+            <ip-typeahead name="component" class="col-sm-6" data-label="Component" data-key-field="id" data-text-field="componentName" data-api-url="api/dev/typeahead/multiselect?latency=1000&q=" data-picklist-display-name="Component" data-picklist-columns="[{title:'Name', field:'componentName'}]"
+                data-state="vm.state17" data-loading="vm.loading17" ng-model="vm.model17">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state17}}</div>
+                <div>vm.loading: {{vm.loading17}}</div>
+                <div>vm.form.component.loading: {{vm.form5.component.$loading}}</div>
+                <div>vm.form.loading: {{vm.form5.$loading}}</div>
+            </div>
+        </div>
+
+        <h2>Check loading state and error state through ng-form</h2>
+        <div class="row" ng-form="vm.form6" ip-form>
+            <ip-typeahead name="component1" class="col-sm-3" data-label="Component1" data-key-field="id" data-text-field="componentName" data-api-url="api/dev/typeahead/multiselect?latency=1000&q=" data-picklist-display-name="Component" data-picklist-columns="[{title:'Name', field:'componentName'}]"
+                ng-model="vm.model18">
+            </ip-typeahead>
+            <ip-typeahead name="component2" class="col-sm-3" data-label="Component2" data-key-field="id" data-text-field="componentName" data-api-url="api/dev/typeahead/multiselect?latency=1000&q=" data-picklist-display-name="Component" data-picklist-columns="[{title:'Name', field:'componentName'}]"
+                ng-model="vm.model19">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>form.error: {{vm.form6.$error | json}}</div>
+                <div>form.loading: {{vm.form6.$loading}}</div>
+            </div>
+        </div>
+
+        <h2>Reset (Single Select)</h2>
+        <div class="row" ng-form="vm.form7" ip-form>
+            <ip-typeahead name="field20" class="col-sm-6" data-config="dev.criteria" ng-model="vm.model20">
+            </ip-typeahead>
+            <div class="col-sm-2">
+                <button ng-click="vm.form7.field20.$reset()">field.reset</button>
+                <button ng-click="vm.form7.$reset()">form.reset</button>
+            </div>
+            <div class="col-sm-4">
+                <div>model: {{vm.model20 | json}}</div>
+                <div>form.error: {{vm.form7.field20.$error | json}}</div>
+            </div>
+        </div>
+
+        <h2>Reset (Multiple Select)</h2>
+        <div class="row" ng-form="vm.form8" ip-form>
+            <ip-typeahead name="field21" class="col-sm-6" data-multiselect data-config="dev.criteria" ng-model="vm.model21">
+            </ip-typeahead>
+            <div class="col-sm-2">
+                <button ng-click="vm.form8.field21.$reset()">field.reset</button>
+                <button ng-click="vm.form8.$reset()">form.reset</button>
+            </div>
+            <div class="col-sm-4">
+                <div>model: {{vm.model21 | json}}</div>
+                <div>form.error: {{vm.form8.field21.$error | json}}</div>
+            </div>
+        </div>
+
+        <h2>Saved state (Single Select)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6 saved" data-config="instructionType" data-picklist-can-maintain="true" ng-model="vm.model22">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state22}}</div>
+                <div>model: {{vm.model22 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Saved state (Multiple Select)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6 saved" data-multiselect data-config="instructionType" data-picklist-can-maintain="true" ng-model="vm.model23">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state23}}</div>
+                <div>model: {{vm.model23 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Edited state (Single Select)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6 edited" data-config="instructionType" data-picklist-can-maintain="true" ng-model="vm.model24">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state24}}</div>
+                <div>model: {{vm.model24 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Edited state (Multiple Select)</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6 edited" data-multiselect data-config="instructionType" data-picklist-can-maintain="true" ng-model="vm.model25">
+            </ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state25}}</div>
+                <div>model: {{vm.model25 | json}}</div>
+            </div>
+        </div>
+
+        <h2>Miscellaneous pick lists</h2>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" data-config="dataItem" ng-model="vm.model26"></ip-typeahead>
+        </div>
+
+        <div class="row">
+            <ip-typeahead class="col-sm-6 edited" data-config="images" ng-model="vm.model26"></ip-typeahead>
+            <div class="col-sm-6">
+                <div>state: {{vm.state26}}</div>
+                <div>model: {{vm.model26 | json}}</div>
+            </div>
+        </div>
+        <div class="row">
+            <ip-typeahead data-multiselect class="col-sm-6" data-config="dataItemGroup" ng-model="vm.model27"></ip-typeahead>
+        </div>
+        <div class="row">
+            <ip-typeahead class="col-sm-6" id="jurisdiction-group-picklist" name="jurisdictions" data-config='jurisdiction' data-picklist-can-maintain="true" ng-model="vm.model29" data-extend-query="vm.extendJurisdictionPicklist"></ip-typeahead>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead id="examination-picklist" name="examinationType" data-config="examinationType" data-picklist-can-maintain="true" ng-model="vm.examinationType"></ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead name="caseFamily" data-config="caseFamily" data-multiselect data-multipick data-picklist-can-maintain="false" ng-model="vm.caseFamily"></ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead name="instruction" data-config="instruction" ng-model="vm.model30">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead name="characteristic" data-config="characteristic" ng-model="vm.model31">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead name="keywords" data-config="keyword" data-picklist-can-maintain="false" ng-model="vm.keyword"></ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <ip-typeahead name="keywords" data-config="keyword" data-picklist-can-maintain="false" ng-model="vm.keyword"></ip-typeahead>
+            </div>
+        </div>
+        <div style="height: 300px">&nbsp;</div>
+    </div>
+</div>

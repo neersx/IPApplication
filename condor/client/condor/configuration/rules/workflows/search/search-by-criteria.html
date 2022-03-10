@@ -1,0 +1,19 @@
+<h5 translate="criteriaNumberOrDescription"></h5>
+<div class="row" ng-form="vm.form" ip-form>
+    <ip-typeahead name="criteria"
+        class="col-sm-6"
+        ng-model="vm.formData"
+        data-label="Criteria"
+        data-multiselect
+        data-multipick
+        data-key-field="id"
+        data-tag-field="id"
+        data-text-field="description"
+        ip-autofocus
+        data-api-url="api/configuration/rules/workflows/typeaheadSearch"
+        data-item-template-url="condor/configuration/rules/workflows/search/typeahead-criteria-template.html"
+        data-picklist-display-name="Criteria"
+        data-picklist-columns="[{field:'id', title:'Criteria No.', sortable: false}, {field:'description', title:'Description', sortable: false}]"
+    >
+    </ip-typeahead>
+</div>

@@ -1,0 +1,24 @@
+<div data-ng-controller="instructionTypesController as itCtrl">
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="code" ip-required ip-autofocus label="picklist.instructiontype.Code" ng-model="vm.entry.code" data-ng-maxlength="3" ng-disabled="vm.maintenanceState === 'updating' || vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.code.$dirty}" ip-field-error="{{vm.entry.$error('code').message | translate}}"></ip-text-field>            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="value" ip-required label="picklist.instructiontype.Description" ng-model="vm.entry.value" data-ng-maxlength="50" ng-class="{edited: vm.maintenance.value.$dirty}" ip-field-error="{{vm.entry.$error('value').message | translate}}"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-dropdown ip-required ng-class="{edited: vm.maintenance.recordedAgainst.$dirty}" name="recordedAgainst" label="picklist.instructiontype.RecordedAgainst" ng-model="vm.entry.recordedAgainstId" options="nt.key as nt.value for nt in itCtrl.nameTypes">
+            </ip-dropdown>            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-dropdown ng-class="{edited: vm.maintenance.restrictedBy.$dirty}" name="restrictedBy" label="picklist.instructiontype.RestrictedBy" ng-model="vm.entry.restrictedById" options="nt.key as nt.value for nt in itCtrl.nameTypes">
+            </ip-dropdown>  
+        </div>
+    </div>
+</div>

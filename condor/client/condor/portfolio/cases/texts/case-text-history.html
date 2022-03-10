@@ -1,0 +1,64 @@
+<style>
+    .article-label {
+        font-weight: bold;
+    }
+
+    .content {
+        margin: 12px 0 6px 0;
+    }
+
+    .switch label {
+        top: -9px;
+        color: inherit;
+    }
+
+    .switch.input-wrap-focus {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+    }
+</style>
+
+<div class="modal-header">
+    <h2 class="modal-title" translate="caseview.caseTexts.headerTemplate" translate-values="{typeText: vm.viewdata.textDescription}"></h2>
+    <div class="modal-header-controls">
+        <ip-close-button data-ng-click="vm.close()"></ip-close-button>
+    </div>
+</div>
+
+<div class="modal-body">
+    <div class="content row" ng-if="vm.viewdata.irn || vm.viewdata.language || vm.viewdata.textDescription || vm.viewdata.fromCaseKey">
+        <div class="container-fluid col-md-8">
+            <div class="row data" ng-if="::vm.viewdata.irn">
+                <div class="col-md-4 article-label">
+                    <span translate="caseview.caseTexts.caseIrn"></span>
+                </div>
+                <div class="col-md-6">
+                    <span id="irn" ng-bind="::vm.viewdata.irn"></span>
+                </div>
+            </div>
+            <div class="row data" ng-if="::vm.viewdata.language">
+                <div class="col-md-4 article-label">
+                    <span translate="caseview.caseTexts.language"></span>
+                </div>
+                <div class="col-md-6">
+                    <span id="language" ng-bind="::vm.viewdata.language"></span>
+                </div>
+            </div>
+            <div class="row data" ng-if="::vm.viewdata.textClass">
+                <div class="col-md-4 article-label">
+                    <span translate="caseview.caseTexts.class"></span>
+                </div>
+                <div class="col-md-6">
+                    <span id="textClass" ng-bind="::vm.viewdata.textClass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+        </div>
+    </div>
+    <div class="row">
+        <ip-kendo-grid data-id="caseViewCaseTextHistory" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+    </div>
+    <br/>
+</div>

@@ -1,0 +1,3037 @@
+{
+  "dataDownload": {
+    "runOn": {
+      "Sun": "周日",
+      "Mon": "周一",
+      "Tue": "周二",
+      "Wed": "周三",
+      "Thu": "周四",
+      "Fri": "周五",
+      "Sat": "周六"
+    },
+    "schedules": {
+      "title": "数据下载日程表",
+      "status": "地区",
+      "dataSource": "数据来源",
+      "noMoreRuns": "不可用的",
+      "stop": "停止",
+      "delete": "删除",
+      "pause": "暂停",
+      "resume": "恢复"
+    },
+    "newSchedule": {
+      "name": "日程表名称",
+      "dataSource": "数据来源",
+      "downloadType": "包括",
+      "recurring": "再发生/重现",
+      "on": "开启"
+    },
+    "schedule": {
+      "definition": "定义",
+      "details": "详细情况",
+      "status": "地区",
+      "source": "数据来源",
+      "type": "类型",
+      "started": "已启用",
+      "cases": "案件",
+      "errorDetails": "错误详细资料",
+      "documents": "文件档",
+      "documentCode": "文件档代码"
+    },
+    "dataSource": {
+      "File": "文件"
+    },
+    "uspto": {
+      "delete": "删除",
+      "editPassword": "编辑",
+      "new": {
+        "subTitle": "详细情况"
+      }
+    }
+  },
+  "signin": {
+    "lblUsername": "用户ID",
+    "lblPassword": "密码",
+    "unauthorised-accounts-just-locked": "您已超过无效登录的最大次数限制。请联系你的系统管理员。",
+    "btnSignIn": "登录",
+    "no-licence-found": "未找到此模块的许可。请检查你的许可已被安装。",
+    "user-incomplete": "你没有被设定为可访问此产品。请联系你的系统管理员。",
+    "cancel": "取消",
+    "save": "保存",
+    "newpassword": "新密码",
+    "confirmpassword": "确认密码",
+    "newPasswordsDoNotMatch": "两个密码不匹配",
+    "password": "密码",
+    "change": "修改密码",
+    "current": "旧密码",
+    "new": "新密码",
+    "submit": "递交",
+    "titleChangePassword": "修改密码",
+    "oldPassword": "旧密码"
+  },
+  "sections": {
+    "actions": "任务"
+  },
+  "field": {
+    "errors": {
+      "required": "必填区块",
+      "ipRequired": "必填区块",
+      "invalidurl": "无效网址",
+      "inUse": "使用中",
+      "newPasswordsDoNotMatch": "两个密码不匹配",
+      "changePassword": {
+        "newPasswordsDoNotMatch": "两个密码不匹配"
+      },
+      "duplicateItemNo": "在指定范围内的全部借方单号已经使用。请扩展范围或使用另一前缀词。",
+      "duplicateItemPrefix": "重复前置。请确保每个办公地点的前置是唯一，并且不应与地址控制项“前置草稿”的值匹配。",
+      "office": {
+        "only2letters": "前置字段无法包含任何非字母的符号。请从前置字段中删除非字母符号。"
+      }
+    }
+  },
+  "datepicker": {
+    "clear": "清空",
+    "close": "完成",
+    "today": "今天"
+  },
+  "entity": {
+    "cannotdelete": "这条记录不能删除，因为它与其它现有信息相关联"
+  },
+  "grid": {
+    "columns": {
+      "textoperators": {
+        "contains": "包含",
+        "startswith": "开始于"
+      }
+    },
+    "messages": {
+      "pagerOf": "至"
+    }
+  },
+  "Save": "保存",
+  "Code": "代码",
+  "Description": "描述",
+  "caseSearchResults": {
+    "pageTitle": "高级搜索结果",
+    "for": "关于",
+    "togglePreview": "预览"
+  },
+  "quickSearch": {
+    "using": {
+      "Title": "称谓",
+      "Family": "案件家族代码",
+      "Keyword": "关键字"
+    }
+  },
+  "picklist": {
+    "case": {
+      "Type": "案件",
+      "CaseRef": "案卷号",
+      "Title": "称谓",
+      "OfficialNumber": "官方号码",
+      "PropertyType": "权利类型",
+      "Country": "国家",
+      "Instructor": "委托人",
+      "searchPanel": {
+        "caseType": "案件类型",
+        "Title": "案件",
+        "office": "办公地点",
+        "name": "名称"
+      }
+    },
+    "instructiontype": {
+      "Type": "指示类型",
+      "Code": "代码",
+      "Description": "描述"
+    },
+    "characteristic": {
+      "label": "特性"
+    },
+    "dataitemgroup": {
+      "Description": "描述"
+    },
+    "dataitem": {
+      "Code": "名称",
+      "Description": "描述",
+      "EntryPoint": "入口处"
+    },
+    "instruction": {
+      "TypeDescription": "指示类型",
+      "label": "指示"
+    },
+    "event": {
+      "Type": "事件",
+      "EventNo": "事件号",
+      "Code": "代码",
+      "Description": "描述",
+      "MaxCycles": "周期",
+      "Importance": "重要的",
+      "EventCategory": "名称类别",
+      "EventGroup": "名称组",
+      "maintenance": {
+        "description": "事件描述",
+        "code": "事件代码",
+        "unlimited": "未限制",
+        "category": "事件种类",
+        "notes": "定义",
+        "policing": "监控",
+        "billing": "帐单",
+        "confirmPropagateChanges": {
+          "button": {
+            "cancel": "取消"
+          }
+        }
+      }
+    },
+    "office": {
+      "Type": "办公地点",
+      "Description": "描述",
+      "Organisation": "组织",
+      "Country": "国家",
+      "DefaultLanguage": "预设语言"
+    },
+    "casetype": {
+      "Type": "案件类型",
+      "Code": "代码",
+      "Description": "描述"
+    },
+    "nametypegroup": {
+      "groupName": "描述",
+      "description": "描述"
+    },
+    "jurisdiction": {
+      "Code": "代码"
+    },
+    "propertytype": {
+      "Type": "权利类型",
+      "Code": "代码",
+      "Description": "描述",
+      "maintenance": {
+        "warning": "警告"
+      }
+    },
+    "subtype": {
+      "Type": "子类型",
+      "Code": "代码",
+      "Description": "描述"
+    },
+    "action": {
+      "Type": "流程",
+      "Code": "代码",
+      "Description": "描述",
+      "Cycles": "周期",
+      "ImportanceLevel": "重要级别",
+      "Other": "其他的"
+    },
+    "casecategory": {
+      "Type": "案件种类",
+      "Code": "代码",
+      "Description": "描述"
+    },
+    "dateoflaw": {
+      "propertyType": "权利类型",
+      "actions": "流程"
+    },
+    "basis": {
+      "Type": "基础",
+      "Code": "代码",
+      "Description": "描述"
+    },
+    "relationship": {
+      "Type": "案件关系",
+      "Code": "代码",
+      "Description": "描述",
+      "notes": "备注维护"
+    },
+    "checklistmatcher": {
+      "Code": "代码",
+      "Description": "描述"
+    },
+    "status": {
+      "label": "地区",
+      "Description": "描述",
+      "Type": "类型",
+      "caseStatus": "案件状态",
+      "renewalStatus": "续展状态",
+      "Code": "代码"
+    },
+    "checklist": {
+      "type": "清单",
+      "Code": "代码",
+      "Description": "描述",
+      "Other": "其他的"
+    },
+    "nameType": {
+      "type": "名称类型",
+      "code": "代码",
+      "description": "描述"
+    },
+    "nameTypeGroup": {
+      "description": "描述"
+    },
+    "textType": {
+      "code": "代码",
+      "description": "描述"
+    },
+    "additionalNumberPatternValidation": {
+      "code": "代码"
+    },
+    "fileLocation": {
+      "label": "文档位置"
+    },
+    "eventCategory": {
+      "name": "名称类别",
+      "label": "事件种类",
+      "image": "图像",
+      "imageDescription": "图像描述"
+    },
+    "numberType": {
+      "label": "号码类型",
+      "code": "代码",
+      "description": "描述",
+      "relatedEvent": "相关事件"
+    },
+    "document": {
+      "label": "文件档",
+      "template": "模板",
+      "code": "代码",
+      "description": "描述"
+    },
+    "availableTopic": {
+      "label": "步骤",
+      "step": "步骤",
+      "category": "名称类别"
+    },
+    "tableCode": {
+      "code": "用户代码",
+      "description": "描述"
+    },
+    "role": {
+      "Type": "角色",
+      "description": "角色",
+      "external": "外部的"
+    },
+    "chargeType": "支付类型",
+    "tablecode": {
+      "userCode": "用户代码",
+      "description": "描述",
+      "id": "代码"
+    },
+    "image": {
+      "label": "图像",
+      "id": "图像ID",
+      "description": "描述",
+      "status": "地区",
+      "image": "图像"
+    },
+    "dataDownloadCaseQueries": {
+      "description": "描述"
+    },
+    "internalUsers": {
+      "label": "用户",
+      "username": "用户",
+      "name": "名称"
+    },
+    "entryPoint": {
+      "Type": "入口处"
+    },
+    "renewalType": "续展类型",
+    "casefamily": {
+      "type": "案件家族",
+      "description": "家族标题",
+      "inUse": "使用中"
+    },
+    "caselist": {
+      "type": "案件列表",
+      "caseList": "案件列表",
+      "description": "描述",
+      "primeCase": "主要案件",
+      "delete": "删除",
+      "edit": "编辑"
+    },
+    "keyword": {
+      "type": "关键字",
+      "keyword": "关键字",
+      "caseStopWord": "案件禁用词",
+      "nameStopWord": "名称禁用词"
+    },
+    "nameRelationship": {
+      "description": "描述",
+      "code": "代码"
+    },
+    "eventNoteType": {
+      "description": "描述",
+      "isExternal": "公开",
+      "code": "代码"
+    },
+    "tmClass": {
+      "class": "商标分类"
+    },
+    "currency": {
+      "title": "币种",
+      "description": "描述"
+    },
+    "typeOfMark": "商标类型",
+    "instructor": "委托人",
+    "owner": "申请人",
+    "agent": "代理人",
+    "staff": "员工",
+    "signatory": "签字人",
+    "classitem": {
+      "ItemNumber": "项目号",
+      "ItemDescription": "项目叙述",
+      "Class": "类",
+      "Language": "语种"
+    },
+    "wipTemplate": {
+      "label": "行动",
+      "description": "描述",
+      "type": "类型",
+      "code": "代码"
+    },
+    "narrative": {
+      "label": "叙述",
+      "code": "代码",
+      "title": "称谓"
+    },
+    "name": {
+      "Name": "名称",
+      "Code": "代码",
+      "Remarks": "备注"
+    },
+    "client": "客户",
+    "profile": {
+      "Code": "代码",
+      "Type": "配置文件",
+      "Name": "名称",
+      "Description": "描述"
+    },
+    "caseProgram": {
+      "Name": "名称",
+      "Code": "代码",
+      "ParentName": "父人名",
+      "ShortType": "程式",
+      "Description": "描述"
+    },
+    "nameGroup": {
+      "Type": "名称组",
+      "Title": "称谓",
+      "Comments": "注释"
+    },
+    "profitCentre": {
+      "code": "代码",
+      "type": "利润中心",
+      "name": "实体",
+      "description": "描述"
+    },
+    "purchaseCurrency": {
+      "label": "币种",
+      "code": "代码",
+      "description": "描述"
+    },
+    "exchangeRateSchedule": {
+      "label": "货币兑换利率清单",
+      "description": "描述",
+      "code": "代码"
+    },
+    "ledgerAccount": {
+      "label": "分类帐户",
+      "description": "描述",
+      "code": "代码"
+    },
+    "address": {
+      "address": "地址",
+      "type": "地址类型",
+      "status": "地区"
+    },
+    "timePeriod": {
+      "dateRange": "日期范围",
+      "thisWeek": "本周",
+      "thisMonth": "本月",
+      "nextWeek": "下周",
+      "overdue": "过期"
+    },
+    "columnGroup": {
+      "queryColumnGroup": "列分组"
+    },
+    "searchColumn": {
+      "Description": "描述",
+      "Format": "格式"
+    },
+    "program": {
+      "description": "描述"
+    },
+    "statusSummary": {
+      "description": "描述"
+    },
+    "taskPlannerSavedSearch": {
+      "name": "查询名称",
+      "description": "描述",
+      "isPublic": "公开"
+    },
+    "attachmentType": {
+      "label": "附件类型",
+      "code": "代码",
+      "description": "描述"
+    },
+    "alertTemplate": {
+      "type": "特别模板",
+      "code": "代码",
+      "message": "错误信息"
+    }
+  },
+  "numberType": {
+    "code": "代码",
+    "description": "描述",
+    "relatedEvent": "相关事件",
+    "moveUp": "向上移动",
+    "moveDown": "向下移动"
+  },
+  "nameType": {
+    "maintenance": {
+      "nameType": "名称类型",
+      "organisation": "组织",
+      "address": "地址",
+      "nameVariant": "名称译名",
+      "inherited": "继承",
+      "expiryDate": "终止日期",
+      "commenceDate": "开始日期",
+      "billPercent": "帐单百分比",
+      "correspondence": "通讯地址",
+      "remarks": "备注",
+      "contact": "联系方式",
+      "start": "开始",
+      "none": "空",
+      "nationality": "国籍",
+      "reference": "卷号",
+      "comments": "注释",
+      "attention": "联系人"
+    },
+    "priorityOrder": "显示顺序",
+    "moveUp": "向上移动",
+    "moveDown": "向下移动"
+  },
+  "validcombinations": {
+    "characteristic": "特性",
+    "copy": "复制",
+    "propertyType": "权利类型",
+    "category": "名称类别",
+    "action": "流程",
+    "caseType": "案件类型",
+    "caseCategory": "案件种类",
+    "basis": "基础",
+    "checklist": "清单",
+    "relationship": "案件关系",
+    "status": "地区",
+    "subType": "子类型",
+    "moveUp": "向上移动",
+    "moveDown": "向下移动"
+  },
+  "status": {
+    "filterText": "过滤方式",
+    "caseStatus": "案件状态",
+    "renewalStatus": "续展状态",
+    "pending": "审查中",
+    "registered": "己注册",
+    "dead": "死案",
+    "maintenance": {
+      "billing": "帐单",
+      "wip": "WIP",
+      "remindersAllowed": "提醒",
+      "reasonStopPaying": "停止付款的原因"
+    }
+  },
+  "notes": "备注维护",
+  "eventDescription": "事件描述",
+  "bulkactionsmenu": {
+    "actions": "行为",
+    "GlobalNameChange": "全局名称变更",
+    "delete": "删除"
+  },
+  "picklistmodal": {
+    "actions": "行为",
+    "searchItems": "搜索",
+    "clearItem": "清空"
+  },
+  "button": {
+    "ok": "OK",
+    "cancel": "取消",
+    "discard": "放弃",
+    "save": "保存",
+    "close": "关闭",
+    "revert": "返回值",
+    "search": "搜索",
+    "clear": "清空",
+    "submit": "递交",
+    "generate": "生成"
+  },
+  "modal": {
+    "discardchanges": {
+      "title": "放弃变更",
+      "discardButton": "放弃",
+      "cancel": "取消"
+    },
+    "confirmation": {
+      "yes": "是",
+      "no": "否",
+      "save": "保存",
+      "cancel": "取消",
+      "copy": "复制",
+      "delete": "删除"
+    },
+    "unsavedchanges": {
+      "title": "未储存变更"
+    },
+    "information": "资讯",
+    "warning": {
+      "cancel": "取消"
+    }
+  },
+  "shortcuts": {
+    "save": "保存",
+    "revert": "返回值",
+    "close": "关闭",
+    "discard": "放弃",
+    "add": "添加",
+    "delete": "删除",
+    "search": "搜索",
+    "page": {
+      "first": "第一页",
+      "prev": "上一页",
+      "next": "下一页",
+      "last": "最后一页"
+    },
+    "edit": "编辑"
+  },
+  "keyboardShortcuts": {
+    "picklist": "选择列表",
+    "searchResults": "搜索结果",
+    "enter": "输入",
+    "firstPage": "第一页",
+    "nextPage": "下一页",
+    "previousPage": "上一页",
+    "lastPage": "最后一页"
+  },
+  "importanceLevel": {
+    "importance": "重要级别",
+    "level": "重要级别"
+  },
+  "textType": {
+    "code": "代码",
+    "description": "描述",
+    "forCases": "案件",
+    "forNames": "名称",
+    "staff": "员工",
+    "individual": "个人",
+    "organisation": "组织"
+  },
+  "nameRestriction": {
+    "description": "描述",
+    "password": "密码"
+  },
+  "nameAliasType": {
+    "type": "类型",
+    "description": "描述"
+  },
+  "dataMapping": {
+    "name": "名称",
+    "maintenance": {
+      "eventDescription": "事件描述",
+      "ignore": "忽略"
+    }
+  },
+  "dataItem": {
+    "name": "名称",
+    "description": "描述",
+    "maintenance": {
+      "name": "名称",
+      "group": "名称组",
+      "description": "描述",
+      "entryPoint": "入口处",
+      "procedureName": "名称",
+      "notes": "备注维护"
+    },
+    "createdBy": "建立方式"
+  },
+  "eventNoteType": {
+    "description": "描述",
+    "public": "公开"
+  },
+  "configurations": {
+    "pageTitle": "配置",
+    "title": "配置",
+    "actions": "行为",
+    "name": "名称",
+    "description": "描述",
+    "maintenance": {
+      "name": "名称",
+      "description": "描述"
+    }
+  },
+  "jurisdictions": {
+    "search": {
+      "code": "代码",
+      "name": "名称",
+      "type": "类型"
+    },
+    "maintenance": {
+      "sections": {
+        "attributes": "名称属性维护",
+        "texts": "文本",
+        "states": "状态",
+        "classes": "类"
+      },
+      "attributes": {
+        "type": "属性类型",
+        "value": "属性值",
+        "attribute": "属性"
+      },
+      "groupMemberships": {
+        "code": "代码",
+        "groupName": "名称组",
+        "propertyTypes": "权利类型",
+        "maintenance": {
+          "group": "名称组"
+        }
+      },
+      "businessDays": {
+        "date": "日期",
+        "dayOfWeek": {
+          "title": "一周的某天"
+        }
+      },
+      "states": {
+        "state": "地区"
+      },
+      "texts": {
+        "textType": "文字类型",
+        "propertyType": "权利类型",
+        "text": "文本"
+      },
+      "validNumbers": {
+        "propertyType": "权利类型",
+        "caseType": "案件类型",
+        "caseCategory": "案件种类",
+        "subType": "子类型",
+        "numberType": "号码类型",
+        "warningFlag": "警告"
+      },
+      "defaults": {
+        "billing": "帐单",
+        "currency": "币种",
+        "taxCode": "税务代码"
+      },
+      "classes": {
+        "internationalClasses": {
+          "label": "国际分类"
+        },
+        "classCode": "代码",
+        "effectiveDate": "有效日期",
+        "propertyType": "权利类型",
+        "notes": "备注维护",
+        "class": "商标分类",
+        "classHeading": "类标题"
+      },
+      "overview": {
+        "dateCeased": "终止日",
+        "type": "类型",
+        "types": {
+          "country": "国家",
+          "group": "名称组"
+        },
+        "code": "代码",
+        "name": "名称",
+        "notes": "备注维护"
+      }
+    }
+  },
+  "periodTypes": {
+    "days": "天",
+    "weeks": "周",
+    "months": "月",
+    "years": "年"
+  },
+  "workflows": {
+    "common": {
+      "event": "事件",
+      "eventNo": "事件号",
+      "eventDescription": "事件描述",
+      "period": "期间",
+      "eventDate": "事件日期",
+      "dueDate": "到期日",
+      "localOrForeignDropdown": {
+        "label": "本地客户",
+        "localClients": "是",
+        "foreignClients": "否"
+      }
+    },
+    "search": {
+      "searchBy": "搜索项",
+      "criteria": "标准",
+      "case": "案件",
+      "event": "事件",
+      "bestCriteriaOnly": "仅最佳标准"
+    },
+    "maintenance": {
+      "entries": {
+        "createEntry": {
+          "description": "描述"
+        }
+      },
+      "events": {
+        "eventCode": "事件代码",
+        "importance": "重要的"
+      },
+      "deleteConfirmationEvent": {
+        "title": "确认删除"
+      },
+      "deleteConfirmationEntry": {
+        "title": "确认删除"
+      }
+    },
+    "eventcontrol": {
+      "unlimited": "未限制",
+      "importanceLevel": "重要级别",
+      "nameType": "名称类型",
+      "name": "名称",
+      "notes": "备注维护",
+      "relativeCycleMap": {
+        "currentCycle": "目前周期",
+        "previousCycle": "上一周期",
+        "nextCycle": "下一周期",
+        "all": "所有"
+      },
+      "standingInstruction": {
+        "title": "特殊指示"
+      },
+      "dueDateCalc": {
+        "title": "到期日计算",
+        "dueDateByUnit": {
+          "Days": "天",
+          "Months": "月",
+          "Weeks": "周",
+          "Years": "年"
+        },
+        "formElements": {
+          "nameType": "名称类型",
+          "name": "名称",
+          "yes": "是",
+          "no": "否"
+        },
+        "operatorMap": {
+          "add": "添加"
+        },
+        "fromToEventMap": {
+          "Event Date": "事件日期",
+          "Due Date": "到期日"
+        },
+        "nonWorkDayMap": {
+          "ok": "OK"
+        },
+        "cycle": "周期",
+        "event": "事件",
+        "period": "期间",
+        "maintenance": {
+          "either": "任意的",
+          "reminders": "提醒",
+          "options": "多项选择"
+        }
+      },
+      "eventOccurrence": {
+        "nameType": "名称类型",
+        "events": "事件"
+      },
+      "dateComparison": {
+        "eventA": "事件",
+        "cycle": "周期",
+        "maintenance": {
+          "eventA": "事件",
+          "date": "日期",
+          "systemDate": "系统日期",
+          "caseRelationship": "案件关系"
+        }
+      },
+      "satisfyingEvents": {
+        "cycle": "周期"
+      },
+      "designatedJurisdictions": {
+        "group": "名称组"
+      },
+      "dateLogic": {
+        "useCaseRelationship": "案件关系",
+        "cycle": "周期",
+        "maintenance": {
+          "eventDate": "事件日期",
+          "dueDate": "到期日",
+          "event": "事件",
+          "caseRelationship": "案件关系",
+          "message": "错误信息"
+        }
+      },
+      "eventsToClear": {
+        "cycle": "周期",
+        "clearEventDate": "事件日期",
+        "clearDueDate": "到期日"
+      },
+      "eventsToUpdate": {
+        "cycle": "周期"
+      },
+      "reminders": {
+        "title": "提醒",
+        "maintenance": {
+          "messages": "消息",
+          "subject": "主题",
+          "recurring": "再发生/重现",
+          "sendTo": "发送到",
+          "staff": "员工",
+          "signatory": "签字人",
+          "criticalList": "临界列表"
+        }
+      },
+      "documents": {
+        "title": "文件档",
+        "document": "文件档",
+        "maintenance": {
+          "addTitle": "添加文件档",
+          "recurring": "再发生/重现",
+          "raiseCharge": "费用"
+        }
+      },
+      "charges": {
+        "title": "费用",
+        "isPayFee": "付款",
+        "isRaiseCharge": "提高费用",
+        "isCreateEstimate": "建立评估",
+        "isDirectPay": "直接付款"
+      },
+      "changeAction": {
+        "openAction": "打开操作",
+        "closeAction": "结束操作"
+      },
+      "report": {
+        "title": "报告给CPA"
+      },
+      "ptaDelaysCalc": {
+        "ipOfficeDelay": "因官方而延迟",
+        "applicantDelay": "因申请人而延迟"
+      }
+    },
+    "entrycontrol": {
+      "deleteConfirmation": {
+        "title": "确认删除"
+      },
+      "details": {
+        "eventDate": "事件日期",
+        "dueDate": "到期日",
+        "policing": "监控",
+        "period": "期间",
+        "entryOptions": "项目选项",
+        "otherDetails": "其它详细情况",
+        "policeImmediately": "立即监控",
+        "yes": "是",
+        "no": "否",
+        "maintenance": {
+          "period": "期间"
+        }
+      },
+      "documents": {
+        "title": "文件档",
+        "document": "文件档"
+      },
+      "dateOptions": {
+        "hide": "隐藏"
+      },
+      "controlOptions": {
+        "hide": "隐藏"
+      },
+      "steps": {
+        "title": "称谓",
+        "defaultTitle": "步骤",
+        "category": "名称类别",
+        "mandatory": "强制",
+        "createAction": "流程",
+        "checklistTypes": "清单类型",
+        "general": "一般",
+        "mandatoryRelationship": "强制关系",
+        "nameType": "名称类型",
+        "relationship": "关系",
+        "textType": "文字类型",
+        "step": "步骤",
+        "maintenance": {
+          "categories": "名称类别",
+          "step": "步骤",
+          "title": "称谓",
+          "category": "名称类别",
+          "mandatory": "强制"
+        }
+      },
+      "userAccess": {
+        "role": "角色"
+      }
+    },
+    "inheritance": {
+      "policingNotification": {
+        "title": "警告"
+      }
+    }
+  },
+  "policing": {
+    "summaryBar": {
+      "total": "合计",
+      "onHold": "有效"
+    },
+    "dashboard": {
+      "graph": {
+        "error": "错误"
+      }
+    },
+    "queue": {
+      "nextRunTimeModal": {
+        "date": "日期",
+        "time": "时间"
+      },
+      "status": "地区",
+      "user": "用户",
+      "caseReference": "卷号",
+      "event": "事件",
+      "cycle": "周期",
+      "criteria": "标准",
+      "propertyType": "权利类型",
+      "errors": {
+        "date": "日期",
+        "message": "错误信息",
+        "event": "事件",
+        "cycle": "周期",
+        "criteria": "标准"
+      }
+    },
+    "request": {
+      "action": {
+        "runNow": "运行"
+      },
+      "log": {
+        "status": "地区",
+        "error": "错误",
+        "completed": "已完成",
+        "errors": {
+          "internalReference": "卷号",
+          "cycleNo": "周期",
+          "message": "错误信息",
+          "criteria": "标准",
+          "event": "事件"
+        }
+      },
+      "maintenance": {
+        "sections": {
+          "overview": {
+            "title": "称谓",
+            "notes": "备注维护"
+          },
+          "eventsReminder": {
+            "startDate": "开始日",
+            "endDate": "结束日期",
+            "for": "关于",
+            "days": "天"
+          },
+          "policingOptions": {
+            "reminders": "提醒",
+            "emailReminders": "电子邮件提醒",
+            "documents": "文件档",
+            "update": "更新",
+            "tooltip": {
+              "reminders": "提醒",
+              "emailReminders": "电子邮件提醒",
+              "documents": "文件档",
+              "update": "更新"
+            }
+          },
+          "caseCharacteristics": {
+            "caseReference": "卷号",
+            "propertyType": "权利类型",
+            "caseType": "案件类型",
+            "category": "案件种类",
+            "subType": "子类型",
+            "office": "办公地点"
+          },
+          "caseEventAttributes": {
+            "action": "流程",
+            "event": "事件"
+          },
+          "caseAssociatedWithNames": {
+            "name": "名称",
+            "nameType": "名称类型"
+          },
+          "exclude": "不包括"
+        }
+      }
+    },
+    "errorLog": {
+      "caseReference": "卷号",
+      "date": "日期",
+      "message": "错误信息",
+      "event": "事件",
+      "cycle": "周期",
+      "criteria": "标准",
+      "actions": {
+        "delete": "删除"
+      }
+    },
+    "management": {
+      "savedrequests": {
+        "notes": "备注维护"
+      }
+    }
+  },
+  "exchangeIntegration": {
+    "queue": {
+      "columns": {
+        "staff": "员工",
+        "eventDescription": "事件描述",
+        "reminderMessage": "提醒信息",
+        "reference": "卷号",
+        "status": "地区"
+      }
+    },
+    "bulkMenu": {
+      "reset": "重置"
+    },
+    "settings": {
+      "administrator-details": {
+        "password": {
+          "label": "密码"
+        }
+      }
+    }
+  },
+  "total": "合计",
+  "on-hold": "有效",
+  "in-error": "错误",
+  "open-action": "打开操作",
+  "operators": {
+    "exists": "存在",
+    "startsWith": "开始于",
+    "endsWith": "结束于",
+    "equalTo": "等于",
+    "notEqualTo": "不等于",
+    "contains": "包含",
+    "between": "两者间",
+    "notBetween": "不在两者间",
+    "soundsLike": "语音搜索",
+    "within": "在...之内",
+    "withinLast": "在上次之内",
+    "withinNext": "在下次之内",
+    "SpecificDates": "特殊日期",
+    "dateRange": "日期范围"
+  },
+  "screenlabels": {
+    "translation": "翻译",
+    "areaHeading": "地区",
+    "area": {
+      "case": "案件",
+      "search": "搜索",
+      "configuration-names-aliastype": "别名",
+      "condor-status": "地区",
+      "condor-nameType": "名称类型",
+      "signin": "登陆",
+      "condor-locality": "具体位置",
+      "condor-nameAliasType": "别名",
+      "condor-priorArt": "现有技术",
+      "condor-numberType": "号码类型",
+      "condor-statusMaintenance": "地区",
+      "condor-help": "帮助",
+      "condor-menu": "菜单",
+      "condor-cases": "案件",
+      "condor-caseSearch": "案件搜寻",
+      "condor-caseSearchResults": "高级搜索结果",
+      "condor-textType": "文字类型",
+      "condor-importanceLevel": "重要级别",
+      "condor-configurations": "配置",
+      "condor-signin": "登陆",
+      "condor-kotTextTypes": "保持附注置顶",
+      "condor-priorart": "现有技术",
+      "condor-searchResults": "搜索结果",
+      "condor-nameSearchResults": "高级搜索结果",
+      "condor-dueDate": "到期日",
+      "condor-image": "图像"
+    }
+  },
+  "authentication": {
+    "unauthorised-accounts-just-locked": "您已超过无效登录的最大次数限制。请联系你的系统管理员。"
+  },
+  "cases": {
+    "caseSearch": "案件搜寻",
+    "caseType": "案件类型",
+    "propertyType": "权利类型",
+    "caseCategory": "案件种类",
+    "subType": "子类型",
+    "caseOffice": "办案地点",
+    "fileLocation": "文档位置",
+    "status": "案件状态",
+    "year": "年份",
+    "renewalStatus": "续展状态",
+    "nextEventDue": "下一事件到期日",
+    "dueDate": "到期日",
+    "lastEvent": "最后事件",
+    "classes": "类"
+  },
+  "quicknav": {
+    "help": {
+      "title": "帮助",
+      "tooltip": "帮助"
+    },
+    "links": {
+      "title": "链接",
+      "tooltip": "链接"
+    }
+  },
+  "menu": {
+    "dataMapping": {
+      "File": "文件"
+    }
+  },
+  "caseview": {
+    "summary": {
+      "header": "案件总结",
+      "caseReference": "卷号",
+      "yourReference": "客户卷号",
+      "caseType": "案件类型",
+      "category": "案件种类",
+      "propertyType": "权利类型",
+      "title": "称谓",
+      "subType": "子类型",
+      "basis": "基础",
+      "statusSummary": "地区",
+      "caseStatus": "案件状态",
+      "renewalStatus": "续展状态",
+      "officialNumber": "官方号码",
+      "family": "案件家族代码",
+      "office": "办案地点",
+      "fileLocation": "文档位置",
+      "profitCentre": "利润中心",
+      "localClientFlag": "本地客户",
+      "entitySize": "实体规模",
+      "typeOfMark": "商标类型",
+      "workingAttorney": "负责之律师",
+      "firstApplicant": "第一申请人",
+      "clientName": "客户名称",
+      "clientMainContact": "对方联系人",
+      "classes": "类",
+      "ourContact": "我方联系人"
+    },
+    "actions": {
+      "header": "行为",
+      "actions": "流程",
+      "importanceLevel": "最低重要级别",
+      "cycle": "周期",
+      "criteria": "标准",
+      "police": "监控",
+      "closedActions": "在关闭流程中己包含了到期日的关闭",
+      "info": {
+        "ClosedAction": "在关闭流程中己包含了到期日的关闭",
+        "AllEvents": "全部案件"
+      },
+      "events": {
+        "event": "事件",
+        "eventDate": "事件日期",
+        "dueDate": "到期日",
+        "cycle": "周期",
+        "nextPolice": "下一次监视",
+        "eventNo": "事件号",
+        "criteria": "标准",
+        "createdByAction": "按行为建立",
+        "allEvents": "全部案件",
+        "fromCase": "从案件",
+        "period": "期间",
+        "eventDetailType": "类型",
+        "eventDetailNote": "备注维护",
+        "eventNotes": "备注维护",
+        "dueDateSaved": "已储存的到期日",
+        "viewHistory": "查看历史",
+        "name": "责任人名称",
+        "nameType": "责任人名称类型",
+        "eventNoteMenuItem": "注释到期日",
+        "warning": "警告"
+      },
+      "Information": "资讯",
+      "policing": "监控"
+    },
+    "names": {
+      "header": "名称",
+      "type": "类型",
+      "name": "名称",
+      "nameVariant": "名称译名",
+      "attention": "联系人",
+      "reference": "卷号",
+      "details": {
+        "address": "地址",
+        "inherited": "继承",
+        "expiryDate": "终止日期",
+        "commenceDate": "开始日期",
+        "billPercent": "帐单百分比",
+        "remarks": "注释",
+        "nationality": "国籍",
+        "email": "邮件",
+        "phone": "电话",
+        "website": "网站"
+      },
+      "billPercentage": "付账比率"
+    },
+    "criticalDates": {
+      "header": "临近期限",
+      "event": "事件",
+      "date": "日期",
+      "officialNo": "官方号码",
+      "renewalDate": "CPA续展日"
+    },
+    "events": {
+      "header": "事件",
+      "date": "日期",
+      "occurred": "发生的事件",
+      "due": "到期事件",
+      "eventDescription": "事件",
+      "fromCase": "从案件",
+      "documentNumber": "文档号"
+    },
+    "relatedCases": {
+      "header": "相关案件",
+      "relationship": "关系",
+      "caseReference": "卷号",
+      "caseReferenceExternal": "我方卷号",
+      "clientReference": "客户卷号",
+      "officialNumber": "官方号码",
+      "date": "日期",
+      "status": "地区",
+      "classes": "类",
+      "title": "称谓",
+      "relatedEvent": "相关事件",
+      "relatedEventCycle": "周期"
+    },
+    "officialNumbers": {
+      "header": "官方号码",
+      "numberType": "号码类型",
+      "officialNumber": "官方号码",
+      "reference": "卷号",
+      "eventDate": "事件日期",
+      "dateInForce": "生效日期",
+      "isCurrent": "当前"
+    },
+    "caseTexts": {
+      "header": "文本",
+      "type": "类型",
+      "notes": "备注维护",
+      "language": "语种",
+      "caseIrn": "卷号",
+      "class": "商标分类",
+      "modified": "修改",
+      "text": "文本"
+    },
+    "designatedJurisdiction": {
+      "officialNumber": "官方号码",
+      "caseStatus": "案件状态",
+      "internalReference": "卷号",
+      "ourReference": "我方卷号",
+      "clientReference": "客户卷号",
+      "classes": "类",
+      "details": {
+        "notes": "备注维护",
+        "propertyType": "权利类型",
+        "caseCategory": "案件种类",
+        "title": "称谓",
+        "classes": "类",
+        "language": "语种"
+      }
+    },
+    "contextNavigationTooltip": {
+      "email": "邮件",
+      "caseDetails": "内部案件详细资料",
+      "attachments": "附件"
+    },
+    "eFiling": {
+      "nextEventDue": "下一事件到期日",
+      "date": "日期",
+      "user": "用户"
+    },
+    "eFilingPackageFiles": {
+      "description": "描述",
+      "name": "名称",
+      "size": "大小",
+      "type": "类型"
+    },
+    "eFilingHistory": {
+      "header": "状态历史",
+      "date": "日期",
+      "status": "地区",
+      "description": "描述"
+    },
+    "classes": {
+      "header": "类",
+      "localClasses": "分类",
+      "classes": "类",
+      "totalLocal": "本地分类总数",
+      "totalInternational": "国际分类总数",
+      "class": "商标分类",
+      "firstUse": "第一次使用",
+      "firstUseInCommerce": "第一次使用开始于",
+      "language": "语种"
+    },
+    "renewals": {
+      "header": "续展",
+      "caseStatus": "案件状态",
+      "renewalStatus": "续展状态",
+      "nextRenewalDate": "下一个续展日",
+      "cpaRenewalDate": "CPA续展日",
+      "renewalType": "续展类型",
+      "renewalYear": "续展年份",
+      "extendedRenewalYears": "宽展年份",
+      "startPaying": "开始付款",
+      "stopPaying": "停止付款",
+      "reasonToStopPay": "停止付款的原因",
+      "lastExtracted": "上次摘录",
+      "portfolioDate": "文件夹日期",
+      "reportToCPA": "报告给CPA",
+      "notes": "备注维护",
+      "standingInstruction": "特殊指示",
+      "names": {
+        "header": "名称",
+        "type": "类型",
+        "name": "名称",
+        "nameVariant": "名称译名",
+        "attention": "联系人",
+        "reference": "卷号",
+        "details": {
+          "address": "地址",
+          "inherited": "继承",
+          "expiryDate": "结束日期",
+          "commenceDate": "开始日期",
+          "billPercent": "帐单百分比",
+          "remarks": "注释",
+          "nationality": "国籍",
+          "email": "邮件",
+          "phone": "电话",
+          "website": "网站"
+        }
+      }
+    },
+    "standingInstructions": {
+      "header": "特殊指示",
+      "instructionType": "指示类型",
+      "instruction": "指示",
+      "defaultedFrom": "默认为",
+      "adjustmentText": "备注维护",
+      "adjustmentType": "调整类型",
+      "adjustmentDay": "工作日",
+      "startMonth": "起始月份",
+      "dayOfWeek": "一周的某天",
+      "startOn": "开始于",
+      "period1": "期间1",
+      "period2": "期间2",
+      "period3": "期间3"
+    },
+    "internalCaseDetails": {
+      "header": "内部案件详细资料",
+      "internalCaseId": "内部案件ID",
+      "dateCreated": "建立的日期",
+      "dateLastChanged": "最后变更的日期"
+    },
+    "wIP": {
+      "header": "WIP"
+    },
+    "billingInstructions": {
+      "header": "特殊指示"
+    },
+    "caseBilling": {
+      "header": "帐单"
+    },
+    "attributes": {
+      "header": "名称属性维护"
+    },
+    "checklist": {
+      "header": "清单"
+    },
+    "fileLocations": {
+      "header": "申请地区",
+      "title": "申请地区",
+      "fileLocation": "文档位置",
+      "lastFileLocation": "最后位置",
+      "filePart": "申请部分",
+      "issuedBy": "发行人",
+      "whenMoved": "移动时间",
+      "barCode": "条码",
+      "caseReference": "卷号",
+      "description": "描述"
+    },
+    "priorArt": {
+      "header": "现有技术"
+    },
+    "caseFirstUse": {
+      "header": "第一次使用"
+    },
+    "pTA": {
+      "header": "专利期限调整"
+    },
+    "caseOtherDetails": {
+      "header": "其它详细情况"
+    },
+    "keywords": {
+      "header": "关键字"
+    },
+    "caseJournal": {
+      "header": "公告"
+    },
+    "caseDocumentManagementSystem": {
+      "header": "文件档管理",
+      "documentColumns": {
+        "description": "描述",
+        "version": "版本号",
+        "staffMember": "工作人员",
+        "docType": "文件档类型",
+        "dateCreated": "建立的日期",
+        "emailDateReceived": "已接收",
+        "size": "大小",
+        "from": "从",
+        "to": "到"
+      },
+      "documentProfile": {
+        "comment": "注释"
+      },
+      "relatedDocumentsTab": {
+        "title": "相关文件档"
+      }
+    },
+    "designElement": {
+      "header": "图形元素"
+    },
+    "contactActivitySummary": {
+      "header": "联系活动摘要"
+    },
+    "assignedCases": {
+      "header": "已转让的案件"
+    },
+    "changeOfOwner": {
+      "header": "变更所有人"
+    },
+    "caseList": {
+      "header": "案件列列表"
+    },
+    "recentContacts": {
+      "header": "近期的联系"
+    },
+    "cRMCaseStatusHistory": {
+      "header": "状态历史"
+    },
+    "checklists": {
+      "header": "清单",
+      "type": "清单类型",
+      "yes": "是",
+      "no": "否",
+      "count": "数值",
+      "amount": "数量",
+      "date": "日期",
+      "period": "期间",
+      "staff": "员工",
+      "text": "文本",
+      "selection": "选择",
+      "processed": "已处理",
+      "changed": "已变更"
+    },
+    "eventRules": {
+      "event": "事件",
+      "action": "流程",
+      "importanceLevel": "重要级别",
+      "eventDate": "事件日期",
+      "cycle": "周期",
+      "lastModified": "最后修改日期",
+      "byLogin": "透过登录",
+      "from": "从",
+      "dueDateCalculations": {
+        "header": "到期日计算",
+        "dueDateSatisfied_Literal": "满足以下任一事项，到期日将被移除：",
+        "heading_Earliest": "计算事件的到期日作为以下计算的最早结果：",
+        "heading_Latest": "计算事件的到期日作为以下计算的最新结果：",
+        "moveToNextWorkDay": "移至下一个工作日",
+        "moveToPreviousWorkDay": "移至上一个工作日",
+        "systemDate": "系统日期",
+        "mustExistCalculation": "必须存在此计算条件以计算到期日。",
+        "calculatedFromDate": "从日期计算",
+        "calculatedFromEvent": "从事件计算",
+        "calculateOnlyFor": "只对具有旗标{1}的 {0} 类型常行指示计算到期日",
+        "calculateOnlyIf": "如果{0}的后续日期比较为真，只计算到期日：",
+        "calculateOnlyIf_All": "所有",
+        "calculateOnlyIf_Any": "至少一个",
+        "periodConcatenation_UserEntered": "（已输入的用户）",
+        "StandingInstruction_Period1": "期间1",
+        "StandingInstruction_Period2": "期间2",
+        "StandingInstruction_Period3": "期间3",
+        "dateType_DueDate": "到期日",
+        "dateType_EventDate": "事件日期",
+        "dateType_EventOrDueDate": "事件或到期日",
+        "relativeCycle_CurrentCycle": "目前周期",
+        "relativeCycle_Entered": "周期",
+        "relativeCycle_FirstCycle": "第一个周期",
+        "relativeCycle_LastCycle": "最新周期",
+        "relativeCycle_LatestCycle": "最新周期",
+        "relativeCycle_NextCycle": "下一周期",
+        "relativeCycle_PreviousCycle": "上一周期",
+        "operator_Exists": "存在",
+        "operator_DoesNotExist": "不存在",
+        "eventNo": "事件号",
+        "event": "事件"
+      },
+      "reminders": {
+        "header": "提醒",
+        "sendBeforeDueDate": "在到期日 {1} {2} 前开始 {0}",
+        "sendOnDueDate": "在到期日 {1} {2} 时开始 {0}",
+        "stopLiteral": "到期日之后直到{0}",
+        "criticalList": "临界列表"
+      },
+      "documents": {
+        "header": "文件档",
+        "sendBeforeDueDate": "在到期日 {1} {2} 前开始{0}建立文件档{3}",
+        "sendOnDueDate": "在到期日 {1} {2} 时开始 {0}建立文件档{3}",
+        "stopLiteral": "到期日之后直到{0}",
+        "updateEvent1Literal": "当文件档被请求时，时间日期更新到今日。",
+        "updateEvent2Literal": "当事件更新时请求文件档",
+        "raiseChargeLiteral": "使用已储存的估算，{0}",
+        "payFeeCode": {
+          "RaiseCharge": "提高费用",
+          "PayFee": "付款",
+          "PayFeeAndRaiseCharge": "提高费用并支付"
+        }
+      },
+      "dateslogic": {
+        "header": "手动输入日期时日期生效",
+        "mustExist": "必须存在的案件关系",
+        "fromRelationship": "来自相关案件关系{0} {1}",
+        "dateValidation": "输入的{0}应是 {1} {2} {3}"
+      },
+      "eventUpdate": {
+        "header": "当事件更新时出现的情况为",
+        "updateWhenDue": "当到期日是目前日期或在目前日期之后时，更新事件",
+        "RaiseChargeLiteral": "关于",
+        "BooleanLiteral_True": "开启",
+        "BooleanLiteral_False": "关闭",
+        "statusSetTo": "状态设置到",
+        "createAction": "建立行为",
+        "closeAction": "结束操作",
+        "adjustedTo": "调整至",
+        "pushEventHeader": "将已更新的事件日期推进到以下：",
+        "reportToCpaHeader": "报告给CPA"
+      }
+    },
+    "affectedCases": {
+      "caseStatus": {
+        "pending": "审查中",
+        "registered": "己注册",
+        "dead": "死案"
+      },
+      "columns": {
+        "caseRef": "卷号",
+        "officialNo": "官方号码",
+        "propertyType": "权利类型",
+        "caseStatus": "案件状态",
+        "status": "地区"
+      },
+      "setAgent": {
+        "caseRef": "卷号"
+      },
+      "requestRecordal": {
+        "caseRef": "卷号"
+      },
+      "cancel": "取消"
+    },
+    "recordal": {
+      "steps": "步骤",
+      "label": "标签",
+      "value": "值",
+      "stepLabel": "步骤",
+      "name": "名称"
+    },
+    "designElements": {
+      "renew": "续展",
+      "elementDescription": "元素描述"
+    },
+    "attachments": {
+      "activityCategory": "活动种类",
+      "activityDate": "日期",
+      "activityType": "活动类型",
+      "attachmentName": "附件名称",
+      "attachmentType": "附件类型",
+      "eventCycle": "周期",
+      "eventDescription": "事件",
+      "isPublic": "公开",
+      "language": "语种",
+      "pageCount": "页数",
+      "action": "流程",
+      "maintenance": {
+        "title": "维护附件",
+        "description": "附件描述",
+        "browse": "浏览",
+        "attachmentName": "附件名称",
+        "event": "事件",
+        "cycle": "周期",
+        "activityType": "活动类型",
+        "activityCategory": "活动种类",
+        "activityDate": "活动日期",
+        "attachmentType": "附件类型",
+        "language": "语种",
+        "pageCount": "页数",
+        "fileBrowser": {
+          "title": "档案浏览器",
+          "path": "路径",
+          "fileName": "文件名",
+          "name": "名称",
+          "dateModified": "修改的日期",
+          "type": "类型",
+          "size": "大小",
+          "uploadFiles": "上传文件",
+          "clearAll": "全部清除",
+          "upload": "上传"
+        },
+        "fileUploader": {
+          "title": "上传文件",
+          "return": "返回到文件浏览器"
+        }
+      },
+      "modal": {
+        "title": "附件"
+      }
+    }
+  },
+  "caseSearch": {
+    "topics": {
+      "references": {
+        "title": "参考",
+        "yourReference": "客户卷号",
+        "caseNameReferenceDefault": "名称",
+        "officialNumber": "官方号码",
+        "anyNumberType": "号码类型",
+        "searchNumbersOnly": "仅查询号码",
+        "primeOnly": "仅主要案件",
+        "family": "案件家族代码",
+        "caseList": "案件列表"
+      },
+      "details": {
+        "title": "详细情况",
+        "caseOffice": "办案地点",
+        "caseType": "案件类型",
+        "propertyType": "权利类型",
+        "caseCategory": "案件种类",
+        "subType": "子类型",
+        "basis": "基础",
+        "class": "商标分类",
+        "includeDraftCases": "包括草稿案件",
+        "caseList": "案件列表",
+        "local": "本地的",
+        "international": "国际的"
+      },
+      "text": {
+        "title": "文本",
+        "typeOfMark": "商标类型",
+        "titleMark": "案卷名称",
+        "textType": "文字类型",
+        "keyword": "关键字",
+        "any": "所有的"
+      },
+      "names": {
+        "title": "名称",
+        "instructor": "委托人",
+        "owner": "申请人",
+        "agent": "代理人",
+        "staff": "员工",
+        "signatory": "签字人",
+        "useNameVariant": "使用此名称的译名",
+        "includeThisCase": "包括这个案件",
+        "isOtherCases": "和所有其他拥有相同信息的案件",
+        "relationship": "关系",
+        "isRelatedToMyselfAs": "与我的关系",
+        "inheritedNames": "继承的人名",
+        "parentName": "父人名",
+        "isMyself": "是自己",
+        "anyNameType": "任一人名类型",
+        "organisation": "组织",
+        "postalAddress": "邮寄通讯地址",
+        "streetAddress": "街道地址",
+        "phone": "电话",
+        "email": "邮件",
+        "startDate": "开始日",
+        "staffClassification": "员工分类",
+        "group": "名称组",
+        "mainContact": "主要联系人",
+        "profitCenter": "利润中心",
+        "ceasedDate": "截止日",
+        "searchKey1": "关键词１",
+        "searchKey2": "关键词２",
+        "nationality": "国籍",
+        "category": "名称类别",
+        "remarks": "备注",
+        "companyNumber": "公司代码",
+        "incorporated": "法人组织",
+        "parentEntity": "母公司",
+        "signOffName": "签字人姓名",
+        "abbreviatedName": "姓名缩写",
+        "telephone": "电话",
+        "fax": "传真",
+        "taxNo": "税号",
+        "supplierType": "供应商类型",
+        "capacityToSign": "署名资格",
+        "informalSalutation": "非正式称呼",
+        "position": "职务",
+        "comments": "注释",
+        "estRevenue": "预估收益",
+        "formalSalutation": "正式称呼",
+        "filesIn": "申请国家"
+      },
+      "status": {
+        "title": "地区"
+      },
+      "dates": {
+        "event": "事件",
+        "searchFor": "搜索",
+        "occurredEvent": "发生事件",
+        "includeClosedActions": "包含关闭阶段",
+        "dueEvent": "到期事件",
+        "importanceLevel": "重要级别",
+        "and": "与",
+        "actions": "行为",
+        "action": "流程",
+        "renewals": "续展",
+        "nonRenewals": "不显示续展日",
+        "open": "仅开放行为",
+        "eventNotes": "事件文字",
+        "range": "范围",
+        "date": "日期",
+        "anyName": "任何名称（除预设责任之外）",
+        "staff": "工作人员（包括预设责任）",
+        "signatory": "签名（包括预设责任）",
+        "nameType": "名称类型",
+        "name": "名称",
+        "nameGroup": "名称组",
+        "staffClassification": "员工分类"
+      },
+      "otherDetails": {
+        "title": "其它详细情况",
+        "fileLocation": "文档位置",
+        "standingInstruction": "特殊指示",
+        "caseSpecific": "案件-仅指特殊",
+        "instruction": "指示",
+        "characteristic": "特性",
+        "queues": "队列",
+        "letters": "信函",
+        "charges": "费用",
+        "policingIncomplete": "不完整的流程督察",
+        "nameChangeIncomplete": "全球名称变更尚未完成",
+        "entitySize": "实体规模"
+      },
+      "attributes": {
+        "attributeValue": "属性值",
+        "boolean": "布尔",
+        "and": "与"
+      },
+      "dataManagement": {
+        "title": "资料管理"
+      },
+      "designElement": {
+        "firmElementId": "公司元素ID",
+        "officialElementId": "官方的元素ID",
+        "registrationNo": "注册号",
+        "typeface": "字体",
+        "renew": "续展",
+        "description": "描述",
+        "eldescription": "元素描述"
+      },
+      "patentTermAdjustments": {
+        "title": "专利期限调整",
+        "ipOfficeSuppliedPta": "官方确定专利期限调整时间",
+        "to": "到",
+        "days": "天",
+        "ptaDeterminedByUs": "由我们确定专利期限调整时间",
+        "ipOfficeDelay": "因官方而延迟",
+        "applicantDelay": "因申请人而延迟",
+        "ptaDiscrepancies": "具有PTA差异的案件"
+      }
+    },
+    "header": "案件总结",
+    "caseType": "案件类型",
+    "category": "案件种类",
+    "propertyType": "权利类型",
+    "title": "称谓",
+    "subType": "子类型",
+    "basis": "基础",
+    "statusSummary": "地区",
+    "caseStatus": "案件状态",
+    "renewalStatus": "续展状态",
+    "officialNumber": "官方号码",
+    "office": "办案地点",
+    "fileLocation": "文档位置",
+    "profitCentre": "利润中心",
+    "localClientFlag": "本地客户",
+    "entitySize": "实体规模",
+    "typeOfMark": "商标类型",
+    "workingAttorney": "负责之律师",
+    "firstApplicant": "第一申请人",
+    "clientName": "客户名称",
+    "classes": "类",
+    "dataSource": "数据来源",
+    "batchIdentifier": "批处理标识符",
+    "operatorSession": "用户在线时间段",
+    "pageTitle": "案件搜寻",
+    "presentation": "显示",
+    "presentationColumns": {
+      "useDefault": "使用默认形式",
+      "selectedColumns": {
+        "hidden": "隐藏"
+      },
+      "hideTitle": "隐藏",
+      "searchDescription": "搜索描述",
+      "savedSearchDelete": "您想永久删除这个搜索？",
+      "maintainColumns": "维护列",
+      "refresh": "刷新",
+      "mandatory": "强制"
+    },
+    "savedSearch": {
+      "searchName": "查询名称",
+      "description": "描述",
+      "public": "公开",
+      "includeInSearchMenu": "在查询菜单上包括"
+    },
+    "tasks": "任务"
+  },
+  "locality": {
+    "code": "代码",
+    "name": "名称",
+    "city": "城市",
+    "state": "地区",
+    "country": "国家"
+  },
+  "namerelation": {
+    "reverserelationship": "相反关系",
+    "individual": "个人",
+    "organisation": "组织"
+  },
+  "schemaMapping": {
+    "usError": "错误",
+    "usBtnEdit": "编辑",
+    "usBtnDelete": "删除",
+    "usLblFileName": "文件名",
+    "usLblLastModified": "最后修改日期",
+    "usLblName": "名称",
+    "usLblEdit": "编辑",
+    "usBtnCancel": "取消",
+    "usBtnCreate": "建立",
+    "usLblMappingName": "名称",
+    "usLblFile": "文件",
+    "spBtnDone": "完成",
+    "spLblStatus": "地区",
+    "spLblFileName": "文件名",
+    "mpLblNodeShowDetails": "显示详细资料",
+    "mpLblNodeHideDetails": "隐藏详细资料",
+    "mpLblNodeMandatory": "强制",
+    "mpLblNodeError": "错误",
+    "mpLblDocItemSelect": "选择",
+    "mpLblDocItemClear": "清空",
+    "mpLblDocItemDescription": "描述",
+    "mpBtnSave": "保存",
+    "mpBtnGenerate": "生成",
+    "dipLblSearch": "搜索",
+    "dipLblName": "名称",
+    "dipLblDescription": "描述",
+    "dipLblSelect": "选择",
+    "dipLblCancel": "取消",
+    "xmlLblEntryPoint": "入口处",
+    "xmlBtnGenerate": "生成",
+    "maptovalue": "值"
+  },
+  "financialReports": {
+    "frFinancialReportsTitle": "财务报告",
+    "pageTitle": "财务报告"
+  },
+  "priorArt": {
+    "pacLblTitle": "称谓",
+    "pacLblCitation": "引用",
+    "pacLblOfficialNo": "官方号码",
+    "pacLblCountry": "国家",
+    "pasBtnSearch": "搜索",
+    "pasBtnEdit": "编辑",
+    "pasLblCases": "案件",
+    "pasThReference": "卷号",
+    "paeLblFrom": "从",
+    "paeLblName": "名称",
+    "paeLblPublished": "已公开",
+    "paeLblPriority": "优先权日期",
+    "paeLblGranted": "已授权",
+    "paeLblPTOCited": "专利商标局引用资讯",
+    "paeLblAppFiled": "递交之申请案",
+    "paeBtnSave": "保存",
+    "paeBtnCancel": "取消",
+    "publication": "公开"
+  },
+  "externalApplication": {
+    "iealblActive": "活动",
+    "iealblYes": "是",
+    "iealblNo": "否",
+    "ieabtnEdit": "编辑",
+    "iealblName": "名称"
+  },
+  "dmsIntegration": {
+    "dmslblSubTitle": "配置",
+    "dmslblLocation": "路径",
+    "iManage": {
+      "status": "地区",
+      "generate": "生成",
+      "confirmSave": {
+        "confirmText": "是",
+        "cancelText": "否"
+      },
+      "credentials": {
+        "password": "密码"
+      },
+      "workspaces": {
+        "cases": "案件",
+        "nameTypes": "名称类型",
+        "nameType": "名称类型"
+      },
+      "testWorkspace": {
+        "caseIrn": "卷号",
+        "name": "名称",
+        "password": "密码"
+      }
+    }
+  },
+  "caseComparison": {
+    "gBtnYes": "是",
+    "gBtnNo": "否",
+    "gBtnClose": "关闭",
+    "gLblDSFile": "文件",
+    "idBtnCancel": "取消",
+    "idLblEvent": "事件",
+    "idLblCycle": "周期",
+    "idLblAttachmentName": "名称",
+    "idLblActivityType": "活动类型",
+    "idLblActivityCategory": "活动种类",
+    "idLblAttachmentType": "附件类型",
+    "idLblActivityDate": "日期",
+    "idLblAttachmentIsPublic": "公开",
+    "ccHeadingGeneral": "一般",
+    "ccHeadingAttention": "联系人",
+    "ccHeadingError": "错误",
+    "ccHeadingNames": "名称",
+    "ccHeadingEvents": "事件",
+    "ccLblCaseReference": "卷号",
+    "ccLblTitle": "称谓",
+    "ccLblCaseStatus": "案件状态",
+    "ccLblStatusDate": "状态日期",
+    "ccLblLocalClasses": "分类",
+    "ccLblIntClasses": "国际分类",
+    "ccLblCountry": "国家",
+    "ccLblPropertyType": "权利类型",
+    "ccLblCycle": "周期",
+    "ccLblClass": "商标分类",
+    "ccLblFirstUsedDate": "第一次使用",
+    "ccLblFirstUsedInCommerceDate": "第一次使用开始于",
+    "ccLblText": "文本",
+    "ccLblRelationship": "关系",
+    "ccLblCountryCode": "国家",
+    "ccLblOfficialNumber": "官方号码",
+    "ccLblRelatedCaseReference": "卷号",
+    "ccLblPriorityDate": "日期",
+    "ccLblParentStatus": "母案状态",
+    "ccLblDocumentCode": "文件档代码",
+    "ccLblDocumentDescription": "描述",
+    "ccLblDocumentCategory": "名称类别",
+    "ccLblUsptoTsdrDocumentCode": "文件档代码",
+    "ccLblEpoDocumentDate": "日期",
+    "ccLblEpoDocumentType": "文件档类型",
+    "ccLblPageCount": "页数",
+    "ccDocDownloadFailed": "错误",
+    "ccEventUpdatedCycle": "周期",
+    "ccAddress": "地址",
+    "ccReference": "卷号",
+    "ipInclude": "包括",
+    "errLblMessage": "错误信息",
+    "errLblDetails": "详细情况",
+    "errLblDateOccurred": "日期",
+    "errBtnMoreDetails": "详细情况",
+    "errTitleErrorDetails": "错误详细资料"
+  },
+  "bulkCaseImport": {
+    "gBtnClose": "关闭",
+    "bciError": "错误",
+    "isLblStatus": "地区",
+    "isLblSource": "来源",
+    "isLblNewCases": "新案件",
+    "isLblUnresolved": "不完整的",
+    "isLblBatchIdentifier": "批处理标识符",
+    "isLblCompleted": "已完成",
+    "Error": "错误",
+    "Processed": "已处理",
+    "niNameType": "名称类型",
+    "niNameCode": "名称代码",
+    "niName": "名称",
+    "niAddress": "地址",
+    "niPhone": "电话",
+    "niFax": "传真",
+    "niEmail": "邮件",
+    "niContact": "联系方式",
+    "niLoadingPotentialMatches": "正在装载",
+    "niSearchKey1": "关键词１",
+    "niRemarks": "备注",
+    "niFirstName": "名",
+    "miErrorDetailsTitle": "错误详细资料",
+    "isErrorDetailsTitle": "错误",
+    "bsLblTransStatus": "地区",
+    "bsLblPropertyType": "权利类型",
+    "bsLblCountry": "国家",
+    "bsLblOfficialNumber": "官方号码",
+    "bsLblCaseTitle": "称谓"
+  },
+  "batchEventUpdate": {
+    "btnSave": "保存",
+    "columnHeadingCaseRef": "卷号",
+    "columnHeadingOfficialNo": "官方号码",
+    "columnHeadingFileLocation": "文档位置",
+    "columnHeadingCycle": "周期",
+    "columnHeadingEventDate": "事件日期",
+    "columnHeadingDueDate": "到期日",
+    "columnHeadingCaseStatus": "案件状态",
+    "columnHeadingTitle": "称谓",
+    "columnHeadingReason": "理由",
+    "headingWarnings": "警告",
+    "headingStatusChangeVerification": "状态变更验证",
+    "confirmYes": "是",
+    "confirmNo": "否",
+    "csCurrentCycle": "目前周期",
+    "csNextCycle": "下一周期",
+    "ucAdditionalInformation": "额外信息",
+    "btnOk": "OK",
+    "btnCancel": "取消",
+    "errorHeading": "错误",
+    "entryAtleastOneDateRequired": "必须输入至少一个日期。"
+  },
+  "Loading": "正在装载",
+  "savedSearch": {
+    "caseSearchBuilder": "案件高级查询",
+    "savedSearches": "保存搜索",
+    "caseSearch": "案件搜寻"
+  },
+  "namesConsolidation": {
+    "runTooltip": "执行",
+    "columns": {
+      "name": "名称",
+      "nameCode": "名称代码",
+      "remarks": "备注",
+      "dateCeased": "终止日"
+    },
+    "validationErrors": {
+      "confirmationTitle": "警告"
+    }
+  },
+  "accounting": {
+    "vat": {
+      "entity": "实体",
+      "period": "期间",
+      "fromDate": "从",
+      "toDate": "到",
+      "status": "地区",
+      "open": "开启"
+    },
+    "vatObligations": {
+      "status": "地区",
+      "start": "开始",
+      "dueDate": "到期日",
+      "submit": "递交"
+    },
+    "vatSubmitter": {
+      "vatToPeriod": "到",
+      "export": "导出为PDF"
+    },
+    "vatHmrcSettings": {
+      "addAccount": "详细情况"
+    },
+    "vatFulfilled": {
+      "vatToPeriod": "到",
+      "export": "导出为PDF"
+    },
+    "vatLog": {
+      "vatToPeriod": "到",
+      "date": "日期",
+      "message": "错误信息"
+    },
+    "time": {
+        "fields": {
+            "time": "持续期",
+            "start": "开始",
+            "finish": "完成",
+            "name": "名称",
+            "case": "卷号",
+            "activity": "行动",
+            "localValue": "本地值",
+            "foreignValue": "国外值",
+            "notes": "备注维护",
+            "chargeOutRate": "费率",
+            "localDiscount": "本国折扣",
+            "foreignDiscount": "国外折扣",
+            "units": "单位",
+            "caseReference": "卷号",
+            "currency": "币种",
+            "amount": "数量",
+            "foreignAmount": "外币总计",
+            "margin": "保证金",
+            "foreignMargin": "国外保证金",
+            "date": "日期",
+            "entryDate": "输入日期",
+            "accumulatedTime": "累计时间"
+        },
+      "recording": {
+        "chargeableHours": "收费时间",
+        "totalHours": "工作时间",
+        "totalValue": "时间值",
+        "summary": {
+          "caseReference": "卷号",
+          "title": "称谓",
+          "caseStatus": "案件状态",
+          "officialNumber": "官方号码",
+          "instructor": "委托人",
+          "owner": "申请人",
+          "staffMember": "工作人员",
+          "signatory": "签字人",
+          "renewalStatus": "续展状态",
+          "wip": "WIP",
+          "receivableBalance": "应收帐款余额",
+          "budget": "预算",
+          "lastInvoice": "最后开发票日期",
+          "caseNarrative": "案件叙述"
+        },
+        "showSummary": "案件总结",
+        "timeEntry": "时间录入",
+        "validationMsgs": {
+          "differentYearWarning": "年度与目前年度不同。"
+        },
+        "doNotDisplayChkBoxLabel": "不再显示此消息",
+        "timeContinuationSummary": "时间延续总览",
+        "delete": "删除"
+      },
+      "postTime": {
+        "title": "发送时间到进行中的工作量",
+        "toEntity": "发送WIP到实体",
+        "button": "记录",
+        "date": "日期",
+        "hours": "小时",
+        "chargeableHours": "收费时间"
+      },
+
+      "duplicateEntry": {
+        "start": "开始"
+      },
+      "caseNarrative": {
+        "textType": "文字类型",
+        "notes": "备注维护",
+        "language": "语种",
+        "clear": "删除",
+        "caseRef": "卷号"
+      },
+      "gaps": {
+        "fromTime": "从",
+        "toTime": "到",
+        "duration": "持续期",
+        "total": "合计"
+      },
+      "query": {
+        "staff": "员工",
+        "fromDate": "从",
+        "toDate": "到",
+        "totalTime": "总时间"
+      },
+      "widget": {
+        "duration": "持续期"
+      }
+    },
+    "agedBalance": {
+      "entity": "实体",
+      "current": "当前",
+      "bracket1": "时期1",
+      "total": "合计"
+    },
+    "wip": {
+      "additionalInfo": {
+        "title": "附加资讯"
+      },
+      "warningMsgs": {
+        "creditLimit": "信货限额",
+        "restrictions": "限定",
+        "budget": "预算",
+        "budgetUsed": "已用的预算",
+        "billed": "帐单",
+        "unbilled": "未付账",
+        "prepayments": {
+          "title": "预付款",
+          "forCase": "作为案件的",
+          "forCaseDebtor": "作为付款人的",
+          "total": "预付合计"
+        },
+        "billingCap": {
+          "title": "开立帐单上限",
+          "value": "开立帐单上限",
+          "totalBilled": "帐单金额",
+          "startDate": "开始日",
+          "period": "期间",
+          "recurring": "再发生/重现"
+        }
+      },
+      "labels": {
+        "receivableBalance": "应收帐款余额",
+        "creditLimit": "信货限额"
+      }
+    },
+    "errors": {
+      "AC14": "实体是被强制的但仍未提供",
+      "AC208": "此项目日期无法是未发生的日期。该日期必须在目前会计期内或大于等于目前日期。"
+    }
+  },
+  "searchResults": {
+    "title": {
+      "CaseSearchExternal": "案件列表",
+      "CaseSearch": "案件列表",
+      "NameSearchExternal": "名称列表",
+      "NameSearch": "名称列表",
+      "WipOverviewSearch": "WIP总览",
+      "OpportunitySearch": "机会列表",
+      "CampaignSearch": "活动列表",
+      "MarketingEventSearch": "行销事件列表",
+      "LeadSearch": "引导"
+    },
+    "warning": {
+      "truncatedRows": "此查询结果很大，只有前{0}行会被导出。"
+    },
+    "dms": {
+      "title": "文件档管理",
+      "caseReference": "卷号",
+      "name": {
+        "title": "名称",
+        "nameType": "名称类型"
+      }
+    }
+  },
+  "Inheritance": {
+    "InheritedOrDerived": "继承"
+  },
+  "NoInformationAvailable": "无效信息",
+  "copy": "复制",
+  "continue": "继续",
+  "cancel": "取消",
+  "twoFactorPreference": {
+    "emailName": "邮件"
+  },
+  "twoFactorConfiguration": {
+    "step4": {
+      "stepHeading": "完成"
+    }
+  },
+  "timepicker": {
+    "buttons": {
+      "cancel": "取消",
+      "now": "现在"
+    }
+  },
+  "SearchByDate": "通过到期日搜索",
+  "screenDesignerCases": {
+    "search": {
+      "criteria": "标准",
+      "case": "案件",
+      "bestCriteriaOnly": "仅最佳标准",
+      "searchBy": "搜索项",
+      "subTitle": "案件"
+    },
+    "pageTitle": "萤幕设计器",
+    "criteriaMaintenance": {
+      "criteriaName": "标准名称",
+      "protectedCriteriaNo": "否",
+      "protectedCriteriaYes": "是",
+      "inUseNo": "否",
+      "inUseYes": "是"
+    },
+    "inheritance": {
+      "togglePreview": "预览"
+    }
+  },
+  "changePassword": {
+    "title": "修改密码",
+    "labels": {
+      "password": "密码",
+      "change": "修改密码",
+      "current": "旧密码",
+      "new": "新密码",
+      "cancel": "取消",
+      "submit": "递交"
+    },
+    "status": {
+      "newPasswordsDoNotMatch": "两个密码不匹配"
+    }
+  },
+  "Inherited": "继承",
+  "bulkUpdate": {
+    "clear": "清空",
+    "fieldUpdate": {
+      "profitCentre": "利润中心",
+      "caseOffice": "办案地点",
+      "caseFamily": "案件家族",
+      "purchaseOrder": "定购单号",
+      "entitySize": "实体规模",
+      "typeOfMark": "商标类型",
+      "titleMark": "案卷名称"
+    },
+    "reset": "重置",
+    "remove": "删除",
+    "cancel": "取消",
+    "textType": "文字类型",
+    "notes": "备注维护",
+    "requestSubmitted": "您的更新请求已经提交。全部更新完成后会通知您。",
+    "case": "案件",
+    "cases": "案件",
+    "caseTextUpdate": {
+      "header": "案件文字",
+      "caseText": "案件文字",
+      "language": "语种",
+      "textType": "文字类型",
+      "class": "商标分类"
+    },
+    "caseNameReferenceUpdate": {
+      "header": "名称参考",
+      "nameType": "名称类型",
+      "reference": "卷号"
+    },
+    "fileLocationUpdate": {
+      "header": "文档位置",
+      "fileLocation": "文档位置",
+      "whenMoved": "移动时间",
+      "movedBy": "移动者"
+    },
+    "caseStatusUpdate": {
+      "header": "地区",
+      "caseStatus": "案件状态",
+      "renewalStatus": "续展状态",
+      "pending": "审查中",
+      "registered": "己注册",
+      "dead": "死案",
+      "password": "密码",
+      "confirmPasswordTitle": "确认密码"
+    }
+  },
+  "backgroundNotifications": {
+    "processName": "进程名称",
+    "status": "地区",
+    "statusDate": "状态日期",
+    "statusDetails": "状态详细资料",
+    "processTypes": {
+      "globalcasechange": "全局域更新",
+      "globalnamechange": "全局名称变更"
+    },
+    "tooltips": {
+      "globalcasechange": "全局域更新",
+      "globalnamechange": "全局名称变更"
+    },
+    "statusType": {
+      "started": "已启用",
+      "completed": "已完成",
+      "error": "错误",
+      "information": "资讯",
+      "hidden": "已隐藏"
+    },
+    "error": {
+      "globalcasechange": "全局域更新",
+      "globalnamechange": "全局名称变更"
+    }
+  },
+  "Yes": "是",
+  "No": "否",
+  "Clear": "清空",
+  "Search": "搜索",
+  "Add": "添加",
+  "of": "至",
+  "Warning": "警告",
+  "Discard": "放弃",
+  "Revert": "返回值",
+  "Cancel": "取消",
+  "Delete": "删除",
+  "Restore": "恢复",
+  "confirmDeletion": "确认删除",
+  "Previous": "上一个",
+  "Next": "下一个",
+  "Instruction": "指示",
+  "Tasks": "任务",
+  "Instructor": "委托人",
+  "Checklist": "清单",
+  "Document": "文件档",
+  "Name": "名称",
+  "Value": "值",
+  "All": "所有",
+  "Criteria": "标准",
+  "Case": "案件",
+  "Event": "事件",
+  "Include": "包括",
+  "Office": "办公地点",
+  "propertyType": "权利类型",
+  "Basis": "基础",
+  "Criteria Name": "标准名称",
+  "Importance": "重要的",
+  "Actions": "行为",
+  "searchResult": "搜索结果",
+  "nameview": {
+    "supplierDetails": {
+      "header": "供应商详情",
+      "deafultPurchaseInformation": "默认采购信息",
+      "paymentDetails": "付款细节",
+      "supplierType": "供应商类型",
+      "purchaseDescription": "采购描述",
+      "purchaseCurrency": "采购货币",
+      "exchangeRateSchedule": "货币兑换利率清单",
+      "tax": "税款合计",
+      "paymentTerm": "付款条件",
+      "profitCentre": "利润中心",
+      "ledgerAccount": "分类帐户",
+      "wipDisbursement": "WIP支出",
+      "sendTo": "发送到",
+      "address": "地址",
+      "attentionOf": "注意",
+      "instructions": "续展指示",
+      "intoBankAccount": "银行帐户"
+    },
+    "internalNameDetails": {
+      "header": "内部名称详细资料",
+      "internalNameId": "内部名称ID",
+      "dateEntered": "输入的日期",
+      "dateLastChanged": "最后变更的日期",
+      "soundexCode": "Soundex代码"
+    },
+    "contextNavigationTooltip": {
+      "nameDetails": "内部名称详细资料"
+    },
+    "trustAccounting": {
+      "header": "信托会计",
+      "totalLocalBalance": "本国货币余额总合",
+      "entity": "实体",
+      "bankAccount": "银行帐户",
+      "localBalance": "本地余额",
+      "foreignBalance": "国外余额",
+      "trustAccountingDetails": {
+        "trader": "交易人",
+        "date": "日期",
+        "itemrefno": "项目卷号",
+        "referenceno": "参考号",
+        "localvalue": "本地值",
+        "localbalance": "本地余额",
+        "foreignvalue": "国外值",
+        "foreignbalance": "国外余额",
+        "exchangedifference": "汇率差额",
+        "description": "描述",
+        "localbalanceTotal": "本国货币余额总合"
+      }
+    }
+  },
+  "opportunitySearchResults": {
+    "pageTitle": "机会搜寻结果",
+    "for": "关于"
+  },
+  "campaignSearchResults": {
+    "pageTitle": "活动搜寻结果",
+    "for": "关于"
+  },
+  "marketingEventSearchResults": {
+    "pageTitle": "行销事件搜寻结果",
+    "for": "关于"
+  },
+  "nameSearchResults": {
+    "pageTitle": "高级搜索结果",
+    "for": "关于",
+    "togglePreview": "预览"
+  },
+  "leadSearchResults": {
+    "pageTitle": "引导搜索结果",
+    "for": "关于",
+    "togglePreview": "预览"
+  },
+  "wipOverviewSearchResults": {
+    "for": "关于"
+  },
+  "priorartSearchResults": {
+    "for": "关于"
+  },
+  "sanityCheck": {
+    "status": "地区",
+    "caseReference": "卷号",
+    "displayMessage": "显示消息",
+    "Error": "错误",
+    "Information": "资讯",
+    "caseOffice": "办案地点",
+    "staff": "员工",
+    "signatory": "签字人",
+    "exportToPdf": "导出为PDF"
+  },
+  "and": "与",
+  "caseTaskMenu": {
+    "maintainFileLocation": "维护申请地区",
+    "recordWip": "记录收费项",
+    "copyCase": "复制案件",
+    "recordTime": "记录时间",
+    "recordTimer": "启动计时器",
+    "openDms": "文件档管理"
+  },
+  "taskPlannerTaskMenu": {
+    "markAsRead": "标记为已读",
+    "markAsUnread": "标记为未读",
+    "finaliseAdHocDate": "完成特别日期"
+  },
+  "taskPlannerBulkActionMenu": {
+    "read": "读取",
+    "unread": "未读",
+    "forwardReminders": "发送提醒"
+  },
+  "nameSearchTaskMenu": {
+    "maintainNotes": "维护备注",
+    "maintainAttributes": "维护属性",
+    "createContactActivity": "创建联系行为"
+  },
+  "priorArtSearchTaskMenu": {
+    "maintainPriorArt": "维护现有技术"
+  },
+  "wipOverviewSearch": {
+    "bulkActionMenu": {
+      "createSingleBill": "建立单一帐单",
+      "createMultipleBill": "建立多个帐单"
+    }
+  },
+  "caseList": {
+    "maintenance": {
+      "description": "描述",
+      "primeCase": "主要案件",
+      "officialNo": "官方号码",
+      "title": "称谓"
+    }
+  },
+  "documentGeneration": {
+    "generateWord": {      
+      "name": "文件档名称",
+      "addAsAttachment": "作为附件添加",
+      "fileName": "文件名",
+      "activityDate": "活动日期",
+      "attachmentName": "附件名称",
+      "browse": "浏览"
+    },
+    "generatePdf": {
+      "title": "建立PDF表单",
+      "name": "文件档名称",
+      "addAsAttachment": "作为附件添加",
+      "fileName": "文件名",
+      "activityDate": "活动日期",
+      "attachmentName": "附件名称",
+      "browse": "浏览"
+    },
+    "errors": {
+      "message": "错误信息",
+      "displayMessage": "显示消息"
+    }
+  },
+  "bulkPolicing": {
+    "caseAction": "流程"
+  },
+  "taskPlanner": {
+    "customSearch": "自定义搜寻",
+    "for": "关于",
+    "from": "从",
+    "to": "到",
+    "today": "今天",
+    "dateRange": "日期范围",
+    "dueDateResponsibility": {
+      "save": "保存"
+    },
+    "forwardReminder": {
+      "forward": "转送"
+    },
+    "reminderComments": {
+      "comments": "注释"
+    },
+    "eventNotes": {
+      "promptText": "请录入备注"
+    },
+    "searchBuilder": {
+      "general": {
+        "header": "一般",
+        "include": "包括",
+        "reminders": "提醒",
+        "dueDates": "到期日",
+        "adHocDates": "自定义日期",
+        "adHocDate": "特别日期",
+        "searchBy": "搜索项",
+        "dueDate": "到期日",
+        "reminderDate": "提醒日",
+        "and": "与",
+        "date": "日期",
+        "range": "范围",
+        "period": "期间",
+        "to": "到",
+        "importanceLevel": "重要级别",
+        "belongingTo": "附送给",
+        "actingAs": "作为",
+        "nameTypes": "名称类型",
+        "myself": "我自己"
+      },
+      "cases": {
+        "header": "案件",
+        "officialNumber": "官方号码",
+        "caseFamily": "案件家族",
+        "caseList": "案件列表",
+        "caseOffice": "办案地点",
+        "caseType": "案件类型",
+        "propertyType": "权利类型",
+        "caseCategory": "案件种类",
+        "subType": "子类型",
+        "basis": "基础",
+        "instructor": "委托人",
+        "owner": "申请人",
+        "dead": "死案",
+        "pending": "审查中",
+        "registered": "己注册",
+        "caseStatus": "案件状态",
+        "renewalStatus": "续展状态",
+        "anyNumberType": "号码类型",
+        "anyNameType": "任一人名类型",
+        "references": "参考",
+        "details": "详细情况",
+        "names": "名称",
+        "status": "地区"
+      },
+      "eventsAndActions": {
+        "event": "事件",
+        "eventCategory": "事件种类",
+        "eventNotes": "事件文字",
+        "action": "流程",
+        "renewals": "续展",
+        "nonRenewals": "不显示续展日"
+      },
+      "reminders": {
+        "header": "提醒",
+        "reminderMessage": "提醒信息",
+        "notOnHold": "无效",
+        "onHold": "有效",
+        "read": "读取"
+      },
+      "adhocDate": {
+        "header": "自定义日期",
+        "include": "包括",
+        "case": "案件",
+        "name": "名称",
+        "general": "一般",
+        "message": "错误信息",
+        "emailSubject": "Email对象"
+      }
+    },
+    "summary": {
+      "criticalDates": "临近期限",
+      "caseReference": "卷号",
+      "title": "称谓",
+      "caseStatus": "案件状态",
+      "officialNumber": "官方号码",
+      "caseType": "案件类型",
+      "propertyType": "权利类型",
+      "caseCategory": "案件种类",
+      "subType": "子类型",
+      "basis": "基础",
+      "typeOfMark": "商标类型",
+      "classes": "类",
+      "instructor": "委托人",
+      "owner": "申请人",
+      "staffMember": "工作人员",
+      "signatory": "签字人",
+      "renewalStatus": "续展状态",
+      "caseOffice": "办案地点",
+      "taskDetails": {
+        "type": "类型",
+        "event": "事件",
+        "dueDate": "到期日",
+        "adHoc": "特别日期",
+        "reminderMessage": "提醒信息",
+        "reminderDate": "提醒日",
+        "reminderFor": "提醒给",
+        "nextReminder": "下一提醒日"
+      }
+    },
+    "finaliseAdHocDate": {
+      "finalise": "完成",
+      "adHocDateFor": "特别日期",
+      "dueDate": "到期日",
+      "reason": "理由",
+      "message": "错误信息",
+      "reference": "卷号"
+    }
+  },
+  "adHocDate": {
+    "adHocType": {
+      "case": "案件",
+      "name": "名称",
+      "general": "一般",
+      "lblType": "类型"
+    },
+    "reminders": {
+      "recurring": "再发生/重现",
+      "days": "天",
+      "months": "月"
+    },
+    "caseReference": "卷号",
+    "nameReference": "名称参考",
+    "generalReference": "普通参考号",
+    "dueDate": "到期日",
+    "event": "事件",
+    "remindersHeader": "提醒",
+    "adHocTemplate": "特别模板",
+    "message": "错误信息",
+    "importanceLevel": "重要级别"
+  },
+  "attachmentsIntegration": {
+    "subtitle": "配置",
+    "attachmentBrowseSetting": {
+      "title": "浏览",
+      "displayName": "浏览"
+    },
+    "storageLocations": {
+      "displayName": "显示名称",
+      "path": "路径"
+    }
+  },
+  "reportingServices": {
+    "configuration": {
+      "password": "密码"
+    }
+  },
+  "recordalType": {
+    "recordalElement": {
+      "display": "显示",
+      "mandatory": "强制",
+      "column": {
+        "nameType": "名称类型",
+        "attribute": "属性"
+      }
+    }
+  },
+  "fileLocationOffice": {
+    "column": {
+      "fileLocation": "文档位置",
+      "office": "办公地点"
+    }
+  },
+  "currencies": {
+    "column": {
+      "code": "代码"
+    },
+    "maintenance": {
+      "title": "币别维护"
+    }
+  },
+  "office": {
+    "column": {
+      "description": "办公地点",
+      "organisation": "组织",
+      "country": "国家",
+      "language": "预设语言",
+      "userCode": "用户代码",
+      "cpaCode": "CPA代码",
+      "irnOfficeCode": "IRN办公地点代码",
+      "region": "地区"
+    },
+    "maintenance": {
+      "title": "办公地点维护",
+      "lastDebitNote": "最后完成的借方单号",
+      "itemPrefix": "前置代号",
+      "itemFrom": "从",
+      "itemTo": "到"
+    },
+    "edit": "编辑",
+    "delete": "删除"
+  },
+  "keywords": {
+    "column": {
+      "keyword": "关键字",
+      "caseStopWord": "案件禁用词",
+      "nameStopWord": "名称禁用词"
+    },
+    "editKeyword": "编辑"
+  },
+  "kotTextTypes": {
+    "filterByCase": "案件",
+    "filterByName": "名称",
+    "caseRef": "案卷号",
+    "column": {
+      "caseType": "案件类型",
+      "nameType": "名称类型",
+      "roles": "角色",
+      "textType": "文字类型"
+    },
+    "maintenance": {
+      "status": "地区",
+      "caseProgram": "案件",
+      "nameProgram": "名称",
+      "billingProgram": "帐单",
+      "pending": "审查中",
+      "registered": "己注册",
+      "dead": "死案"
+    }
+  },
+  "userPreferences": {
+    "resetToDefault": {
+      "confirmation": {
+        "confirm": "重置"
+      }
+    }
+  },
+  "sanityChecks": {
+    "closebtn": "关闭",
+    "ignoreErrors": "忽略错误"
+  },
+  "priorart": {
+    "pageTitle": "现有技术",
+    "caseReference": "卷号",
+    "sourceSubHeader": "来源",
+    "priorArtSubHeader": "现有技术",
+    "source": "来源",
+    "search": "搜索",
+    "classes": "类",
+    "subClasses": "子类",
+    "kindCode": "种类代码",
+    "results": "结果",
+    "reference": "卷号",
+    "publication": "公开",
+    "reportIssued": "已发出的报告",
+    "reportReceived": "收到日期",
+    "kind": "种类代码",
+    "title": "称谓",
+    "citation": "引用",
+    "country": "国家",
+    "caseFamily": "案件家族",
+    "caseList": "案件列表",
+    "inprotechCases": {
+      "caseReference": "卷号",
+      "officialNumber": "官方号码",
+      "title": "称谓",
+      "caseStatus": "案件状态"
+    },
+    "notFound": {
+      "reference": "卷号",
+      "kindCode": "种类代码"
+    },
+    "translation": "翻译",
+    "granted": "已授权",
+    "city": "城市",
+    "refresh": "刷新",
+    "published": "已公开",
+    "priority": "优先权日期",
+    "ptoCited": "专利商标局引用资讯",
+    "applicationFiled": "递交之申请案",
+    "description": "描述",
+    "comments": "注释",
+    "maintenance": {
+      "step1": {
+        "priorArtTitle": "维护现有技术",
+        "priorArtHeading": "维护现有技术",
+        "kindCode": "种类代码",
+        "country": "国家",
+        "publication": "公开",
+        "classes": "类",
+        "subClasses": "子类",
+        "reportIssued": "已发出的报告",
+        "reportReceived": "收到日期",
+        "description": "描述",
+        "comments": "注释",
+        "sourceType": "来源",
+        "city": "城市",
+        "title": "称谓",
+        "officialNumber": "卷号",
+        "applicationFiledDate": "递交之申请案",
+        "publishedDate": "已公开",
+        "grantedDate": "已授权",
+        "priorityDate": "优先权日期",
+        "ptoCitedDate": "专利商标局引用资讯",
+        "citation": "引用"
+      },
+      "step2": {
+        "associatePriorArt": {
+          "title": "相关先前技艺"
+        }
+      },
+      "step3": {
+        "linkedCases": {
+          "columns": {
+            "officialNo": "官方号码",
+            "caseStatus": "案件状态",
+            "dateUpdated": "更新的日期",
+            "relationship": "关系",
+            "family": "案件家族代码",
+            "caseList": "案件列表"
+          },
+          "caseReference": "卷号",
+          "caseFamily": "案件家族",
+          "caseList": "案件列表",
+          "name": "名称",
+          "usedAs": "用作"
+        }
+      },
+      "step4": {
+        "familyCaselist": {
+          "columns": {
+            "name": "名称",
+            "nameType": "名称类型"
+          }
+        },
+        "name": {
+          "columns": {
+            "name": "名称",
+            "nameType": "名称类型"
+          }
+        },
+        "caseDetails": {
+          "columns": {
+            "caseRef": "卷号",
+            "officialNumber": "官方号码"
+          }
+        },
+        "removeLink": {
+          "tooltip": {
+            "name": "移除名称"
+          }
+        }
+      },
+      "step5": {
+        "title": "名称"
+      }
+    },
+    "priorArtTypes": {
+      "source": "来源"
+    }
+  },
+  "refresh": "刷新",
+  "upload": "上传",
+  "SearchColumns": {
+    "columnSummary": "搜索结果",
+    "internal": "内部",
+    "external": "外部的",
+    "displayName": "显示名称",
+    "columnNameDescription": "列叙述",
+    "case": "案件",
+    "name": "名称",
+    "wipOverview": "WIP总览",
+    "priorArt": "现有技术",
+    "reciprocitySearch": "互惠",
+    "clientRequestSearchInternalExternal": "新请求",
+    "staffRemindersSearchColumns": "工作人员提醒",
+    "toDoSearchColumns": "去做",
+    "whatsDueSearchColumns": "期限中心",
+    "workHistorySearchColumns": "工作历史",
+    "activitySearchColumns": "行动",
+    "columnName": "列名称",
+    "columnGroup": "列分组",
+    "Parameter": "参数",
+    "dataFormat": "资料格式",
+    "visible": "可见的",
+    "mandatory": "强制",
+    "bulkActions": {
+      "delete": "删除"
+    }
+  }
+}

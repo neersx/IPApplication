@@ -1,0 +1,17 @@
+<div ng-if="vm.visible" class="pull-right">
+    <button ng-disabled="vm.firstId === null" ng-click="vm.navigate(vm.firstId)" ip-tooltip="{{:: 'skipToFirst' | translate }}" class="btn btn-icon btn-no-bg">
+        <span class="cpa-icon cpa-icon-angle-double-left"></span>
+    </button>
+    <button ng-disabled="vm.prevId === null" ng-click="vm.navigate(vm.prevId)" ip-tooltip="{{:: 'Previous' | translate }}" class="btn btn-icon btn-no-bg">
+        <span class="cpa-icon cpa-icon-chevron-circle-left"></span>
+    </button>
+    <span name="current">{{vm.current}}</span>
+    <span translate="of"></span>
+    <span name="total">{{vm.total}}</span>
+    <button ng-disabled="!vm.canFetchNext && vm.nextId == null" ng-click="vm.navigate(vm.nextId)" ip-tooltip="{{:: 'Next' | translate }}" class="btn btn-icon btn-no-bg">
+        <span class="cpa-icon cpa-icon-chevron-circle-right"></span>
+    </button>
+    <button ng-disabled="vm.lastId === null" ng-click="vm.navigate(vm.lastId)" ip-tooltip="{{:: 'skipToLast' | translate }}" class="btn btn-icon btn-no-bg">
+        <span class="cpa-icon cpa-icon-angle-double-right"></span>
+    </button>
+</div>

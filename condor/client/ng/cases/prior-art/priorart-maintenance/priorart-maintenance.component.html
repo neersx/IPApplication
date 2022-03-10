@@ -1,0 +1,30 @@
+<div id="prior-art-maintenance" [ipxConfirmBeforeRouteChange]="isPageDirty" [confirmMessage]="'priorart.maintenance.confirmMessage' | translate">
+    <ipx-sticky-header>
+        <ipx-page-title [title]="'priorart.pageTitle' | translate">
+            <action-buttons class="pull-right">
+                <ipx-delete-button *ngIf="priorArtData.hasDeletePermission" (onclick)="delete()" [disabled]="deleteSuccess || !stateParams.sourceId"></ipx-delete-button>
+                <ipx-revert-button (onclick)="revert()" [disabled]="!isPageDirty()"></ipx-revert-button>
+                <ipx-save-button (onclick)="save()" [disabled]="!isSaveButtonEnabled()"></ipx-save-button>
+            </action-buttons>
+        </ipx-page-title>
+        <div class="title-header" id="caseAndSourceDetails" *ngIf="!!caseIrn || !!source">
+            <div *ngIf="!!caseIrn" class="label-value col-sm-2 case-ref-div">
+                <label translate="priorart.caseReference"></label>
+                <span class="text" id="caseName">{{caseIrn}}</span>
+            </div>
+            <div *ngIf="!!source" class="label-value col-sm-10 source-ref-div">
+                <label *ngIf="isSourceType()" translate="priorart.sourceSubHeader"></label>
+                <label *ngIf="!isSourceType()" translate="priorart.priorArtSubHeader"></label>
+                <span class="text" id="subHeader">{{source}}</span>
+            </div>
+        </div>
+    </ipx-sticky-header>
+    <div ipx-resize-handler [resize-handler-type]="'Panel'" >
+        <ipx-priorart-multistep #multiStep [priorArtType]="getPriorArtType()">
+            <ipx-priorart-create-source #step1 [priorArtSourceTableCodes]="priorArtSourceTableCodes" [sourceData]="priorArtData.sourceDocumentData" [hasUpdatePermission]="priorArtData.hasUpdatePermission" [priorArtType]="getPriorArtType()" [translationsList]="translationsList"></ipx-priorart-create-source>
+            <ipx-citations-list #step2 [sourceData]="priorArtData.sourceDocumentData" [priorArtType]="getPriorArtType()" [hasDeletePermission]="priorArtData.hasDeletePermission" [hasUpdatePermission]="priorArtData.hasUpdatePermission"></ipx-citations-list>
+            <ipx-linked-cases #step3 [sourceData]="priorArtData.sourceDocumentData" [priorArtType]="getPriorArtType()" [hasDeletePermission]="priorArtData.hasDeletePermission" [hasUpdatePermission]="priorArtData.hasUpdatePermission"></ipx-linked-cases>
+            <ipx-family-caselist-name #step4 [sourceData]="priorArtData.sourceDocumentData" [priorArtType]="getPriorArtType()" [hasDeletePermission]="priorArtData.hasDeletePermission"></ipx-family-caselist-name>
+        </ipx-priorart-multistep>
+    </div>
+</div>

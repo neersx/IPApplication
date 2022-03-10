@@ -1,0 +1,94 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{ (states === 'adding' ? 'SearchColumns.addColumn' : 'SearchColumns.editColumn') | translate }}</h2>
+    <div class="modal-header-controls">
+        <ipx-save-button name="saveSearchColumn" (onclick)="saveSearchColumn()" [disabled]="disable()">
+            {{'Save' | translate}}</ipx-save-button>
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+    </div>
+</div>
+<div *ngIf="searchColumn" class="modal-body-duedate">
+    <div class="title-header" *ngIf="displayNavigation">
+        <ipx-detail-page-nav *ngIf="navData" [totalRows]="navData.totalRows" [hasUnsavedChanges]="isFormDirty()" [currentKey]="currentKey" [fetchNext]="navData.fetchCallback" [noParams]="true" [ids]="navData.keys" (nextResult)="getNextColumnDetail($event)">
+        </ipx-detail-page-nav>
+    </div>
+</div>
+<div>
+    <div class="row">
+        <div [ngClass]="{'col-md-7 col-sm-12': states === 'updating', 'col-md-10': states === 'adding', 'columnMaintenanceDetailView': states === 'updating' }">
+            <form #maintenanceForm="ngForm">
+                <div class="container-fluid">
+                    <div class="row">
+                        <ipx-text-field maxlength="50" required apply-edited name="displayName" class="input-textfield" [(ngModel)]="searchColumn.displayName" ipx-autofocus [label]="'SearchColumns.displayName'|translate" autocomplete="off">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead (onChange)="onColumnNameChange($event)" required apply-edited name="columnName" id="column-name" [label]="'SearchColumns.columnName'|translate" config="searchColumn" [(ngModel)]="searchColumn.columnName" [extend-query]="searchColumnExtendQuery">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field maxlength="254" apply-edited multiline rows="3" name="columnDescription" class="input-textfield" [label]="'SearchColumns.columnNameDescription'|translate" [(ngModel)]="searchColumn.description" autocomplete="off">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead apply-edited name="columnGroup" [label]="'SearchColumns.columnGroup'|translate" [is-addanother]="true" [can-navigate]="true" picklistCanMaintain config="columnGroup" [(ngModel)]="searchColumn.columnGroup" [extend-query]="columnGroupExtendQuery"
+                            [extended-params]="extendedParamGroupPicklist"></ipx-typeahead>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead [required]="!isDisableDocItem" apply-edited (onChange)="validateItemType($event)" [disabled]="isDisableDocItem" name="dataItem" [label]="'SearchColumns.dataItem'|translate" picklistCanMaintain config="dataItem" [(ngModel)]="searchColumn.docItem"
+                            [is-addanother]="true" [can-navigate]="true">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field [required]="!isDisableParameter" maxlength="20" apply-edited [disabled]="isDisableParameter" name="parameter" class="input-textfield" [(ngModel)]="searchColumn.parameter" [label]="'SearchColumns.Parameter'|translate" autocomplete="off">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row" style="margin-top: 3px;">
+                        <span style="margin-left: 118px;">{{ 'SearchColumns.dataFormat' | translate }}</span>
+                        <span style="margin-left: 14px;">{{ searchColumn.dataFormat }}</span>
+                    </div>
+                    <div class="row" style="margin-top: 4px;">
+                        <div class="input-wrap-group group-inline">
+                            <span style="margin-left:-0.5%">{{'SearchColumns.visible' | translate}}</span>
+                            <ipx-checkbox apply-edited label="" name="visible" [(ngModel)]="searchColumn.isVisible">
+                            </ipx-checkbox>
+                            <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" container="body" [tooltipPlacement]="'right'" [content]="'SearchColumns.visibleTooltip' | translate">
+                            </ipx-inline-dialog>
+                        </div>
+                    </div>
+                    <div class="row"  style="margin-top: 4px;">
+                        <div class="input-wrap-group group-inline">
+                            <span style="margin-left:-0.5%">{{'SearchColumns.mandatory' | translate}}</span>
+                            <ipx-checkbox apply-edited label="" name="mandatory" [(ngModel)]="searchColumn.isMandatory">
+                            </ipx-checkbox>
+                            <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" container="body" [tooltipPlacement]="'right'" [content]="'SearchColumns.mandatoryTooltip' | translate">
+                            </ipx-inline-dialog>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="displayFilterBy">
+                        <div class="input-wrap-group group-inline" style="margin-left: 22.5%;">
+                            <div class="col-sm-4">
+                                <span style="margin-right: 6.5px">{{'SearchColumns.internal' | translate}}</span>
+                                <ipx-checkbox apply-edited label="" name="internal" [(ngModel)]="appliesToInternal" [disabled]="true">
+                                </ipx-checkbox>
+                            </div>
+                            <div class="col-sm-5">
+                                <span style="margin-right: 6.5px">{{'SearchColumns.external' | translate}}</span>
+                                <ipx-checkbox apply-edited label="" name="external" [(ngModel)]="!appliesToInternal" [disabled]="true">
+                                </ipx-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-5 col-sm-12" *ngIf="states === 'updating'">
+            <div class="columnUsageDetailView">
+                <ipx-inline-alert type="info" text="SearchColumns.usageHint">
+                </ipx-inline-alert>
+                <ipx-kendo-grid [dataOptions]="gridOptions" id="searchColumnUsage">
+                </ipx-kendo-grid>
+            </div>
+        </div>
+    </div>
+    <br/>
+</div>

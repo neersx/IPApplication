@@ -1,0 +1,45 @@
+<div style="padding: 10px; margin-top: 10px;" class="table-container" ipx-resize-handler [resize-handler-type]="'Panel'">
+    <div class="table-title">
+        <button id="deleteAll" class="cpa-icon cpa-icon-trash-o pull-right btn-no-bg" [hidden]="!hasGridData" style="color: blue;" (click)="deleteProcess(undefined)">
+            <i style="color: blue;">{{ 'backgroundNotifications.deleteAll' | translate}}</i>
+        </button>
+    </div>
+    <div style="clear:both"></div>
+
+    <ipx-kendo-grid [dataOptions]="gridoptions" id="backgroundProcessGrid">
+        <ng-template ipxTemplateColumnField="processName" let-dataItem>
+            <a *ngIf="canShowLink(dataItem);else elseBlock" [tooltip]="dataItem.tooltip" (click)="handleClick(dataItem)">{{ dataItem.processName }}</a>
+            <ng-template #elseBlock>
+                <span class="text-nowrap" [tooltip]="dataItem.processType === 'globalNameChange' ? dataItem.tooltip: null">{{ dataItem.processName }}</span>
+            </ng-template>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="statusDate" let-dataItem>
+            {{ dataItem.statusDate | localeDate : commonUtilityService.getTimeOnlyFormat() }}
+        </ng-template>
+        <ng-template ipxTemplateColumnField="statusInfo" let-dataItem>
+            <ng-container *ngIf="dataItem.processSubType ==='graphIntegrationCheckStatus'">
+                {{ 'backgroundNotifications.graphMessages.checkStatusInfo1' | translate }}
+                <a (click)="loginGraphIntegration(dataItem)"> {{ 'backgroundNotifications.graphMessages.clickHere' | translate }}</a>
+                {{ 'backgroundNotifications.graphMessages.checkStatusInfo2' | translate }}
+            </ng-container>
+            <ng-container [ngTemplateOutlet]="dataItem.processSubType ==='timePosting' && !!dataItem.statusInfo ? timePosting : dataItem.processSubType ==='timerStopped' && !!dataItem.statusInfo ? timerStopped : elseBlock">
+            </ng-container>
+            <ng-template #timePosting>
+                <a (click)="displayTimePostingResults(dataItem.statusInfo)">{{ 'backgroundNotifications.timePosting.viewResults' | translate }}</a>
+            </ng-template>
+            <ng-template #timerStopped>
+                <a (click)="navigateToTime(dataItem.statusInfo)">{{ 'backgroundNotifications.timerStopped.viewTime' | translate }}</a>
+            </ng-template>
+            <ng-template #elseBlock>
+                <pre class="status-info">
+                   {{dataItem.statusInfo}}
+                </pre>
+            </ng-template>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="processId" let-dataItem>
+            <button id="delete" class="btn btn-icon btn-no-bg" (click)="deleteProcess([dataItem.processId])" tooltip="{{ 'Delete' | translate }}" placement="bottom" [adaptivePosition]="false" container="body">
+                <span class="cpa-icon cpa-icon-trash-o"></span>
+            </button>
+        </ng-template>
+    </ipx-kendo-grid>
+</div>

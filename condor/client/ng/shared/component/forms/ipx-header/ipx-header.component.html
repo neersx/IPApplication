@@ -1,0 +1,11 @@
+<div style="margin-top: 32px;" class="search-options search-options-header">
+    <div class="heading">
+        <h5 [translate]="'searchOptions'|translate"></h5>
+        <a class="btn btn-icon btn-no-bg" role="button" (click)="toggleCollapse()"
+            [ngClass]="collaps ? 'collapsed' : ''">
+            <div data-tooltip-placement="left" tooltip="{{'collapseExpand' | translate}}">
+                <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+            </div>
+        </a>
+    </div>
+</div>

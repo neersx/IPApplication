@@ -1,0 +1,27 @@
+<div class="label20" id="tax-Code">
+    <ipx-sticky-header>
+        <ipx-page-title>
+            <before-title>
+                <ipx-level-up-button [tooltip]="'taxCode.taxPageTitle' | translate" *ngIf="hasPreviousState" (click)="goToTaxCode()"></ipx-level-up-button>
+                <span> {{ 'taxCode.detailTitle' | translate }} </span>
+                <span>{{ taxCodeTitle }}</span>
+            </before-title>
+            <action-buttons>
+                <button style=" margin-right: 3px;" *ngIf="stateParams.id" [disabled]="!viewData.canDeleteTaxCode" class="btn btn-icon" id="delete" tooltip="{{ 'roleSearch.delete' | translate }}" placement="bottom"
+                    (click)="delete()">
+                    <span class="cpa-icon cpa-icon-trash"></span>
+                </button>
+                <ipx-revert-button *ngIf="viewData.canUpdateTaxCode" [disabled]="!isFormDirty()" (onclick)="revert()">
+                </ipx-revert-button>
+                <ipx-save-button *ngIf="viewData.canUpdateTaxCode" [disabled]="diasble()" (onclick)="onSave()">
+                </ipx-save-button>
+            </action-buttons>
+        </ipx-page-title>
+        <ipx-detail-page-nav *ngIf="showNavigation$ | async" paramKey="rowKey" [hasUnsavedChanges]="isFormDirty()" [refreshKey]="rowKey" [ids]="navData.keys" [routerState]="navigationState" [routerParams]="stateParams"
+            [totalRows]="navData.totalRows" [fetchNext]="navData.fetchCallback">
+        </ipx-detail-page-nav>
+    </ipx-sticky-header>
+    <div *ngIf="isLoading" class="col-sm-7 k-loading-image" style="position: absolute;top:175px;height: 56px; width: 100%;"></div>
+    <ipx-topics [options]="topicOptions" (activeTopicChanged)="activeTopicChanged($event)">
+    </ipx-topics>
+</div>

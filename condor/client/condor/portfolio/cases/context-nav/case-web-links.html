@@ -1,0 +1,11 @@
+<div id="user-quick-links" class="col-sm-12">
+    <ul ng-repeat="group in vm.viewData">
+        <h3 class="groupHeader">{{::group.groupName}}</h3>
+        <li ng-repeat="link in group.links track by $index" ng-class="$index % 2 == 0 && 'even' || 'oddLine'">
+            <a href="{{::link.url}}" target="_blank" uib-popover="{{::link.linkDescription}}" popover-placement="right">{{::link.linkTitle}}</a>
+        </li>
+        <hr ng-if="$first && vm.viewData.length>1">
+    </ul>
+    <br/>
+    <div ng-if="::!vm.hasCaseLinks()" class="alert alert-info"><i class="cpa-icon cpa-icon-info-circle"></i>&nbsp;<span translate="caseWebLinks.noCaseWebLinks"></span></div>
+</div>

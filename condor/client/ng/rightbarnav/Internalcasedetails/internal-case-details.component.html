@@ -1,0 +1,36 @@
+<div id="user-quick-links" class="col-sm-12">
+    <br >
+    <div class="row">
+        <div class="field-label col-sm-3">
+            <label [translate]="'caseview.internalCaseDetails.internalCaseId'"></label>
+        </div>
+        <div class="col-sm-9">
+            <span class="text" name="internalCaseId">{{ viewData.caseID }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="field-label col-sm-3">
+            <label [translate]="'caseview.internalCaseDetails.dateCreated'"></label>
+        </div>
+        <div class="col-sm-9">
+            <span class="text" name="dateCreated">{{ viewData.dateCreated | localeDate }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="field-label col-sm-3">
+            <label [translate]="'caseview.internalCaseDetails.dateLastChanged'"></label>
+        </div>
+        <div class="col-sm-9">
+            <span class="text" name="dateChanged">{{ viewData.dateChanged | localeDate }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="field-label col-sm-3">
+            <label [translate]="'caseview.internalCaseDetails.caseWindowCriteriaNo'"></label>
+        </div>
+        <div class="col-sm-9">
+            <span *ngIf="!viewData.canAccessLink">{{ viewData.criteriaNum }}</span>
+            <a *ngIf="viewData.canAccessLink" target="_blank" href="#/configuration/rules/screen-designer/cases/{{ viewData.criteriaNum }}">{{ viewData.criteriaNum }}</a>
+        </div>
+    </div>
+</div>

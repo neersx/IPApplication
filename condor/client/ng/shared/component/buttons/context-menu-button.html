@@ -1,0 +1,12 @@
+<button style="margin-right: 3px;" class="btn btn-icon vertical" id="tasksMenu"
+    tooltip="{{ 'caseSearch.tasks' | translate }}" placement="bottom" [adaptivePosition]="true" container="body" (click)="onButtonClick($event)">
+    <span class="cpa cpa-icon-ellipsis-h"></span>
+</button>
+<kendo-contextmenu #contextMenu [items]="menuItems" (select)="onMenuItemSelected($event)">
+    <ng-template kendoMenuItemLinkTemplate let-item="item">
+        <div class="taskMenuItem" id="{{item.id}}" disabled="item.disabled" [ngClass]="{disabled: item.disabled}">
+            <span class="{{item.icon}}" large></span>
+            <span translate="{{ item.text }}"></span>
+        </div>
+    </ng-template>
+</kendo-contextmenu>

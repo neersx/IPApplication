@@ -1,0 +1,130 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{'accounting.wip.disbursements.detail' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-checkbox *ngIf="this.isAdding" name="addAnother" label="modal.addAnother" [(ngModel)]="isAddAnotherChecked" (click)="onCheckChanged($event)">
+        </ipx-checkbox>
+        <ipx-apply-button type="button" [disabled]="!form.dirty || form.status === 'INVALID'" (click)="apply()"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-11">
+            <form [formGroup]="form" *ngIf="form">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="col-sm-4 text-right" style="margin-top: 5px;">
+                            <label>{{ 'accounting.wip.disbursements.columns.date' | translate }}</label>
+                        </div>
+                        <div class="col-sm-8" style="margin-left: -9px; width: 180px;">
+                            <ipx-date-picker formControlName="date" id="date" name="date" [disabled]="true">
+                            </ipx-date-picker>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ipx-typeahead id="name" #nameEl name="name" config="client" (onChange)="onNameChange($event)" [formControl]="name" [label]="'accounting.wip.disbursements.columns.name' | translate">
+                        </ipx-typeahead>
+                        <ipx-typeahead id="case" #caseEl ip-autofocus name="case" (onChange)="onCaseChange($event)" [auto-bind]="!!name.value" [extend-query]="caseExtendQuery" [external-scope]="externalScope"
+                            [formControl]="case" label="{{ 'accounting.wip.disbursements.columns.case' | translate }}" name="case" config="caseWithName">
+                        </ipx-typeahead>
+                        <ipx-typeahead id="staff" name="staff" #staffEl label="{{'accounting.wip.disbursements.columns.staff' | translate}}" [formControl]="staff" config="staff">
+                        </ipx-typeahead>
+                        <ipx-typeahead id="disbursements" name="disbursements" required label="{{'accounting.wip.disbursements.columns.disbursement' | translate}}" [formControl]="disbursement" config="wipTemplate"
+                            [extend-query]="activityExtendQuery" (onChange)="disbursementsOnChange($event)">
+                        </ipx-typeahead>
+                        <div *ngIf="currency">
+                            <div class="col-sm-4 text-right" style="margin-top:5px;">
+                                <label>{{ 'accounting.wip.disbursements.columns.foreignAmount' | translate }}<span style="color: #CC3300;" class="required"> * </span></label>
+                            </div>
+                            <div class="col-sm-5" style="margin-left: -10px;">
+                                <ipx-numeric #foreignAmountEl required [isCurrency]="true" [currency]="currency" [errorStyle]="errorStyle" [customStyle]="numericStyle" name="foreignAmount"
+                                    formControlName="foreignAmount">
+                                </ipx-numeric>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="col-sm-4 text-right" style="margin-top:5px;">
+                                <label>{{ 'accounting.wip.disbursements.columns.amount' | translate }}<span style="color: #CC3300;" class="required"> * </span></label>
+                            </div>
+                            <div class="col-sm-5" style="margin-left: -10px;">
+                                <ipx-numeric #localAmountEl required [isCurrency]="true" [errorStyle]="errorStyle" [currency]="localCurrency" [customStyle]="numericStyle" name="amount" formControlName="amount">
+                                </ipx-numeric>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <ipx-text-field formControlName="quantity" maxlength="10" [label]="'accounting.wip.disbursements.columns.quantity'" name="quantity">
+                        </ipx-text-field>
+                        <ipx-typeahead id="narrative" name="narrative" (onChange)="onNarrativeChange($event)" [formControl]="narrative" label="{{ 'accounting.wip.disbursements.columns.narrative' | translate }}"
+                            name="narrative" config="narrative">
+                        </ipx-typeahead>
+                        <ipx-text-field id="debitNoteText" multiline rows="3" label="{{'accounting.wip.disbursements.columns.debitNoteText' | translate}}" formControlName="debitNoteText">
+                        </ipx-text-field>
+                        <div *ngIf="currency">
+                            <div class="col-sm-4 text-right" style="margin-top:5px;">
+                                <label>{{ 'accounting.wip.disbursements.columns.exchangeRate' | translate }}</label>
+                            </div>
+                            <div class="col-sm-4" style="margin-top:5px;">
+                                <label>{{ form.controls.exchangeRate.value | number : '1.4-4' }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="col-sm-4 text-right" style="margin-top:5px;">
+                            <label>{{ 'accounting.wip.disbursements.columns.margin' | translate }}</label>
+                        </div>
+                        <div class="col-sm-4 text-right" style="margin-top:5px;">
+                            <span class="text" *ngIf="form.controls.amount.value && form.controls.margin.value">{{ localCurrency }}{{ form.controls.margin.value | number : '1.2-2'}}</span>
+                        </div>
+                        <div class="col-sm-4 text-right" style="margin-top:5px; margin-left: -20px;">
+                            <span class="text" *ngIf="form.controls.foreignAmount.value && form.controls.foreignMargin.value">{{ currency }}{{ form.controls.foreignMargin.value | number : '1.2-2'}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="col-sm-4 text-right" style="margin-top:5px;">
+                            <label>{{ 'accounting.wip.disbursements.columns.value' | translate }}</label>
+                        </div>
+                        <div class="col-sm-4 text-right" style="margin-top:5px;">
+                            <span class="text" *ngIf="form.controls.amount.value && form.controls.value.value">{{ localCurrency }}{{ form.controls.value.value | number : '1.2-2'}}</span>
+                        </div>
+                        <div class="col-sm-4 text-right" style="margin-top:5px; margin-left: -20px;">
+                            <span class="text" *ngIf="form.controls.foreignAmount.value && form.controls.foreignValue.value">{{ currency }}{{ form.controls.foreignValue.value | number : '1.2-2'}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="col-sm-4 text-right" style="margin-top:5px;">
+                            <label>{{ 'accounting.wip.disbursements.columns.discount' | translate }}</label>
+                        </div>
+                        <div class="col-sm-4 text-right" style="margin-top:5px;">
+                            <span class="text" *ngIf="form.controls.amount.value && form.controls.discount.value">{{ localCurrency }}{{ form.controls.discount.value | number : '1.2-2'}}</span>
+                        </div>
+                        <div class="col-sm-4 text-right" style="margin-top:5px; margin-left: -20px;">
+                            <span class="text" *ngIf="form.controls.foreignAmount.value && form.controls.foreignDiscount.value">{{ currency }}{{ form.controls.foreignDiscount.value | number : '1.2-2'}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="col-sm-4 text-right" style="margin-top:5px;">
+                            <label>{{ 'accounting.wip.disbursements.columns.marginDiscount' | translate }}</label>
+                        </div>
+                        <div class="col-sm-4 text-right" style="margin-top:5px;">
+                            <span class="text" *ngIf="form.controls.amount.value && form.controls.marginDiscount.value">{{ localCurrency }}{{ form.controls.marginDiscount.value | number : '1.2-2'}}</span>
+                        </div>
+                        <div class="col-sm-4 text-right" style="margin-top:5px; margin-left: -20px;">
+                            <span class="text" *ngIf="form.controls.foreignAmount.value && form.controls.foreignMarginDiscount.value">{{ currency }}{{ form.controls.foreignMarginDiscount.value | number : '1.2-2'}}</span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

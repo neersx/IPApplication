@@ -1,0 +1,19 @@
+<div id="confirmModal" class="confirmModal">
+    <div class="modal-header">
+        <h2 class="modal-title" id="modalPendingLabel" translate="{{::options.title}}"></h2>
+    </div>
+    <div class="modal-footer">
+        <div class="modal-footer-message">
+            <p translate="{{options.message}}" translate-values="options.messageParams"></p>
+            <br ng-if="options.message && options.message !== undefined">
+            <div ng-repeat="message in options.messages">
+                <p translate="{{::message}}"></p>
+                <br>
+            </div>
+        </div>
+        <div class="buttons">
+            <button type="button" class="btn" data-ng-click="cancel()" translate="{{::options.cancel}}"></button>
+            <button type="button" class="btn btn-primary" data-ng-click="confirm()" translate="{{::options.continue}}"></button>
+        </div>
+    </div>
+</div>

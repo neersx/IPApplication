@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div>
+        <div class="label-value col-sm-3" *ngIf="canFunctionAsOtherStaff">
+            <form [formGroup]="form">
+                <ipx-typeahead formControlName="selectedName" label="accounting.time.recording.timeFor" name="timeForStaff"
+                    config="staffWithTimesheetViewAccess" picklist-display-name="picklist.staff" required>
+                </ipx-typeahead>
+            </form>
+        </div>
+        <div class="label-value col-sm-3" *ngIf="!canFunctionAsOtherStaff">
+            <label translate="accounting.time.recording.timeFor"></label>
+            <span class="text">{{ staffName }}</span>
+        </div>
+        <div class="label-value col-sm-4" *ngIf="!!headerInfo && headerInfo.viewTotals">
+            <div id="totalChargeable" class="row col-sm-12" *ngIf="headerInfo.viewTotals.chargeableSeconds">
+                <div class="col-sm-6 text-right">
+                    <label translate="accounting.time.recording.chargeableHours"></label>
+                </div>
+                <div class="col-sm-6 nowrap" *ngIf="headerInfo.viewTotals">
+                    <span
+                        class="text">{{ headerInfo.viewTotals.chargeableSeconds | durationFormat: displaySeconds }}</span>
+                    <span class="text"> ({{ headerInfo.viewTotals.chargeableUnits }}
+                        {{ 'accounting.time.fields.units' | translate }}) </span>
+                    <span class="text">{{ headerInfo.viewTotals.chargeablePercentage }}%</span>
+                </div>
+            </div>
+            <div id="totalHours" class="row label-value col-sm-12" *ngIf="!!headerInfo && headerInfo.viewTotals.totalHours">
+                <div class="col-sm-6 text-right">
+                    <label translate="accounting.time.recording.totalHours"></label>
+                </div>
+                <div class="col-sm-6">
+                    <span class="text">{{ headerInfo.viewTotals.totalHours  | durationFormat: displaySeconds }}</span>
+                </div>
+            </div>
+        </div>
+        <div id="totalValue" class="label-value col-sm-5" *ngIf="!!headerInfo && headerInfo.viewTotals?.chargeableSeconds">
+            <label translate="accounting.time.recording.totalValue"></label>
+            <span class="text">{{ headerInfo.viewTotals.totalValue | localCurrencyFormat | async }}</span>
+        </div>
+    </div>
+</div>

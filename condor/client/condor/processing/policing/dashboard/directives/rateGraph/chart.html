@@ -1,0 +1,4 @@
+<ip-inline-alert ng-show="!vm.rateGraph.historicalDataAvailable" type="warning" text="policing.dashboard.graph.noLogError"></ip-inline-alert>
+<ip-inline-alert ng-show="vm.rateGraph.error" type="warning" text="common.errors.status-other"></ip-inline-alert>
+<kendo-chart id="rateChart" kendo-chart-resize k-options="vm.chartOptions" ng-show="vm.rateGraph.historicalDataAvailable &amp;&amp; !vm.rateGraph.error" k-ng-delay="vm.chartOptions"></kendo-chart>
+<div class="chart-loading"></div>

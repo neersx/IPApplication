@@ -1,0 +1,9 @@
+<div class="input-wrap" [ngClass]="{ 'error': showError() || (showError$ | async), 'label-left': left, 'label-bold': bold }">
+    <label *ngIf="label">{{ label | translate }}</label>
+    <kendo-numerictextbox [ngStyle]="customStyle" [format]="formatOptions" [min]="minValue" [spinners]="false" [ngClass]="{edited: controledited()}" [disabled]="disabled" [value]="value" (valueChange)="change($event)"
+        (keyup)="onKeyup($event)">
+    </kendo-numerictextbox>
+    <span class="input-action tooltip-error">
+        <span [ngStyle]="errorStyle" class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="getError() | translate: getErrorParams()" containerClass="tooltip-error"></span>
+    </span>
+</div>

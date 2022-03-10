@@ -1,0 +1,62 @@
+<div ng-form="vm.form" ip-form class="row" translate-namespace=".syncEventDate">
+    <div class="col-sm-6" ng-class="{'input-inherited': vm.isInherited()}">
+        <div class="row">
+            <div class="input-wrap-group group-inline text-nowrap">
+                <span translate=".getEventDateFrom"></span>
+                <ip-radio-button label=".relatedCase" ng-model="vm.caseOption" name="relatedCaseOption" value="RelatedCase" ng-class="{edited: vm.form.relatedCaseOption.$dirty}"
+                    ng-disabled="::!vm.canEdit"></ip-radio-button>
+                <ip-radio-button label=".sameCase" ng-model="vm.caseOption" name="sameCaseOption" value="SameCase" ng-class="{edited: vm.form.sameCaseOption.$dirty}"
+                    ng-disabled="::!vm.canEdit"></ip-radio-button>
+                <ip-radio-button label=".notApplicable" ng-model="vm.caseOption" name="notApplicableOption" value="NotApplicable" ng-class="{edited: vm.form.notApplicableOption.$dirty}"
+                    ng-disabled="::!vm.canEdit"></ip-radio-button>
+            </div>
+        </div>
+        <div ng-form="sameCase" style="margin-top: 0px;" ip-form ng-show="vm.showSameCaseOptions()">
+            <div class="row">
+                <ip-typeahead ng-disabled="::!vm.canEdit" ip-required data-config="eventsFilteredByCriteria" data-picklist-can-maintain="true"
+                    data-external-scope="vm.sameCaseEventPicklistScope" data-extend-query="vm.sameCaseEventPicklistScope.extendQuery"
+                    label=".useEvent" ng-model="vm.sameCase.fromEvent" name="event" ng-class="{edited: vm.form.sameCase.event.$dirty}"
+                    ip-autofocus="{{!!vm.topic.isActive}}">
+                </ip-typeahead>
+            </div>
+            <div class="row">
+                <ip-dropdown ng-disabled="::!vm.canEdit" label=".adjustTheDate" ng-model="vm.sameCase.dateAdjustment" name="adjustment" ng-class="{edited: vm.form.sameCase.adjustment.$dirty}"
+                    options="option.key as option.value for option in vm.dateAdjustmentOptions">
+                </ip-dropdown>
+            </div>
+        </div>
+        <div ng-form="relatedCase" ip-form ng-show="vm.showRelatedCaseOptions()">
+            <div class="row">
+                <ip-typeahead ng-disabled="::!vm.canEdit" ip-required data-config="eventsFilteredByCriteria" data-picklist-can-maintain="true"
+                    data-external-scope="vm.relatedCaseEventPicklistScope" data-extend-query="vm.relatedCaseEventPicklistScope.extendQuery"
+                    label=".useEvent" ng-model="vm.relatedCase.fromEvent" name="event" ng-class="{edited: vm.form.relatedCase.event.$dirty}"
+                    ip-autofocus="{{!!vm.topic.isActive}}">
+                </ip-typeahead>
+            </div>
+            <div class="row">
+                <ip-dropdown ng-disabled="::!vm.canEdit" label=".adjustTheDate" ng-model="vm.relatedCase.dateAdjustment" name="adjustment"
+                    ng-class="{edited: vm.form.relatedCase.adjustment.$dirty}" options="option.key as option.value for option in vm.dateAdjustmentOptions">
+                </ip-dropdown>
+            </div>
+            <div class="row">
+                <ip-typeahead label=".withRelationship" ip-required name="relationship" ng-class="{edited: vm.form.relatedCase.relationship.$dirty }"
+                    ng-model="vm.relatedCase.fromRelationship" ng-disabled="::!vm.canEdit" data-config="relationship">
+                </ip-typeahead>
+            </div>
+            <div class="row">
+                <div class="input-wrap-group group-inline text-nowrap" ng-class="{edited: vm.form.relatedCase.useCycle.$dirty}">
+                    <span translate=".useCycle"></span>
+                    <ip-radio-button label=".useRelatedCaseEvent" name="useCycle" value="RelatedCaseEvent" ng-model="vm.relatedCase.useCycle"
+                        ng-disabled="::!vm.canEdit"></ip-radio-button>
+                    <ip-radio-button label=".useCaseRelationship" name="useCycle" value="CaseRelationship" ng-model="vm.relatedCase.useCycle"
+                        ng-disabled="::!vm.canEdit"></ip-radio-button>
+                </div>
+            </div>
+            <div class="row">
+                <ip-typeahead ng-disabled="::!vm.canEdit" name="numberType" ng-class="{edited: vm.form.relatedCase.numberType.$dirty}" data-config="numberType"
+                    label=".syncNumber" ng-model="vm.relatedCase.loadNumberType">
+                </ip-typeahead>
+            </div>
+        </div>
+    </div>
+</div>

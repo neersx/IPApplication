@@ -1,0 +1,91 @@
+<style>
+    .label-legend {
+        font-weight: bold;
+        font-size: 120%;
+        margin-right: 10px;
+    }
+    
+    .input-wrap-group {
+        padding-left: 0px !important
+    }
+    
+    .input-wrap-group .input-wrap {
+        padding: 3px 6px 3px 3px;
+        margin: 0;
+    }
+    
+    .input-wrap-group > label {
+        padding-top: 5px;
+    }
+    
+    .input-wrap-group .modal-text {
+        margin-left: 25px;
+    }
+    
+    .modal-md {
+        max-width: 450px !important;
+    }
+    
+    .modal-dialog < #alertModal {
+        max-width: 450px !important;
+    }
+    
+</style>
+<div ng-form="vm.maintenance" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title" ng-switch on="vm.entity.state">
+            <div ng-switch-when="adding" translate="validcombinations.addValidCombination"></div>
+            <div ng-switch-when="duplicating" translate="validcombinations.duplicateValidCombination"></div>
+            <div ng-switch-default translate="validcombinations.editValidCombination"></div>
+        </h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts(vm.maintenance)">
+            <ip-save-button type="button" data-ng-click="vm.save(vm.maintenance)" data-ng-disabled="vm.disable()"></ip-save-button>
+            <ip-close-button type="button" data-ng-click="vm.dismissAll(vm.maintenance)"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row" ng-show="vm.entity.state == 'adding'">
+            <div class="input-wrap-group group-inline">
+                <div class="input-wrap">
+                </div>
+                <div class="input-wrap">
+                    <input type="radio" id="new" name="new" ng-value="false" ng-model="vm.isCopy" ng-change="vm.isCopyChanged(vm.maintenance)">
+                    <label for="new">
+                        <span translate="validcombinations.newValidCombination" ></span>
+                    </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="radio" id="copy" name="copy" ng-value="true" ng-model="vm.isCopy" ng-change="vm.isCopyChanged(vm.maintenance)">
+                    <label for="copy">
+                        <span translate="validcombinations.copyValidCombination" ></span>
+                    </label>
+                </div>
+            </div>
+
+            <hr/>
+        </div>
+
+        <div ng-switch on="vm.isCopy">
+            <div ng-switch-when="false">
+                <div class="row">
+                    <div class="input-wrap required col-sm-11">
+                        <label translate="validcombinations.characteristic"></label>
+                        <select name="searchcharacteristic-maintenance" ng-options="r.description for r in vm.characteristics track by r.type" ng-model="vm.selectedCharacteristic" ng-change="vm.onCharacteristicsChanged(vm.maintenance)" required="required" ng-disabled="vm.entity.state != 'adding'" ip-autofocus="{{vm.selectedCharacteristic.type === 'default'}}"></select>
+                    </div>
+                </div>
+
+                <div ng-switch on="vm.selectedCharacteristic.type">
+                    <div ng-switch-when="default"></div>
+                    <div ng-switch-default>
+                        <div ng-if="vm.selectedCharacteristic.type !== 'default'" class="col-sm-11">
+                            <ip-valid-combination-maintenance ip-controller-parser="vm.controllerName" data-entity="vm.entity" data-maintenance="vm.maintenance" data-search-criteria="vm.searchCriteria" data-template-url="vm.templateUrl" data-clear-picklist-model="vm.clearPicklistModel" data-launch-action-order="vm.launchActionOrder"></ip-valid-combination-maintenance>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-switch-when="true">
+                <ip-copy-valid-combination data-copy-entity="vm.copyEntity" data-maintenance="vm.maintenance" controller-name="CopyValidCombinationController" template="'condor/configuration/general/validcombination/validcombination.copy.html'" data-enable-copy-save="vm.enableCopySave"></ip-copy-valid-combination>
+            </div>
+        </div>
+    </div>
+</div>

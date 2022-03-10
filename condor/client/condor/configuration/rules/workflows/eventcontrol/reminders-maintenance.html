@@ -1,0 +1,202 @@
+<style>
+.reminders-no-bottom-margin div {
+    margin-bottom: 0px;
+    padding-bottom: 1px;
+}
+</style>
+<div ng-form="vm.form" ip-form translate-namespace="workflows.eventcontrol.reminders.maintenance">
+    <ip-maintenance-modal-header 
+        data-page-title="{{:: vm.title}}" 
+        data-dismiss="vm.dismiss()" 
+        data-on-apply="vm.apply()" 
+        data-is-apply-enabled="vm.isApplyEnabled()" 
+        data-has-unsaved-changes="vm.hasUnsavedChanges()" 
+        data-is-add-another="vm.isAddAnother"
+        is-edit-mode="vm.isEditMode">
+    </ip-maintenance-modal-header>    
+    <ip-workflows-eventcontrol-modal-subheader
+        is-edit-mode="vm.isEditMode"
+        all-items="vm.allItems" 
+        current-item="vm.currentItem" 
+        criteria-number="vm.criteriaId"
+        event-number="vm.eventId"
+        event-description="vm.eventDescription"
+        on-navigate="vm.onNavigate">            
+    </ip-workflows-eventcontrol-modal-subheader>
+    <div class="modal-body">
+        <div class="row">
+            <h3>
+                <span translate=".messages"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ip-text-field name="standardMessage" label=".standardMessage" 
+                    ng-model="vm.formData.standardMessage" 
+                    ng-class="{edited: vm.form.standardMessage.$dirty}"
+                    multiline data-rows="3" 
+                    ip-required 
+                    ip-autofocus
+                ></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ip-text-field name="alternateMessage" label=".alternativeMessage" 
+                    class="reminders-no-bottom-margin"
+                    ng-model="vm.formData.alternateMessage" 
+                    ng-class="{edited: vm.form.alternateMessage.$dirty}" 
+                    multiline data-rows="3" 
+                ></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-push-4">
+                <ip-checkbox data-label=".useOnAndAfterDueDate"
+                    ng-class="{edited: vm.form.useOnAndAfterDueDate.$dirty}" 
+                    ng-model="vm.formData.useOnAndAfterDueDate"
+                    ng-disabled="vm.isUseAlternateMessageDisabled()"
+                ></ip-checkbox>
+
+                <ip-inline-dialog data-content="{{:: 'workflows.eventcontrol.reminders.maintenance.alternateMessageTooltip' | translate}}" data-placement="right"></ip-inline-dialog>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group group-inline">
+                <span translate=".alsoSendEmail"></span>
+                <ip-checkbox
+                    ng-model="vm.formData.sendEmail" 
+                    ng-class="{edited: vm.form.sendEmail.$dirty}" 
+                    ng-change="vm.formData.emailSubject = null"
+                ></ip-checkbox>
+            </div>
+        </div>
+
+        <ip-text-field ng-if="vm.formData.sendEmail" name="emailSubject" label=".subject" 
+            ng-model="vm.formData.emailSubject" 
+            ng-class="{edited: vm.form.emailSubject.$dirty && vm.formData.sendEmail}" 
+            ng-disabled="!vm.formData.sendEmail"
+            ip-required
+        ></ip-text-field>
+        <ip-text-field ng-if="!vm.formData.sendEmail" name="emailSubject" label=".subject" 
+            ng-model="vm.formData.emailSubject" 
+            ng-class="{edited: vm.form.emailSubject.$dirty && vm.formData.sendEmail}" 
+            ng-disabled="!vm.formData.sendEmail"
+        ></ip-text-field>
+
+        <div class="row">
+            <h3>
+                <span translate=".sendingSchedule"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <ip-text-dropdown-group name="startBefore" label=".startSending"
+                ng-class="{edited: vm.form.startBefore.$dirty}" 
+                ng-model="vm.formData.startBefore" 
+                warning-text="vm.warningOnNegativeNumber('value')"
+                data-text-field="value" 
+                data-option-field="type" 
+                options="option.key as option.value | translate for option in vm.periodTypes" 
+
+                ip-data-type="integer" 
+                ip-required
+            ></ip-text-dropdown-group>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-push-4">
+                <ip-checkbox data-label=".recurring"
+                    ng-model="vm.recurring"
+                    ng-change="vm.onRecurringChange(vm.recurring)"
+                ></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <ip-text-dropdown-group ng-if="!vm.recurring" name="repeatEvery" label=".repeateEvery"
+                ng-class="{edited: vm.form.repeatEvery.$dirty && vm.recurring}" 
+                ng-model="vm.formData.repeatEvery" 
+                ng-disabled="!vm.recurring"
+
+                data-text-field="value" 
+                data-option-field="type" 
+                options="option.key as option.value | translate for option in vm.periodTypes" 
+
+                ip-data-type="nonNegativeInteger" 
+            ></ip-text-dropdown-group>
+
+            <ip-text-dropdown-group ng-if="vm.recurring" name="repeatEvery" label=".repeateEvery"
+                ng-class="{edited: vm.form.repeatEvery.$dirty && vm.recurring}" 
+                ng-model="vm.formData.repeatEvery" 
+                ng-disabled="!vm.recurring"
+
+                data-text-field="value" 
+                data-option-field="type" 
+                options="option.key as option.value | translate for option in vm.periodTypes" 
+
+                ip-data-type="nonNegativeInteger" 
+                ip-required
+            ></ip-text-dropdown-group>
+        </div>
+        <div class="row">
+            <ip-text-dropdown-group name="stopTime" label=".stopAfter"
+                ng-class="{edited: vm.form.stopTime.$dirty && vm.recurring}" 
+                ng-model="vm.formData.stopTime" 
+                ng-disabled="!vm.recurring"
+
+                data-text-field="value" 
+                data-option-field="type" 
+                options="option.key as option.value | translate for option in vm.periodTypes" 
+
+                ip-data-type="nonNegativeInteger" 
+            ></ip-text-dropdown-group>
+        </div>
+        <div class="row">
+            <h3>
+                <span translate=".recipients"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group group-inline">
+                <span translate=".sendTo"></span>
+                <ip-checkbox name="sendToStaff" label=".staff" 
+                    ng-model="vm.formData.sendToStaff" 
+                    ng-class="{edited: vm.form.sendToStaff.$dirty}"
+                ></ip-checkbox>
+                <ip-checkbox name="sendToSignatory" label=".signatory" 
+                    ng-model="vm.formData.sendToSignatory" 
+                    ng-class="{edited: vm.form.sendToSignatory.$dirty}"
+                ></ip-checkbox>
+                <ip-checkbox name="sendToCriticalList" label=".criticalList" 
+                    ng-model="vm.formData.sendToCriticalList" 
+                    ng-class="{edited: vm.form.sendToCriticalList.$dirty}"
+                ></ip-checkbox>
+            </div>               
+        </div>
+        <div class="row">
+            <ip-typeahead name="name"
+                data-config="name" 
+                ng-model="vm.formData.name" 
+                ng-class="{edited: vm.form.name.$dirty}"
+                ng-change="vm.clearRelationship()"
+            ></ip-typeahead>
+        </div>
+        <div class="row">
+            <ip-typeahead name="nameTypes"
+                data-multiselect
+                data-multipick
+                ng-class="{edited: vm.form.nameTypes.$dirty}"
+                ng-model="vm.formData.nameTypes" 
+                data-config="nameType"
+                data-label="picklist.nameType.typeMulti"
+                ng-change="vm.clearRelationship()"
+            ></ip-typeahead>
+        </div>
+        <div class="row">
+            <ip-typeahead name="relationship"
+                ng-model="vm.formData.relationship" 
+                ng-class="{edited: vm.form.relationship.$dirty && !vm.isRelationshipDisabled()}"
+                ng-disabled="vm.isRelationshipDisabled()" 
+                data-config="nameRelationship"
+            ></ip-typeahead>
+        </div>
+    </div>
+</div>

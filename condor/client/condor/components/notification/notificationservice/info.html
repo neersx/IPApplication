@@ -1,0 +1,12 @@
+<div id="confirmModal">
+    <div class="modal-header">
+        <h2 class="modal-title" id="modalPendingLabel" translate="{{options.title}}"></h2>
+    </div>
+    <div class="modal-body">
+        <p translate="{{options.message}}" translate-values="options.messageParams"></p>
+        <input ng-if="options.sessionChkBox" type="checkbox" name="" value="">{{options.chkBoxLabel}}<br>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal" data-ng-click="$close('Close')" translate="button.ok"></button>
+    </div>
+</div>

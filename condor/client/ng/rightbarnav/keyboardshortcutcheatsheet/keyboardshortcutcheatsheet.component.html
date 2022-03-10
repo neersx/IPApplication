@@ -1,0 +1,97 @@
+<style>
+    #quick-links {
+        z-index: 1040 !important;
+    }
+
+    #quick-links-content {
+        z-index: 1040 !important;
+    }
+</style>
+
+<div id="keyboard-shortcuts-cheatsheet">
+    <div class="modal-header">
+        <h2 class="modal-title" translate="keyboardShortcuts.title"></h2>
+        <div class="modal-header-controls">
+            <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+        </div>
+    </div>
+
+    <div class="modal-body">
+        <div class="row tall">
+            <div class="col-sm-6">
+                <h4 translate="keyboardShortcuts.contextual"></h4>
+                <div class="row tall" *ngFor="let hotkey of hotkeysList; trackBy: trackByFn">
+                    <div class="col-sm-6 cfp-hotkeys-text">{{ hotkey.description | translate}}</div>
+                    <div class="col-sm-6">
+                        <span *ngFor="let key of format(hotkey); index as i; trackBy: trackByFn"
+                            class="cfp-hotkeys-key">{{ key }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h4 translate="keyboardShortcuts.picklist"></h4>
+                <div class="row tall">
+                    <div class="col-sm-6 cfp-hotkeys-text" translate="keyboardShortcuts.openPicklist"></div>
+                    <div class="col-sm-6">
+                        <span class="cfp-hotkeys-key">F2</span>
+                    </div>
+                </div>
+                <div class="row tall">
+                    <div class="col-sm-6 cfp-hotkeys-text" translate="keyboardShortcuts.showTypeAheadList">
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="cfp-hotkeys-key">↓</span>
+                    </div>
+                </div>
+                <h4 translate="keyboardShortcuts.searchResults"></h4>
+                <div class="row tall">
+                    <div class="col-sm-6 cfp-hotkeys-text" translate="keyboardShortcuts.navigateCells"></div>
+                    <div class="col-sm-6">
+                        <span class="cfp-hotkeys-key" translate="keyboardShortcuts.arrowKeys"></span>
+                    </div>
+                </div>
+                <div class="row tall">
+                    <div class="col-sm-6 cfp-hotkeys-text" translate="keyboardShortcuts.selectItem"></div>
+                    <div class="col-sm-6">
+                        <span class="cfp-hotkeys-key" translate="keyboardShortcuts.enter"
+                            style="margin-right:0px"></span>
+                        <span> / </span>
+                        <span class="cfp-hotkeys-key" translate="keyboardShortcuts.space"></span>
+                    </div>
+                </div>
+                <div class="row tall">
+                    <div class="col-sm-6 cfp-hotkeys-text" translate="keyboardShortcuts.nextPage"></div>
+                    <div class="col-sm-6">
+                        <span class="cfp-hotkeys-key" translate="keyboardShortcuts.pageDown"></span>
+                    </div>
+                </div>
+                <div class="row tall">
+                    <div class="col-sm-6 cfp-hotkeys-text" translate="keyboardShortcuts.previousPage"></div>
+                    <div class="col-sm-6">
+                        <span class="cfp-hotkeys-key" translate="keyboardShortcuts.pageUp"></span>
+                    </div>
+                </div>
+                <div class="row tall">
+                    <div class="col-sm-6 cfp-hotkeys-text" translate="keyboardShortcuts.firstPage"></div>
+                    <div class="col-sm-6">
+                        <span class="cfp-hotkeys-key" translate="keyboardShortcuts.home"></span>
+                    </div>
+                </div>
+                <div class="row tall">
+                    <div class="col-sm-6 cfp-hotkeys-text" translate="keyboardShortcuts.lastPage"></div>
+                    <div class="col-sm-6">
+                        <span class="cfp-hotkeys-key" translate="keyboardShortcuts.end"></span>
+                    </div>
+                </div>
+                <h4 translate="keyboardShortcuts.navigation"></h4>
+                <div class="row tall">
+                    <div class="col-sm-6 cfp-hotkeys-text" translate="keyboardShortcuts.goBack"></div>
+                    <div class="col-sm-6">
+                        <span class="cfp-hotkeys-key">alt</span>
+                        <span class="cfp-hotkeys-key">←</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

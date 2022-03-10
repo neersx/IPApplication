@@ -1,0 +1,25 @@
+<form #nextForm="ngForm">
+    <div class="row">
+        <strong class="col-sm-3">Min Length (3)</strong>
+        <div class="col-md-5 col-lg-5">
+            <ipx-text-field minlength="3" id="txtMinLength" name="minLengthValue" placeholder="Please enter" [(ngModel)]="minLengthValue">
+            </ipx-text-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <strong class="col-sm-3">Max Length (3)</strong>
+        <div class="col-md-5 col-lg-5">
+            <ipx-text-field maxlength="3" id="txtMaxLength" name="maxLengthValue" placeholder="Please enter" [(ngModel)]="maxLengthValue">
+            </ipx-text-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <strong class="col-sm-3">Email Match </strong>
+        <div class="col-md-5 col-lg-5">
+            <ipx-text-field ipx-email id="txtEmailValue" name="emailValue" placeholder="Please enter" [(ngModel)]="emailValue">
+            </ipx-text-field>
+        </div>
+    </div>
+</form>

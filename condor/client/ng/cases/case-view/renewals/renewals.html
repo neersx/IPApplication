@@ -1,0 +1,231 @@
+<div class="container-fluid overflow-div">
+<div *ngIf="data">
+    <div class="row" *ngIf="!isLoaded">
+        <div class="col-sm-12 k-loading-image loaderHeight"></div>
+    </div>
+    <div *ngIf="isLoaded">
+        <div class="row">
+            <div class="col-sm-6 col-md-5 col-lg-6">
+                <div class="row">
+                    <div class="field-label col-sm-6">
+                        <label [translate]="'caseview.renewals.caseStatus'" class="checkbox"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text" name="caseStatus" class="checkbox">{{data.caseStatus}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-5 col-lg-6" *ngIf="!data.isExternalUser">
+                <div class="row input-wrap-group group-inline">
+                    <div class="field-label col-sm-6">
+                        <label translate="caseview.renewals.reportToCPA" class="checkbox"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <ipx-checkbox name="chkReportToCpa" id="chkReportToCpa" [(ngModel)]="data.reportToCpa"
+                            [disabled]="true">
+                        </ipx-checkbox>
+                        &nbsp;
+                        <a name="renewLink" [href]="data.ipplatformRenewLink" target="_blank" *ngIf="data.ipplatformRenewLink" [tooltip]="'caseview.renewals.openInRenew' | translate">
+                                <span class="badge topics">
+                                    <span class="cpa-icon cpa-icon-renew">
+                                    </span>
+                                </span>
+                            </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-5 col-lg-6">
+                <div class="row">
+                    <div class="field-label col-sm-6">
+                        <label [translate]="'caseview.renewals.renewalStatus'"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text" name="renewalStatus">{{data.renewalStatus}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field-label col-sm-6">
+                        <label [translate]="'caseview.renewals.nextRenewalDate'"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text" name="nextRenewalDate">{{data.nextRenewalDate | localeDate }}</span>
+                    </div>
+                </div>
+                <div class="row"
+                    *ngIf="data.reportToCpa && (!data.isExternalUser || (data.isExternalUser && data.clientsUnawareOfCpa))">
+                    <div class="field-label col-sm-6">
+                        <label [translate]="'caseview.renewals.cpaRenewalDate'"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text" name="cpaRenewalDate">{{data.cpaRenewalDate | localeDate }}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field-label col-sm-6">
+                        <label [translate]="'caseview.renewals.renewalType'"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text" name="renewalType">{{data.renewalType}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field-label col-sm-6">
+                        <label [translate]="'caseview.renewals.renewalYear'"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text" name="renewalYear">{{data.renewalYear}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="field-label col-sm-6">
+                        <label [translate]="'caseview.renewals.extendedRenewalYears'"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="text" name="extendedRenewalYears">{{data.extendedRenewalYears}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-5 col-lg-6" *ngIf="!data.isExternalUser">
+                <div class="row" *ngIf="data.reportToCpa && !data.isExternalUser">
+                    <div class="field-label col-sm-6">
+                        <label translate="caseview.renewals.startPaying"></label>
+                    </div>
+                    <div class="col-sm-6" id="dvStartPaying">
+                        <span>{{data.startPaying | localeDate }}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="data.reportToCpa && !data.isExternalUser">
+                    <div class="field-label col-sm-6">
+                        <label translate="caseview.renewals.stopPaying"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span>{{data.stopPaying | localeDate }}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="data.reportToCpa && !data.isExternalUser">
+                    <div class="field-label col-sm-6">
+                        <label translate="caseview.renewals.reasonToStopPay"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span>{{data.reasonToStopPay}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="data.reportToCpa && !data.isExternalUser">
+                    <div class="field-label col-sm-6">
+                        <label translate="caseview.renewals.lastExtracted"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span>{{data.lastExtracted | localeDate }} ({{data.lastExtractedNo}})</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="data.reportToCpa && !data.isExternalUser">
+                    <div class="field-label col-sm-6">
+                        <label translate="caseview.renewals.lastCPAEvent"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span>{{data.lastCpaEvent | localeDate }} </span> <label *ngIf="data.cpaEventCode">
+                            ({{data.cpaEventCode}}) </label>
+                    </div>
+                </div>
+                <div class="row" *ngIf="data.reportToCpa && !data.isExternalUser">
+                    <div class="field-label col-sm-6">
+                        <label translate="caseview.renewals.portfolioDate"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span>{{data.portfolioDate | localeDate }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!data.isExternalUser">
+            <div class="col-sm-3 field-label">
+                <label translate="caseview.renewals.notes"></label>
+            </div>
+            <div class="col-sm-9">
+                <ipx-text-field multiline name="renewalNotes" label="" [(ngModel)]="data.renewalNotes" [disabled]="true">
+                </ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="data.relevantDates?.length > 0"
+                [class.col-sm-6]="data.relevantDates?.length > 0 && data.standingInstructions?.length > 0 "
+                [class.col-sm-12]="data.relevantDates?.length > 0  && data.standingInstructions?.length == 0 ">
+                <div>               
+                    <span class="lineheader">{{ 'caseview.renewals.releventDates' |translate}}</span>
+                    <div class="row gridDisplay">
+                        <table class="table table-striped table-hover" name="relevantDates">
+                            <tbody>
+                                <tr *ngFor="let d of data.relevantDates trackBy: d">
+                                    <td style="text-align:center;width:150px">
+                                        <ipx-due-date *ngIf="d.isOccurred === false" [date]="d.eventDate"
+                                            [showToolTip]="true">
+                                        </ipx-due-date>
+                                        <span *ngIf="d.isOccurred === true">{{d.eventDate | localeDate}}</span>
+                                    </td>
+                                    <td> {{ d.eventDescription}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="data.standingInstructions?.length > 0"
+                [class.col-sm-6]="data.relevantDates?.length > 0  && data.standingInstructions?.length > 0 "
+                [class.col-sm-12]="data.relevantDates?.length == 0  && data.standingInstructions?.length > 0 ">
+                <div>
+                    <span class="lineheader">{{ 'caseview.renewals.standingInstruction' |translate}}</span>
+                    <div class="row gridDisplay">
+                        <table class="table table-striped table-hover" name="standingInstructions">
+                            <tbody>
+                                <tr *ngFor="let d of data.standingInstructions trackBy: d">
+                                    <td> {{ d.instructionTypeDescription}} </td>
+                                    <td> {{ d.instruction}} </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>  
+    <div class="row" style="padding-left: 5px;">   
+        <span class="lineheader">{{ 'caseview.renewals.names.header' |translate}}</span>
+        <ipx-kendo-grid #ipxKendoGridRef id="renewalNames" [dataOptions]="gridOptions" *ngIf="gridOptions">
+            <ng-template ipxTemplateColumnField="type" let-dataItem>
+                <span>{{ dataItem.type }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="shouldCheckRestrictions" let-dataItem>
+                <ipx-debtor-restriction-flag [debtor]="dataItem.id" *ngIf="dataItem.shouldCheckRestrictions"
+                    style="margin-left: 5px"></ipx-debtor-restriction-flag>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="nameAndCode" let-dataItem>
+                <ipx-ie-only-url *ngIf="showWebLink && dataItem.canView" style="cursor: pointer;"
+                    [url]="encodeLinkData(dataItem.id)" [text]="dataItem.nameAndCode">
+                </ipx-ie-only-url>
+                <span *ngIf="!showWebLink && dataItem.canView">{{ dataItem.nameAndCode }}</span>
+                <span *ngIf="!dataItem.canView" class="cpa-icon text-grey-highlight cpa-icon-ban" [tooltip]="'common.accessDenied.nameAccessDenied' | translate"></span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="nameVariant" let-dataItem>
+                <span>{{ dataItem.nameVariant }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="attention" let-dataItem>
+                <ipx-ie-only-url *ngIf="showWebLink && dataItem.canView" style="cursor: pointer;"
+                    [url]="encodeLinkData(dataItem.attentionId)" [text]="dataItem.attention">
+                </ipx-ie-only-url>
+                <span *ngIf="!showWebLink && dataItem.canView">{{ dataItem.attention }}</span>
+                <span *ngIf="!dataItem.canView" class="cpa-icon text-grey-highlight cpa-icon-ban" [tooltip]="'common.accessDenied.nameAccessDenied' | translate"></span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="reference" let-dataItem>
+                <span>{{ dataItem.reference }}</span>
+            </ng-template>            
+        </ipx-kendo-grid>        
+    </div>     
+</div>
+<ng-template #renewalDetailTemplate let-dataItem>
+    <section>
+        <ipx-names-detail [details]="dataItem" [caseId]="caseId"></ipx-names-detail>
+    </section>
+</ng-template>
+</div>

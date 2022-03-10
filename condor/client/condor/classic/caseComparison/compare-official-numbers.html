@@ -1,0 +1,56 @@
+<div data-ng-controller="officialNumbersComparisonController">
+    <div data-ng-show="viewData.officialNumbers.length">
+        <div class="widget-box">
+            <div class="topic-header header-color-blue">
+                <h1>
+                    {{ 'caseComparison.ccHeadingOffNumsAndDates' | translate }}
+                </h1>
+            </div>
+            <div>
+                <div class="widget-main no-padding">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table id="officialNumberComparisonTable" class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="width:20%">&nbsp;</th>
+                                        <th style="width:40%">{{ 'caseComparison.gLblProductName' | translate }}</th>
+                                        <th>&nbsp;</th>
+                                        <th style="width:40%">{{ externalSystem }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat-start="n in viewData.officialNumbers">
+                                        <td>
+                                            <strong>{{n.numberType}}</strong>
+                                        </td>
+                                        <td>{{n.number.ourValue}}</td>
+                                        <td>
+                                            <ip-checkbox class="diff" ng-class="{edited: n.number.updated}" ng-show="!viewData.rejectionResetable && viewData.updateable && n.number.updateable" ng-change="toggleNumberSelection(n)" data-ng-model="n.number.updated" ></ip-checkbox>
+                                        </td>
+                                        <td>
+                                            <span ng-class="{highlight:n.number.different}">{{n.number.theirValue}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr ng-repeat-end class="delimiter" ng-if="n.event">
+                                        <td>
+                                            <strong>{{n.event}}</strong>
+                                        </td>
+                                        <td>{{n.eventDate.ourValue | localeDate}}</td>
+                                        <td>
+                                            <ip-checkbox class="diff" ng-class="{edited: n.eventDate.updated}" ng-show="!viewData.rejectionResetable && viewData.updateable && n.eventDate.updateable" ng-change="toggleDateSelection(n)" data-ng-model="n.eventDate.updated" ></ip-checkbox>
+                                        </td>
+                                        <td>
+                                            <span ng-class="{highlight:n.eventDate.different}">{{n.eventDate.theirValue | localeDate}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space-10"></div>
+    </div>
+</div>

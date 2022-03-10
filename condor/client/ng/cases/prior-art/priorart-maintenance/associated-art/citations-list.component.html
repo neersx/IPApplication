@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="col-sm-11">
+        <h2>{{(priorArtType===PriorArtTypeEnum.Source ? 'priorart.maintenance.step2.associatePriorArt.title' : 'priorart.maintenance.step2.associateSource.title') | translate}}<span class="badge topics"
+                style="margin-left: 10px">{{listCount}}</span></h2>
+    </div>
+    <div class="col-sm-1 text-right">
+        <h2>
+            <button class="btn btn-primary" (click)="launchSearch()" id="btnPriorArtSearch"
+                translate="{{priorArtType===PriorArtTypeEnum.Source ? 'priorart.maintenance.step2.priorArtSearchButton.priorArtLabel' : 'priorart.maintenance.step2.priorArtSearchButton.sourceLabel'}}"
+                tooltip="{{(priorArtType===PriorArtTypeEnum.Source ? 'priorart.maintenance.step2.priorArtSearchButton.priorArtToolTip' : 'priorart.maintenance.step2.priorArtSearchButton.sourceToolTip') | translate}}"
+                [placement]="'top'"></button>
+        </h2>
+    </div>
+</div>
+
+<div id="associated-art-list">
+    <div>
+        <ipx-kendo-grid #associatedArtGrid id="associatedArtList" [dataOptions]="gridOptions" *ngIf="gridOptions" (deleteRowEvent)="deleteCitation($event)" (editRowEvent)="editCitation($event)">
+            <ng-template ipxTemplateColumnField="isIpoIssued" let-dataItem>
+                <span class="cpa-icon-lg cpa-icon-lightbulb-o" *ngIf="!!dataItem.isIpoIssued" [tooltip]="'IPO-Issued' | translate" container="body" [adaptivePosition]="false"></span>
+                <span class="cpa-icon-lg cpa-icon-book" *ngIf="!dataItem.isIpoIssued" [tooltip]="'Non-Patent Literature' | translate" container="body" [adaptivePosition]="false"></span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="reference" let-dataItem>
+                <a href='{{ dataItem.referenceLink }}' target='_blank' class="text-nowrap" *ngIf="dataItem.referenceLink">{{dataItem.reference}}</a>
+                <span *ngIf="!dataItem.referenceLink" class="text-nowrap">{{dataItem.reference}}</span>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

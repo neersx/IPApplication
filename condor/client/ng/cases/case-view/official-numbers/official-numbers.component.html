@@ -1,0 +1,17 @@
+<div class="row">
+    <ipx-kendo-grid id="{{'caseViewOfficialNumbers-' + officialNumberType}}" [dataOptions]="gridOptions">
+
+        <ng-template ipxTemplateColumnField="officialNumber" let-dataItem>
+            <a *ngIf="dataItem.externalInfoLink" href="{{dataItem.externalInfoLink}}" target="_blank">
+              <span class="non-breaking">{{dataItem.officialNumber}}</span>
+            </a>
+            <span class="non-breaking" *ngIf="!dataItem.externalInfoLink">{{dataItem.officialNumber}}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="dateInForce" let-dataItem>
+            <ipx-date [model]="dataItem.dateInForce"></ipx-date>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="isCurrent" let-dataItem>
+            <ipx-checkbox [(ngModel)]="dataItem.isCurrent" disabled></ipx-checkbox>
+        </ng-template>
+    </ipx-kendo-grid>
+</div>

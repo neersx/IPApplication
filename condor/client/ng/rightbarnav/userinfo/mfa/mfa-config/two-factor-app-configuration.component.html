@@ -1,0 +1,11 @@
+<h3>
+    {{ 'twoFactorConfiguration.heading' | translate }}
+</h3>
+<ipx-wizard-navigation [steps]="steps" (cancel)="cancel()" (allStepsComplete)="allStepsComplete()">
+</ipx-wizard-navigation>
+<div>
+    <button class="btn" (click)="cancel()">{{ 'cancel' | translate }}</button>
+    &nbsp;
+    <button class="btn" (click)="back()" [disabled]="step == 1">{{ 'back' | translate }}</button>
+    <button class="btn btn-primary pull-right" (click)="proceed()" id="btnTwoFactorAppConfigureProceed">{{ (step == 3 ? 'verify' : 'continue') | translate }}</button>
+</div>

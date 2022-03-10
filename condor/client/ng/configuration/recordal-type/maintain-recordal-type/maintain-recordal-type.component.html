@@ -1,0 +1,67 @@
+<div *ngIf="form" class="modal-header">
+    <h2 class="modal-title" translate="{{ isAdding? 'caseview.affectedCases.recordalTypeMaintainence.add': 'caseview.affectedCases.recordalTypeMaintainence.edit' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button type="button" id="btSave" [disabled]="isSaveDisabled || form.status === 'INVALID' || !form.dirty" (click)="submit()"></ipx-save-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div *ngIf="form">
+            <form [formGroup]="form">
+                <div class="row col-md-12">
+                    <div class="col-md-6" style="margin-left: -4px;">
+                        <ipx-text-field id="recordalTypeTxt" style="width: 488px;" name="recordalTypeTxt" required formControlName="recordalType" (change)="isExistingType()" apply-edited label="{{ 'caseview.affectedCases.recordalType' | translate }}"
+                            autocomplete="off">
+                        </ipx-text-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ipx-typeahead id="requestEvent" name="requestEvent" formControlName="requestEvent" label="recordalType.column.requestEvent" apply-edited config="event">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="col-md-6">
+                        <ipx-typeahead id="requestAction" name="requestAction" formControlName="requestAction" label="recordalType.column.requestAction" apply-edited config="action">
+                        </ipx-typeahead>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ipx-typeahead id="recordalEvent" name="recordalEvent" formControlName="recordalEvent" label="recordalType.column.recordalEvent" apply-edited config="event">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="col-md-6">
+                        <ipx-typeahead id="recordalAction" name="recordalAction" formControlName="recordalAction" label="recordalType.column.recordalAction" apply-edited config="action">
+                        </ipx-typeahead>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="table-container">
+        <div class="row">
+            <ipx-kendo-grid #ipxKendoGridRef id="recordalElementsGrid" [dataOptions]="gridOptions" *ngIf="gridOptions"  (cancelRowEditEvent)="cancelEdit()"
+            (deleteRowEvent)="onRowDeleted()" (addRowEvent)="onRowAddedOrEdited($event)" (editRowEvent)="onRowAddedOrEdited($event)">
+                <ng-template ipxTemplateColumnField="element" let-dataItem>
+                    <span class="text-nowrap">{{ dataItem.element.value }}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="nameType" let-dataItem>
+                    <span class="text-nowrap">{{ dataItem.nameType? dataItem.nameType.value: null }}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="attribute" let-dataItem>
+                    <span class="text-nowrap">{{ dataItem.attribute === 'DIS'? ('recordalType.recordalElement.display' | translate): 'recordalType.recordalElement.mandatory' | translate }}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="element" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span *ngIf="dataItem && dataItem.element" class="text-nowrap">{{ dataItem.element ? dataItem.element.value : null }}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="attribute" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span *ngIf="dataItem && dataItem.attribute" class="text-nowrap">{{ (dataItem.attribute && dataItem.attribute.value)? dataItem.attribute.value : null }}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="nameType" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span *ngIf="dataItem && dataItem.nameType" class="text-nowrap">{{ (dataItem.nameType && dataItem.nameType.value)? dataItem.nameType.value : dataItem.nameType }}</span>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>

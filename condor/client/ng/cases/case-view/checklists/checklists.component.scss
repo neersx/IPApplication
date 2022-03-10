@@ -1,0 +1,25 @@
+.overflow-column {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.vertical {
+    border-bottom: 1px dotted;
+}
+
+.padQuestion {
+    padding-left: 17px;
+    border-bottom: 0 !important;
+}
+
+.padProcessingInfo {
+    padding-left: 10px;
+}
+
+.divDisplay {
+    overflow-x: hidden; 
+    overflow-y: auto;
+    max-height: 800px;
+}

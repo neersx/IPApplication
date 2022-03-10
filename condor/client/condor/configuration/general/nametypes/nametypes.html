@@ -1,0 +1,36 @@
+<ip-sticky-header>
+    <ip-page-title page-title="nameType.nameTypeMaintenance"></ip-page-title>
+    <ip-search-options-header></ip-search-options-header>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <ip-search-options on-clear="vm.resetSearchCriteria();vm.gridOptions.search()" on-search="vm.gridOptions.search()">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="input-wrap">
+                        <input type="text" placeholder="{{:: 'EnterTextToSearch' | translate }}" ng-model="vm.searchCriteria.text" ip-autofocus>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <ip-typeahead id="nametype-group-picklist" data-multiselect data-label="nameType.maintenance.nameTypeGroup" name="nameTypeGroup"
+                        data-config="nameTypeGroup" data-picklist-can-maintain="true" ng-model="vm.searchCriteria.nameTypeGroup">
+                    </ip-typeahead>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3" style="padding-left: 20px">
+                <a role="button" id="nametype-priority-link" translate="nameType.setPriorityOrder" data-ng-click="vm.launchNameTypesPriorityOrder()"></a>
+            </div>
+        </div>
+    </ip-search-options>
+    <div class="table-container">
+        <div class="table-title">
+            <h2 translate="searchResult"></h2>
+            <button id="add" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'Add' | translate }}" data-ng-click="vm.add()">
+                <span class="cpa-icon cpa-icon-plus-circle"></span>
+            </button>
+        </div>
+        <ip-kendo-search-grid data-id="searchResults" data-grid-options="vm.gridOptions"></ip-kendo-search-grid>
+    </div>
+</div>

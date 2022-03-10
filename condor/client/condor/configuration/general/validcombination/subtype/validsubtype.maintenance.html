@@ -1,0 +1,37 @@
+<div translate-namespace="validcombinations" data-ng-controller="validSubTypeMaintenanceController as vm">
+    <div class="row">
+        <h3>
+            <span class="label-legend" translate=".labelValidSubType"></span>
+            <ip-inline-dialog data-content="{{::'validcombinations.createValidCharacteristic' | translate}}" data-placement="right"></ip-inline-dialog>
+        </h3>
+    </div>
+    <div class="row">
+        <ip-typeahead name="caseType" id="pk-case-type" data-config='caseType' data-picklist-can-maintain="true" ng-model="model.caseType" ip-required ng-change="vm.onCaseTypeSelectionChanged()" ng-class="{edited: maintenance.caseType.$dirty}" ng-disabled="state == 'updating'">
+        </ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-jurisdiction" name="jurisdiction" data-multiselect data-config='jurisdiction' data-picklist-can-maintain="true" ng-model="model.jurisdictions" ng-class="{edited: maintenance.jurisdiction.$dirty}" ip-required ng-disabled="state == 'updating'"
+            ip-autofocus>
+        </ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-property-type" name="propertyType" data-config='propertyType' data-picklist-display-name="Property Type" ng-model="model.propertyType" ip-required ng-class="{edited: maintenance.propertyType.$dirty}" ng-disabled="state == 'updating'"
+            data-picklist-can-maintain="true" data-key-field="key" data-code-field="code" data-text-field="value"></ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-case-category" name="caseCategory" data-config='caseCategory' data-picklist-can-maintain="true" ng-model="model.caseCategory" ip-required ng-change="vm.onCaseCategorySelectionChanged()" ng-class="{edited: maintenance.caseCategory.$dirty}"
+            ng-disabled="state == 'updating' || vm.disableCategoryPicklist()" data-extend-query="vm.picklistCriteria.extendQuery"></ip-typeahead>
+    </div>
+
+    <h3>
+        <span class="label-legend" translate=".labelNewSubType"></span>
+    </h3>
+
+    <div class="row">
+        <ip-typeahead id="pk-sub-type" name="subType" data-config="validSubType" ng-model="model.subType" ip-required ng-change="vm.onSubTypeSelectionChanged(maintenance.validDescription)" ng-class="{edited: maintenance.subType.$dirty}" ng-disabled="state == 'updating'"
+            data-picklist-can-maintain="canMaintain === 'true' ? true : false" data-key-field="key" data-code-field="code" data-text-field="value"></ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-text-field name="validDescription" ip-required label=".validDescription" ng-model="model.validDescription" ng-class="{edited: maintenance.validDescription.$dirty}" data-ng-maxlength="50"></ip-text-field>
+    </div>
+</div>

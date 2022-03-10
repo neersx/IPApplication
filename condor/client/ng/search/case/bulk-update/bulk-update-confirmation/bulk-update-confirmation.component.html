@@ -1,0 +1,81 @@
+<div id="confirmation-dialog">
+  <div class="modal-header">
+    <h2 class="modal-title"> {{ 'bulkUpdate.titleConfirmationDialog' | translate }}</h2>
+  </div>
+  <form (ngSubmit)="submit()" name="confirmationForm" #f="ngForm" novalidate>
+    <div class="modal-body" style="margin-top: 20px;">
+      <div class="row" *ngIf="removeItemCount > 0">
+        <div class="col-md-12">{{ removeInfoMessage}}</div>
+        <div class="col-md-12">
+          <ul>
+            <ng-container *ngFor="let item of removeItems | keyvalue: asIsOrder; trackBy: trackByFn">
+              <li>
+                {{ (item.value.labelTranslationKey + '.' + item.key )| translate}}
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+      <div class="row" *ngIf="replaceItemCount > 0">
+        <div class="col-md-12"> {{ replaceInfoMessage }}</div>
+        <div class="col-md-12">
+          <ul>
+            <ng-container *ngFor="let item of replaceItems | keyvalue: asIsOrder; trackBy: trackByFn">
+              <li>
+                {{ (item.value.labelTranslationKey + '.' + item.key )| translate}} :
+                <b>{{ item.value.value}}</b>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+      <div class="row" *ngIf="hasCaseText">
+        <div class="col-md-12">
+          <b>{{ formData.caseText.value}}</b> {{ caseTextMessage | translate }}
+        </div>
+      </div>
+      <div class="row" *ngIf="hasCaseNameReference" style="margin-top: 8px;">
+        <div class="col-md-12">
+          <b>{{ formData.caseNameReference.value}}</b> {{ caseNameReferenceMessage | translate }}
+        </div>
+      </div>
+      <div class="row" *ngIf="hasFileLocation" style="margin-top: 8px;">
+        <div class="col-md-12">
+          <b>{{ formData.fileLocation.value}}</b> {{ fileLocationMessage | translate }}
+        </div>
+      </div>
+
+      <div class="row" *ngIf="hasRestrictedStatus">
+        <div class="col-md-12">
+          <span class="cpa-icon cpa-icon-exclamation-circle text-orange" style="padding-right:5px;"></span>
+          <span>{{ restrictedStatusMessage }}</span>
+        </div>
+      </div>
+
+      <hr />
+      <div class="row">
+        <div class="col-md-12">
+          <label>{{ 'bulkUpdate.reasonMessage' | translate }}</label>
+        </div>
+        <div class="col-md-10 ">
+          <ipx-dropdown name="textType" [options]="textTypes" [(ngModel)]="reasonData.textType"
+            label="bulkUpdate.textType" displayField="value" keyField="key" (change)="reasonChange()">
+          </ipx-dropdown>
+        </div>
+        <div class="col-md-10">
+          <ipx-richtext-field [rows]="6" name="notes" [allowRichText]="allowRichText" [disabled]="!reasonData.textType"
+            label="bulkUpdate.notes" [(ngModel)]="reasonData.notes" placeholder="bulkUpdate.caseTextUpdate.placeHolder">
+          </ipx-richtext-field>
+        </div>
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="btnCancel" class="btn btn-cancel" (click)="close()">
+        {{ 'bulkUpdate.cancel' | translate }}</button>
+      <button type="submit" id="btnSubmit" class="btn btn-primary" [disabled]="!f.form.valid">
+        {{ 'bulkUpdate.proceed' | translate }}
+      </button>
+    </div>
+  </form>
+</div>

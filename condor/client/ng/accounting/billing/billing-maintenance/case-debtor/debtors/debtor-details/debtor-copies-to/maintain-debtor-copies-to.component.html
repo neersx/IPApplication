@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{this.isAdding ? 'accounting.billing.step1.debtors.copiesTo.add' : 'accounting.billing.step1.debtors.copiesTo.edit' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-apply-button type="button" [disabled]="!formGroup.dirty || formGroup.status === 'INVALID'" (click)="apply()"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <form name="copyToDebtor" [formGroup]="formGroup" *ngIf="formGroup">
+        <div class="col-md-11">
+            <ipx-typeahead required #copyToName name="copyName" [disabled]="!isAdding" [formControl]="CopyToNameValue" apply-edited [label]="'accounting.billing.step1.debtors.copiesTo.columns.copyTo'" config="debtor"
+                (onChange)="onCopyToNameChange($event)">
+            </ipx-typeahead>
+        </div>
+        <div class="col-md-11">
+            <ipx-text-field apply-edited id="contactName" name="contactName" [label]="'accounting.billing.step1.debtors.copiesTo.columns.contactName'" [disabled]="disableFields" [formControl]="ContactName"
+                (onChange)="onContactNameChange($event)">
+            </ipx-text-field>
+        </div>
+        <div class="col-md-11">
+            <ipx-text-field apply-edited id="address" name="address" [label]="'accounting.billing.step1.debtors.copiesTo.columns.address'" [disabled]="disableFields" [formControl]="Address"
+                (onChange)="onAddressChange($event)">
+            </ipx-text-field>
+        </div>
+        <div class="col-md-11">
+            <ipx-dropdown name="reason" #addressChangeReason [label]="'accounting.billing.step1.debtors.copiesTo.columns.reason'" [disabled]="disableFields || disableReason" [keyField]="'Id'" [displayField]="'Name'"
+                [options]="reasonList" formControlName="AddressChangeReasonId"></ipx-dropdown>
+        </div>
+    </form>
+</div>

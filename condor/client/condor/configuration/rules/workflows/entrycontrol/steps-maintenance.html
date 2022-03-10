@@ -1,0 +1,77 @@
+<div ng-form="vm.form" ip-form translate-namespace="workflows.entrycontrol.steps.maintenance">    
+    <ip-maintenance-modal-header 
+        data-page-title="{{:: vm.title}}" 
+        data-dismiss="vm.dismiss()" 
+        data-on-apply="vm.apply()" 
+        data-is-apply-enabled="vm.isApplyEnabled()" 
+        data-has-unsaved-changes="vm.hasUnsavedChanges()"
+        data-is-add-another="vm.isAddAnother"
+        is-edit-mode="vm.isEditMode"
+    ></ip-maintenance-modal-header>
+    
+    <ip-workflows-entrycontrol-modal-subheader
+        is-edit-mode="vm.isEditMode"
+        all-items="vm.allItems" 
+        current-item="vm.currentItem"         
+        criteria-number="vm.criteriaId"
+        entry-description="vm.entryDescription"
+        on-navigate="vm.onNavigate">            
+    </ip-workflows-entrycontrol-modal-subheader>
+
+    <div class="modal-body">
+        <div class="row">
+            <h3>
+                <span translate=".subTitle"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <ip-typeahead 
+                label=".step" 
+                ip-required 
+                data-config="availableTopic"
+                ng-class="{edited: vm.form.topic.$dirty}" 
+                name="topic" 
+                ng-model="vm.formData.step" 
+                ip-autofocus 
+                data-picklist-can-maintain="true"
+                ng-change="vm.onStepTypeChanged()"
+                ng-disabled="vm.isEditMode">
+            </ip-typeahead>
+        </div>
+        <div class="row">
+            <ip-text-field label=".title" ng-class="{edited: vm.form.title.$dirty}" name="title" ng-model="vm.formData.title" ng-maxlength="254">
+            </ip-text-field>
+        </div>
+        <div class="row">
+            <ip-text-field label=".userTip" ng-class="{edited: vm.form.userTip.$dirty}" name="userTip" ng-model="vm.formData.screenTip" multiline data-rows="3" ng-maxlength="254">
+            </ip-text-field>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group group-inline text-nowrap" ng-class="{edited: vm.form.isMandatory.$dirty}">
+                <span translate=".mandatory"></span>
+                <ip-checkbox ng-model="vm.formData.isMandatory" name="isMandatory"> </ip-checkbox>
+            </div>
+        </div>
+        <div class="row" ng-if="vm.formData.category1 || vm.formData.category2">
+            <h3>
+                <span translate=".categories"></span>
+            </h3>
+        </div>
+
+        <div class="row" ng-if="vm.formData.categories && vm.formData.categories.length> 0">
+            <h3>
+                <span translate=".categories"></span>
+            </h3>
+        </div>
+
+        <div ng-repeat="category in vm.formData.categories track by $index">
+            <ip-workflows-entrycontrol-step-category-picker 
+                category="category" 
+                step-type="vm.formData.step.type" 
+                required="category.isMandatory" 
+                name="'categoryPicklist' + $index" 
+                criteria-characteristics="vm.criteriaCharacteristics">
+            </ip-workflows-entrycontrol-step-category-picker>
+        </div>
+    </div>
+</div>

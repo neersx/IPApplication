@@ -1,0 +1,119 @@
+<style>
+  .pi-header {
+    font-size: 13px;
+    background-color: #E6E6E6;
+  }
+
+  .pi-title {
+    padding: 10px;
+  }
+
+  .pi-item-value {
+    color: #000080;
+    font-weight: bold;
+  }
+
+  .pi-date-label {
+    margin-top: 5px;
+    float: left;
+  }
+
+  .pi-tooltip {
+    position: absolute;
+    top: -2px;
+    margin-left: 5px;
+  }
+</style>
+
+<form #provideInstructionsForm="ngForm">
+  <div id="provideInstructionsForm">
+    <div class="modal-header">
+      <h2 class="modal-title" translate="taskPlanner.provideInstructions.title"></h2>
+      <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="row pi-header">
+        <div class="col-sm-10 pi-title">
+          {{'taskPlanner.provideInstructions.forCase' | translate}}:
+          <span class="pi-item-value">
+            {{viewData.irn}}
+          </span>
+          &nbsp; &nbsp;
+          {{'taskPlanner.provideInstructions.forEvent' | translate}}:
+          <span class="pi-item-value">
+            {{viewData.eventText}}
+          </span>
+          &nbsp; &nbsp;
+          {{'taskPlanner.provideInstructions.dueDate' | translate}}:
+          <span class="pi-item-value">
+            {{viewData.eventDueDate | date: dateFormat}}
+          </span>
+        </div>
+      </div>
+      <ng-container *ngIf="viewData.instructions && viewData.instructions.length > 0">
+        <div class="row">
+          <div class="col-sm-7">
+            <label class="com-sm-3 pi-date-label"> {{'taskPlanner.provideInstructions.instructionDate' | translate}}</label>
+            <ipx-date-picker class="col-sm-7" name="instructionDate" [(ngModel)]="viewData.instructionDate">
+            </ipx-date-picker>
+          </div>
+        </div>
+        <div class="row" *ngFor="let inst of viewData.instructions; trackBy: trackByFn; let i =index;">
+          <div class="row">
+            <div class="col-md-6">
+              <label style="padding-top:5px">
+                {{'taskPlanner.provideInstructions.instructionName' | translate}} &nbsp; &nbsp;
+                <span class="piName{{i}}">
+                  {{inst.instructionName}}
+                </span>
+              </label>
+              <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-info-circle'" class="pi-tooltip" *ngIf="inst.instructionExplanation" [content]="inst.instructionExplanation" [tooltipPlacement]="'right'">
+              </ipx-inline-dialog>
+            </div>
+            <div class="col-md-6">
+              <div class="col-md-10">
+                <ipx-dropdown [name]="'piAction' + i" class="piAction{{i}}" label="taskPlanner.provideInstructions.chooseInstruction" [removeOptionalValue]="true" [displayField]="'responseLabel'"
+                  [keyField]="'responseSequence'" [options]="inst.actions" [(ngModel)]="inst.responseNo" (change)="chooseInstruction(inst)">
+                </ipx-dropdown>
+                <div class="col-sm-4 col-sm-offset-4" style="margin-top: -10px;">
+                  <button [id]="'btnAddEventNote' + i" *ngIf="inst.responseNo" class="btn btn-link grid-message" [disabled]="inst.showEventNote && inst.selectedAction" (click)="openEventNoteModel(inst)"><span
+                      class="cpa-icon cpa-icon-plus-circle"></span><em style="margin-left: 5px;">
+                      {{'taskPlanner.provideInstructions.addEventNote' | translate}} </em></button>
+                </div>
+              </div>
+              <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-info-circle'" class="col-md-2" *ngIf="getResponseExplanation(inst)" [content]="getResponseExplanation(inst)" [tooltipPlacement]="'left'">
+              </ipx-inline-dialog>
+            </div>
+          </div>
+          <div class="row" *ngIf="inst.showEventNote && inst.selectedAction">
+            <div class="col-sm-10">
+              <label style="font-weight: bold;font-size: 13px; margin-top: 5px; margin-right:5px;">
+                {{'taskPlanner.provideInstructions.eventNotes.header' | translate}} {{ inst.selectedAction.eventName}}
+              </label>
+              <ipx-inline-dialog style="position: absolute;" [content]="getFireEventDescription(inst)" [tooltipPlacement]="'auto'">
+              </ipx-inline-dialog>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <ipx-event-note-details [expandAction]="'N'" [taskPlannerRowKey]="rowKey" [notes]="eventNoteComponentData.noteDetails" [instructionDefinitionKey]="inst.instructionDefinitionKey"
+                  [categories]="eventNoteComponentData.noteTypes" [eventNoteFrom]="eventNoteEnum.provideInstructions" [maintainEventNotesPermissions]="resultPageViewData.maintainEventNotesPermissions"
+                  [replaceEventNotes]="resultPageViewData.replaceEventNotes" [isPredefinedNoteExists]="eventNoteComponentData.predefinedNoteType" [siteControlId]="eventNoteComponentData.siteControlId"
+                  [maintainEventNotes]="resultPageViewData.maintainEventNotes" (onUpdateInstructionNotes)="handleUpdateInstructionNotes($event)">
+                </ipx-event-note-details>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+      <div class="row" *ngIf="!viewData.instructions || viewData.instructions.length === 0">
+        <ipx-inline-alert [type]="'info'" [text]="'taskPlanner.provideInstructions.noInstructions'"></ipx-inline-alert>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" name="cancel" (click)="onClose()">{{'Cancel' | translate}}</button>
+      <button type="button" class="btn btn-save" name="save" (click)="proceed()" [disabled]="!isValid()">{{'taskPlanner.provideInstructions.proceed' | translate}}</button>
+    </div>
+  </div>
+</form>

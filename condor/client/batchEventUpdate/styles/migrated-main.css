@@ -1,0 +1,214 @@
+@font-face {
+    font-family: 'Droid Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/DroidSans.ttf') format('truetype');
+    src: url('fonts/DroidSans.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Droid Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('fonts/DroidSans-Bold.ttf') format('truetype');
+    src: url('fonts/DroidSans-Bold.woff') format('woff');
+}
+
+@media (min-width: 1500px) {
+    .container {
+        width: 1400px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .container {
+        width: 1700px;
+    }
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Droid Sans', sans-serif, 'Segoe UI', Tahoma Light, Arial Light, Helvetica Light, sans-serif;
+    font-size: 14px;
+    background-color: rgb(249, 249, 249);
+    position: relative;
+    padding-top: 60px;
+}
+
+.monospaced {
+    font-family: 'Consolas', Courier New;
+}
+
+h1, h2, h3, h4 {
+    font-family: "Droid Sans";
+    font-weight: 700;
+}
+
+label {
+    font-weight: normal;
+}
+
+.hash {
+    margin-top: -60px;
+    padding-top: 60px;
+}
+
+.footer {
+    padding-top: 50px;
+    color: #ccc;
+    font-size: 0.8em;
+}
+
+.navbar-default {
+    background-color: white;
+    border-color: white;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #9BCEF2;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.navbar-inverse .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {}
+
+.btn-primary {
+    background-color: #32B888;
+    border-color: #32B888;
+}
+
+.btn-primary:hover, .btn-primary:focus, btn-primary:active {
+    background-color: #32B888;
+    border-color: #32B888!important;
+}
+
+.badge {
+    background-color: #EB355A;
+    color: white;
+}
+
+.jumbotron {
+    background-color: #EB355A;
+    color: white;
+}
+
+.jumbotron h1 {
+    font-family: 'Yanone Kaffeesatz'
+}
+
+.header {
+    font-family: Arial, Verdana, sans-serif;
+    color: #22145c;
+    font-weight: bold;
+    background-color: white;
+    border-bottom: 2px solid #9bcef2;
+    height: 60px;
+    overflow: hidden;
+}
+
+.header img.logo {
+    margin-left: 10px;
+    width: 128px;
+    top: 50%;
+    position: relative;
+    transform: translate(0%, -50%);
+}
+
+.header .title {
+    line-height: 57px;
+    vertical-align: middle;
+    margin-left: 20px;
+    font-size: 24px
+}
+
+.header .title small {
+    font-size: 65%;
+    font-weight: normal;
+    line-height: 1;
+    color: #999999;
+}
+
+.header .menu {
+    padding-top: 5px;
+    margin-right: 20px;
+}
+
+.header .menu a {
+    color: #22145c;
+    font-size: 12px
+}
+
+.header .menu span {
+    color: #22145c;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.header .menu .delimiter {
+    color: #e8b730;
+}
+
+.header .toolbar {
+    height: 22px;
+    background-color: #9bcef2;
+}
+
+.container {
+    height: 100%;
+}
+
+.nowrap {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.noscroll {
+    overflow: hidden;
+}
+
+.notification-bar {
+    position: fixed;
+    width: 50%;
+    left: 50%;
+    margin: 0 0 0 -25%;
+    top: 3px;
+    z-index: 2000;
+}
+
+.notification-bar {
+    -webkit-transition: 0.5s linear all;
+    -moz-transition: 0.5s linear all;
+    -o-transition: 0.5s linear all;
+    -ms-transition: 0.5s linear all;
+    transition: 0.5s linear all;
+    opacity: 1;
+}
+
+.notification-bar.ng-hide {
+    opacity: 0;
+}
+
+.notification-bar.ng-hide-add, .notification-bar.ng-hide-remove {
+    display: block!important;
+}
+
+.notification-bar .notification-bar-token {
+    text-align: center;
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 120%;
+    padding-top: 5px;
+}
+
+.headerTitle {
+    padding-left: 20px;
+}
+
+.header-custom {
+    height: 100px;
+    background-color: transparent;
+    border-bottom: 0px;
+}

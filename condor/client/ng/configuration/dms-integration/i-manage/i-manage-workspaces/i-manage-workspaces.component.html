@@ -1,0 +1,43 @@
+<div class="row">
+    <h2 [translate]="'dmsIntegration.iManage.workspaces.cases'"></h2>
+</div>
+<div class="row">
+    <form #workspaceForm="ngForm">
+        <div class="col-sm-4 input-wrap">
+            <ipx-dropdown name="SearchField" label="dmsIntegration.iManage.workspaces.searchField" apply-edited [keyField]="'code'" [displayField]="'display'"
+                [options]="searchFieldOptions" [(ngModel)]="case.searchField" [removeOptionalValue]="true">
+            </ipx-dropdown>
+        </div>
+        <div class="col-sm-4">
+            <div class="row input-wrap">
+                <ipx-text-field name="Subclass" label="dmsIntegration.iManage.workspaces.subClass" [(ngModel)]="case.subClass" apply-edited></ipx-text-field>
+            </div>
+
+            <div class="row input-wrap">
+                <ipx-text-field name="Subtype" label="dmsIntegration.iManage.workspaces.subType" [(ngModel)]="case.subType" apply-edited></ipx-text-field>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row">    
+    <h2 [translate]="'dmsIntegration.iManage.workspaces.nameTypes'"></h2>
+    <ipx-kendo-grid *ngIf="gridOptions" #ipxKendoGridRef id="imanageWorkspacesNameTypes" [dataOptions]="gridOptions" (deleteRowEvent)="onRowDelete()">
+
+        <ng-template ipxTemplateColumnField="nameType" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+            <span>{{dataItem?.names}}</span>
+         </ng-template>
+         <ng-template ipxTemplateColumnField="subClass" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+            <span>{{dataItem?.subClass}}</span>
+         </ng-template>
+ 
+        <ng-template ipxEditTemplateColumnField="nameType" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+            <ipx-typeahead name="nameTypePicklist" [show-tags-errors]="true" config="nameType" multiselect multipick [formControl]="formGroup.controls.nameTypePicklist" label="" apply-edited required></ipx-typeahead>
+        </ng-template>
+
+        <ng-template ipxEditTemplateColumnField="subClass" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+            <ipx-text-field name="subClass" [formControl]="formGroup.controls.subClass" label="" apply-edited></ipx-text-field>
+        </ng-template>
+
+    </ipx-kendo-grid>
+</div>

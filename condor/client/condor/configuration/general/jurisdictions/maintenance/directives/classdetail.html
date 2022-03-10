@@ -1,0 +1,18 @@
+<div class="row" ng-if="vm.hasIntClasses">
+    <div class="col-md-12">
+        <div class="input-wrap large">
+            <label translate="jurisdictions.maintenance.classes.internationalClasses.label"></label>
+            <div class="col-md-10">
+                <kendo-grid id="internationalClasses" k-options="vm.gridOptions"></kendo-grid>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="input-wrap large">
+            <label translate="jurisdictions.maintenance.classes.notes"></label>
+            <textarea name="notes" type="text" rows="3" ng-model="vm.notes" ng-disabled="true"></textarea>
+        </div>
+    </div>
+</div>

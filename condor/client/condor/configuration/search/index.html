@@ -1,0 +1,41 @@
+<style>
+    .k-master-row td {
+        word-break: break-word;
+    }
+</style>
+<ip-sticky-header>
+    <ip-page-title page-title="configurations.title"></ip-page-title>
+    <ip-search-options-header></ip-search-options-header>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <ip-search-options on-clear="vm.resetOptions()" is-search-disabled="vm.isSearchDisabled()" on-search="vm.search()">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-wrap">
+                        <input type="text" placeholder="{{:: 'EnterTextToSearch' | translate }}" ng-model="vm.searchCriteria.text" ip-autofocus>
+                    </div>
+                </div>
+                <div class="col-sm-8" ng-form="vm.form" ip-form>
+
+                    <ip-typeahead class="col-sm-6" name="components" data-multiselect data-label="configurations.components" data-key-field="id" data-text-field="componentName" data-api-url="api/configuration/components" data-picklist-display-name="Components" data-picklist-columns="[{title:'Component Name', field:'componentName'}]"
+                        ng-model="vm.searchCriteria.components">
+                    </ip-typeahead>
+
+                    <ip-typeahead class="col-sm-6" data-ng-show="vm.canUpdate" name="tags" data-multiselect data-label="configurations.tags" data-key-field="key" data-text-field="tagName" data-api-url="api/configuration/tagslist" data-picklist-display-name="Tags" data-config='tags'
+                        data-picklist-can-maintain="true" data-show-add="false" data-picklist-columns="[{title:'Tag Name', field:'tagName'}]" ng-model="vm.searchCriteria.tags">
+                    </ip-typeahead>
+
+                </div>
+            </div>
+        </div>
+    </ip-search-options>
+    <div class="table-container">
+        <div class="table-title">
+            <h2 translate="configurations.summary"></h2>
+        </div>
+        <div>
+            <ip-kendo-search-grid data-id="searchResults" data-grid-options="vm.gridOptions" data-search-hint="{{ :: 'configurations.resultsFound' | translate }}"></ip-kendo-search-grid>
+        </div>
+    </div>
+</div>

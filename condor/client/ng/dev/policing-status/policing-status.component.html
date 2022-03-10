@@ -1,0 +1,9 @@
+<div class="row">
+    <ipx-page-title-save title="Policing Status">
+    </ipx-page-title-save>
+    <div class="col-md-4">
+        <ipx-text-field name="caseId" required label="Case ID" placeholder="Please enter Case ID" maxLength="2" [(ngModel)]="caseId" (onChange)="updatedCaseId()" ipx-autofocus>
+        </ipx-text-field>
+        <strong>Status: </strong>{{ policingStatus }}
+    </div>
+</div>

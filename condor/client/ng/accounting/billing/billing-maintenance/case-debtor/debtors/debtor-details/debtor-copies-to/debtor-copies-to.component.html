@@ -1,0 +1,9 @@
+<ipx-kendo-grid #ipxKendoGridRef id="debtorCopiesTo" [dataOptions]="gridOptions">
+    <ng-template ipxTemplateColumnField="detail" let-dataItem>
+        <span>{{ dataItem.detail | translate}}</span>
+        <span class="badge topics" style="margin-left: 7px;">{{ copiesToCount$ | async }}</span>
+    </ng-template>
+    <ng-template #detailsTemplate let-dataItem>
+        <ipx-debtor-copies-to-names [copiesTo]="copiesTo" [debtorNameId]="debtorNameId" [isFinalised]="isFinalised" (countChange)="countChange($event)"></ipx-debtor-copies-to-names>
+    </ng-template>
+</ipx-kendo-grid>

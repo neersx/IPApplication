@@ -1,0 +1,13 @@
+<ip-resize-handler-upg>
+    <div>
+        <h3>Ipx Kendo Grid - Grouping using DetailTemplate</h3>
+        <ipx-kendo-grid #resultsGrid [dataOptions]="gridOptionsPlane" [items]="taskItems" (menuItemSelected)="onMenuItemSelected($event)" (popupOpen)="initializeTaskItems($event)">
+        </ipx-kendo-grid>
+        <ng-template #groupDetailTemplate let-dataItem>
+            <ipx-group-detail *ngIf="gridOptionsPlane.columns" [items]="dataItem.items" [columns]="gridOptionsPlane.columns" [isShowContextMenu]="isShowContextMenu" [detailTemplate]="kendoDetailTemplate" [detailTemplateShowCondition]="gridOptionsPlane.detailTemplateShowCondition"></ipx-group-detail>
+        </ng-template>
+        <ng-template #kendoDetailTemplate let-dataItem>
+            <span>Case Details are: {{dataItem.title}} -- {{dataItem.caseType}} -- {{dataItem.propertyType}}</span>
+        </ng-template>
+    </div>
+</ip-resize-handler-upg>

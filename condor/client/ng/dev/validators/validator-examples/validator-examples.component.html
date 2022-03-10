@@ -1,0 +1,33 @@
+<form>
+    <div class="topic-container active" data-topic-key="References">
+        <h2>Validators</h2>
+
+        <div class="row">
+            <strong class="col-sm-3">Min Length (3)</strong>
+            <div class="col-md-5 col-lg-5">
+                <ipx-text-field minlength="3" name="minLengthValue" placeholder="Please enter" [(ngModel)]="minLengthValue">
+                </ipx-text-field>
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="row">
+            <strong class="col-sm-3">Max Length (3)</strong>
+            <div class="col-md-5 col-lg-5">
+                <ipx-text-field maxlength="3" name="maxLengthValue" placeholder="Please enter" [(ngModel)]="maxLengthValue"  errorParam="3">
+                </ipx-text-field>
+
+            </div>
+        </div>
+        <br/>
+        <br/>
+        <div class="row">
+            <strong class="col-sm-3">Email Match </strong>
+            <div class="col-md-5 col-lg-5">
+                <ipx-text-field ipx-email name="regexValue" placeholder="Please enter" [(ngModel)]="regexValue">
+                </ipx-text-field>
+            </div>
+        </div>
+    </div>
+</form>
+

@@ -1,0 +1,152 @@
+<app-hosted-page-header [type]="isShowingHeader ? 'search': 'contextMenu'" (onAction)="onNavigationAction($event);" [hostedMenuOptions]="hostedMenuOptions" [useDefaultPresentation]="useDefaultPresentation"
+    [userHasDefaultPresentation]="userHasDefaultPresentation">
+    <div class="label20" id="case-search-presentation">
+        <ipx-page-title>
+            <before-title>
+                <ipx-level-up-button [tooltip]="levelUpTooltip | translate" *ngIf="hasPreviousState" [toState]="stateParams.levelUpState" [additionalStateParams]="additionalStateParams">
+                </ipx-level-up-button>
+                <span> {{ 'caseSearch.presentation' | translate }} </span>
+                <span *ngIf="queryName">
+                    <span>{{ " – " + queryName }}</span></span>
+            </before-title>
+            <action-buttons>
+                <button style="margin-right: 3px;" tooltip="{{ 'caseSearch.editSearchCriteria' | translate }}" placement="bottom" class="btn btn-icon fas fa-calendar-check" id="editSearchCriteria"
+                    (click)="editSearchCriteria()" [disabled]="viewData.q">
+                    <span class="cpa-icon k-icon k-i-filter"></span>
+                </button>
+                <button *ngIf="!hasTaskPlannerContext()" style="margin-right: 3px;" tooltip="{{ 'dueDate.toggle' | translate }}" placement="bottom" class="btn btn-icon fas fa-calendar-check" id="dueDate"
+                    (click)="openDueDate()" [ngClass]="{'toggled': hasDueDateColumn || hasAllDateColumn}" [disabled]="viewData.q">
+                    <span class="cpa cpa-icon-calendar"></span>
+                </button>
+                <button *ngIf="!hasTaskPlannerContext()" class="btn btn-icon" style="margin-right: 3px;" id="toggleMultiStep" tooltip="{{'MultiStepWizard.toggle' | translate }}" placement="bottom" [disabled]="true">
+                    <span class="cpa-icon-list-ol ng-scope"></span>
+                </button>
+                <ipx-context-menu-button [menuItems]="menuItems" (onClick)="initializeMenuItems()"></ipx-context-menu-button>
+                <span class="btn-divider"></span>
+                <ipx-save-button id="presentationSaveSearch" (onclick)="saveSearch()" [disabled]="disableSaveSearch() || viewData.q">
+                    {{'Save' | translate}}</ipx-save-button>
+                <ipx-advanced-search-button (click)="executeSearch()"></ipx-advanced-search-button>
+            </action-buttons>
+        </ipx-page-title>
+    </div>
+</app-hosted-page-header>
+<div class="row col-md-12 col-sm-12">
+    <div style="margin-top: 10px" class="col-md-4 col-sm-4">
+        <ipx-checkbox name="useDefault" label="caseSearch.presentationColumns.useDefault" [(ngModel)]="useDefaultPresentation" (click)="onDefaultPresentationChanged()"></ipx-checkbox>
+    </div>
+    <div class="col-md-6 col-sm-8 copyPresentation">
+        <ipx-typeahead name="copyPresentationFrom" label="caseSearch.presentationColumns.copyPresentationFrom" config="copyPresentation" [(ngModel)]="copyPresentationQuery" [extend-query]="presentationExtendQuery"
+            [disabled]="useDefaultPresentation" (onChange)="onSavedQueriesChanged()"></ipx-typeahead>
+    </div>
+</div>
+<div class="row presentation-available-margin" ipx-resize-handler resize-handler-type="Panel">
+    <div class="col-md-3 col-sm-3 presentation-available">
+        <div class="clearfix">
+            <h3 class="col-md-8 col-sm-8">{{'caseSearch.presentationColumns.available' | translate}}</h3>
+            <div class="pull-right availableColumnsButton">
+                <button name="refreshColumns" *ngIf="canEditColumn" style="margin-right: 3px;" class="btn btn-icon" id="refreshColumns" tooltip="{{ 'caseSearch.presentationColumns.refresh' | translate }}"
+                    placement="bottom" (click)="refreshAvailableColumns()">
+                    <span class="cpa-icon-refresh"></span>
+                </button>
+                <button name="maintainColumns" *ngIf="canEditColumn" class="btn btn-icon" id="column" tooltip="{{ 'caseSearch.presentationColumns.maintainColumns' | translate }}" placement="bottom"
+                    (click)="goToMaintainColumns()">
+                    <span class="cpa-icon-wrench"></span>
+                </button>
+            </div>
+
+
+        </div>
+        <div class="clearfix" style="margin-bottom: 6px">
+            <ipx-text-field name="searchTerm" class="number col-sm-12" [(ngModel)]="searchTerm" (keyup)='onkeyup()' placeholder="{{'caseSearch.presentationColumns.searchColumn' | translate}}">
+            </ipx-text-field>
+        </div>
+        <div *ngIf="(availableColumns$ | async)?.length===0" style="margin-left: 7px;">
+            {{'caseSearch.presentationColumns.noResultFound' | translate}}
+        </div>
+        <div style="height: 70vh;overflow: auto" (drop)="onDrop($event, 'kendoTreeView')" (dragover)="onDragover($event,'kendoTreeView', selectedColumns)">
+            <kendo-treeview #kendtree style="margin-top: 50px" id="availableColumns" [kendoTreeViewSelectable]="{ mode: 'multiple' }" [selectBy]="'id'" [(selectedKeys)]="availableColumnsMultipleSelelction"
+                [nodes]="availableColumns$ | async" textField="displayName" kendoTreeViewExpandable kendoTreeViewFlatDataBinding idField="id" parentIdField="parentId" [isExpanded]="isExpanded"
+                (collapse)="handleCollapse($event)" (expand)="handleExpand($event)" (dragstart)="onDragStart($event,'kendoTreeView', selectedColumns)">
+                <ng-template kendoTreeViewNodeTemplate let-dataItem let-i='index'>
+                    <div [id]=i [kendotree-drag-item]="dataItem" class="col-md-12 col-sm-12">
+                        <span [tooltip]="dataItem.columnDescription" [innerHtml]="dataItem.displayName | typeaheadHighlight:searchTerm"></span>
+
+                        <ipx-icon-button *ngIf="dataItem.columnKey && canEditColumn" name="editRow" (click)="openModal(dataItem,searchColumnState.Updating)" class="btn-no-bg pull-right editMaintenace"
+                            buttonIcon="pencil-square-o" tooltip="{{'caseSearch.presentationColumns.editColumn' | translate }}" placement="top" [adaptivePosition]="false" container="body">
+                        </ipx-icon-button>
+                    </div>
+
+                </ng-template>
+            </kendo-treeview>
+        </div>
+    </div>
+    <div class="col-md-8 col-sm-8 presentation-selected">
+        <div class="row">
+            <h3 style="margin-left: 7px">
+                {{'caseSearch.presentationColumns.selected' | translate}}
+                <ipx-inline-dialog class="inline-dialog-margin" [adaptivePosition]="true" tooltipPlacement="right" [templateRef]="tooltipTemplate"></ipx-inline-dialog>
+            </h3>
+            <ng-template #tooltipTemplate>
+                <span><b>{{'caseSearch.presentationColumns.columnOrderTitle' | translate}}</b> - {{'caseSearch.presentationColumns.columnOrderContent' | translate}}</span>
+                <br /><br />
+                <span><b>{{'caseSearch.presentationColumns.sortOrderTitle' | translate}}</b> - {{'caseSearch.presentationColumns.sortOrderContent' | translate}}</span>
+                <br /><br />
+                <span><b>{{'caseSearch.presentationColumns.sortDirectionTitle' | translate}}</b> - {{'caseSearch.presentationColumns.sortDirectionContent' | translate}}</span>
+                <br /><br />
+                <span><b>{{'caseSearch.presentationColumns.hideTitle' | translate}}</b> - {{'caseSearch.presentationColumns.hideContent' | translate}}</span>
+                <br /><br />
+                <span *ngIf="!isTaskPlannerPresentation"><b>{{'caseSearch.presentationColumns.freezeTitle' | translate}}</b> - {{'caseSearch.presentationColumns.freezeContent' | translate}}
+                </span>
+                <br *ngIf="!isTaskPlannerPresentation" /><br *ngIf="!isTaskPlannerPresentation" />
+                <span><b>{{'caseSearch.presentationColumns.selectedColumns.groupBySortOrder' | translate}}</b> - {{'caseSearch.presentationColumns.groupBySortContent' | translate}}</span>
+                <br /><br />
+                <span><b>{{'caseSearch.presentationColumns.selectedColumns.groupBySortDirection' | translate}}</b> - {{'caseSearch.presentationColumns.groupBySortDirectionContent' | translate}}</span>
+            </ng-template>
+        </div>
+        <div class="row">
+            <ipx-inline-alert *ngIf="anyColumnsFreezed()" type="info" class="col-sm-12">
+                <span translate="caseSearch.presentationColumns.freezeGroupingLimitation"></span> <br />
+                <span style="margin-left:27px" translate="caseSearch.presentationColumns.freezedColumnLimit"></span>
+            </ipx-inline-alert>
+        </div>
+        <div style="height: 70vh;overflow: auto" (drop)="onDrop($event, 'kendoGrid')" (dragover)="onDragover($event, 'kendoGrid', selectedColumns)">
+            <ipx-kendo-grid [dataOptions]="gridOptions" (dataItemClicked)="dataItemClicked($event)" id="KendoGrid" (dragstart)="onDragStart($event,'kendoGrid', selectedColumns)">
+                <ng-template ipxTemplateColumnField="displayName" let-dataItem>
+                    <span [tooltip]="dataItem.columnDescription" [kendogrid-drag-item]="dataItem">{{ dataItem.displayName }}</span>
+                    <span style="margin-left: 7px;" *ngIf="dataItem.isMandatory" tooltip="{{ 'caseSearch.presentationColumns.mandatory' | translate }}" class="cpa cpa-icon-lock"></span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="sortOrder" let-dataItem>
+                    <ipx-dropdown class="pull-left" [options]="sortOrder" [(ngModel)]="dataItem.sortOrder" (change)="onOrderChange($event, dataItem, 'sortDirection', 'sortOrder')"></ipx-dropdown>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="sortDirection" let-dataItem>
+                    <div style="margin-left:20px">
+                        <span class="k-icon k-i-expand up" tooltip="{{dataItem.sortOrder === null || dataItem.sortOrder === ''  ? '' : 'caseSearch.presentationColumns.selectedColumns.tooltipAsc' | translate }}"
+                            [ngClass]="{'active': dataItem.sortDirection === 'A'}" (click)="onOrderClick(dataItem, 'A', 'sortDirection', 'sortOrder')"></span>
+                        <span class="k-icon k-i-expand down" tooltip="{{dataItem.sortOrder === null || dataItem.sortOrder === '' ? '' : 'caseSearch.presentationColumns.selectedColumns.tooltipDesc' | translate }}"
+                            [ngClass]="{'active': dataItem.sortDirection === 'D'}" (click)="onOrderClick(dataItem, 'D', 'sortDirection', 'sortOrder')"></span>
+                    </div>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="hidden" let-dataItem>
+                    <ipx-checkbox [(ngModel)]="dataItem.hidden" [disabled]="dataItem.sortOrder === null || dataItem.sortOrder === '' ? true : false" (click)="onHiddenClick(dataItem)"></ipx-checkbox>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="freezeColumn" let-dataItem>
+                    <ipx-checkbox [(ngModel)]="dataItem.freezeColumn" [disabled]="dataItem.isFreezeColumnDisabled" (click)="updateFreezeColumns(dataItem)"></ipx-checkbox>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="groupBySortOrder" let-dataItem>
+                    <ipx-dropdown class="pull-left" [options]="sortOrder" [(ngModel)]="dataItem.groupBySortOrder" [disabled]="dataItem.isGroupBySortOrderDisabled || anyColumnsFreezed()"
+                        (change)="onOrderChange($event, dataItem, 'groupBySortDirection', 'groupBySortOrder')"></ipx-dropdown>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="groupBySortDirection" let-dataItem>
+                    <div style="margin-left:20px">
+                        <span class="k-icon k-i-expand up"
+                            tooltip="{{dataItem.groupBySortOrder === null || dataItem.groupBySortOrder === ''  ? '' : 'caseSearch.presentationColumns.selectedColumns.tooltipAsc' | translate }}"
+                            [ngClass]="{'active': dataItem.groupBySortDirection === 'A'}" (click)="onOrderClick(dataItem, 'A', 'groupBySortDirection', 'groupBySortOrder')"></span>
+                        <span class="k-icon k-i-expand down"
+                            tooltip="{{dataItem.groupBySortOrder === null || dataItem.groupBySortOrder === '' ? '' : 'caseSearch.presentationColumns.selectedColumns.tooltipDesc' | translate }}"
+                            [ngClass]="{'active': dataItem.groupBySortDirection === 'D'}" (click)="onOrderClick(dataItem, 'D', 'groupBySortDirection', 'groupBySortOrder')"></span>
+                    </div>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>

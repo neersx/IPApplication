@@ -1,0 +1,38 @@
+<div>
+    <ipx-sticky-header>
+        <ipx-page-title [title]="'screenDesignerCases.pageTitle' | translate" [subtitle]="'screenDesignerCases.criteriaMaintenance.subTitle' | translate ">
+            <before-title>
+                <ipx-level-up-button [tooltip]="'Level up' | translate" *ngIf="hasPreviousState" [toState]="stateParams.levelUpState" [beforeLevelUp]="beforeLevelUp" [additionalStateParams]="{rowKey: stateParams.rowKey, retrieveSearch: true}"></ipx-level-up-button>
+            </before-title>
+        </ipx-page-title>
+        <div class="title-header screen-designer-details">
+            <div class="col-sm-12">
+                <a *ngIf="viewData.isInherited" class="btn btn-icon btn-no-bg protected-icon" (click)="navigateToInheritance()">
+                    <ipx-inheritance-icon></ipx-inheritance-icon>
+                </a>
+                <div *ngIf="viewData.isHighestParent" class="btn btn-icon btn-no-bg protected-icon" >
+                    <a class="btn-no-bg" (click)="navigateToInheritance()"
+                        button-icon="inheritance" [tooltip]="'HighestParent' | translate">
+                        <span class="cpa-icon cpa-icon-grey cpa-icon-inheritance" name="inheritance"></span>
+                    </a>
+                </div>
+                <ipx-icon *ngIf="viewData.isProtected" tooltip="{{'Protected' | translate}}" class="text-blue-secondary" name="protected" [large]="true"></ipx-icon>
+                <div class="readonly-label-group">
+                    <div class="readonly-label-value">
+                        <label>{{'screenDesignerCases.criteriaMaintenance.criteriaNumber' | translate}}:</label>&nbsp;
+                        <span>{{ screenCriteriaDetails.id }}</span>
+                    </div>
+                    <div class="readonly-label-value">
+                        <label>{{'screenDesignerCases.criteriaMaintenance.criteriaName' | translate}}:</label>&nbsp;
+                        <span>{{ screenCriteriaDetails.criteriaName }}</span>
+                    </div>
+                </div>
+
+                <ipx-detail-page-nav *ngIf="navData" [ids]="navData.keys" paramKey="rowKey" [routerState]="navigationState" [routerParams]="stateParams" [totalRows]="navData.totalRows" [fetchNext]="navData.fetchCallback" [pageSize]="navData.pageSize">
+                </ipx-detail-page-nav>
+            </div>
+        </div>
+    </ipx-sticky-header>
+    <ipx-topics [options]="topicOptions" *ngIf="topicOptions" (activeTopicChanged)="activeTopicChanged($event)">
+    </ipx-topics>
+</div>

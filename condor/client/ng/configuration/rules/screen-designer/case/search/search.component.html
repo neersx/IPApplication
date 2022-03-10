@@ -1,0 +1,74 @@
+<ipx-sticky-header>
+    <ipx-page-title [title]="'screenDesignerCases.pageTitle'" [subtitle]="'screenDesignerCases.search.subTitle' | translate ">
+    </ipx-page-title>
+    <div class="search-options search-options-header">
+        <div class="heading">
+            <h5 translate="searchOptions" class="ng-scope"></h5>
+            <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showSearchBar}" (click)="showSearchBar = !showSearchBar">
+                <div placement="left" tooltip="{{'collapseExpand' | translate}}">
+                    <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                </div>
+            </a>
+        </div>
+    </div>
+</ipx-sticky-header>
+<!-- TODO fix styles, add expand/collaps function -->
+<br>
+<br>
+<br>
+<br />
+<br />
+
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+    <div class="search-options" [@slideInOutVisible]="showSearchBar ? 'open' : 'closed'">
+        <form>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-wrap-group group-inline">
+                        <span style="width: 16.6667%" translate="screenDesignerCases.search.searchBy"></span>
+                        <ipx-radio-button value="characteristic" name="searchType" [(ngModel)]="matchType">
+                            {{'screenDesignerCases.search.characteristics' | translate}}
+                        </ipx-radio-button>
+                        <ipx-radio-button value="criteria" name="searchType" [(ngModel)]="matchType">
+                            {{'screenDesignerCases.search.criteria' | translate}}
+                        </ipx-radio-button>
+                        <ipx-radio-button value="case" name="searchType" [(ngModel)]="matchType">
+                            {{'screenDesignerCases.search.case' | translate}}
+                        </ipx-radio-button>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            <ipx-search-by-characteristic [viewData]="viewData" [hidden]="matchType !== 'characteristic'" (clear)="clear()" (search)="search($event)" [stateParams]="stateParams">
+            </ipx-search-by-characteristic>
+            <ipx-search-by-criteria [viewData]="viewData" [hidden]="matchType !== 'criteria'" (clear)="clear()" (search)="search($event)" [stateParams]="stateParams">
+            </ipx-search-by-criteria>
+            <ipx-search-by-case [viewData]="viewData" [hidden]="matchType !== 'case'" (clear)="clear()" (search)="search($event)" [stateParams]="stateParams">
+            </ipx-search-by-case>
+        </form>
+    </div>
+    <div class="table-container">
+        <div class="table-title">
+            <h2 translate="Screen Designer Criteria"></h2>
+        </div>
+        <ipx-kendo-grid #searchResultsGrid id="searchResults" name="searchResults" [dataOptions]="searchGridOptions" (rowAdded)="onRowAdded()" (dataItemClicked)="dataItemClicked($event)">
+
+        </ipx-kendo-grid>
+        <ng-template #criteriaDetailsTemplate let-dataItem let-c="ctx">
+            <a *ngIf="dataItem.id" class="result-cell-link" uiSref="screenDesignerCaseCriteria" [uiParams]="{id: dataItem.id, rowKey: dataItem.rowKey}">{{dataItem.id}}
+            </a>
+
+        </ng-template>
+        <ng-template #inheritedDetailsTemplate let-dataItem let-c="ctx">
+            <a *ngIf="dataItem.isInherited" class="btn btn-icon btn-no-bg protected-icon" uiSref="screenDesignerCaseInheritance" [uiParams]="{id: dataItem.id, rowKey: dataItem.rowKey}">
+                <ipx-inheritance-icon></ipx-inheritance-icon>
+            </a>
+            <div *ngIf="dataItem.isHighestParent" class="btn btn-icon btn-no-bg protected-icon">
+                <a class="btn-no-bg" uiSref="screenDesignerCaseInheritance" [uiParams]="{id: dataItem.id, rowKey: dataItem.rowKey}"
+                    button-icon="inheritance" [tooltip]="'HighestParent' | translate">
+                    <span class="cpa-icon cpa-icon-grey cpa-icon-inheritance" name="inheritance"></span>
+                </a>
+            </div>
+        </ng-template>
+    </div>
+</div>

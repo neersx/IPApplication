@@ -1,0 +1,24 @@
+<div ng-form="vm.form" ip-form translate-namespace="workflows.entrycontrol.displayConditions"
+    ng-class="{ 'input-inherited': vm.isInherited()}">
+    <div class="row">
+        <div class="col-sm-6" >
+            <ip-typeahead ng-disabled="!vm.canEdit" ng-change="vm.validate('displayEventNo')" name="displayEventNo" data-config="eventsFilteredByCriteria"
+                label=".displayEvent" ng-model="vm.formData.displayEvent" data-picklist-can-maintain="true" ng-class="{{::vm.fieldClasses('displayEvent')}}"
+                data-external-scope="vm.eventPicklistScope" data-extend-query="vm.eventPicklistScope.extendQuery">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6" >
+            <ip-typeahead ng-disabled="!vm.canEdit" ng-change="vm.validate('hideEventNo')" name="hideEventNo" data-config="eventsFilteredByCriteria"
+                label=".hideEvent" ng-model="vm.formData.hideEvent" data-picklist-can-maintain="true" ng-class="{{::vm.fieldClasses('hideEvent')}}"
+                data-external-scope="vm.eventPicklistScope" data-extend-query="vm.eventPicklistScope.extendQuery">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <ip-typeahead ng-disabled="!vm.canEdit" ng-change="vm.validate('dimEventNo')" name="dimEventNo" data-config="eventsFilteredByCriteria"
+                label=".dimEvent" ng-model="vm.formData.dimEvent" data-picklist-can-maintain="true" ng-class="{{::vm.fieldClasses('dimEvent')}}"
+                data-external-scope="vm.eventPicklistScope" data-extend-query="vm.eventPicklistScope.extendQuery">
+        </div>
+    </div>
+</div>

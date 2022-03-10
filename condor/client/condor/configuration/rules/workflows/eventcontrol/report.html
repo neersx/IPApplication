@@ -1,0 +1,12 @@
+<div class="row" ng-form="vm.form" ng-class="{edited: vm.form.$dirty}" translate-namespace=".report">
+    <div class="col-sm-6">
+        <div class="input-wrap-group group-inline" ng-class="{'input-inherited': vm.report===vm.parentData.report}">
+            <span translate=".label" class="report-to-cpa-span"></span>
+            <div class="input-wrap-group group-inline text-nowrap">
+                <ip-radio-button label=".turnOn" value="on" ng-model="vm.report" ng-disabled="::!vm.canEdit"></ip-radio-button>
+                <ip-radio-button label=".turnOff" value="off" ng-model="vm.report" ng-disabled="::!vm.canEdit"></ip-radio-button>
+                <ip-radio-button label=".noChange" value="noChange" ng-model="vm.report" ng-disabled="::!vm.canEdit"></ip-radio-button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="table-container row" style="margin-top: 12px">
+        <div class="table-title col-sm-11">
+            <h2>{{('priorart.maintenance.step4.panelTitle') | translate}}
+                <span class="badge topics" style="margin-left: 10px">{{countGrids()}}</span>
+            </h2>
+            <ipx-inline-dialog style="padding-left: 10px" [content]="(isSource ? 'priorart.maintenance.step4.infoSource' : 'priorart.maintenance.step4.infoPriorArt') | translate" [tooltipPlacement]="'auto'">
+            </ipx-inline-dialog>
+        </div>
+        <div class="table-title col-sm-1 text-right">
+            <ipx-icon-button type="button" [buttonIcon]="'refresh'" class="pull-right" name="refresh" (onclick)="refreshGrid()" tooltip="{{'priorart.refresh' | translate }}"></ipx-icon-button>
+            <ipx-add-button id="btnLinkFamilyListOrName" class="pull-right" (onclick)="linkCases()" style="margin-right:3px"></ipx-add-button>
+        </div>
+    </div>
+</div>
+
+<div id="family-caselist">
+    <div>
+        <ipx-kendo-grid #familyCaselistName id="familyCaselist" [dataOptions]="familyGridOptions" *ngIf="familyGridOptions">
+            <ng-template ipxTemplateColumnField="isFamily" let-dataItem>
+                <span *ngIf="dataItem.isFamily" translate="priorart.caseFamily"></span>
+                <span *ngIf="!dataItem.isFamily" translate="priorart.caseList"></span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="id" let-dataItem>
+                <ipx-icon-button name="deleteRow" class="btn-no-bg" buttonIcon="trash"
+                    tooltip="{{ dataItem.isFamily ? ('priorart.maintenance.step4.removeLink.tooltip.family' | translate) : ('priorart.maintenance.step4.removeLink.tooltip.caseList' | translate) }}" placement="top"
+                    [adaptivePosition]="false" container="body" (click)="deleteRecord(dataItem)"></ipx-icon-button>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="description" let-dataItem>
+                {{dataItem.description}} <span *ngIf="dataItem.code">({{dataItem.code}})</span>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>
+
+<div id="name">
+    <div>
+        <ipx-kendo-grid #name id="name" [dataOptions]="nameGridOptions" *ngIf="nameGridOptions">
+            <ng-template ipxTemplateColumnField="nameType" let-dataItem>
+                {{dataItem.nameType}} <span *ngIf="dataItem.nameTypeCode">{{'{'+dataItem.nameTypeCode+'}'}}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="id" let-dataItem>
+                <ipx-icon-button name="deleteRow" class="btn-no-bg" buttonIcon="trash" tooltip="{{ 'priorart.maintenance.step4.removeLink.tooltip.name' | translate }}" placement="top" [adaptivePosition]="false"
+                    container="body" (click)="deleteRecord(dataItem)"></ipx-icon-button>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>
+
+<ng-template #caseDetailsTemplate id="caseDetailsTemplate" let-dataItem>
+    <ipx-family-name-case-details [searchOptions]="dataItem" [priorArtId]="sourceData.sourceId"></ipx-family-name-case-details>
+</ng-template>

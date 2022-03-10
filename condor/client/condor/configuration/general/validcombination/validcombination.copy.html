@@ -1,0 +1,79 @@
+<style>
+    .checkbox-left-label {
+        margin-top: 2px;
+    }
+</style>
+<div ng-form="vm.jurisdictions">
+    <div class="row">
+        <ip-typeahead id="from-jurisdiction" name="fromJurisdiction" data-label="validcombinations.copyFromJurisdiction" data-config='jurisdiction' data-picklist-can-maintain="true" ng-model="vm.copyEntity.fromJurisdiction" ng-change="vm.fromJurisdictionDirty = true"
+            ng-class="{edited: vm.fromJurisdictionDirty}" ip-required>
+        </ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-typeahead id="to-jurisdiction" name="toJurisdictions" data-multiselect data-label="validcombinations.copyToJurisdiction" data-config='jurisdiction' data-picklist-can-maintain="true" ng-model="vm.copyEntity.toJurisdictions" ng-change="vm.toJurisdictionDirty = true"
+            ng-class="{edited: vm.toJurisdictionDirty}" ip-required>
+        </ip-typeahead>
+    </div>
+
+    <div class="row">
+        <div class="input-wrap required">
+            <label class="text-right col-sm-4 checkbox-left-label" translate="validcombinations.copy"></label>
+            <div class="col-sm-7 input-wrap-group">
+                <div class="input-wrap">
+                    <input type="checkbox" id="chkSelectAll" name="chkSelectAll" ng-model="vm.copyEntity.selectAll" ng-change="vm.selectAll()">
+                    <label for="chkSelectAll">
+                    <span translate="validcombinations.selectAll" ></span>
+                </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="checkbox" id="chkPropertyType" name="chkPropertyType" ng-model="vm.copyEntity.propertyType" ng-change="vm.selectAnyCharacteristic(vm.copyEntity.propertyType)">
+                    <label for="chkPropertyType">
+                    <span translate="validcombinations.propertyType" ></span>
+                </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="checkbox" id="chkCategory" name="chkCategory" ng-model="vm.copyEntity.category" ng-change="vm.selectAnyCharacteristic(vm.copyEntity.category)">
+                    <label for="chkCategory">
+                    <span translate="validcombinations.category" ></span>
+                </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="checkbox" id="chkSubType" name="chkSubType" ng-model="vm.copyEntity.subType" ng-change="vm.selectAnyCharacteristic(vm.copyEntity.subType)">
+                    <label for="chkSubType">
+                    <span translate="validcombinations.subType" ></span>
+                </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="checkbox" id="chkBasis" name="chkBasis" ng-model="vm.copyEntity.basis" ng-change="vm.selectAnyCharacteristic(vm.copyEntity.basis)">
+                    <label for="chkBasis">
+                    <span translate="validcombinations.basis" ></span>
+                </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="checkbox" id="chkAction" name="chkAction" ng-model="vm.copyEntity.action" ng-change="vm.selectAnyCharacteristic(vm.copyEntity.action)">
+                    <label for="chkAction">
+                    <span translate="validcombinations.action" ></span>
+                </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="checkbox" id="chkStatus" name="chkStatus" ng-model="vm.copyEntity.status" ng-change="vm.selectAnyCharacteristic(vm.copyEntity.status)">
+                    <label for="chkStatus">
+                    <span translate="validcombinations.status" ></span>
+                </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="checkbox" id="chkChecklist" name="chkChecklist" ng-model="vm.copyEntity.checklist" ng-change="vm.selectAnyCharacteristic(vm.copyEntity.checklist)">
+                    <label for="chkChecklist">
+                    <span translate="validcombinations.checklist" ></span>
+                </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="checkbox" id="chkRelationship" name="chkRelationship" ng-model="vm.copyEntity.relationship" ng-change="vm.selectAnyCharacteristic(vm.copyEntity.relationship)">
+                    <label for="chkRelationship">
+                    <span translate="validcombinations.relationship" ></span>
+                </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

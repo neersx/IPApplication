@@ -1,0 +1,6 @@
+<div class="input-wrap large translation" ng-class="{ 'error': item.hasError('translation') }">
+    <textarea data-ng-model="item.translation" data-ng-class="{ 'edited' : item.isDirty('translation'), 'saved': item.isSaved('translation') }" ></textarea>
+    <span ng-if="item.hasError('translation')" class="input-action tooltip-error" data-tooltip-placement="bottom" ip-tooltip="{{:: 'field.error.invalidentry' | translate }}">
+        <icon name="exclamation-triangle"></icon>
+    </span>
+</div>

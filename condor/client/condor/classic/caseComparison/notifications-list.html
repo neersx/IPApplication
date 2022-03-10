@@ -1,0 +1,58 @@
+<div id="notificationsList" class="col-sm-12 no-padding i-notificationList">
+    <div class="i-searching" ng-show="!isLoaded">
+        <i class="cpa-icon cpa-icon-circle-o-notch cpa-icon-spin" style="position:fixed;margin-top:-10px"></i>
+    </div>
+    <ul class="notifications list-group" style="margin-left: 0;" data-in-navigate-by-keyboard data-selected-selector=".notification-selected" data-key-modifier="alt" data-item-literal="{{ 'caseComparison.ipNotificationItemLiteral' | translate }}">
+        <li ng-repeat="n in notifications" class="list-group-item list-group-li" ng-click="selectAndShowView(n)" data-ng-enter="selectAndShowView(n)" ng-if="notifications.length > 0" data-scroll-into-view="n === currentSelection">
+            <div class="nf-row" ng-class="{'text-muted' : false, 'notification-selected': n===currentSelection, 'nf-info':n.type=='case-comparison'|| n.type=='new-case', 'nf-error':n.type=='error', 'nf-rejected':n.type=='rejected', 'nf-row-detail': true, 'nf-reviewed': n.isReviewed && n.type!=='rejected'}"
+                title="{{n.title}}" >
+                <div class="nf-row-main">
+                    <span class="badge warning badge-small">{{getSourceName(n.dataSource)}} </span>
+                    <span class="nf-row-message pull-right" ng-show="n.type=='rejected'">
+                        <em>{{ 'caseComparison.ccHeadingRejected' | translate }}</em>
+                    </span>
+                    <span class="pull-right" ng-show="n.isReviewed && n.type!=='rejected'">
+                        <em>{{ 'caseComparison.ccHeadingReviewed' | translate }}</em>
+                    </span>
+                    <div class="row">
+                        <div class="nf-row-title col-sm-12">{{n.title}}</div>
+                    </div>
+                    <div class="row" ng-show="n.appNum">
+                        <div class="col-sm-4">{{ 'caseComparison.ipLblApplicationNo' | translate }}:</div>
+                        <div class="col-sm-8">{{n.appNum}}</div>
+                    </div>
+                    <div class="row" ng-show="n.pubNum">
+                        <div class="col-sm-4">{{ 'caseComparison.ipLblPublicationNo' | translate }}:</div>
+                        <div class="col-sm-8">{{n.pubNum}}</div>
+                    </div>
+                    <div class="row" ng-show="n.regNum">
+                        <div class="col-sm-4">{{ 'caseComparison.ipLblRegistrationNo' | translate }}:</div>
+                        <div class="col-sm-8">{{n.regNum}}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">{{ 'caseComparison.ipLblCaseRef' | translate }}:</div>
+                        <div class="col-sm-8 nf-caseRef" style="white-space:normal">{{n.caseRef}}<em ng-hide="n.caseRef" style="white-space:normal">{{ 'caseComparison.ipNoMatchingCase' | translate }}</em></div>
+                    </div>
+                    <div class="nf-row-date text-muted">
+                        <span class="cpa-icon cpa-icon-clock-o"></span>
+                        <em><ip-date-time model="n.date"></ip-date-time></em>
+                    </div>
+                </div>
+
+            </div>
+        </li>
+        <li ng-show="isLoaded && notifications.length === 0">
+            <div class="nf-row" ng-class="text-danger">
+                <div class="nf-row-main">
+                    <hr style="margin-bottom:2px;margin-top:2px;">
+                    <div class="nf-row-title nf-no-data text-muted">{{'caseComparison.ipNoNotificationsFoundForCriteria' | translate}}</div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div style="text-align: center;margin-bottom:5px;" ng-show="loadMore">
+        <button class="btn btn-prominent" ng-click="loadMore()" id="btnLoadMore" ng-class="{'hidden': !hasMore}">
+                            {{ 'caseComparison.ipShowMoreNotifications' | translate }}
+      </button>
+    </div>
+</div>

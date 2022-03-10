@@ -1,0 +1,100 @@
+<div class="container-fluid">
+    <div [ngClass]="{'col-lg-2 col-md-3 col-sm-4': selectedPriorArtType!==PriorArtTypeEnum.NewSource && selectedPriorArtType !== PriorArtTypeEnum.Source}">
+        <h2 *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source" translate="priorart.maintenance.step1.sourceHeading"></h2>
+        <h2 *ngIf="selectedPriorArtType!==PriorArtTypeEnum.Source && selectedPriorArtType!==PriorArtTypeEnum.NewSource" translate="priorart.maintenance.step1.priorArtHeading"></h2>
+        <h2 *ngIf="selectedPriorArtType===PriorArtTypeEnum.NewSource" translate="priorart.maintenance.step1.newSourceHeading"></h2>
+    </div>
+    <div *ngIf="selectedPriorArtType!==PriorArtTypeEnum.NewSource && selectedPriorArtType !== PriorArtTypeEnum.Source" name="priorArtType" ngDefaultControl class="col-sm-5 btn-group" btnRadioGroup [(ngModel)]="selectedPriorArtType">
+        <h1>
+            <button id="ipo" class="btn" btnRadio="PriorArtTypeEnum.Ipo" [ngClass]="{'btn-success': selectedPriorArtType===PriorArtTypeEnum.Ipo}" (click)="toggleSourceType(PriorArtTypeEnum.Ipo)">{{ 'priorart.priorArtTypes.ipo' | translate }}</button>
+            <button id="patentLiterature" class="btn" btnRadio="PriorArtTypeEnum.Literature" [ngClass]="{'btn-success': selectedPriorArtType===PriorArtTypeEnum.Literature}" (click)="toggleSourceType(PriorArtTypeEnum.Literature)">{{ 'priorart.priorArtTypes.literature' | translate }}</button>
+        </h1>
+    </div>
+</div>
+<div class="row">
+    <form [formGroup]="formGroup">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo" name="officialNumber" formControlName="officialNumber" maxlength="36" label="priorart.maintenance.step1.officialNumber" apply-edited required></ipx-text-field>
+                    <ipx-typeahead *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo" name="country" formControlName="country" config="jurisdiction" label="priorart.maintenance.step1.jurisdiction" apply-edited></ipx-typeahead>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo" name="kindCode" formControlName="kindCode" maxlength="254" label="priorart.maintenance.step1.kindCode" apply-edited></ipx-text-field>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo" name="title" formControlName="title" label="priorart.maintenance.step1.title" multiLine="true" rows="6" apply-edited></ipx-text-field>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo || selectedPriorArtType===PriorArtTypeEnum.Literature" name="inventorName" formControlName="inventorName" maxlength="254"
+                    label="{{selectedPriorArtType===PriorArtTypeEnum.Ipo ? 'priorart.maintenance.step1.inventorName' : 'priorart.inventorNameLiterature'}}" apply-edited></ipx-text-field>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Literature" name="title" formControlName="title" label="priorart.titleLiterature" multiLine="true" rows="6" apply-edited required></ipx-text-field>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo" name="referenceParts" formControlName="referenceParts" maxlength="254" label="priorart.maintenance.step1.referenceParts" apply-edited></ipx-text-field>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Literature" name="referenceParts" formControlName="referenceParts" maxlength="254" label="priorart.maintenance.step1.referenceParts" apply-edited></ipx-text-field>
+                    <div class="row">
+                        <ipx-date-picker *ngIf="selectedPriorArtType===PriorArtTypeEnum.Literature" id="publishedDate" formControlName="publishedDate" name="publishedDate" label="priorart.maintenance.step1.publishedDate" class="col-sm-offset-2 col-sm-6" apply-edited>
+                        </ipx-date-picker>
+                    </div>
+                    <ipx-dropdown *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source || selectedPriorArtType===PriorArtTypeEnum.NewSource" name="sourceType" [options]="priorArtSourceTableCodes"
+                    label="priorart.maintenance.step1.sourceType" [displayField]="'name'" required formControlName="sourceType" apply-edited></ipx-dropdown>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Literature" name="publisher" formControlName="publisher" label="priorart.publisher" multiLine="true" apply-edited></ipx-text-field>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Literature" name="city" formControlName="city" maxlength="60" label="priorart.maintenance.step1.city" apply-edited></ipx-text-field>
+                    <ipx-typeahead *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source || selectedPriorArtType===PriorArtTypeEnum.NewSource" name="issuingJurisdiction"
+                    formControlName="issuingJurisdiction" config="jurisdiction" label="priorart.maintenance.step1.issuingJurisdiction" apply-edited></ipx-typeahead>
+                    <ipx-typeahead *ngIf="selectedPriorArtType===PriorArtTypeEnum.Literature" name="country" formControlName="country" config="jurisdiction" label="priorart.country" apply-edited></ipx-typeahead>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source || selectedPriorArtType===PriorArtTypeEnum.NewSource" name="publication"
+                    formControlName="publication" maxlength="254" label="priorart.maintenance.step1.publication" multiLine="true" apply-edited></ipx-text-field>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source || selectedPriorArtType===PriorArtTypeEnum.NewSource" name="classes"
+                    formControlName="classes" maxlength="254" label="priorart.maintenance.step1.classes" apply-edited></ipx-text-field>
+                    <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source || selectedPriorArtType===PriorArtTypeEnum.NewSource" name="subClasses"
+                    formControlName="subClasses" maxlength="254" label="priorart.maintenance.step1.subClasses" apply-edited></ipx-text-field>
+                    <div class="row">
+                        <ipx-date-picker *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo" id="priorityDate" formControlName="priorityDate" name="priorityDate" label="priorart.maintenance.step1.priorityDate" class="col-sm-offset-2 col-sm-6" apply-edited>
+                        </ipx-date-picker>
+                    </div>
+                    <div class="row">
+                        <ipx-date-picker *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo" id="applicationFiledDate" formControlName="applicationFiledDate" name="applicationFiledDate" label="priorart.maintenance.step1.applicationFiledDate" class="col-sm-offset-2 col-sm-6" apply-edited>
+                        </ipx-date-picker>
+                    </div>
+                    <div class="row">
+                        <ipx-date-picker *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo" id="publishedDate" formControlName="publishedDate" name="publishedDate" label="priorart.maintenance.step1.publishedDate" class="col-sm-offset-2 col-sm-6" apply-edited>
+                        </ipx-date-picker>
+                    </div>
+                    <div class="row">
+                        <ipx-date-picker *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo" id="grantedDate" formControlName="grantedDate" name="grantedDate" label="priorart.maintenance.step1.grantedDate" class="col-sm-offset-2 col-sm-6" apply-edited>
+                        </ipx-date-picker>
+                    </div>
+                    <div class="row">
+                        <ipx-date-picker *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo" id="ptoCitedDate" formControlName="ptoCitedDate" name="ptoCitedDate" label="priorart.maintenance.step1.ptoCitedDate" class="col-sm-offset-2 col-sm-6" apply-edited>
+                        </ipx-date-picker>
+                    </div>
+                    <div class="row">
+                        <ipx-date-picker *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source || selectedPriorArtType===PriorArtTypeEnum.NewSource" id="reportIssued"
+                        formControlName="reportIssued" name="reportIssued" label="priorart.maintenance.step1.reportIssued" class="col-sm-offset-2 col-sm-6" apply-edited>
+                        </ipx-date-picker>
+                    </div>
+                    <div class="row">
+                        <ipx-date-picker *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source || selectedPriorArtType===PriorArtTypeEnum.NewSource" id="reportReceived"
+                        formControlName="reportReceived" name="reportReceived" label="priorart.maintenance.step1.reportReceived" class="col-sm-offset-2 col-sm-6" apply-edited>
+                        </ipx-date-picker>
+                    </div>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo || selectedPriorArtType===PriorArtTypeEnum.Literature" name="abstract" formControlName="abstract" label="priorart.maintenance.step1.abstract"
+                        multiLine="true" rows="6" apply-edited></ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo || selectedPriorArtType===PriorArtTypeEnum.Literature" name="citation" formControlName="citation" label="priorart.maintenance.step1.citation" multiLine="true" rows="6" apply-edited></ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-dropdown *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo || selectedPriorArtType===PriorArtTypeEnum.Literature" name="translationType" [options]="translationsList"
+                    label="priorart.translation" [displayField]="'value'" [keyField]="'key'" formControlName="translationType" apply-edited></ipx-dropdown>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field name="description" formControlName="description" label="priorart.maintenance.step1.description" multiLine="true" rows="6" apply-edited></ipx-text-field>
+                        <button *ngIf="selectedPriorArtType===PriorArtTypeEnum.Literature" class="btn pull-right right-aligned-button" name="generateDescription" translate="button.generate" [tooltip]="'priorart.maintenance.generateDescription' | translate" tooltipPlacement="left" (click)="generateDescription()"></button>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field name="comments" maxlength="254" formControlName="comments" label="priorart.maintenance.step1.comments" multiLine="true" rows="6" apply-edited></ipx-text-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

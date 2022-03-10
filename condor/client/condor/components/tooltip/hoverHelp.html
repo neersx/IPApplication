@@ -1,0 +1,4 @@
+<span ng-if="content || title" ng-transclude class="inline-dialog" ng-class="{'ip-hover-help' : content}" uib-popover-template="::template"
+      popover-title="{{title}}" uib-popover="{{content}}" popover-placement="{{::placement}}">
+</span>
+<span ng-if="!content && !title" ng-transclude></span>

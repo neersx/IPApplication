@@ -1,0 +1,97 @@
+<form #frm="ngForm">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <ipx-text-field apply-edited name="displayMessage" label="sanityCheck.configurations.search.displayMessage" [(ngModel)]="formData.displayMessage" required multiline [rows]="3" (onChange)="displayMessageChanged($event)">
+                </ipx-text-field>
+            </div>
+            <div class="row">
+                <ipx-text-field apply-edited name="ruleDescription" label="sanityCheck.configurations.search.ruleDescription" [(ngModel)]="formData.ruleDescription" required [maxlength]="508" (onChange)="ruleDescriptionChanged($event)">
+                </ipx-text-field>
+            </div>
+            <div class="row">
+                <ipx-radio-button-group>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline">
+                            <span>
+                                <ipx-inline-dialog [templateRef]="severityTooltip" [tooltipPlacement]="'left'" [adaptivePosition]="true" style="margin-right:3px">
+                                </ipx-inline-dialog>
+                                <span translate="sanityCheck.configurations.severity">
+                                </span>
+                            </span>
+                            <ipx-radio-button value="info" apply-edited [(ngModel)]="formData.informationOnlyFlag" name="infoOnly" (changeRadio)="severityChanged()">
+                                <span translate="sanityCheck.configurations.informationOnly"></span>
+                            </ipx-radio-button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline">
+                            <span></span>
+                            <ipx-radio-button value="error" apply-edited [(ngModel)]="formData.informationOnlyFlag" name="errorOnly" (changeRadio)="severityChanged()">
+                                <span translate="sanityCheck.configurations.error"></span>
+                            </ipx-radio-button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group">
+                            <span></span>
+                            <div style="padding-left: 0px;" class="col-sm-12">
+                                <ipx-radio-button class="col-sm-4" value="errorWithBypass" apply-edited [(ngModel)]="formData.informationOnlyFlag" name="errorWithBypass" style="padding-left: 0px;" (changeRadio)="severityChanged()">
+                                    <span translate="sanityCheck.configurations.errorWithBypass">
+                                    </span>
+                                </ipx-radio-button>
+                                <ipx-typeahead class="col-sm-8 typeahead-small-label" apply-edited [disabled]="formData.informationOnlyFlag !=='errorWithBypass'" [required]="formData.informationOnlyFlag ==='errorWithBypass'" name="MayBypassError" config="roles" [(ngModel)]="formData.mayBypassError"
+                                    label="sanityCheck.configurations.role">
+                                </ipx-typeahead>
+                            </div>
+                        </div>
+                    </div>
+                </ipx-radio-button-group>
+            </div>
+            <div class="row">
+                <div class="input-wrap-group group-inline">
+                    <span>
+                        <ipx-inline-dialog [content]="'sanityCheck.configurations.deferredInfo'| translate" [tooltipPlacement]="'left'" style="margin-right:3px">
+                        </ipx-inline-dialog>
+                        <span translate="sanityCheck.configurations.search.deferred"></span>
+                    </span>
+                    <ipx-checkbox apply-edited name="deferred" [(ngModel)]="formData.deferred" (onChange)="isDeferredCheked.next(formData.deferred)"></ipx-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited name="SanityCheckSql" [label]="'sanityCheck.configurations.search.sanityCheckSql'" config="dataItem" [(ngModel)]="formData.sanityCheckSql" [required]="(isDeferredCheked | async) ===(true)">
+                </ipx-typeahead>
+            </div>
+            <div class="row">
+                <ipx-text-field apply-edited name="Notes" label="sanityCheck.configurations.search.notes" [(ngModel)]="formData.notes" multiline [rows]="4">
+                </ipx-text-field>
+            </div>
+            <div class="row">
+                <div class="input-wrap-group group-inline">
+                    <span translate="sanityCheck.configurations.search.inUse"></span>
+                    <ipx-radio-button-group name="isUse">
+                        <ipx-radio-button [value]="true" apply-edited [(ngModel)]="formData.inUse" name="inUseTrue">
+                            <span translate="Yes"></span>
+                        </ipx-radio-button>
+                        <ipx-radio-button [value]="false" apply-edited [(ngModel)]="formData.inUse" name="inUseFalse">
+                            <span translate="No"></span>
+                        </ipx-radio-button>
+                    </ipx-radio-button-group>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<ng-template #severityTooltip>
+    <div>
+        <p><b translate="sanityCheck.configurations.informationOnly"></b>&nbsp;
+            <span translate="sanityCheck.configurations.severityInfo"></span>
+        </p>
+        <p><b translate="sanityCheck.configurations.error"></b>&nbsp;
+            <span translate="sanityCheck.configurations.severityError"></span>
+        </p>
+        <p><b translate="sanityCheck.configurations.errorWithByPassTitle"></b>&nbsp;
+            <span translate="sanityCheck.configurations.severityErrorWithBypassInfo"></span>
+        </p>
+    </div>
+</ng-template>

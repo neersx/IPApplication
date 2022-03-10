@@ -1,0 +1,41 @@
+<div data-ng-if="vm.currentView === 'maintenance'">
+    <div ng-form="vm.maintenance" ip-form>
+        <div class="modal-header" ip-confirm-before-page-change="vm.maintenance.$dirty" data-confirm-message="{{:: 'ConfirmLeaveUnsavedChanges' | translate}}">
+            <h2 class="modal-title">
+                <span translate="{{::vm.getMaintenanceTitle()}}" translate-value-name="{{::vm.fieldLabel | translate }}"> </span>
+            </h2>
+            <div class="modal-header-controls">
+                <ip-checkbox ng-if="vm.maintenanceState === 'adding' && vm.canAddAnother" label="{{ 'modal.addAnother' | translate}}" ng-model="vm.isAddAnother"></ip-checkbox>
+                <ip-save-button type="button" data-ng-disabled="!vm.isSaveEnabled()" data-ng-click="vm.save()" data-ng-show="vm.isSaveVisible()"></ip-save-button>
+                <ip-close-button type="button" data-ng-click="vm.abandon()"></ip-close-button>
+            </div>
+        </div>
+
+        <div ng-if="vm.navigation" class="modal-subheader">
+            &nbsp;
+            <div class="modal-nav">
+                <div class="pull-right">
+                    <button disabled ng-disabled="vm.navigation.isFirstDisabled" ng-click="vm.navigation.first()" ip-tooltip="{{:: 'skipToFirst' | translate }}" class="btn btn-icon btn-no-bg">
+                        <span class="cpa-icon cpa-icon-angle-double-left"></span>
+                    </button>
+                    <button disabled ng-disabled="vm.navigation.isPrevDisabled" ng-click="vm.navigation.prev()" ip-tooltip="{{:: 'Previous' | translate }}" class="btn btn-icon btn-no-bg">
+                        <span class="cpa-icon cpa-icon-chevron-circle-left"></span>
+                    </button>
+                    <span>{{vm.navigation.currentIndex + 1}}</span>
+                    <span translate="of"></span>
+                    <span>{{vm.navigation.totalCount}}</span>
+                    <button disabled ng-disabled="vm.navigation.isNextDisabled" ng-click="vm.navigation.next()" ip-tooltip="{{:: 'Next' | translate }}" class="btn btn-icon btn-no-bg">
+                        <span class="cpa-icon cpa-icon-chevron-circle-right"></span>
+                    </button>
+                    <button disabled ng-disabled="vm.navigation.isLastDisabled" ng-click="vm.navigation.last()" ip-tooltip="{{:: 'skipToLast' | translate }}" class="btn btn-icon btn-no-bg">
+                        <span class="cpa-icon cpa-icon-angle-double-right"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <ip-dynamic-content src="vm.maintenanceTemplate"></ip-dynamic-content>
+        </div>
+    </div>
+</div>

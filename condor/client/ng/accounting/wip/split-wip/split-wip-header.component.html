@@ -1,0 +1,101 @@
+<article class="detail-view data" *ngIf="splitWipData" style="border: 2px solid #ecebeb; padding-left: 44px; border-radius: 5px; margin-top: 3px;">
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-sm-6">
+                <div class="field-label col-sm-3">
+                    <label [translate]="'wip.splitWip.date'"></label>
+                </div>
+                <div class="col-sm-9" ng-transclude>
+                    <span class="text">{{ splitWipData.transDate | localeDate }}</span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-3 field-label" style="margin-left: 24px;">
+                    <label [translate]="'wip.splitWip.currency'"></label>
+                </div>
+                <div class="col-sm-8">
+                    <span *ngIf="isForeignCurrency" class="text">{{ splitWipData.foreignCurrency }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="col-sm-3 field-label">
+                    <label [translate]="'wip.splitWip.entity'"></label>
+                </div>
+                <div class="col-sm-9">
+                    <span class="text">{{ splitWipData.entity }}</span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-3 field-label" style="margin-left: 24px;">
+                    <label>{{getWipCategoryLabel(splitWipData.wipCategoryCode)}}</label>
+                </div>
+                <div class="col-sm-8">
+                    <span class="text">{{ splitWipData.wipDescription }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="col-sm-3 field-label">
+                    <label [translate]="'wip.splitWip.name'"></label>
+                </div>
+                <div class="col-sm-9">
+                    <span *ngIf="splitWipData.responsibleName" class="text">{{ splitWipData.responsibleName }} ({{splitWipData.responsibleNameCode}})</span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-3 field-label" style="margin-left: 24px;">
+                    <label [translate]="splitWipData.isCreditWip ?  'wip.splitWip.amountCredit' : 'wip.splitWip.amount'"></label>
+                </div>
+                <div class="col-sm-8">
+                    <span *ngIf="!isForeignCurrency" [style.color]="splitWipData.isCreditWip ? 'red':''" class="text"> {{splitWipData.localCurrency}}{{ splitWipData.balance | number : '1.2-2' }}</span>
+                    <span *ngIf="isForeignCurrency" [style.color]="splitWipData.isCreditWip ? 'red':''" class="text">{{splitWipData.foreignCurrency}}{{ splitWipData.foreignBalance | number : '1.2-2'}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="col-sm-3 field-label">
+                    <label [translate]="'wip.splitWip.case'"></label>
+                </div>
+                <div class="col-sm-9">
+                    <span class="text">{{ splitWipData.caseReference }}</span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-3 field-label" style="margin-left: 24px;">
+                    <label [translate]="'wip.splitWip.unallocated'"></label>
+                </div>
+                <div class="col-sm-8">
+                    <span *ngIf="!isForeignCurrency" class="text">
+                        {{ unallocatedAmount$ | async | localCurrencyFormat:splitWipData.localCurrency | async }}</span>
+                    <span *ngIf="isForeignCurrency" class="text">
+                        {{ unallocatedAmount$ | async | localCurrencyFormat:splitWipData.foreignCurrency | async }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="col-sm-3 field-label">
+                    <label [translate]="'wip.splitWip.staff'"></label>
+                </div>
+                <div class="col-sm-9">
+                    <span *ngIf="splitWipData.staffName" class="text">{{ splitWipData.staffName }} {{splitWipData.staffCode? '('+splitWipData.staffCode+')':''}}</span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="col-sm-3" style="margin-left: 24px; margin-top: 6px; text-align: right;">
+                    <label style="color: #8c8c8cfa;">{{'wip.splitWip.reason' | translate }}<span style="color: #CC3300;" class="required">* </span></label>
+                </div>
+                <div class="col-sm-6" style="margin-left: -8px;">
+                    <form #reasonForm="ngForm">
+                        <ipx-dropdown [(ngModel)]="reason" required id="reason" name="reason" apply-edited [options]="reasonCollection" [keyField]="'reasonKey'" [displayField]="'reasonDescription'">
+                        </ipx-dropdown>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

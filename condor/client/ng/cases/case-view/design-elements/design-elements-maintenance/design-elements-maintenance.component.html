@@ -1,0 +1,50 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{this.isAdding ? 'caseSearch.topics.designElement.maintenanceTitle' : 'caseSearch.topics.designElement.editMaintenanceTitle' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-checkbox *ngIf="this.isAdding" name="addAnother" label="modal.addAnother" [(ngModel)]="isAddAnotherChecked" (click)="onCheckChanged($event)">
+        </ipx-checkbox>
+        <ipx-apply-button type="button" [disabled]="!formGroup.dirty || formGroup.status === 'INVALID'"  (click)="apply()"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-11">
+            <form [formGroup]="formGroup">
+                <div class="row">
+                    <ipx-text-field name="firmElementCaseRef" #firmElem formControlName="firmElementCaseRef" apply-edited ipx-autofocus required label="{{ 'caseSearch.topics.designElement.firmElementCaseRef' | translate }}" autocomplete="off">
+                    </ipx-text-field>
+                    <ipx-text-field name="clientElementCaseRef" formControlName="clientElementCaseRef" apply-edited label="{{ 'caseSearch.topics.designElement.clientElementCaseRef' | translate }}" autocomplete="off">
+                    </ipx-text-field>
+                    <ipx-text-field name="elementOfficialNo" formControlName="elementOfficialNo" apply-edited label="{{ 'caseSearch.topics.designElement.officialNo' | translate }}" autocomplete="off">
+                    </ipx-text-field>
+                    <div class="row margin-left">
+                        <div class="col-md-8" style="margin-left: 13px;">
+                            <ipx-text-field name="registrationNo" formControlName="registrationNo" apply-edited label="{{ 'caseSearch.topics.designElement.registrationNo' | translate }}" autocomplete="off">
+                            </ipx-text-field>
+                        </div>
+                    </div>
+                    <div class="row margin-left">
+                        <div class="col-md-8" style="margin-left: 13px;">
+                            <ipx-text-field name="noOfViews" formControlName="noOfViews" [ipx-data-type]="dataType.nonnegativeinteger" apply-edited label="{{ 'caseSearch.topics.designElement.noOfviews' | translate }}" autocomplete="off">
+                            </ipx-text-field>
+                        </div>
+                    </div>
+                    <ipx-text-field name="elementDescription" formControlName="elementDescription" apply-edited multiline label="{{ 'caseSearch.topics.designElement.eldescription' | translate }}" autocomplete="off">
+                    </ipx-text-field>
+                    <ipx-typeahead name="images" [formControl]="images" #imageEl [show-tags-errors]="true"  label="Image" multiselect multipick config="images"> </ipx-typeahead>
+                    <div class="row" style="margin-left: 231px">
+                            <ipx-checkbox name="renew" id="renew" formControlName="renew" label="{{ 'caseSearch.topics.designElement.renew' | translate}}" (onChange)="onRenewChanged($event)" apply-edited></ipx-checkbox>
+                    </div>
+                    <div class="row col-md-7 margin-left" style="margin-left: 95px">
+                            <ipx-date-picker name="stopRenewDate" id="stopRenewDate" formControlName="stopRenewDate"  [disabled]="isDateDisabled || formGroup.value.renew" label="caseSearch.topics.designElement.stopRenewDate">
+                            </ipx-date-picker>
+                    </div>
+                    <input style="display: none;" formControlName="sequence" />
+                    <input style="display: none;" formControlName="rowKey" />
+                    <input style="display: none;" formControlName="status" />
+                </div>
+            </form>
+         </div>
+    </div>
+</div>

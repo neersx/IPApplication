@@ -1,0 +1,41 @@
+<style>
+    .modal-text-small {
+        margin-left: 70px;
+        width: 50% !important;
+    }
+</style>
+<div data-ng-controller="classItemsController as ctrl" translate-namespace="picklist.classitem">
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="class" ng-disabled="true" label=".Class" ng-model="vm.entry.class" data-ng-maxlength="5"></ip-text-field>
+        </div>
+    </div>
+    <div ng-if="ctrl.subClassSelectable()" class="row">
+        <div class="col-sm-8">
+            <ip-dropdown name="subclass" ng-disabled="vm.maintenanceState == 'viewing'" label=".SubClass" ng-model="vm.entry.subClass" options="subClass for subClass in ctrl.availableSubClasses" ng-class="{edited: vm.maintenance.subclass.$dirty}" ng-change="ctrl.onSubClassChange();">
+            </ip-dropdown>
+        </div>
+    </div>
+    <div ng-if="!ctrl.subClassSelectable()" class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="subclass" label=".SubClass" ng-disabled="true" ng-model="vm.entry.subClass"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="itemno" label=".ItemNumber" ng-model="vm.entry.itemNo" data-ng-maxlength="20" ng-disabled="ctrl.isItemNoDisabled();" ip-field-error="{{vm.entry.$error('itemNo').message | translate}}" ng-class="{edited: vm.maintenance.itemno.$dirty}"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field multiline rows="3" name="itemdescription" ip-required label=".ItemDescription" ng-disabled="vm.maintenanceState == 'viewing'" ng-model="vm.entry.itemDescription" ip-field-error="{{vm.entry.$error('itemDescription').message | translate}}"
+                ng-class="{edited: vm.maintenance.itemdescription.$dirty}"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <ip-typeahead name="language" class="col-sm-8" ng-disabled="ctrl.languageDisabled()" data-config="language" ng-model="vm.entry.language" ng-change="ctrl.onLanguageChange();" ng-class="{edited: vm.maintenance.language.$dirty}"></ip-typeahead>
+            <ip-inline-dialog data-content="{{::'picklist.classitem.tooltipDefaultItemInfo' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+    </div>
+</div>

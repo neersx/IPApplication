@@ -1,0 +1,68 @@
+<style>
+    .margin-top-2px {
+        margin-top: 2px;
+    }
+</style>
+
+<div translate-namespace="ptosettings.epo">
+    <ip-sticky-header>
+        <div class="container-fluid">
+            <div class="row">
+                <ip-page-title-save page-title="ptosettings.epo.header" on-save="vm.save()" on-discard="vm.discard()" is-save-enabled="vm.form.$dirty"
+                    is-discard-enabled="vm.form.$dirty"></ip-page-title-save>
+            </div>
+            <div class="row title-header">
+                <a class="btn btn-default clear pull-right margin-top-2px" href="integration/ptoaccess/#/schedules">
+                    <span translate=".view-schedules"></span>
+                </a>
+            </div>
+        </div>
+    </ip-sticky-header>
+    <div ip-resize-handler resize-handler-type="Panel">
+        <div class="col-sm-10 col-sm-offset-2" ng-form="vm.form" ip-form>
+            <div class="row">
+                <h2 translate=".consumer-key-section"></h2>
+                <span translate=".consumer-key-section-subheader"></span>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-8 col-xs-12">
+                    <ip-text-field name="consumerKey" label=".consumer-key" ip-required ip-autofocus ng-model="vm.formData.consumerKey" ng-class="{edited: vm.form.consumerKey.$dirty}"
+                        ng-maxlength="500" ng-change="vm.status.verified=false" mask="true"></ip-text-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-xs-12">
+                    <ip-text-field name="privateKey" label=".consumer-private-key" ip-required ng-model="vm.formData.privateKey" ng-class="{edited: vm.form.privateKey.$dirty}"
+                        ng-change="vm.status.verified=false" ng-maxlength="500" mask="true">
+                    </ip-text-field>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <h2 translate=".test-section"></h2>
+                <span translate=".test-section-subheader"></span>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-8 col-xs-12">
+                    <div class="col-xs-4 col-sm-4">
+                        <div class="pull-right">
+                            <button class="btn btn-prominent clear" ng-click="vm.verify()" translate=".verify-button" ng-class="{'disabled': !vm.form.$valid}"></button>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 margin-top-2px">
+                        <span ng-if="(!vm.status.inprogress && vm.status.verified && vm.form.$valid)" ng-class="{'alert-success': vm.status.isValid, 'alert-danger': !vm.status.isValid}">
+                        &nbsp;&nbsp;
+                            <span class="cpa-icon cpa-icon-lg" ng-class="{'cpa-icon-check-circle': vm.status.isValid, 'cpa-icon-exclamation-triangle': !vm.status.isValid}"></span>
+                            <span ng-if="vm.status.isValid" translate=".test-valid"></span>
+                            <span ng-if="!vm.status.isValid" translate=".test-invalid"></span>
+                        </span>
+                        &nbsp;&nbsp;
+                        <span ng-if="vm.status.inprogress === true;" translate=".test-inprogress"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

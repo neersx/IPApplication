@@ -1,0 +1,96 @@
+<div class="table-container" id="billingDebtors">
+    <div class="row" style="margin: 0px;">
+        <ipx-kendo-grid #debtorGrid id="debtorGrid" [dataOptions]="gridOptions" *ngIf="gridOptions" (addRowEvent)="onRowAddedOrEdited($event)" (editRowEvent)="onRowAddedOrEdited($event)">
+            <ng-template ipxTemplateColumnField="DebtorRestriction" let-dataItem>
+                <ipx-debtor-status-icon *ngIf="dataItem.DebtorRestriction && dataItem.DebtorRestriction.DebtorStatus !== null" style="text-align: center;" [flagDescription]="dataItem.DebtorRestriction.DebtorStatus"
+                    [debtorAction]="dataItem.DebtorRestriction.DebtorStatusAction"></ipx-debtor-status-icon>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="Discounts" let-dataItem>
+                <span class="cpa-icon cpa-icon-lg cpa-icon-info-circle" *ngIf="dataItem.Discounts && dataItem.Discounts.length > 0" style="cursor: pointer; color: #000080;" name="info-circle"
+                    (click)="openDebtorDiscounts(dataItem)" tooltip="{{'accounting.billing.step1.debtors.discounts.label' | translate }}">
+                </span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="TotalCredits" let-dataItem>
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.TotalCredits | localCurrencyFormat:currency | async }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="TotalWip" let-dataItem>
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.TotalWip | localCurrencyFormat:currency | async }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="DebtorCheckbox" let-dataItem>
+                <ipx-checkbox *ngIf="debtors && debtors.DebtorList.length > 1" [disabled]="isFinalised" name="debtorCheckBox" (click)="onCheckChanged$(dataItem)" [(ngModel)]="dataItem.DebtorCheckbox">
+                </ipx-checkbox>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="DebtorCheckbox" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <ipx-checkbox *ngIf="dataItem && debtors && debtors.DebtorList.length > 1" [disabled]="isFinalised" name="debtorCheckBox" (click)="onCheckChanged$(dataItem)" [(ngModel)]="dataItem.DebtorCheckbox">
+                </ipx-checkbox>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="FormattedNameWithCode" let-dataItem>
+                <div *ngIf="dataItem && dataItem.FormattedNameWithCode && dataItem.NameId" style="width: 329px !important;">
+                    <ipx-hosted-url *ngIf="dataItem && dataItem.FormattedNameWithCode && dataItem.NameId" [action]="'NameDetails'" [key]="dataItem.NameId" [description]="dataItem.FormattedNameWithCode"
+                        [showLink]="dataItem.NameId" [linkArgs]="['NameId', 'FormattedName']" [dataField]="{ link: dataItem }" [linkType]="'NameDetails'">
+                        <ipx-ie-only-url *ngIf="showWebLink" class="result-cell-link" style="cursor: pointer;" [url]="encodeLinkData(dataItem.NameId)" [text]="dataItem.FormattedNameWithCode">
+                        </ipx-ie-only-url>
+                        <span *ngIf="!showWebLink">{{ dataItem.FormattedNameWithCode }}</span>
+                        <span style="font-size: smaller;" *ngIf="siteControls.WIPSplitMultiDebtor">Debtor ({{ dataItem.BillPercentage | number : '1.2-2' }} %)</span>
+                    </ipx-hosted-url>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="Discounts" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <span class="cpa-icon cpa-icon-lg cpa-icon-info-circle" *ngIf="dataItem.Discounts && dataItem.Discounts.length > 0" style="cursor: pointer; color: #000080;" name="info-circle"
+                    (click)="openDebtorDiscounts(dataItem)" tooltip="{{'accounting.billing.step1.debtors.discounts.label' | translate }}">
+                </span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="FormattedNameWithCode" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <ipx-hosted-url *ngIf="dataItem && dataItem.FormattedNameWithCode" [action]="'NameDetails'" [key]="dataItem.FormattedNameWithCode.key" [description]="dataItem.FormattedNameWithCode.displayName"
+                    [showLink]="dataItem.FormattedNameWithCode.key" [linkArgs]="['key', 'FormattedName']" [dataField]="{ link: dataItem }" [linkType]="'NameDetails'">
+                    <ipx-ie-only-url *ngIf="showWebLink" class="result-cell-link" style="cursor: pointer;" [url]="encodeLinkData(dataItem.FormattedNameWithCode.key)" [text]="dataItem.FormattedNameWithCode.displayName">
+                    </ipx-ie-only-url>
+                    <span *ngIf="!showWebLink">{{ dataItem.FormattedNameWithCode }}</span>
+                    <span style="font-size: smaller;" *ngIf="siteControls.WIPSplitMultiDebtor">Debtor ({{ dataItem.BillPercentage | number : '1.2-2' }} %)</span>
+                </ipx-hosted-url>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="DebtorRestriction" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <ipx-debtor-status-icon *ngIf="dataItem && dataItem.DebtorRestriction" style="text-align: center;" [flagDescription]="dataItem.DebtorRestriction.DebtorStatus"
+                    [debtorAction]="dataItem.DebtorRestriction.DebtorStatusAction"></ipx-debtor-status-icon>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="AttentionName" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div *ngIf="dataItem && dataItem.AttentionName">
+                    <span class="text-nowrap">{{ dataItem.AttentionName }}</span>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="Address" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div *ngIf="dataItem && dataItem.Address" style="width: 232px !important;">
+                    <span class="text-nowrap">{{ dataItem.Address }}</span>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="ReferenceNo" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div *ngIf="dataItem && dataItem.ReferenceNo">
+                    <span class="text-nowrap">{{ dataItem.ReferenceNo }}</span>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="Reason" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div *ngIf="dataItem && dataItem.Reason">
+                    <span class="text-nowrap">{{ dataItem.Reason }}</span>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="TotalCredits" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div class="text-right" style="margin-right: 8px;" *ngIf="dataItem">
+                    <span class="text-nowrap">{{ dataItem.TotalCredits | localCurrencyFormat:currency | async }}</span>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="TotalWip" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                <div class="text-right" style="margin-right: 8px;" *ngIf="dataItem">
+                    <span class="text-nowrap">{{ dataItem.TotalWip | localCurrencyFormat:currency | async }}</span>
+                </div>
+            </ng-template>
+        </ipx-kendo-grid>
+        <ng-template #detailTemplate let-dataItem>
+            <div class="section">
+                <ipx-debtor-warnings *ngIf="hasWarnings(dataItem)" [debtorWarnings]="dataItem.Warnings" [hasDiscounts]="dataItem.Discounts.length > 0" [showMultiCase]="this.showMultiCaseWarning(dataItem)">
+                </ipx-debtor-warnings>
+                <ipx-debtor-instructions *ngIf="hasInstructions(dataItem)" [instructions]="dataItem.Instructions"></ipx-debtor-instructions>
+                <ipx-debtor-copies-to [copiesTo]="dataItem.CopiesTos" [debtorNameId]="dataItem.NameId" [isFinalised]="isFinalised"></ipx-debtor-copies-to>
+            </div>
+        </ng-template>
+    </div>
+</div>

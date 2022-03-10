@@ -1,0 +1,72 @@
+<style>
+    .k-master-row td {
+        word-break: break-word;
+    }
+</style>
+<ip-sticky-header>
+    <ip-page-title-save page-title="siteControls.title" on-save="vm.save()" on-discard="vm.discard()" is-save-enabled="service.isDirty()"
+        is-discard-enabled="service.isDirty()"></ip-page-title-save>
+    <ip-search-options-header></ip-search-options-header>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <ip-search-options on-clear="vm.resetOptions()" is-search-disabled="vm.isSearchDisabled()" on-search="vm.search()">
+        <div class="input-wrap-group group-inline">
+            <div class="input-wrap">
+                <input type="checkbox" id="search-options-name" ng-model="vm.searchCriteria.isByName" ng-change="vm.onSearchByChange('isByName')">
+                <label for="search-options-name">
+                    <span translate="Name"></span>
+                </label>
+            </div>
+            <div class="input-wrap">
+                <input type="checkbox" id="search-options-description" ng-model="vm.searchCriteria.isByDescription" ng-change="vm.onSearchByChange('isByDescription')">
+                <label for="search-options-description">
+                    <span translate="Description"></span>
+                </label>
+            </div>
+            <div class="input-wrap">
+                <input type="checkbox" id="search-options-value" ng-model="vm.searchCriteria.isByValue" ng-change="vm.onSearchByChange('isByValue')">
+                <label for="search-options-value">
+                    <span translate="Value"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="input-wrap">
+            <input type="text" ng-model="vm.searchCriteria.text" ip-autofocus>
+        </div>
+
+        <div class="row" ng-form="vm.form" ip-form>
+            <div class="col-sm-4">
+
+                <ip-typeahead name="components" data-multiselect data-label="Components" data-key-field="id" data-text-field="componentName"
+                    data-api-url="api/configuration/components" data-picklist-display-name="Components" data-picklist-columns="[{title:'Component Name', field:'componentName'}]"
+                    ng-model="vm.searchCriteria.components">
+                </ip-typeahead>
+
+            </div>
+
+            <div class="col-sm-4">
+                <div class="input-wrap">
+                    <label translate="fromRelease"></label>
+                    <select ng-model="vm.searchCriteria.release" ng-options="option.value for option in vm.searchOptions.releases track by option.id">
+                        <option value="" translate="All"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+
+                <ip-typeahead name="tags" data-multiselect data-label="Tags" data-key-field="key" data-text-field="tagName" data-api-url="api/configuration/tagslist"
+                    data-picklist-display-name="Tags" data-config='tags' data-picklist-can-maintain="true" data-show-add="false"
+                    data-picklist-columns="[{title:'Tag Name', field:'tagName'}]" ng-model="vm.searchCriteria.tags">
+                </ip-typeahead>
+            </div>
+        </div>
+    </ip-search-options>
+    <div class="table-container">
+        <div class="table-title">
+            <h2 translate="siteControls.summary"></h2>
+        </div>
+        <ip-kendo-search-grid data-id="searchResults" data-grid-options="vm.gridOptions"></ip-kendo-search-grid>
+    </div>
+</div>

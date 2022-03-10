@@ -1,0 +1,13 @@
+<div id="alertModal">
+    <div class="modal-header">
+        <h2 class="modal-title" id="modalErrorLabel" translate="{{options.title}}"></h2>
+    </div>
+    <div class="modal-body">
+        <p translate="{{options.message}}" translate-values="options.messageParams"></p>
+        <p ng-repeat="error in options.errors" class="text-grey-dark-alert"> {{ error.message | translate }}</p>
+        <p ng-if="options.actionMessage" translate="{{options.actionMessage}}"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal" name="cancel" data-ng-click="cancel()" translate="{{options.okButton}}"></button>
+    </div>
+</div>

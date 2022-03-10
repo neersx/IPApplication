@@ -1,0 +1,78 @@
+<div class="modal-header">
+  <h2 class="modal-title" translate="{{workspaceType === wsType.Case ? 'dmsIntegration.iManage.testWorkspace.testCaseWorkspace' : 'dmsIntegration.iManage.testWorkspace.testNameWorkspace' | translate}}"></h2>
+</div>
+<div class="row">
+  <div class="col-md-11">
+    <form #testWorkspaceForm="ngForm">
+      <ipx-typeahead *ngIf="workspaceType === wsType.Case" name="caseIrn" label='dmsIntegration.iManage.testWorkspace.caseIrn' required apply-edited ipx-autofocus config="case" [(ngModel)]="formData.caseIrn">
+      </ipx-typeahead>
+      <ipx-typeahead *ngIf="workspaceType === wsType.Name" name="pkName" label='dmsIntegration.iManage.testWorkspace.name' required apply-edited ipx-autofocus config="name" [(ngModel)]="formData.name"></ipx-typeahead>
+      <ipx-text-field *ngIf="showUsername" name="username" label='dmsIntegration.iManage.testWorkspace.username' required apply-edited [(ngModel)]="formData.username"></ipx-text-field>
+      <ipx-text-field *ngIf="showPassword" name="password" [mask]="true" label='dmsIntegration.iManage.testWorkspace.password' required apply-edited [(ngModel)]="formData.password"></ipx-text-field>
+    </form>
+  </div>
+</div>
+<div class="row" style="margin-bottom:17px;">
+  <div class="col-sm-11" style="margin-top: 7px;">
+    <button type="button" tabindex="0" [disabled]="!form.dirty || !form.valid" name="workspaceTest" class="btn btn-save pull-right" (click)="runTestWorkspace()"
+      style="margin-left: 2px">{{ 'dmsIntegration.iManage.testWorkspace.test' | translate }}</button>
+    <button type="button" name="workspaceCancel" class="btn pull-right" (click)="cancel($event)">{{'Cancel' | translate}}</button>
+  </div>
+</div>
+<div class="row" *ngIf="showLoader">
+  <div class="col-sm-12 k-loading-image" style="min-height: 50px; margin-bottom: 20px;"></div>
+</div>
+<div *ngIf="results">
+  <hr>
+</div>
+<div *ngIf="results" style="margin-bottom: 20px; overflow-y: auto;" [ngStyle]="{'height': (results && !results.searchParams && !results.results && results.errors) ? '80px' : '300px'}">
+  <div style="padding: 10px; margin-top: -30px" *ngIf="results && results.searchParams && results.searchParams.length > 0" id="searchParams">
+    <h3 translate="dmsIntegration.iManage.testWorkspace.searchParams"></h3>
+    <div *ngFor="let prms of results.searchParams; index as i;trackBy: byItem">
+      <div style="margin-left:20px">
+        <div class="input-wrap">
+          <span *ngIf="!prms.nameType">{{'dmsIntegration.iManage.testWorkspace.searchParamMessages.' + prms.key | translate }}</span>
+          <span *ngIf="prms.nameType">
+            <span>{{prms.nameType}}</span>
+            <span *ngIf="prms.key === 'nameSubClass'">&nbsp;{{ 'dmsIntegration.iManage.testWorkspace.searchParamMessages.' + prms.key | translate }}</span>
+          </span>
+          <span>:&nbsp;{{ prms.value }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 10px; margin-top: -30px" *ngIf="results && results.results && results.results.length > 0" id="results">
+    <h3 translate="dmsIntegration.iManage.testWorkspace.results"></h3>
+    <div *ngFor="let res of results.results; index as i;trackBy: byItem">
+      <div style="margin-left:20px">
+        <div class="input-wrap">
+          <span>{{'dmsIntegration.iManage.testWorkspace.messages.' + res.key | translate }}</span>
+          <span *ngIf="res.nameType">
+            <span>&nbsp;({{res.nameType}})</span>
+          </span>
+          <span *ngIf="res.key !=='noWorkspaceFound'">:&nbsp;{{ res.value }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 10px; margin-top: -30px" *ngIf="results && results.errors && results.errors.length > 0" id="errors">
+    <h3 translate="dmsIntegration.iManage.testWorkspace.errors"></h3>
+    <div *ngFor="let err of results.errors; index as i;trackBy: byItem">
+      <div style="margin-left:20px">
+        <div class="input-wrap">
+          <span>{{'dmsIntegration.iManage.setupConnectionErrors.' + err | translate }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="padding: 10px; margin-top: -30px" *ngIf="results && results.configErrors && results.configErrors.length > 0" id="config-errors">
+    <h1 translate="dmsIntegration.iManage.testWorkspace.errors"></h1>
+    <div *ngFor="let err of results.configErrors; index as i;trackBy: byItem">
+      <div style="margin-left:20px">
+        <div class="input-wrap">
+          <span>{{err}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

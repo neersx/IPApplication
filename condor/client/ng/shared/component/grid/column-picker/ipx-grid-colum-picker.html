@@ -1,0 +1,13 @@
+<div class="grid-columns grid-columns-page">
+    <button #anchor type="button" (click)="toggle(anchor, template)" class="btn btn-icon icon-left"
+        [tooltip]="'columnSelection.columns' | translate" [adaptivePosition]="false" container="body">
+        <span class="cpa-icon cpa-icon-bars-vertical"></span>
+    </button>
+    <div #columnPickerContainer></div>
+
+    <ng-template #template>
+        <ipx-grid-column-list [columns]="columns" [originalColumns]="originalColumns" (reset)="onReset($event)" (columnChange)="onChange($event)">
+        </ipx-grid-column-list>
+    </ng-template>
+
+</div>

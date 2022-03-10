@@ -1,0 +1,17 @@
+<div class="grid-columns grid-columns-page">
+    <button class="btn btn-icon" ng-class="{expand: vm.isExpand,'icon-left': !iconRight,'icon-right': iconRight}" ng-click="vm.showColumns(); vm.isExpand = !vm.isExpand;">
+        <icon name="bars-vertical" data-tooltip-placement="top" ip-tooltip="{{::'columnSelection.columns' | translate }}"></icon>
+    </button>
+    <div class="grid-columns-list" ng-show="vm.isExpand" ng-class="'columns-'+vm.position" tabindex="-1" ng-blur="vm.isExpand=false">
+        <div class="header" translate="columnSelection.selection" translate-values="{ count: vm.selectedColumnsLength(), all: vm.removableColumns.length}"></div>
+        <ul>
+            <li ng-repeat="item in vm.removableColumns" data-field="{{item.field}}">
+                <input type="checkbox" ng-disabled="vm.isLastSelectedColumn() && item.isShown" ng-model="item.isShown" ng-click="vm.toggleColumn(item)">
+                <label ng-click="vm.toggleColumn(item)">{{item.title}}</label>
+            </li>
+        </ul>
+        <div class="footer">
+            <a translate="columnSelection.reset" ng-click="vm.reset()"></a>
+        </div>
+    </div>
+</div>

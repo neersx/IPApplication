@@ -1,0 +1,49 @@
+<div id="secondary-nav-container">
+        <div class="navigation fixed">
+            <div class="container-fluid menu-container">
+                <div class="saved-searches">{{'savedSearch.caseSearch' | translate}}</div>
+                <div class="li-sub-section">
+                    <a ng-click="vm.loadUrl({ url: vm.url, event: $event })" class="no-color text-center">
+                        <div class="row">
+                            <span class="btn-advance-search">
+                                <span class="cpa-icon no-color cpa-icon-2x {{vm.iconName}}"></span>
+                            </span>
+                        </div>
+                        <div id="searchlink">
+                            {{'savedSearch.caseSearchBuilder' | translate}}
+                        </div>
+                    </a>
+                </div>
+                <div class="saved-searches">{{'savedSearch.savedSearches' | translate}}</div>
+                <div id="secondary-nav">
+                    <ul style="width:100%">
+                        <li ng-repeat="item in vm.menuDetails" ng-if="item.items === null" class="k-item">
+                            <label class="k-link sub-menu" name="li-{{item.key}}">
+                                <menu-item url="{{item.url}}" type="{{item.type}}" icon-name="{{item.icon}}" text="{{item.text}}" expanded="true" title="{{item.description}}"
+                                    query-context-key="{{vm.queryContextKey}}" can-edit="{{item.canEdit}}" query-key="{{item.key}}"></menu-item>
+                            </label>
+                        </li>
+                        <li ng-repeat="item in vm.menuDetails" ng-if="item.items !== null" class="k-item">
+                            <label id="{{item.text}}" ng-click="item.showItems = !item.showItems" class="k-link group-menu" uib-popover="{{item.description | translate}}">
+                                {{item.text | translate }}
+                                <span ng-show="!item.showItems" class="pull-right cpa-icon no-color cpa-icon-chevron-down"></span>
+                                <span ng-show="item.showItems" class="pull-right cpa-icon no-color cpa-icon-chevron-up"></span>
+                            </label>
+                            <ul ng-if="item.showItems" style="width:100%">
+                                <li ng-repeat="i in item.items" class="k-item">
+                                    <label class="k-link sub-menu" name="li-{{i.key}}">
+                                        <menu-item url="{{i.url}}" type="{{i.type}}" icon-name="{{i.icon}}" text="{{i.text}}" expanded="true" title="{{i.description}}"
+                                            query-context-key="{{vm.queryContextKey}}" can-edit="{{i.canEdit}}" query-key="{{i.key}}"></menu-item>
+                                    </label>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="quick-search-wrap">
+                    <input id="fiterSavedSearch" type="text" ng-model="vm.filter" placeholder="{{'savedSearch.filter' | translate}}" 
+                    ng-change="vm.getFilteredData()" ng-keydown="$event.keyCode === 13 && vm.runSearch($event);"/>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,25 @@
+<ipx-sticky-header>
+  <ipx-page-title [title]="headerText">
+  </ipx-page-title>
+</ipx-sticky-header>
+
+<ipx-header></ipx-header>
+<ipx-search-option [isSearchDisabled]=false [isResetDisabled]=false (search)="search()" (clear)="clear()">
+  <div class="input-wrap">
+    <input inputRef type="text" [placeholder]="'SearchColumns.searchHint' | translate" [(ngModel)]="searchText" ipx-autofocus />
+  </div>
+</ipx-search-option>
+<div>
+  <div class="table-container">
+    <div class="table-title">
+      <ipx-add-button class="pull-right" *ngIf="viewData.permissions.canInsertCaseList" (click)="openCaseListModal(null)"> </ipx-add-button>
+    </div>
+    <div ipx-resize-handler [resize-handler-type]="'Panel'">
+      <ipx-kendo-grid [dataOptions]="gridOptions" (dataItemClicked)="dataItemClicked($event)" id="searchResults" #caselistMaintenanceGrid>
+        <ng-template ipxTemplateColumnField="value" let-dataItem>
+          <span><a (click)="openCaseListModal(dataItem)">{{ dataItem.value }}</a></span>
+        </ng-template>
+      </ipx-kendo-grid>
+    </div>
+  </div>
+</div>

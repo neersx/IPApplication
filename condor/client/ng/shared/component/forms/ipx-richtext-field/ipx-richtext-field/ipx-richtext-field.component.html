@@ -1,0 +1,25 @@
+<div class="input-wrap" [ngClass]="{ error: showError(), warning: !invalid && warningText }" (click)="touch()">
+  <label *ngIf="label" [translate]="label" [attr.for]="identifier"></label>
+  <ng-container *ngTemplateOutlet="allowRichText ? editorRef : textarearef"></ng-container>
+  <span class="input-action tooltip-error">
+    <span class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="getError() | translate: getErrorParams()"
+      containerClass="tooltip-error" [adaptivePosition]="false" container="body"></span>
+  </span>
+  <span class="input-action tooltip-warning">
+    <span class="cpa-icon cpa-icon-exclamation-circle" [tooltip]="warningText | translate" containerClass="tooltip-warning"></span>
+  </span>
+</div>
+<ng-template #editorRef>
+  <quill-editor #editor [id]="identifier" [disabled]="disabled" [maxLength]="maxLength"
+    [modules]="getQuillEditorOptions()" format="html" [(ngModel)]="value" #modelRef="ngModel" [sanitize]="true"
+    [placeholder]="placeholder ? (placeholder | translate) : ''" [styles]="{height: rows*15 +'px'}"
+    (ngModelChange)="onModelChange($event)"
+    [ngClass]="{edited: !showError() && modelRef.valid &&  modelRef.dirty && !modelRef.pristine}">
+  </quill-editor>
+</ng-template>
+<ng-template #textarearef>
+  <textarea type="text" [(ngModel)]="value" [ngClass]="{edited: controledited()}" [disabled]="disabled"
+    [id]="identifier" [rows]="rows" [placeholder]="placeholder ? (placeholder | translate) : ''"
+    (change)="change($event)" (keyup)="onKeyup($event)" (blur)="blur()" (ngModelChange)="onModelChange($event)">
+      </textarea>
+</ng-template>

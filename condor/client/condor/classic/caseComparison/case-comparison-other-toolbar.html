@@ -1,0 +1,13 @@
+<div class="cc-toolbar" ng-if="canUndoRejectMatch()">
+    <div class="tooltip-wrap ng-scope" ng-class="{'disabled' : !canUndoRejectMatch() || saveable() }">
+        <button class="btn btn-sm btn-warning tooltip-info cc-toolbar-button cc-toolbar-button-left cc-toolbar-button-warning cc-toolbar-button" data-rel="tooltip" data-placement="top" title="{{'caseComparison.ccBtnUndoRejectCaseMatchTooltip' | translate}}" ng-click="undoRejectCaseMatch()"
+            ng-class="{'disabled' : !canUndoRejectMatch() || saveable() }" id="btnUndoRejectCaseMatch" id="btnUndoRejectCaseMatch">{{ 'caseComparison.ccBtnUndoRejectCaseMatch' | translate }}</button>
+    </div>
+</div>
+
+<div class="cc-toolbar" ng-if="canRejectMatch()">
+    <div class="tooltip-wrap ng-scope" ng-class="{'disabled' : !canRejectMatch() || saveable() }">
+        <button class="btn btn-sm btn-warning tooltip-info cc-toolbar-button cc-toolbar-button-left cc-toolbar-button-warning cc-toolbar-button" data-rel="tooltip" data-placement="top" title="{{'caseComparison.ccBtnRejectCaseMatchTooltip' | translate}}" ng-click="rejectCaseMatch()"
+            ng-class="{'disabled' : !canRejectMatch() || saveable() }" id="btnRejectCaseMatch" id="btnRejectCaseMatch">{{ 'caseComparison.ccBtnRejectCaseMatch' | translate }}</button>
+    </div>
+</div>

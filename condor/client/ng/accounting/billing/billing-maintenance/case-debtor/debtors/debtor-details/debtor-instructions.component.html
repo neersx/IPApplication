@@ -1,0 +1,8 @@
+<ipx-kendo-grid #ipxKendoGridRef id="debtorInstructions" [dataOptions]="gridOptions">
+    <ng-template ipxTemplateColumnField="detail" let-dataItem>
+        <span>{{ dataItem.detail | translate }}</span>
+    </ng-template>
+    <ng-template #detailsTemplate let-dataItem>
+        <div><span style="white-space: pre-wrap;">{{instructions}}</span></div>
+    </ng-template>
+</ipx-kendo-grid>

@@ -1,0 +1,16 @@
+<form #frm="ngForm">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <div class="row">
+                <ipx-typeahead apply-edited name="instructionType" label="picklist.instructiontype.Type" config="instructionType" [(ngModel)]="formData.instructionType" (ngModelChange)="instructionTypeSelected(!!$event)">
+                </ipx-typeahead>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited name="characteristic" label="sanityCheck.configurations.characteristics" config="characteristic" [(ngModel)]="formData.characteristic" [extend-query]="characteristicsExtendQuery" [disabled]="(isInstructionTypeSelected | async) ===(false)"
+                    [required]="(isInstructionTypeSelected | async) ===(true)">
+                </ipx-typeahead>
+            </div>
+        </div>
+
+    </div>
+</form>

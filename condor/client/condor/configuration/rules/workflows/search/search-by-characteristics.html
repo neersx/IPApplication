@@ -1,0 +1,87 @@
+<h5 translate="Characteristics"></h5>
+<div ng-form="vm.form" ip-form>
+    <div class="row">
+        <div class="col-sm-6">
+            <ip-typeahead ng-if="::vm.hasOffices" name="office" ng-model="vm.formData.office" data-config="office" ip-autofocus="{{::vm.hasAutofocusOnOffice}}">
+            </ip-typeahead>
+            <ip-typeahead name="caseType" ng-model="vm.formData.caseType" ng-change="vm.validate()" data-config="caseType" ip-autofocus="{{::vm.hasAutofocusOnCaseType}}"
+                data-picklist-can-maintain="true">
+            </ip-typeahead>
+            <ip-typeahead name="jurisdiction" ng-model="vm.formData.jurisdiction" ng-change="vm.validate()" data-config="jurisdiction" data-picklist-can-maintain="true">
+            </ip-typeahead>
+            <ip-typeahead name="propertyType" ng-model="vm.formData.propertyType" ng-change="vm.validate()" data-config="propertyType" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination"
+                data-picklist-can-maintain="true">
+            </ip-typeahead>
+            <ip-typeahead name="dateOfLaw" data-picklist-can-maintain="true" ng-model="vm.formData.dateOfLaw" ng-change="vm.validate()" ng-disabled="vm.isDateOfLawDisabled()" data-config="dateOfLaw" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination">
+            </ip-typeahead>
+        </div>
+        <div class="col-sm-6">
+            <ip-typeahead name="action" ng-model="vm.formData.action" ng-change="vm.validate()" data-config="action" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true">
+            </ip-typeahead>
+
+            <ip-typeahead name="caseCategory" ng-model="vm.formData.caseCategory" data-key-field="key" data-code-field="code" data-text-field="value" ng-disabled="vm.isCaseCategoryDisabled()" ng-change="vm.validate()" data-config="caseCategory" data-extend-query="vm.extendPicklistQuery"
+                data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true">
+            </ip-typeahead>
+
+            <ip-typeahead id="subType" name="subType" ng-model="vm.formData.subType" ng-change="vm.validate()" data-config="subType" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true" data-key-field="key"
+                data-code-field="code" data-text-field="value">
+            </ip-typeahead>
+
+            <ip-typeahead id="basis" name="basis" ng-model="vm.formData.basis" ng-change="vm.validate()" data-config="basis" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true" data-key-field="key"
+                data-code-field="code" data-text-field="value">
+            </ip-typeahead>
+
+            <ip-dropdown name="applyTo" data-label="workflows.common.localOrForeignDropdown.label" ng-class="{saved: vm.formData.isSaved('isLocalClient'), edited: vm.formData.isDirty('isLocalClient')}" ng-model="vm.formData.applyTo" data-options="option.value as option.label | translate for option in vm.appliesToOptions"></ip-dropdown>
+
+            <ip-typeahead id="examinationType" name="examinationType" ng-if="vm.showExaminationType()" data-config="examinationType" data-picklist-can-maintain="true" ng-model="vm.formData.examinationType"></ip-typeahead>
+            
+            <ip-typeahead id="renewalType" name="renewalType" ng-if="vm.showRenewalType()" data-config="renewalType" data-picklist-can-maintain="true" ng-model="vm.formData.renewalType"></ip-typeahead>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-1 col-lg-3">
+            <div class="input-wrap-group">
+                <span>
+                    <ip-inline-dialog data-template="condor/configuration/rules/workflows/search/search-type-popover.html"></ip-inline-dialog>
+                    <span translate="Find"></span>
+                </span>
+                <div class="input-wrap">
+                    <input type="radio" id="characteristics-exact-match" ng-model="vm.formData.matchType" value="exact-match" />
+                    <label for="characteristics-exact-match">
+                        <span translate="workflows.search.exactMatchs"></span>
+                    </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="radio" id="characteristics-best-criteria" ng-model="vm.formData.matchType" value="best-criteria-only" />
+                    <label for="characteristics-best-criteria">
+                        <span translate="workflows.search.bestCriteriaOnly"></span>
+                    </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="radio" id="characteristics-best-match" ng-model="vm.formData.matchType" value="best-match" />
+                    <label for="characteristics-best-match">
+                        <span translate="workflows.search.bestMatches"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="input-wrap-group">
+                <span translate="Include"></span>
+                <div class="input-wrap">
+                    <input type="checkbox" id="characteristics-include-not-in-use" ng-model="vm.formData.includeCriteriaNotInUse">
+                    <label for="characteristics-include-not-in-use">
+                        <span translate="workflows.search.criteriaNotInUse"></span>
+                    </label>
+                </div>
+                <div class="input-wrap">
+                    <input type="checkbox" id="characteristics-include-protected-criteria" ng-model="vm.formData.includeProtectedCriteria">
+                    <label for="characteristics-include-protected-criteria">
+                        <span translate="workflows.search.protectedCriteria"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

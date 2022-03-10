@@ -1,0 +1,62 @@
+<fieldset ngModelGroup="caseCharacteristicsData" #searchForm="ngModelGroup">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="nameGroup" label="picklist.nameGroup.Type" config="nameGroup" [(ngModel)]="formData.nameGroup"></ipx-typeahead>
+                </div>
+
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="name" label="picklist.name.Name" config="name" [(ngModel)]="formData.name"></ipx-typeahead>
+                </div>
+
+
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="jurisdiction" label="sanityCheck.configurations.country" config="jurisdiction" [(ngModel)]="formData.jurisdiction" (onChange)="onCriteriaChange()">
+                    </ipx-typeahead>
+                </div>
+
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="category" label="sanityCheck.configurations.category" config="tableColumnCase" [(ngModel)]="formData.category" [extend-query]="tableColumnForCategory">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-dropdown class="col-sm-10" name="applyTo" label="sanityCheck.configurations.localOrForeignDropdown.label" [(ngModel)]="formData.applyTo" [displayField]="'label'" [keyField]="'value'" [options]="appliesToOptions">
+                    </ipx-dropdown>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="row">
+                    <ipx-typeahead name="tableColumn" label="picklist.tableColumn.label" config="tableColumnName" [(ngModel)]="formData.tableColumn">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead name="instructionType" label="picklist.instructiontype.Type" config="instructionType" [(ngModel)]="formData.instructionType" (ngModelChange)="instructionTypeSelected(!!$event)">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead name="characteristic" label="sanityCheck.configurations.characteristics" config="characteristic" [(ngModel)]="formData.characteristic" [extend-query]="characteristicsExtendQuery" [disabled]="(isInstructionTypeSelected | async) ===(false)">
+                    </ipx-typeahead>
+                </div>
+
+                <div class="row">
+                    <span class="col-sm-4" translate="sanityCheck.configurations.entityType" style="text-align: right; margin-top:5px;margin-right:5px;padding-right:10px"></span>
+                    <div class="col-sm-7">
+                        <ipx-checkbox class="col-sm-3" label="sanityCheck.configurations.entityTypes.organisation" name="organisation" [(ngModel)]="formData.typeIsOrganisation" [disabled]="formData.typeIsIndividual === true || formData.typeIsStaff === true"></ipx-checkbox>
+                        <ipx-checkbox class="col-sm-3" label="sanityCheck.configurations.entityTypes.individual" name="individual" [(ngModel)]="formData.typeIsIndividual" [disabled]="formData.typeIsOrganisation === true"></ipx-checkbox>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <span class="col-sm-4" translate="sanityCheck.configurations.usedAs" style="text-align: right; margin-top:5px;margin-right:5px;padding-right:10px"></span>
+                    <div class="col-sm-7">
+                        <ipx-checkbox class="col-sm-3" label="sanityCheck.configurations.entityTypes.clientOnly" name="clientOnly" [(ngModel)]="formData.typeIsClientOnly" [disabled]="formData.typeIsStaff === true"></ipx-checkbox>
+                        <ipx-checkbox class="col-sm-3" label="sanityCheck.configurations.entityTypes.staff" name="staff" [(ngModel)]="formData.typeIsStaff" [disabled]="formData.typeIsOrganisation === true || formData.typeIsClientOnly === true"></ipx-checkbox>
+                        <ipx-checkbox class="col-sm-4" label="sanityCheck.configurations.entityTypes.supplierOnly" name="supplierOnly" [(ngModel)]="formData.typeIsSupplierOnly"></ipx-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

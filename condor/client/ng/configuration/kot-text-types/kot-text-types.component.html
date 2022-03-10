@@ -1,0 +1,73 @@
+<style>
+    .overflow {
+        overflow: visible !important;
+    }
+</style>
+<ipx-page-title [title]="'kotTextTypes.configuration'">
+</ipx-page-title>
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+    <form name="keepOnTopNotesTextType" #ngForm="ngForm">
+        <ipx-search-option (search)="search()" (clear)="clear()">
+            <div class="container-fluid">
+                <div class="heading">
+                    <h5 translate="kotTextTypes.filterBy"></h5>
+                    <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showSearchBar}" (click)="showSearchBar = !showSearchBar">
+                        <div placement="left" tooltip="{{'collapseExpand' | translate}}">
+                            <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                        </div>
+                    </a>
+                </div>
+                <div [ngClass]="{'overflow': showSearchBar}" [@slideInOutVisible]="showSearchBar ? 'open' : 'closed'">
+                    <div class="row">
+                        <div class="col-sm-1 input-wrap" *ngIf="viewData && viewData.maintainKeepOnTopNotesCaseType">
+                            <ipx-radio-button [value]="KotFilterTypeEnum.byCase" id="byCase" name="byCase" [(ngModel)]="filterBy" (change)="changeFilterBy(KotFilterTypeEnum.byCase)">
+                                {{'kotTextTypes.filterByCase' | translate}}
+                            </ipx-radio-button>
+                        </div>
+                        <div class="col-sm-1 input-wrap" *ngIf="viewData && viewData.maintainKeepOnTopNotesNameType">
+                            <ipx-radio-button [value]="KotFilterTypeEnum.byName" id="byName" name="byName" [(ngModel)]="filterBy" (change)="changeFilterBy(KotFilterTypeEnum.byName)">
+                                {{'kotTextTypes.filterByName' | translate}}
+                            </ipx-radio-button>
+                        </div>
+                        <div class="col-sm-1" style="margin-top: 3px; margin-left: 16px;">
+                            <ipx-inline-dialog container="body" class="nudge-left" [adaptivePosition]="true" [content]="'kotTextTypes.helpInfo' | translate" tooltipPlacement="auto">
+                            </ipx-inline-dialog>
+                        </div>
+                    </div>
+                    <br>
+                    <div style="margin-left: -120px;">
+                        <div class="col-md-4">
+                            <ipx-typeahead inputRef ipx-autofocus id="roles" multiselect multipick name="roles" [(ngModel)]="roles" label="{{ 'kotTextTypes.column.roles' | translate }}" config="roles"> </ipx-typeahead>
+                        </div>
+                        <div class="col-md-1">
+                            <ipx-inline-dialog container="body" class="nudge-left" [adaptivePosition]="true" [content]="'kotTextTypes.rolesInfo' | translate" tooltipPlacement="auto">
+                            </ipx-inline-dialog>
+                        </div>
+                        <div class="col-md-4" style="margin-left: -57px">
+                            <ipx-typeahead [(ngModel)]="modules" multiselect multipick label="kotTextTypes.maintenance.modules" name="modules" config="modules">
+                            </ipx-typeahead>
+                        </div>
+                        <div *ngIf="filterBy === 'c'" class="col-md-3" style="margin-left: 46px;">
+                            <ipx-typeahead [(ngModel)]="status" multiselect multipick label="kotTextTypes.maintenance.statusSummary" name="status" config="kotStatus">
+                            </ipx-typeahead>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ipx-search-option>
+    </form>
+    <br>
+    <div class="table-container">
+        <div class="table-title" style="margin-top: -15px;">
+            <ipx-add-button class="pull-right" (click)="onRowAddedOrEdited(null, 'Add')"> </ipx-add-button>
+        </div>
+        <div class="row" style="margin: 0px;">
+            <ipx-kendo-grid #ipxKendoGridRef id="keepOnTopNotes" [dataOptions]="gridOptions" *ngIf="gridOptions" (addRowEvent)="onRowAddedOrEdited(null, 'Add')" (editRowEvent)="onRowAddedOrEdited($event, 'Edit')"
+                (deleteRowEvent)="onRowDeleted($event)" (duplicateRowEvent)="onRowAddedOrEdited($event, 'Duplicate')">
+                <ng-template ipxTemplateColumnField="backgroundColor" let-dataItem>
+                    <span *ngIf="dataItem && dataItem.backgroundColor" style="width: 110px;" [ngStyle]="setBackgroundColor(dataItem.backgroundColor)">&nbsp;</span>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>

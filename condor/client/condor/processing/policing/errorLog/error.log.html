@@ -1,0 +1,12 @@
+<ip-sticky-header>
+    <ip-page-title page-title="policing.title" page-subtitle="policing.errorLog.title">
+        <before-title>
+            <ip-level-up-button data-to-state="policingDashboard"></ip-level-up-button>
+        </before-title>
+    </ip-page-title>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="table-container">
+        <ip-kendo-grid data-id="errorlog" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<div class="topic-container">    
+    <h1 translate="caseview.eventRules.eventUpdate.header"></h1>
+    <div>
+        <div *ngIf="!eventUpdateInfo" class="no-info">
+            <span style="width: 20px; display: inline-block;">&nbsp;</span>
+            <span>{{'caseview.eventRules.noInformation' | translate }}</span>
+        </div>
+        <div class="container-fluid" *ngIf="eventUpdateInfo">
+            <div class="row" *ngIf="eventUpdateInfo.updateImmediatelyInfo || eventUpdateInfo.updateWhenDueInfo">
+                <div class="field-label col-sm-2">
+                    <label>{{'caseview.eventRules.eventUpdate.eventHeader' | translate}}</label>
+                </div>
+                <div class="col-sm-10" *ngIf="eventUpdateInfo.updateImmediatelyInfo">
+                    <span>{{ 'caseview.eventRules.eventUpdate.saveImmediately' | translate }}</span>
+                </div>
+                <div  class="col-sm-10" *ngIf="eventUpdateInfo.updateWhenDueInfo">
+                    <span>{{ 'caseview.eventRules.eventUpdate.updateWhenDue' | translate }}</span>
+                </div>
+            </div>
+            <div class="row" *ngIf="eventUpdateInfo.status">                
+                <div class="field-label col-sm-2">
+                    <label>{{ 'caseview.eventRules.eventUpdate.statusSetTo' | translate }}</label>
+                </div>
+                <div class="col-sm-10">
+                    <span>{{ eventUpdateInfo.status }}</span>
+                </div>
+            </div>
+            <div class="row" *ngIf="eventUpdateInfo.feesAndChargesInfo || eventUpdateInfo.feesAndChargesInfo2">
+                <div class="field-label col-sm-2" *ngIf="eventUpdateInfo.feesAndChargesInfo">
+                    <label>{{ 'caseview.eventRules.eventUpdate.chargeHeader1' | translate }}</label>
+                </div>
+                <div class="col-sm-3">              
+                     <span>{{ eventUpdateInfo.feesAndChargesInfo }}</span>
+                </div> 
+                <div class="field-label col-sm-2" *ngIf="eventUpdateInfo.feesAndChargesInfo2">
+                    <label>{{ 'caseview.eventRules.eventUpdate.chargeHeader2' | translate }}</label>
+                </div>
+                <div class="col-sm-3" *ngIf="eventUpdateInfo.feesAndChargesInfo2">
+                    <span>{{ eventUpdateInfo.feesAndChargesInfo2 }}</span>
+                </div>
+            </div>
+            <div class="row" *ngIf="eventUpdateInfo.createAction || eventUpdateInfo.closeAction">
+                <div class="field-label col-sm-2" *ngIf="eventUpdateInfo.createAction">
+                    <label>{{ 'caseview.eventRules.eventUpdate.createAction' | translate }}</label>
+                </div>
+                <div class="col-sm-3" *ngIf="eventUpdateInfo.createAction" >
+                    <span>{{ eventUpdateInfo.createAction }}</span>
+                </div>
+                <div class="field-label col-sm-2" *ngIf="eventUpdateInfo.closeAction">
+                    <label>{{ 'caseview.eventRules.eventUpdate.closeAction' | translate }}</label>
+                </div>
+                <div class="col-sm-3" *ngIf="eventUpdateInfo.closeAction">
+                    <span>{{ eventUpdateInfo.closeAction }}</span>
+                </div>
+            </div>
+            <div class="row" *ngIf="eventUpdateInfo.reportToCpaInfo">
+                <div class="field-label col-sm-2">
+                    <label>{{ 'caseview.eventRules.eventUpdate.reportToCpaHeader' | translate }}</label>
+                </div>
+                <div class="col-sm-10">                    
+                    <span>{{ eventUpdateInfo.reportToCpaInfo }}</span>
+                </div>
+            </div>
+            <div class="row margin-vertical" *ngIf="eventUpdateInfo.datesToUpdate" style="margin-bottom: 8px;">
+                <div class="row">
+                    <strong><span>{{'caseview.eventRules.eventUpdate.pushEventHeader' | translate}}</span></strong>
+                </div>            
+                <div class="row margin-vertical" *ngFor="let dl of eventUpdateInfo.datesToUpdate; index as i;trackBy: byItem" [ngClass]="i % 2 == 0 ? '' : 'bg-color'">
+                    <div class="col-sm-5">                        
+                        <span id="datesToUpdateText">{{ dl.formattedDescription }}</span>
+                    </div>
+                    <div class="col-sm-6" *ngIf="dl.adjustment">
+                        <div class="field-label col-sm-4">
+                            <label style="margin-bottom: 0px;">{{ 'caseview.eventRules.eventUpdate.adjustedTo' | translate }}</label>
+                        </div>
+                        <div>
+                            <span>{{ dl.adjustment }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row margin-vertical" *ngIf="eventUpdateInfo.datesToClear">
+                <div class="row">
+                    <strong><span>{{'caseview.eventRules.eventUpdate.clearEventHeader' | translate}}</span></strong>
+                </div>            
+                <div class="row margin-vertical" *ngFor="let dl of eventUpdateInfo.datesToClear; index as i;trackBy: byItem" [ngClass]="i % 2 == 0 ? '' : 'bg-color'">
+                    <span id="datesToClearText">{{ dl }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

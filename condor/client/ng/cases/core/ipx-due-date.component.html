@@ -1,0 +1,4 @@
+<span *ngIf="isOverdue && !isToday" class="text text-red-dark ip-hover-help" tooltip="{{ 'cases.eventOverdue' | translate }}" containerClass="tooltip-error">{{ date | localeDate }}</span>
+<span *ngIf="isOverdue && isToday" class="text text-black-bold ip-hover-help" tooltip="{{ 'cases.dueToday' | translate }}">{{ date | localeDate}}</span>
+<span *ngIf="!isOverdue && !showToolTip" class="text">{{ date | localeDate}}</span>
+<span *ngIf="!isOverdue && showToolTip" tooltip="{{ 'cases.dueDate' | translate }}" class="text ip-hover-help text-blue-inherited">{{ date | localeDate}}</span>

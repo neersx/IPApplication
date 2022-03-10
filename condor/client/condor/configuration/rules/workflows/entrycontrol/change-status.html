@@ -1,0 +1,17 @@
+<div ng-form="vm.form" ip-form translate-namespace="workflows.entrycontrol.changeStatus">
+    <div class="row">
+        <div class="col-sm-6" ng-class="{ 'input-inherited': vm.formData.changeCaseStatus.key===vm.parentData.changeCaseStatus.key}">
+            <ip-typeahead data-ng-disabled="!vm.canEdit" name="caseStatus" data-config="statusFiltered" data-extend-query="vm.caseStatusScope.extendQuery"
+                data-external-scope="vm.caseStatusScope" data-label=".changeCaseStatus" data-picklist-display-name="picklist.status.caseStatus"
+                data-ng-class="{{::vm.fieldClasses('changeCaseStatus')}}" data-ng-model="vm.formData.changeCaseStatus" ng-change="vm.changedStatus(vm.formData.changeCaseStatus)">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6" ng-class="{ 'input-inherited': vm.formData.changeRenewalStatus.key===vm.parentData.changeRenewalStatus.key}">
+            <ip-typeahead data-ng-disabled="!vm.canEdit" name="renewalStatus" data-config="statusFiltered" data-extend-query="vm.renewalStatusScope.extendQuery"
+                data-external-scope="vm.renewalStatusScope" data-label=".changeRenewalStatus" data-picklist-display-name="picklist.status.renewalStatus"
+                data-ng-class="{{::vm.fieldClasses('changeRenewalStatus')}}" data-ng-model="vm.formData.changeRenewalStatus"
+                ng-change="vm.changedStatus(vm.formData.changeRenewalStatus)">
+        </div>
+    </div>
+</div>

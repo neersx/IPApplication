@@ -1,0 +1,107 @@
+<ip-sticky-header>
+    <ip-page-title page-title="policing.title" page-subtitle="policing.dashboard.title">
+        <action-buttons>
+            <ip-policing-server-status></ip-policing-server-status>
+        </action-buttons>
+    </ip-page-title>
+</ip-sticky-header>    
+<ip-inline-alert ng-if="!vm.isServiceBrokerEnabled" type="warning" text="serviceBrokerDisabled"></ip-inline-alert>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="row">
+        <div class="col-sm-12 chart-container">
+            <div class="table-container">
+                <div class="table-title">
+                    <h2 translate="policing.dashboard.summaryTitle"></h2>
+                    <span style="margin-left: 8px;">
+                        <ip-inline-dialog placement="bottom" data-template="condor/processing/policing/dashboard/dashboard-popover.html"></ip-inline-dialog>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ip-policing-status-summary-bar data="vm.summary"></ip-policing-status-summary-bar>
+
+    <div class="row">
+        <div class="col-sm-12 chart-container">
+            <div class="table-container">
+                <div class="table-title">
+                    <h2 translate="policing.dashboard.graph.statusChartType" ng-show="vm.graphSelected==='statusGraph'"></h2>
+                    <h2 translate="policing.dashboard.graph.rateChartType" ng-show="vm.graphSelected==='rateGraph'"></h2>
+                    <div class="col-sm-4 pull-right" style="width:300px">
+                        <div class="input-wrap">
+                            <label translate="policing.dashboard.graph.chartType"></label>
+                            <select id="chartSelection" ng-model="vm.graphSelected" ng-change="vm.chartTypeChanged()">
+                                <option value="statusGraph" translate="policing.dashboard.graph.statusChartType"></option>
+                                <option value="rateGraph" translate="policing.dashboard.graph.rateChartType"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <ip-policing-current-status-graph ng-if="vm.graphSelected==='statusGraph'" data="vm.summary"></ip-policing-current-status-graph>
+                <ip-policing-rate-graph ng-if="vm.graphSelected==='rateGraph'" data="vm.trend"></ip-policing-rate-graph>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+    <ip-policing-request-logsummary></ip-policing-request-logsummary>
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <h2 translate="policing.errorLog.title"></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <span translate="policing.errorLog.viewErrorLogDescription">
+                    </span>
+                    <br/>
+                    <br/>
+                    <div>
+                        <button id="viewAllErrors" class="btn btn-prominent clear" ui-sref="policingErrorLog">
+                            <span translate="policing.errorLog.viewErrorLog"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row" ng-if="vm.canManageExchangeRequests">
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <h2 translate="exchangeIntegration.title"></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <span translate="exchangeIntegration.description">
+                    </span>
+                    <br/>
+                    <br/>
+                    <div>
+                        <a ui-sref="exchangeRequests" target="_blank">
+                            <button id="viewExchangeIntegration" class="btn btn-prominent clear">
+                                <span translate="exchangeIntegration.link"></span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>

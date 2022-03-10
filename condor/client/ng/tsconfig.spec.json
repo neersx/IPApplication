@@ -1,0 +1,27 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "outDir": "../out-tsc/spec",
+        "types": [
+            "jest",
+            "node"
+        ],
+        "paths": {
+            "@angular/*": [
+                "../../node_modules/@angular/*"
+            ]
+        },
+        "typeRoots": [
+            "../../node_modules/@types"
+        ]
+    },
+    "files": [
+        "../polyfills.ts"
+    ],
+    "include": [
+        "**/*.spec.ts",
+        "**/*.d.ts"
+    ],
+    "exclude": []
+}

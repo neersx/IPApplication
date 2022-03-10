@@ -1,0 +1,22 @@
+<div id="changeDueDateRespConfirm" translate-namespace="workflows.eventcontrol.changeDueDateRespConfirm">
+    <div class="modal-header">
+        <h2 class="modal-title" translate=".title"></h2>
+    </div>
+    <div class="modal-body">
+        <div ng-if="!vm.preSave" class="input-wrap" translate=".message"></div>
+        <div ng-if="vm.preSave" class="input-wrap" translate=".preSaveMessage"></div>
+        <div>
+            <ip-checkbox label=".checkboxLabel" ng-model="vm.changeDueDateResp"></ip-checkbox>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-wrap-group group-inline pull-right">
+                    <button type="button" class="btn" data-ng-click="vm.cancel()" translate="button.cancel"></button>
+                    <button type="button" class="btn btn-primary" data-ng-click="vm.proceed()" translate="button.proceed"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

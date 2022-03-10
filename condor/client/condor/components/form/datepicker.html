@@ -1,0 +1,31 @@
+<div class="input-wrap date" data-ng-class="{ 'error': showError() }">
+    <span class="date-content-wrap" data-ng-form="form">
+        <label data-ng-if="::label" for="ipDate{{::uid}}">{{::label | translate}}</label>
+        <input type="text"
+        	id="ipDate{{::uid}}"
+        	name="datepicker"
+        	data-ng-class="{ 'saved': isSaved, 'edited': isDirty() && !isDisabled && !noEditState }"
+        	class="datepicker-input basic-addon-r-1"
+        	data-ng-model-options="{timezone: useLocalTimezone ? '' : 'utc'}"
+        	data-uib-datepicker-popup="{{ picker.dateFormat }}"
+        	data-datepicker-options="picker.options"
+        	data-alt-input-formats="{{ picker.parseFormats }}"
+        	data-clear-text="{{::datepicker.clear | translate }}"
+        	data-close-text="{{::datepicker.close | translate }}"
+        	data-current-text="{{::datepicker.today | translate }}"
+        	data-show-button-bar="false"
+        	data-is-open="picker.opened"
+        	data-ng-model="date"
+        	data-ng-required="required"
+        	data-ng-readonly="readonly"
+        	data-ng-disabled="isDisabled"
+            data-ng-blur="blur()"
+            data-ng-change="onChange({selectedDate: date})"/>
+            <span class="input-wrap-addon">
+                <button type="button" class="btn btn-default" data-ng-click="open($event)" data-ng-disabled="isDisabled || readonly"><i class="cpa cpa-icon-calendar"></i></button>
+            </span>
+            <span data-ng-if="showError()" class="input-action">
+        	    <span class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{getError() | translate:{date: errorDate} }}" tooltip-class="tooltip-error"></span>
+            </span>
+    </span>
+</div>

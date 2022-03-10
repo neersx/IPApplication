@@ -1,0 +1,13 @@
+<div *ngIf="isHosted && type" id="hosted-page-header" [ngStyle]="headerStyle">
+    <ipx-page-title>
+        <before-title>
+        </before-title>
+        <action-buttons>
+            <ipx-revert-button *ngIf="type==='save'" [disabled]="disabled" [tooltipTitle]="'Discard'" (onclick)="revert()"></ipx-revert-button>
+            <ipx-save-button *ngIf="type==='save'" [disabled]="disabled" (onclick)="executeAction()">{{'Save' | translate}}</ipx-save-button>
+            <ipx-context-menu-button *ngIf="type ==='search' || type === 'contextMenu'" [menuItems]="hostedMenuOptions" (onClick)="initializeMenuItems()"></ipx-context-menu-button>
+            <ipx-advanced-search-button *ngIf="type==='search'" [disabled]="disabled" (onclick)="executeAction('search')"></ipx-advanced-search-button>
+        </action-buttons>
+    </ipx-page-title>
+</div>
+<ng-content #content *ngIf="!isHosted"></ng-content>

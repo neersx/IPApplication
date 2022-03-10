@@ -1,0 +1,93 @@
+<style>
+    @media only screen and (min-width: 750px) {
+        .space-images {
+            margin: 20px;
+        }
+    }
+
+    @media only screen and (min-width: 1400px) {
+        .space-images {
+            margin: 5px;
+        }
+    }
+
+    .space-images {
+        min-height: 250px;
+        max-width: 202px;
+        border: solid 1px;
+        border-color: gray;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .space-images .imageDesc {
+        background-color: gray;
+        color: white;
+        visibility: hidden;
+        position: absolute;
+        bottom: 0;
+        text-align: left;
+        width: 100%;
+        max-height: 35px;
+      }
+
+    .overflow { /* space for ellipsis */
+        overflow: hidden;
+        padding-right: 1rem;
+    }
+
+    .overflow::before {
+        position: absolute;
+        content: "...";
+        bottom: 0px;
+        right: 1px;
+    }
+
+    .overflow::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        width: 1rem;
+        height: 1.5rem;
+        background-color:gray; 
+    }
+
+    .space-images:hover .imageDesc {
+        visibility: visible;
+    }
+
+    figure.figurefx {
+        margin: 0px !important;
+        background-color: white;
+        min-height: 213px;
+        max-width: 200px;
+        text-align: center;
+        cursor: pointer;
+    }
+</style>
+<div class="row" ip-case-view-images-width-aware>
+    <div ng-if="vm.imagesCount===0" translate="caseview.caseImages.noImages"></div>
+    <div ng-repeat="n in vm.images" class="pull-left space-images" ng-if="$index < maxViewable || vm.showAll">
+        <figure class="pull-left figurefx">
+            <h5>{{n.imageType}}</h5>
+            <ip-case-image data-case-key="n.caseKey" data-image-key="n.imageKey"
+                data-image-title="'caseview.caseImages.imageView' | translate" data-image-desc="n.imageDescription"
+                data-is-thumbnail="true" data-max-width="200" data-max-height="194" data-is-responsive="false"
+                data-is-clickable="true" ></ip-case-image>
+            <div ng-if="n.firmElementId">
+                <div class ="text-grey-dark">
+                    <label translate="caseview.caseImages.firmElement"></label>
+                </div>
+                <span>{{n.firmElementId}}</span>
+            </div>
+        </figure>
+        <div class="imageDesc overflow">
+            {{n.imageDescription}}
+        </div>
+    </div>
+</div>
+<div style="text-align: left;margin-bottom:5px;" ng-show="vm.imagesCount > maxViewable">
+    <button class="btn" id="btnLoadMoreImages" ng-click="vm.showAll =!vm.showAll">
+        {{vm.showAll ? 'caseview.caseImages.showLessImages' : 'caseview.caseImages.showAllImages' | translate}}
+    </button>
+</div>

@@ -1,0 +1,26 @@
+<div>
+    <h3>Ipx Kendo Grid - Drag Drop with Add/Edit Template</h3>
+    <div style="height: 70vh;overflow: auto" (drop)="onDrop($event, 'kendoGrid')" (dragover)="onDragover($event, 'kendoGrid', selectedColumns)">
+        <ipx-kendo-grid *ngIf="gridOptions" #ipxKendoGridRef id="KendoGrid" [dataOptions]="gridOptions" (addRowEvent)="onRowAddedOrEdited($event)" (deleteRowEvent)="onRowDelete()"
+            (dragstart)="onDragStart($event,'kendoGrid', selectedColumns)">
+            <ng-template ipxTemplateColumnField="id" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <span [kendogrid-drag-item]="dataItem">{{dataItem?.id}}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="code" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <span [kendogrid-drag-item]="dataItem">{{dataItem?.code}}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="desc" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <span [kendogrid-drag-item]="dataItem">{{dataItem?.desc}}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="id" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-text-field [kendogrid-drag-item]="formGroup.value" name="id" formControlName="formGroup.controls.id" label="" apply-edited></ipx-text-field>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="code" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-text-field [kendogrid-drag-item]="formGroup.value" name="code"  [formControl]="formGroup.controls.code" label="" apply-edited></ipx-text-field>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="desc" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-text-field [kendogrid-drag-item]="formGroup.value" name="desc" formControlName="formGroup.controls.desc" label="" apply-edited></ipx-text-field>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

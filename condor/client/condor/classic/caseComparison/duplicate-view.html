@@ -1,0 +1,37 @@
+<div id="inboxPage" data-in-available-height ng-init="init()">
+    <ip-sticky-header id="inboxHeader">
+        <div class="container-fluid">
+            <div class="row">
+                <ip-page-title page-title="{{'caseComparison.ccDuplicateViewTitle' | translate}}">
+                    <before-title>
+                        <a href ng-click="navigateToInbox()">
+                            <span class="cpa-icon cpa-icon-arrow-circle-nw" ip-tooltip="{{'LevelUp' | translate }}"></span>
+                        </a>
+                    </before-title>
+                </ip-page-title>
+            </div>
+            <div class="row title-header">
+                <ip-inline-alert type="info" text="{{'caseComparison.ccDuplicateViewInstr' | translate}}" class="col-sm-12"></ip-inline-alert>
+            </div>
+        </div>
+    </ip-sticky-header>
+    <div ip-resize-handler resize-handler-type="Panel">
+        <div id="inboxContainer">
+            <div class="widget-main no-padding notification-separator i-noMargin">
+                <div class="col-sm-3 notifications-container">
+                    <notifications-list notifications="duplicates" show-view="showView(notification)" current-selection="detailView" ></notifications-list>
+                </div>
+
+                <detail-view can-update-case="canUpdateCase" notification="detailView" hide-duplicate-warning="true"></detail-view>
+
+                <div class="cc-toolbar-container">
+
+                    <div ng-include=" 'condor/classic/caseComparison/case-comparison-other-toolbar.html' " class="cc-toolbar-panel-other" ng-controller="caseComparisonOtherToolbarController" class="cc-toolbar-highlight" ng-show="canUpdateCase" ng-init="initialInit(detailView)"></div>
+
+                    <div ng-include=" 'condor/classic/caseComparison/case-comparison-toolbar.html' " class="cc-toolbar-panel" ng-controller="caseComparisonToolbarController" class="cc-toolbar-highlight" ng-show="canUpdateCase" ng-init="initialInit(detailView)"></div>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+</div>

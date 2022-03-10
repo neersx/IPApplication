@@ -1,0 +1,27 @@
+<div translate-namespace="validcombinations">
+    <div class="row">
+        <h3>
+            <span class="label-legend" translate=".labelValidRelationship"></span>
+            <ip-inline-dialog data-content="{{::'validcombinations.createValidCharacteristic' | translate}}" data-placement="right"></ip-inline-dialog>
+        </h3>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-jurisdiction" name="jurisdiction" data-multiselect data-config='jurisdiction' data-picklist-can-maintain="true" ng-model="vm.entity.jurisdictions" ng-class="{edited: vm.maintenance.jurisdiction.$dirty}" ip-required ng-disabled="vm.entity.state == 'updating'"
+            ip-autofocus></ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-property-type" name="propertyType" data-config='propertyType' ng-model="vm.entity.propertyType" ip-required ng-class="{edited: vm.maintenance.propertyType.$dirty}" ng-disabled="vm.entity.state == 'updating'" data-picklist-can-maintain="true"
+            data-key-field="key" data-code-field="code" data-text-field="value"></ip-typeahead>
+    </div>
+    <h3>
+        <span class="label-legend" translate=".labelNewValidRelationship"></span>
+    </h3>
+    <div class="row">
+        <ip-typeahead id="pk-relationship" name="relationship" data-config='relationship' data-picklist-can-maintain="true" ng-model="vm.entity.relationship" ip-required ng-disabled="vm.entity.state == 'updating'" ng-class="{edited: vm.maintenance.relationship.$dirty}"></ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-recip-relationship" name="recipRelationship" data-label="validcombinations.reciprocalRelationship" data-config='relationship' data-picklist-display-name="validcombinations.reciprocalRelationship" data-picklist-can-maintain="true"
+            ng-model="vm.entity.recipRelationship" ng-class="{edited: vm.maintenance.recipRelationship.$dirty}"></ip-typeahead>
+    </div>
+</div>
+<br />

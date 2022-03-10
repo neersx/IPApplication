@@ -1,0 +1,19 @@
+<h1>Drag Drop feature using HTML5 native API's</h1>
+<div class="row">
+
+    <div class="col-sm-4" style="border-style: dotted; height: 269px;overflow-y: scroll;" (drop)="onDrop($event, 'kendoTreeView')" (dragover)="onDragover($event,'kendoTreeView')">
+        <input [(ngModel)]="searchTerm" (keyup)='onkeyup(searchTerm,kendoTreeViewStoreForFilter)' placeholder="Search items" />
+        <kendo-treeview id="kendoTreeViewData" (dragstart)="onDragStart($event,'kendoTreeView')" [nodes]="kendoTreeViewData" textField="displayName" [isExpanded]="isExpanded" (collapse)="handleCollapse($event)" (expand)="handleExpand($event)" kendoTreeViewExpandable
+            kendoTreeViewFlatDataBinding idField="id" parentIdField="parentId">
+            <ng-template kendoTreeViewNodeTemplate let-dataItem let-i='index'>
+                <div draggable="true" [id]=i>
+                    <span [tooltip]="dataItem.columnDescription">{{ dataItem.displayName }}</span>
+                </div>
+            </ng-template>
+        </kendo-treeview>
+    </div>
+    <div class="col-sm-8" style="border-style: dotted; height: 269px;overflow-y: scroll;">
+        <ipx-kendo-grid style="height: 300px;" id="KendoGrid" [dataOptions]="gridOptions" (drop)="onDrop($event, 'kendoGrid')" (dragstart)="onDragStart($event,'kendoGrid')" (dragover)="onDragover($event,'kendoGrid')">
+        </ipx-kendo-grid>
+    </div>
+</div>

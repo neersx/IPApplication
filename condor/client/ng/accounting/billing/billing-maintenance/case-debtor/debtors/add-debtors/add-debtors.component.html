@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{this.isAdding ? 'accounting.billing.step1.addDebtor' : 'accounting.billing.step1.editDebtor' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-apply-button type="button" [disabled]="!formGroup.dirty || formGroup.status === 'INVALID'" (click)="apply()"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <form name="addDebtors" [formGroup]="formGroup">
+        <div class="col-md-11">
+            <ipx-typeahead required name="newDebtor" [disabled]="!isAdding" [formControl]="FormattedNameWithCode" apply-edited [label]="'wip.adjustWip.debtor'" config="debtor" (onChange)="onDebtorChange($event)">
+            </ipx-typeahead>
+        </div>
+        <div class="col-md-11">
+            <ipx-text-field name="referenceNo" [formControl]="ReferenceNo" [disabled]="disableFields" apply-edited [label]="'accounting.billing.step1.addDebtors.referenceNo'" (onChange)="onReferenceChange($event)">
+            </ipx-text-field>
+        </div>
+        <div class="col-md-11">
+            <ipx-text-field name="AttentionName" [formControl]="AttentionName" [disabled]="disableFields" apply-edited [label]="'accounting.billing.step1.addDebtors.attention'" (onChange)="onAttentionChange($event)">
+            </ipx-text-field>
+        </div>
+        <div class="col-md-11">
+            <ipx-text-field name="Address" [formControl]="Address" [disabled]="disableFields" apply-edited [label]="'accounting.billing.step1.addDebtors.address'" (onChange)="onAddressChange($event)">
+            </ipx-text-field>
+        </div>
+        <div class="col-md-11">
+            <ipx-dropdown #reasonElement name="Reason" [disabled]="disableFields || disableReason" [keyField]="'Id'" [displayField]="'Name'" [options]="reasonList" formControlName="Reason"
+                [label]="'accounting.billing.step1.addDebtors.reason'"></ipx-dropdown>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+<style>
+    .input-wrap.readonly-label-value div {
+        vertical-align: middle !important;
+        line-height: 25px;
+        display: flex;
+    }
+</style>
+<div ng-form="vm.form" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title">
+            <div translate="configurations.maintenance.title"></div>
+        </h2>
+        <div class="modal-header-controls">
+            <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismissAll(vm.form)"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <ip-nav-modal ng-if="vm.isEditState()" all-items="vm.options.allItems" current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges">
+        </ip-nav-modal>
+        <div class="row">
+            <div class="input-wrap readonly-label-value">
+                <label translate="configurations.maintenance.name"></label>
+                <span name="configuration-name">{{vm.entity.name}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap readonly-label-value">
+                <label translate="configurations.maintenance.description"></label>
+                <div name="configuration-description">{{vm.entity.description}}</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap readonly-label-value">
+                <label translate="configurations.maintenance.components"></label>
+                <span name="configuration-components">{{vm.entity.components}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <ip-typeahead name="tags" data-multiselect data-label="configurations.maintenance.tags" data-key-field="key" data-text-field="tagName" data-api-url="api/configuration/tags" data-picklist-display-name="Tags" data-config='tags' data-picklist-can-maintain="true"
+                data-show-add="true" add-url="api/configuration/tags" data-picklist-columns="[{title:'Tag Name', field:'tagName'}]" ng-model="vm.entity.tags" ng-class="{edited: vm.form.tags.$dirty}" ip-autofocus="true">
+            </ip-typeahead>
+        </div>
+    </div>
+</div>

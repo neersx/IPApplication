@@ -1,0 +1,61 @@
+<div class="jurisdiction-overview" ng-form="vm.form" ip-form>
+    <div class="row" ng-if="viewData.isInternal === true">
+        <div class="input-wrap col-sm-6">
+            <label translate="jurisdictions.maintenance.overview.type" class="col-sm-4"></label>
+            <label translate="jurisdictions.maintenance.overview.types.internal" class="col-sm-2 label-3"></label>
+        </div>
+        <div class="col-md-6">
+            <ip-datepicker id="datecommenced" name="datecommenced" class="col-sm-7" ng-model="vm.formData.dateCommenced" label="jurisdictions.maintenance.overview.dateCommenced" is-saved="vm.formData.isSaved('dateCommenced')" is-disabled="!viewData.canEdit"></ip-datepicker>
+            <ip-datepicker id="dateceased" name="dateceased" class="col-sm-7" ng-model="vm.formData.dateCeased" label="jurisdictions.maintenance.overview.dateCeased" later-than="vm.formData.dateCommenced" is-saved="vm.formData.isSaved('dateCeased')" is-disabled="!viewData.canEdit"></ip-datepicker>
+        </div>
+    </div>
+    <div class="row" ng-if="!viewData.isInternal">
+        <div class="input-wrap-group col-md-6" ng-class="{saved: vm.formData.isSaved('type'), edited: vm.formData.isDirty('type')} ">
+            <span translate="jurisdictions.maintenance.overview.type" class="pull-left input-wrap"></span>
+            <div class="input-wrap">
+                <input type="radio" name="jurisdictionType" id="jurisdictionType-country" ng-model="vm.formData.type" value="0" ng-disabled="!viewData.canEdit" />
+                <label for="jurisdictionType-country" translate="jurisdictions.maintenance.overview.types.country"></label>
+            </div>
+            <div class="input-wrap">
+                <input type="radio" name="jurisdictionType" id="jurisdictionType-group" ng-model="vm.formData.type" value="1" ng-disabled="!viewData.canEdit" />
+                <label for="jurisdictionType-group" translate="jurisdictions.maintenance.overview.types.group"></label>
+            </div>
+            <div class="input-wrap">
+                <input type="radio" name="jurisdictionType" id="jurisdictionType-iponly" ng-model="vm.formData.type" value="3" ng-disabled="!viewData.canEdit" />
+                <label for="jurisdictionType-iponly" translate="jurisdictions.maintenance.overview.types.ipOnly"></label>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <ip-datepicker id="datecommenced" name="datecommenced" class="col-sm-7" ng-model="vm.formData.dateCommenced" label="jurisdictions.maintenance.overview.dateCommenced" is-saved="vm.formData.isSaved('dateCommenced')" is-disabled="!viewData.canEdit"></ip-datepicker>
+        </div>
+        <div class="col-md-6">
+            <ip-datepicker id="dateceased" name="dateceased" class="col-sm-7" ng-model="vm.formData.dateCeased" label="jurisdictions.maintenance.overview.dateCeased" later-than="vm.formData.dateCommenced" is-saved="vm.formData.isSaved('dateCeased')" is-disabled="!viewData.canEdit"></ip-datepicker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 country-code-group">
+            <ip-text-field name="code" required label="jurisdictions.maintenance.overview.code" ng-model="vm.formData.id" ng-maxlength="3" ng-disabled="true" ng-disabled="!viewData.canEdit"></ip-text-field>
+            <ip-text-field name="alternateCode" label="jurisdictions.maintenance.overview.alternateCode" ng-model="vm.formData.alternateCode" ng-maxlength="3" ng-class="{saved: vm.formData.isSaved('alternateCode'), edited: vm.formData.isDirty('alternateCode')}" ng-disabled="!viewData.canEdit"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <ip-text-field name="name" label="jurisdictions.maintenance.overview.name" ng-model="vm.formData.name" ng-maxlength="60" required ng-class="{saved: vm.formData.isSaved('name'),edited: vm.formData.isDirty('name')}" ng-disabled="!viewData.canEdit"></ip-text-field>
+            <ip-text-field name="abbreviation" label="jurisdictions.maintenance.overview.abbreviation" ng-model="vm.formData.abbreviation" ng-maxlength="10" ng-class="{saved: vm.formData.isSaved('abbreviation'), edited: vm.formData.isDirty('abbreviation')}" ng-disabled="!viewData.canEdit"></ip-text-field>
+            <ip-text-field name="postalName" ng-if="viewData.type == 0" label="jurisdictions.maintenance.overview.postalName" ng-model="vm.formData.postalName" ng-maxlength="60" required ng-class="{saved: vm.formData.isSaved('postalName'), edited: vm.formData.isDirty('postalName')}"
+                ng-disabled="!viewData.canEdit"></ip-text-field>
+            <ip-text-field name="informalName" label="jurisdictions.maintenance.overview.informalName" ng-model="vm.formData.informalName" ng-maxlength="60" ng-class="{saved: vm.formData.isSaved('informalName'), edited: vm.formData.isDirty('informalName')}" ng-disabled="!viewData.canEdit"></ip-text-field>
+            <ip-text-field name="countryAdjective" label="jurisdictions.maintenance.overview.adjective" ng-model="vm.formData.countryAdjective" ng-maxlength="60" ng-class="{saved: vm.formData.isSaved('countryAdjective'), edited: vm.formData.isDirty('countryAdjective')}"
+                ng-disabled="!viewData.canEdit"></ip-text-field>
+            <ip-text-field name="isdCode" data-ng-if="viewData.type == 0" label="jurisdictions.maintenance.overview.intTelCode" ng-model="vm.formData.isdCode" ng-maxlength="5" ng-class="{saved: vm.formData.isSaved('isdCode'), edited: vm.formData.isDirty('isdCode')}"
+                ng-disabled="!viewData.canEdit"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="input-wrap large" data-ng-class="{error: vm.form.notes.$invalid}">
+                <ip-text-field multiline name="notes" label="jurisdictions.maintenance.overview.notes" ng-model="vm.formData.notes" ng-maxlength="254" ng-class="{saved: vm.formData.isSaved('notes'), edited: vm.formData.isDirty('notes')}" ng-disabled="!viewData.canEdit"></ip-text-field>
+            </div>
+        </div>
+    </div>
+</div>

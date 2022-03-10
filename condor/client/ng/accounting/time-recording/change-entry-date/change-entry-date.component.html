@@ -1,0 +1,79 @@
+<form id="changeEntryDate" #f="ngForm">
+    <div class="modal-header">
+        <h2 class="modal-title">{{'accounting.time.recording.changeEntryDate' | translate}}</h2>
+    </div>
+    <ipx-inline-alert *ngIf="isContinued" [type]="'info'" [text]="'accounting.time.recording.ChangeEntryDateOfContinuedMsg'">
+    </ipx-inline-alert>
+    <ipx-inline-alert *ngIf="item.isPosted" [type]="'info'" [text]="'accounting.time.recording.ChangeEntryDateOfPostedMsg'">
+    </ipx-inline-alert>
+    <br>
+    <div class="modal-body">
+        <section>
+            <div class="col-sm-12">
+                <label class="col-sm-4 text-right">{{ 'accounting.time.recording.originalDate' | translate }}</label>
+                <span class="col-sm-8">{{item.start || initialDate | localeDate}}</span>
+            </div>
+            <div *ngIf="(openPeriods | async) as openPeriodsVal">
+                <ipx-date-picker id="selectedDate" name="newEntryDate" [ngModel]="initialDate" ngDefaultControl #newDate="ngModel" label="accounting.time.recording.newDate" class="col-sm-12 bold"
+                    (onChange)="isValidDate($event,openPeriodsVal , f) && onDateChanged($event)" apply-edited [earlierThan]="item.isPosted ? today : null" [includeSameDate]="true">
+                </ipx-date-picker>
+            </div>
+            <span class="col-sm-12">
+                <hr>
+            </span>
+            <div *ngIf="item.caseReference" class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.caseReference' | translate }}</label>
+                <span class="col-sm-8">{{item.caseReference}}</span>
+            </div>
+            <div *ngIf="item.name" class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.name' | translate }}</label>
+                <span class="col-sm-8">{{item.name}}</span>
+            </div>
+            <div class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.activity' | translate }}</label>
+                <span class="col-sm-8">{{item.activity}}</span>
+            </div>
+            <div *ngIf="!!item.narrativeTitle || !!item.narrativeText" class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.narrative' | translate }}</label>
+                <span class="col-sm-8">{{item.narrativeTitle || item.narrativeText}}</span>
+            </div>
+            <div *ngIf="!!item.start && !!item.finish" class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.time' | translate }}</label>
+                <span class="col-sm-8">{{item.elapsedTimeInSeconds | durationFormat}} ({{item.start | date: "HH:mm"}} -
+                    {{item.finish | date: "HH:mm"}})</span>
+            </div>
+            <div *ngIf="!item.start" class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.time' | translate }}</label>
+                <span class="col-sm-8">{{item.elapsedTimeInSeconds | durationFormat}}</span>
+            </div>
+            <div *ngIf="!!item.secondsCarriedForward" class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.accumulatedTime' | translate }}</label>
+                <span class="col-sm-8">{{(item.secondsCarriedForward + item.elapsedTimeInSeconds) | durationFormat}}</span>
+            </div>
+            <div class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.units' | translate }}</label>
+                <span class="col-sm-8">{{item.totalUnits}}</span>
+            </div>
+            <div class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.localValue' | translate }}</label>
+                <span class="col-sm-3 text-right">{{item.localValue | localCurrencyFormat | async}}</span>
+            </div>
+            <div *ngIf="item.localDiscount" class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.localDiscount' | translate }}</label>
+                <span class="col-sm-3 text-right">{{item.localDiscount | localCurrencyFormat | async}}</span>
+            </div>
+            <div *ngIf="item.foreignValue" class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.foreignValue' | translate }}</label>
+                <span class="col-sm-3 text-right">{{item.foreignValue | localCurrencyFormat:item.foreignCurrency | async}}</span>
+            </div>
+            <div *ngIf="item.foreignDiscount" class="col-sm-12">
+                <label class="col-sm-4">{{ 'accounting.time.fields.foreignDiscount' | translate }}</label>
+                <span class="col-sm-3 text-right">{{item.foreignDiscount | localCurrencyFormat:item.foreignCurrency | async}}</span>
+            </div>
+        </section>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-save" name="save" (click)="ok()" [disabled]="canUpdate || f?.invalid">{{'Save' | translate}}</button>
+        <button type="button" class="btn" name="cancel" (click)="close()">{{'Cancel' | translate}}</button>
+    </div>
+</form>

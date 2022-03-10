@@ -1,0 +1,23 @@
+<ipx-kendo-grid [dataOptions]="gridOptions" #copiesToGrid (addRowEvent)="onRowAddedOrEdited($event)" (editRowEvent)="onRowAddedOrEdited($event)" (deleteRowEvent)="onRowDeleted($event)"
+    (cancelRowEditEvent)="cancelRowEdit($event)">
+    <ng-template ipxEditTemplateColumnField="CopyToName" let-dataItem="dataItem" let-rowIndex="rowIndex">
+        <div *ngIf="dataItem && dataItem.CopyToName">
+            <span class="text-nowrap">{{ dataItem.CopyToName }}</span>
+        </div>
+    </ng-template>
+    <ng-template ipxEditTemplateColumnField="ContactName" let-dataItem="dataItem" let-rowIndex="rowIndex">
+        <div *ngIf="dataItem && dataItem.ContactName">
+            <span class="text-nowrap">{{ dataItem.ContactName }}</span>
+        </div>
+    </ng-template>
+    <ng-template ipxEditTemplateColumnField="Address" let-dataItem="dataItem" let-rowIndex="rowIndex">
+        <div *ngIf="dataItem && dataItem.Address">
+            <span class="text-nowrap">{{ dataItem.Address }}</span>
+        </div>
+    </ng-template>
+    <ng-template ipxEditTemplateColumnField="AddressChangeReason" let-dataItem="dataItem" let-rowIndex="rowIndex">
+        <div *ngIf="dataItem && dataItem.AddressChangeReason">
+            <span class="text-nowrap">{{ dataItem.AddressChangeReason }}</span>
+        </div>
+    </ng-template>
+</ipx-kendo-grid>

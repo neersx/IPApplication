@@ -1,0 +1,129 @@
+<form #caseSearchForm="ngForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-dropdown-operator name="suppliedPtaOperator"
+                    label="caseSearch.topics.patentTermAdjustments.ipOfficeSuppliedPta"
+                    [(ngModel)]="formData.suppliedPtaOperator" operatorsGroup="Between">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-2">
+                <ipx-text-field  [ipx-data-type]="dataType.nonnegativeinteger" name="fromSuppliedPta" [(ngModel)]="formData.fromSuppliedPta" ipx-autofocus="{{!!topic.isActive}}"
+                    (change)="compareFromandToDays(formData.fromSuppliedPta, formData.toSuppliedPta, 'toSuppliedPta',dataType.nonnegativeinteger)">
+                </ipx-text-field>
+            </div>
+            <div class="col-md-1 text-left-margin">
+                <div class="input-wrap no-background">
+                    <label>{{'caseSearch.topics.patentTermAdjustments.to' | translate}}</label>
+                </div>
+            </div>
+            <div class="col-md-2 ctrl-left-margin">
+                <ipx-text-field  [ipx-data-type]="dataType.nonnegativeinteger" name="toSuppliedPta" [errorParam]="formData.fromSuppliedPta"
+                    (change)="compareFromandToDays(formData.fromSuppliedPta, formData.toSuppliedPta, 'toSuppliedPta',dataType.nonnegativeinteger)"
+                    [(ngModel)]="formData.toSuppliedPta">
+                </ipx-text-field>
+            </div>
+            <div class="col-md-1 text-left-margin">
+                <div class="input-wrap no-background">
+                    <label>{{'caseSearch.topics.patentTermAdjustments.days' | translate}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-dropdown-operator name="determinedByUsOperator"
+                    label="caseSearch.topics.patentTermAdjustments.ptaDeterminedByUs"
+                    [(ngModel)]="formData.determinedByUsOperator" operatorsGroup="Between">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-2">
+                <ipx-text-field [ipx-data-type]="dataType.nonnegativeinteger" name="fromPtaDeterminedByUs"
+                    (change)="compareFromandToDays(formData.fromPtaDeterminedByUs, formData.toPtaDeterminedByUs, 'toPtaDeterminedByUs',dataType.nonnegativeinteger)"
+                    [(ngModel)]="formData.fromPtaDeterminedByUs">
+                </ipx-text-field>
+            </div>
+            <div class="col-md-1 text-left-margin">
+                <div class="input-wrap no-background">
+                    <label>{{'caseSearch.topics.patentTermAdjustments.to' | translate}}</label>
+                </div>
+            </div>
+            <div class="col-md-2 ctrl-left-margin">
+                <ipx-text-field [ipx-data-type]="dataType.nonnegativeinteger" name="toPtaDeterminedByUs" [errorParam]="formData.fromPtaDeterminedByUs"
+                    (change)="compareFromandToDays(formData.fromPtaDeterminedByUs, formData.toPtaDeterminedByUs, 'toPtaDeterminedByUs',dataType.nonnegativeinteger)"
+                    [(ngModel)]="formData.toPtaDeterminedByUs">
+                </ipx-text-field>
+            </div>
+            <div class="col-md-1 text-left-margin">
+                <div class="input-wrap no-background">
+                    <label>{{'caseSearch.topics.patentTermAdjustments.days' | translate}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-dropdown-operator name="ipOfficeDelayOperator"
+                    label="caseSearch.topics.patentTermAdjustments.ipOfficeDelay"
+                    [(ngModel)]="formData.ipOfficeDelayOperator" operatorsGroup="Between">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-2">
+                <ipx-text-field [ipx-data-type]="dataType.nonnegativeinteger" name="fromIpOfficeDelay"
+                    (change)="compareFromandToDays(formData.fromIpOfficeDelay, formData.toIpOfficeDelay, 'toIpOfficeDelay',dataType.nonnegativeinteger)"
+                    [(ngModel)]="formData.fromIpOfficeDelay">
+                </ipx-text-field>
+            </div>
+            <div class="col-md-1 text-left-margin">
+                <div class="input-wrap no-background">
+                    <label>{{'caseSearch.topics.patentTermAdjustments.to' | translate}}</label>
+                </div>
+            </div>
+            <div class="col-md-2 ctrl-left-margin">
+                <ipx-text-field [ipx-data-type]="dataType.nonnegativeinteger" name="toIpOfficeDelay" [errorParam]="formData.fromIpOfficeDelay"
+                    (change)="compareFromandToDays(formData.fromIpOfficeDelay, formData.toIpOfficeDelay, 'toIpOfficeDelay',dataType.nonnegativeinteger)"
+                    [(ngModel)]="formData.toIpOfficeDelay">
+                </ipx-text-field>
+            </div>
+            <div class="col-md-1 text-left-margin">
+                <div class="input-wrap no-background">
+                    <label>{{'caseSearch.topics.patentTermAdjustments.days' | translate}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-dropdown-operator name="applicantDelayOperator"
+                    label="caseSearch.topics.patentTermAdjustments.applicantDelay"
+                    [(ngModel)]="formData.applicantDelayOperator" operatorsGroup="Between">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-2">
+                <ipx-text-field [ipx-data-type]="dataType.nonnegativeinteger" name="fromApplicantDelay"
+                    (change)="compareFromandToDays(formData.fromApplicantDelay, formData.toApplicantDelay, 'toApplicantDelay',dataType.nonnegativeinteger)"
+                    [(ngModel)]="formData.fromApplicantDelay">
+                </ipx-text-field>
+            </div>
+            <div class="col-md-1 text-left-margin">
+                <div class="input-wrap no-background">
+                    <label>{{'caseSearch.topics.patentTermAdjustments.to' | translate}}</label>
+                </div>
+            </div>
+            <div class="col-md-2 ctrl-left-margin">
+                <ipx-text-field [ipx-data-type]="dataType.nonnegativeinteger" name="toApplicantDelay" [errorParam]="formData.fromApplicantDelay"
+                    (change)="compareFromandToDays(formData.fromApplicantDelay, formData.toApplicantDelay, 'toApplicantDelay',dataType.nonnegativeinteger)"
+                    [(ngModel)]="formData.toApplicantDelay">
+                </ipx-text-field>
+            </div>
+            <div class="col-md-1 text-left-margin">
+                <div class="input-wrap no-background">
+                    <label>{{'caseSearch.topics.patentTermAdjustments.days' | translate}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-left" style="margin-left: 16.3%">
+                <ipx-checkbox label="{{ 'caseSearch.topics.patentTermAdjustments.ptaDiscrepancies' | translate}}"
+                    name="ptaDiscrepancies" [(ngModel)]="formData.ptaDiscrepancies"></ipx-checkbox>
+            </div>
+        </div>
+    </div>
+</form>

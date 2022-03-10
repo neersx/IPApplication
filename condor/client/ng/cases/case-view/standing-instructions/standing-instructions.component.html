@@ -1,0 +1,71 @@
+<div class="container-fluid" style="overflow: auto;"> 
+    <div class="row">   
+<ipx-kendo-grid id="standingInstructions" [dataOptions]="gridOptions"  *ngIf="gridOptions">
+        <ng-template ipxTemplateColumnField="defaultedFrom" let-dataItem>
+                <ipx-ie-only-url *ngIf="showWebLink && dataItem.canView" style="cursor: pointer;"
+                    [url]="encodeLinkData(dataItem.nameNo)" [text]="dataItem.defaultedFrom">
+                </ipx-ie-only-url>
+                <span *ngIf="!showWebLink && dataItem.canView">{{ dataItem.defaultedFrom }}</span>
+                <span *ngIf="!dataItem.canView && dataItem.defaultedFrom" class="cpa-icon text-grey-highlight cpa-icon-ban" [tooltip]="'common.accessDenied.nameAccessDenied' | translate"></span>
+            </ng-template>
+    <ng-template ipxTemplateColumnField="period1" let-dataItem>
+        <span>{{ dataItem.period1Amt }} {{ dataItem.period1Type }}</span>
+    </ng-template>
+    <ng-template ipxTemplateColumnField="period2" let-dataItem>
+        <span>{{ dataItem.period2Amt }} {{ dataItem.period2Type }}</span>
+    </ng-template>
+    <ng-template ipxTemplateColumnField="period3" let-dataItem>
+        <span>{{ dataItem.period3Amt }} {{ dataItem.period3Type }}</span>
+    </ng-template>
+</ipx-kendo-grid>
+<ng-template #detailTemplate let-dataItem>
+        <section>
+            <div class="content row col-sm-11 detail-offset">
+                <div class="row">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.standingInstructions.adjustmentType' | translate }}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <span class="text" id="adjustment">{{dataItem.adjustment}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="dataItem.showAdjustDay || dataItem.showAdjustStartMonth">
+                    <div class="col-sm-3 field-label" *ngIf="dataItem.showAdjustDay">
+                        <!-- <label>{{ 'caseview.standingInstructions.adjustmentDay' |translate}}</label> -->
+                        <label>{{ 'caseview.standingInstructions.startOn' | translate }}</label>
+                    </div>
+                    <div class="col-sm-9" *ngIf="dataItem.showAdjustDay || dataItem.showAdjustStartMonth">
+                        <span class="text" id="adjustDay">{{dataItem.adjustDay}} </span>
+                        <span class="text" *ngIf="dataItem.showAdjustStartMonth" id="adjustStartMonth">{{dataItem.adjustStartMonth}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="dataItem.showAdjustDayOfWeek">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.standingInstructions.startOn' | translate }}</label>
+                        <!-- <label>{{ 'caseview.standingInstructions.dayOfWeek' |translate}}</label> -->
+                    </div>
+                    <div class="col-sm-9">
+                        <span class="text">{{dataItem.adjustDayOfWeek}}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="dataItem.showAdjustToDate">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.standingInstructions.startOn' | translate }}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <span class="text">{{ dataItem.adjustToDate | localeDate }}</span>
+                    </div>
+                </div>
+                <div class="row" *ngIf="!dataItem.isExternalUser">
+                    <div class="col-sm-3 field-label">
+                        <label>{{ 'caseview.standingInstructions.adjustmentText' | translate }}</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <span class="text" id="standingInstructionText">{{dataItem.standingInstructionText}}</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ng-template>
+</div>
+</div>

@@ -1,0 +1,5 @@
+<ipx-kendo-grid #caseDetailsGrid class="auto-fit-pager" id="caseDetailsGrid" [dataOptions]="caseDetailsGridOptions" *ngIf="caseDetailsGridOptions">
+    <ng-template ipxTemplateColumnField="irn" let-dataItem>
+        <a id="caseReference" href="#/caseview/{{dataItem.caseId}}" target="_blank">{{ dataItem.irn }}</a>
+    </ng-template>
+</ipx-kendo-grid>

@@ -1,0 +1,76 @@
+<div *ngIf="form" class="modal-header">
+    <h2 class="modal-title" translate="{{ isAdding? 'currencies.maintenance.add': 'currencies.maintenance.edit' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button type="button" id="btSave" [disabled]="form.status === 'INVALID' || !form.dirty" (click)="submit()"></ipx-save-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div *ngIf="canNavigate" class="title-header">
+    <ipx-detail-page-nav *ngIf="navData" paramKey="id" [totalRows]="navData.totalRows" [hasUnsavedChanges]="form.dirty" [currentKey]="currentKey" [fetchNext]="navData.fetchCallback" [noParams]="true" [ids]="navData.keys"
+        [pageSize]="navData.pageSize" (nextResult)="getNextCurrencyDetails($event)">
+    </ipx-detail-page-nav>
+</div>
+<div class="modal-body">
+    <br>
+    <div *ngIf="form">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-sm-3 field-label" style="margin-top: 7px; margin-left: 87px;">
+                    <label>{{ 'currencies.maintenance.form.currencyCode' |translate}}</label>
+                    <span style="color: #CC3300;"> *</span>
+                </div>
+                <div class="col-md-3" style="margin-left:-154px; padding-right: 78px;">
+                    <ipx-text-field id="currencyCode" required name="currencyCode" [disabled]="!isAdding" (change)="formatCurrencyCode()" required formControlName="currencyCode" apply-edited autocomplete="off">
+                    </ipx-text-field>
+                </div>
+                <div class="col-md-6" style="margin-left: 30px;">
+                    <ipx-text-field id="currencyDescription" name="currencyDescription" required formControlName="currencyDescription" apply-edited label="{{ 'currencies.maintenance.form.currencyDesc' | translate }}"
+                        autocomplete="off">
+                    </ipx-text-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="margin-left: 105px;">
+                    <ipx-text-field id="bankRate" class="number" [decimalPlaces]="4" label="{{ 'currencies.maintenance.form.bankRate' |translate}}" [ipx-data-type]="dataType.positivedecimal" [formControl]="bankRate" apply-edited>
+                    </ipx-text-field>
+                </div>
+                <div class="col-md-6" style="margin-left: 106px;">
+                    <ipx-date-picker #dateChanged name="dateChanged" required id="dateChanged" formControlName="dateChanged" apply-edited label="{{'currencies.maintenance.form.dateChanged' | translate}}">
+                    </ipx-date-picker>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="margin-left: 105px;">
+                    <ipx-text-field id="buyFactor" class="number" [decimalPlaces]="4" [ipx-data-type]="dataType.positivedecimal" label="{{'currencies.maintenance.form.buyFactor' | translate}}" [formControl]="buyFactor" apply-edited>
+                    </ipx-text-field>
+                </div>
+                <div class="col-md-3" style="margin-left: 188px;">
+                    <ipx-text-field id="buyRate" class="number" [decimalPlaces]="4" [ipx-data-type]="dataType.positivedecimal" label="{{'currencies.maintenance.form.buyRate' | translate}}" [formControl]="buyRate" apply-edited>
+                    </ipx-text-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="margin-left: 105px;">
+                    <ipx-text-field id="sellFactor" class="number" [decimalPlaces]="4" [ipx-data-type]="dataType.positivedecimal" label="{{'currencies.maintenance.form.sellFactor' | translate}}" [formControl]="sellFactor" apply-edited>
+                    </ipx-text-field>
+                </div>
+                <div class="col-md-3" style="margin-left: 188px;">
+                    <ipx-text-field id="sellRate" class="number" [decimalPlaces]="4" [ipx-data-type]="dataType.positivedecimal" label="{{'currencies.maintenance.form.sellRate' | translate}}" [formControl]="sellRate" apply-edited>
+                    </ipx-text-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 field-label" style="margin-top: 7px; margin-left: 6px;">
+                    <label>{{ 'currencies.maintenance.form.roundedBillValues' |translate}}</label>
+                </div>
+                <div class="col-md-3" style="margin-left:-73px; padding-right: 78px;">
+                    <ipx-text-field id="roundedBillValues" class="number" [ipx-data-type]="dataType.positiveinteger" [formControl]="roundedBillValues" apply-edited>
+                    </ipx-text-field>
+                </div>
+                <div class="col-md-2" style="margin-top: 7px; margin-left: -80px;">
+                    <span>{{ 'currencies.maintenance.form.wholeUnits' |translate}}</span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<style>
+#confirmModal ul {
+    list-style-type: none;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+#confirmModal li {
+    color: #909090;
+    list-style: none;
+}
+#confirmModal .modal-body{
+    padding-left: 15px;
+}
+</style>
+<div id="confirmModal">
+    <div class="modal-header">
+        <h2 class="modal-title" id="modalPendingLabel" translate="{{options.title}}"></h2>
+    </div>
+    <div class="modal-body">
+        <div>{{options.validationMessage}}</div>
+        <ul>
+            <li ng-repeat="description in options.countries" class="listStyle">
+                {{description}}
+            </li>
+        </ul>
+        <div>{{options.confirmationMessage}}</div>
+        <ul ng-show="options.validCountries">
+            <li ng-repeat="description in options.validCountries" class="listStyle">
+                {{description}}
+            </li>
+        </ul>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" data-ng-click="cancel()" translate="{{options.cancel}}"></button>
+        <button type="button" class="btn btn-primary" data-ng-click="confirm()" translate="{{options.continue}}"></button>
+    </div>
+</div>

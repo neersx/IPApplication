@@ -1,0 +1,17 @@
+<ipx-kendo-grid #ipxKendoGridRef id="taskPlannerDetail" [dataOptions]="gridOptions" (onDetailExpand)="onExpand($event)" (onDetailCollapse)="onCollapse($event)">
+    <ng-template ipxTemplateColumnField="detail" let-dataItem>
+        <span>{{ dataItem.detail }}</span>
+        <span *ngIf="dataItem.detail === strReminderComments" class="badge topics" style="margin-left: 7px;">{{ remindersCount }}</span>
+        <span *ngIf="dataItem.detail === strEventNotes" class="badge topics" style="margin-left: 7px;">{{ notesCount }}</span>
+    </ng-template>
+    <ng-template #detailsTemplate let-dataItem>
+        <ipx-event-note-details *ngIf="showEventNotes && dataItem.detail == strEventNotes && (eventNoteResult$ | async)?.taskPlannerRowKey===taskPlannerRowKey && (eventNoteResult$ | async)?.eventNotesLoaded"
+            [expandAction]="expandAction" [notes]="eventNotes" [categories]="eventNoteTypes" [taskPlannerRowKey]="taskPlannerRowKey" [eventNoteFrom]="eventNoteEnum.taskPlanner"
+            [maintainEventNotesPermissions]="maintainEventNotesPermissions" [replaceEventNotes]="replaceEventNotes" [isPredefinedNoteExists]="noteTypeExist" [siteControlId]="siteControlId"
+            [maintainEventNotes]="maintainEventNotes" (onEventNoteUpdate)="handelOnEventNoteUpdate($event)" (onEventNoteChange)="handleOnNoteOrCommentChange($event)" (onSetNotesCount)="setNotesCount($event)">
+        </ipx-event-note-details>
+        <ipx-task-reminder-comments *ngIf="showReminderComments && dataItem.detail == strReminderComments" [expandAction]="expandAction" [taskPlannerRowKey]="taskPlannerRowKey"
+            [maintainReminderComments]="maintainReminderComments" (onReminderCommentUpdate)="handelOnReminderCommentUpdate($event)" (onReminderCommentChange)="handleOnNoteOrCommentChange($event)">
+        </ipx-task-reminder-comments>
+    </ng-template>
+</ipx-kendo-grid>

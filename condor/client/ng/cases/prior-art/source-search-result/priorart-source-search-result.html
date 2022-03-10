@@ -1,0 +1,18 @@
+<div id="source-search-result">
+    <div>
+        <ipx-kendo-grid #ipxKendoGridRef id="sourceResultSet" [dataOptions]="gridOptions" *ngIf="gridOptions" (onDetailCollapse)="onCollapse($event)">
+            <ng-template ipxTemplateColumnField="buttons" let-dataItem>
+                <ipx-icon-button *ngIf="dataItem.origin === originInprotech && (searchData.sourceDocumentId || searchData.caseKey)" type="button" [buttonIcon]="'link'" name="cite" (onclick)="cite(dataItem)" [disabled]="dataItem.isCited"
+                tooltip="{{ (dataItem.isCited ? 'priorart.cited' : 'priorart.cite') | translate }}"></ipx-icon-button>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="canEdit" let-dataItem>
+                <ipx-icon-button type="button" [buttonIcon]="'edit'" name="edit" (onclick)="edit(dataItem)" tooltip="{{ 'priorart.maintenance.step1.sourceTitle' | translate }}"></ipx-icon-button>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+    <ng-template #dataDetailTemplate let-dataItem>
+        <section>
+            <ipx-priorart-detail #dataDetailComponent [details]="dataItem" [translationsList]="translationsList" (onSave)="onSaveData($event)"></ipx-priorart-detail>
+        </section>
+    </ng-template>
+</div>

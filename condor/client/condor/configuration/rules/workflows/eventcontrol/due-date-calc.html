@@ -1,0 +1,72 @@
+<div translate-namespace=".dueDateCalc">
+    <div class="text-right">
+        <ip-add-button ng-click="vm.onAddClick()" ng-if="vm.canEdit"></ip-add-button>
+    </div>
+    <div class="row">
+        <ip-kendo-grid data-id="dueDateCalcResults" data-grid-options="vm.gridOptions" data-show-add="vm.canEdit" data-on-add-click="vm.onAddClick()"
+            data-add-item-name="{{'workflows.eventcontrol.dueDateCalc.title' | translate}}"></ip-kendo-grid>
+
+    </div>
+    <div class="setting" ng-form="vm.form" ip-form>
+        <div class="row">
+            <div class="col-lg-6">
+                <h2>
+                    <span translate=".dueDateCalcSettings"></span>
+                    <ip-inline-dialog placement="left" data-template="condor/configuration/rules/workflows/eventcontrol/due-date-calc-popover.html"></ip-inline-dialog>
+                </h2>
+                <div id="dueDateCalcGroup" ng-class="{'input-inherited': vm.isInherited()}">
+                    <div class="row">
+                        <div class="input-wrap-group group-inline">
+                            <span translate=".formElements.dateToUse"></span>
+                            <ip-radio-button name="dateToUseEarliest" ng-class="{edited: vm.form.dateToUseEarliest.$dirty}" label=".formElements.earliest"
+                                value="E" ng-model="vm.settings.dateToUse" ng-disabled="::!vm.canEdit"></ip-radio-button>
+                            <ip-radio-button name="dateToUseLatest" ng-class="{edited: vm.form.dateToUseLatest.$dirty}" label=".formElements.latest"
+                                value="L" ng-model="vm.settings.dateToUse" ng-disabled="::!vm.canEdit"></ip-radio-button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline">
+                            <span translate=".formElements.saveDueDate"></span>
+                            <ip-radio-button name="saveDueDateYes" ng-class="{edited: vm.form.saveDueDateYes.$dirty}" label=".formElements.yes" ng-value="true"
+                                ng-model="vm.settings.isSaveDueDate" ng-disabled="::!vm.canEdit" ng-change="vm.updateSaveDueDate()"></ip-radio-button>
+                            <ip-radio-button name="saveDueDateNo" ng-class="{edited: vm.form.saveDueDateNo.$dirty}" label=".formElements.no" ng-value="false"
+                                ng-model="vm.settings.isSaveDueDate" ng-disabled="::!vm.canEdit"></ip-radio-button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline">
+                            <span translate=".formElements.extendDueDate"></span>
+                            <ip-radio-button name="extendDueDateYes" ng-class="{edited: vm.form.extendDueDateYes.$dirty}" label=".formElements.yes" ng-value="true"
+                                ng-model="vm.settings.extendDueDate" ng-disabled="::!vm.canEdit" ng-change="vm.updateExtendDueDate()"></ip-radio-button>
+                            <ip-radio-button name="extendDueDateNo" ng-class="{edited: vm.form.extendDueDateNo.$dirty}" label=".formElements.no" ng-value="false"
+                                ng-model="vm.settings.extendDueDate" ng-disabled="::!vm.canEdit"></ip-radio-button>
+                        </div>
+                    </div>
+                    <div class="row" ng-if="vm.settings.extendDueDate">
+                        <div class="col-sm-6 col-sm-offset-2">
+                            <ip-text-dropdown-group name="extendDueDateOptions" ip-required ip-data-type="nonNegativeInteger" ng-class="{edited: vm.form.extendDueDateOptions.$dirty}"
+                                label=".formElements.extendDueDateBy" ng-model="vm.settings.extendDueDateOptions" data-text-field="value"
+                                data-option-field="type" options="item.value as item.name | translate for item in vm.extendDueDateByUnitOptions"
+                                ng-disabled="!vm.canEdit">
+                            </ip-text-dropdown-group>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline">
+                            <span translate=".formElements.recalcEventDate"></span>
+                            <ip-checkbox name="recalcEventDate" ng-class="{edited: vm.form.recalcEventDate.$dirty}" ng-model="vm.settings.recalcEventDate"
+                                ng-disabled="::!vm.canEdit"></ip-checkbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline">
+                            <span translate=".formElements.doNotCalculate"></span>
+                            <ip-checkbox name="doNotCalculateDueDate" ng-class="{edited: vm.form.doNotCalculateDueDate.$dirty}" ng-model="vm.settings.doNotCalculateDueDate"
+                                ng-disabled="::!vm.canEdit"></ip-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

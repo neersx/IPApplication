@@ -1,0 +1,105 @@
+<div data-ng-show="viewData.parentRelatedCases.length">
+    <div class="widget-box">
+        <div class="topic-header header-color-blue">
+            <h1>
+                {{ 'caseComparison.ccHeadingParentRelatedCases' | translate }}
+            </h1>
+        </div>
+        <div>
+            <div class="widget-main no-padding">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-striped-parent-related-cases table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width:20%">&nbsp;</th>
+                                    <th style="width:40%">{{ 'caseComparison.gLblProductName' | translate }}</th>
+                                    <th>&nbsp;</th>
+                                    <th style="width:40%">{{ externalSystem }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat-start="n in viewData.parentRelatedCases" class="table-delimiter">
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblRelationship' | translate }}:</strong>
+                                    </td>
+                                    <td>{{n.description.ourValue}}</td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <span ng-class="{highlight:n.description.different && n.description.theirValue }">{{n.description.theirValue}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblCountryCode' | translate }}:</strong>
+                                    </td>
+                                    <td>
+                                        <span data-ng-show="n.countryCode.ourValue">{{ n.countryCode.ourValue }}</span>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <span data-ng-show="n.countryCode.theirValue">{{n.countryCode.theirValue}}
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblOfficialNumber' | translate }}:</strong>
+                                    </td>
+                                    <td>
+                                        <span data-ng-show="n.officialNumber.ourValue">{{ n.officialNumber.ourValue }}</span>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <span data-ng-show="n.officialNumber.theirValue" data-ng-class="{highlight:n.officialNumber.different && n.officialNumber.theirValue}">{{n.officialNumber.theirValue}}
+                                        </span>
+                                        <div data-ng-show="n.officialNumber.theirValue && n.registrationNumber.theirValue" data-ng-class="{highlight:n.officialNumber.different && n.officialNumber.theirValue}">{{n.registrationNumber.theirValue}}
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblRelatedCaseReference' | translate }}:</strong>
+                                    </td>
+                                    <td>
+                                        <span data-ng-show="n.relatedCaseRef"><a ng-href="{{caseDetailsBaseUrl}}{{ n.relatedCaseRef }}">{{ n.relatedCaseRef }}</span>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblPriorityDate' | translate }}:</strong>&nbsp;&nbsp;
+                                    </td>
+                                    <td><span>{{ n.priorityDate.ourValue | localeDate }}</span>
+                                        <span data-ng-show="n.priorityDate.ourValue && n.eventDescription.ourValue">{{ n.eventDescription.ourValue }}</span>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <span data-ng-show="n.priorityDate.theirValue" ng-class="{highlight:n.priorityDate.different}">{{n.priorityDate.theirValue | localeDate }}&nbsp;&nbsp;</span>
+                                        <span data-ng-show="n.priorityDate.theirValue && n.eventDescription.theirValue">{{ n.eventDescription.theirValue }}</span>
+                                    </td>
+                                </tr>
+                                <tr data-ng-repeat-end class="delimiter">
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblParentStatus' | translate }}:</strong>
+                                    </td>
+                                    <td>
+                                        <span data-ng-show="n.parentStatus.ourValue">{{n.parentStatus.ourValue}}
+                                        </span>
+                                    </td>
+                                    <td>&nbsp;</td>
+                                    <td>
+                                        <span data-ng-show="n.parentStatus.theirValue" data-ng-class="{highlight:n.parentStatus.different && n.parentStatus}">{{n.parentStatus.theirValue}}
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+</div>

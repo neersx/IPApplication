@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-sm-12">
+        <ipx-kendo-grid id="subjectGrid" #resultsGrid [dataOptions]="gridOptions">
+            <ng-template ipxTemplateColumnField="selectPermission" let-dataItem>
+                <div style="text-align: center;">
+                    <ipx-multistate-checkbox [disabled]="!viewData.canUpdateRole" [(ngModel)]="dataItem.selectPermission" (onChange)="onValueChanged(dataItem)"></ipx-multistate-checkbox>
+                </div>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

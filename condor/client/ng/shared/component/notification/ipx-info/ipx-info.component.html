@@ -1,0 +1,20 @@
+<div id="confirmModal">
+    <div class="modal-header">
+        <h2 class="modal-title">{{title | translate}}</h2>
+        <div class="modal-header-controls" *ngIf="displayClose">
+            <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <p>{{info | translate}}</p>
+    </div>
+    <div class="modal-footer">
+        <div class="modal-footer-message">
+            <ipx-checkbox *ngIf="showCheckBox" label="{{chkBoxLabel}}" [(ngModel)]="isChecked">
+            </ipx-checkbox>
+        </div>
+        <div class="buttons">
+            <button type="button" class="btn btn-default" (click)="ok()">OK</button>
+        </div>
+    </div>
+</div>

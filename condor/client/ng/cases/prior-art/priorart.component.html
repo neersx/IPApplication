@@ -1,0 +1,29 @@
+<div id="prior-art" *ngIf="isLoaded">
+    <ipx-sticky-header>
+        <ipx-page-title [title]="'priorart.pageTitle'">
+            <action-buttons>
+                <div>
+                    <div class="col-sm-1 pull-right" style="float: right; margin-right: 15px;">
+                        <button id="closeSearch" class="btn btn-icon" placement="bottom" tooltip="{{'button.close' | translate}}" (click)="close()" *ngIf="showCloseButton">
+                            <span class="cpa-icon cpa-icon-times"></span>
+                        </button>
+                    </div>
+                </div>
+            </action-buttons>
+        </ipx-page-title>
+        <div class="title-header" id="caseAndSourceDetails" *ngIf="caseName || sourceName">
+            <div class="label-value col-sm-2 case-ref-div" *ngIf="caseName">
+                <label translate="priorart.caseReference"></label>
+                <span class="text" id="caseName">{{ caseName }}</span>
+            </div>
+            <div class="label-value col-sm-10" *ngIf="sourceName">
+                <label *ngIf="isSourceType()" translate="priorart.sourceSubHeader"></label>
+                <label *ngIf="!isSourceType()" translate="priorart.priorArtSubHeader"></label>
+                <span class="text" id="sourceName">{{ sourceName }}</span>
+            </div>
+        </div>
+    </ipx-sticky-header>
+    <div ipx-resize-handler [resize-handler-type]="'Panel'">
+        <ipx-priorart-search [translationsList]="translationsList" [priorArtSourceTableCodes]="priorArtSourceTableCodes" [isIpDocument]="isIpDocument" [isSourceDocument]="isSourceDocument"></ipx-priorart-search>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{ 'taxCode.addTaxCode' | translate }}</h2>
+    <div class="modal-header-controls">
+        <ipx-save-button name="saveTaxCode" (onclick)="save()" [disabled]="disable()">
+            {{'Save' | translate}}</ipx-save-button>
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+    </div>
+</div>
+<form name="addTaxCodes" #addTaxCodes="ngForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <ipx-text-field maxlength="3" required ipx-autofocus label="{{ 'taxCode.code'}}" apply-edited [(ngModel)]="formData.taxCode" name="taxCode"></ipx-text-field>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ipx-text-field maxlength="30" required label="{{ 'taxCode.description'}}" apply-edited [(ngModel)]="formData.description" name="description" multiLine="true" rows="2">
+                </ipx-text-field>
+            </div>
+        </div>
+    </div>
+    <br>
+</form>

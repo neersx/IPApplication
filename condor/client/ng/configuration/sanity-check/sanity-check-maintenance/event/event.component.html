@@ -1,0 +1,16 @@
+<form #frm="ngForm">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <div class="row">
+                <ipx-typeahead apply-edited name="event" label="picklist.event.Type" config="event" [(ngModel)]="formData.event" (onChange)="eventSet()">
+                </ipx-typeahead>
+            </div>
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-4">
+                    <ipx-checkbox apply-edited label="sanityCheck.configurations.dueEvent" [(ngModel)]="formData.eventIncludeDue" name="eventIncludeDue" [disabled]="!formData.event"></ipx-checkbox>
+                    <ipx-checkbox apply-edited label="sanityCheck.configurations.occurredEvent" [(ngModel)]="formData.eventIncludeOccurred" name="eventIncludeOccurred" [disabled]="!formData.event"></ipx-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

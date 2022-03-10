@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="col-sm-11">
+        <h2>{{('priorart.maintenance.step3.linkedCases.title') | translate}}<span class="badge topics" style="margin-left: 10px">{{listCount}}</span></h2>
+    </div>
+    <div class="col-sm-1 text-right">
+        <h2>
+            <ipx-icon-button type="button" [buttonIcon]="'refresh'" class="pull-right" name="refresh" (onclick)="refreshGrid()"
+            tooltip="{{'priorart.refresh' | translate }}"></ipx-icon-button>
+            <ipx-add-button id="btnLinkCases" class="pull-right" (onclick)="linkCases()" style="margin-right:3px"></ipx-add-button>
+        </h2>
+    </div>
+</div>
+
+<div id="linked-cases-list">
+    <div>
+        <ipx-kendo-grid #linkedCasesGrid id="linkedCasesList" [dataOptions]="gridOptions" *ngIf="gridOptions">
+            <ng-template ipxTemplateColumnField="caseReference" let-dataItem>
+                <a id="caseReference" href="#/caseview/{{dataItem.caseKey}}" target="_blank">{{ dataItem.caseReference }}</a>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="family" let-dataItem>
+                {{dataItem.family}} <span *ngIf="dataItem.familyCode">({{dataItem.familyCode}})</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="isCaseFirstLinked" let-dataItem>
+                <ipx-icon *ngIf="dataItem.isCaseFirstLinked" type="button" name="link" tooltip="{{ 'priorart.maintenance.step3.linkedCases.caseFirstLinked' | translate }}"></ipx-icon>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

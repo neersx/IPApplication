@@ -1,0 +1,36 @@
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+  <h2>Rich Text Field Examples</h2>
+  <form #nextForm="ngForm">
+    <span style="font-weight: bold">Rich Text</span>
+    <div class="row">
+      <div class="col-md-6">
+        <ipx-richtext-field label="Rich Text Container" [rows]="8" [allowRichText]="true" name="code" required
+          label="Rich Text Container" (onChange)="onRichTextChange($event)" [(ngModel)]="richText" [maxlength]="50"
+          placeholder="Please enter text here">
+        </ipx-richtext-field>
+      </div>
+      <pre>
+        <code>
+        {{richText}}       
+        </code>
+      </pre>
+    </div>
+  </form>
+
+  <form #nextForm2="ngForm">
+    <span style="font-weight: bold">Normal Text</span>
+    <div class="row">
+      <div class="col-md-6">
+        <ipx-richtext-field [allowRichText]="false" [maxlength]="10" label="Normal Text Container" [rows]="8"
+          name="code" required placeholder="Please enter text here" (onChange)="onPlainTextChange($event)"
+          [(ngModel)]="plainText" apply-edited>
+        </ipx-richtext-field>
+      </div>
+      <pre>
+        <code>
+          {{ plainText }}
+        </code>
+      </pre>
+    </div>
+  </form>
+</div>

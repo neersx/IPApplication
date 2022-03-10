@@ -1,0 +1,76 @@
+<form #characteristicEditForm="ngForm">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="readonly-label-group">
+                <div class="input-wrap readonly-label-value">
+                    <label translate="criteriaNumber" for="screen-designer-criteria-id"></label>
+                    <span id="screen-designer-criteria-id">
+                        {{formData.id}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <ipx-text-field multiline name="criteriaName" [label]="'screenDesignerCases.criteriaMaintenance.criteriaName' | translate" [(ngModel)]="formData.criteriaName" [disabled]="true">
+            </ipx-text-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <ipx-typeahead *ngIf="viewData.hasOffices" name="office" [(ngModel)]="formData.office" config="office" ipx-autofocus="true" label="picklist.office.Type" (onChange)="onCriteriaChange()" [disabled]="true">
+            </ipx-typeahead>
+            <ipx-typeahead name="program" [(ngModel)]="formData.program" config="caseProgram" label="picklist.caseProgram.ShortType" [tooltipConfig]="{placement:'top', templateRef: programTootip}" [disabled]="true">
+            </ipx-typeahead>
+            <ng-template #programTootip>
+                <p>
+                    <span translate="screenDesignerCases.programTooltip"></span>
+                </p>
+            </ng-template>
+            <ipx-typeahead name="caseType" [(ngModel)]="formData.caseType" config="caseType" label="picklist.casetype.Type" [extend-query]="extendPicklistQuery" externalScope="picklistValidCombination" (onChange)="onCriteriaChange()" [disabled]="true">
+            </ipx-typeahead>
+            <ipx-typeahead name="jurisdiction" [(ngModel)]="formData.jurisdiction" config="jurisdiction" label="picklist.jurisdiction.Type" [extend-query]="extendPicklistQuery" externalScope="picklistValidCombination" (onChange)="onCriteriaChange()" [disabled]="true">
+            </ipx-typeahead>
+            <ipx-typeahead name="propertyType" [(ngModel)]="formData.propertyType" config="propertyType" [extend-query]="extendPicklistQuery" externalScope="picklistValidCombination" label="picklist.propertytype.Type" (onChange)="onCriteriaChange()" [disabled]="true">
+            </ipx-typeahead>
+        </div>
+        <div class="col-sm-6">
+            <ipx-typeahead name="caseCategory" [(ngModel)]="formData.caseCategory" config="caseCategory" [extend-query]="extendPicklistQuery" externalScope="picklistValidCombination" keyField="key" codeField="code" textField="value" label="picklist.casecategory.Type" (onChange)="onCriteriaChange()" [disabled]="true">
+            </ipx-typeahead>
+            <ipx-typeahead name="subType" [(ngModel)]="formData.subType" config="subType" [extend-query]="extendPicklistQuery" externalScope="picklistValidCombination" keyField="key" codeField="code" textField="value" label="picklist.subtype.Type" (onChange)="onCriteriaChange()" [disabled]="true">
+            </ipx-typeahead>
+            <ipx-typeahead name="basis" [(ngModel)]="formData.basis" config="basis" [extend-query]="extendPicklistQuery" externalScope="picklistValidCombination" keyField="key" codeField="code" textField="value" label="picklist.basis.Type" (onChange)="onCriteriaChange()" [disabled]="true">
+            </ipx-typeahead>
+            <ipx-typeahead name="profile" [(ngModel)]="formData.profile" config="profile" [extend-query]="extendPicklistQuery" externalScope="picklistValidCombination" keyField="key" codeField="code" textField="value" label="picklist.profile.Type" (onChange)="onCriteriaChange()" [disabled]="true">
+            </ipx-typeahead>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-wrap-group group-inline">
+
+                <span>Protect Criteria</span>
+                <ipx-radio-button [value]="true" disabled name="isProtected" [(ngModel)]="formData.isProtected">
+                    <span translate="screenDesignerCases.criteriaMaintenance.protectedCriteriaYes"></span>
+                </ipx-radio-button>
+                <ipx-radio-button [value]="false" disabled name="isProtected" [(ngModel)]="formData.isProtected">
+                    <span translate="screenDesignerCases.criteriaMaintenance.protectedCriteriaNo"></span>
+                </ipx-radio-button>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="input-wrap-group group-inline">
+                <span>In Use</span>
+                <ipx-radio-button [value]="true" disabled name="inUse" [(ngModel)]="formData.inUse">
+                    <span translate="screenDesignerCases.criteriaMaintenance.inUseYes"></span>
+                </ipx-radio-button>
+                <ipx-radio-button [value]="false" disabled name="inUse" [(ngModel)]="formData.inUse">
+                    <span translate="screenDesignerCases.criteriaMaintenance.inUseNo"></span>
+                </ipx-radio-button>
+            </div>
+        </div>
+    </div>
+
+</form>

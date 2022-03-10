@@ -1,0 +1,29 @@
+<div id="priorart-search-result">
+    <div class="table-title">
+        <h4 translate="priorart.inprotechAndIp1d"></h4>
+    </div>
+    <ipx-inline-alert *ngIf="hasIpd1Error" [type]="'warning'" [text]="'priorart.noPermissionErr'">
+    </ipx-inline-alert>
+    <div>
+        <ipx-kendo-grid #ipxKendoGridRef id="priorartResultSet" [dataOptions]="gridOptions" *ngIf="gridOptions" (onDetailCollapse)="onCollapse($event)" (pageChanged)="pageChanged($event)">
+            <ng-template ipxTemplateColumnField="reference" let-dataItem>
+                <a href='{{ dataItem.referenceLink }}' target='_blank' class="text-nowrap" *ngIf="dataItem.referenceLink">{{dataItem.reference}}</a>
+                <span *ngIf="!dataItem.referenceLink" class="text-nowrap">{{dataItem.reference}}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="canEdit" let-dataItem>
+                <ipx-icon-button *ngIf="dataItem.origin === originInprotech" type="button" [buttonIcon]="'edit'" name="edit" (onclick)="edit(dataItem)" tooltip="{{ 'priorart.maintenance.step1.priorArtTitle' | translate }}"></ipx-icon-button>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="buttons" let-dataItem>
+                <ipx-icon-button *ngIf="dataItem.origin === originIpOne" type="button" [buttonIcon]="'check-in'" name="import" (onclick)="import(dataItem)" [disabled]="dataItem.imported"
+                tooltip="{{ ((searchData.sourceDocumentId || searchData.caseKey) ? (dataItem.imported ? 'priorart.importedAndCited' : 'priorart.importAndCite') : (dataItem.imported ? 'priorart.imported' : 'priorart.import')) | translate }}"></ipx-icon-button>
+                <ipx-icon-button *ngIf="dataItem.origin === originInprotech && (searchData.sourceDocumentId || searchData.caseKey)" type="button" [buttonIcon]="'link'" name="cite" (onclick)="cite(dataItem)" [disabled]="dataItem.isCited"
+                tooltip="{{ (dataItem.isCited ? 'priorart.cited' : 'priorart.cite') | translate }}"></ipx-icon-button>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+    <ng-template #dataDetailTemplate let-dataItem>
+        <section>
+            <ipx-priorart-detail #dataDetailComponent [details]="dataItem" [translationsList]="translationsList" (onSave)="onSaveData($event)"></ipx-priorart-detail>
+        </section>
+    </ng-template>
+</div>

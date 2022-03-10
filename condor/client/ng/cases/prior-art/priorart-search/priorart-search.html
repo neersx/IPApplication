@@ -1,0 +1,193 @@
+<div name="priorartSearch">
+    <div class="row">
+        <form class="form" #searchForm="ngForm" [formGroup]="formGroup">
+            <ipx-search-option [isSearchDisabled]="disableSearch()" [isResetDisabled]="false" [showButtonText]="true" (clear)="clear()" (search)="search()" (keyup.enter)="search()" [hideControls]="!showSearchBar">
+                <div class="container-fluid">
+                    <div class="heading">
+                        <h5 *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo || selectedPriorArtType === PriorArtTypeEnum.Literature" translate="priorArt.searchIpo.title" class="searchHeader">
+                            <ipx-inline-dialog *ngIf="selectedPriorArtType === PriorArtTypeEnum.Ipo" [content]="'priorart.searchInfo'| translate" [tooltipPlacement]="'auto'">
+                            </ipx-inline-dialog>
+                            <div name="priorArtType" ngDefaultControl class="btn-group" btnRadioGroup formControlName="selectedPriorArtType" style="margin-left: 10px;">
+                                <button id="ipo" class="btn" type="button" btnRadio="PriorArtTypeEnum.Ipo" [ngClass]="{'btn-success': selectedPriorArtType===PriorArtTypeEnum.Ipo}"
+                                    (click)="toggleSourceType(PriorArtTypeEnum.Ipo)" [disabled]="sourceId && !isSourceDocument">{{ 'priorart.priorArtTypes.ipo' | translate }}</button>
+                                <button id="literature" class="btn" type="button" btnRadio="PriorArtTypeEnum.Literature" [ngClass]="{'btn-success': selectedPriorArtType===PriorArtTypeEnum.Literature}"
+                                    (click)="toggleSourceType(PriorArtTypeEnum.Literature)" [disabled]="sourceId && !isSourceDocument">{{ 'priorart.priorArtTypes.literature' | translate }}</button>
+                                <button id="source" class="btn" type="button" btnRadio="PriorArtTypeEnum.Source" [ngClass]="{'btn-success': selectedPriorArtType===PriorArtTypeEnum.Source}"
+                                    (click)="toggleSourceType(PriorArtTypeEnum.Source)" [disabled]="isSourceDocument">{{ 'priorart.priorArtTypes.source' | translate }}</button>
+                            </div>
+                        </h5>
+                        <h5 *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source" translate="priorArt.searchSource.title" class="searchHeader">
+
+                            <div name="priorArtType" ngDefaultControl class="btn-group" btnRadioGroup formControlName="selectedPriorArtType" style="margin-left: 10px;">
+                                <button id="ipo" class="btn" type="button" btnRadio="PriorArtTypeEnum.Ipo" [ngClass]="{'btn-success': selectedPriorArtType===PriorArtTypeEnum.Ipo}"
+                                    (click)="toggleSourceType(PriorArtTypeEnum.Ipo)" [disabled]="sourceId && !isSourceDocument">{{ 'priorart.priorArtTypes.ipo' | translate }}</button>
+                                <button id="literature" class="btn" type="button" btnRadio="PriorArtTypeEnum.Literature" [ngClass]="{'btn-success': selectedPriorArtType===PriorArtTypeEnum.Literature}"
+                                    (click)="toggleSourceType(PriorArtTypeEnum.Literature)" [disabled]="sourceId && !isSourceDocument">{{ 'priorart.priorArtTypes.literature' | translate }}</button>
+                                <button id="source" class="btn" type="button" btnRadio="PriorArtTypeEnum.Source" [ngClass]="{'btn-success': selectedPriorArtType===PriorArtTypeEnum.Source}"
+                                    (click)="toggleSourceType(PriorArtTypeEnum.Source)" [disabled]="isSourceDocument">{{ 'priorart.priorArtTypes.source' | translate }}</button>
+                            </div>
+                        </h5>
+                        <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showSearchBar}" (click)="showSearchBar = !showSearchBar">
+                            <div placement="left" tooltip="{{'collapseExpand' | translate}}">
+                                <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="searchOptions" [@slideInOutVisible]="showSearchBar ? 'open' : 'closed'">
+                        <div class="row" *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo">
+                            <div class="input-wrap-group group-inline">
+                                <ipx-radio-button id="singleIpo" name="ipoSearchTypeSingle" [value]="IpoSearchTypeEnum.Single" [label]="'priorart.ipoSearchType.single'"
+                                (change)="setSelectedIpoSearch(IpoSearchTypeEnum.Single)" [(ngModel)]="selectedIpoSearchType" [ngModelOptions]="{standalone: true}"></ipx-radio-button>
+                                <ipx-radio-button id="multipleIpo" name="ipoSearchTypeMultiple" [value]="IpoSearchTypeEnum.Multiple" [label]="'priorart.ipoSearchType.multiple'"
+                                (change)="setSelectedIpoSearch(IpoSearchTypeEnum.Multiple)" [(ngModel)]="selectedIpoSearchType" [ngModelOptions]="{standalone: true}"></ipx-radio-button>
+                            </div><br />
+                            <div *ngIf="selectedIpoSearchType===IpoSearchTypeEnum.Single">
+                                <div class="col-sm-3">
+                                    <label translate="picklist.jurisdiction.Type"></label><span class="required">* </span><br />
+                                    <ipx-typeahead name="jurisdiction" formControlName="jurisdiction" config="jurisdiction" required ipx-autofocus="true">
+                                    </ipx-typeahead>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label translate="priorart.pubAppNo"></label><span class="required">* </span><br />
+                                    <ipx-text-field name="applicationNo" formControlName="applicationNo" required>
+                                    </ipx-text-field>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label translate="priorart.kindCode"></label><br />
+                                    <ipx-text-field name="kindCode" formControlName="kindCode">
+                                    </ipx-text-field>
+                                </div>
+                                <div class="col-sm-4"></div>
+                            </div>
+                            <div *ngIf="selectedIpoSearchType===IpoSearchTypeEnum.Multiple">
+                                <label translate="priorart.multipleSearch.references"></label>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <ipx-text-field multiline rows="5" name="multipleIpoText" formControlName="multipleIpoText" (keydown.enter)="multiTextEnter($event)">
+                                        </ipx-text-field>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <ipx-inline-dialog [templateRef]="tooltipTemplate" [tooltipPlacement]="'auto'" container="body">
+                                        </ipx-inline-dialog>
+                                        <ng-template #tooltipTemplate>
+                                            <span>
+                                                <p translate="priorart.multipleSearch.info"></p>
+                                                <p translate="priorart.multipleSearch.codeInfo"></p>
+                                                <p translate="priorart.multipleSearch.refInfo"></p>
+                                            </span>
+                                            <ul>
+                                                <li translate="priorart.multipleSearch.withKindCode"></li>
+                                                <li translate="priorart.multipleSearch.withoutKindCode"></li>
+                                            </ul>
+                                        </ng-template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label translate="priorart.maintenance.step1.sourceType"></label><br />
+                                    <ipx-dropdown name="sourceType" [options]="priorArtSourceTableCodes" [displayField]="'name'" formControlName="sourceType" ipx-autofocus="true">
+                                    </ipx-dropdown>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label translate="priorart.issuingJurisdiction"></label><br />
+                                    <ipx-typeahead name="jurisdiction" formControlName="jurisdiction" config="jurisdiction">
+                                    </ipx-typeahead>
+                                </div>
+                                <div class="col-sm-4"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label translate="priorart.description"></label><br />
+                                    <ipx-text-field name="description" formControlName="description" multiline>
+                                    </ipx-text-field>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label translate="priorArt.publication"></label><br />
+                                    <ipx-text-field name="publication" formControlName="publication" multiline>
+                                    </ipx-text-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label translate="priorart.comments"></label><br />
+                                    <ipx-text-field name="comments" formControlName="comments" multiline>
+                                    </ipx-text-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="selectedPriorArtType===PriorArtTypeEnum.Literature">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label translate="priorart.description"></label><br />
+                                    <ipx-text-field name="description" formControlName="description" multiline>
+                                    </ipx-text-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label translate="priorart.inventorNameLiterature"></label><br />
+                                    <ipx-text-field name="inventor" formControlName="inventor" multiline>
+                                    </ipx-text-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label translate="priorart.titleLiterature"></label><br />
+                                    <ipx-text-field name="title" formControlName="title" multiline>
+                                    </ipx-text-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label translate="priorart.publisher"></label><br />
+                                    <ipx-text-field name="publisher" formControlName="publisher" multiline>
+                                    </ipx-text-field>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label translate="priorart.country"></label><br />
+                                    <ipx-typeahead name="jurisdiction" formControlName="jurisdiction" config="jurisdiction">
+                                    </ipx-typeahead>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ipx-search-option>
+        </form>
+    </div>
+    <div *ngIf="isDataLoaded == false" class="col-sm-12" style="height: 150px;">
+        <div class="col-sm-12 k-loading-image" style="position: relative;top:100px"></div>
+    </div>
+    <div class="table-container" *ngIf="isDataLoaded">
+        <div *ngIf="selectedPriorArtType===PriorArtTypeEnum.Ipo">
+            <div>
+                <ipx-priorart-search-result #priorartSearchResult name="priorart-result" [data]="combinedData" [searchData]="request" [hidePriorArtStatus]="caseKey == null" [hasIpd1Error]="hasIpd1Error"
+                    [translationsList]="translationsList" (onRefreshGrid)="onRefresh($event)">
+                </ipx-priorart-search-result>
+            </div>
+            <div>
+                <ipx-priorart-inprotech-cases-result name="priorart-inprotech-cases-result" [data]="caseReferenceData" [searchData]="request" [translationsList]="translationsList" (onRefreshGrid)="onRefresh($event)">
+                </ipx-priorart-inprotech-cases-result>
+            </div>
+            <div *ngIf="showNotFoundGrid">
+                <ipx-priorart-not-found-result name="priorart-not-found-result" [data]="notFoundData" [translationsList]="translationsList" (onRefreshGrid)="onRefresh($event)"></ipx-priorart-not-found-result>
+            </div>
+        </div>
+        <div *ngIf="selectedPriorArtType===PriorArtTypeEnum.Source">
+            <div>
+                <ipx-priorart-source-search-result #priorartSearchResult name="priorart-result" [searchData]="request" [hidePriorArtStatus]="caseKey == null" [translationsList]="translationsList"
+                    (onRefreshGrid)="onRefresh($event)">
+                </ipx-priorart-source-search-result>
+            </div>
+        </div>
+        <div *ngIf="selectedPriorArtType===PriorArtTypeEnum.Literature">
+            <div>
+                <ipx-literature-search-result #literatureSearchResult name="priorart-result" [searchData]="request" [enableCiting]="caseKey !== null || sourceId !== null" [translationsList]="translationsList"
+                    (onRefreshGrid)="onRefresh($event)">
+                </ipx-literature-search-result>
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+</div>

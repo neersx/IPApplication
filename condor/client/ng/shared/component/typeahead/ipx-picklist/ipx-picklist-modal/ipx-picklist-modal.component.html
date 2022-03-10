@@ -1,0 +1,239 @@
+<div class="modal-header">
+    <!--need to dynamic title-->
+    <ng-container *ngTemplateOutlet="configuredHeaderTemplate$ | async"></ng-container>
+    <ng-template #viewModeHeader>
+        <h2 class="modal-title">{{ (typeaheadOptions.picklistDisplayName || typeaheadOptions.label) | translate}}</h2>
+        <div class="modal-header-controls">
+            <ipx-preview-button [(isPreviewActive)]="isPreviewActive" *ngIf="typeaheadOptions.previewable && modalOptions.multipick">
+            </ipx-preview-button>
+            <ipx-apply-button *ngIf="modalOptions.multipick" (click)="onApply($event)"></ipx-apply-button>
+            <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+        </div>
+    </ng-template>
+    <ng-template #maintenanceHeader>
+        <h2 class="modal-title">
+            {{ maintananceTitle | translate:{name: ((typeaheadOptions.maintenanceDisplayName ? typeaheadOptions.maintenanceDisplayName : typeaheadOptions.label) | translate ) } }}
+        </h2>
+        <div class="modal-header-controls">
+            <ipx-checkbox *ngIf="(modalOptions.isAddAnother && (isMaintenanceMode$ | async)!=='edit') && (service.modalStates$ | async).canAdd" name="addAnother" label="modal.addAnother"
+                [(ngModel)]="isAddAnotherChecked">
+            </ipx-checkbox>
+            <ipx-save-button [disabled]="!(service.modalStates$ | async).canSave" (onclick)="onSave()" name="saveButton"></ipx-save-button>
+            <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+        </div>
+    </ng-template>
+</div>
+
+<ng-container *ngTemplateOutlet="configuredNavigationHeader$ | async"></ng-container>
+
+<ng-template #navigationHeader>
+    <div *ngIf="canNavigate" class="title-header">
+        <ipx-detail-page-nav *ngIf="navData" [totalRows]="navData.totalRows" [hasUnsavedChanges]="hasUnsavedChanges()" [currentKey]="currentKey" [fetchNext]="navData.fetchCallback" [noParams]="true" [ids]="navData.keys"
+            [pageSize]="navData.pageSize" (nextResult)="getNextItemDetail($event)">
+        </ipx-detail-page-nav>
+    </div>
+</ng-template>
+
+<ng-container *ngTemplateOutlet="configuredTemplate$ | async"></ng-container>
+
+<ng-template #blank></ng-template>
+
+<ng-template #searchField>
+    <div class="col-sm-6">
+        <ipx-picklist-search-field #picklistSearchField [(model)]="modalOptions.searchValue" (onSearch)="search($event)" (onClear)="clear($event)">
+        </ipx-picklist-search-field>
+    </div>
+    <div class="col-sm-2 verticle-center" *ngIf="showMoreInformation()">
+        <ipx-inline-dialog [tooltipPlacement]="'bottom'" [content]="this.typeaheadOptions.searchMoreInformation | translate">
+        </ipx-inline-dialog>
+    </div>
+</ng-template>
+
+<ng-template #searchPanel>
+    <div class="col-sm-12">
+        <ipx-picklist-case-search-panel #picklistSearchField [(model)]="modalOptions.searchValue" (onSearch)="search($event)" (onClear)="clear($event)">
+        </ipx-picklist-case-search-panel>
+    </div>
+</ng-template>
+
+<ng-template #default>
+    <div class="modal-body" (keyup.enter)="search()">
+        <div class="row">
+            <div class="col-sm-12">
+                <ipx-picklist-modal-search-results #searchResult [typeaheadOptions]="typeaheadOptions" [modalOptions]="modalOptions" (onDataItemClicked)="updateSelection($event)" (onRowSelect)="updateRows($event)"
+                    (rowOnMaintnance)="excuteAction($event)" [canNavigate]="modalOptions.canNavigate">
+                    <picklist-toolbar>
+                        <div class="row picklist-margin-top" [ngClass]="{withColumnPicker: !!modalOptions.columnMenu}">
+                            <ng-container *ngTemplateOutlet="this.typeaheadOptions.extendedSearchFields ? searchPanel : searchField"></ng-container>
+                            <div class="ip-picklist-modal-search-flex pull-right">
+                                <div class="text-wrap no-hover"
+                                    *ngIf="((modalOptions.picklistCanMaintain && (service.modalStates$ | async).canAdd) && !(modalOptions.picklistNewSearch)) || (extendedActions?.picklistCanMaintain)">
+                                    <button class="btn btn-icon plus-circle" tooltip="{{ 'Add' | translate }}" placement="bottom" [adaptivePosition]="true" container="body" (click)="onAdd()">
+                                        <span class="cpa cpa-icon-plus-circle"></span>
+                                    </button>
+                                </div>
+                                <div>
+                                    <ipx-navigate-state-button btnLabel="button.newSearch" [navigateUri]="this.typeaheadOptions.picklistNavigateUri" *ngIf="modalOptions.picklistNewSearch" (onClick)="navigateTo()">
+                                    </ipx-navigate-state-button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="modalOptions.entity && !!externalScope[(modalOptions.entity || 'combination')]()">
+                            <div class="col-sm-12">
+                                <div class="inline-readonly-list">
+                                    <label translate="Valid Combination"></label>
+                                    <span *ngFor="let item of externalScope[(modalOptions.entity || 'combination')]() | keyvalue: asIsOrder; trackBy: item">{{item.value}}</span>
+
+                                    <ipx-default-jurisdiction [resultGridData]="getResultGridData()">
+                                    </ipx-default-jurisdiction>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" *ngIf="externalScope && !modalOptions.entity">
+                            <div class="col-sm-12">
+                                <div class="inline-readonly-list">
+                                    <label>{{externalScope?.label}}</label>
+                                    <span>{{externalScope?.value}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </picklist-toolbar>
+                </ipx-picklist-modal-search-results>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #valid>
+    <div class="modal-body" (keyup.enter)="search()">
+        <div class="row">
+            <div class="col-sm-6">
+                <ipx-picklist-search-field #picklistSearchField [(model)]="modalOptions.searchValue" (onSearch)="search($event.action)" (onClear)="clear($event)"></ipx-picklist-search-field>
+            </div>
+            <div class="ip-picklist-modal-search-flex">
+                <div class="text-wrap no-hover" *ngIf="(modalOptions.picklistCanMaintain && (service.modalStates$ | async).canAdd)">
+                    <ipx-icon-button class="btn-no-bg" buttonIcon="plus-circle" tooltip="{{'Add' | translate }}" placement="top" (click)="onAdd()"></ipx-icon-button>
+                    <ipx-icon-button class="btn-no-bg" buttonIcon="plus-circle" tooltip="{{'Add' | translate }}" placement="top" (click)="onAdd()"></ipx-icon-button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ipx-picklist-modal-search-results #searchResult [typeaheadOptions]="typeaheadOptions" [modalOptions]="modalOptions" (onRowSelect)="updateRows($event)" (rowOnMaintnance)="excuteAction($event)"
+                    (onDataItemClicked)="updateSelection($event)" [canNavigate]="modalOptions.canNavigate">
+                </ipx-picklist-modal-search-results>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #NameFiltered>
+    <div class="modal-body" (keyup.enter)="search()">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="leftAligned col-sm-10">
+                    <ipx-picklist-search-field #picklistSearchField [(model)]="modalOptions.searchValue" (onSearch)="search()" (onClear)="clear($event)"></ipx-picklist-search-field>
+                </div>
+                <div class="col-sm-2 vericleCentre">
+                    <span>
+                        <ipx-inline-dialog [tooltipPlacement]="'bottom'" [content]="'caseSearch.topics.names.NameSearchMoreInformation' | translate">
+                        </ipx-inline-dialog>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <ipx-checkbox label="caseSearch.topics.names.onlyShowNames" name="filterNameTypes" [(ngModel)]="modalOptions.externalScope.isFilterByNameType" [labelValues]="modalOptions.externalScope" apply-edited
+                    (onChange)="search($event.action)" *ngIf="modalOptions.externalScope.filterNameType">
+                </ipx-checkbox>
+                <ipx-checkbox label="caseSearch.topics.names.includeCeased" name="includeCeased" [(ngModel)]="modalOptions.externalScope.includeCeasedNames" apply-edited (onChange)="search($event.action)">
+                </ipx-checkbox>
+                <div class="ip-picklist-modal-search-flex">
+                    <div class="text-wrap no-hover" *ngIf="(modalOptions.picklistCanMaintain && (service.modalStates$ | async).canAdd)">
+                        <ipx-icon-button class="btn-no-bg" buttonIcon="plus-circle" tooltip="{{'Add' | translate }}" placement="top" (click)="onAdd()"></ipx-icon-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" [ngClass]="{'splitter-container': isPreviewActive}">
+            <kendo-splitter id="nameFilteredPicklistPane" orientation="horizontal">
+                <kendo-splitter-pane id="searchResultsPane">
+                    <div class="table-container" [ngClass]="{'fixed-detail-panel-left': isPreviewActive}" ip-resize-handler-upg resize-handler-type="Panel">
+                        <ipx-picklist-modal-search-results #searchResult [typeaheadOptions]="typeaheadOptions" [autoApplySelection]="!isPreviewActive" [modalOptions]="modalOptions" (onRowSelect)="updateRows($event)"
+                            (onDataItemClicked)="updateSelection($event)" (pageChanged)="updateSelection(null)" [canNavigate]="modalOptions.canNavigate"></ipx-picklist-modal-search-results>
+                    </div>
+                </kendo-splitter-pane>
+                <kendo-splitter-pane size="35%" id="nameSummaryPane" *ngIf="isPreviewActive" [collapsible]="true">
+                    <div class="fixed-detail-panel-right">
+                        <ipx-names-summary-pane [nameId]="selectedItemKey"></ipx-names-summary-pane>
+                    </div>
+                </kendo-splitter-pane>
+            </kendo-splitter>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #designationStage>
+    <div class="modal-body" (keyup.enter)="search()">
+        <div class="row">
+            <div class="col-sm-6">
+                <ipx-picklist-search-field #picklistSearchField [(model)]="modalOptions.searchValue" (onSearch)="search($event.action)" (onClear)="clear($event)">
+                </ipx-picklist-search-field>
+            </div>
+            <div class="ip-picklist-modal-search-flex">
+                <div class="text-wrap no-hover" *ngIf="(modalOptions.picklistCanMaintain && (service.modalStates$ | async).canAdd)">
+                    <ipx-icon-button class="btn-no-bg" buttonIcon="plus-circle" tooltip="{{'Add' | translate }}" placement="top" (click)="onAdd()"></ipx-icon-button>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!!modalOptions.externalScope()">
+            <div class="col-sm-12">
+                <div class="inline-readonly-list">
+                    <label translate="picklist.designationStage.jurisdiction"></label>
+                    <span>{{modalOptions.externalScope().jurisdiction}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ipx-picklist-modal-search-results #searchResult [typeaheadOptions]="typeaheadOptions" [modalOptions]="modalOptions" (onRowSelect)="updateRows($event)" (onDataItemClicked)="updateSelection($event)"
+                    (rowOnMaintnance)="excuteAction($event)" [canNavigate]="modalOptions.canNavigate">
+                </ipx-picklist-modal-search-results>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #name>
+    <div class="modal-body" (keyup.enter)="search()">
+        <div class="row">
+            <div class="col-sm-12">
+                <ipx-picklist-modal-search-results #searchResult [typeaheadOptions]="typeaheadOptions" [modalOptions]="modalOptions" (onDataItemClicked)="updateSelection($event)" (onRowSelect)="updateRows($event)"
+                    (rowOnMaintnance)="excuteAction($event)" [canNavigate]="modalOptions.canNavigate">
+                    <picklist-toolbar>
+                        <div class="col-sm-6">
+                            <ipx-picklist-search-field #picklistSearchField [(model)]="modalOptions.searchValue" (onSearch)="search($event)" (onClear)="clear($event)">
+                            </ipx-picklist-search-field>
+                        </div>
+                        <div class="col-sm-2 vericleCentre">
+                            <span>
+                                <ipx-inline-dialog [tooltipPlacement]="'bottom'" [content]="'caseSearch.topics.names.NameSearchMoreInformation' | translate">
+                                </ipx-inline-dialog>
+                            </span>
+                        </div>
+                        <div class="ip-picklist-modal-search-flex">
+                            <div class="text-wrap no-hover" *ngIf="(modalOptions.picklistCanMaintain && (service.modalStates$ | async).canAdd)">
+                                <button style="margin-right: 3px;" class="btn btn-icon plus-circle" tooltip="{{ 'Add' | translate }}" placement="bottom" [adaptivePosition]="true" container="body" (click)="onAdd()">
+                                    <span class="cpa cpa-icon-plus-circle"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </picklist-toolbar>
+                </ipx-picklist-modal-search-results>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template model-host>
+</ng-template>

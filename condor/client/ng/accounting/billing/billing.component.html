@@ -1,0 +1,35 @@
+<ipx-sticky-header>
+    <ipx-page-title [title]="'accounting.billing.pageTitle'" [subtitle]="billingHeader">
+    </ipx-page-title>
+</ipx-sticky-header>
+<div class="searchOptions" style="max-height: 101px; margin-top: 40px;">
+    <div id="billing-wizard-debit-note" [ipxConfirmBeforeRouteChange]="false" [confirmMessage]="'' | translate">
+        <div class="title-header" id="caseAndSourceDetails">
+            <div class="label-value col-sm-2 case-ref-div">
+                <label for="debit-total" translate="accounting.billing.debitTotal"></label>
+                <span class="text" id="debitTotal">{{openItemData?.BillTotal | localCurrencyFormat:openItemData?.LocalCurrencyCode | async}}</span>
+            </div>
+            <div class="label-value col-sm-2 source-ref-div">
+                <label for="taken-up" translate="accounting.billing.takenUp"></label>
+                <span class="text" id="subHeader">{{openItemData?.LocalOriginalTakenUp | localCurrencyFormat:openItemData?.LocalCurrencyCode | async}}</span>
+            </div>
+            <div class="label-value col-sm-2 source-ref-div">
+                <label for="write-up" translate="accounting.billing.writeUp"></label>
+                <span class="text" id="subHeader">{{openItemData?.WriteUp | localCurrencyFormat:openItemData?.LocalCurrencyCode | async}}</span>
+            </div>
+            <div class="label-value col-sm-2 source-ref-div">
+                <label for="write-down" translate="accounting.billing.writeDown"></label>
+                <span class="text" id="subHeader">{{openItemData?.WriteDown | localCurrencyFormat:openItemData?.LocalCurrencyCode | async}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="openItemData" ipx-resize-handler [resize-handler-type]="'Panel'">
+    <ipx-billing-wizard-multistep #multiStep>
+        <ipx-case-debtor *ngIf="openItemData" #step1 [entities]="viewData.Site.Entities" [siteControls]="viewData.Site" [draftBillSiteControl]="viewData.Site.ShouldWarnIfDraftBillForSameCaseExist"
+            [singleBillViewData]="singleBillViewData"></ipx-case-debtor>
+        <ipx-billing-references *ngIf="currentStep && currentStep.id === 2" #step2 [entities]="viewData.Site.Entities" [siteControls]="viewData.Site"></ipx-billing-references>
+        <ipx-wip-selection *ngIf="currentStep && currentStep.id === 3" #step3 [siteControls]="viewData.Site" [entities]="viewData.Site.Entities" [singleBillViewData]="singleBillViewData" [reasons]="viewData.Site.WipChangeReasonList"
+            [writeDownLimit]="viewData.User.WriteDownLimit"></ipx-wip-selection>
+    </ipx-billing-wizard-multistep>
+</div>

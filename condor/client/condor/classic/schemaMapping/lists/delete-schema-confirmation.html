@@ -1,0 +1,26 @@
+<div id="confirmDeleteModal">
+    <div class="modal-header">
+        <h2 class="modal-title" id="modalPendingLabel" translate="confirmDeletion"></h2>
+    </div>
+    <div class="modal-body">
+        <div translate-namespace="schemaMapping">
+            <p translate=".usLblDeleteSchemaConfirm"></p>
+            <p>
+                <strong>{{ vm.selectedSchemaName }}</strong>
+            </p>
+            <div data-ng-if="vm.relatedMappings.length > 0">
+                <p translate=".usLblDeleteRelatedMappingsConfirm"></p>
+                <ul ng-repeat="m in vm.relatedMappings track by $index">
+                    <li>{{m}}</li>
+                </ul>
+            </div>
+            <div data-ng-if="!vm.relatedMappings.length">
+                <p translate=".usLblNoRelatedMappings"></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" data-ng-click="cancel()" translate="Cancel"></button>
+        <button type="button" class="btn btn-discard" data-ng-click="confirm()" translate="Delete"></button>
+    </div>
+</div>

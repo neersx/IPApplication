@@ -1,0 +1,21 @@
+<form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-lg-5">
+                <ipx-typeahead name="dataSource" config="edeNames" label="{{ 'caseSearch.dataSource' | translate }}" [(ngModel)]="formData.dataSource" ipx-autofocus="{{!!topic.isActive}}" [external-scope]="dataSourceExternalScope">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <ipx-text-field name="batchIdentifier" label="{{ 'caseSearch.batchIdentifier' | translate }}" [(ngModel)]="formData.batchIdentifier">
+                </ipx-text-field>
+            </div>
+            <div class="col-md-1 col-lg-1">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-lg-5">
+                <ipx-dropdown name="sentToCPA" label="{{ 'caseSearch.sentToCPA' | translate }}" [(ngModel)]="formData.sentToCPA" [options]="sentToCpaBatchNo" displayField="batchNo" keyField="batchNo">
+                </ipx-dropdown>
+            </div>
+        </div>
+    </div>
+</form>

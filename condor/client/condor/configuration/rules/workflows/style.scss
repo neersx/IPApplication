@@ -1,0 +1,89 @@
+@import "inheritance/style";
+@import "maintenance/style";
+body[page-state^="workflows"] {
+    .badge.topics.header {
+        margin-top: 12px;
+    }
+    .addevent-btn {
+        @extend .btn;
+        white-space: normal !important;
+        margin: 3px 0 0 -6px;
+        margin-left: -12px;
+    }
+    .addevent-btn-link {
+        @extend .btn-link;
+    }
+    .addevent-inline-dialog {
+        @extend .inline-dialog;
+        margin-right: 0px !important;
+    }
+    .report-to-cpa-span {
+        float: left !important;
+    }
+    .workflow-details {
+        color: $navy;
+        h2 {
+            margin-top: 10px;
+        }
+        .protected-icon {
+            position: relative;
+            float: left;
+        }
+        .readonly-label-group {
+            padding-left: 0 !important;
+            .readonly-label-value {
+                height: 25px;
+                line-height: 25px;
+                float: left;
+                padding-left: 30px;
+                span {
+                    font-weight: bold;
+                    user-select: all;
+                    -ms-user-select: element;
+                }
+            }
+            .readonly-label-value:first-child {
+                padding-left: 0;
+            }
+        }
+    }
+    .setting {
+        h3 {
+            font-size: 18px;
+        }
+    }
+    // for checkbox in search grid
+    div[kendo-grid] .k-grid-content-locked ip-checkbox .input-wrap {
+        padding: 0;
+        top: -1px;
+        &:before {
+            display: inline;
+        }
+    }
+    div[kendo-grid] .k-grid-header .k-grid-header-locked thead tr th.shorter {
+        padding: 0px 5px;
+    }
+    .modal-secondary-subheader {
+        .modal-nav {
+            background-color: #F5F5F5;
+            position: relative;
+        }
+    }
+    .modal-footer-buttons {
+        margin-top: 5px;
+    }
+    .footerCheckBox {
+        display: inline-block;
+        padding: 5px 20px 0px 0px;
+        line-height: 18px;
+        vertical-align: middle;
+        div.input-wrap {
+            background-color: transparent !important;
+        }
+    }
+    .withInfo {
+        input[type="checkbox"] ~ label {
+            width: calc(100% - 24px);
+        }
+    }
+}

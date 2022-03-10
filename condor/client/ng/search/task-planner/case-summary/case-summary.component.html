@@ -1,0 +1,486 @@
+<div ipx-resize-handler [resize-handler-type]="'Panel'" [resize-header-height]="-127">
+    <section class="detail-view" *ngIf="!(caseKey || taskSummary)">
+        <header>
+            <ipx-inline-alert [type]="'info'" [text]="'NoInformationAvailable'">
+            </ipx-inline-alert>
+        </header>
+    </section>
+    <section class="detail-view data" *ngIf="caseKey || taskSummary">
+        <div class="container-fluid">
+            <div class="row" *ngIf="taskSummary">
+                <div style="z-index: 5" id="taskDetailsPanel">
+                    <div class="search-options search-options-header" style="background-color: white;">
+                        <div class="heading">
+                            <h4 style="padding-bottom: 5px;" translate="taskPlanner.summary.taskDetails.title"></h4>
+                            <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: hideTaskDetails}" (click)="toggleShowTaskDetails()">
+                                <div placement="left" [tooltip]="(!hideTaskDetails? 'collapse' : 'expand') | translate">
+                                    <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="container-fluid" [@slideInOutVisible]="!hideTaskDetails ? 'open' : 'closed'">
+                        <div style="z-index: 5">
+                            <div *ngIf="taskSummary" class="container-fluid">
+                                <div class="row data">
+                                    <div class="col-lg-4 article-label">
+                                        <span [translate]="'taskPlanner.summary.taskDetails.event'"></span>
+                                    </div>
+                                    <div id="eventDescription" class="col-lg-6">
+                                        <span class="text">{{ taskSummary.eventDescription }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="taskSummary" class="container-fluid">
+                                <div class="row data">
+                                    <div class="col-lg-4 article-label">
+                                        <span [translate]="'taskPlanner.summary.taskDetails.dueDate'"></span>
+                                    </div>
+                                    <div id="dueDate" class="col-lg-6">
+                                        <ipx-due-date *ngIf="taskSummary.dueDate" [date]="taskSummary.dueDate"></ipx-due-date>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="taskSummary" class="container-fluid">
+                                <div class="row data">
+                                    <div class="col-lg-4 article-label">
+                                        <span [translate]="'taskPlanner.summary.taskDetails.cycle'"></span>
+                                    </div>
+                                    <div id="cycle" class="col-lg-6">
+                                        <span class="text">{{ taskSummary.cycle }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="taskSummary" class="container-fluid">
+                                <div *ngIf="taskSummary.type === 'adHoc'" class="row data">
+                                    <div class="col-lg-4 article-label">
+                                        <span [translate]="'taskPlanner.summary.taskDetails.type'"></span>
+                                    </div>
+                                    <div id="type" class="col-lg-6">
+                                        <span class="text">{{ 'taskPlanner.summary.taskDetails.' + taskSummary.type | translate }}</span>
+                                    </div>
+                                    <ipx-inline-dialog id="dialog" [tooltipPlacement]="'left'" [adaptivePosition]="true" [templateRef]="infoTooltip">
+                                    </ipx-inline-dialog>
+                                    <ng-template #infoTooltip>
+                                        <div style="width: 230px; padding:15px">
+                                            <p>
+                                                <span translate="taskPlanner.summary.taskDetails.an"></span>&nbsp;
+                                                <b translate="taskPlanner.summary.taskDetails.adHoc"></b>&nbsp;
+                                                <span translate="taskPlanner.summary.taskDetails.typeInfo"></span>
+                                            </p>
+                                        </div>
+                                    </ng-template>
+                                </div>
+                            </div>
+                            <div *ngIf="taskSummary" class="container-fluid">
+                                <div *ngIf="taskSummary.type === 'adHoc'" class="row data">
+                                    <div class="col-lg-4 article-label">
+                                        <span [translate]="'taskPlanner.summary.taskDetails.finalizedDate'"></span>
+                                    </div>
+                                    <div id="finalizedDate" class="col-lg-6">
+                                        <ipx-due-date *ngIf="taskSummary.finalizedDate" [date]="taskSummary.finalizedDate"></ipx-due-date>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="taskSummary.reminderMessage" class="container-fluid">
+                                <div class="row data">
+                                    <div class="col-lg-4 article-label">
+                                        <span [translate]="'taskPlanner.summary.taskDetails.reminderMessage'"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ taskSummary.reminderMessage }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="taskSummary.reminderDate" class="container-fluid">
+                                <div class="row data">
+                                    <div class="col-lg-4 article-label">
+                                        <span [translate]="'taskPlanner.summary.taskDetails.reminderDate'"></span>
+                                    </div>
+                                    <div id="reminderDate" class="col-lg-6">
+                                        <ipx-due-date *ngIf="taskSummary.reminderDate" [date]="taskSummary.reminderDate"></ipx-due-date>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="taskSummary.nextReminderDate" class="container-fluid">
+                                <div class="row data">
+                                    <div class="col-lg-4 article-label">
+                                        <span [translate]="'taskPlanner.summary.taskDetails.nextReminder'"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ taskSummary.nextReminderDate | localeDate }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="taskSummary.reminderFor" class="container-fluid">
+                                <div class="row data">
+                                    <div class="col-lg-4 article-label">
+                                        <span [translate]="'taskPlanner.summary.taskDetails.reminderFor'"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ taskSummary.reminderFor }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="taskSummary.governingEvent" class="container-fluid">
+                                <div class="row data">
+                                    <div class="col-lg-4 article-label">
+                                        <span [translate]="'taskPlanner.summary.taskDetails.governingEvent'"></span>
+                                    </div>
+                                    <div id="governingEvent" class="col-lg-8">
+                                        <span class="text">{{ taskSummary.governingEventDesc }}</span>
+                                        (<span class="text">{{ taskSummary.governingEvent | localeDate }}</span>)
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row" *ngIf=displayDelegationDetailsPanel()>
+                    <div style="z-index: 5" id="delegationDetailsPanel">
+                        <div class="search-options search-options-header" style="background-color: white;">
+                            <div class="heading">
+                                <h4 style="padding-bottom: 5px;" translate="taskPlanner.summary.delegationdetails"></h4>
+                                <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: hideDelegationDetails}" (click)="togglehideDelegationDetails()">
+                                    <div placement="left" [tooltip]="(!hideDelegationDetails? 'collapse' : 'expand') | translate">
+                                        <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="container-fluid" [@slideInOutVisible]="!hideDelegationDetails ? 'open' : 'closed'">
+                            <div style="z-index: 5">
+                                <div class="container-fluid" *ngIf="taskSummary.caseOffice">
+                                    <div class="row data">
+                                        <div class="col-lg-4 article-label">
+                                            <span [translate]="'taskPlanner.summary.caseOffice'"></span>
+                                        </div>
+                                        <div id="caseOffice" class="col-lg-6">
+                                            <span class="text">{{ taskSummary.caseOffice }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid" *ngIf="taskSummary.dueDateResponsibility">
+                                    <div class="row data">
+                                        <div class="col-lg-4 article-label">
+                                            <span [translate]="'taskPlanner.summary.dueDateResponsibility'"></span>
+                                        </div>
+                                        <div id="dueDateResponsibility" class="col-lg-6">
+                                            <span class="text">{{ taskSummary.dueDateResponsibility }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid" *ngIf="taskSummary.adhocResponsibleName">
+                                    <div class="row data">
+                                        <div class="col-lg-4 article-label">
+                                            <span [translate]="'taskPlanner.summary.adhocResponsibleName'"></span>
+                                        </div>
+                                        <div id="adhocResponsibleName" class="col-lg-6">
+                                            <span class="text">{{ taskSummary.adhocResponsibleName }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid" *ngIf="taskSummary.otherRecipients">
+                                    <div id="otherRecipients" class="row data">
+                                        <div class="col-lg-4 article-label">
+                                            <span [translate]="'taskPlanner.summary.otherRecipients'"></span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <span class="text">{{ taskSummary.otherRecipients }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid" *ngIf="taskSummary.forwardedFrom">
+                                    <div id="forwardedFrom" class="row data">
+                                        <div class="col-lg-4 article-label">
+                                            <span [translate]="'taskPlanner.summary.forwardedFrom'"></span>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <span class="text">{{ taskSummary.forwardedFrom }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="caseKey">
+            <div class="container-fluid">
+                <div class="row" *ngIf="caseSummary">
+                    <div style="z-index: 5" id="caseSummary">
+                        <div class="search-options search-options-header" style="background-color: white;">
+                            <div class="heading">
+                                <h4 style="padding-bottom: 5px;" translate="taskPlanner.summary.caseSummary"></h4>
+                                <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showCaseSummary}" (click)="toggleShowCaseSummary()">
+                                    <div placement="left" [tooltip]="(showCaseSummary? 'collapse' : 'expand') | translate">
+                                        <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="container-fluid" [@slideInOutVisible]="showCaseSummary ? 'open' : 'closed'">
+                            <div class="col-lg-4 pull-right" style="z-index: 10;">
+                                <div *ngIf="caseSummary.caseData && caseSummary.caseData.imageKey" style="text-align: right; margin-top: 2px;">
+                                    <ipx-image [itemKey]="caseSummary.caseData.caseKey" [type]="'case'" [imageKey]="caseSummary.caseData.imageKey" [imageTitle]="caseSummary.caseData.imageTitle" [maxWidth]="80"
+                                        [maxHeight]="80" [isThumbnail]="true"></ipx-image>
+                                </div>
+                            </div>
+                            <div class="col-lg-8" style="z-index: 5">
+                                <div class="row data">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.caseReference"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <a id="caseReference" href="#/caseview/{{caseSummary.caseData.caseKey}}" target="_blank">{{ caseSummary.caseData.irn }}</a>&nbsp;&nbsp;
+                                        <button *ngIf="showLinksForInprotechWeb" class="btn btn-icon-circle btn-circle" (click)="toCaseDetails(caseSummary.caseData)" tooltip="{{'caseview.viewDetails' | translate }}"
+                                            placement="bottom">
+                                            <span class="cpa-icon cpa-icon-link"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row data">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.title"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.title }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.caseStatus"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.caseStatusDescription }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.renewalStatus"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.renewalStatusDescription }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.officialNumber"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.officialNumber }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data" *ngIf="caseSummary.caseData.instructorReference">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.instructorReference"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.instructorReference }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.caseType"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.caseTypeDescription }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.jurisdiction"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.countryName }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.propertyType"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.propertyTypeDescription }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data" *ngIf="caseSummary.caseData.caseCategoryDescription">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.caseCategory"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.caseCategoryDescription }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data" *ngIf="caseSummary.caseData.subTypeDescription">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.subType"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.subTypeDescription }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data" *ngIf="caseSummary.caseData.basisDescription">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.basis"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.basisDescription }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data" *ngIf="caseSummary.caseData.isTrademark && caseSummary.caseData.typeOfMark">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.typeOfMark"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.typeOfMark }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data" *ngIf="caseSummary.caseData.isTrademark && caseSummary.caseData.classes">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.classes"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.classes }}</span>
+                                    </div>
+                                </div>
+                                <div class="row data" *ngIf="caseSummary.caseData.isTrademark && caseSummary.caseData.totalClasses">
+                                    <div class="col-lg-6 article-label">
+                                        <span translate="taskPlanner.summary.totalClasses"></span>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <span class="text">{{ caseSummary.caseData.totalClasses }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row" *ngIf="caseSummary">
+                    <div style="z-index: 5" id="caseNames">
+                        <div class="search-options search-options-header" style="background-color: white;">
+                            <div class="heading">
+                                <h4 style="padding-bottom: 5px;" translate="taskPlanner.summary.caseNames"></h4>
+                                <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showCaseNames}" (click)="toggleShowCaseNames()">
+                                    <div placement="left" [tooltip]="(showCaseNames? 'collapse' : 'expand') | translate">
+                                        <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="container-fluid" [@slideInOutVisible]="showCaseNames ? 'open' : 'closed'">
+                            <div style="z-index: 5">
+                                <div class="container-fluid names-with-email" *ngFor="let n of caseSummary.names; trackBy: trackByFn">
+                                    <div class="row data">
+                                        <div class="col-lg-4 article-label">
+                                            <span>{{ n.nameTypeDescription }}</span>
+                                        </div>
+                                        <div *ngIf="!n.restrictAccess" class="col-lg-8">
+                                            <ipx-hosted-url [showLink]="showLink" [action]="'NameDetails'" [key]="n.nameKey" [description]="n.nameAndCode" [programId]="defaultProgram" [linkType]="'NameDetails'"
+                                                [dataField]="{ link: n }" [linkArgs]="['nameKey', 'rowKey']">
+                                                <ipx-ie-only-url *ngIf="showLink" class="result-cell-link" style="cursor: pointer;" [url]="encodeLinkData(n.nameKey)" [text]="n.nameAndCode"></ipx-ie-only-url>
+                                                <span *ngIf="!showLink">
+                                                    {{ n.nameAndCode }}
+                                                </span>
+                                            </ipx-hosted-url>
+                                            <a *ngIf="n.displayMainEmail" (click)="sendEmail(n.displayMainEmail)" style="cursor: pointer;">
+                                                <i class="cpa-icon cpa-icon-envelope"> </i>
+                                            </a>
+                                        </div>
+                                        <div *ngIf="n.restrictAccess" class="col-lg-8">
+                                            <span class="cpa-icon cpa-icon-ban" tooltip="{{ 'caseview.designatedJurisdiction.nameAccessDenied' | translate }}"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row" *ngIf="caseSummary">
+                    <div style="z-index: 5" id="criticalDates">
+                        <div class="search-options search-options-header" style="background-color: white;">
+                            <div class="heading">
+                                <h4 style="padding-bottom: 5px;" translate="taskPlanner.summary.criticalDates"></h4>
+                                <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showCriticalDates}" (click)="toggleShowCriticalDates()">
+                                    <div placement="left" [tooltip]="(showCriticalDates? 'collapse' : 'expand') | translate">
+                                        <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="container-fluid" [@slideInOutVisible]="showCriticalDates ? 'open' : 'closed'">
+                            <div style="z-index: 5">
+                                <div *ngIf="caseSummary.criticalDates.length == 0">
+                                    <span [translate]="'cases.noCriticalDates'"></span>
+                                </div>
+                                <div *ngIf="caseSummary.criticalDates.length" id="caseSummaryDates">
+                                    <div class="container-fluid">
+                                        <div class="row data" *ngFor="let event of caseSummary.criticalDates; trackBy: trackByFn">
+                                            <div class="col-lg-4 article-label">
+                                                <ipx-hover-help *ngIf="event.eventDefinition && !isExternal" [content]="event.eventDefinition">
+                                                    <span>{{ event.eventDescription }}</span>
+                                                </ipx-hover-help>
+
+                                                <span *ngIf="event.eventDefinition && isExternal">{{ event.eventDescription }}</span>
+                                                <span *ngIf="!event.eventDefinition">{{ event.eventDescription }}</span>
+                                            </div>
+                                            <div class="col-lg-3 criticalDateField">
+                                                <ipx-due-date *ngIf="!event.isOccurred" [date]="event.date"></ipx-due-date>
+                                                <span *ngIf="event.isOccurred" class="text">{{ event.date | localeDate }}</span>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <span class="text">{{ event.officialNumber }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="row data">
+                                        <div class="col-lg-4 article-label">
+                                            <ipx-hover-help *ngIf="caseSummary.nextDueEvent && caseSummary.nextDueEvent.eventDefinition  && !isExternal" [content]="caseSummary.nextDueEvent.eventDefinition">
+                                                <span [translate]="'cases.nextEventDue'"></span>
+                                            </ipx-hover-help>
+                                            <span *ngIf="caseSummary.nextDueEvent && caseSummary.nextDueEvent.eventDefinition  && isExternal" [translate]="'cases.nextEventDue'"></span>
+                                            <span *ngIf="!(caseSummary.nextDueEvent && caseSummary.nextDueEvent.eventDefinition)" [translate]="'cases.nextEventDue'"></span>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <ipx-due-date *ngIf="caseSummary.nextDueEvent" [date]="caseSummary.nextDueEvent.date"></ipx-due-date>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <span *ngIf="caseSummary.nextDueEvent" class="text">{{ caseSummary.nextDueEvent.eventDescription }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="container-fluid">
+                                    <div class="row data">
+                                        <div class="col-lg-4 article-label">
+                                            <ipx-hover-help *ngIf="caseSummary.lastEvent && caseSummary.lastEvent.eventDefinition && !caseSummary.isExternal" [content]="caseSummary.lastEvent.eventDefinition">
+                                                <span [translate]="'cases.lastEvent'"></span>
+                                            </ipx-hover-help>
+                                            <span *ngIf="caseSummary.lastEvent && caseSummary.lastEvent.eventDefinition && isExternal" [translate]="'cases.lastEvent'"></span>
+                                            <span *ngIf="!(caseSummary.lastEvent && caseSummary.lastEvent.eventDefinition)" [translate]="'cases.lastEvent'"></span>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <span *ngIf="caseSummary.lastEvent" class="text">{{ caseSummary.lastEvent.date | localeDate }}</span>
+                                        </div>
+                                        <div class="col-lg-5">
+                                            <span *ngIf="caseSummary.lastEvent" class="text">{{ caseSummary.lastEvent.eventDescription }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

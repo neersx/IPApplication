@@ -1,0 +1,30 @@
+<div class="label20" id="case-search">
+    <ipx-page-title>
+        <before-title>
+            <span translate="cases.caseSearch"></span>
+            <span *ngIf="queryName">{{ " – " + queryName }}</span>
+        </before-title>
+        <action-buttons>
+            <button style="margin-right: 3px;" class="btn btn-icon fas fa-calendar-check" id="presentation" tooltip="{{ 'caseSearch.presentationTitle' | translate }}" placement="bottom" (click)="openPresentation()">
+              <span class="cpa-icon cpa-icon-bars-vertical"></span>
+            </button>
+            <button style="margin-right: 3px;" class="btn btn-icon fas fa-calendar-check" id="dueDate" tooltip="{{ 'dueDate.toggle' | translate }}" placement="bottom" (click)="openDueDate()" [ngClass]="{'toggled': hasDueDateColumn || hasAllDateColumn}">
+              <span class="cpa cpa-icon-calendar"></span>
+            </button>
+            <button class="btn btn-icon" style="margin-right: 3px;" tooltip="{{ 'MultiStepWizard.toggle' | translate }}" placement="bottom" (click)="onToggle()" [ngClass]="{'toggled': isMultiStepMode}" [disabled]="isToggleDisabled()">
+              <span class="cpa-icon-list-ol ng-scope"></span>
+            </button>
+            <ipx-context-menu-button [menuItems]="menuItems" (onClick)="initializeMenuItems()"></ipx-context-menu-button>
+            <span class="btn-divider"></span>
+            <ipx-save-button id="caseSaveSearch" (onclick)="saveSearch()" [disabled]="disableSaveSearch()">
+                {{'Save' | translate}}</ipx-save-button>
+            <ipx-clear-button (click)="reset()"></ipx-clear-button>
+            <ipx-advanced-search-button (click)="search(false)"></ipx-advanced-search-button>
+        </action-buttons>
+    </ipx-page-title>
+
+    <ipx-multistepsearch [isMultiStepMode]="isMultiStepMode" #multiStepsRef>
+        <ipx-topics [options]="options" type="simpleRestrictWidth">
+        </ipx-topics>
+    </ipx-multistepsearch>
+</div>

@@ -1,0 +1,49 @@
+<div *ngIf="form" class="modal-header">
+    <h2 class="modal-title" translate="{{ isAdding? 'keywords.add': 'keywords.edit' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button type="button" id="btSave" [disabled]="form.status === 'INVALID' || !form.dirty" (click)="submit()"></ipx-save-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div *ngIf="canNavigate" class="title-header">
+    <ipx-detail-page-nav *ngIf="navData" paramKey="keywordNo" [totalRows]="navData.totalRows" [hasUnsavedChanges]="form.dirty" [currentKey]="currentKey" [fetchNext]="navData.fetchCallback" [noParams]="true"
+        [ids]="navData.keys" [pageSize]="navData.pageSize" (nextResult)="getNextKeywordDetails($event)">
+    </ipx-detail-page-nav>
+</div>
+<div class="modal-body">
+    <br>
+    <div *ngIf="form" style="height: 135px;">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-10" style="margin-left: -20px;">
+                    <ipx-text-field id="keyword" name="keyword" required maxlength="50" formControlName="keyword" ipx-autofocus="true" apply-edited label="{{ 'keywords.column.keyword' | translate }}" autocomplete="off">
+                    </ipx-text-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9" style="margin-left: 155px;">
+                    <ipx-checkbox id="caseStopWord" name="caseStopWord" formControlName="caseStopWord" label="keywords.column.caseStopWord" apply-edited>
+                    </ipx-checkbox>
+                    <ipx-inline-dialog style="margin-left: 7px;" class="inline-dialog-margin" [adaptivePosition]="true" tooltipPlacement="right" [templateRef]="caseTooltipTemplate"></ipx-inline-dialog>
+                </div>
+                <div class="col-md-9" style="margin-left: 155px;">
+                    <ipx-checkbox id="nameStopWord" name="nameStopWord" formControlName="nameStopWord" label="keywords.column.nameStopWord" apply-edited>
+                    </ipx-checkbox>
+                    <ipx-inline-dialog class="inline-dialog-margin" [adaptivePosition]="true" tooltipPlacement="right" [templateRef]="nameTooltipTemplate"></ipx-inline-dialog>
+                </div>
+                <ng-template #caseTooltipTemplate>
+                    <span [innerHtml]="('keywords.caseStopInfo' | translate)"></span>
+                </ng-template>
+                <ng-template #nameTooltipTemplate>
+                    <span [innerHtml]="('keywords.nameStopInfo' | translate)"></span>
+                </ng-template>
+            </div>
+            <div class="row">
+                <div class="col-md-10" style="margin-left: -20px;">
+                    <ipx-typeahead name="synonyms" apply-edited config="keyword" label="keywords.column.synonyms" multiselect multipick formControlName="synonyms">
+                    </ipx-typeahead>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

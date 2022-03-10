@@ -1,0 +1,10 @@
+<div class="input-wrap" ng-class="{error: vm.ngModel.$invalid}" ng-click="vm.ngModel.$setTouched()">
+    <label ng-if="vm.label" translate="{{vm.label}}" for="textarea{{vm.id}}"></label>
+
+    <textarea type="text" ng-model="vm.model" ng-blur="vm.ngBlur()" ng-disabled="vm.disabled" ng-change="vm.change()" rows="{{vm.rows}}" id="textarea{{::vm.id}}" placeholder="{{:: vm.placeholder ? (vm.placeholder | translate) : '' }}">
+    </textarea>
+    
+    <span class="input-action tooltip-error">
+        <span class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{vm.getError() | translate:{ length: vm.maxLength } }}" tooltip-class="tooltip-error"></span>
+    </span>
+</div>

@@ -1,0 +1,19 @@
+<form>
+
+    <div class="topic-container active" data-topic-key="References">
+        <div class="row">
+                <label class="col-sm-3">Example for Datatype</label>
+            <div class="col-md-5 col-lg-5">
+              
+                <ipx-text-field ipx-data-type="decimal" [textField]="'value'" name="datatype" placeholder="Please enter" [(ngModel)]="dataTypeValue">
+                </ipx-text-field>
+            </div>
+           
+            <div class="col-md-7 col-lg-6">
+                <div>model: {{ dataTypeValue | json }}</div>
+            </div>
+          
+        </div>
+    </div>
+</form>
+

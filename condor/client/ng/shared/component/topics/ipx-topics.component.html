@@ -1,0 +1,121 @@
+<ng-container *ngTemplateOutlet="isSimpleTopic ? simpleTopicRef : topicRef"></ng-container>
+<ng-template #simpleTopicRef>
+    <div name="topics" class="topics-simple" ipx-resize-handler resize-handler-type="Panel">
+        <div class="topic-menu">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane content-block active">
+                    <ul>
+                        <li *ngFor="let topic of options.topics; trackBy: trackByDefault" [ngClass]="{ active: topic.isActive }" [attr.data-topic-ref]="topic.key" (click)="selectTopic(topic, true)">
+                            <div>
+                                <ipx-topic-menu-item [topic]="topic"></ipx-topic-menu-item>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="topics-container" [ngClass]="{ 'topics-container-slim': isSimpleTopic }">
+            <div *ngFor="let topic of options.topics; trackBy: trackByDefault" (focusin)="selectTopic(topic, false)" class="topic-container" [ngClass]="{
+            active: topic.isActive,
+            'no-separator': topic.noSeparator
+          }" (click)="selectTopic(topic, false)" [attr.data-topic-key]="topic.key">
+                <h1 *ngIf="topic.title" [translate]="topic.title"></h1>
+                <ipx-topic-resolver [topicData]="topic"></ipx-topic-resolver>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #topicRef>
+    <div name="topics" class="topics ipx-topics" ipx-resize-handler [resize-handler-type]="'Panel'">
+        <div class="topic-menu">
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="active" *ngIf="options.topics" (click)="selectTab('topics')" [ngStyle]="{ width: isActionsTabVisible ? '123px' : '204px' }">
+                        <a data-toggle="tab">
+                            <span [translate]="'sections.title'"></span>
+                        </a>
+                    </li>
+                    <li *ngIf="isActionsTabVisible" (click)="selectTab('actions')">
+                        <a data-toggle="tab">
+                            <span [translate]="'sections.actions'"></span>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane content-block" [ngClass]="{ active: currentTab === 'topics' }" style="width: 204px">
+                        <ul ipx-resize-handler>
+                            <li *ngFor="let topic of options.topics" [dynamic-topic-class]="topic.className" [ngClass]="{ 'active': topic.isActive, 'group-section': topic.isGroupSection }"
+                                (click)="selectTopic(topic, true)" [attr.data-topic-ref]="topic.key">
+                                <div [ngClass]="{ 'group-section': topic.isGroupSection }" class="topic-section-text-wrap">
+                                    <ipx-topic-menu-item [topic]="topic"></ipx-topic-menu-item>
+                                </div>
+                                <ul *ngIf="topic.topics" class="sub-section">
+                                    <li *ngFor="let topic of topic.topics" [ngClass]="{ 'active': topic.isActive, 'sub-menu': topic.isSubSection }" (click)="selectTopic(topic, true);" [attr.data-topic-ref]="topic.key"
+                                        class="topic-section-text-wrap" ipx-click-stop-propagation>
+                                        <ipx-topic-menu-item [topic]="topic"></ipx-topic-menu-item>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div *ngIf="isActionsTabVisible" role="tabpanel" class="tab-pane content-block" [ngClass]="{active: currentTab === 'actions'}" style="width: 205.5px">
+                        <ul>
+                            <li *ngFor="let action of options.actions; trackBy: trackByDefault" [attr.data-action-key]="action.key" [ngClass]="{ disabled: action.disabled }" [attr.disabled]="action.disabled" (click)="doAction(action)">
+                                <span [translate]="action.title" ip-tooltip="action.tooltip"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="topics-container">
+            <ng-content select="ipx-topics-header"></ng-content>
+            <div *ngFor="let topic of options.topics; trackBy: trackByDefault">
+                <div class="topic-container" *ngIf="!topic.isGroupSection" [dynamic-topic-class]="topic.className" [ngClass]="{ active: topic.isActive, 'no-separator': topic.noSeparator }"
+                    (click)="selectTopic(topic, false)" [attr.data-topic-key]="topic.key" [attr.data-topic-suffix]="topic.suffix" [attr.data-topic-context-key]="topic.contextKey">
+                    <h1 *ngIf="topic.title" [translate]="topic.title"></h1>
+                    <span id="topicDataCount" class="badge topics header">{{topic.count}}</span>
+                    <ipx-inline-dialog *ngIf="topic.templateResolved" [tooltipPlacement]="'auto'" style="top:0px;" [templateRef]="topic.templateResolved">
+                    </ipx-inline-dialog>
+                    <ipx-inline-dialog *ngIf="topic.info" [content]="topic.info | translate" [title]="top" [tooltipPlacement]="'auto'">
+                    </ipx-inline-dialog>
+                    <h2 *ngIf="topic.subTitle" [translate]="topic.subTitle">
+                        <span [translate]="topic.subTitle"></span>
+                        <ipx-inline-dialog *ngIf="topic.templateResolved" [templateRef]="topic.templateResolved" [tooltipPlacement]="'auto'"></ipx-inline-dialog>
+                    </h2>
+                    <ipx-topic-resolver [topicData]="topic"></ipx-topic-resolver>
+                </div>
+                <div class="topic-group" *ngIf="topic.isGroupSection" [ngClass]="{active: topic.isActive}">
+                    <div class="topic-container group-section" (click)="selectTopic(topic, false)" [attr.data-topic-key]="topic.key" [attr.data-topic-suffix]="topic.suffix"
+                        [attr.data-topic-context-key]="topic.contextKey">
+                        <h1 *ngIf="topic.title" [translate]="topic.title"></h1>
+                        <ng-container *ngIf="afterTopicGroupHeaderTemplate" [ngTemplateOutlet]="afterTopicGroupHeaderTemplate" [ngTemplateOutletContext]="{ $implicit: topic }">
+                        </ng-container>
+                        <ipx-inline-dialog *ngIf="topic.info" [content]="topic.info | translate" [tooltipPlacement]="'auto'">
+                        </ipx-inline-dialog>
+                        <h2 *ngIf="topic.subTitle" [translate]="topic.subTitle"></h2>
+                    </div>
+                    <div class="topic-container" *ngFor="let subTopic of topic.topics; trackBy: trackByDefault" [ngClass]="{active: subTopic.isActive, 'no-separator': subTopic.noSeparator, 
+                    'topic-key': topic.key}" [attr.name]="topic.key" [id]="topic.key" (click)="selectTopic(subTopic, false)" [attr.data-topic-key]="subTopic.key">
+                        <h1 *ngIf="subTopic.title" [translate]="subTopic.title"></h1>
+                        <span id="topicDataCount" class="badge topics header">{{topic.count}}</span>
+                        <ipx-inline-dialog *ngIf="subTopic.templateResolved" [tooltipPlacement]="'auto'" style="top:0px;" [templateRef]="subTopic.templateResolved">
+                        </ipx-inline-dialog>
+                        <ipx-inline-dialog *ngIf="subTopic.info" [content]="subTopic.info | translate" [tooltipPlacement]="'auto'">
+                        </ipx-inline-dialog>
+                        <h2 *ngIf="subTopic.subTitle">
+                            <span [translate]="subTopic.subTitle"></span>
+                            <ipx-inline-dialog *ngIf="subTopic.templateResolved" [templateRef]="subTopic.templateResolved" [tooltipPlacement]="'auto'">
+                            </ipx-inline-dialog>
+                        </h2>
+                        <ipx-topic-resolver [topicData]="subTopic"></ipx-topic-resolver>
+                    </div>
+                    <ng-content *ngIf="topic.hasTopicGroupDetails" select="topic-group-details"></ng-content>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ipx-tooltip-templates></ipx-tooltip-templates>

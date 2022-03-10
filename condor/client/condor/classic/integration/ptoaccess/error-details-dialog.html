@@ -1,0 +1,25 @@
+<div class="modal-header">
+    <h2 class="modal-title">
+        <div translate="dataDownload.schedule.errorDetails"></div>
+    </h2>
+    <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+        <ip-close-button data-ng-click="vm.close()"></ip-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <ip-inline-alert type="info" text="dataDownload.schedule.errorDetailsSubtitle"></ip-inline-alert>
+    <div class="vertical-scroll">
+        <div ng-repeat="l in vm.errorDetails.log track by $index">
+            <br/>
+            <div class="error-panel"><strong>{{l.message}} @ attempt {{l.dispatchCycle}} on
+                <ip-date-time model="l.date" ></ip-date-time></strong>
+            </div>
+            <div class="error-stacktrace monospaced">
+                <div ng-repeat="e in l.exceptionDetails track by $index">
+                    <p>{{e.type}}: {{e.message}}</p>
+                    <pre>{{e.details}}</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

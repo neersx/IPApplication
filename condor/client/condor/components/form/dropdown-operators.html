@@ -1,0 +1,6 @@
+<div class="input-wrap" ng-click="vm.ngModel.$setTouched()">
+    <label ng-if="::vm.label" translate="{{::vm.label}}" for="dropdown{{::vm.id}}"></label>
+    <select ng-model="vm.model" ng-options="option.key as option.value for option in vm.options" id="dropdown{{::vm.id}}" ng-change="vm.change()"
+        ng-disabled="vm.disabled">
+    </select>
+</div>

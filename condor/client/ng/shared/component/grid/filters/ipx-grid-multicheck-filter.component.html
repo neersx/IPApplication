@@ -1,0 +1,19 @@
+<div *ngIf="showFilter" class="k-textbox k-space-right">
+    <input placeholder="Search" (input)="onInput($event)" />
+</div>
+<ul class="k-reset k-multicheck-wrap">
+    <li class="k-item">
+        <input type="checkbox" id="chk-SelectAll" [(ngModel)]="selectAll" (change)="onSelectAll()" />
+        <label for="chk-SelectAll">
+            Select All
+        </label>
+    </li>
+    <li #itemElement *ngFor="let item of currentData; let i = index;" class="k-item">
+        <input type="checkbox" id="chk-{{valueAccessor(item)}}" (focus)="onFocus(itemElement)" value="{{valueAccessor(item)}}"
+            [checked]="isItemSelected(item)" (change)="onSelectionChange(item,itemElement)" />
+        <label for="chk-{{valueAccessor(item)}}">
+            {{ textAccessor(item) }}
+        </label>
+    </li>
+</ul>
+<div class="k-filter-selected-items">{{ checkedCount }} items selected</div>

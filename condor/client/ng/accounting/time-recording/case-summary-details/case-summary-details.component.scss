@@ -1,0 +1,48 @@
+section.detail-view {
+    margin: 5px;
+    border: 8px solid #F5F5F5;
+    padding: 8px;
+}
+
+section.data {
+    div {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    div.container-fluid div.row>div.container-fluid {
+        max-height: 45px;
+    }
+
+    div.detail {
+        background: #f9f9f9;
+    }
+
+    div.container-fluid div.row>div div.container-fluid {
+        max-height: unset !important;
+    }
+
+    div.row.data {
+        padding: 5px 3px;
+    }
+
+    div.article-label {
+        font-weight: bold;
+        span:first-child {
+            margin-right: 0.3em;
+        }
+    }
+
+    hr {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .inline-dialog {
+        top: 0px;
+    }
+}
+
+label.toggle {
+    cursor: pointer !important;
+}

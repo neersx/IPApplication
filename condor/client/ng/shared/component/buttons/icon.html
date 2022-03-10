@@ -1,0 +1,4 @@
+<span [class]="mainClass$ | async">
+    <i *ngIf="additionalClass$ |async" [class]="additionalClass$ | async"></i>
+    <i *ngIf="subClass$ |async" [class]="subClass$ | async"></i>
+</span>

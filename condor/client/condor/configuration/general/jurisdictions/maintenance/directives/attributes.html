@@ -1,0 +1,9 @@
+<div class="text-right" ng-if="vm.topic.canUpdate">
+    <ip-add-button ng-click="vm.onAddClick()" ng-disabled="vm.topic.hasError()" class="pull-right"></ip-add-button>
+</div>
+<div class="row inline-editing" ng-form="vm.form" ip-form>
+    <ip-kendo-grid data-id="attributesList" data-grid-options="vm.gridOptions" data-show-add="vm.topic.canUpdate" data-on-add-click="vm.onAddClick()" data-add-disabled="vm.topic.hasError()" data-add-item-name="{{'jurisdictions.maintenance.attributes.attribute' | translate}}">
+    </ip-kendo-grid>
+    <ip-checkbox class="small" name="reportPriorArt" label="jurisdictions.maintenance.overview.priorArt" ng-model="vm.formData.reportPriorArt" ng-class="{edited: vm.form.reportPriorArt.$dirty}" ng-disabled="!vm.topic.canUpdate"></ip-checkbox>
+    <ip-inline-dialog style="margin-left: 1%" data-content="{{::'jurisdictions.maintenance.overview.priorArtTooltip' | translate}}" data-placement="right"></ip-inline-dialog>
+</div>

@@ -1,0 +1,36 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="caseview.eventRules.eventRuleDetails"></h2>
+    <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+    </div>
+</div>
+<div class="row" *ngIf="isLoading">
+    <div class="col-sm-12 k-loading-image" style="min-height: 50px;"></div>
+</div>
+<div *ngIf="eventRuleDetails && !isLoading" class="modal-body-duedate">
+    <div class="title-header">
+        <div class="label-value col-sm-3">
+            <label translate="caseview.summary.caseReference" for="caseReference"></label>
+            <span class="text"> {{eventRuleDetails.caseReference}}</span>
+        </div>
+        <div class="label-value col-sm-4">
+            <label translate="caseview.eventRules.event" for="event"></label>
+            <span class="text"> {{eventRuleDetails.eventDescription}} ({{eventRuleDetails.eventInformation.eventNumber}})</span>
+        </div>
+        <div class="label-value col-sm-3">
+            <label translate="picklist.action.Type" for="action"></label>
+            <span class="text"> {{eventRuleDetails.action}}</span>
+        </div>
+        <ipx-detail-page-nav *ngIf="navData" [totalRows]="navData.totalRows" [currentKey]="currentKey" [fetchNext]="navData.fetchCallback" [noParams]="true" [ids]="navData.keys" [pageSize]="q.params.take" [totalRows]="navData.total" (nextResult)="getNextEventDetails($event)">
+        </ipx-detail-page-nav>
+    </div>
+
+    <div style="overflow-y: auto; height: 550px;">
+        <ipx-event-information [canMaintainWorkflow]="canMaintainWorkflow" [eventRuleDetails]="eventRuleDetails"></ipx-event-information>
+        <ipx-duedate-information [canMaintainWorkflow]="canMaintainWorkflow" [dueDateCalculationInfo]="dueDateCalculationInfo"></ipx-duedate-information>
+        <ipx-event-reminders [remindersInfo]="remindersInfo"></ipx-event-reminders>
+        <ipx-event-documents [documentsInfo]="documentsInfo"></ipx-event-documents>
+        <ipx-dates-logic [datesLogicInfo]="datesLogicInfo"></ipx-dates-logic>
+        <ipx-event-update-info [eventUpdateInfo]="eventUpdateInfo"></ipx-event-update-info>
+    </div>
+</div>

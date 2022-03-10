@@ -1,0 +1,21 @@
+ <div class="input-wrap text-dropdown-group"  [ngClass]="{ error: showError(), warning: !invalid && warningText }">
+    <label *ngIf="label" [translate]="label"></label>
+    <div class="col-xs-8 control-group">
+      <input [(ngModel)]="textValue" class="col-xs-6" [disabled]="textdisabled || disabled" [id]="textId" (keyup)="onKeyup()" [ngClass]="{ 'edited': controledited()}"/>
+      <select [id]="dropdownId" class="col-xs-6" [(ngModel)]="option" (change)="change(option)" [ngClass]="{ 'edited': controledited()}" [disabled]="disabled">
+          <option [ngValue]="item[keyField] || item" *ngFor="let item of options; trackBy: trackByFn">
+          <span *ngIf="applyTranslate">{{ (displayField ? item[displayField] : item) | translate }}</span>
+          <span *ngIf="!applyTranslate">{{ item[displayField] }}</span>
+          </option>
+      </select>
+    </div>
+    <span class="input-action tooltip-error">
+      <span class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="getError() | translate"
+        containerClass="tooltip-error">
+      </span>
+    </span>
+    <span class="input-action tooltip-warning">
+      <span class="cpa-icon cpa-icon-exclamation-circle" [tooltip]="warningText | translate"
+        containerClass="tooltip-warning"></span>
+    </span>
+</div>

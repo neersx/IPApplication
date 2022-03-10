@@ -1,0 +1,48 @@
+<div data-ng-show="viewData.events.length">
+    <div class="widget-box">
+        <div class="topic-header header-color-blue">
+            <h1>
+                {{ 'caseComparison.ccHeadingEvents' | translate }}
+            </h1>
+        </div>
+        <div>
+            <div class="widget-main no-padding">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width:30%">&nbsp;</th>
+                                    <th style="width:15%; text-align:center">{{ 'caseComparison.ccLblCycle' | translate }}</th>
+                                    <th style="width:20%">{{ 'caseComparison.gLblProductName' | translate }}</th>
+                                    <th>&nbsp;</th>
+                                    <th style="width:40%" colspan="2">{{ externalSystem }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="e in viewData.events">
+                                    <td>
+                                        <strong>{{e.eventType}}</strong>
+                                    </td>
+                                    <td style="text-align:center">{{e.cycle}}</td>
+                                    <td>{{e.eventDate.ourValue | localeDate}}</td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: e.eventDate.updated}" data-ng-show="!viewData.rejectionResetable && viewData.updateable && e.eventDate.updateable" data-ng-model="e.eventDate.updated" ></ip-checkbox>
+                                    </td>
+                                    <td class="cc-date">
+                                        <span data-ng-class="{highlight:e.eventDate.different && e.eventDate.theirValue}">{{e.eventDate.theirValue | localeDate}}</span>
+                                    </td>
+                                    <td>
+                                        <span data-ng-show="e.eventDate.theirDescription" class="text-muted"><i class="cpa-icon cpa-icon-info-circle">&nbsp;<span>{{e.eventDate.theirDescription}}</span></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+</div>

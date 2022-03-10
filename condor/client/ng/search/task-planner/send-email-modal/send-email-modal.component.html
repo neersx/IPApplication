@@ -1,0 +1,23 @@
+<form #sendEmail="ngForm">
+  <div id="sendEmail">
+    <div class="modal-header">
+      <h2 class="modal-title" translate="taskPlanner.sendEmail.title"></h2>
+      <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="row form-group email-warning-msg" *ngIf="showWarning()">
+        <ipx-inline-alert [type]="'danger'" [text]="warningMessageKey" [textParams]="warningMessageParams"></ipx-inline-alert>
+      </div>
+      <div class="row">
+        <ipx-typeahead name="names" multiselect multipick label="taskPlanner.sendEmail.toNames" config="name" [(ngModel)]="names">
+        </ipx-typeahead>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" name="cancel" (click)="onClose()">{{'Cancel' | translate}}</button>
+      <button type="button" class="btn btn-save" name="save" (click)="send()" [disabled]="!isValid()">{{'taskPlanner.sendEmail.send' | translate}}</button>
+    </div>
+  </div>
+</form>

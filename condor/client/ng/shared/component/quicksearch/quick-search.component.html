@@ -1,0 +1,51 @@
+<style>
+    input[type="search"] {
+      -webkit-appearance: searchfield;
+    }
+    input[type="search"]::-webkit-search-cancel-button {
+      -webkit-appearance: searchfield-cancel-button;
+    }
+    
+    </style>
+    <div *ngIf="canAccessQuickSearch" class="quick-search-wrap">
+        <div class="typeahead-wrap">        
+            <input
+                name="quickSearch"
+                type="search"
+                class="typeahead basic-addon-r-1"
+                [(ngModel)]="text"
+                (ngModelChange)="textfield.next($event)"
+                (keydown)="onKeydown($event)"
+                (blur)="onBlur()"            
+                placeholder="{{'cases.caseSearch' | translate}}">
+            <div *ngIf="items != null && items.length" class="quick-search-autocomplete">
+                <table class="quick-search-suggestion-list">
+                    <tr class="quick-search-suggestion-item"
+                        *ngFor="let item of items; trackBy: item"
+                        (mousedown)="onSelect(item, $event); $event.preventDefault()" 
+                        [ngClass]="{highlighted: item.$highlighted}"
+                        (mouseover)="onMouseOver(item)">
+                        <td [innerHTML]="item.irn | quicksearchHighlight:text"></td>
+                        <td *ngIf="item.matchedOn !=null" [innerHTML]="item.matchedOn | quicksearchHighlight:text"></td>
+                        <td>{{item.using}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div *ngIf="items != null &amp;&amp; !items.length" class="quick-search-autocomplete">
+                <table class="quick-search-suggestion-list">
+                    <tr class="quick-search-suggestion-item">
+                        <td>
+                            <i>{{ 'noResultsFound' | translate }}</i>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    
+        <span class="quick-search-wrap-addon">
+            <span class="btn btn-icon btn-no-bg" (click)="$event.stopPropagation()" (mousedown)="onCaseSearch();$event.preventDefault()" [tooltip]="'Search' | translate">
+                    <ipx-icon name="search"></ipx-icon>
+            </span>
+        </span>
+    </div>
+    

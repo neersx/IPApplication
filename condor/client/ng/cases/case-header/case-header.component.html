@@ -1,0 +1,29 @@
+<div class="title-header" *ngIf="header">
+    <div class="row">
+        <div class="label-value col-sm-4">
+            <label translate="searchResults.dms.caseReference"></label>
+            <span name="caseReference" class="text">{{ header.caseResults.irn }}</span>
+        </div>
+        <div class="label-value col-sm-4">
+            <span *ngIf="header.caseResults.countryAdjective" class="text">
+                <span name="countryAdjective">{{ header.caseResults.countryAdjective }}</span>&nbsp;
+            </span>
+            <span *ngIf="header.caseResults.propertyTypeDescription" class="text">
+                <span name="propertyTypeDescription">{{ header.caseResults.propertyTypeDescription }}</span>&nbsp;-&nbsp;
+            </span>
+            <span name="caseTypeDescription" class="text">{{ header.caseResults.caseTypeDescription }}</span>&nbsp;
+        </div>
+
+        <div *ngIf="header.caseResults.caseStatusDescription" class="label-value col-sm-4">
+            <span class="text" name="caseStatusDescription">{{ header.caseResults.caseStatusDescription }}</span>&nbsp;
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let number of header.officialNumbers; trackBy: number" class="label-value col-sm-4 official-number">
+            <label span="numberTypeDescription">{{ number.numberTypeDescription }}</label>
+            <span class="text">
+                <span name="number">{{ number.number }}</span>&nbsp;<span *ngIf="number.eventDate" name="date">{{number.eventDate | localeDate}}</span>
+            </span>
+        </div>
+    </div>
+</div>

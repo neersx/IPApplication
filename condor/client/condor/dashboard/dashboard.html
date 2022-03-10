@@ -1,0 +1,319 @@
+<div>
+    <ip-page-title page-title="Dashboard"></ip-page-title>
+    <p translate="Welcome" translate-values="{name:vm.username}"></p>
+    <div ip-resize-handler resize-handler-type="Panel">
+        <div ng-if="vm.debug">
+            <h3>Feature Pages</h3>
+            <ul id="links">
+                <li>
+                    <a href="#/case/search">Case Search</a>
+                </li>
+                <li>
+                    <a href="#/case/searchresult?queryContext=2&q=123">Case Search Results</a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/names/namealiastype" translate="Name Alias Type"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/standinginstructions" translate="Standing Instructions"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/sitecontrols" translate="siteControls.title"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/search" translate="Configuration"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/names/locality" translate="Locality"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/names/namerelations" translate="Name RelationShip Code"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/dataitems" translate="Data Item"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/status" translate="Status"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/nametypes" translate="Name Types"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/numbertypes" translate="Number Types"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/texttypes" translate="Text Types"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/events/eventnotetypes" translate="Event Note Types"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/namerestrictions" translate="Name Restrictions"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/jurisdictions" translate="Jurisdictions"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/validcombination" translate="Valid Combinations"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/rules/workflows" translate="Workflow Rules"></a>
+                </li>
+                <li>
+                    <a href="#/policing-dashboard" translate="Policing Dashboard"></a>
+                </li>
+                <li>
+                    <a href="#/configuration/general/importancelevel" translate="importanceLevel.level"></a>
+                </li>
+                <li>
+                    <a href="#/exchange-requests" translate="Exchange Integration"></a>
+                </li>
+                <li>
+                    Configure Settings
+                    <ul>
+                        <li>
+                            <a href="#/integration/ptoaccess/uspto-private-pair-sponsorships"
+                                translate="USPTO Sponsorship Configuration"></a>
+                        </li>
+                        <li>
+                            <a href="#/pto-settings/epo" translate="EPO Settings"></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>Classic
+                    <ul>
+                        <li>
+                            <a href="#/bulkcaseimport" translate="Import Cases"></a>
+                        </li>
+                        <li>
+                            <a href="#/casecomparison/inbox" translate="Case Data Comparision Inbox"></a>
+                        </li>
+                        <li>
+                            configuration
+                            <ul>
+                                <li>
+                                    <a href="#/configuration/dmsintegration" translate="DMS Integration"></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            integration
+                            <ul>
+                                <li>
+                                    <a href="#/integration/externalapplication"
+                                        translate="Application Link Security"></a>
+                                </li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#/priorartold/search" translate="Prior Art Search"></a>
+                        </li>
+                        <li>
+                            <a href="#/integration/ptoaccess" translate="Schedule Data Downloads"></a>
+                        </li>
+                        <li>
+                            <a href="#/reports" translate="Financial Reports"></a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#/portal2" translate="Portal 2"></a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Utilities</h3>
+            <ul id="tools">
+                <li>
+                    <a href="#/configuration/system/mui/screen-translations-utility"
+                        translate="Screen Translations Utility"></a>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h3>Dev Tools</h3>
+            <ul id="devtools">
+                <li>
+                    <a href="#/dev/login">Login</a>
+                </li>
+            </ul>
+        </div>
+
+        <div ng-if="vm.debug">
+            <h3>E2E Pages</h3>
+            <h3>Dev Pages</h3>
+            <ul>
+                <li>
+                    <h4>Ngjs Pages</h4>
+                    <ul>
+                        <li>
+                            <a href="#/dev/keyboardshortcut">Keyboard Shortcut Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/datepicker">Date Picker Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/sqlTextArea">SQL Text Area Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/grid">Grid Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/barchart">Bar Chart Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/topics">Topics Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/detailpage/1">Detail Page Navigation</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/typeahead">Typeaheads and Picklists</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/form">Form Controls Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/modal">Modal Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/menu">Menu Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/splitter">Splitter Examples</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Ng Upgraded pages</h4>
+                    <ul>
+                        <li>
+                            <a href="#/dev/ngpolicing">Policying Grid Samples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/ngdatepicker">Date Picker Samples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/qrcode">QR Code Renderer Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/resizer">Resize Handler Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/angular2shortCuts">ShortCut Examples</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Angular pages</h4>
+                    <ul>
+                        <li>
+                            <a href="#/dev/ngPageTitle/1">Page Title Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/ngStorage">Storage Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/validators">Form Validation Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/ipx-textbox">Textbox Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/ipx-richtext-field">Rich Text Field Example</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/inlineDialog">Inline Dialog Examples</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/policingStatus">Policing Status Example</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/ipx-topics">Topic Example</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/ngTimePicker">Time picker Example</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/ipx-typeahead">Typeahead & Picklist Example</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/kendo-grid">kendo grid Example</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/kendo-grid-edit-drag-drop">Kendo Grid Drag Drop - With Edit Template</a>
+                        </li>
+                        <li>
+                            <a ui-sref="case.search">Case Search Builder</a>
+                        </li>
+                        <li>
+                            <a
+                                ui-sref="case.search({queryKey: -30, canEdit: true, returnFromCaseSearchResults: false})">Case
+                                Saved Search</a>
+                        </li>
+                        <li>
+                            <a ui-sref="case.search({queryKey: 52, canEdit: true, returnFromCaseSearchResults: false})">Multi-step
+                                Case Saved Search</a>
+                        </li>
+                        <li>
+                            <a ui-sref="search-results({queryKey: -2, queryContext: 2, rowKey: null})">Case Search
+                                Results</a>
+                        </li>
+                        <li>
+                            <a href="#/dev/ipx-multistepsearch">MultiStep Search Example</a>
+                        </li>
+                    </ul>
+                    <br />
+                </li>
+            </ul>
+        </div>
+
+        <div ng-if="vm.e2e">
+            <h3>E2E Pages</h3>
+            <ul>
+                <li>
+                    <h4>Ngjs Pages</h4>
+                    <ul>
+                        <li>
+                            <a href="#/deve2e/detailpage">Detail Page</a>
+                        </li>
+                        <li>
+                            <a href="#/deve2e/datepicker">Date Picker</a>
+                        </li>
+                        <li>
+                            <a href="#/deve2e/picklist">Pick List</a>
+                        </li>
+                        <li>
+                            <a href="#/deve2e/grid">Kendo Grid</a>
+                        </li>
+                        <li>
+                            <a href="#/deve2e/quick-search">Quick Search</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Ng Upgraded pages</h4>
+                    <ul>
+                        <li>
+                            <a href="#/deve2e/ngdatepicker">Date Picker</a>
+                        </li>
+                        <li>
+                            <a href="#/deve2e/formvalidation">Form Validation</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <h4>Angular pages</h4>
+                    <ul>
+                        <li>
+                            <a href="#/deve2e/ipx-picklist">Picklist</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

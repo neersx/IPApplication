@@ -1,0 +1,5 @@
+<button class="btn" [ngClass]="{'btn-icon': !displayLabel}" [disabled]="disabled" (click)="onClickButton($event)" tooltip="{{ displayLabel ? '' :  'button.clear' | translate }}" placement="bottom"
+    [adaptivePosition]="false" container="body">
+    <ipx-icon name="eraser"></ipx-icon>
+    <span *ngIf="displayLabel">{{'button.clear' | translate}}</span>
+</button>

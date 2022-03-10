@@ -1,0 +1,17 @@
+<div *ngIf="visible" class="pull-right">
+    <button [disabled]="isFirstDisabled()" (click)="navigate(firstId)" tooltip="{{isFirstDisabled()? '' : 'skipToFirst' | translate }}" class="btn btn-icon btn-no-bg">
+        <span class="cpa-icon cpa-icon-angle-double-left"></span>
+    </button>
+    <button [disabled]="isPreviousDisabled()" (click)="navigate(prevId)" tooltip="{{ isPreviousDisabled() ? '' : 'Previous' | translate }}" class="btn btn-icon btn-no-bg">
+        <span class="cpa-icon cpa-icon-chevron-circle-left"></span>
+    </button>
+    <span name="current"> {{ current }} </span>
+    <span translate="of"></span>
+    <span name="total"> {{ total }} </span>
+    <button [disabled]="isNextDisabled()" (click)="navigate(nextId)" tooltip="{{ isNextDisabled()? '' : 'Next' | translate }}" class="btn btn-icon btn-no-bg">
+        <span class="cpa-icon cpa-icon-chevron-circle-right"></span>
+    </button>
+    <button [disabled]="isLastDisabled()" (click)="navigate(lastId)" tooltip="{{ isLastDisabled()? '' : 'skipToLast' | translate }}"  class="btn btn-icon btn-no-bg">
+        <span class="cpa-icon cpa-icon-angle-double-right"></span>
+    </button>
+</div>

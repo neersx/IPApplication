@@ -1,0 +1,73 @@
+<div id="timerWidget" [formGroup]="form" *ngIf="!!form && !!timerDetails">
+  <div class="modal-header">
+    <h2 class="modal-title">{{'accounting.time.widget.timerDetails' | translate}}</h2>
+    <div class="modal-header-controls">
+      <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+  </div>
+  <div class="modal-subheader" style="padding-top: 10px;padding-bottom: 5px;">
+    <div class="row">
+      <div class="col-xs-4 text-right text-nowrap">
+        <label translate="accounting.time.widget.startedAt"></label>
+      </div>
+      <div class="col-xs-8">
+        <span id="startTimeLbl">{{timerDetails.start | date: timeFormat}}</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4 text-right text-nowrap">
+        <label translate="accounting.time.widget.duration"></label>
+      </div>
+      <div class="col-xs-8 label-value">
+        <ipx-clock #timerClock [start]="timerDetails.start"></ipx-clock>
+        <button style="margin-left: 15px;margin-right: 5px" class="btn btn-no-bg btn-icon" [tooltip]="'Stop'" container="body" [adaptivePosition]="false" [tooltipPlacement]="'top'" (click)="stopTimer()" name="stopTimer">
+          <span class="cpa-icon cpa-icon-square text-blue-primary"></span>
+        </button>
+        <button class="btn btn-no-bg btn-icon" [tooltip]="'accounting.time.recording.resetTimer' | translate" container="body" [adaptivePosition]="false" [tooltipPlacement]="'top'" (click)="resetTimer()"
+          name="resetTimer">
+          <span class="cpa-icon cpa-icon-revert text-blue-primary"></span>
+        </button>
+      </div>
+    </div>
+    <div class="row" *ngIf="!!timerDetails.caseReference">
+      <div class="col-xs-4 text-right">
+        <label translate="accounting.time.fields.caseReference"></label>
+      </div>
+      <div class="col-xs-8">
+        <span id="irnLbl">{{timerDetails.caseReference}}</span>
+      </div>
+    </div>
+    <div class="row" *ngIf="timerDetails.name">
+      <div class="col-xs-4 text-right">
+        <label translate="accounting.time.fields.name"></label>
+      </div>
+      <div class="col-xs-8">
+        <span id="nameLbl">{{timerDetails.name}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <ipx-typeahead apply-edited name="wipTemplates" config="wipTemplate" [formControl]="activity" [extend-query]="activityExtendQuery" label="accounting.time.fields.activity">
+      </ipx-typeahead>
+    </div>
+    <div class="row">
+      <ipx-typeahead apply-edited name="narrative" config="narrative" [formControl]="narrativeNo" label="accounting.time.fields.narrative">
+      </ipx-typeahead>
+    </div>
+    <div class="row">
+      <ipx-text-field apply-edited name="narrativeText" multiLine="true" [rows]="4" [formControl]="narrativeText" label="accounting.time.fields.narrativeText">
+      </ipx-text-field>
+    </div>
+    <div class="row">
+      <ipx-text-field apply-edited name="notes" multiLine="true" [rows]="2" maxlength="254" [formControl]="notes" label="accounting.time.fields.notes">
+      </ipx-text-field>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <div class="col-xs-12">
+      <button type="button" class="btn btn-primary" id="btnProceed" (click)="saveData()" translate="Proceed" ipx-autofocus="true"></button>
+      <button type="button" class="btn btn-discard" id="btnCancel" (click)="deleteTimer()" translate="Delete"></button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<style>
+    .modal-text-small {
+        margin-left: 92px;
+        width: 25% !important;
+    }
+</style>
+<div ng-form="vm.form" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title" ng-switch on="vm.entity.currentState">
+            <div ng-switch-when="adding" translate="locality.maintenance.addTitle"></div>
+            <div ng-switch-when="duplicating" translate="locality.maintenance.duplicateTitle"></div>
+            <div ng-switch-default translate="locality.maintenance.editTitle"></div>
+        </h2>
+        <div class="modal-header-controls">
+            <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismissAll()"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <ip-nav-modal ng-if="vm.isEdit" all-items="vm.options.allItems" current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges">
+        </ip-nav-modal>
+        <div class="row">
+            <div>
+                <ip-text-field name="code" class="modal-text-small col-sm-8" ip-required label="locality.code" ng-model="vm.entity.code" ng-class="{'edited': vm.form.code.$dirty}" data-ng-maxlength="5" ng-disabled="vm.isEdit" ip-field-error="{{vm.getError('code').message | translate}}"
+                    ip-autofocus="{{vm.entity.currentState === 'adding' || vm.entity.currentState === 'duplicating'}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-text-field class="col-sm-8" name="name" label="locality.name" ng-model="vm.entity.name" data-ng-maxlength="30" ng-class="{'edited': vm.form.name.$dirty}" ip-field-error="{{vm.getError('name').message | translate}}" ip-autofocus="{{vm.entity.currentState === 'updating'}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-text-field class="col-sm-8" name="city" label="locality.city" ng-model="vm.entity.city" data-ng-maxlength="30" ng-class="{'edited': vm.form.city.$dirty}" ip-autofocus="{{vm.entity.state === 'updating'}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-typeahead id="state-picklist" name="state" data-label="locality.state" data-key-field="key" data-key-field="code" data-text-field="value" data-api-url="api/configuration/picklists/states" data-picklist-display-name="State" data-picklist-columns="[{title:'Code', field:'code'}, {title:'Description', field:'value'}]"
+                    ng-model="vm.entity.state" ng-class="{edited: vm.form.state.$dirty}" data-extend-query="vm.extendStatePicklist" ng-change="vm.onStateChanged()" data-item-template-url="condor/components/form/autocomplete-item-code-desc.html">
+                </ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-typeahead id="country-picklist" name="country" data-config='jurisdiction' data-label="locality.country" data-picklist-can-maintain="true" ng-model="vm.entity.country" ng-class="{'edited': vm.form.country.$dirty}" ng-change="vm.onCountryChanged()"></ip-typeahead>
+            </div>
+        </div>
+    </div>
+</div>

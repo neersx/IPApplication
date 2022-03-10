@@ -1,0 +1,17 @@
+<div id="name-view">
+    <ipx-sticky-header>
+        <ipx-page-title>
+            <before-title>
+            <span>{{nameProgram | translate}}</span>
+                <span *ngIf="nameViewTitle">{{ " – " + nameViewTitle }}</span>
+            </before-title>
+            <action-buttons>
+                <ipx-save-button id="nameDetailsSave" (onclick)="saveNameDetails()" [disabled]="!isSaveEnabled">
+                    {{'Save' | translate}}</ipx-save-button>
+            </action-buttons>
+        </ipx-page-title>
+    </ipx-sticky-header>
+
+    <ipx-topics [options]="topicOptions" *ngIf="topicOptions" (actionClicked)="actionClicked($event)">
+    </ipx-topics>
+</div>

@@ -1,0 +1,27 @@
+<ip-page-title page-title="Bar Chart Example"></ip-page-title>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="chart-wrap" style="position: relative;">
+            <kendo-chart kendo-chart-resize id="chart" k-options="vm.chartOptions" k-rebind="vm.theme">
+            </kendo-chart>
+            <div class="chart-loading"></div>
+        </div>
+        <div class="row" style="text-align:center">
+            <button ng-click="vm.chartOptions.refreshData()">Refresh</button>
+            <button ng-click="vm.changeTheme()">Change Theme</button>
+        </div>
+    </div>
+    <vr/>
+    <div class="col-sm-6">
+        <h2>Features</h3>
+            <ul>
+                <li>Displays load icon while fetching data</li>
+                <li>Color theme can be changed. Current one is hard coded. However, it should ideally be getting picked from design guide</li>
+                <li>All the text on graph - title, axis names, series names can be translated</li>
+                <li>Tooltip displayed on hover of each column</li>
+                <li>On window resize graph is resized accordingly</li>
+            </ul>
+            <br>
+            Note: The colour theme, change theme and refresh button are demonstration purpose only. The latency is added while getting data. 
+    </div>
+</div>

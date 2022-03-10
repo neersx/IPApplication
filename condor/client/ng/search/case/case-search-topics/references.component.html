@@ -1,0 +1,101 @@
+<form>
+    <div class="container-fluid">
+        <div class="row" *ngIf="isExternal">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="YourReferenceOperator" label="caseSearch.topics.references.yourReference" [(ngModel)]="formData.yourReferenceOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6" *ngIf="formData.yourReferenceOperator!==searchOperator.exists && formData.yourReferenceOperator!==searchOperator.notExists">
+                <ipx-text-field name="YourReference" label="" [(ngModel)]="formData.yourReference"></ipx-text-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="CaseReferenceOperator" label="caseSearch.topics.references.caseReference" [(ngModel)]="formData.caseReferenceOperator" [operatorsGroup]="'FullNoExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <ipx-text-field *ngIf="formData.caseReferenceOperator !==searchOperator.equalTo && formData.caseReferenceOperator !== searchOperator.notEqualTo" name="CaseReference" label=""
+                    [(ngModel)]="formData.caseReference" ipx-autofocus="{{!!topic.isActive}}">
+                </ipx-text-field>
+                <ipx-typeahead *ngIf="formData.caseReferenceOperator == searchOperator.equalTo || formData.caseReferenceOperator == searchOperator.notEqualTo" name="case" label="" multiselect multipick
+                    [(ngModel)]="formData.caseKeys" ipx-autofocus="{{!!topic.isActive}}" config="case">
+                </ipx-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown name="OfficalNumberType" label="caseSearch.topics.references.officialNumber" [(ngModel)]="formData.officialNumberType" [options]="numberTypes" [displayField]="'value'" [keyField]="'key'"
+                    [optionalValue]="'caseSearch.topics.references.anyNumberType'">
+                </ipx-dropdown>
+            </div>
+            <div class="col-md-2">
+                <ipx-dropdown-operator name="OfficialNumberOperator" [(ngModel)]="formData.officialNumberOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div *ngIf="formData.officialNumberOperator!==searchOperator.exists && formData.officialNumberOperator!==searchOperator.notExists">
+                    <ipx-text-field name="OfficialNumber" label="" [(ngModel)]="formData.officialNumber" (onChange)="officialNumberUpdated()"></ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-10 col-lg-offset-4 col-lg-7" *ngIf="formData.officialNumberOperator!==searchOperator.exists && formData.officialNumberOperator!==searchOperator.notExists">
+                <div class="text-right">
+                    <div class="display-inline">
+                        <span>
+                            <ipx-checkbox label="{{ 'caseSearch.topics.references.searchNumbersOnly' | translate}}" name="SearchNumbersOnly" [(ngModel)]="formData.searchNumbersOnly" [disabled]="!formData.officialNumber">
+                            </ipx-checkbox>
+                        </span>
+                        <span>
+                            <ipx-checkbox label="{{ 'caseSearch.topics.references.searchRelatedCasesOnly' | translate}}" name="SearchRelatedCases" [(ngModel)]="formData.searchRelatedCases"
+                                [disabled]="!formData.officialNumber"></ipx-checkbox>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="!isExternal">
+            <div class="col-md-5">
+                <ipx-dropdown name="CaseNameReferenceType" label="caseSearch.topics.references.caseNameReference" [(ngModel)]="formData.caseNameReferenceType" [options]="nameTypes" [displayField]="'value'"
+                    [keyField]="'key'" [labelValue]="caseNameType" (onChange)="updateNameFilterLabel()">
+                </ipx-dropdown>
+            </div>
+            <div class="col-md-2 col-lg-2">
+                <ipx-dropdown-operator name="CaseNameReferenceOperator" [(ngModel)]="formData.caseNameReferenceOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-4 col-lg-4" *ngIf="formData.caseNameReferenceOperator!==searchOperator.exists && formData.caseNameReferenceOperator!==searchOperator.notExists">
+                <ipx-text-field name="CaseNameReference" label="" [(ngModel)]="formData.caseNameReference"></ipx-text-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="FamilyOperator" label="caseSearch.topics.references.family" [(ngModel)]="formData.familyOperator" [operatorsGroup]="'EqualExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6" *ngIf="formData.familyOperator!==searchOperator.exists && formData.familyOperator!==searchOperator.notExists">
+                <ipx-typeahead name="caseFamily" label="" multiselect multipick config="caseFamily" [(ngModel)]="formData.family"></ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="!isExternal">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="CaseListOperator" label="caseSearch.topics.references.caseList" [(ngModel)]="formData.caseListOperator" [operatorsGroup]="'EqualExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <div *ngIf="formData.caseListOperator!==searchOperator.exists && formData.caseListOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="caseList" picklistCanMaintain [is-addanother]="true" [can-navigate]="true" label="" config="caseList" [(ngModel)]="formData.caseList"></ipx-typeahead>
+                </div>
+                <div class="text-right">
+                    <ipx-checkbox label="{{ 'caseSearch.topics.references.primeOnly' | translate}}" name="IsPrimeCasesOnly" [(ngModel)]="formData.isPrimeCasesOnly"></ipx-checkbox>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>

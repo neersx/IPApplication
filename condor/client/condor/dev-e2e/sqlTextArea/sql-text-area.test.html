@@ -1,0 +1,13 @@
+<ip-sticky-header>
+    <ip-page-title page-title="SQL Text Area Examples"></ip-page-title>
+</ip-sticky-header>
+<div class="container-fluid">
+    <div class="row">
+        <ip-text-field multiline rows="8" id="sqlTextArea" ip-sql-highlight ng-model="vm.validData.value">
+        </ip-text-field>
+        <ip-text-field multiline rows="8" id="nonSQLTextArea" ng-model="vm.validData.value">
+        </ip-text-field>
+        <div ng-bind-html="vm.validData.value | html" id="valueLabel">
+        </div>
+    </div>
+</div>

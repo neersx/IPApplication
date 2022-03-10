@@ -1,0 +1,6 @@
+<div tooltip="{{ displayLabel ? '' : tooltipText | translate }}" [adaptivePosition]="false" placement="top" container="body">
+    <button type="button" class="btn"  [ngClass]="{'btn-icon': !displayLabel}"  [disabled]="disabled" (click)="onClickButton($event)">
+        <ipx-icon [name]="buttonIcon"></ipx-icon>
+        <span *ngIf="displayLabel">{{ buttonText | translate}}</span>
+    </button>
+</div>

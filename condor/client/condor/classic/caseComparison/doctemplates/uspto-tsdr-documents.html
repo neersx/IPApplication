@@ -1,0 +1,28 @@
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th class="text-center cc-datecolumn" nowrap>{{ 'caseComparison.ccLblUsptoTsdrMailDate' | translate }}</th>
+            <th style="width:auto">{{ 'caseComparison.ccLblUsptoTsdrDocumentDescription' | translate }}</th>
+            <th class="text-center" style="width:15%">{{ 'caseComparison.ccLblUsptoTsdrDocumentCode' | translate }}</th>
+            <th style="width:120px" data-ng-show="!viewData.errors">
+                <button data-ng-if="canSendAllToDms()" data-ng-click="sendAllToDms()" class="btn btn-info diff" id="sendAllButton">{{ 'caseComparison.ccBtnSendAllToDms' | translate }}</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-ng-repeat="d in documentsViewData" ng-class="{'cc-redRow': documentHasErrors(d)}">
+            <td class="text-center cc-datecolumn">{{d.mailRoomDate | localeDate}}</td>
+            <td>
+                <div ng-include="'condor/classic/caseComparison/doctemplates/document-description-template.html'"></div>
+            </td>
+            <td class="text-center">{{d.category}}</td>
+            <td class="text-center" ng-show="!viewData.errors" data-ng-switch="documentStatus(d)">
+                <span data-ng-switch-when="Failed" class="btn btn-danger cc-fixedwidth" ng-click="setErrors(d.errors)">{{ 'caseComparison.ccDocDownloadFailed' | translate }}</span>
+                <span data-ng-switch-when="FailedToSendToDms" class="btn btn-danger cc-fixedwidth" ng-click="setErrors(d.errors)">{{ 'caseComparison.ccDocSendToDmsFailed' | translate }}</span>
+                <button data-ng-switch-when="Attach" class="btn btn-info diff" data-ng-click="importDocument(d)">{{ 'caseComparison.ccBtnAttach' | translate }}</button>
+                <span data-ng-switch-when=""></span>
+                <span data-ng-switch-default class="btn disabled">{{ 'caseComparison.ccLbl' + documentStatus(d) | translate }}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>

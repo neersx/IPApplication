@@ -1,0 +1,110 @@
+<div>
+    <div class="row">
+        <ipx-kendo-grid #grid id="caseViewActionEvents" name="caseViewActionEvents" [dataOptions]="gridOptions" (dataBound)="dataBound($event)" (cancelRowEditEvent)="cancelRowEdit($event)" [items]="taskItems" (menuItemSelected)="onMenuItemSelected($event)" (popupOpen)="displayTaskItems($event)">
+            <grid-toolbar>
+                <div>
+                    <div class="col-sm-4" style="width:32%">
+                        <span translate="caseview.actions.events.header" [translateParams]="{ action: selectedAction.name }" style="font-weight: bold; line-height:40px;"></span>
+                    </div>
+                    <div class="col-sm-7" style="width:64%">
+                        <div class="ip-picklist-modal-search-flex">
+                            <div class="display-inline text-right">
+                                <span>
+                                    <ipx-checkbox label="{{ 'caseview.actions.events.allEvents' | translate}}" name="isAllEvents" [(ngModel)]="gridSearchFlags.isAllEvents" (onChange)="searchAllEvents()"></ipx-checkbox>
+                                </span>
+                                <span>
+                                    <ipx-checkbox [disabled]="gridSearchFlags.isAllEvents===true" label="{{ 'caseview.actions.events.allCycles' | translate}}" name="isAllCycles" [(ngModel)]="gridSearchFlags.isAllCycles"
+                                                  (onChange)="searchAllCycles()">
+                                    </ipx-checkbox>
+                                </span>
+                                <span>
+                                    <ipx-checkbox label="{{ 'caseview.actions.events.allEventDetails' | translate}}" name="isAllEventDetails" [(ngModel)]="gridSearchFlags.isAllEventDetails"
+                                                  (onChange)="isAllEventDetailsChanged()">
+                                    </ipx-checkbox>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </grid-toolbar>
+
+            <ng-template ipxTemplateColumnField="attachmentCount" let-dataItem>
+                <ipx-attachments-popover *ngIf="dataItem.attachmentCount" (click)="openAttachmentWindow(dataItem)" [caseKey]="viewData.caseKey" [eventNo]="dataItem.eventNo" [eventCycle]="dataItem.cycle" [total]="dataItem.attachmentCount">
+                </ipx-attachments-popover>
+            </ng-template>
+
+            <ng-template ipxTemplateColumnField="hasEventHistory" let-dataItem>
+                <a *ngIf="dataItem.hasEventHistory" (click)="openEventHistoryWindow(dataItem)" class="cpa-icon text-grey-highlight cpa-icon-history" [tooltip]="'caseview.actions.events.viewHistory' | translate"></a>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="eventDescription" let-dataItem>
+                <ipx-hosted-url [showLink]="dataItem.canLinkToWorkflow" [action]="'WorkflowWizardFromEvent'" [description]="dataItem.eventDescription" [linkType]="'WorkflowWizardFromEvent'" [key]="dataItem.caseKey"
+                                [linkArgs]="[dataItem.caseKey, dataItem.eventNo, dataItem.cycle, selectedAction.actionId]">
+                    <ng-container>
+                        {{ dataItem.eventDescription }}
+                    </ng-container>
+                </ipx-hosted-url>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="eventDueDate" let-dataItem>
+                <span [ngClass]="{'saved-date': dataItem.isManuallyEntered}">
+                    <ipx-due-date *ngIf="(dataItem.isOccurredFlag===0 && action.isOpen && (!dataItem.eventDate || gridSearchFlags.isAllEventDetails))" [date]="dataItem.eventDueDate">
+                    </ipx-due-date>
+                    <ipx-date [model]="dataItem.eventDueDate" *ngIf="((dataItem.isOccurredFlag!==0 || !action.isOpen) && (!dataItem.eventDate || gridSearchFlags.isAllEventDetails))">
+                    </ipx-date>
+                </span>
+            </ng-template>
+
+            <ng-template ipxTemplateColumnField="eventNo" let-dataItem>
+                <a *ngIf="canViewRuleDetails" (click)="viewRuleDetails(dataItem.eventNo)"><span tooltip="{{'caseview.actions.viewEventRuleToolTip' | translate}}" placement='auto'> {{dataItem.eventNo}}</span></a>
+                <a *ngIf="selectedAction.hasEditableCriteria && !canViewRuleDetails" uiSref="workflows.details.eventcontrol" [uiParams]="{id: selectedAction.criteriaId,eventId:dataItem.eventNo}">{{dataItem.eventNo}}</a>
+                <span *ngIf="!selectedAction.hasEditableCriteria && !canViewRuleDetails" tooltip="{{'caseview.actions.viewEventControlToolTip' | translate}}">{{dataItem.eventNo}}</span>
+            </ng-template>
+
+            <ng-template ipxTemplateColumnField="createdByCriteria" let-dataItem>
+                <a *ngIf="selectedAction.hasEditableCriteria" uiSref="workflows.details" [uiParams]="{id: dataItem.createdByCriteria}">{{dataItem.createdByCriteria}}</a>
+                <span *ngIf="!selectedAction.hasEditableCriteria">{{dataItem.createdByCriteria}}</span>
+            </ng-template>
+
+            <ng-template ipxTemplateColumnField="fromCaseIrn" let-dataItem>
+                <ipx-hosted-url [action]="'caseDetail'" [key]="dataItem.caseKey" [description]="dataItem.fromCaseIrn">
+                    <a target="_blank" uiSref="caseview" [uiParams]="{id: dataItem.caseKey}">{{dataItem.fromCaseIrn}}</a>
+                </ipx-hosted-url>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="stopPolicing" let-dataItem>
+                <ipx-checkbox disabled [ngModel]="dataItem.stopPolicing"></ipx-checkbox>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="isManuallyEntered" let-dataItem>
+                <ipx-checkbox disabled [ngModel]="dataItem.isManuallyEntered"></ipx-checkbox>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="eventDate" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-date-picker id="eventDate" name="eventDate" ngDefaultControl [displayError]="true" (onChange)="alertEventDate($event, formGroup, rowIndex)" [showAlertErrorDetails]="true"
+                                 [formControl]="formGroup?.controls.eventDate" label="" apply-edited>
+                </ipx-date-picker>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="eventDueDate" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-date-picker id="eventDueDate" name="eventDueDate" ngDefaultControl (onChange)="alertDueDate($event, formGroup, rowIndex)" [showAlertErrorDetails]="true"
+                                 [formControl]="formGroup?.controls.eventDueDate" label="" apply-edited>
+                </ipx-date-picker>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="name" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-typeahead name="name" config="name" apply-edited [formControl]="formGroup?.controls.name" label="" (onChange)="updateNameOrNameType('name', $event, formGroup, rowIndex)"></ipx-typeahead>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="nameType" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-typeahead name="nameTypeValue" config="nameType" apply-edited [formControl]="formGroup?.controls.nameType" label="" (onChange)="updateNameOrNameType('nameType', $event, formGroup, rowIndex)">
+                </ipx-typeahead>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+
+    <ng-template #detailTemplate let-dataItem>
+        <ipx-event-note-details *ngIf="eventNotesLoaded" [siteControlId]="siteControlId" [categories]="eventNoteTypes" [notes]="dataItem.eventNotes"></ipx-event-note-details>
+    </ng-template>
+
+    <ng-template #ipxHasNotesColumn let-dataItem>
+        <span *ngIf="dataItem.eventNotes && dataItem.eventNotes.length > 0" class="cpa-icon text-grey-highlight cpa-icon-file-o" tooltip="{{notesHoverText | translate }}"></span>
+    </ng-template>
+    <ng-template #ipxdefaultEventTextColumn let-dataItem>
+        <div *ngIf="dataItem.defaultEventText" class="display-wrap">
+            <textarea name="eventText" readonly rows="3" [(ngModel)]="dataItem.defaultEventText"></textarea>
+        </div>
+    </ng-template>
+</div>

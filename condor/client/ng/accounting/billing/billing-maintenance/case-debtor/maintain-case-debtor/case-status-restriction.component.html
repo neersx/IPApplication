@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="accounting.billing.step1.caseRestriction"></h2>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <ipx-inline-alert *ngIf="!allcasesRestricted" [type]="'warning'" [text]="'field.errors.billing.validations.caseListStatusRestriction' | translate"></ipx-inline-alert>
+        <ipx-inline-alert *ngIf="allcasesRestricted" [type]="'danger'" [isError]="true" [text]="'field.errors.billing.validations.caseListAllStatusRestriction' | translate"></ipx-inline-alert>
+    </div>
+    <div class="row">
+        <ipx-kendo-grid #caseListGrid id="caseListGrid" [dataOptions]="gridOptions" *ngIf="gridOptions">
+            <ng-template ipxTemplateColumnField="CaseReference" let-dataItem>
+                <a class="result-cell-link" target="_blank" uiSref="caseview" [uiParams]="{id: dataItem.CaseId}">{{dataItem.CaseReference}}</a>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>
+<div class="modal-footer">
+    <!--data-dismiss="modal"-->
+    <div class="input-wrap-group group-inline pull-right">
+        <button type="button" class="btn" id="btnCancel" (click)="cancel()">{{'button.cancel' | translate}}</button>
+        <button type="button" class="btn btn-primary" id="btnProceed" (click)="proceed()" ipx-autofocus>{{'button.ok' | translate}}</button>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<form name="caseTextUpdateForm" #ngForm="ngForm">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <div class="input-wrap-group group-inline">
+              <ipx-radio-button [value]="true" name="canAppend" [(ngModel)]="formData.canAppend"
+                [disabled]="isTextTypeGS">
+                <span translate="bulkUpdate.caseTextUpdate.append"></span>
+              </ipx-radio-button>
+              <ipx-radio-button [value]="false" name="canReplace" [(ngModel)]="formData.canAppend"
+                [disabled]="isTextTypeGS">
+                <span translate="bulkUpdate.caseTextUpdate.replace"></span>
+              </ipx-radio-button>
+            </div>
+          </div>
+          <div class="col-sm-3">
+            <ipx-checkbox name="chkClearCaseText" [(ngModel)]="clear" label="bulkUpdate.remove"
+              (click)="clearCaseText()">
+            </ipx-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <ipx-typeahead name="language" config="language" [(ngModel)]="formData.language"
+              label="{{labelTranslationKey + '.language'}}">
+            </ipx-typeahead>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <ipx-typeahead name="textType" config="textType" [(ngModel)]="formData.textType"
+              label="{{labelTranslationKey + '.textType'}}" (onChange)="resetNotesControl()">
+            </ipx-typeahead>
+          </div>
+        </div>
+        <div class="row" *ngIf="isTextTypeGS">
+          <div class="col-md-9">
+            <ipx-typeahead name="class" config="tmClass" [(ngModel)]="formData.class"
+              label="{{labelTranslationKey + '.class'}}">
+            </ipx-typeahead>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <ipx-richtext-field [rows]="6" [allowRichText]="allowRichText" name="notes"
+              [disabled]="!formData.textType || clear" label="{{labelTranslationKey + '.notes'}}"
+              [(ngModel)]="formData.notes" placeholder="bulkUpdate.caseTextUpdate.placeHolder">
+            </ipx-richtext-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

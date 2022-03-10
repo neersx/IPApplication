@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h2 class="modal-title">
+        <span>
+            {{'documentGeneration.errors.title' | translate}}
+        </span>
+    </h2>
+    <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-subheader">
+    <ipx-inline-alert [type]="'warning'" [text]="'documentGeneration.errors.errorMessage' | translate: { documentName: documentName }"></ipx-inline-alert>
+</div>
+<div class="modal-body" *ngIf="gridOptions && errors">
+    <ipx-kendo-grid #ipxKendoGridRef id="generateDocumentErros" [dataOptions]="gridOptions">
+    </ipx-kendo-grid>
+</div>

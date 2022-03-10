@@ -1,0 +1,25 @@
+<div data-ng-show="viewData.rejectionResetable">
+    <div class="widget-box match-rejected" name="matchRejectedIndicator">
+        <div class="topic-header header-color-warning">
+            <h1>
+                {{ 'caseComparison.ccHeadingRejected' | translate }}
+            </h1>
+        </div>
+        <div>
+            <div class="widget-main no-padding">
+                <div class="row col-xs-12 i-paddingTop">
+                    <label class="col-xs-12">{{ 'caseComparison.ccUndoRejectMatchExplanation' | translate }}</label>
+                </div>
+                <div class="row col-xs-12" ng-show="viewData.updateable">
+                    <label class="col-xs-12">{{ 'caseComparison.ccUndoRejectMatchExplanation2' | translate}}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 i-paddingTop">
+                    &nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+</div>

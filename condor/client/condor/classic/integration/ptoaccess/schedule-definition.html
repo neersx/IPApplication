@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="input-wrap large readonly-label-value">
+        <label translate="dataDownload.schedule.name"></label>
+        <span ng-bind="::vm.schedule.name"></span>
+    </div>
+
+    <div class="input-wrap large readonly-label-value">
+        <label translate="dataDownload.schedule.source"></label>
+        <span>{{ :: 'dataDownload.dataSource.' + vm.schedule.dataSource | translate }}</span>
+    </div>
+
+    <div class="input-wrap large readonly-label-value">
+        <label ng-if="!vm.hideDetailsLabel" translate="dataDownload.schedule.details"></label>
+        <span data-ng-init="vm.model = vm.schedule" ng-include="vm.template"></span>
+    </div>
+</div>

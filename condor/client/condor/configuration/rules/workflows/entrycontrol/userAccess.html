@@ -1,0 +1,14 @@
+<div>
+    <div class="text-right">
+        <ip-add-button ng-click="vm.onAddClick()" ng-if="vm.canEdit"></ip-add-button>
+    </div>
+    <div class="row">
+        <ip-kendo-grid 
+        	data-id="userAccess" 
+        	data-grid-options="vm.gridOptions"
+        	data-show-add="vm.canEdit" 
+            data-on-add-click="vm.onAddClick()" 
+            data-add-item-name="{{'workflows.entrycontrol.userAccess.role' | translate}}">
+      	</ip-kendo-grid>
+    </div>
+</div>

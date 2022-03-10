@@ -1,0 +1,86 @@
+<div *ngIf="form" class="modal-header">
+    <h2 class="modal-title" translate="{{ isAdding? 'exchangeRateVariation.maintenance.add': 'exchangeRateVariation.maintenance.edit' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button type="button" id="btSave" [disabled]="form.status === 'INVALID' || !form.dirty" (click)="submit()"></ipx-save-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <br>
+    <div *ngIf="form">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <ipx-typeahead #currencyEl name="currencyPicklistField" id="currencyPicklist" label="{{'exchangeRateVariation.maintenance.form.currency' | translate}}" apply-edited config="currency"
+                        [formControl]="currency">
+                    </ipx-typeahead>
+                </div>
+                <div class="col-md-6">
+                    <ipx-typeahead #exchangeRateVarEl name="exchRateSch" id="exchRateSch" label="{{'exchangeRateVariation.maintenance.form.exchRateSch' | translate}}" apply-edited config="exchangeRateSchedule"
+                        [formControl]="exchRateSch">
+                    </ipx-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <ipx-typeahead id="caseType" name="caseType" config="caseType" (onChange)="onCaseTypeChange($event)" [formControl]="caseType" [external-scope]="validCombinationDescriptionsMap"
+                        [extend-query]="extendValidCombinationPickList" [label]="'exchangeRateVariation.maintenance.form.caseType' | translate" apply-edited></ipx-typeahead>
+                    <ipx-typeahead id="jurisdiction" name="jurisdiction" (onChange)="onJurisdictionChange($event)" [formControl]="jurisdiction" [extend-query]="extendValidCombinationPickList"
+                        [external-scope]="validCombinationDescriptionsMap" label="{{ 'exchangeRateVariation.maintenance.form.jurisdiction' | translate }}" name="jurisdiction" apply-edited config="jurisdiction"
+                        apply-edited>
+                    </ipx-typeahead>
+                    <ipx-typeahead id="propertyType" (onChange)="onPropertyTypeChange($event)" label="{{'exchangeRateVariation.maintenance.form.propertyType' | translate}}" [extend-query]="extendValidCombinationPickList"
+                        apply-edited [external-scope]="validCombinationDescriptionsMap" [formControl]="propertyType" config="propertyType" label="picklist.propertytype.Type" entity="propertyTypes">
+                    </ipx-typeahead>
+                </div>
+                <div class="col-md-6">
+                    <ipx-typeahead name="caseCategory" (onChange)="onCaseCategoryChange()" [disabled]="disableCategory" label="{{'exchangeRateVariation.maintenance.form.caseCategory' | translate}}" config="caseCategory"
+                        [formControl]="caseCategory" [extend-query]="extendValidCombinationPickList" [external-scope]="validCombinationDescriptionsMap" entity="caseCategories" apply-edited></ipx-typeahead>
+                    <ipx-typeahead name="subType" label="{{ 'exchangeRateVariation.maintenance.form.subType' | translate }}" config="subType" [formControl]="subType" [external-scope]="validCombinationDescriptionsMap"
+                        apply-edited entity="subTypes" [extend-query]="extendValidCombinationPickList"></ipx-typeahead>
+                    <ipx-date-picker #effectiveDate required name="effectiveDate" id="effectiveDate" formControlName="effectiveDate" apply-edited
+                        label="{{'exchangeRateVariation.maintenance.form.effectiveDate' | translate}}">
+                    </ipx-date-picker>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3" style="margin-left: 81px;">
+                    <ipx-text-field id="buyFactor" class="number" [disabled]="disableFactor()" [decimalPlaces]="4" [ipx-data-type]="dataType.positivedecimal"
+                        label="{{'currencies.maintenance.form.buyFactor' | translate}}" [formControl]="buyFactor" apply-edited>
+                    </ipx-text-field>
+                </div>
+                <div class="col-md-3" style="margin-left: 249px;">
+                    <ipx-text-field id="buyRate" class="number" [disabled]="disableRate()" [decimalPlaces]="4" [ipx-data-type]="dataType.positivedecimal" label="{{'currencies.maintenance.form.buyRate' | translate}}"
+                        [formControl]="buyRate" apply-edited>
+                    </ipx-text-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="margin-left: 81px;">
+                    <ipx-text-field id="sellFactor" [disabled]="disableFactor()" class="number" [decimalPlaces]="4" [ipx-data-type]="dataType.positivedecimal"
+                        label="{{'currencies.maintenance.form.sellFactor' | translate}}" [formControl]="sellFactor" apply-edited>
+                    </ipx-text-field>
+                </div>
+                <div class="col-md-3" style="margin-left: 249px;">
+                    <ipx-text-field id="sellRate" [disabled]="disableRate()" class="number" [decimalPlaces]="4" [ipx-data-type]="dataType.positivedecimal" label="{{'currencies.maintenance.form.sellRate' | translate}}"
+                        [formControl]="sellRate" apply-edited>
+                    </ipx-text-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2 field-label" style="margin-top: 7px; margin-left: 116px;">
+                    <label>{{ 'exchangeRateVariation.maintenance.form.notes' |translate}}</label>
+                </div>
+                <div class="col-md-10" style="margin-left: -126px;">
+                    <ipx-text-field id="notes" multiline formControlName="notes" apply-edited>
+                    </ipx-text-field>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="table-title" style="margin-top: -15px;">
+    <!-- <ipx-add-button class="pull-right" (click)="onRowAddedOrEdited(null, 'A')"> </ipx-add-button> -->
+</div>

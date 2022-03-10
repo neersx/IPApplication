@@ -1,0 +1,18 @@
+<div id="updatePriorArtStatus">
+    <div class="modal-header">
+        <h2 class="modal-title"> {{ 'priorart.updatePriorArtStatus.title' | translate }}</h2>
+        <div class="modal-header-controls">
+            <ipx-save-button id="save" type="button" [disabled]="!priorArtStatus && !clearStatus" (click)="save()"></ipx-save-button>
+            <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+        </div>
+    </div>
+    <div class="modal-body container-fluid" style="overflow: visible">
+        <h5 translate="priorart.updatePriorArtStatus.info"></h5>
+        <div class="row col-sm-11">
+            <ipx-typeahead name="priorArtStatus" config="priorArtStatus" [(ngModel)]="priorArtStatus" label="priorart.updatePriorArtStatus.status" [disabled]="clearStatus"></ipx-typeahead>
+        </div>
+        <div class="row col-sm-8 col-sm-offset-4">
+            <ipx-checkbox style="margin-left: -25px" name="clearStatus" label="priorart.updatePriorArtStatus.clearStatus" [(ngModel)]="clearStatus" (click)="click()"></ipx-checkbox>
+        </div>
+    </div>
+</div>

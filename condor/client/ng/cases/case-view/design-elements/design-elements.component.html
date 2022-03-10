@@ -1,0 +1,26 @@
+<div class="row" [ngClass]="{'hosted-grid': isHosted}" style="margin-top: -10px;">
+    <ipx-kendo-grid #ipxKendoGridRef id="designElements" [dataOptions]="gridOptions" *ngIf="gridOptions" (cancelRowEditEvent)="updateChangeStatus()" (deleteRowEvent)="updateChangeStatus()"
+        (addRowEvent)="onRowAddedOrEdited($event)" (pageChanged)="onPageChanged()" (editRowEvent)="onRowAddedOrEdited($event)">
+        <ng-template ipxEditTemplateColumnField="renew" let-dataItem="dataItem" let-rowIndex="rowIndex">
+            <ipx-checkbox [(ngModel)]="dataItem.renew" disabled></ipx-checkbox>
+        </ng-template>
+        <ng-template ipxEditTemplateColumnField="stopRenewDate" let-dataItem="dataItem" let-rowIndex="rowIndex">
+            <ipx-date [model]="dataItem.stopRenewDate">
+            </ipx-date>
+        </ng-template>
+    </ipx-kendo-grid>
+    <ng-template #detailTemplate let-dataItem>
+        <section class="detail-view">
+            <div class="content row" *ngIf="dataItem">
+                <h4 style="padding-left: 10px; margin-top: 0px">
+                    {{ 'caseview.designElements.images' | translate }}
+                </h4>
+                <div *ngFor="let id of dataItem.images; index as i;trackBy: byItem" [ngClass]="(i+1) % 12 == 0 ? 'clearfix' : ''">
+                    <div class="col-sm-1 border" style="padding-left: 25px;">
+                        <ipx-image [itemKey]="topic.params.viewData.caseKey" [type]="'case'" [imageKey]="id.key" [imageTitle]="id.description" [maxWidth]="60" [maxHeight]="60" [isThumbnail]="true"></ipx-image>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </ng-template>
+</div>

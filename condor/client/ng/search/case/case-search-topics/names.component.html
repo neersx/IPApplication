@@ -1,0 +1,177 @@
+<form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="instructorOperator" label="caseSearch.topics.names.instructor" [(ngModel)]="formData.instructorOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <div *ngIf="formData.instructorOperator!==searchOperator.exists && formData.instructorOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="instructor" label="" config="nameFiltered" ipx-autofocus="{{!!topic.isActive}}" *ngIf="formData.instructorOperator ===searchOperator.equalTo || formData.instructorOperator === searchOperator.notEqualTo" [(ngModel)]="formData.instructor"
+                        multiselect multipick [extend-query]="instructorPickListExternalScope.extendQuery" [external-scope]="instructorPickListExternalScope">
+                    </ipx-typeahead>
+                    <ipx-text-field *ngIf="formData.instructorOperator !==searchOperator.equalTo && formData.instructorOperator !== searchOperator.notEqualTo" name="instructorValue" label="" [(ngModel)]="formData.instructorValue">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="ownerOperator" label="caseSearch.topics.names.owner" [(ngModel)]="formData.ownerOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <div *ngIf="formData.ownerOperator!==searchOperator.exists && formData.ownerOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="owner" label="" config="nameFiltered" *ngIf="formData.ownerOperator ===searchOperator.equalTo || formData.ownerOperator === searchOperator.notEqualTo" [(ngModel)]="formData.owner" multiselect multipick [extend-query]="ownerPickListExternalScope.extendQuery"
+                        [external-scope]="ownerPickListExternalScope"></ipx-typeahead>
+                    <ipx-text-field *ngIf="formData.ownerOperator !==searchOperator.equalTo && formData.ownerOperator !== searchOperator.notEqualTo" name="ownerValue" label="" [(ngModel)]="formData.ownerValue">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="clientNameTypeShown(knownNameTypes.Agent)">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="agentOperator" label="caseSearch.topics.names.agent" [(ngModel)]="formData.agentOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <div *ngIf="formData.agentOperator!==searchOperator.exists && formData.agentOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="agent" label="" config="nameFiltered" *ngIf="formData.agentOperator ===searchOperator.equalTo || formData.agentOperator === searchOperator.notEqualTo" [(ngModel)]="formData.agent" multiselect multipick [extend-query]="agentPickListExternalScope.extendQuery"
+                        [external-scope]="agentPickListExternalScope">
+                    </ipx-typeahead>
+                    <ipx-text-field *ngIf="formData.agentOperator !==searchOperator.equalTo && formData.agentOperator !== searchOperator.notEqualTo" name="agentValue" label="" [(ngModel)]="formData.agentValue">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="clientNameTypeShown(knownNameTypes.StaffMember)">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="staffOperator" label="caseSearch.topics.names.staff" [(ngModel)]="formData.staffOperator" [operatorsGroup]="'EqualExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <div *ngIf="formData.staffOperator!==searchOperator.exists && formData.staffOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="staff" label="" *ngIf="formData.staffOperator ===searchOperator.equalTo || formData.staffOperator === searchOperator.notEqualTo" config="nameFiltered" [(ngModel)]="formData.staff" multiselect multipick [extend-query]="staffPickListExternalScope.extendQuery"
+                        [external-scope]="staffPickListExternalScope" [disabled]="formData.isStaffMyself">
+                    </ipx-typeahead>
+                    <div class="text-right" *ngIf="!isExternal">
+                        <ipx-checkbox label="{{ 'caseSearch.topics.names.isMyself' | translate}}" name="isStaffMyself" (ngModelChange)="applyIsMyself('staff')" [(ngModel)]="formData.isStaffMyself"></ipx-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="clientNameTypeShown(knownNameTypes.Signatory)">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="signatoryOperator" label="caseSearch.topics.names.signatory" [(ngModel)]="formData.signatoryOperator" [operatorsGroup]="'EqualExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <div *ngIf="formData.signatoryOperator!==searchOperator.exists && formData.signatoryOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="signatory" label="" config="nameFiltered" *ngIf="formData.signatoryOperator ===searchOperator.equalTo || formData.signatoryOperator === searchOperator.notEqualTo" [(ngModel)]="formData.signatory" multiselect multipick [extend-query]="signatoryPickListExternalScope.extendQuery"
+                        [external-scope]="signatoryPickListExternalScope" [disabled]="formData.isSignatoryMyself">
+                    </ipx-typeahead>
+                    <div class="text-right" *ngIf="!isExternal">
+                        <ipx-checkbox label="{{ 'caseSearch.topics.names.isMyself' | translate}}" name="isSignatoryMyself" (ngModelChange)="applyIsMyself('signatory')" [(ngModel)]="formData.isSignatoryMyself"></ipx-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown name="namesType" label="caseSearch.topics.names.otherNameTypes" (onChange)="namesTypeChanged()" [(ngModel)]="formData.namesType" [options]="nameTypes" [displayField]="'value'" [keyField]="'key'" [optionalValue]="'caseSearch.topics.names.anyNameType'">
+                </ipx-dropdown>
+            </div>
+            <div class="col-md-2">
+                <ipx-dropdown-operator name="namesOperator" (change)="nameChange()" [(ngModel)]="formData.namesOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div *ngIf="formData.namesOperator!==searchOperator.exists && formData.namesOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="names" label="" (onChange)="nameChange()" config="nameFiltered" *ngIf="formData.namesOperator ===searchOperator.equalTo || formData.namesOperator === searchOperator.notEqualTo" [(ngModel)]="formData.names" multiselect multipick [extend-query]="namePickListExternalScope.extendQuery"
+                        [external-scope]="namePickListExternalScope">
+                    </ipx-typeahead>
+                    <ipx-text-field *ngIf="formData.namesOperator !==searchOperator.equalTo && formData.namesOperator !== searchOperator.notEqualTo" name="namesValue" label="" [(ngModel)]="formData.namesValue">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-4 col-md-7 col-lg-offset-5 col-lg-6" style="padding-left: 18px;">
+                <ipx-dropdown name="nameVariant" label="caseSearch.topics.names.useNameVariant" [(ngModel)]="formData.nameVariant" [options]="nameVariants" [displayField]="'description'" [disabled]="!nameVariants">
+                </ipx-dropdown>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-4 col-lg-offset-5 col-md-7 col-lg-6 text-right">
+                <ipx-checkbox label="{{ 'caseSearch.topics.names.searchAttentionName' | translate}}" name="searchAttentionName" [(ngModel)]="formData.searchAttentionName">
+                </ipx-checkbox>
+            </div>
+            <div class="col-md-1 col-lg-1">&nbsp;</div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-lg-5">
+                <ipx-typeahead name="includeCaseValue" label="caseSearch.topics.names.includeThisCase" config="case" [(ngModel)]="formData.includeCaseValue"></ipx-typeahead>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <ipx-dropdown name="isOtherCasesValue" label="caseSearch.topics.names.isOtherCases" [(ngModel)]="formData.isOtherCasesValue" [options]="nameTypes" [displayField]="'value'" [keyField]="'key'" [optionalValue]="'caseSearch.topics.names.anyNameType'">
+                </ipx-dropdown>
+            </div>
+            <div class="col-md-1 col-lg-1">&nbsp;</div>
+        </div>
+        <div *ngIf="!isExternal">
+            <h4 translate="caseSearch.topics.names.relationship"></h4>
+            <ipx-inline-dialog class="inline-dialog-margin" [content]="'caseSearch.topics.names.relationshipHelpText' | translate" [tooltipPlacement]="'top'">
+            </ipx-inline-dialog>
+            <div class="row">
+                <div class="col-md-5">
+                    <ipx-typeahead name="nameTypeValue" label="caseSearch.topics.names.nameType" config="nameType" multiselect multipick [(ngModel)]="formData.nameTypeValue">
+                    </ipx-typeahead>
+                </div>
+                <div class="col-md-6">
+                    <ipx-typeahead name="relationship" label="caseSearch.topics.names.isRelatedToMyselfAs" config="reverseNameRelationship" multiselect multipick [(ngModel)]="formData.relationship">
+                    </ipx-typeahead>
+                </div>
+            </div>
+            <h4 translate="caseSearch.topics.names.inheritedNames"></h4>
+            <ipx-inline-dialog class="inline-dialog-margin" [content]="'caseSearch.topics.names.inheritedNamesHelpText' | translate" [tooltipPlacement]="'top'">
+            </ipx-inline-dialog>
+            <div class="row">
+                <div class="col-md-5">
+                    <ipx-dropdown-operator name="inheritedNameTypeOperator" label="caseSearch.topics.names.nameType" [(ngModel)]="formData.inheritedNameTypeOperator" [operatorsGroup]="'EqualExist'">
+                    </ipx-dropdown-operator>
+                </div>
+                <div class="col-md-7 col-lg-6">
+                    <div *ngIf="formData.inheritedNameTypeOperator!==searchOperator.exists && formData.inheritedNameTypeOperator!==searchOperator.notExists">
+                        <ipx-typeahead name="inheritedNameType" label="" config="nameType" [(ngModel)]="formData.inheritedNameType"></ipx-typeahead>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <ipx-dropdown-operator name="parentNameOperator" label="caseSearch.topics.names.parentName" [(ngModel)]="formData.parentNameOperator" [operatorsGroup]="'EqualExist'">
+                    </ipx-dropdown-operator>
+                </div>
+                <div class="col-md-7 col-lg-6">
+                    <div *ngIf="formData.parentNameOperator!==searchOperator.exists && formData.parentNameOperator!==searchOperator.notExists">
+                        <ipx-typeahead name="parentName" label="" config="name" [(ngModel)]="formData.parentName"></ipx-typeahead>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <ipx-dropdown-operator name="defaultRelationshipOperator" label="caseSearch.topics.names.inheritedRelationship" [(ngModel)]="formData.defaultRelationshipOperator" [operatorsGroup]="'EqualExist'">
+                    </ipx-dropdown-operator>
+                </div>
+                <div class="col-md-7 col-lg-6">
+                    <div *ngIf="formData.defaultRelationshipOperator!==searchOperator.exists && formData.defaultRelationshipOperator!==searchOperator.notExists">
+                        <ipx-typeahead name="defaultRelationship" label="" config="nameRelationship" [(ngModel)]="formData.defaultRelationship"></ipx-typeahead>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

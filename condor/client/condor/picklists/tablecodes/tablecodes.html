@@ -1,0 +1,16 @@
+<div 
+    data-ng-controller="tableCodesController as c"
+    translate-namespace="picklist.tablecode">
+    <div class="row" ng-if="vm.maintenanceState === 'viewing' || vm.maintenanceState === 'updating'">
+        <div class="input-wrap">
+            <label translate=".id"></label>
+            <label class="col-sm-1" name="eventNumber">{{vm.entry.key}}</label>
+        </div>
+    </div>
+    <div class="row">
+        <ip-text-field name="value" ip-required ip-autofocus label=".description" ng-model="vm.entry.value" data-ng-maxlength="80" ng-class="{edited: vm.maintenance.value.$dirty}" ng-disabled="vm.maintenanceState === 'viewing'" ip-field-error="{{vm.entry.$error('value').message | translate}}" multiline rows="3"></ip-text-field>
+    </div>
+    <div class="row">
+        <ip-text-field name="code" label=".userCode" ng-model="vm.entry.code" data-ng-maxlength="50" ng-disabled="vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.code.$dirty}" ip-field-error="{{vm.entry.$error('code').message | translate}}" multiline rows="3"></ip-text-field>
+    </div>    
+</div>

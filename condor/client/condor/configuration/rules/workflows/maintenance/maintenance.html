@@ -1,0 +1,51 @@
+<ip-master-detail-view data-state="workflows.details">
+    <ip-sticky-header>
+        <div class="container-fluid">
+            <div class="row">
+                    <ip-page-title-save data-ng-if="vm.canEdit" page-title="workflows.title" page-subtitle="workflows.maintenance.title" on-save="vm.save()" on-discard="vm.discard()" is-save-enabled="vm.isSaveEnabled()" is-discard-enabled="vm.isDiscardEnabled()">
+                        <ip-level-up-button data-last-search="::vm.lastSearch" data-grid-id="searchResults"></ip-level-up-button>
+                    </ip-page-title-save>
+                    <ip-page-title data-ng-if="!vm.canEdit" page-title="workflows.title" page-subtitle="workflows.maintenance.title">
+                        <before-title><ip-level-up-button data-last-search="::vm.lastSearch" data-grid-id="searchResults"></ip-level-up-button><before-title>
+                    </ip-page-title>
+                </h2>
+            </div>
+            <div class="row title-header workflow-details">
+                <div class="col-sm-12">
+                    <a ui-sref="workflows.inheritance({criteriaIds: vm.criteria.criteriaId})" ng-if="vm.criteria.isInherited" class="btn btn-icon btn-no-bg protected-icon">
+                        <ip-inheritance-icon></ip-inheritance-icon>
+                    </a>
+                    <div ng-if="vm.criteria.isHighestParent" class="btn btn-icon btn-no-bg protected-icon">
+                        <a ui-sref="workflows.inheritance({criteriaIds: vm.criteria.criteriaId})" class="btn-no-bg" 
+                            button-icon="inheritance" ip-tooltip="{{::'HighestParent' | translate }}">
+                            <span class="cpa-icon cpa-icon-grey cpa-icon-inheritance" name="inheritance"></span>
+                        </a>
+                    </div>
+                    <div ng-if="vm.criteria.isProtected" class="btn btn-icon btn-no-bg protected-icon">
+                        <icon ip-tooltip="{{::'Protected' | translate }}" data-tooltip-placement="bottom" class="text-blue-secondary" name="protected"></icon>
+                    </div>
+
+                    <div class="readonly-label-group">
+                        <div class="readonly-label-value">
+                            <label>{{::'criteriaNumber' | translate}}:</label>
+                            <span id="criteriaNumber">{{vm.criteria.criteriaId}}</span>
+                        </div>
+                        <div class="readonly-label-value">
+                            <label>{{::'Name' | translate}}:</label>
+                            <span>{{vm.criteria.criteriaName}}</span>
+                        </div>
+                    </div>
+
+                    <ip-detail-page-nav data-last-search="::vm.lastSearch" data-router-state="workflows.details">
+                    </ip-detail-page-nav>
+                </div>
+            </div>
+        </div>
+    </ip-sticky-header>
+
+    <ip-topics data-options="vm.options" data-on-topic-selected="vm.onTopicSelected(topicKey)">
+        <ip-topics-header>
+            <ip-inline-permission-alert current-page="Workflow Criteria" data-options="vm.permissionAlertOptions"></ip-inline-permission-alert>
+        </ip-topics-header>
+    </ip-topics>
+</ip-master-detail-view>

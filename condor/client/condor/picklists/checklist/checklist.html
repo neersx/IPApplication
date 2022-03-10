@@ -1,0 +1,23 @@
+<style>
+    .radio-width-small {
+        width: 27% !important;
+    }
+</style>
+<div translate-namespace="picklist.checklist" data-ng-controller="checklistController as iCtrl" ng-init="iCtrl.init(vm.maintenanceState, vm.entry)">
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="value" ip-required label=".Description" ng-model="vm.entry.value" data-ng-maxlength="50" ng-class="{edited: vm.maintenance.value.$dirty}" ng-disabled="vm.maintenanceState === 'viewing'" ip-field-error="{{vm.entry.$error('value').message | translate}}"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-wrap-group group-inline col-sm-9">
+            <span class="input-wrap radio-width-small"></span>
+            <ip-radio-button label=".Renewal" value="renewal" ng-model="vm.entry.checklistType" name="Renewal" ng-class="{edited: vm.maintenance.Renewal.$dirty}">
+            </ip-radio-button>
+            <ip-radio-button label=".Examination" value="examination" ng-model="vm.entry.checklistType" name="Examination" ng-class="{edited: vm.maintenance.Examination.$dirty}">
+            </ip-radio-button>
+            <ip-radio-button label=".Other" value="other" ng-model="vm.entry.checklistType" name="Other" ng-class="{edited: vm.maintenance.Other.$dirty}">
+            </ip-radio-button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div id="postTimeResDlg" name="postTimeResDlg">
+    <div class="modal-header">
+        <h2 class="modal-title">{{'backgroundNotifications.statusType.information' | translate}}</h2>
+        <div class="modal-header-controls">
+            <ipx-close-button type="button" (click)="ok()"></ipx-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+            <div class="row" *ngIf="hasOfficeEntityError">
+                <ipx-inline-alert [type]="'danger'"
+                    [text]="'accounting.time.postTime.officeEntityError.message'" [isError]="true">
+                </ipx-inline-alert>
+            </div>
+            <div class="row" *ngIf="hasError">
+                <ipx-inline-alert [type]="'danger'" [text]="alert" [isError]="true">
+                </ipx-inline-alert>
+            </div>
+            <br>
+            <div *ngIf="!hasOfficeEntityError && !hasError">
+                <span translate="accounting.time.postTime.successMsg"></span>
+            </div>
+            <br>
+            <br>
+            <div>
+                <label class="col-sm-8" translate="accounting.time.postTime.noOfEntriesPosted"></label>
+                <span class="col-sm-4 text-right">{{rowsPosted}}</span>
+            </div>
+            <div *ngIf="!!rowsIncomplete || rowsIncomplete === 0">
+                <label class="col-sm-8" translate="accounting.time.postTime.noOfEntriesRemaining"></label>
+                <span class="col-sm-4 text-right">{{rowsIncomplete}}</span>
+            </div>
+    </div>
+    <div class="modal-footer">
+        <div class="buttons">
+            <button type="button" class="btn btn-default" (click)="ok()">OK</button>
+        </div>
+    </div>
+</div>

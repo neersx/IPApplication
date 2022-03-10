@@ -1,0 +1,31 @@
+<ipx-billing-header [entities]="entities" (onFieldChange)="onCaseHeaderChange($event)"></ipx-billing-header>
+<div class="table-container">
+    <div class="row" style="margin: 0px;">
+        <ipx-kendo-grid #caseGrid id="caseGrid" [dataOptions]="gridOptions" [items]="taskItems" *ngIf="gridOptions" (addRowEvent)="onRowAddedOrEdited($event)" (menuItemSelected)="onMenuItemSelected($event)"
+            (popupOpen)="displayTaskItems($event)">
+            <ng-template ipxTemplateColumnField="UnpostedTimeList" let-dataItem>
+                <span class="cpa-icon cpa-icon-lg cpa-icon-exclamation-triangle" *ngIf="dataItem.UnpostedTimeList && dataItem.UnpostedTimeList.length > 0" style="cursor: pointer;color:#FEB81C;" name="info-circle"
+                    (click)="openUnpostedTimeList(dataItem.UnpostedTimeList, dataItem.CaseReference)" tooltip="{{'accounting.billing.caseUnpostedTime.header' | translate }}">
+                </span>
+                <span *ngIf="dataItem.UnpostedTimeList && dataItem.UnpostedTimeList.length > 0 && dataItem.IsMainCase"> &nbsp;</span>
+                <span *ngIf="dataItem.IsMainCase" class="cpa-icon cpa-icon-lg cpa-icon-star" tooltip="{{'accounting.billing.step1.mainCase' | translate}}" style="color:#FEB81C;"></span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="CaseReference" let-dataItem>
+                <a class="result-cell-link" target="_blank" uiSref="caseview" [uiParams]="{id: dataItem.CaseId}">{{dataItem.CaseReference}}</a>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="TotalCredits" let-dataItem>
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.TotalCredits | localCurrencyFormat:currency | async }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="UnlockedWip" let-dataItem>
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.UnlockedWip | localCurrencyFormat:currency | async }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="TotalWip" let-dataItem>
+                <div class="text-right" style="margin-right: 8px;">{{ dataItem.TotalWip | localCurrencyFormat:currency | async }}</div>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>
+<div>
+    <ipx-debtors *ngIf="loadDebtors" #debtorsComponent [siteControls]="siteControls" [isFinalised]="isFinalised" [openItemRequest]="openItemData" [activity]="activity" (onCancelDebtorChange)="revertNewCaseChange()">
+    </ipx-debtors>
+</div>

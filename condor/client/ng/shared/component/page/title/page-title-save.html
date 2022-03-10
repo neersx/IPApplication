@@ -1,0 +1,14 @@
+<div class="page-title" [ipx-confirm-before-page-change]="isSaveEnabled" confirmMessage="{{ 'ConfirmLeaveUnsavedChanges' | translate }}">
+    <h2>
+        <ng-content select="before-title"></ng-content>
+        <span *ngIf="subtitle">{{ title | translate }} – {{ subtitle | translate }}</span>
+        <span *ngIf="!subtitle">{{ title | translate }}</span>
+    </h2>
+    <div class="controls">
+        <ng-content select="before-buttons"></ng-content>
+        <ipx-icon-button *ngIf="isDeleteAvailable" [disabled]="!isDeleteEnabled" (onclick)="doDelete()" button-icon="trash-o"></ipx-icon-button>  
+        <ipx-revert-button *ngIf="isDiscardAvailableInternal" [disabled]="!isDiscardEnabled" (onclick)="doDiscard()"></ipx-revert-button>
+        <ipx-save-button *ngIf="isSaveAvailableInternal" [disabled]="!isSaveEnabled" (onclick)="doSave()"></ipx-save-button>
+    </div>    
+</div>
+    

@@ -1,0 +1,40 @@
+<div class="content row" ng-if = "vm.event.eventDueDate || vm.event.eventDefinition || vm.event.name || vm.event.fromCaseKey ">
+    <div class="container-fluid col-md-6">
+        <div class="row" ng-if="::vm.event.eventDueDate">
+            <div class="field-label col-sm-5">
+                <label translate="caseview.events.orignialDueDate"></label>
+            </div>
+            <div class="col-sm-6">
+                <ip-date model="::vm.event.eventDueDate"></ip-date>
+            </div>
+        </div>
+        <div class="row" ng-if="::vm.event.eventDefinition">
+            <div class="field-label col-sm-5">
+                <label translate="caseview.events.definition"></label>
+            </div>
+            <div class="col-sm-6">
+                <span class="text">{{::vm.event.eventDefinition}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid col-md-6">
+        <div class="row" ng-if="::vm.event.responsibility">
+            <div class="field-label col-sm-5">
+                <label translate="caseview.events.responsibility"></label>
+            </div>
+            <div class="col-sm-6">
+                <a target="_blank" href="api/search/redirect?linkData={{ vm.encodeLinkData({nameKey: vm.event.nameId}) }}" ng-if="::vm.event.nameId" class="text">{{::vm.event.responsibility}}</a>
+                <span class="text" ng-if="::!vm.event.nameId && vm.event.responsibility">{{vm.event.responsibility}}</span>
+            </div>
+        </div>
+        <div class="row" ng-if="::vm.event.fromCaseKey">
+            <div class="field-label col-sm-5">
+                <label translate="caseview.events.fromCase"></label>
+            </div>
+            <div class="col-sm-6">
+                <a target="_blank" ui-sref="caseview({id: vm.event.fromCaseKey})" ng-if="::vm.event.fromCaseKey">{{::vm.event.fromCaseIrn}}</a>
+                <span ng-if="::!vm.event.fromCaseKey && vm.event.fromCaseIrn">{{::vm.event.fromCaseIrn}}</span>
+            </div>
+        </div>
+    </div>
+</div>

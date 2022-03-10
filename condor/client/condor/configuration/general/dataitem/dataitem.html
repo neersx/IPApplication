@@ -1,0 +1,40 @@
+<ip-sticky-header>
+    <ip-page-title page-title="dataItem.dataItemMaintenance"></ip-page-title>
+    <ip-search-options-header></ip-search-options-header>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <ip-search-options on-clear="vm.resetSearchCriteria();" on-search="vm.search()">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="input-wrap" style="padding-top:6px">
+                        <input type="text" placeholder="{{:: 'EnterTextToSearch' | translate }}" ng-model="vm.searchCriteria.text" ip-autofocus>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <div class="input-wrap">
+                        <ip-typeahead id="dataitem-group-picklist" data-picklist-can-maintain="true" data-multiselect data-config="dataItemGroup" ng-model="vm.searchCriteria.group"></ip-typeahead>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="input-wrap" style="padding-top:6px">
+                        <ip-checkbox label="{{ 'dataItem.filterBySQL' | translate}}" ng-model="vm.searchCriteria.includesql"></ip-checkbox>          
+                        <ip-inline-dialog class="nudge-left" data-content="{{:: 'dataItem.filterBySqlInformation' | translate}}"></ip-inline-dialog>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ip-search-options>
+    <div class="table-container">
+        <div class="table-title">
+            <h2 translate="searchResult"></h2>
+            <button type="button" id="dataitem-add-btn" class="btn btn-icon pull-right" ip-tooltip="{{:: 'Add' | translate}}" ng-click="vm.add()">
+                <icon name="plus-circle"></icon>
+            </button>
+        </div>
+
+        <ip-kendo-grid mode="search" data-id="searchResults" data-grid-options="vm.gridOptions"></ip-kendo-search-grid>
+    </div>
+</div>

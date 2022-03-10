@@ -1,0 +1,9 @@
+<div class="input-wrap">
+    <input class="basic-addon-r-2" type="text" [placeholder]="placeholder ? (placeholder | translate) : 'Enter text to search'" [disabled]="disabled" [(ngModel)]="model" (keyup)="keyUp()" (keyup.enter)="enter()" ipx-autofocus/>
+    <span class="input-wrap-addon">
+        <ipx-icon-button class="btn-no-bg" buttonIcon="eraser" type="button" tooltip="{{'clear'}}" placement="bottom" (click)="clear()"></ipx-icon-button>
+    </span>
+    <span class="input-wrap-addon">
+        <ipx-icon-button class="btn-no-bg" buttonIcon="search" type="button" tooltip="{{'search'}}" placement="bottom" (click)="search()"></ipx-icon-button>
+    </span>
+</div>

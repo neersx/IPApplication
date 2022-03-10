@@ -1,0 +1,32 @@
+<div class="topic-container">
+    <h1 translate="caseview.eventRules.documents.header"></h1>
+    <span class="badge topics header" id="documentsCount">{{documentsInfo.length}}</span>
+    <div>
+        <div class="container-fluid" id="documents">
+            <div class="row" *ngFor="let doc of documentsInfo; index as divrow;trackBy: byItem" [ngClass]="divrow % 2 == 0 ? '' : 'bg-color'">
+                <div class="row col-sm-12 margin-vertical">
+                    <div class="col-sm-12">
+                        <strong>
+                        <span>{{ doc.formattedDescription }}</span>
+                    </strong>
+                    </div>
+                 </div>
+                 <div *ngIf="doc.maxProductionValue" class="row col-sm-12 margin-bottom">
+                    <div class="col-sm-12">                      
+                        <span translate="caseview.eventRules.documents.maxLettersLiteral" [translateParams]="{ value: doc.maxProductionValue}"></span>
+                    </div>
+                </div>  
+                 <div *ngIf="doc.requestLetterLiteralFlag !==0" class="row col-sm-12 margin-bottom">
+                    <div class="col-sm-12">
+                        <span translate="{{doc.requestLetterLiteralFlag === 1 ? 'caseview.eventRules.documents.updateEvent1Literal' : 'caseview.eventRules.documents.updateEvent2Literal'}}"></span>
+                    </div>
+                </div>  
+                <div *ngIf="doc.feesAndChargesInfo" class="row col-sm-12 margin-bottom">
+                    <div class="col-sm-12">
+                        <span>{{ doc.feesAndChargesInfo }}</span>
+                    </div>
+                </div>                    
+            </div>
+        </div>
+    </div>
+</div>

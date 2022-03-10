@@ -1,0 +1,43 @@
+<ipx-page-title [title]="'currencies.maintenance.title'">
+</ipx-page-title>
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+    <ipx-search-option (search)="search()" (clear)="clear()">
+        <div class="container-fluid">
+            <div class="heading">
+                <h5 translate="searchOptions"></h5>
+                <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showSearchBar}" (click)="showSearchBar = !showSearchBar">
+                    <div placement="left" tooltip="{{'collapseExpand' | translate}}">
+                        <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                    </div>
+                </a>
+            </div>
+            <div [@slideInOutVisible]="showSearchBar ? 'open' : 'closed'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ipx-text-field name="currencies" ipx-autofocus placeholder="SearchColumns.searchHint" [(ngModel)]="searchText">
+                        </ipx-text-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ipx-search-option>
+    <br>
+    <div class="table-container">
+        <div *ngIf="viewData.canAdd" class="table-title" style="margin-top: -15px;">
+            <ipx-add-button class="pull-right" (click)="onRowAddedOrEdited(null, 'A')"> </ipx-add-button>
+        </div>
+        <div class="row" style="margin: 0px;">
+            <ipx-kendo-grid #currenciesGrid id="currenciesGrid" [dataOptions]="gridOptions" *ngIf="gridOptions">
+                <ng-template ipxTemplateColumnField="hasHistory" let-dataItem>
+                    <a *ngIf="dataItem.hasHistory" (click)="openHistory(dataItem)" class="cpa-icon text-grey-highlight cpa-icon-history" [tooltip]="'currencies.history.title' | translate"></a>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="currencyCode" let-dataItem>
+                    <span><a (click)="onRowAddedOrEdited(dataItem.currencyCode, 'E')">{{ dataItem.currencyCode }}</a></span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="effectiveDate" let-dataItem>
+                    <span class="text-nowrap">{{ dataItem.effectiveDate | localeDate }}</span>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>

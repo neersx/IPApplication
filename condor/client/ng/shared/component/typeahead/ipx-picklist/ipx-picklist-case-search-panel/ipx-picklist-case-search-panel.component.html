@@ -1,0 +1,82 @@
+<ipx-search-option (search)="search()" (clear)="clear()" [hideControls]="!showSearchBar" [showButtonText]="true">
+    <div class="container-fluid">
+        <div class="heading">
+            <ipx-picklist-search-field #picklistSearchField class="col-md-12" style="width:50%" [(model)]="searchText"
+                (onKeyUp)="getTextValue($event)" (onSearch)="search($event)" (onClear)="clear()">
+            </ipx-picklist-search-field>
+            <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showSearchBar}" (click)="showSearchBar = !showSearchBar">
+                <div placement="left" tooltip="{{'collapseExpand' | translate}}">
+                    <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                </div>
+            </a>
+            <div class="col-sm-1 verticle-center">
+                <ipx-inline-dialog [adaptivePosition]="true" container="body" tooltipPlacement="bottom" [templateRef]="tooltipTemplate"></ipx-inline-dialog>
+            </div>
+        </div>
+        <ng-template #tooltipTemplate>
+            <p>{{'quickSearch.helpText.line1' | translate}}</p>
+            <p>{{'quickSearch.helpText.line2' | translate}}</p>
+        </ng-template>
+        <div [ngClass]="{'overflow': showSearchBar}" [@slideInOutVisible]="showSearchBar ? 'open' : 'closed'">
+            <form *ngIf="searchForm" [formGroup]="searchForm">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-6">
+                            <ipx-typeahead name="name" [formControl]="name" multiselect multipick config="name" [label]="'picklist.case.searchPanel.name' | translate">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="col-lg-6">
+                            <ipx-typeahead name="nameType" [disabled]="nameTypeDisabled" config="nameType" [formControl]="nameType" [label]="'picklist.case.searchPanel.nameType' | translate">
+                            </ipx-typeahead>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-6">
+                            <ipx-typeahead id="caseOffice" name="office" config="office" [formControl]="office" multiselect multipick [label]="'picklist.case.searchPanel.office' | translate">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="col-lg-6">
+                            <ipx-typeahead id="searchCaseType" name="caseType" config="caseType" [formControl]="caseType" [external-scope]="validCombinationDescriptionsMap" [extend-query]="extendValidCombinationPickList"
+                                multiselect multipick [label]="'picklist.case.searchPanel.caseType' | translate"></ipx-typeahead>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="col-lg-6">
+                            <ipx-typeahead id="searchJurisdiction" name="jurisdiction" config="jurisdiction" [extend-query]="extendValidCombinationPickList" [external-scope]="validCombinationDescriptionsMap" multiselect
+                                multipick label="Jurisdiction" [formControl]="jurisdiction">
+                            </ipx-typeahead>
+                        </div>
+                        <div class="col-lg-6">
+                            <ipx-typeahead name="propertyType" [extend-query]="extendValidCombinationPickList" [external-scope]="validCombinationDescriptionsMap" entity="propertyTypes" multiselect multipick
+                                [label]="'picklist.case.PropertyType' | translate" config="propertyType" [formControl]="propertyType">
+                            </ipx-typeahead>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2" style="line-height: 30px; text-align: right;">
+                        <label [translate]="'caseview.affectedCases.columns.caseStatus'"></label>
+                    </div>
+                    <div class="col-md-4" style="margin-left: -5px;">
+                        <div class="col-md-5" style="padding: 0%;">
+                            <ipx-checkbox id="pending" [formControl]="pending" label="{{'caseview.affectedCases.caseStatus.pending' | translate}}">
+                            </ipx-checkbox>
+                        </div>
+                        <div class="col-md-4" style="padding: 0%; left: -25px;">
+                            <ipx-checkbox [formControl]="registered" label="{{'caseview.affectedCases.caseStatus.registered' | translate}}">
+                            </ipx-checkbox>
+                        </div>
+                        <div class="col-md-3" style="padding: 0%; left:-10px">
+                            <ipx-checkbox [formControl]="dead" label="{{'caseview.affectedCases.caseStatus.dead' | translate}}">
+                            </ipx-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ipx-search-option>

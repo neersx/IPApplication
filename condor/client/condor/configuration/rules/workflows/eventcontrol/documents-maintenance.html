@@ -1,0 +1,144 @@
+<div ng-form="vm.form" ip-form translate-namespace="workflows.eventcontrol.documents.maintenance">
+    <ip-maintenance-modal-header data-page-title="{{:: vm.title}}" data-dismiss="vm.dismiss()" data-on-apply="vm.apply()" data-is-apply-enabled="vm.isApplyEnabled()" data-has-unsaved-changes="vm.hasUnsavedChanges()" data-is-add-another="vm.isAddAnother" is-edit-mode="vm.isEditMode">
+    </ip-maintenance-modal-header>
+    <ip-workflows-eventcontrol-modal-subheader is-edit-mode="vm.isEditMode" all-items="vm.allItems" current-item="vm.currentItem" criteria-number="vm.criteriaId" event-number="vm.eventId" event-description="vm.eventDescription" on-navigate="vm.onNavigate">
+    </ip-workflows-eventcontrol-modal-subheader>
+    <div class="modal-body">
+        <div class="row">
+            <h3>
+                <span translate=".chooseDocument"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <ip-typeahead name="document" data-config="document" 
+                ng-model="vm.formData.document"
+                ng-class="{edited: vm.form.document.$dirty}"
+                ip-required ip-autofocus
+            ></ip-typeahead>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group">
+                <span translate=".produce"></span>
+                <ip-radio-button label=".eventOccurs" value="eventOccurs" 
+                    ng-model="vm.formData.produce"
+                    ng-change="vm.onProduceChange()"
+                ></ip-radio-button>
+
+                <ip-radio-button label=".onDueDate" value="onDueDate" 
+                    ng-model="vm.formData.produce"
+                    ng-change="vm.onProduceChange()"
+                ></ip-radio-button>
+
+                <ip-radio-button label=".asScheduled" value="asScheduled" 
+                    ng-model="vm.formData.produce"
+                    ng-change="vm.onProduceChange()"
+                ></ip-radio-button>
+            </div>
+        </div>
+        <div class="row">
+            <h3>
+                <span translate=".sendingSchedule"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <ip-text-dropdown-group ng-if="vm.isScheduledDisabled()" name="startBefore" label=".startSending"
+                ng-model="vm.formData.startBefore" 
+                ng-class="{edited: vm.form.startBefore.$dirty}"
+
+                data-text-field="value" 
+                data-option-field="type" 
+                options="option.key as option.value | translate for option in vm.periodTypes" 
+
+                ip-data-type="nonNegativeInteger" 
+                ng-disabled="vm.isScheduledDisabled()"
+            ></ip-text-dropdown-group>
+
+            <ip-text-dropdown-group ng-if="!vm.isScheduledDisabled()" name="startBefore" label=".startSending"
+                ng-model="vm.formData.startBefore" 
+                ng-class="{edited: vm.form.startBefore.$dirty}"
+
+                data-text-field="value" 
+                data-option-field="type" 
+                options="option.key as option.value | translate for option in vm.periodTypes" 
+
+                ip-data-type="nonNegativeInteger" 
+                ip-required
+                ng-disabled="vm.isScheduledDisabled()"
+            ></ip-text-dropdown-group>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-push-4">
+                <ip-checkbox data-label=".recurring"
+                    ng-model="vm.recurring"
+                    ng-change="vm.onRecurringChange(vm.recurring)"
+                    ng-disabled="vm.isScheduledDisabled()"
+                ></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <ip-text-dropdown-group ng-if="!vm.recurring" name="repeatEvery" label=".repeateEvery"
+                ng-model="vm.formData.repeatEvery" 
+                ng-class="{edited: vm.form.repeatEvery.$dirty}"
+
+                data-text-field="value" 
+                data-option-field="type" 
+                options="option.key as option.value | translate for option in vm.periodTypes" 
+
+                ip-data-type="nonNegativeInteger"
+                ng-disabled="vm.isScheduledDisabled() || !vm.recurring"
+            ></ip-text-dropdown-group>
+
+            <ip-text-dropdown-group ng-if="vm.recurring" name="repeatEvery" label=".repeateEvery"
+                ng-model="vm.formData.repeatEvery" 
+                ng-class="{edited: vm.form.repeatEvery.$dirty}"
+
+                data-text-field="value" 
+                data-option-field="type" 
+                options="option.key as option.value | translate for option in vm.periodTypes" 
+
+                ip-data-type="nonNegativeInteger" 
+                ip-required
+                ng-disabled="vm.isScheduledDisabled() || !vm.recurring"
+            ></ip-text-dropdown-group>
+        </div>
+        <div class="row">
+            <ip-text-dropdown-group name="stopTime" label=".stopAfter"
+                ng-model="vm.formData.stopTime" 
+                ng-class="{edited: vm.form.stopTime.$dirty && !(vm.isScheduledDisabled() || !vm.recurring)}"
+
+                data-text-field="value" 
+                data-option-field="type" 
+                options="option.key as option.value | translate for option in vm.periodTypes" 
+
+                ip-data-type="nonNegativeInteger"
+                ng-disabled="vm.isScheduledDisabled() || !vm.recurring"
+            ></ip-text-dropdown-group>
+        </div>
+        <div class="row">
+            <div>
+                <ip-text-field name="maxDocuments" label=".maxDocuments" ng-model="vm.formData.maxDocuments"
+                    ng-class="{edited: vm.form.maxDocuments.$dirty && !(vm.isScheduledDisabled() || !vm.recurring)}"
+                    ip-data-type="positiveinteger"
+                    
+                    ng-disabled="vm.isScheduledDisabled() || !vm.recurring"
+                ></ip-text-field>
+            </div>
+        </div>
+
+        <ip-workflows-event-control-charge-form data-form="charge" data-can-edit="vm.canEdit" data-charge="vm.formData" data-wrap-options="true"></ip-workflows-event-control-charge-form>
+
+        <div class="row">
+            <h3>
+                <span translate=".substituteDocument"></span>
+                <ip-inline-dialog data-content="{{:: 'workflows.eventcontrol.documents.maintenance.substituteDocumentBlurb' | translate}}" data-placement="right"></ip-inline-dialog>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-push-4">
+                <ip-checkbox name="isCheckCycleForSubstitute" data-label=".checkCycle"
+                    ng-model="vm.formData.isCheckCycleForSubstitute"
+                ></ip-checkbox>
+            </div>
+        </div>
+    </div>
+</div>

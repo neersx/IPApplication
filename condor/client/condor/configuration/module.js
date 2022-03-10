@@ -1,0 +1,23 @@
+angular.module('inprotech.configuration', [
+    'inprotech.configuration.general.standinginstructions',
+    'inprotech.configuration.general.sitecontrols',
+    'inprotech.configuration.general.status',
+    'inprotech.configuration.rules.workflows',
+    'inprotech.configuration.general.nametypes',
+    'inprotech.configuration.general.numbertypes',
+    'inprotech.configuration.general.validcombination',
+    'inprotech.configuration.general.jurisdictions',
+    'inprotech.configuration.general.namerestrictions',
+    'inprotech.configuration.general.texttypes',
+    'inprotech.configuration.general.importancelevel',
+    'inprotech.configuration.general.ptosettings',
+    'inprotech.configuration.general.dataitem',
+    'inprotech.configuration.general.navmodal',
+    'inprotech.configuration.general.events.eventnotetypes',
+    'inprotech.configuration.general.names.locality',
+    'inprotech.configuration.general.names.namealiastype',
+    'inprotech.configuration.general.ede.datamapping',
+    'inprotech.configuration.general.names.namerelations',
+    'inprotech.configuration.system.mui',
+    'inprotech.configuration.search'
+]);

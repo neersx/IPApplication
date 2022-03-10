@@ -1,0 +1,15 @@
+<h4>
+    {{ "twoFactorConfiguration.step3.heading" | translate }}
+</h4>
+<div class="navigation-wizard-content">
+    <div class="row">
+        <div class="col-md-6">
+            {{ "twoFactorConfiguration.step3.enterCode" | translate }}
+        </div>
+        <div class="col-md-4">
+            <div class="input-wrap" [class.error]="errorMessage">
+                <input type="text" autocomplete="off" autofocus class="form-control textbox-minWidth" [(ngModel)]="verifyCode" id="txtTwoFactorCodeVerify">
+            </div>
+        </div>
+    </div>
+</div>

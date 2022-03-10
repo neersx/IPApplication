@@ -1,0 +1,13 @@
+<span *ngIf="item[codeField] != null && item[codeField] !== ''">
+    <span>(</span>
+<span [innerHtml]="item[codeField] | typeaheadHighlight:searchValue"></span>
+<span>) </span>
+</span>
+<span *ngIf="item[textField] != null && item[textField] !== ''">
+    <span [innerHtml]="item[textField] | typeaheadHighlight:searchValue"></span>
+</span> 
+<span *ngIf="item[keyField] != null && item[keyField] !== ''">
+    <span> (</span>
+    <span [innerHtml]="item[keyField] | typeaheadHighlight:searchValue"></span>
+    <span>) </span>
+</span>

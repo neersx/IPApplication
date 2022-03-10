@@ -1,0 +1,57 @@
+
+<div translate-namespace="accounting.vatHmrcSettings" ng-form="vm.form" ip-form>
+    <ip-sticky-header>
+        <div class="container-fluid">
+            <div class="row">
+                <ip-page-title-save page-title="accounting.vatHmrcSettings.title" on-save="vm.save()" on-discard="vm.discard()" is-save-enabled="vm.hasChanged()" is-discard-enabled="vm.hasChanged()"></ip-page-title-save>
+            </div>
+            <ip-inline-alert text=".toolTip" type="info"></ip-inline-alert>
+            <div>
+                <h2 translate=".addAccount"></h2>
+            </div>
+        </div>
+    </ip-sticky-header>
+    <div ip-resize-handler resize-handler-type="Panel">
+        <br />
+        <div class="row">
+            <div class="input-wrap col-sm-7">
+                <label translate=".hmrcApplicationName"></label>
+                <input class="col-sm-8" name="hmrcApplicationName" type="text" ng-model="vm.viewData.hmrcSettings.hmrcApplicationName" />
+            </div>
+            <ip-inline-dialog data-title="{{'accounting.vatHmrcSettings.hmrcApplicationNameHelp.hmrcApplicationNameHeader' | translate}}" data-content="{{'accounting.vatHmrcSettings.hmrcApplicationNameHelp.hmrcApplicationNameHelpText' | translate}}" placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row">
+            <div class="input-wrap col-sm-7">
+                <label translate=".clientId"></label>
+                <input class="col-sm-8" name="clientId" type="text" ng-model="vm.viewData.hmrcSettings.clientId" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap col-sm-7">
+                <label translate=".clientSecret"></label>
+                <input class="col-sm-8" mask="true" name="clientSecret" type="password" ng-model="vm.viewData.hmrcSettings.clientSecret" placeholder="****************************" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap col-sm-7">
+                <label translate=".redirectUri"></label>
+                <input class="col-sm-8" name="redirectUri" type="url" ng-model="vm.viewData.hmrcSettings.redirectUri" />
+            </div>
+            <ip-inline-dialog data-title="{{'accounting.vatHmrcSettings.redirectURIHelp.redirectUriHeader' | translate}}" data-content="{{'accounting.vatHmrcSettings.redirectURIHelp.redirectUriHelpText' | translate}}" placement="right"></ip-inline-dialog>
+        </div>
+        <div class="input-wrap-group group-inline pull-right col-sm-7">
+            <div class="input-wrap">
+                <input type="radio" id="demo" ng-model="vm.viewData.hmrcSettings.isProduction" ng-value="false">
+                <label for="demo">
+                    <span translate=".mode.demo"></span>
+                </label>
+            </div>
+            <div class="input-wrap">
+                <input type="radio" id="production" ng-model="vm.viewData.hmrcSettings.isProduction" ng-value="true">
+                <label for="production">
+                    <span translate=".mode.production"></span>
+                </label>
+            </div>
+        </div>        
+    </div>    
+</div>

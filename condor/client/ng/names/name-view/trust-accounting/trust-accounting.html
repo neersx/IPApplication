@@ -1,0 +1,27 @@
+<div name="trustAccounting" style="overflow: hidden;">
+    <div class="row">
+        <div class="col-sm-12">
+            <label translate="nameview.trustAccounting.totalLocalBalance"></label>
+            <span class="lineheader" name="localBalanceTotal"> {{ this.localBalanceTotal | localCurrencyFormat | async }}</span>
+        </div>
+    </div> 
+    <div class="row">
+    <ipx-kendo-grid id="trustAccounting" [dataOptions]="gridOptions"  *ngIf="gridOptions">
+            <ng-template ipxTemplateColumnField="entity" let-dataItem>
+                <ipx-hosted-url [showLink]="showWebLink && dataItem.canViewEntity" [action]="'NameDetails'" [key]="dataItem.entityKey" [description]="dataItem.entity" [linkType]="'NameDetails'" [dataField]="{ link: dataItem }" [linkArgs]="['entityKey']">
+                    <ipx-ie-only-url *ngIf="showWebLink && dataItem.canViewEntity" style="cursor: pointer;" [url]="encodeLinkData(dataItem.entityKey)" [text]="dataItem.entity">
+                    </ipx-ie-only-url>
+                </ipx-hosted-url>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="bankAccount" let-dataItem>
+                <span>{{ dataItem.bankAccount }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="localBalance" let-dataItem>
+                <span class="pull-right"><a (click)="openTrustDetails(dataItem)" name="lnkLocalBalance">{{ dataItem.localBalance | localCurrencyFormat | async }}</a></span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="foreignBalance" let-dataItem>
+                <span class="pull-right" *ngIf="dataItem.foreignBalance"><a (click)="openTrustDetails(dataItem)">{{ dataItem.currency }}{{ dataItem.foreignBalance | number : '1.2-2' }}</a></span>
+            </ng-template>
+        </ipx-kendo-grid> 
+    </div>
+</div>

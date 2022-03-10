@@ -1,0 +1,28 @@
+<form #ngForm="ngForm">
+    <section>
+        <div class="row">
+            <div [ngClass]="{'col-sm-7': dataItem.type === ElementTypeEnum.Name, 'col-sm-5': (dataItem.type === ElementTypeEnum.PostalAddress || dataItem.type === ElementTypeEnum.StreetAddress)}"
+                *ngIf="(dataItem.type === ElementTypeEnum.Name || dataItem.type === ElementTypeEnum.PostalAddress || dataItem.type === ElementTypeEnum.StreetAddress)">
+                <ipx-typeahead [disabled]="((isAssignedStep || disableAddress()) && isHosted) || !isHosted" name="name" *ngIf="dataItem.nameType !== knownNameTypes.Owner || (dataItem.type !== ElementTypeEnum.Name)"
+                    (ngModelChange)="onModelChange($event, dataItem.elementId, 'NAME')" [required]="dataItem.editAttribute === EditAttributeEnum.Mandatory" [(ngModel)]="formData.namePicklist"
+                    label="caseview.recordal.name" apply-edited config="nameFiltered" [extend-query]="namePickListExternalScope.extendQuery" [external-scope]="namePickListExternalScope">
+                </ipx-typeahead>
+                <ipx-typeahead [disabled]="(isAssignedStep && isHosted) || !isHosted" *ngIf="dataItem.nameType === knownNameTypes.Owner && dataItem.type === ElementTypeEnum.Name" name="name" multiselect multipick
+                    (ngModelChange)="onModelChange($event, dataItem.elementId, 'NAME')" [required]="dataItem.editAttribute === EditAttributeEnum.Mandatory" [extend-query]="ownerPickListExternalScope.extendQuery"
+                    [external-scope]="ownerPickListExternalScope" [(ngModel)]="formData.namePicklist" label="caseview.recordal.name" config="nameFiltered" apply-edited>
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-6" *ngIf="dataItem.type === ElementTypeEnum.PostalAddress || dataItem.type === ElementTypeEnum.StreetAddress">
+                <ipx-typeahead [(ngModel)]="formData.addressPicklist" [extend-query]="sendToNameExtendQuery" [required]="dataItem.editAttribute === EditAttributeEnum.Mandatory"
+                    [disabled]="(isHosted && disableAddress()) || !isHosted" (ngModelChange)="onModelChange($event, dataItem.elementId, 'ADD')" name="currentAddress" label="caseview.recordal.currentAddress"
+                    config="address">
+                </ipx-typeahead>
+            </div>
+            <div class="col-md-1" style="margin-top: 5px">
+                <ipx-revert-button (click)="revert($event, dataItem.elementId)" [disabled]="(isHosted && isRevertDisabled) || !isHosted">
+                    {{'Discard' | translate}}
+                </ipx-revert-button>
+            </div>
+        </div>
+    </section>
+</form>

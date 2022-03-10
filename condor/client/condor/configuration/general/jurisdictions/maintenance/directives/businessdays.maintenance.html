@@ -1,0 +1,39 @@
+<div ng-form="vm.form" ip-form translate-namespace="jurisdictions.maintenance.businessDays">    
+    <div class="modal-header">
+            <h2 class="modal-title" ng-switch on="vm.entity.state">                
+                <div ng-switch-when="adding" translate="jurisdictions.maintenance.businessDays.addTitle"></div>
+                <div ng-switch-default translate="jurisdictions.maintenance.businessDays.editTitle"></div>
+            </h2>
+            <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+                <ip-checkbox ng-if="!vm.isEdit" label="{{ 'modal.addAnother' | translate}}" ng-model="vm.isAddAnother"></ip-checkbox>
+                <ip-save-button type="button" data-ng-click="vm.apply()" data-ng-disabled="!vm.isApplyEnabled()"></ip-save-button>
+                <ip-close-button data-ng-click="vm.dismiss()"></ip-close-button>
+            </div>
+        </div>
+    <div class="modal-body">
+         <ip-group-modal-subheader ng-if="vm.isEdit" is-edit-mode="vm.isEdit" all-items="vm.options.allItems"
+            current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges" on-navigate="vm.onNavigate">
+        </ip-group-modal-subheader>
+        <div class="row">
+            <div class="col-md-9">
+                <ip-datepicker id="holidayDate" name="holidayDate"
+                    label="{{'jurisdictions.maintenance.businessDays.date'}}" ip-required
+                    ng-model="vm.formData.holidayDate" on-blur="vm.onDateBlur"></ip-datepicker>
+            </div>
+        </div>
+        <div class="row">
+                <div class="input-wrap large readonly-label-value" style="margin-left: 68px;">                       
+                        <label translate="jurisdictions.maintenance.businessDays.dayOfWeek.title"></label>:
+                        <span>{{ vm.formData.dayOfWeek }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-9">
+                    <ip-text-field label="jurisdictions.maintenance.businessDays.holidayName" ip-required name="holiday" id="holiday"
+                        ng-maxlength="50" ng-model="vm.formData.holiday" ng-class="{edited: vm.form.holiday.$dirty}"></ip-text-field>
+                </div>
+            </div>
+            <div class="row" style="height: 120px">
+            </div>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<style>
+    .modal-text-small {
+        margin-left: 92px;
+        width: 25% !important;
+    }
+    
+    .modal-checkbox-offset {
+        margin-left: 135px;
+    }
+</style>
+<div ng-form="vm.form" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title" ng-switch on="vm.entity.state">
+            <div ng-switch-when="adding" translate="nameAliasType.maintenance.addNameAliasType"></div> 
+             <div ng-switch-when="duplicating" translate="nameAliasType.maintenance.duplicateNameAliasType"></div>           
+            <div ng-switch-when="updating" translate="nameAliasType.maintenance.editNameAliasType"></div>
+        </h2>
+        <div class="modal-header-controls">
+            <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismissAll(vm.form)"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <ip-nav-modal ng-if="vm.isEdit" all-items="vm.options.allItems" current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges">
+        </ip-nav-modal>
+        <div class="row">
+            <div>
+                <ip-text-field name="type" class="modal-text-small col-sm-8" ip-required label="nameAliasType.type" ng-model="vm.entity.code" ng-class="{'edited': vm.form.type.$dirty}" data-ng-maxlength="2" ng-disabled="vm.isEdit" ip-field-error="{{vm.getError('type').message | translate}}"
+                    ip-autofocus="{{vm.entity.state === 'adding' || vm.entity.state === 'duplicating'}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-text-field class="col-sm-8" name="description" ip-required label="nameAliasType.description" ng-model="vm.entity.description" data-ng-maxlength="30" ng-class="{'edited': vm.form.description.$dirty}" ip-field-error="{{vm.getError('description').message | translate}}" ip-autofocus="{{vm.entity.state === 'updating'}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group group-inline col-sm-8 modal-checkbox-offset">
+                <ip-checkbox name="isUnique" ng-model="vm.entity.isUnique" label="nameAliasType.unique" ng-class="{edited: vm.form.isUnique.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+    </div>
+</div>

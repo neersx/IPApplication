@@ -1,0 +1,35 @@
+<div class="multistep-wizard">
+    <div id="wizard" class="wizard" *ngIf="isMultiStepMode">
+        <h3 [translate]="'MultiStepWizard.header'"></h3>
+        <button id="btn-prev" type="button" class="btn-prev" *ngIf="allowNavigation" (click)="navigate(-1)">
+            <span aria-hidden="true" class="cpa-icon cpa-icon-lg cpa-icon-chevron-left"></span>
+        </button>
+        <div id="wizard-header" name="wizard-header" class="wizard-header">
+            <ul class="steps-indicator">
+                <li class="first" [ngClass]="{current: steps[0].selected}">
+                    <ipx-step-button class="ipx-stepbutton" id="step_0" (onclick)="goTo(steps[0])" stepNo="1" defaultStep="steps[0].isDefault"></ipx-step-button>
+                    <a class="btn-remove" *ngIf="steps[0].selected && steps.length > 1" (click)="removeStep(steps[0])">X</a>
+                </li>
+                <ng-container *ngFor="let step of steps; trackBy: trackByFn; let i = index">
+                    <ng-container *ngIf="i > 0">
+                        <li class="step" [ngClass]="{default: !step.selected, current: step.selected}">
+                            <ipx-dropdown required name="stepOperator" (onChange)="onOperatorChange(i)" class="col-sm-4 ipx-dropdown" [options]="operators" [(ngModel)]="step.operator">
+                            </ipx-dropdown>
+                            <ipx-step-button class="ipx-stepbutton" id="step_{{i}}" (click)="goTo(step)" stepNo="{{ i + 1 }}" defaultStep="step.isDefault"></ipx-step-button>
+                            <a class="btn-remove" *ngIf="step.selected && steps.length > 1" (click)="removeStep(step)">X</a>
+                        </li>
+                    </ng-container>
+                </ng-container>
+                <li class="add">
+                    <ipx-add-button (click)="addStep()" class="pull-right"></ipx-add-button>
+                </li>
+            </ul>
+        </div>
+        <button id="btn-next" type="button" class="btn-next" *ngIf="allowNavigation" (click)="navigate(1)">
+            <span aria-hidden="true" class="cpa-icon cpa-icon-lg cpa-icon-chevron-right"></span>
+        </button>
+    </div>
+    <div class="steps">
+        <ng-content select="ipx-topics" #topicsRef></ng-content>
+    </div>
+</div>

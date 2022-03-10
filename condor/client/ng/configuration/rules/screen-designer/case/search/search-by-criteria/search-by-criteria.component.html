@@ -1,0 +1,8 @@
+<form #criteriaSearchForm="ngForm">
+    <ipx-search-option (search)="submitForm()" (clear)="resetFormData()" [isSearchDisabled]="criteriaSearchForm.invalid">
+        <div class="row">
+            <ipx-typeahead name="criteria" label="Criteria" multiselect multipick [(ngModel)]="formData.windowControlCriteria" class="col-sm-6" config="windowControlCriteria" key-field="id" tag-field="id">
+            </ipx-typeahead>
+        </div>
+    </ipx-search-option>
+</form>

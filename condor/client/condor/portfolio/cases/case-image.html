@@ -1,0 +1,6 @@
+<div>
+    <img ng-if="vm.isThumbnail" ng-src="data:image/PNG;base64,{{vm.image}}" alt="{{vm.imageTitle}}" kendo-tooltip k-options="vm.tooltipOptions" class="case-image-thumbnail" ng-class="{'img-responsive': vm.isResponsive}" ng-mouseleave="vm.mouseOff()" ng-click="vm.mouseClick()">
+    <div ng-if="!vm.isThumbnail">
+        <img ng-src="data:image/PNG;base64,{{vm.image}}" alt="{{vm.imageTitle}}">
+    </div>
+</div>

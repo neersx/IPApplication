@@ -1,0 +1,9 @@
+<div translate-namespace=".charges" ip-form ng-form="vm.form">
+    <ip-workflows-event-control-charge-form data-form="chargeOne" data-can-edit="vm.canEdit" data-charge-type-label=".chargeOneLabel"
+        ng-class="{'input-inherited':  vm.isInherited('chargeOne')}"
+        data-charge="vm.charges.chargeOne"></ip-workflows-event-control-charge-form>
+
+    <ip-workflows-event-control-charge-form data-form="chargeTwo" data-can-edit="vm.canEdit" data-charge-type-label=".chargeTwoLabel"
+        ng-class="{'input-inherited':  vm.isInherited('chargeTwo')}"
+        data-charge="vm.charges.chargeTwo"></ip-workflows-event-control-charge-form>
+</div>

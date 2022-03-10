@@ -1,0 +1,199 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{ 'dueDate.toggle' | translate }}</h2>
+    <div class="modal-header-controls">
+        <ipx-clear-button (click)="init()"></ipx-clear-button>
+        <ipx-advanced-search-button (click)="search()" id="dueDateSearchButton"></ipx-advanced-search-button>
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body-duedate">
+    <div class="alert alert-info" style="margin-bottom:10px">
+        <span class="cpa-icon cpa-icon-info-circle" name="info-circle"> </span>
+        <span>{{ warningMessage }}</span>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form #dueDateForm="ngForm">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-wrap no-background">
+                                <label>{{'caseSearch.topics.dates.showDatesFor' | translate}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-9 input-wrap-group group-inline" style="margin-left:-35%">
+                            <ipx-checkbox  class="col-md-2" label="{{ 'caseSearch.topics.dates.event' | translate}}" name="event" [(ngModel)]="formData.event"></ipx-checkbox>
+                            <ipx-checkbox  class="col-md-2" style="margin-left:-5%" label="{{ 'caseSearch.topics.dates.adhoc' | translate}}" name="adhoc" [(ngModel)]="formData.adhoc"></ipx-checkbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-wrap no-background">
+                                <label>{{'caseSearch.topics.dates.date' | translate}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-10 input-wrap-group group-inline" style="margin-left:-35%">
+                            <div class="input-wrap-group group-inline" style="padding-left: 0;">
+                                <ipx-radio-button class="col-md-2" id="rdbRange" (change)="showHideRangePeriod(0, false)" label="{{ 'caseSearch.topics.dates.range' | translate}}" [value]="0" [(ngModel)]="formData.rangeType" name="rdbPeriod"></ipx-radio-button>
+                                <ipx-radio-button class="col-md-2" style="margin-left:-6%" id="rdbPeriod" (change)="showHideRangePeriod(1, false)" label="{{ 'workflows.common.period' | translate}}" [value]="1" [(ngModel)]="formData.rangeType" name="rdbPeriod"></ipx-radio-button>
+                                <div *ngIf="formData.isRange" class="col-md-8 input-wrap-group group-inline">
+                                    <div class="col-md-4" style="margin-left: -8.5%;">
+                                        <ipx-dropdown-operator name="dueDatesOperator" [(ngModel)]="formData.dueDatesOperator" [operatorsGroup]="'Between'">
+                                        </ipx-dropdown-operator>
+                                    </div>
+                                    <ipx-date-picker id="startDate" name="startDate" [earlierThan]="formData.endDate" [includeSameDate]="true" class="col-md-4" style="margin-left: -4%;" [(ngModel)]="formData.startDate" apply-edited>
+                                    </ipx-date-picker>
+                                    <div class="col-md-1" style="margin-left: -2%;">
+                                        <div class="input-wrap no-background">
+                                            <label style="padding-left: 0;">{{'caseSearch.topics.dates.and' | translate}}</label>
+                                        </div>
+                                    </div>
+                                    <ipx-date-picker id="endDate" name="endDate" [laterThan]="formData.startDate" [includeSameDate]="true" class="col-md-4" style="margin-left: 4%;" [(ngModel)]="formData.endDate" apply-edited>
+                                    </ipx-date-picker>
+                                </div>
+                                <div *ngIf="formData.isPeriod" class="col-md-8 input-wrap-group group-inline">
+                                    <div class="col-md-4" style="margin-left: -8.5%;">
+                                        <ipx-dropdown-operator name="dueDatesOperator" [(ngModel)]="formData.dueDatesOperator" [operatorsGroup]="'Between'">
+                                        </ipx-dropdown-operator>
+                                    </div>
+                                    <ipx-text-field maxlength="4" name="fromPeriod" ipx-data-type="integer" [(ngModel)]="formData.fromPeriod" class="col-md-3" style="margin-left: -4%;" (change)="compareFromandToDays(formData.fromPeriod, formData.toPeriod, 'toPeriod',dataType.integer)">
+                                    </ipx-text-field>
+                                    <div class="col-md-1" style="margin-left: -9%;">
+                                        <div class="input-wrap no-background">
+                                            <label>{{'caseSearch.topics.dates.and' | translate}}</label>
+                                        </div>
+                                    </div>
+                                    <ipx-text-field maxlength="4" name="toPeriod" ipx-data-type="integer" [(ngModel)]="formData.toPeriod" class="col-md-3" style="margin-left: 4%;" (change)="compareFromandToDays(formData.fromPeriod, formData.toPeriod, 'toPeriod',dataType.integer)" [errorParam]="formData.fromPeriod">
+                                    </ipx-text-field>
+                                    <ipx-dropdown name="periodType" [(ngModel)]="formData.periodType" [displayField]="'value'" [keyField]="'key'" [options]="periodTypes">
+                                    </ipx-dropdown>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-wrap no-background">
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="col-md-9 input-wrap-group group-inline" style="margin-left:-35%">
+                            <ipx-checkbox class="col-md-4" label="{{ 'SearchByDate' | translate}}" name="searchByDate" [(ngModel)]="formData.searchByDate"></ipx-checkbox>
+                            <ipx-checkbox class="col-md-4" style="margin-left:-8%" label="{{ 'SearchByReminderDate' | translate}}" name="searchByRemindDate" [(ngModel)]="formData.searchByRemindDate"></ipx-checkbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ipx-dropdown-operator name="importanceLevelOperator" label="caseSearch.topics.dates.importanceLevel" [(ngModel)]="formData.importanceLevelOperator" [operatorsGroup]="'Between'">
+                            </ipx-dropdown-operator>
+                        </div>
+                        <div class="col-md-2">
+                            <ipx-dropdown name="importanceLevelFrom" label="" [(ngModel)]="formData.importanceLevelFrom" [displayField]="'value'" [keyField]="'key'" [options]="importanceLevelOptions">
+                            </ipx-dropdown>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="input-wrap no-background">
+                                <label>{{'caseSearch.topics.dates.and' | translate}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-2" style="margin-left:-20px;">
+                            <ipx-dropdown name="importanceLevelTo" [(ngModel)]="formData.importanceLevelTo" [displayField]="'value'" [keyField]="'key'" [options]="importanceLevelOptions">
+                            </ipx-dropdown>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ipx-dropdown-operator name="eventCategoryOperator" label="picklist.event.maintenance.category" [(ngModel)]="formData.eventCategoryOperator" [operatorsGroup]="'EqualExist'">
+                            </ipx-dropdown-operator>
+                        </div>
+                        <div class="col-md-7 col-lg-6" *ngIf="formData.eventCategoryOperator!==searchOperator.exists && formData.eventCategoryOperator!==searchOperator.notExists">
+                            <ipx-typeahead name="eventCategoryValue" label="" multiselect multipick config="eventCategory" [(ngModel)]="formData.eventCategoryValue"></ipx-typeahead>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ipx-dropdown-operator name="eventOperator" label="picklist.event.Type" [(ngModel)]="formData.eventOperator" [operatorsGroup]="'EqualExist'">
+                            </ipx-dropdown-operator>
+                        </div>
+                        <div class="col-md-7 col-lg-6" *ngIf="formData.eventOperator!==searchOperator.exists && formData.eventOperator!==searchOperator.notExists">
+                            <ipx-typeahead name="eventValue" label="" multiselect multipick config="dueDateEvent" [(ngModel)]="formData.eventValue"></ipx-typeahead>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ipx-dropdown-operator name="actionOperator" label="caseSearch.topics.dates.action" [(ngModel)]="formData.actionOperator" [operatorsGroup]="'EqualExist'">
+                            </ipx-dropdown-operator>
+                        </div>
+                        <div class="col-md-7 col-lg-6" *ngIf="formData.actionOperator!==searchOperator.exists && formData.actionOperator!==searchOperator.notExists">
+                            <ipx-typeahead name="actionValue" label="" multiselect multipick config="action" [(ngModel)]="formData.actionValue"></ipx-typeahead>
+                        </div>
+                    </div>
+                    <div class="row" style="border-bottom:#CACAF4 1px solid">
+                        <div class="col-md-6">
+                            <div class="input-wrap no-background">
+                                <label>{{'dataDownload.newSchedule.downloadType' | translate}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-9 input-wrap-group group-inline" style="margin-left:-35%">
+                            <ipx-checkbox class="col-md-4" label="{{ 'caseSearch.topics.dates.renewals' | translate}}" (ngModelChange)="manageRenewals($event)" name="renewals" [(ngModel)]="formData.isRenevals"></ipx-checkbox>
+                            <ipx-checkbox class="col-md-4" label="{{ 'caseSearch.topics.dates.nonRenewals' | translate}}" (ngModelChange)="manageRenewals($event)" name="nonRenewals" [(ngModel)]="formData.isNonRenevals"></ipx-checkbox>
+                            <ipx-checkbox class="col-md-4" label="{{ 'caseview.actions.info.ClosedAction' | translate}}" name="isClosedActions" [(ngModel)]="formData.isClosedActions"></ipx-checkbox>
+                        </div>
+                    </div>
+                    <h5 translate="caseSearch.topics.dates.dueDateResponsibility"></h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-wrap no-background">
+                                <label></label>
+                            </div>
+                        </div>
+                        <div class="col-md-9 input-wrap-group group-inline" style="margin-left:-35%">
+                            <ipx-checkbox class="col-md-4" label="{{ 'caseSearch.topics.dates.anyName' | translate}}" name="anyName" [(ngModel)]="formData.isAnyName"></ipx-checkbox>
+                            <ipx-checkbox class="col-md-4" label="{{ 'caseSearch.topics.dates.staff' | translate}}" name="staff" [(ngModel)]="formData.isStaff"></ipx-checkbox>
+                            <ipx-checkbox class="col-md-4" label="{{ 'caseSearch.topics.dates.signatory' | translate}}" name="signatory" [(ngModel)]="formData.isSignatory"></ipx-checkbox>
+                            <ipx-inline-dialog class="duedate-info-icon-align" style="margin-left: -3%;" [content]="'caseSearch.topics.dates.dueDateResponsibilityHelpText' | translate" [tooltipPlacement]="'top'">
+                            </ipx-inline-dialog>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ipx-dropdown-operator name="nameTypeOperator" label="caseSearch.topics.dates.nameType" [(ngModel)]="formData.nameTypeOperator" [operatorsGroup]="'EqualExist'">
+                            </ipx-dropdown-operator>
+                        </div>
+                        <div class="col-md-7 col-lg-6" *ngIf="formData.nameTypeOperator!==searchOperator.exists && formData.nameTypeOperator!==searchOperator.notExists">
+                            <ipx-typeahead name="dueDateNameTypeValue" label="" multiselect multipick config="nameType" [(ngModel)]="formData.nameTypeValue" [extend-query]="nameTypeQuery"></ipx-typeahead>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ipx-dropdown-operator name="nameOperator" label="caseSearch.topics.dates.name" [(ngModel)]="formData.nameOperator" [operatorsGroup]="'EqualExist'">
+                            </ipx-dropdown-operator>
+                        </div>
+                        <div class="col-md-7 col-lg-6" *ngIf="formData.nameOperator!==searchOperator.exists && formData.nameOperator!==searchOperator.notExists">
+                            <ipx-typeahead name="nameValue" label="" multiselect multipick config="name" [(ngModel)]="formData.nameValue"></ipx-typeahead>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ipx-dropdown-operator name="nameGroupOperator" label="caseSearch.topics.dates.nameGroup" [(ngModel)]="formData.nameGroupOperator" [operatorsGroup]="'EqualExist'">
+                            </ipx-dropdown-operator>
+                        </div>
+                        <div class="col-md-7 col-lg-6" *ngIf="formData.nameGroupOperator!==searchOperator.exists && formData.nameGroupOperator!==searchOperator.notExists">
+                            <ipx-typeahead name="nameGroupValue" label="" multiselect multipick config="nameGroup" [(ngModel)]="formData.nameGroupValue"></ipx-typeahead>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ipx-dropdown-operator name="staffClassificationOperator" label="caseSearch.topics.dates.staffClassification" [(ngModel)]="formData.staffClassificationOperator" [operatorsGroup]="'EqualExist'">
+                            </ipx-dropdown-operator>
+                        </div>
+                        <div class="col-md-7 col-lg-6" *ngIf="formData.staffClassificationOperator!==searchOperator.exists && formData.staffClassificationOperator!==searchOperator.notExists">
+                            <ipx-typeahead name="staffClassificationValue" label="" multiselect multipick config="staffClassification" [(ngModel)]="formData.staffClassificationValue"></ipx-typeahead>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

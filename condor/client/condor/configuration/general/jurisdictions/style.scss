@@ -1,0 +1,14 @@
+body[page-state~="jurisdictions"] {
+    .badge.topics.header {
+        margin-top: 12px;
+    }
+    .jurisdiction-overview {
+        .country-code-group {
+            input[type=text] {
+                width: 25%;
+                margin-right: 0px;
+                float: left !important;
+            }
+        }
+    }
+}

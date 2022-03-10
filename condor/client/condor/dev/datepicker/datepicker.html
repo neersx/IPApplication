@@ -1,0 +1,72 @@
+<ip-sticky-header>
+    <ip-page-title page-title="Date Picker Examples"></ip-page-title>
+</ip-sticky-header>
+<div kendo-splitter>
+    <div>A</div>
+    <div>B</div>
+</div>
+<div class="container-fluid">
+    <h2>Date Picker</h2>
+
+    <div class="row" ng-form="vm.formEmpty">
+        <ip-datepicker name="empty" label="Empty" ng-model="vm.empty.date" class="col-sm-6"></ip-datepicker>
+        <div class="col-sm-4 col-sm-offset-2">
+            <pre> {{ { model: vm.empty } | json}} </pre>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker label="Default to Today" ng-model="vm.initialised.date" class="col-sm-6"></ip-datepicker>
+        <div class="col-sm-4 col-sm-offset-2">
+            <pre> {{vm.initialised | json}} </pre>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker label="Disabled" ng-model="vm.disabled.date" is-disabled="vm.disabled.isDisabled" class="col-sm-6"></ip-datepicker>
+        <div class="col-sm-2">
+            <label>
+                <input type="checkbox" ng-model="vm.disabled.isDisabled" />
+                <span>Disabled</span>
+            </label>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker label="Readonly" ng-model="vm.readonly.date" readonly="vm.readonly.isReadOnly" class="col-sm-6"></ip-datepicker>
+        <div class="col-sm-2">
+            <label>
+                <input type="checkbox" ng-model="vm.readonly.isReadOnly" />
+                <span>Read Only</span>
+            </label>
+        </div>
+    </div>
+    <hr />
+    <div class="row" ng-form="vm.form0">
+        <ip-datepicker name="required" label="Required" ng-model="vm.required.date" class="col-sm-6" required></ip-datepicker>
+    </div>
+    <hr />
+    <div class="row" ng-form="vm.form2">
+        <ip-datepicker name="external" label="Form" ng-model="vm.external.date" class="col-sm-6"></ip-datepicker>
+        <div class="col-sm-2">
+            <button ng-click="vm.form2.external.$setValidity('random', false)">Add error</button>
+
+            <button ng-click="vm.form2.external.$reset()">Reset</button>
+        </div>
+        <div class="col-sm-4">
+            <pre> {{ { model: vm.external, errors: vm.form2.external.$error } | json}} </pre>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker label="Saved" ng-model="vm.saved.date" class="col-sm-6 saved"></ip-datepicker>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker label="Edited" ng-model="vm.modified.date" class="col-sm-6 edited"></ip-datepicker>
+    </div>
+    <hr />
+    <div class="row">
+        <ip-datepicker label="No Edit State" ng-model="vm.modified.date" class="col-sm-6" no-edit-state="true"></ip-datepicker>
+    </div>
+</div>

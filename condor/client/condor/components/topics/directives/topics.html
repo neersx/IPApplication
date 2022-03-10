@@ -1,0 +1,77 @@
+<div name="topics" class="topics" ip-resize-handler resize-handler-type="Panel">
+    <div class="topic-menu">
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="active" ng-show="options.topics" ng-click="selectTab('topics')" ng-style="{'width': isActionsTabVisible() ?  (hasSubSections() ? '143px' : '123px') : '204px' }">
+                    <a data-toggle="tab">
+                        <span translate="sections.title"></span>
+                    </a>
+                </li>
+                <li ng-show="isActionsTabVisible()" ng-click="selectTab('actions')">
+                    <a data-toggle="tab">
+                        <span translate="sections.actions"></span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane content-block" ng-class="{active: currentTab === 'topics'}" ng-style="{ 'width': hasSubSections() ? '224px' : '204px' }">
+                    <ul ip-resize-handler>
+                        <li ng-repeat="topic in ::options.topics" ng-class="{active: topic.isActive, 'group-section': topic.isGroupSection}" ng-click="selectTopic(topic, true)" data-topic-ref="{{topic.key}}">
+                            <div ng-class="{'group-section': topic.isGroupSection}" class="topic-section-text-wrap">
+                                <ng-include src="::topicMenuItemTemplateUrl"></ng-include>
+                            </div>
+                            <ul ng-if="topic.topics" class="sub-section">
+                                <li ng-repeat="topic in ::topic.topics" ng-class="{active: topic.isActive, 'sub-menu': topic.isSubSection}" ng-click="selectTopic(topic, true); $event.stopPropagation()" data-topic-ref="{{topic.key}}" class="topic-section-text-wrap">
+                                    <ng-include src="::topicMenuItemTemplateUrl"></ng-include>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-show="isActionsTabVisible()" role="tabpanel" class="tab-pane content-block" ng-class="{active: currentTab === 'actions'}" ng-style="{ 'width': hasSubSections() ? '225.5px': '205.5px' }">
+                    <ul>
+                        <li ng-repeat="action in ::options.actions" data-action-key="{{action.key}}" ng-click="action.action()" ng-disabled="action.disabled" ng-class="{ disabled: action.disabled }">
+                            <span translate="{{action.title}}" ip-tooltip="{{:: action.tooltip | translate }}"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="topics-container" ng-class="{ 'with-subsection':  hasSubSections() }">
+        <div ng-transclude="header"></div>
+        <div ng-repeat="topic in ::options.topics">
+            <div class="topic-container" ng-if="!topic.isGroupSection" ng-class="{active: topic.isActive, 'no-separator': topic.noSeparator}" ng-click="selectTopic(topic, false)" data-topic-key="{{topic.key}}" data-topic-suffix="{{topic.suffix}}" data-topic-context-key="{{topic.contextKey}}">
+                <h1 ng-if="::topic.title" translate="{{::topic.title}}"></h1>
+                <span id="topicDataCount" class="badge topics header"></span>
+                <ip-inline-dialog ng-if="::topic.infoTemplate" data-template="{{::topic.infoTemplate}}" style="top:0px;" data-placement="auto"></ip-inline-dialog>
+                <ip-inline-dialog ng-if="::topic.info" data-content="{{:: topic.info | translate }}" data-placement="auto"></ip-inline-dialog>
+                <h2 ng-if="::topic.subTitle" translate="{{::topic.subTitle}}">
+                    <span translate="{{::topic.subTitle}}"></span>
+                    <ip-inline-dialog ng-if="::topic.subTitleInfoTemplate" data-template="{{::topic.subTitleInfoTemplate}}"></ip-inline-dialog>
+                </h2>
+                <ip-topic-content></ip-topic-content>
+            </div>
+            <div class="topic-group" ng-if="topic.isGroupSection" ng-class="{active: topic.isActive}">
+                <div class="topic-container group-section" ng-click="selectTopic(topic, false)" data-topic-key="{{topic.key}}" data-topic-suffix="{{topic.suffix}}" data-topic-context-key="{{topic.contextKey}}">
+                    <h1 ng-if="::topic.title" translate="{{::topic.title}}"></h1>
+                    <ip-inline-dialog ng-if="::topic.info" data-content="{{:: topic.info | translate }}"></ip-inline-dialog>
+                    <h2 ng-if="::topic.subTitle" translate="{{::topic.subTitle}}"></h2>
+                </div>
+                <div class="topic-container" ng-repeat="subTopic in ::topic.topics" ng-class="{active: subTopic.isActive, 'no-separator': subTopic.noSeparator}" ng-click="selectTopic(subTopic, false)" data-topic-key="{{subTopic.key}}">
+                    <h1 ng-if="::subTopic.title" translate="{{::subTopic.title}}"></h1>
+                    <span id="topicDataCount" class="badge topics header"></span>
+                    <ip-inline-dialog ng-if="::subTopic.infoTemplate" placement="auto" data-template="{{::subTopic.infoTemplate}}"></ip-inline-dialog>
+                    <ip-inline-dialog ng-if="::subTopic.info" placement="auto top" data-content="{{:: subTopic.info | translate }}"></ip-inline-dialog>
+                    <h2 ng-if="::subTopic.subTitle">
+                        <span translate="{{::subTopic.subTitle}}"></span>
+                        <ip-inline-dialog ng-if="::subTopic.subTitleInfoTemplate" data-template="{{::subTopic.subTitleInfoTemplate}}"></ip-inline-dialog>
+                    </h2>
+                    <ip-topic-content></ip-topic-content>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

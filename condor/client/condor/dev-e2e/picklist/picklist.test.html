@@ -1,0 +1,80 @@
+<form ng-submit="submitForm()">
+	<div ng-form="vm.form">
+		<p>Common components for pick lists can be tested here.</p>
+		
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>Multipick Pick List</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<ip-typeahead id="multipickPicklist"
+				data-multiselect
+				data-multipick
+				data-label="Criteria"
+				data-key-field="id"
+				data-tag-field="id"
+				data-text-field="description"
+				data-api-url="api/configuration/rules/workflows/typeaheadSearch"
+				data-picklist-display-name="Criteria"
+				data-picklist-columns="[{title:'Criteria No', field:'id'}, {title:'Description', field:'description'}]"
+				data-state="vm.state"
+				ng-model="vm.model">
+				</ip-typeahead>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>Maintenance Pick List</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<ip-typeahead name="e2eEventGroup" data-config="eventGroup" data-label="picklist.event.maintenance.group" ng-model="vm.group" data-picklist-can-maintain="true" data-extend-query="vm.setTableType"></ip-typeahead>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>Pick List Validation</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6"></h2>
+				<ip-typeahead name="caseType" data-config="caseType" ng-model="vm.caseType"></ip-typeahead>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6"></h2>
+				<ip-typeahead name="jurisdiction" data-config="jurisdiction" ng-model="vm.jurisdiction" data-picklist-can-maintain="true"></ip-typeahead>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6"></h2>
+				<ip-typeahead name="propertyType" data-config="propertyType" ng-model="vm.propertyType"></ip-typeahead>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<h2>Pick list form submission</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-6"></h2>
+				<ip-typeahead name="numberType" data-config="numberType" ng-model="vm.numberType"></ip-typeahead>
+			</div>
+			<div class="col-sm-2">
+				<button type="submit">submit</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<span>result: </span>
+				<input type="text" id="formResult" ng-model="vm.formResult">					
+			</div>
+		</div>
+	</div>
+</form>

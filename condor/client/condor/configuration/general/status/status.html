@@ -1,0 +1,51 @@
+<style>
+    .filter-label {
+        width: auto !important;
+        margin-left: 5px;
+    }
+</style>
+
+<ip-sticky-header>
+    <ip-page-title page-title="status.statusMaintenance"></ip-page-title>
+    <ip-search-options-header></ip-search-options-header>
+</ip-sticky-header>
+
+<div ip-resize-handler resize-handler-type="Panel">
+    <ip-search-options on-clear="vm.resetSearchCriteria();vm.gridOptions.search()" on-search="vm.gridOptions.search()">
+        <div class="input-wrap">
+            <input type="text" placeholder="{{:: 'SearchByDescription' | translate }}" ng-model="vm.searchCriteria.text" ip-autofocus
+                aria-label="{{:: 'SearchByDescription' | translate }}">
+        </div>
+    </ip-search-options>
+
+    <div class="table-container">
+        <div class="table-title">
+            <h2 translate="status.statusSummary"></h2>
+        </div>
+        <div class="input-wrap-group group-inline">
+            <span class="filter-label" translate="status.filterText"></span>
+            <div class="input-wrap">
+                <input type="radio" id="case-status" name="filter-option" ng-model="vm.filterCriteria.forCase" ng-click="vm.toggleFilterOption('forCase')"
+                    ng-value="true">
+                <label for="case-status">
+                <span translate="status.caseStatus"></span>
+            </label>
+            </div>
+            <div class="input-wrap">
+                <input type="radio" id="renewal-status" name="filter-option" ng-model="vm.filterCriteria.forRenewal" ng-click="vm.toggleFilterOption('forRenewal')"
+                    ng-value="true">
+                <label for="renewal-status">
+                <span translate="status.renewalStatus"></span>
+            </label>
+            </div>
+            <div class="input-wrap no-hover pull-right" ng-if="vm.supportData.permissions.canCreate">
+                <button id="addStatus" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{:: 'Add' | translate }}" data-ng-click="vm.addStatus();"
+                    aria-label="{{:: 'Add' | translate }}">
+                <icon name="plus-circle"></icon>
+            </button>
+            </div>
+        </div>
+
+        <ip-kendo-search-grid data-id="searchResults" data-grid-options="vm.gridOptions"></ip-kendo-search-grid>
+    </div>
+</div>

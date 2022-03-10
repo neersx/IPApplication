@@ -1,0 +1,71 @@
+<style>
+    .classic-pagination {
+        font-size: 12px;
+        vertical-align: middle;
+    }
+
+    .classic-pagination>span {
+        font-size: 12px;
+        font-family: sans-serif;
+        vertical-align: middle;
+        margin-top: 3px;
+    }
+
+    .classic-pagination>ul {
+        font-size: 13px;
+        padding: 3px;
+        border: 1px solid transparent;
+        background-color: transparent;
+        list-style: none;
+        display: inline;
+    }
+
+    .classic-pagination>ul>li {
+        display: inline;
+    }
+
+    .classic-pagination>ul>li>a,
+    .classic-pagination>ul>li>span {
+        padding: 3px 3px;
+        margin-left: 1px;
+        margin-right: 1px;
+        line-height: 20px;
+        border: 1px solid transparent;
+        background-color: transparent;
+        vertical-align: middle;
+    }
+
+    .classic-pagination>ul>li>a:focus {
+        background-color: transparent;
+    }
+
+    .classic-pagination>ul>li>a:hover {
+        color: #1c6ca2;
+        background-color: #eaeff2;
+        border-color: #c1d1d7;
+        z-index: 1;
+    }
+
+    .classic-pagination input[type="text"] {
+        font-size: 12px;
+        font-family: sans-serif;
+        width: 34px;
+        height: 24px;
+        margin-bottom: 0;
+        padding: 3px;
+        vertical-align: middle;
+        text-align: center;
+    }
+</style>
+<ip-sticky-header>
+    <ip-page-title page-title="{{ 'bulkCaseImport.glbLblTitle' | translate }}" page-subtitle="{{'bulkCaseImport.bsLblTitle' | translate}} ({{vm.viewData.batchIdentifier}})">
+        <before-title>
+            <ip-level-up-button data-to-state="classicBulkCaseImportStatus"></ip-level-up-button>
+        </before-title>
+    </ip-page-title>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">    
+    <div class="row">
+        <ip-kendo-grid data-id="bulkImportSummary" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+    </div>
+</div>

@@ -1,0 +1,308 @@
+<style>
+    .page-content {
+        padding-bottom: 0;
+    }
+    
+    .lightBorder {
+        border: lightGrey solid 1px;
+    }
+    
+    .smallText {
+        font-size: 13px;
+    }
+    
+    .smallLineHeight {
+        line-height: 1.2;
+    }
+    
+    .visiblie-splitter {
+        height: 100%;
+    }
+    
+    .visiblie-splitter .k-splitbar {
+        width: 2px !important;
+        visibility: visible !important;
+    }
+    
+    .visiblie-splitter .k-pane {
+        overflow: auto !important;
+    }
+    
+    .remaining-height {
+        height: calc(100vh - 148px);
+    }
+    
+    .details {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .padding-top {
+        padding-top: 10px;
+    }
+    
+    .header {
+        background-color: #F5F5F5;
+        border-bottom: solid transparent 3px;
+        padding: 5px;
+    }
+    
+    .details h1 {
+        margin: 0px;
+    }
+    
+    .left-margin {
+        margin-left: 6px;
+    }
+    
+    .hide-label label {
+        visibility: hidden
+    }
+    
+    .active-topic {
+        border: 3px solid transparent;
+        border-bottom: #CACAF4 1px solid;
+        padding: 5px;
+    }
+    
+    .active-topic:hover {
+        border: 3px solid #4C4CD7!important;
+    }
+    
+    .min-padding {
+        padding: 5px
+    }
+</style>
+
+<div ng-form="form" ip-form translate-namespace="schemaMapping">
+    <ip-sticky-header>
+        <div class="container-fluid">
+            <div class="row">
+                <ip-page-title-save page-title="Schema Mapping - Configure Mapping" on-save="save(form)" on-discard="discard(form)" is-save-enabled="isSaveEnabled(form)" is-discard-enabled="isSaveEnabled(form)">
+                    <ip-level-up-button data-to-state="schemamapping.list"></ip-level-up-button>
+                </ip-page-title-save>
+            </div>
+            <div class="row title-header workflow-details">
+                <div class="col-sm-8">
+                    <div class="readonly-label-group">
+                        <div class="readonly-label-value">
+                            <label translate="schemaMapping.mpLblId"></label>
+                            <span>{{mappingInfo.id}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <a ng-disabled="isSaveEnabled(form)" class="btn" translate="schemaMapping.mpBtnGenerate" ui-sref="schemamapping.xml({id: mappingInfo.id})" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+    </ip-sticky-header>
+    <div class="remaining-height">
+        <div class="container-fluid">
+            <ip-text-field name="mappingName" ip-required label="schemaMapping.usLblMappingName" ng-model="mappingInfo.name" ng-class="{'edited': form.mappingName.$dirty}" ip-autofocus class="col-sm-5">
+            </ip-text-field>
+            <div ng-if="mappingInfo.isDtdFile" class="col-sm-7 pull-right">
+                <div class="col-sm-4">
+                    <ip-checkbox ng-model="mappingInfo.shouldAddDocType" name="shouldAddDocType" ng-class="{edited: form.shouldAddDocType.$dirty}" label="schemaMapping.usLblIncludeHeader"></ip-checkbox>
+                </div>
+                <div class="col-sm-8">
+                    <ip-text-field name="fileRef" ng-model="mappingInfo.fileRef" ng-class="{'edited': form.fileRef.$dirty}" ip-required ng-disabled="!mappingInfo.shouldAddDocType" label="schemaMapping.usLblXmlHeaderToInclude">
+                    </ip-text-field>
+                </div>
+            </div>
+        </div>
+        <div kendo-splitter k-options="splitterDetails.options" class="visiblie-splitter">
+            <div id="treePane">
+                <treecontrol class="tree-light" tree-model="structure" options="opts" on-selection="showDetails(node)" expanded-nodes="expandedNodes" selected-node="current.node">
+                    <span>{{node.name}}</span>
+                    <i ng-if="node.isRequired" class="danger cpa-icon cpa-icon-asterisk" title="{{'schemaMapping.mpLblNodeMandatory' | translate}}"></i>
+                    <i ng-if="isMapped(node)" class="green cpa-icon cpa-icon-sitemap" title="{{'schemaMapping.mpLblNodeMapped' | translate}}"></i>
+                    <i ng-if="hasError(node)" class="orange cpa-icon cpa-icon-exclamation-triangle" title="{{'schemaMapping.mpLblNodeError' | translate}}"></i>
+                    <i ng-if="node.nodeType ==='Choice'" class="blue cpa-icon cpa-icon-list-ul" title="{{'schemaMapping.mpLblNodeChoice' | translate}}"></i>
+                    <i ng-if="node.nodeType ==='Sequence'" class="blue cpa-icon-retweet"></i>
+                    <i ng-if="isDocItemSelected(node)" class="green cpa-icon-treeview" title="{{'schemaMapping.mpLblDocItemSelected' | translate}}"></i>
+                    <span data-ng-if="isRoot(node) && isExpanding()">{{'schemaMapping.mpLblNodeExpanding' | translate}}</span>
+                </treecontrol>
+            </div>
+            <div id="detailsPane" class="details">
+                <div class="container-fluid">
+                    <div class="row padding-top">
+                        <ip-inline-alert ng-if="!current" type="info" id="nothing-selected-hint" text=".mpLblNodeEdit" class="col-sm-12" ></ip-inline-alert>
+                    </div>
+                    <div class="row" ng-if="current" ng-init="keys=['namespace', 'line', 'column', 'defaultValue', 'fixedValue', 'minOccurs', 'maxOccurs', 'use']">
+                        <div class="row header">
+                            <h1 class="col-sm-3">Details</h1>
+                            <a href="javascript:void(0)" ng-click="expandDetails = !expandDetails;" class="pull-right">
+                                <span ng-if="!expandDetails" translate="schemaMapping.mpLblNodeShowDetails"></span>
+                                <span ng-if="expandDetails" translate="schemaMapping.mpLblNodeHideDetails"></span>
+                            </a>
+                        </div>
+                        <div>
+                            <div class="row">
+                                <div class="readonly-label-group">
+                                    <div class="input-wrap large readonly-label-value">
+                                        <label ng-if="current.node.nodeType == 'attribute'" translate="schemaMapping.mpLblNodeAttribute"></label>
+                                        <label ng-if="current.node.nodeType == 'element'" translate="schemaMapping.mpLblNodeElement"></label>
+                                        <label ng-if="current.node.nodeType != 'element' && current.node.nodeType != 'attribute'" translate="Node Type"></label>
+                                        <span ng-bind="current.node.name"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="readonly-label-group" ng-if="current.node['typeName'] != null">
+                                    <div class="input-wrap large readonly-label-value">
+                                        <label translate=".mpLblNodetypeName"></label>
+                                        <span ng-bind="current.node['typeName']"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-11 col-sm-offset-1" ng-if="current.node.nodeType == 'Choice'">
+                                    <ip-inline-alert type="info" text=".mpLblNodeChoiceInfo"></ip-inline-alert>
+                                    <ul>
+                                        <li ng-repeat="node in current.node.children track by $index" ng-click="showDetails(node)">
+                                            <a>{{node.name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="readonly-label-group" ng-if="current.node['typeName'] != null">
+                                    <div class="input-wrap large readonly-label-value">
+                                        <label translate="Requirement"></label>
+                                        <span>{{current.isRequired ? 'Mandatory' : 'Optional'}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div data-ng-if="expandDetails" class="row">
+                                <div class="readonly-label-group" ng-if="current.node[key] != null" ng-repeat="key in keys">
+                                    <div class="input-wrap large readonly-label-value">
+                                        <label>{{('schemaMapping.mpLblNode' + key) | translate}}:</label>
+                                        <span>{{current.node[key]}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row header">
+                                <h1>{{'schemaMapping.mapTo' | translate}}</h1>
+                            </div>
+
+                            <div class="active-topic" ng-if="current">
+                                <h2>{{'schemaMapping.dataItem' | translate}}</h2>
+                                <div class="row">
+                                    <div class="row">
+                                        <ip-typeahead name="docItemPicklist" label="schemaMapping.dataItem" data-config="dataItem" ng-model="model.docItems[current.node.id]" class="col-sm-6" data-picklist-can-maintain="true" ng-change="current.docItem(model.docItems[current.node.id].key, model.docItems[current.node.id].code);">
+                                        </ip-typeahead>
+                                    </div>
+                                    <div ng-if="model.docItems[current.node.id]">
+                                        <div ng-if="model.docItems[current.node.id].error">
+                                            <ip-inline-alert type="danger" class="col-sm-12">
+                                                <span translate="schemaMapping.mpErrorDocItemNotFound" translate-values="{docitemId: model.docItems[current.node.id].id}"></span>
+                                            </ip-inline-alert>
+                                        </div>
+
+                                        <div ng-if="!model.docItems[current.node.id].error">
+                                            <div class="row">
+                                                <div class="readonly-label-group">
+                                                    <div class="input-wrap large readonly-label-value">
+                                                        <label>{{ 'schemaMapping.mpLblDocItemDescription' | translate }}</label>
+                                                        <span class="col-sm-10">{{model.docItems[current.node.id].description}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="readonly-label-group">
+                                                    <div class="input-wrap large readonly-label-value">
+                                                        <label>{{ 'schemaMapping.mpLblDocItemSQLStatement' | translate }}</label>
+                                                        <pre class="col-sm-10 min-padding">{{model.docItems[current.node.id].sql}}</pre>
+                                                    </div>
+                                                </div>
+
+                                                <div>
+                                                    <div ng-if="(model.docItems[current.node.id].parameters | filter:filterParameters:true).length" class="col-sm-8">
+                                                        <div>
+                                                            <h3>{{ 'schemaMapping.mpLblDocItemParameters' | translate }}</h3>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div ng-repeat="param in model.docItems[current.node.id].parameters | filter:filterParameters:true" class="left-margin">
+                                                                <ip-text-field label="{{param.name}} ({{param.type}}) " ng-model="param.value"></ip-text-field>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="model.docItems[current.node.id].columns" class="col-sm-4">
+                                                        <div>
+                                                            <h3>{{ 'schemaMapping.mpLblDocItemReturnColumns' | translate }}</h3>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div ng-repeat="column in model.docItems[current.node.id].columns" class="left-margin">
+                                                                <label>{{column.name}}</label>
+                                                                <span ng-if="column.type">({{column.type}})</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div ng-if="current.type.canHaveValue && current.docItemColumns().length" class="active-topic">
+                                <h2>{{'schemaMapping.dataItemColumn' | translate}}</h2>
+                                <div class="row">
+                                    <ip-dropdown label=".mpLblDocItemSelectColumn" ng-model="model.docItemColumns[current.node.id]" options="m.label group by m.group for m in current.docItemColumns()" class="ip-dropdown col-sm-6">
+                                    </ip-dropdown>
+                                </div>
+                            </div>
+
+                            <div ng-if="current.type.canHaveValue" class="active-topic">
+                                <h2>{{'schemaMapping.maptovalue' | translate}}</h2>
+                                <div id="type-specific-details">
+                                    <div class="readonly-label-group">
+                                        <div class="input-wrap large readonly-label-value">
+                                            <label> {{'schemaMapping.mpLblNodeDefaultValueTitle' | translate }}</label>
+                                            <span>{{current.underlyingType().dataType}}</span>
+                                        </div>
+                                    </div>
+
+                                    <div ng-if="current.type.unionTypes" class="col-sm-offset-1">
+                                        <span>{{'schemaMapping.selectFrom' | translate}}</span>
+                                        <div class="readonly-label-group" ng-repeat="t in current.type.unionTypes">
+                                            <div class="input-wrap medium col-sm-offset-1">
+                                                <ip-radio-button label="{{t}}" value="{{t}}" ng-model="model.selectedUnionTypes[current.node.id]"></ip-radio-button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div ng-if="current.underlyingType().inputType != null" ng-init="keys=['pattern', 'length', 'minLength', 'maxLength', 'minInclusive', 'maxInclusive', 'minExclusive', 'maxExclusive', 'totalDigits']">
+                                        <div class="readonly-label-group" ng-if="current.underlyingType().restrictions[key]" ng-repeat="key in keys">
+                                            <div class="input-wrap medium readonly-label-value">
+                                                <label>{{('schemaMapping.mpLblRestriction' + key) | translate}}</label>
+                                                <span>{{current.underlyingType().restrictions[key]}}</span>
+                                            </div>
+                                        </div>
+
+                                        <form name="nodeForm" novalidate>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <ng-include src="'condor/classic/schemaMapping/mapping/inputs/' + current.underlyingType().inputType + '.html'"></ng-include>
+                                                </div>
+                                            </div>
+                                            <div ng-show="isInputInvalid(nodeForm)" class="alert alert-danger">{{ 'schemaMapping.mpErrorRestrictionEnterValid' | translate }} {{current.getUnderlyingType().dataType}} {{ 'schemaMapping.mpErrorRestrictionEnterValidValue' | translate }}</div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

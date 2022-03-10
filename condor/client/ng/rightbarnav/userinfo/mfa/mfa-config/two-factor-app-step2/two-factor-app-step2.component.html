@@ -1,0 +1,25 @@
+<h4>
+    {{ "twoFactorConfiguration.step2.heading" | translate }}
+</h4>
+<div class="navigation-wizard-content">
+    <ol>
+        <li>
+            {{ "twoFactorConfiguration.step2.openApp" | translate }}
+        </li>
+        <li>
+            {{ "twoFactorConfiguration.step2.clickAddAppButton" | translate }}
+        </li>
+        <li>
+            {{ "twoFactorConfiguration.step2.scanQRCode" | translate }}
+            <br />
+            <br />
+            <div *ngIf="qrCodeValue">
+                <qrcode [qrdata]="qrCodeValue" [size]="128"></qrcode><br />
+            </div>
+            {{ "twoFactorConfiguration.step2.successfulScan" | translate }}
+        </li>
+        <li>
+            {{ "twoFactorConfiguration.step2.clickContinue" | translate }}
+        </li>
+    </ol>
+</div>

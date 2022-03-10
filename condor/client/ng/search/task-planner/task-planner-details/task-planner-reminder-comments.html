@@ -1,0 +1,20 @@
+<ipx-kendo-grid [dataOptions]="gridOptions" #remindersGrid (rowAdded)="getRowIndex($event)">
+    <ng-template ipxTemplateColumnField="logDateTimeStamp" let-dataItem>
+        <span class="text-nowrap">{{ dataItem?.logDateTimeStamp | date: dateFormat }}</span>
+    </ng-template>
+    <ng-template ipxTemplateColumnField="comments" let-dataItem>
+        <span [innerHTML]="dataItem?.comments | html"></span>
+    </ng-template>
+    <ng-template ipxEditTemplateColumnField="comments" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+        <ipx-text-field multiline ipx-autofocus label="" (onChange)="commentOnChange($event)" rows="4" autocomplete="off" [formControl]="formGroup?.controls.comments" apply-edited>
+        </ipx-text-field>
+        <action-buttons class="pull-right" style="margin-right: 25px;">
+                <ipx-save-button (onclick)="onSave()"  [disabled]="!isFormDirty" [displayLabel]="true">
+                    {{'Save' | translate}}
+                </ipx-save-button>
+            <ipx-revert-button (onclick)="rowDiscard()" [displayLabel]="true">
+                {{'Discard' | translate}}
+            </ipx-revert-button>
+        </action-buttons>
+    </ng-template>
+</ipx-kendo-grid>

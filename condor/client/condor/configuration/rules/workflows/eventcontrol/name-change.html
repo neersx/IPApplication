@@ -1,0 +1,32 @@
+<div ng-form="vm.form" ip-form translate-namespace=".nameChange" ng-class="{'input-inherited': vm.isInherited()}">
+    <div class="row">
+        <div class="col-sm-6">
+            <ip-typeahead ng-class="{edited: vm.form.changeNameType.$dirty}" name="changeNameType" ng-disabled="::!vm.canEdit" label=".changeCaseName"
+                data-config="nameType" ng-model="vm.formData.changeNameType" ng-change="vm.onChangeOfChangeNameType()">
+            </ip-typeahead>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <ip-typeahead ip-required ng-if="vm.isCopyFromNameTypeRequired()" ng-class="{edited: vm.form.copyFromNameType.$dirty}" name="copyFromNameType"
+                ng-disabled="!vm.canEdit || vm.isCopyFromNameTypeDisabled()" label=".copyNameFrom" data-config="nameType" ng-model="vm.formData.copyFromNameType"
+                ng-change="vm.onChangeOfCopyFromNameType()">
+            </ip-typeahead>
+            <ip-typeahead ng-if="!vm.isCopyFromNameTypeRequired()" ng-class="{edited: vm.form.copyFromNameType.$dirty}" name="copyFromNameType"
+                ng-disabled="!vm.canEdit || vm.isCopyFromNameTypeDisabled()" label=".copyNameFrom" data-config="nameType" ng-model="vm.formData.copyFromNameType"
+                ng-change="vm.onChangeOfCopyFromNameType()">
+            </ip-typeahead>
+        </div>
+        <ip-checkbox ng-class="{edited: vm.form.deleteCopyFromName.$dirty}" name="deleteCopyFromName" ng-disabled="vm.isDeleteCopyFromNameDisabled()"
+            label="{{ vm.deleteFromTranslationKey() | translate:{nameType: vm.formData.copyFromNameType.value} }}" ng-model="vm.formData.deleteCopyFromName">
+        </ip-checkbox>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <ip-typeahead ng-class="{edited: vm.form.moveOldNameToNameType.$dirty}"
+                name="moveOldNameToNameType" ng-disabled="!vm.canEdit || vm.isMoveOldNameToNameTypeDisabled()" label="{{ vm.moveNameTranslationKey() | translate:{nameType: vm.formData.changeNameType.value} }}"
+                data-config="nameType" ng-model="vm.formData.moveOldNameToNameType">
+            </ip-typeahead>
+        </div>
+    </div>
+</div>

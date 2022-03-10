@@ -1,0 +1,18 @@
+<div class="modal-subheader">
+    <div class="readonly-label readonly-label-navy">
+        <label translate="workflows.common.criteriaNumber"></label>:
+        <span ng-bind="vm.criteriaNumber"></span>
+    </div>
+    <div class="readonly-label readonly-label-navy">
+        <label>|</label>
+    </div>
+    <div class="readonly-label readonly-label-navy">
+        <label translate="workflows.common.entryDescription"></label>:
+        <span ng-bind="vm.entryDescription"></span>
+    </div>
+
+    <div class="row modal-secondary-subheader">
+        <ip-modal-nav ng-if="::vm.isEditMode" all-items="::vm.allItems" current-item="::vm.currentItem" on-navigate="::vm.onNavigateInternal">
+        </ip-modal-nav>
+    </div>
+</div>

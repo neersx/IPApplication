@@ -1,0 +1,67 @@
+<form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4">
+                <ipx-dropdown name="attributeType1" (onChange)="onAttributeChanged('attribute1')" [(ngModel)]="formData.attribute1.attributeType" [displayField]="'value'" [options]="attributes" ipx-autofocus="{{!!topic.isActive}}">
+                </ipx-dropdown>
+            </div>
+            <div class="col-md-4">
+                <ipx-dropdown-operator name="attributeOperator1" [(ngModel)]="formData.attribute1.attributeOperator" [operatorsGroup]="'EqualExist'" [disabled]="!formData.attribute1.attributeType">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-4">
+                <div *ngIf="formData.attribute1.attributeOperator!==searchOperator.exists && formData.attribute1.attributeOperator!==searchOperator.notExists">
+                    <ipx-typeahead id="attributeValue1" label="" name="attributeValue1" key-field="key" code-field="code" text-field="value" api-url="api/picklists/tablecodes" item-template-url="condor/components/form/autocomplete-item-code-desc.html" ipx-autofocus="{{!!topic.isActive}}"
+                        [picklist-columns]="[{title:'Description', field:'value'},{title:'Code', field:'code'}]" template-type="ItemCodeDesc" [(ngModel)]="formData.attribute1.attributeValue" [extend-query]="extendAttributePicklist1" [disabled]="!formData.attribute1.attributeType"
+                        picklist-display-name="caseSearch.topics.attributes.title">
+                    </ipx-typeahead>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <ipx-dropdown name="attributeType2" (onChange)="onAttributeChanged('attribute2')" [(ngModel)]="formData.attribute2.attributeType" [displayField]="'value'" [options]="attributes">
+                </ipx-dropdown>
+            </div>
+            <div class="col-md-4">
+                <ipx-dropdown-operator name="attributeOperator2" [(ngModel)]="formData.attribute2.attributeOperator" [operatorsGroup]="'EqualExist'" [disabled]="!formData.attribute2.attributeType">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-4">
+                <div *ngIf="formData.attribute2.attributeOperator!==searchOperator.exists && formData.attribute2.attributeOperator!==searchOperator.notExists">
+                    <ipx-typeahead id="attributeValue2" label="" name="attributeValue2" key-field="key" code-field="code" text-field="value" api-url="api/picklists/tablecodes" [template-type]="'ItemCodeDesc'" [(ngModel)]="formData.attribute2.attributeValue" [extend-query]="extendAttributePicklist2"
+                        [picklist-columns]="[{title:'Description', field:'value'},{title:'Code', field:'code'}]" [disabled]="!formData.attribute2.attributeType" picklist-display-name="caseSearch.topics.attributes.title">
+                    </ipx-typeahead>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <ipx-dropdown name="attributeType3" (onChange)="onAttributeChanged('attribute3')" [(ngModel)]="formData.attribute3.attributeType" [displayField]="'value'" [options]="attributes">
+                </ipx-dropdown>
+            </div>
+            <div class="col-md-4">
+                <ipx-dropdown-operator name="attributeOperator3" [(ngModel)]="formData.attribute3.attributeOperator" [operatorsGroup]="'EqualExist'" [disabled]="!formData.attribute3.attributeType">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-4">
+                <div *ngIf="formData.attribute3.attributeOperator!==searchOperator.exists && formData.attribute3.attributeOperator!==searchOperator.notExists">
+                    <ipx-typeahead id="attributeValue3" label="" name="attributeValue3" key-field="key" key-field="code" text-field="value" api-url="api/picklists/tablecodes" [template-type]="'ItemCodeDesc'" [(ngModel)]="formData.attribute3.attributeValue" [extend-query]="extendAttributePicklist3"
+                        [picklist-columns]="[{title:'Description', field:'value'},{title:'Code', field:'code'}]" [disabled]="!formData.attribute3.attributeType" picklist-display-name="caseSearch.topics.attributes.title">
+                    </ipx-typeahead>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-wrap-group group-inline">
+                    <span translate="caseSearch.topics.attributes.boolean" class="pull-left input-wrap"></span>
+                    <ipx-radio-button id="rdbAnd" label="{{ 'caseSearch.topics.attributes.and' | translate }}" [value]="0" [(ngModel)]="formData.booleanAndOr" name="radioAndOr">
+                    </ipx-radio-button>
+                    <ipx-radio-button id="rdbOr" label="{{ 'caseSearch.topics.attributes.or' | translate }}" [value]="1" [(ngModel)]="formData.booleanAndOr" name="radioAndOr">
+                    </ipx-radio-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

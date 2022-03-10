@@ -1,0 +1,114 @@
+<style>
+    .input-top-margin {
+        margin-top: -7%;
+    }
+    
+    .input-left-margin {
+        margin-left: -4%;
+    }
+    
+    .input-textfield-margin {
+        margin-left: -25.5%;
+    }
+    
+    .input-textfield-margin-left {
+        margin-left: -17%;
+    }
+    
+    .input-checkbox-margin-left {
+        margin-left: 27%;
+    }
+</style>
+<div translate-namespace="dataItem.maintenance">
+    <div ng-if="src === 'configuration'">
+        <ip-text-field class="input-textfield-margin" name="code" ip-autofocus ng-maxlength="40" label=".name" ng-model="model.name" ip-required ng-disabled="false" ng-class="{'edited': maintenance.code.$dirty}" ip-field-error="{{vm.getError('code').message | translate}}"></ip-text-field>
+    </div>
+    <div ng-if="src === 'picklist'">
+        <ip-text-field class="input-textfield-margin" name="name" ip-autofocus ng-maxlength="40" label=".name" ng-model="model.code" ip-required ng-disabled="false" ng-class="{'edited': vm.maintenance.name.$dirty}" ip-field-error="{{model.$error('code').message | translate}}"></ip-text-field>
+    </div>
+    <div ng-if="src === 'configuration'" class="row">
+        <div class="col-sm-12">
+        <ip-text-field multiline class="input-textfield-margin" name="description" label=".description" rows="4" ng-model="model.description" ng-disabled="false" ip-required ng-class="{'edited': maintenance.description.$dirty}" data-ng-maxlength="254"></ip-text-field>
+        </div>
+    </div>
+    <div ng-if="src === 'picklist'" class="row">
+        <div class="col-sm-12">
+            <ip-text-field multiline class="input-textfield-margin" name="description" label=".description" rows="4" ng-model="model.value" ng-disabled="false" ip-required ng-class="{'edited': vm.maintenance.description.$dirty}"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8" style="margin-left: -5.5%">
+            <ip-typeahead name=dataitemgrouppicklist data-picklist-can-maintain="true" id="dataitem-group-picklist" data-multiselect data-config="dataItemGroup" data-label=".group" ng-model="model.itemGroups" ng-class="{'edited': maintenance.dataitemgrouppicklist.$dirty}">
+            </ip-typeahead>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8" style="margin-left: -5.5%">
+            <ip-typeahead name="entrypoint" data-label=".entryPoint" data-key-field="name" data-text-field="name" data-api-url="api/picklists/entrypoint/search" data-picklist-display-name="picklist.entryPoint.Type" data-picklist-columns="[{title:'Entry Point No.', field:'name', sortable: false}, {title:'Description', field:'description', sortable: false}]"
+                ng-model="model.entryPointUsage" data-item-template-url="condor/configuration/general/dataitem/typeahead-entrypoint-template.html" ng-class="{'edited': maintenance.entrypoint.$dirty}">
+            </ip-typeahead>
+        </div>
+        <div class="col-sm-1">
+            <ip-inline-dialog data-content="{{::'dataItem.maintenance.entryPointHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-wrap-group group-inline" style="margin-left: 14.5%">
+            <div class="col-sm-12">
+                <ip-radio-button id="rdbSqlStatement" label=".sqlStatement" ng-value="true" ng-model="model.isSqlStatement" ng-disabled="false" ng-change="vm.resetSql();" name="radioSql" ng-class="{edited: maintenance.radioSql.$dirty}"></ip-radio-button>
+                <ip-radio-button id="rdbSqlProcedure" style="margin-left: 17.5%" label=".storedProcedure" ng-value="false" ng-model="model.isSqlStatement" ng-disabled="false" ng-change="vm.resetSql();" name="radioSp" ng-class="{edited: maintenance.radioSp.$dirty}"></ip-radio-button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-7">
+            <ip-checkbox class="input-checkbox-margin-left" name="returnsimage" label=".returnsImage" ng-model="model.returnsImage" ng-disabled="false" ng-class="{'edited': maintenance.returnsimage.$dirty}" ng-change="vm.resetSqlError()"></ip-checkbox>
+        </div>
+        <div class="col-sm-5" data-ng-if="!model.isSqlStatement">
+            <ip-checkbox style="margin-left: -16.2%" name="useSourceFile" label=".useSourceFile" ng-model="model.useSourceFile" ng-disabled="false" ng-class="{'edited': model.maintenance.useSourceFile.$dirty}"></ip-checkbox>
+        </div>
+    </div>
+
+    <div ng-if="src === 'configuration'" class="row">
+        <div data-ng-if="model.isSqlStatement" class="input-wrap large" style="margin-left: -1%">
+            <ip-text-field multiline ip-sql-highlight placeholder="{{:: 'dataItem.maintenance.enterSqlText' | translate }}" name="statement" label=".statement" rows="8" ng-model="model.sql.sqlStatement" ip-required ng-disabled="false" ng-class="{'edited': maintenance.statement.$dirty}"
+                ip-field-error="{{vm.getError('statement').topic | translate}}"></ip-text-field>            
+        </div>
+    </div>
+    <div ng-if="src === 'picklist'" class="row">
+        <div data-ng-if="model.isSqlStatement" class="input-wrap large" style="margin-left: -1%">
+            <ip-text-field multiline ip-sql-highlight placeholder="{{:: 'dataItem.maintenance.enterSqlText' | translate }}" name="statement" label=".statement" rows="8" ng-model="model.sql.sqlStatement" ip-required ng-disabled="false" ng-class="{'edited': vm.maintenance.statement.$dirty}"
+                ip-field-error="{{ saveCall === true ? model.$error('statement').topic : vm.getError('statement').topic | translate }}"></ip-text-field>
+        </div>
+    </div>
+    <div data-ng-if="src === 'configuration' && !model.isSqlStatement" class="row">
+        <div class="col-sm-11">
+            <ip-text-field style="margin-left: -23.5%" placeholder="{{:: 'dataItem.maintenance.enterProcName' | translate }}" name="procedurename" label=".procedureName" ng-model="model.sql.storedProcedure" ip-required ng-disabled="false" ng-class="{'edited': maintenance.procedurename.$dirty}"
+                ip-field-error="{{vm.getError('procedurename').topic | translate}}">
+            </ip-text-field>
+        </div>
+        <div class="col-sm-1">
+            <ip-inline-dialog data-html="true" data-content="{{::'dataItem.maintenance.storedProcedureHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+    </div>
+    <div data-ng-if="src === 'picklist' && !model.isSqlStatement" class="row">
+        <div class="col-sm-11">
+            <ip-text-field style="margin-left: -23.5%" placeholder="{{:: 'dataItem.maintenance.enterProcName' | translate }}" name="procedurename" label=".procedureName" ng-model="model.sql.storedProcedure" ip-required ng-disabled="false" ng-class="{'edited': vm.maintenance.procedurename.$dirty}"
+                ip-field-error="{{ saveCall === true ? model.$error('procedurename').topic : vm.getError('procedurename').topic | translate }}">
+            </ip-text-field>
+        </div>
+        <div class="col-sm-1">
+            <ip-inline-dialog data-html="true" data-content="{{::'dataItem.maintenance.storedProcedureHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+    </div>
+    <div class="row" style="margin-top: -.6%; margin-bottom: 1.75%">
+        <button id="validate" class="btn btn-prominent clear" style="margin-left: 17.5%" data-ng-click="vm.validateSql()" data-ng-disabled="vm.shouldDisable()">
+            <span translate="dataItem.maintenance.validate"></span>
+        </button>
+    </div>
+    <div class="row">
+        <div class="input-wrap large" style="margin-left: -1%">
+            <ip-text-field multiline name="notes" label="dataItem.maintenance.notes" rows="4" ng-model="model.notes" ng-disabled="false" ng-class="{'edited': maintenance.notes.$dirty}"></ip-text-field>
+        </div>
+    </div>
+</div>

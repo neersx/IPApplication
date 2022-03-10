@@ -1,0 +1,17 @@
+<div translate-namespace="picklist.eventCategory" data-ng-controller="eventCategoriesController as c">
+    <div class="row">
+        <ip-text-field name="name" label=".name" ng-model="vm.entry.name" ng-class="{edited: vm.maintenance.name.$dirty}" ip-required ng-maxlength="50" ip-autofocus ip-field-error="{{vm.entry.$error('name').message | translate}}" ng-disabled="vm.maintenanceState === 'viewing'"></ip-text-field>
+    </div>
+    <div class="row">
+        <ip-text-field name="description" label=".description" ng-model="vm.entry.description" ng-class="{edited: vm.maintenance.description.$dirty}" ng-maxlength="254" multiline rows="3" ng-disabled="vm.maintenanceState === 'viewing'"></ip-text-field>
+    </div>
+    <div class="row">
+        <ip-typeahead name="imageDescription" label=".image" ng-class="{edited: vm.maintenance.imageDescription.$dirty}" data-config="images" ng-model="vm.entry.imageData" ip-required ng-disabled="vm.maintenanceState === 'viewing'" data-extend-query="c.eventCategoryImages.extendQuery" ip-field-error="{{vm.entry.$error('imageDescription').message | translate}}"></ip-typeahead>
+        <div class="input-wrap-group">
+            <span></span>
+            <div class="input-wrap col-sm-6">
+                <img ng-if="vm.entry.imageData" ng-src="data:image/jpeg;base64,{{vm.entry.imageData.image}}" style='max-width: 420px'></img>
+            </div>
+        </div>
+    </div>
+</div>

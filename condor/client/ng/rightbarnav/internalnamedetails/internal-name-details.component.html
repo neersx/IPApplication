@@ -1,0 +1,43 @@
+<div id="user-quick-links" class="col-sm-12">
+    <br >
+    <div class="row">
+        <div class="field-label col-sm-3">
+            <label [translate]="'nameview.internalNameDetails.internalNameId'"></label>
+        </div>
+        <div class="col-sm-9">
+            <span class="text" name="internalNameId">{{ viewData.nameID }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="field-label col-sm-3">
+            <label [translate]="'nameview.internalNameDetails.dateEntered'"></label>
+        </div>
+        <div class="col-sm-9">
+            <span class="text" name="dateEntered">{{ viewData.dateEntered | localeDate: 'hh:mm a' }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="field-label col-sm-3">
+            <label [translate]="'nameview.internalNameDetails.dateLastChanged'"></label>
+        </div>
+        <div class="col-sm-9">
+            <span class="text" name="dateChanged">{{ viewData.dateChanged | localeDate: 'hh:mm a' }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="field-label col-sm-3">
+            <label [translate]="'nameview.internalNameDetails.soundexCode'"></label>
+        </div>
+        <div class="col-sm-9">
+            <span class="text" name="soundexCode">{{ viewData.soundexCode }}</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="field-label col-sm-3">
+            <label [translate]="'nameview.internalNameDetails.nameWindowCriteriaNo'"></label>
+        </div>
+        <div class="col-sm-9">
+            <span class="text" name="nameCriteria">{{ viewData.criteriaNum }}</span>
+        </div>
+    </div>
+</div>

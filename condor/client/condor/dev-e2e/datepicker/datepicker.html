@@ -1,0 +1,33 @@
+<div>
+    <h2>Datepicker Test Page</h2>
+    <p>Testing date picker text box</p>
+    <p>Entring date manually, returns a previous day, for the when DST is applied, if the local time zone applies DST. This is important part to test, because machine timezone setting may effect the outcome. </p>
+
+    <h2>Controls</h2>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-1">
+            <label class="col-sm-1" style="text-align:right;margin-top:5px;">Test date</label>
+            <ip-datepicker id="testDate" name="testDate" class="col-sm-2" ng-model="vm.testDate">
+            </ip-datepicker>
+            <button class="col-sm-1" id="evaluateButton">Evaluate</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-sm-offset-1">
+            <label class="col-sm-1" style="text-align:right;margin-top:5px;">Value</label>
+            <label class="col-sm-2" style="margin-top:5px;margin-left:2px;" id="valueLabel">{{vm.testDate}}</label>
+        </div>
+    </div>
+
+    <h2>Populate</h2>
+    <div class="row">
+        <label class="col-sm-1">Existing Date</label>
+        <ip-datepicker id="existingDate" name="existingDate" class="col-sm-2" ng-model="vm.existingDate" ng-change="vm.onExistingDateChange()"></ip-datepicker>
+        <label class="col-sm-2" style="margin-top:5px;margin-left:2px;" id="existingDateLabel">{{vm.existingDate}}</label>
+    </div>
+    <div class="row">
+        <label class="col-sm-1">Repopulated Date</label>
+        <ip-datepicker id="repopulateDate" name="repopulateDate" class="col-sm-2" ng-model="vm.repopulateDate"></ip-datepicker>
+        <label class="col-sm-2" style="margin-top:5px;margin-left:2px;" id="repopulateDateLabel">{{vm.repopulateDate}}</label>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <h2 class="modal-title">
+    {{ modalTitle}}
+  </h2>
+  <div class="modal-header-controls">
+    <ipx-checkbox *ngIf="showAddAnother" name="addAnother" label="modal.addAnother" [(ngModel)]="isAddAnotherChecked">
+    </ipx-checkbox>
+    <ipx-save-button [disabled]="!canSave()" (onclick)="save()" name="saveButton"></ipx-save-button>
+    <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+  </div>
+</div>
+
+<case-list-picklist #caseListComponent [entry]="caseList"></case-list-picklist>

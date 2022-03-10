@@ -1,0 +1,52 @@
+<ipx-page-title [title]="'screenDesignerCases.pageTitle'" [subtitle]="'screenDesignerCases.inheritance.subTitle'">
+    <before-title>
+        <ipx-level-up-button [tooltip]="'Level up' | translate" [additionalStateParams]="{rowKey: viewData.rowKey}" [beforeLevelUp]="beforeLevelUp" [toState]="viewData.levelUpState" *ngIf="viewData.levelUpState"></ipx-level-up-button>
+    </before-title>
+    <action-buttons>
+        <div>
+            <div class="col-sm-12 input-wrap switch">
+                <input id="moreDetailsSwitch" name="moreDetailsSwitch" type="checkbox" (ngModelChange)="setStoreOnToggle($event)" [(ngModel)]="showSummary">
+                <label for="moreDetailsSwitch" [translate]="'screenDesignerCases.inheritance.togglePreview'"></label>
+            </div>
+        </div>
+    </action-buttons>
+</ipx-page-title>
+<div class="row splitter-container">
+    <kendo-splitter id="inheritancePanel" orientation="horizontal">
+        <kendo-splitter-pane id="inheritanceTreePanel" ipx-resize-handler [resize-handler-type]="'Panel'">
+            <p class="col-sm-12">
+                <br />
+                <button class="btn" (click)="expandAll()" [disabled]="allSelected()">
+                    <span translate="screenDesignerCases.inheritance.expandTree"></span>
+                </button>
+                <button class="btn" (click)="collapseAll()" [disabled]="noneSelected()" style="margin-left: 5px">
+                    <span translate="screenDesignerCases.inheritance.collapseTree"></span>
+                </button>
+            </p>
+            <div class="col-sm-12">
+                <div class="kendo-tree-container">
+                    <br />
+                    <ipx-inline-alert type="info">
+                        <span translate="screenDesignerCases.inheritance.infoMessage"></span>
+                    </ipx-inline-alert>
+                    <br />
+
+                    <kendo-treeview id="inheritanceTree" *ngIf="treeNodes" [nodes]="treeNodes.trees" textField="name" kendoTreeViewExpandable kendoTreeViewHierarchyBinding [kendoTreeViewSelectable]="{mode:'single'}" childrenField="items" [isExpanded]="isExpanded" [isExpanded]="isExpanded" (collapse)="handleCollapse($event)" (expand)="handleExpand($event)" (selectionChange)="onSelectionChange($event)">
+                        <ng-template kendoTreeViewNodeTemplate let-dataItem let-i='index'>
+                            <div [ngClass]="{'isInSearch': dataItem.isInSearch}">
+                        <span class="criteria-name">{{dataItem.name || ''}}</span>
+                        <a (click)="navigateToCriteria(dataItem.id)"> ({{dataItem.id }})</a>
+                            </div>
+                        </ng-template>
+                    </kendo-treeview>
+                </div>
+            </div>
+        </kendo-splitter-pane>
+        <kendo-splitter-pane size="25%" *ngIf="showSummary" [collapsible]="true">
+            <div class="fixed-detail-panel-right detail-view">
+                <ipx-inheritance-detail id="inheritanceDetail" [criteriaNo]="selectedCriteriaId" [rowKey]="this.viewData.rowKey">
+                </ipx-inheritance-detail>
+            </div>
+        </kendo-splitter-pane>
+    </kendo-splitter>
+</div>

@@ -1,0 +1,72 @@
+<div data-ng-show="viewData.caseNames.length">
+    <div class="widget-box">
+        <div class="topic-header header-color-blue">
+            <h1>
+                {{ 'caseComparison.ccHeadingNames' | translate }}
+            </h1>
+        </div>
+        <div>
+            <div class="widget-main no-padding">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width:20%">&nbsp;</th>
+                                    <th style="width:40%">{{ 'caseComparison.gLblProductName' | translate }}</th>
+                                    <th>&nbsp;</th>
+                                    <th style="width:40%">{{ externalSystem }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat-start="cn in viewData.caseNames" class="table-delimiter">
+                                    <td>
+                                        <strong>{{cn.nameType}}</strong>
+                                    </td>
+                                    <td>
+                                        {{cn.name.ourValue}}
+                                    </td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: cn.name.updated}" ng-show="!viewData.rejectionResetable && viewData.updateable && cn.name.updateable" ng-model="cn.name.updated" ></ip-checkbox>
+                                    </td>
+                                    <td>
+                                        <span data-ng-class="{highlight:cn.name.different && cn.name.theirValue}"> {{cn.name.theirValue}}</span>
+                                    </td>
+                                </tr>
+                                <tr ng-show="cn.reference.ourValue || cn.reference.theirValue">
+                                    <td>
+                                        <strong>{{'caseComparison.ccReference' | translate}}</strong>
+                                    </td>
+                                    <td>
+                                        {{cn.reference.ourValue}}
+                                    </td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: cn.reference.updated}" ng-show="!viewData.rejectionResetable && viewData.updateable && cn.reference.updateable" ng-model="cn.reference.updated" ></ip-checkbox>
+                                    </td>
+                                    <td>
+                                        <span data-ng-class="{highlight: cn.reference.different && cn.reference.theirValue}"> {{cn.reference.theirValue}} </span>
+                                    </td>
+                                </tr>
+                                <tr data-ng-repeat-end class="delimiter" ng-if="cn.address.theirValue || cn.address.ourValue">
+                                    <td>
+                                        <strong>{{'caseComparison.ccAddress' | translate}}</strong>
+                                    </td>
+                                    <td>
+                                        <div class="address" data-ng-show="cn.address.ourValue">{{cn.address.ourValue}}</div>
+                                    </td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: cn.name.updated}" ng-show="!viewData.rejectionResetable && viewData.updateable && cn.name.updateable" ng-model="cn.name.updated" ></ip-checkbox>
+                                    </td>
+                                    <td>
+                                        <div class="address" data-ng-class="{highlight:cn.address.different && cn.address.theirValue}" data-ng-show="cn.address.theirValue">{{cn.address.theirValue}}</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+</div>

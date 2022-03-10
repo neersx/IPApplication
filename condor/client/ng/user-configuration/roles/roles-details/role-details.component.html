@@ -1,0 +1,27 @@
+<div class="label20" id="role-search">
+    <ipx-sticky-header>
+        <ipx-page-title>
+            <before-title>
+                <ipx-level-up-button [tooltip]="'roleDetails.tooltip' | translate" *ngIf="hasPreviousState" (click)="goToRole()"></ipx-level-up-button>
+                <span> {{ 'roleDetails.title' | translate }} </span>
+                <span>{{ roleNameTitle }}</span>
+            </before-title>
+            <action-buttons>
+                <button style="margin-right: 3px;" *ngIf="stateParams.id && isShowDelete" class="btn btn-icon" id="delete" tooltip="{{ 'roleSearch.delete' | translate }}" placement="bottom" (click)="deleteRole()">
+                    <span class="cpa-icon cpa-icon-trash"></span>
+                </button>
+                <ipx-revert-button *ngIf="canUpdateRole" [disabled]="!isFormDirty()" (onclick)="revert()">
+                </ipx-revert-button>
+                <ipx-save-button *ngIf="canUpdateRole" [disabled]="!isFormDirty() || isFormInValid() || isLoading" (onclick)="onSave()">
+                </ipx-save-button>
+            </action-buttons>
+        </ipx-page-title>
+
+        <ipx-detail-page-nav *ngIf="showNavigation$ | async" paramKey="rowKey" [hasUnsavedChanges]="isFormDirty()" [refreshKey]="rowKey" [ids]="navData.keys" [routerState]="navigationState" [routerParams]="stateParams"
+            [totalRows]="navData.totalRows" [fetchNext]="navData.fetchCallback">
+        </ipx-detail-page-nav>
+    </ipx-sticky-header>
+    <div *ngIf="isLoading" class="col-sm-7 k-loading-image" style="position: absolute;top:175px;height: 56px; width: 100%;"></div>
+    <ipx-topics [options]="options" (activeTopicChanged)="activeTopicChanged($event)">
+    </ipx-topics>
+</div>

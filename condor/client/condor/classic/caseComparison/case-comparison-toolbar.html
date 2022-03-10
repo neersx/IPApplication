@@ -1,0 +1,16 @@
+<div ng-show="!shouldHideToolbar()">
+    <div class="cc-toolbar">
+
+        <span hotkey="{'a a': quickSelectAll }" hotkey-description="{{ 'caseComparison.ccSelectAllExplanation' | translate }}" hotkey-allow-in="INPUT"></span>
+
+        <div class="tooltip-wrap ng-scope" ng-class="{'disabled' : !canMarkReviewed() || saveable() }">
+            <button class="btn btn-sm btn-primary tooltip-info cc-toolbar-button cc-toolbar-button-left cc-toolbar-button-primary" ng-click="markReviewed()" ng-class="{'disabled' : !canMarkReviewed() || saveable() }" ng-show="notification" id="btnMarkReviewed" id="btnMarkReviewed"
+                hotkey="{'m r': quickMarkReviewed }" hotkey-description="{{ 'caseComparison.ccMarkReviewedExplanation' | translate }}" hotkey-allow-in="INPUT">{{ 'caseComparison.ccBtnMarkReviewed' | translate }}</button>
+        </div>
+
+        <div class="tooltip-wrap ng-scope" ng-class="{'disabled' : !saveable() }">
+            <button class="btn btn-sm btn-primary tooltip-info cc-toolbar-button cc-toolbar-button-primary" data-rel="tooltip" data-placement="top" title="{{'caseComparison.ccBtnUpdateCaseTooltip' | translate}}" ng-disabled="!saveable()" ng-click="saveChanges()" ng-show="updateable() && isComparisonData"
+                ng-class="{'disabled' : !saveable() }" id="btnUpdateCase" id="btnUpdateCase" hotkey="{'ctrl+shift+s': quickSaveChanges }" hotkey-description="{{ 'caseComparison.ccUpdateCaseExplanation' | translate }}" hotkey-allow-in="INPUT">{{ 'caseComparison.ccBtnUpdateCase' | translate }}</button>
+        </div>
+    </div>
+</div>

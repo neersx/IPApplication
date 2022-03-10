@@ -1,0 +1,42 @@
+<form name="remindersForm" #remindersForm="ngForm">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.reminders.reminderMessage' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator class="col-sm-2" name="reminderMessageOperator" [(ngModel)]="formData.reminderMessage.operator" [operatorsGroup]="operatorCombinations.FullNoExist">
+      </ipx-dropdown-operator>
+      <ipx-text-field class="col-sm-6" name="reminderMessage" label="" [(ngModel)]="formData.reminderMessage.value"></ipx-text-field>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-offset-2 col-sm-10">
+        <div class="col-sm-2">
+          <div>
+            <ipx-checkbox name="chkNotOnHold" [(ngModel)]="formData.isNotOnHold" [disabled]="formData.isNotOnHold && !formData.isOnHold" label="taskPlanner.searchBuilder.reminders.notOnHold">
+            </ipx-checkbox>
+          </div>
+          <div>
+            <ipx-checkbox name="chkNotRead" [(ngModel)]="formData.isNotRead" [disabled]="formData.isNotRead && !formData.isRead" label="taskPlanner.searchBuilder.reminders.notRead">
+            </ipx-checkbox>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="row">
+            <ipx-checkbox class="col-sm-5" [disabled]="formData.isOnHold && !formData.isNotOnHold" name="chkHold" [(ngModel)]="formData.isOnHold" label="taskPlanner.searchBuilder.reminders.onHold">
+            </ipx-checkbox>
+            <div class="col-sm-2">
+              <ipx-inline-dialog [content]="'taskPlanner.searchBuilder.reminders.onHoldInfo'| translate" [tooltipPlacement]="'right'">
+              </ipx-inline-dialog>
+            </div>
+          </div>
+          <div>
+            <ipx-checkbox name="chkRead" [(ngModel)]="formData.isRead" [disabled]="formData.isRead && !formData.isNotRead" label="taskPlanner.searchBuilder.reminders.read">
+            </ipx-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</form>

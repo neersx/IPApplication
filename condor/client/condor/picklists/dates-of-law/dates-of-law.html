@@ -1,0 +1,6 @@
+<div ng-if="!!vm.externalScope[(vm.entity || 'combination')]()">
+    <div data-ng-controller="datesOfLawController as c">
+        <ip-valid-picklist-maintenance data-model="vm.entry" data-maintenance="vm.maintenance" data-state="vm.maintenanceState" data-can-maintain="true" data-entity-type='dateoflaw' on-before-save="vm.onBeforeSave" save-without-validate="c.saveWithoutValidate"
+            has-inline-grid-error="vm.hasInlineGridError" is-inline-grid-dirty="vm.isInlineGridDirty"></ip-valid-picklist-maintenance>
+    </div>
+</div>

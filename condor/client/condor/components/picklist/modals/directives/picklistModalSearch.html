@@ -1,0 +1,17 @@
+<style>
+    .whitelabel {
+        color: #fff !important;
+    }
+</style>
+<div data-ng-show="vm.currentView === 'search'">
+    <div class="modal-header">
+        <h2 class="modal-title" translate="{{::vm.windowLabel}}"></h2>
+        <div class="modal-header-controls">
+            <ip-preview-button ng-if="vm.showPreview" is-preview-active="vm.isPreviewActive"></ip-preview-button>
+            <ip-apply-button ng-if="vm.showApply" ng-click="vm.returnSelectedItems()"></ip-apply-button>
+            <ip-close-button type="button" data-ng-click="vm.cancel()"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body" ng-transclude>
+    </div>
+</div>

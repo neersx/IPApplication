@@ -1,0 +1,17 @@
+<ipx-icon *ngIf="dataRetrivable" style="cursor: pointer" name="paperclip" [large]="true" [popover]="popTemplate" placement="right" outsideClick="true" triggers="mouseenter" #popup="bs-popover" (onShown)="onShown()" (click)="onClick()">
+</ipx-icon>
+
+<ng-template #popTemplate>
+    <div *ngIf="isLoading" style="height: 56px;">
+        <div class="k-loading-image"></div>
+    </div>
+    <ng-container *ngIf="!isLoading">
+        <div class="row" *ngFor="let dataItem of attachments;trackBy: trackByIndex;">
+            <a (click)="getUrl($event,dataItem)">
+                {{dataItem.attachmentName}}
+            </a>
+        </div>
+        <div class="row" style="font-style: italic;" translate="caseview.attachments.popup" [translateParams]="{count: attachments.length, total: total }">
+        </div>
+    </ng-container>
+</ng-template>

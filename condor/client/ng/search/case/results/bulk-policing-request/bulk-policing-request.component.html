@@ -1,0 +1,41 @@
+<div id="bulk-policing-dialog">
+    <div class="modal-header">
+      <h2 class="modal-title"> {{ 'bulkPolicing.pageTitle' | translate }}</h2>
+    </div>
+    <form (ngSubmit)="submit()" name="bulkPolicingForm" #f="ngForm" novalidate>
+      <div class="modal-body" style="margin-top: 20px;">
+        <div class="row">
+            <div class="col-md-10 ">
+                <ipx-typeahead name="action" config="action" [(ngModel)]="caseAction" 
+                    label="bulkPolicing.caseAction" required>
+                </ipx-typeahead>
+              </div>
+        </div>
+  
+        <hr />
+        <div class="row">
+          <div class="col-md-12">
+            <label>{{ 'bulkPolicing.reasonMessage' | translate }}</label>
+          </div>
+          <div class="col-md-10 ">
+            <ipx-dropdown name="textType" [options]="textTypes" [(ngModel)]="reasonData.textType"
+              label="bulkUpdate.textType" displayField="value" keyField="key" (change)="reasonChange()">
+            </ipx-dropdown>
+          </div>
+          <div class="col-md-10">
+            <ipx-richtext-field [rows]="6" name="notes" [allowRichText]="allowRichText" [disabled]="!reasonData.textType"
+              label="bulkUpdate.notes" [(ngModel)]="reasonData.notes" placeholder="bulkUpdate.caseTextUpdate.placeHolder">
+            </ipx-richtext-field>
+          </div>
+  
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btnCancel" class="btn btn-cancel" (click)="close()">
+          {{ 'bulkUpdate.cancel' | translate }}</button>
+        <button type="submit" id="btnSubmit" class="btn btn-primary" [disabled]="!f.form.valid">
+          {{ 'bulkUpdate.proceed' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>

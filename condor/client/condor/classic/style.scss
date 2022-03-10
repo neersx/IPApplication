@@ -1,0 +1,103 @@
+$primary-color1: #14144D;
+$primary-color1-gradient1: #CAE8F5;
+$primary-color2: #71C5E8;
+$primary-color2-gradient1: #5788BF;
+$primary-color3: #8E9C9D;
+$primary-color4: #8D8C8A;
+$primary-color5: #898D8D;
+$primary-color5-gradient1: #B7BCB7;
+$primary-color6: #1C4F99;
+$primary-color6-light: #467AC5;
+//secondary palette. https://color.adobe.com/create/color-wheel/?base=2&rule=Custom&selected=4&name=My%20Color%20Theme&mode=rgb&rgbvalues=1,0.7215686274509804,0.10980392156862745,0.7764705882352941,0.5725490196078431,0.0784313725490196,0.5019607843137255,0.1843137254901961,0.17647058823529413,0.6196078431372549,0.16470588235294117,0.1843137254901961,0.8941176470588236,0,0.16862745098039217&swatchOrder=0,1,2,3,4
+$secondary-color1: #FFB81C;
+$secondary-color2: #C69214;
+$secondary-color2-gradient1: #F4E48F;
+$secondary-color2-gradient2: #F3F5ED;
+$secondary-color3: #802F2D;
+$secondary-color4: #9E2A2F;
+$secondary-color5: #E4002B;
+$secondary-color5-gradient1: #EA8A69;
+//known colors
+$color-white: #FFF;
+$color-black: #000;
+$color-danger-light: #f2dede;
+$color-danger-light-border: #f2dede;
+$color-warning-light: #faf2cc;
+$color-warning-light-border: #faf2cc;
+$color-warning: #8a6d3b;
+$color-error:#d16e6c;
+//alternative colors
+$alternative-color1: #C5C5AC;
+$alternative-color2: #F9FCF9;
+$alternative-color3: #C5DBAB;
+$alternative-color4: #FBFCEF;
+$alternative-color5: #EDEDD0;
+$alternative-color6: #CFD8CF;
+$alternative-color7: #FCFCE3;
+$alternative-color8: #DCEBF7;
+$alternative-color9: #EDF3F4;
+$alternative-color10: #FDFDFD;
+$alternative-color11: #FBC973;
+$alternative-color12: #82AF6F;
+$alternative-color13: #E1E1F8;
+$alternative-color14: #CED8D8;
+$alternative-color15: #DFE1DF;
+$alternative-color16: #D6DAD6;
+$alternative-color17: #4B4D4D;
+$alternative-color18: #C3B28B;
+$alternative-color19: #E5E5E5;
+$alternative-color20: #8CB4B4;
+//portal
+$portal-batcheventupdate-color: #4CAED8;
+$portal-scheduledownload-color: #FFDD1C;
+$portal-usptocertificates-color: #FFC956;
+$portal-datacomparisoninbox-color: #ED8853;
+$portal-importstatus-color: #FFEB34;
+$portal-importstatusgridborder-color: #B2B2B2;
+$portal-applicationlinksecurity-color: #c5dddd;
+$portal-systemMaintenance-color: #c5dddd;
+$portal-schemamapping-color: #f27c79;
+$portal-workflowrules-color: #ffc137;
+$portal-policingDashboard-color: #FFF126;
+//Product
+$product-background-primary: #000080;
+$product-foreground-primary: #fff;
+$product-background-secondary: #2E2E9A;
+$product-background-error: #E90101;
+$product-foreground-error: #fff;
+$product-background-info: #bafaff;
+$product-foreground-info: #000;
+$light-blue: #bce8f1;
+$lightToolbarBackColor: #eeeeee;
+@import 'classic/caseComparison/style.scss';
+@import 'classic/bulkCaseImport/style.scss';
+//@import 'classic/scripts/controls/angular-tree-control/tree-control-attribute.scss';
+@import 'classic/scripts/controls/angular-tree-control/tree-control.scss';
+@import 'classic/schemaMapping/style.scss';
+
+.diff-deleted {
+    padding: 2px 4px;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    text-decoration: line-through;
+    white-space: pre-line;
+}
+
+.diff-added {
+    padding: 2px 4px;
+    color: #3c763d;
+    background-color: #dfd;
+    border-radius: 4px;
+    white-space: pre-line;
+}
+
+.diff-unchanged {
+    white-space: pre-line;
+}
+
+.schedule-button {
+    margin-right: 8px;
+    margin-top: 8px;
+    min-width: 100px;
+}

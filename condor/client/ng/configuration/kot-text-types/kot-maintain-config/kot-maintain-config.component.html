@@ -1,0 +1,102 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{this.title}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button type="button" (click)="save()" [disabled]="!formGroup.dirty || formGroup.status === 'INVALID'"></ipx-save-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+
+<div class="modal-body">
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="formGroup">
+                <div class="row">
+                    <div class="col-md-11" *ngIf="filterBy == KotFilterTypeEnum.byCase">
+                        <ipx-typeahead id="textType" #caseTextTypeEl ipx-autofocus required name="textType" [formControl]="textType" apply-edited label="{{ 'kotTextTypes.column.textType' | translate }}"
+                            config="caseTextType">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="col-md-11" *ngIf="filterBy == KotFilterTypeEnum.byName">
+                        <ipx-typeahead id="textType" #nameTextTypeEl ipx-autofocus required name="textType" [formControl]="textType" apply-edited label="{{ 'kotTextTypes.column.textType' | translate }}"
+                            config="nameTextType"> </ipx-typeahead>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 translate="{{'kotTextTypes.maintenance.restrictsTo' | translate}}"></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-11" *ngIf="filterBy == KotFilterTypeEnum.byCase">
+                        <ipx-typeahead id="caseType" multiselect multipick name="caseType" [formControl]="caseTypes" apply-edited label="{{ 'kotTextTypes.column.caseType' | translate }}" config="caseType">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="col-md-11" *ngIf="filterBy == KotFilterTypeEnum.byName">
+                        <ipx-typeahead id="nameType" multiselect multipick name="nameType" [formControl]="nameTypes" apply-edited label="{{ 'kotTextTypes.column.nameType' | translate }}" config="nameType">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="col-md-11">
+                        <ipx-typeahead id="roles" multiselect multipick name="roles" [formControl]="roles" apply-edited label="{{ 'kotTextTypes.column.roles' | translate }}" config="roles"> </ipx-typeahead>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3 translate="{{'kotTextTypes.maintenance.appliesTo' | translate }}"></h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-20" style="margin-left: 111px;">
+                        <div class="col-md-2" style="line-height: 30px; text-align: right;">
+                            <label [translate]="'kotTextTypes.maintenance.modules'"></label>
+                        </div>
+                        <div>
+                            <ipx-checkbox name="hasCaseProgram" label="{{ 'kotTextTypes.maintenance.caseProgram' | translate }}" formControlName="hasCaseProgram" apply-edited>
+                            </ipx-checkbox>
+                            <ipx-checkbox name="nameProgram" label="{{ 'kotTextTypes.maintenance.nameProgram' | translate }}" formControlName="hasNameProgram" apply-edited style="margin-left: 20px;">
+                            </ipx-checkbox>
+                            <ipx-checkbox name="timeProgram" label="{{ 'kotTextTypes.maintenance.timeProgram' | translate }}" formControlName="hasTimeProgram" apply-edited style="margin-left: 25px;">
+                            </ipx-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: 194px;">
+                    <div>
+                        <div>
+                            <ipx-checkbox label="{{ 'kotTextTypes.maintenance.billingProgram' | translate }}" formControlName="hasBillingProgram" apply-edited>
+                            </ipx-checkbox>
+                            <ipx-checkbox label="{{ 'kotTextTypes.maintenance.taskPlannerProgram' | translate }}" formControlName="hasTaskPlannerProgram" apply-edited style="margin-left: 13px;">
+                            </ipx-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="filterBy == KotFilterTypeEnum.byCase">
+                    <div class="col-md-20" style="margin-left: 111px">
+                        <div class="col-md-2" style="line-height: 30px; text-align: right;">
+                            <label [translate]="'kotTextTypes.maintenance.status'"></label>
+                        </div>
+                        <div>
+                            <ipx-checkbox name="pending" label="{{ 'kotTextTypes.maintenance.pending' | translate }}" formControlName="isPending" apply-edited>
+                            </ipx-checkbox>
+                            <ipx-checkbox name="registered" label="{{ 'kotTextTypes.maintenance.registered' | translate }}" formControlName="isRegistered" apply-edited>
+                            </ipx-checkbox>
+                            <ipx-checkbox name="dead" label="{{ 'kotTextTypes.maintenance.dead' | translate }}" formControlName="isDead" apply-edited>
+                            </ipx-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" style="margin-left:0">
+                        <div class="col-sm-11">
+                            <ipx-color-picker label="{{ 'kotTextTypes.column.backgroundColor' | translate}}" apply-edited [formControl]="backgroundColor"></ipx-color-picker>
+                        </div>
+                        <div class="col-sm-1" style="margin-left: -315px;">
+                            <ipx-inline-dialog container="body" class="nudge-left" [adaptivePosition]="true" [content]="'kotTextTypes.colorInfo' | translate" tooltipPlacement="auto">
+                            </ipx-inline-dialog>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

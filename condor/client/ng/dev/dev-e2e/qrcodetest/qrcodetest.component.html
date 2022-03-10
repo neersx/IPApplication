@@ -1,0 +1,9 @@
+<h3>QR Code Renderer Example</h3>
+
+<div class="container-fluid">
+    <qrcode [qrdata]="qrCodeValue" [size]="128"></qrcode>
+    <h2>QR Code Value:</h2>
+    <div class="row">
+        <textarea rows="8" [(ngModel)]="qrCodeValue" style="width: 100%" maxlength="500"></textarea>
+    </div>
+</div>  

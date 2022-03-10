@@ -1,0 +1,21 @@
+<form [formGroup]="form">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-10" style="padding-left: 88px;">
+                <div>
+                    <ipx-text-field name="value" class="input-textfield-margin" apply-edited ipx-autofocus required label="{{ 'caseSearch.savedSearch.searchName' | translate }}" autocomplete="off"
+                        formControlName="value">
+                    </ipx-text-field>
+                </div>
+                <div>
+                    <ipx-text-field multiline rows="3" name="description" class="input-textfield-margin" apply-edited label="{{ 'caseSearch.savedSearch.description' | translate }}" autocomplete="off"
+                        formControlName="description">
+                    </ipx-text-field>
+                </div>
+                <div style="margin-left: 66px;">
+                    <ipx-checkbox name="isPublic" label="{{ 'caseSearch.savedSearch.public' | translate}}" [disabled]="canUpdateSavedSearch" formControlName="isPublic"></ipx-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

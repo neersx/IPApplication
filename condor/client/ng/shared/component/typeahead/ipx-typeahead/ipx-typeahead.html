@@ -1,0 +1,104 @@
+<style>
+    .textarea {
+        width: calc(100% - 2px)
+    }
+</style>
+
+<ng-container *ngTemplateOutlet="isMultiSelect ? multiselectref : singleselectref"></ng-container>
+
+<ng-template #singleselectref>
+    <div class="input-wrap" [ngClass]="{ 'error': showError(), loading: state==='loading' }" (click)="touch()">
+        <div *ngIf="tooltipConfig" class="typeahead-infoLabel">
+            <ipx-inline-dialog [tooltipPlacement]="tooltipConfig.placement" [templateRef]="tooltipConfig.templateRef" [adaptivePosition]="true">
+            </ipx-inline-dialog>
+            <label *ngIf="label" [translate]="label" [attr.for]="identifier"></label>
+        </div>
+        <label *ngIf="!tooltipConfig && label" [translate]="label" [attr.for]="identifier">
+        </label>
+        <div class="typeahead-wrap">
+            <input *ngIf="options.fieldType!='textarea'" class="typeahead basic-addon-r-1" [ngModelOptions]="{standalone: true}" autocomplete="off" placeholder="{{ placeholder ? (placeholder | translate) : ''}}"
+                [(ngModel)]="displayText" (ngModelChange)="queryFieldUpdate.next($event)" (keydown)="keydown($event);" (blur)="onblur($event)" (focus)="onfocus()" [id]="identifier" #typeAheadInput
+                [ngClass]="{edited: controledited()}" [disabled]="disabled">
+            <textarea *ngIf="options.fieldType=='textarea'" rows="4" class="textarea" [ngModelOptions]="{standalone: true}" autocomplete="off" placeholder="{{ placeholder ? (placeholder | translate) : ''}}"
+                [(ngModel)]="text" (ngModelChange)="queryFieldUpdate.next($event)" (keydown)="keydown($event);" (blur)="onblur($event)" (focus)="onfocus()" [id]="identifier" #typeAheadInput
+                [ngClass]="{edited: controledited()}" [disabled]="disabled"></textarea>
+            <ipx-autocomplete #autocompleteref [id]="identifier" [recentResult]="recentResults" [results]="results" [options]="options" [text]="text" [total]="total" (listClickedEvent)="setListClicked($event)"
+                (selectedRowEvent)="setSelectedRow($event)" [attr.data-search-value]="text">
+            </ipx-autocomplete>
+        </div>
+        <span class="input-wrap-addon" *ngIf="!disabled">
+            <span class="btn btn-icon btn-no-bg" (click)="openModal();$event.stopPropagation();" [tooltip]="'LookUp' | translate" container="body" [adaptivePosition]="false">
+                <span class="cpa-icon cpa-icon-ellipsis-h"></span>
+            </span>
+        </span>
+        <span class="input-action">
+            <span class="cpa-icon loading-circle"></span>
+        </span>
+        <span class="input-action tooltip-error">
+            <span class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="getError() | translate: getErrorParams()" containerClass="tooltip-error" [adaptivePosition]="false" container="body"></span>
+        </span>
+    </div>
+</ng-template>
+
+<ng-template #multiselectref>
+    <div class="input-wrap" [ngClass]="{ 'error': showError(), loading: state==='loading', 'edited': controledited()}" (click)="touch()">
+        <label *ngIf="label" [translate]="label" [attr.for]="identifier"></label>
+        <div class="typeahead-wrap multiselect">
+            <div class="tags" elementwidth [ngClass]="{ disabled:disabled }" tabindex="20" (keydown)="onTagsKeydown($event)">
+                <div class="label-tag" [ngClass]="{ selected: item.isTagSelected, 'tags-error': item.isError}" *ngFor="let item of itemArray; index as i; trackBy: item" (click)="onSelected(i)">
+                    <ng-container
+                        *ngTemplateOutlet="item[options.positionToShowCodeField] == positionToShowCodeEnum.start ? tagWithStartCode : item[options.positionToShowCodeField] == positionToShowCodeEnum.end ? tagWithEndCode : tagWithoutCode; context:{$implicit: item}">
+                    </ng-container>
+                    <a href="javascript:void(0)" *ngIf="!disabled" class="remove" (click)="removeItem(item);$event.stopPropagation()">
+                        <span class="cpa-icon cpa-icon-times"></span>
+                    </a>
+                </div>
+                <input class="typeahead" [id]="identifier" placeholder="{{ placeholder && (!itemArray || itemArray.length === 0) ? (placeholder | translate) : ''}}" #multiSelectTypeAheadInput [style.width.px]="width"
+                    autocomplete="off" [(ngModel)]="text" (ngModelChange)="queryFieldUpdate.next($event)" (keydown)="keydown($event)" (blur)="onblur($event)" (focus)="onfocus()" [disabled]="disabled" />
+            </div>
+            <ipx-autocomplete #autocompleteref [id]="identifier" [recentResult]="recentResults" [results]="results" [options]="options" [text]="text" [total]="total" [attr.data-search-value]="text"
+                (selectedRowEvent)="setSelectedRow($event)" (listClickedEvent)="setListClicked($event)">
+            </ipx-autocomplete>
+        </div>
+        <span class="input-wrap-addon" *ngIf="!disabled">
+            <span class="btn btn-icon btn-no-bg" (click)="openModal();$event.stopPropagation()" [tooltip]="'LookUp' | translate" container="body" [adaptivePosition]="false">
+                <span class="cpa-icon cpa-icon-ellipsis-h"></span>
+            </span>
+        </span>
+        <span class="input-action">
+            <span class="cpa-icon loading-circle"></span>
+        </span>
+        <span class="input-action tooltip-error">
+            <span class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="getError() | translate: getErrorParams()" containerClass="tooltip-error" container="body" [adaptivePosition]="false"></span>
+        </span>
+    </div>
+</ng-template>
+
+<ng-template #templateModal>
+    <ipx-picklist-modal>
+    </ipx-picklist-modal>
+</ng-template>
+
+<ng-template #tagWithStartCode let-dataItem>
+    <span class="text" [ngClass]="{ 'custom-class': dataItem['customClassTrigger'] }">
+        <span *ngIf=" dataItem[options.codeField]">
+            {{'{' + dataItem[options.codeField] + '}'}}
+        </span>
+        {{ dataItem[options.tagField] }}
+    </span>
+</ng-template>
+
+<ng-template #tagWithEndCode let-dataItem>
+    <span class="text" [ngClass]="{ 'custom-class': dataItem['customClassTrigger'] }">
+        {{ dataItem[options.tagField] }}
+        <span *ngIf=" dataItem[options.codeField]">
+            {{'{' + dataItem[options.codeField] + '}'}}
+        </span>
+    </span>
+</ng-template>
+
+<ng-template #tagWithoutCode let-dataItem>
+    <span class="text" [ngClass]="{ 'custom-class': dataItem['customClassTrigger'] }">
+        {{ dataItem[options.tagField] }}
+    </span>
+</ng-template>

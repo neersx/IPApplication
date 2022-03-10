@@ -1,0 +1,19 @@
+<div class="modal-nav">
+    <div class="pull-right">
+        <button disabled ng-disabled="vm.isFirstDisabled" ng-click="vm.first()" ip-tooltip="{{:: 'skipToFirst' | translate }}" class="btn btn-icon btn-no-bg">
+            <span class="cpa-icon cpa-icon-angle-double-left"></span>
+        </button>
+        <button disabled ng-disabled="vm.isPrevDisabled" ng-click="vm.prev()" ip-tooltip="{{:: 'Previous' | translate }}" class="btn btn-icon btn-no-bg">
+            <span class="cpa-icon cpa-icon-chevron-circle-left"></span>
+        </button>
+        <span>{{vm.currentIndex}}</span>
+        <span translate="of"></span>
+        <span>{{vm.totalCount}}</span>
+        <button disabled ng-disabled="vm.isNextDisabled" ng-click="vm.next()" ip-tooltip="{{:: 'Next' | translate }}" class="btn btn-icon btn-no-bg">
+            <span class="cpa-icon cpa-icon-chevron-circle-right"></span>
+        </button>
+        <button disabled ng-disabled="vm.isLastDisabled" ng-click="vm.last()" ip-tooltip="{{:: 'skipToLast' | translate }}" class="btn btn-icon btn-no-bg">
+            <span class="cpa-icon cpa-icon-angle-double-right"></span>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h2 class="modal-title">
+        <div translate="dataDownload.schedule.failures"></div>
+    </h2>
+    <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+        <ip-close-button data-ng-click="vm.close()"></ip-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <ip-inline-alert type="info" text="dataDownload.schedule.recoverableCasesPrompt"></ip-inline-alert>
+
+    <div class="table-container" style="padding-top: 10px">
+        <ip-kendo-search-grid data-id="recoverableCasesGrid" data-grid-options="vm.gridOptions"></ip-kendo-search-grid>
+    </div>
+</div>

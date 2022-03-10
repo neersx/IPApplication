@@ -1,0 +1,226 @@
+<form name="casesCriteriaForm" #casesCriteriaForm="ngForm">
+    <div class="container-fluid">
+        <h4 translate="taskPlanner.searchBuilder.cases.references"></h4>
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.caseReference' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator (onChange)="changeOperator('caseReference')" class="col-sm-2" name="caseReferenceOperator" [(ngModel)]="formData.caseReference.operator" [operatorsGroup]="'FullNoExist'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6">
+                <ipx-text-field *ngIf="formData.caseReference.operator !==searchOperator.equalTo && formData.caseReference.operator !== searchOperator.notEqualTo" name="caseReference" [(ngModel)]="formData.caseReference.value" ipx-autofocus="{{!!topic.isActive}}">
+                </ipx-text-field>
+                <ipx-typeahead *ngIf="formData.caseReference.operator == searchOperator.equalTo || formData.caseReference.operator == searchOperator.notEqualTo" name="caseRefCases" multiselect multipick [(ngModel)]="formData.caseReference.value" ipx-autofocus="{{!!topic.isActive}}"
+                    config="case">
+                </ipx-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.officialNumber' | translate}}</label>
+            </div>
+            <ipx-dropdown class="col-sm-2" name="officalNumberType" [(ngModel)]="formData.officialNumber.type" [options]="numberTypes" [displayField]="'value'" [keyField]="'key'" [optionalValue]="'taskPlanner.searchBuilder.cases.anyNumberType'">
+            </ipx-dropdown>
+            <ipx-dropdown-operator class="col-sm-2" name="officialNumberOperator" [(ngModel)]="formData.officialNumber.operator" [operatorsGroup]="'FullNoExist'">
+            </ipx-dropdown-operator>
+            <ipx-text-field class="col-sm-4" name="OfficialNumber" label="" [(ngModel)]="formData.officialNumber.value"></ipx-text-field>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.caseFamily' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="caseFamilyOperator" [(ngModel)]="formData.caseFamily.operator" [operatorsGroup]="'EqualExist'" (onChange)="changeOperator('caseFamily')">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6" *ngIf="formData.caseFamily.operator!==searchOperator.exists && formData.caseFamily.operator!==searchOperator.notExists">
+                <ipx-typeahead name="caseFamily" multiselect multipick config="caseFamily" [(ngModel)]="formData.caseFamily.value"></ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.caseList' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="caseListOperator" [(ngModel)]="formData.caseList.operator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6" *ngIf="formData.caseList.operator!==searchOperator.exists && formData.caseList.operator!==searchOperator.notExists">
+                <ipx-typeahead name="caseList" config="caseList" [(ngModel)]="formData.caseList.value"></ipx-typeahead>
+            </div>
+        </div>
+        <hr>
+        <h4 translate="taskPlanner.searchBuilder.cases.details"></h4>
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.caseOffice' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="caseOfficeOperator" [(ngModel)]="formData.caseOffice.operator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6" *ngIf="formData.caseOffice.operator!==searchOperator.exists && formData.caseOffice.operator!==searchOperator.notExists">
+                <ipx-typeahead name="caseOffice" multiselect multipick config="office" [(ngModel)]="formData.caseOffice.value" ipx-autofocus="{{!!topic.isActive}}"></ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.caseType' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="caseTypeOperator" [(ngModel)]="formData.caseType.operator" [operatorsGroup]="'Equal'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6">
+                <ipx-typeahead name="caseType" multiselect multipick config="caseType" (onChange)="changeCaseType()" [(ngModel)]="formData.caseType.value" ipx-autofocus="{{!!topic.isActive}}"></ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.jurisdiction' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="jurisdictionOperator" [(ngModel)]="formData.jurisdiction.operator" [operatorsGroup]="'Equal'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6">
+                <ipx-typeahead name="jurisdiction" multiselect multipick config="jurisdiction" (onChange)="updateVCFormData()" [(ngModel)]="formData.jurisdiction.value" ipx-autofocus="{{!!topic.isActive}}">
+                </ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.propertyType' | translate}}</label>
+            </div>
+
+            <ipx-dropdown-operator class="col-sm-2" name="propertyTypeOperator" [(ngModel)]="formData.propertyType.operator" [operatorsGroup]="'Equal'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6">
+                <ipx-typeahead name="propertyType" multiselect multipick config="propertyType" [extend-query]="extendValidCombinationPickList" [external-scope]="validCombinationDescriptionsMap" (onChange)="updateVCFormData()" [(ngModel)]="formData.propertyType.value"
+                >
+                </ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.caseCategory' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="caseCategoryOperator" [disabled]="disabledCaseCategory" [(ngModel)]="formData.caseCategory.operator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6" *ngIf="formData.caseCategory.operator!==searchOperator.exists && formData.caseCategory.operator!==searchOperator.notExists">
+                <ipx-typeahead [disabled]="disabledCaseCategory" name="caseCategory" (onChange)="updateVCFormData()" multiselect multipick config="caseCategory" [(ngModel)]="formData.caseCategory.value" [extend-query]="extendValidCombinationPickList" [external-scope]="validCombinationDescriptionsMap"
+                    entity="caseCategories" ipx-autofocus="{{!!topic.isActive}}"></ipx-typeahead>
+            </div>
+            <div [ngClass]="{'col-sm-offset-6': formData.caseCategory.operator===searchOperator.exists || formData.caseCategory.operator===searchOperator.notExists}" class="col-sm-1">
+                <ipx-inline-dialog [content]="'taskPlanner.searchBuilder.cases.caseCategoryInfo'| translate" [tooltipPlacement]="'auto'">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.subType' | translate}}</label>
+            </div>
+
+            <ipx-dropdown-operator class="col-sm-2" name="subTypeOperator" [(ngModel)]="formData.subType.operator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+
+            <div class="col-sm-6" *ngIf="formData.subType.operator!==searchOperator.exists && formData.subType.operator!==searchOperator.notExists">
+                <ipx-typeahead name="subType" config="subType" [(ngModel)]="formData.subType.value" (onChange)="updateVCFormData()" ipx-autofocus="{{!!topic.isActive}}" [extend-query]="extendValidCombinationPickList" [external-scope]="validCombinationDescriptionsMap"></ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.basis' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="basisOperator" [(ngModel)]="formData.basis.operator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6" *ngIf="formData.basis.operator!==searchOperator.exists && formData.basis.operator!==searchOperator.notExists">
+                <ipx-typeahead name="basis" config="basis" [(ngModel)]="formData.basis.value" (onChange)="updateVCFormData()" [extend-query]="extendValidCombinationPickList" [external-scope]="validCombinationDescriptionsMap" ipx-autofocus="{{!!topic.isActive}}"></ipx-typeahead>
+            </div>
+        </div>
+        <hr>
+        <h4 translate="taskPlanner.searchBuilder.cases.names"></h4>
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.instructor' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="instructorOperator" (onChange)="changeOperator('instructor')" [(ngModel)]="formData.instructor.operator" [operatorsGroup]="'Full'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6">
+                <ipx-text-field *ngIf="formData.instructor.operator ===searchOperator.startsWith || formData.instructor.operator === searchOperator.endsWith || formData.instructor.operator === searchOperator.contains" name="instructorText" [(ngModel)]="formData.instructor.value"
+                    ipx-autofocus="{{!!topic.isActive}}">
+                </ipx-text-field>
+                <ipx-typeahead *ngIf="formData.instructor.operator == searchOperator.equalTo || formData.instructor.operator == searchOperator.notEqualTo" name="instructorNames" multiselect multipick [(ngModel)]="formData.instructor.value" [extend-query]="instructorPickListExternalScope.extendQuery"
+                    [external-scope]="instructorPickListExternalScope" ipx-autofocus="{{!!topic.isActive}}" config="nameFiltered">
+                </ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.owner' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="ownerOperator" (onChange)="changeOperator('owner')" [(ngModel)]="formData.owner.operator" [operatorsGroup]="'Full'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6">
+                <ipx-text-field *ngIf="formData.owner.operator ===searchOperator.startsWith || formData.owner.operator === searchOperator.endsWith || formData.owner.operator === searchOperator.contains" name="ownerText" [(ngModel)]="formData.owner.value" ipx-autofocus="{{!!topic.isActive}}">
+                </ipx-text-field>
+                <ipx-typeahead *ngIf="formData.owner.operator == searchOperator.equalTo || formData.owner.operator == searchOperator.notEqualTo" name="ownerNames" multiselect multipick [(ngModel)]="formData.owner.value" [extend-query]="ownerPickListExternalScope.extendQuery"
+                    [external-scope]="ownerPickListExternalScope" ipx-autofocus="{{!!topic.isActive}}" config="nameFiltered">
+                </ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.otherNameTypes' | translate}}</label>
+            </div>
+            <ipx-dropdown class="col-sm-2" name="otherNameTypesType" [(ngModel)]="formData.otherNameTypes.type" (onChange)="namesTypeChanged()" [options]="nameTypes" [displayField]="'value'" [keyField]="'key'" [optionalValue]="'taskPlanner.searchBuilder.cases.anyNameType'">
+            </ipx-dropdown>
+            <ipx-dropdown-operator class="col-sm-2" name="otherNameTypesOperator" (onChange)="changeOperator('otherNameTypes')" [(ngModel)]="formData.otherNameTypes.operator" [operatorsGroup]="'Full'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-4">
+                <ipx-text-field *ngIf="formData.otherNameTypes.operator ===searchOperator.startsWith || formData.otherNameTypes.operator === searchOperator.endsWith || formData.otherNameTypes.operator === searchOperator.contains" name="otherNameTypesText" [(ngModel)]="formData.otherNameTypes.value"
+                    ipx-autofocus="{{!!topic.isActive}}">
+                </ipx-text-field>
+                <ipx-typeahead *ngIf="formData.otherNameTypes.operator == searchOperator.equalTo || formData.otherNameTypes.operator == searchOperator.notEqualTo" name="otherNameTypesNames" multiselect multipick [(ngModel)]="formData.otherNameTypes.value" ipx-autofocus="{{!!topic.isActive}}"
+                    config="nameFiltered" [extend-query]="namePickListExternalScope.extendQuery" [external-scope]="namePickListExternalScope">
+                </ipx-typeahead>
+            </div>
+        </div>
+        <hr>
+        <h4 translate="taskPlanner.searchBuilder.cases.status"></h4>
+        <div class="row">
+            <div class="col-sm-10 text-right">
+                <ipx-checkbox name="chkPending" [(ngModel)]="formData.isPending" label="taskPlanner.searchBuilder.cases.pending">
+                </ipx-checkbox>
+                <ipx-checkbox name="chkRegistered" [(ngModel)]="formData.isRegistered" label="taskPlanner.searchBuilder.cases.registered">
+                </ipx-checkbox>
+                <ipx-checkbox name="chkDead" [(ngModel)]="formData.isDead" label="taskPlanner.searchBuilder.cases.dead">
+                </ipx-checkbox>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.caseStatus' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="caseStatusOperator" [(ngModel)]="formData.caseStatus.operator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6" *ngIf="formData.caseStatus.operator!==searchOperator.exists && formData.caseStatus.operator!==searchOperator.notExists">
+                <ipx-typeahead name="caseStatus" config="status" [(ngModel)]="formData.caseStatus.value" [extend-query]="extendCaseStatus" ipx-autofocus="{{!!topic.isActive}}"></ipx-typeahead>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-2 text-right">
+                <label class="marginTop">{{'taskPlanner.searchBuilder.cases.renewalStatus' | translate}}</label>
+            </div>
+            <ipx-dropdown-operator class="col-sm-2" name="renewalStatusOperator" [(ngModel)]="formData.renewalStatus.operator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+            <div class="col-sm-6" *ngIf="formData.renewalStatus.operator!==searchOperator.exists && formData.renewalStatus.operator!==searchOperator.notExists">
+                <ipx-typeahead name="renewalStatus" config="status" [(ngModel)]="formData.renewalStatus.value" [extend-query]="extendRenewalStatus" ipx-autofocus="{{!!topic.isActive}}">
+                </ipx-typeahead>
+            </div>
+        </div>
+
+    </div>
+</form>

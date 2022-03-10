@@ -1,0 +1,6 @@
+<span ng-if="item[codeField] != null && item[codeField] !== ''">
+    <span>(</span>
+    <span ng-bind-html="item[codeField] | ipTypeaheadHighlight:searchValue"></span>
+    <span>) </span>
+</span>
+<span ng-bind-html="item[textField] | ipTypeaheadHighlight:searchValue"></span>

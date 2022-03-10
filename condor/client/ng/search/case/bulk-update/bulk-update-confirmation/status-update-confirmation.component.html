@@ -1,0 +1,30 @@
+<div id="confirmation-dialog">
+    <div class="modal-header">
+        <h2 class="modal-title"> {{ 'bulkUpdate.caseStatusUpdate.confirmPasswordTitle' | translate }}</h2>
+    </div>
+    <form (ngSubmit)="submit()" name="confirmationForm" #f="ngForm" novalidate>
+        <div class="modal-body">
+            <span>&nbsp;</span>
+            <div class="row" >
+                <div class="col-md-10">
+                    {{ 'bulkUpdate.caseStatusUpdate.requiresConfirmation' | translate}}
+                </div>
+            </div>
+            <span>&nbsp;</span>
+            <div class="row">
+                <div class="col-md-10">
+                    <ipx-text-field name="statusConfirmation" [(ngModel)]="confirmationPassword" [required]="true"
+                        label="bulkUpdate.caseStatusUpdate.password" [mask]="true">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" id="btnClose" class="btn btn-cancel" (click)="close()">
+                {{ 'bulkUpdate.cancel' | translate }}</button>
+            <button type="submit" id="btnConfirm" class="btn btn-primary" [disabled]="!f.form.valid">
+                {{ 'bulkUpdate.confirm' | translate }}
+            </button>
+        </div>
+    </form>
+</div>

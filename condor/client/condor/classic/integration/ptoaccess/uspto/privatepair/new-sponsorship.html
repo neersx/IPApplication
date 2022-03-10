@@ -1,0 +1,53 @@
+<div class="modal-header">
+    <h2 class="modal-title">
+        <div ng-if="!vm.isUpdateMode" translate="dataDownload.uspto.new.title"></div>
+        <div ng-if="vm.isUpdateMode" translate="dataDownload.uspto.new.updateTitle"></div>
+    </h2>
+    <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+        <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+        <ip-close-button data-ng-click="vm.dismissAll()"></ip-close-button>
+    </div>
+</div>
+<div class="modal-subheader" ng-if="vm.isUpdateMode">
+    <div class="readonly-label readonly-label-navy text-ellipsis">
+        <label translate="dataDownload.uspto.new.serviceInformation"></label>
+        <span ip-copy-text>{{::vm.serviceInfo}}</span>
+    </div>
+</div>
+
+<div class="modal-body" ng-form="vm.form" ip-form>
+    <div class="row" ng-if="!vm.isUpdateMode">
+        <div class="col-sm-12">
+            <ip-inline-alert type="info" text="dataDownload.uspto.new.description.title"></ip-inline-alert>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <h2 translate="dataDownload.uspto.new.subTitle"></h2>
+                    <span style="margin-left: 8px;">
+                        <ip-inline-dialog placement="auto left" data-template="condor/classic/integration/ptoaccess/uspto/privatepair/new-sponsorship-popover.html"></ip-inline-dialog>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="row input-wrap">
+            <ip-text-field name="SponsoredEmail" ng-disabled="vm.isUpdateMode" ip-email ip-required label="dataDownload.uspto.new.sponsoredEmail" ng-model="vm.sponsorship.email" ng-class="{'edited': vm.form.SponsoredEmail.$dirty, 'error': !vm.form.SponsoredEmail.$valid}"></ip-text-field>
+        </div>
+        <div class="row input-wrap">
+            <ip-text-field name="password" mask="true" ip-required label="dataDownload.uspto.new.password" ng-model="vm.sponsorship.password" ng-class="{'edited': vm.form.password.$dirty,'error': !vm.form.password.$valid}"></ip-text-field>
+        </div>
+        <div class="row input-wrap">
+            <ip-text-field name="authenticatorKey" mask="true" ip-required label="dataDownload.uspto.new.authenticatorKey" ng-model="vm.sponsorship.authenticatorKey" ng-class="{'edited': vm.form.authenticatorKey.$dirty, 'error': !vm.form.authenticatorKey.$valid}"></ip-text-field>
+        </div>
+        <div class="row input-wrap">
+            <ip-text-field name="name" ip-required ng-disabled="vm.isUpdateMode" label="dataDownload.uspto.new.sponsorName" ng-model="vm.sponsorship.name" ng-class="{'edited': vm.form.name.$dirty, 'error': !vm.form.name.$valid}"></ip-text-field>
+        </div>
+        <div class="row input-wrap">
+            <ip-text-field name="customerNumbers" ip-required ip-customer-number customer-numbers="{{vm.customerNumbers}}" label="dataDownload.uspto.new.customerNumbers" multiline="true" rows="4" ng-model="vm.sponsorship.customerNumbers" ng-class="{'edited': vm.form.customerNumbers.$dirty, 'error': !vm.form.customerNumbers.$valid}"></ip-text-field>
+        </div>
+    </div>
+</div>

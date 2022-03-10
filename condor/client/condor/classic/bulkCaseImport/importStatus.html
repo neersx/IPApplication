@@ -1,0 +1,26 @@
+<ip-sticky-header>
+    <ip-page-title page-title="{{ 'bulkCaseImport.glbLblTitle' | translate }}">
+    </ip-page-title>
+</ip-sticky-header>
+<ip-inline-alert ng-if="!vm.isServiceBrokerEnabled" type="warning" text="serviceBrokerDisabled"></ip-inline-alert>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <h5>
+                        {{ 'bulkCaseImport.isLblSubtitle' | translate }}
+                        <div class="pull-right">
+                            <button id="importCases" class="btn btn-prominent" ui-sref="classicBulkCaseImport">
+                                <span translate="{{'bulkCaseImport.bciLblTitle' | translate}}"></span>
+                            </button>
+                        </div>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin: 0px;">
+        <ip-kendo-grid data-id="importStatus" mode="search" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+    </div>
+</div>

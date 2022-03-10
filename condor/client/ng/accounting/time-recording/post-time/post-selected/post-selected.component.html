@@ -1,0 +1,13 @@
+<div class="col-sm-12">
+    <ipx-kendo-grid class="auto-fit-pager" #ipxTimePostingGridRef id="timePostingGrid" [dataOptions]="gridOptions" (rowSelectionChanged)="onRowSelectionChanged()">
+        <ng-template ipxTemplateColumnField="date" let-dataItem>
+            <span class="text-nowrap">{{ dataItem.date | localeDate }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="totalTimeInSeconds" let-dataItem>
+            <span class="text-nowrap text-center">{{ dataItem.totalTimeInSeconds | durationFormat: displaySeconds}}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="totalChargableTimeInSeconds" let-dataItem>
+            <span class="text-nowrap">{{ dataItem.totalChargableTimeInSeconds | durationFormat: displaySeconds}}</span>
+        </ng-template>
+    </ipx-kendo-grid>
+</div>

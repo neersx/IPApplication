@@ -1,0 +1,17 @@
+<div id="priorart-not-found-result">
+    <div class="table-title">
+        <h4 translate="priorart.notFound.gridHeading">
+            <ipx-inline-dialog [content]="'priorart.notFound.searchInfo'| translate" [tooltipPlacement]="'auto'"></ipx-inline-dialog>
+        </h4>
+    </div>
+    <div>
+        <ipx-kendo-grid #ipxKendoGridRef id="priorartNotFoundSet" [dataOptions]="gridOptions" *ngIf="gridOptions" (pageChanged)="pageChanged($event)">
+        </ipx-kendo-grid> 
+    </div>
+    
+    <ng-template #dataDetailTemplate let-dataItem>
+        <section>
+            <ipx-priorart-detail #dataDetailComponent [details]="dataItem" [translationsList]="translationsList" (onSave)="onSaveData($event)"></ipx-priorart-detail>
+        </section>
+    </ng-template>
+</div>

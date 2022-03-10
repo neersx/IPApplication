@@ -1,0 +1,91 @@
+<style>
+    .info-row {
+        margin-bottom: 10px;
+    }
+    
+    .details {
+        margin-top: 10px;
+    }
+</style>
+<div id="SchemaMappingAddSchema" ng-form="vm.form" ip-form translate-namespace="schemaMapping">
+    <div class="modal-header">
+        <h2 class="modal-title" translate=".usBtnAddSchemaPackage"></h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+            <ip-save-button ng-click="vm.save()" id="Save" ng-disabled="!(vm.form.$dirty && vm.form.$valid)"></ip-save-button>
+            <ip-close-button ng-click="vm.dismissAll()" id="dismissAll"></ip-close-button>
+        </div>
+        <div class="row">
+            <ip-inline-alert ng-if="!vm.details.spackage.isValid" type="danger">
+                <span translate=".spInvalidPackage"></span>
+                <span ng-if="vm.details.error" translate="{{'.' + vm.details.error}}"></span>
+                <span ng-if="!vm.details.error" translate=".spErrorUnspecified"></span>
+            </ip-inline-alert>
+            <ip-inline-alert ng-if="vm.details.spackage.isValid" type="success" text=".spValidPackage">
+            </ip-inline-alert>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-5 details">
+                    <ip-text-field name="packageName" ip-required label="schemaMapping.usLblSchema" ng-model="vm.details.spackage.name" ng-class="{'edited': vm.form.packageName.$dirty}" data-ng-maxlength="50" ip-autofocus ng-change="vm.nameError = null" ip-field-error="{{vm.nameError | translate}}">
+                    </ip-text-field>
+                </div>
+                <div class="col-sm-7">
+                    <form name="selectFile" class="form-horizontal fullWidth relative" role="form">
+                        <div data-in-drag-and-drop="onSelectFile" class="text-center dropzone alert-info">
+                            <div data-ng-if="status === 'uploading'" style="margin-left:10px; top:15%" class="relative">
+                                <p class="pull-left">{{ '.usLblUploading' | translate: fileName }}</p>
+                                <div data-ng-if="status !== 'idle'" class="progress progress-striped active" style="width:98%">
+                                    <div class="progress-bar" role="progressbar" style="width:100%" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100">
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="top:10%" class="relative" data-ng-if="status !== 'uploading'">
+                                <div class="row">
+                                    <h3 class="min-margin" style="text-align: center" translate=".usLblDropToUpload"></h3>
+                                </div>
+                                <div class="row">
+                                    <h4 class="min-margin" translate=".usLblOr"></h4>
+                                </div>
+                                <div class="row">
+                                    <label class="btn btn-default">{{'schemaMapping.usBtnSelectFile' | translate}}
+                                    <div id="filePath" data-in-input-file data-selected="vm.onSelectFile" data-accept=".xsd,.dtd" class="hide" data-ng-disabled="status === 'uploading' " >
+                                    </div>
+                                </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr/>
+            <div class="row" style="margin-top:10px;">
+                <div class="col-sm-5">
+                    <h4 translate=".spLblMissingDependecies"></h4>
+                    <div style="margin-top:10px;">
+                        <div data-ng-if="status==='loading'">Loading</div>
+                        <span class="text-muted" data-ng-show="!vm.details.missingDependencies || vm.details.missingDependencies.length === 0" translate=".spLblMissingDependenciesMessage"></span>
+                        <ul data-ng-show="vm.details.missingDependencies && vm.details.missingDependencies.length > 0">
+                            <li data-ng-repeat="m in vm.details.missingDependencies" style="overflow-wrap:break-word;">
+                                {{m}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <div class="row">
+                        <h4 translate=".spLblSchemaFiles"></h4>
+                    </div>
+                    <div class="row">
+                        <div data-ng-if="status==='loading'">Loading</div>
+                        <div data-ng-show="status!=='loading'">
+                            <ip-kendo-grid data-id="schemas" data-grid-options="vm.fileGridOptions" data-search-hint=".spLblNoFiles" data-show-add="false">
+                            </ip-kendo-grid>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div *ngIf="enabled">
+    <hr class="two-step-verification-container" />
+    <div class="two-step-verification-container">
+        <div *ngIf="!configureAppMode" id="divSelectTwoFactorPreference">
+            <h3>{{ "twoFactorPreference.heading" | translate }}</h3>
+
+            <h4>{{ "twoFactorPreference.preferredMethod" | translate }}</h4>
+            <div>
+                <p>{{ "twoFactorPreference.twoFactorRequiredMessage" | translate }}</p>
+                <div class="two-step-verification-option">
+                    <ipx-radio-button-group [formControl]="userPref" name="userPreference" (change)="changeUserPreferenceDebounce()">
+                        <ipx-radio-button value="email">
+                            {{ "twoFactorPreference.emailName" | translate }} {{ "twoFactorPreference.configured" | translate }}<br />
+                            {{ "twoFactorPreference.emailDescription" | translate }}
+                        </ipx-radio-button>
+                        <ipx-radio-button value="app" [disabled]="appsDisabled" id="radioUserPreferenceApp">
+                            {{ "twoFactorPreference.appName" | translate }}
+                            <a (click)="removeExistingConfiguration($event)" id="lnkRemoveMobileAppTwoFactor" *ngIf="!appsDisabled; else configureLink">{{ "twoFactorPreference.removeText" | translate }}</a>
+                            <ng-template #configureLink>
+                                <a (click)="startConfiguringApp($event)" id="lnkConfigureMobileAppTwoFactor">{{ "twoFactorPreference.configureText" | translate }}</a>
+                            </ng-template><br />
+                            {{ "twoFactorPreference.appDescription" | translate }}
+                        </ipx-radio-button>
+                    </ipx-radio-button-group>
+                </div>
+            </div>
+        </div>
+        <two-factor-app-configuration *ngIf="configureAppMode" (onclose)="stopConfiguringApp()" (onsuccess)="stopConfiguringApp(); loadPreferences()"></two-factor-app-configuration>
+    </div>
+    <hr class="two-step-verification-container" />
+</div>

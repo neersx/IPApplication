@@ -1,0 +1,12 @@
+<div class="input-wrap-group group-inline" ng-form="vm.form" ip-form
+	ng-class="{edited: vm.form.$dirty, 'input-inherited': vm.formData.datesLogicComparisonType===vm.parentData.datesLogicComparisonType}">
+    <ip-radio-button label=".dateComparison.any" value="Any" ng-model="vm.formData.datesLogicComparisonType" ng-disabled="vm.comparisonOptionsDisabled()"></ip-radio-button>
+    <ip-radio-button label=".dateComparison.all" value="All" ng-model="vm.formData.datesLogicComparisonType" ng-disabled="vm.comparisonOptionsDisabled()"></ip-radio-button>
+	<ip-add-button class="pull-right" ng-click="vm.onAddClick()" ng-if="vm.canEdit"></ip-add-button>
+</div>
+<div class="row">
+    <ip-kendo-grid data-id="dateComparisonResults" data-grid-options="vm.gridOptions"
+                    data-show-add="vm.canEdit"
+                    data-on-add-click="vm.onAddClick()"
+                    data-add-item-name="{{'workflows.eventcontrol.dateComparison.title' | translate}}"></ip-kendo-grid>
+</div>

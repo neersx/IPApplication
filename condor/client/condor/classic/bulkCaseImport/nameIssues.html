@@ -1,0 +1,291 @@
+<style>
+    .no-margin {
+        margin-bottom: 0px;
+    }
+
+    .workpane {
+        min-height: 120px;
+        height: calc(45vh - 60px);
+        max-height: calc(45vh - 60px);
+        overflow: hidden;
+        margin-bottom: 5px;
+    }
+
+    .workpane-details {
+        min-height: 80px;
+        height: calc(54vh - 80px);
+        max-height: calc(54vh - 80px);
+    }
+
+    .nr-row-selected {
+        background-color: #CACAF4;
+    }
+
+    .widget {
+        height: calc(99vh - 126px);
+        min-height: 150px;
+    }
+
+    .list {
+         height: calc(98vh - 180px);
+         overflow-y: auto;
+    }
+</style>
+<ip-sticky-header>
+    <ip-page-title page-title="{{ 'bulkCaseImport.glbLblTitle' | translate }}"
+        page-subtitle="{{ 'bulkCaseImport.niLblTitle' | translate }}">
+        <before-title>
+            <ip-level-up-button data-to-state="classicBulkCaseImportStatus"></ip-level-up-button>
+        </before-title>
+    </ip-page-title>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <h5 data-ng-if="hasNameIssues()" class="bigger lighter bci-instructions">
+                        <i class="fa fa-info"></i>&nbsp;
+                        <span id="batchIdentifier">{{'bulkCaseImport.niLblSubTitle' | translate}} -
+                            <b>'{{viewData.batchIdentifier}}'</b>. </span>
+                        <a id="niTransactionLink"
+                            href="#/bulkcaseimport/batchSummary/{{viewData.batchId}}/nameIssuesCases"
+                            target="_blank">{{ 'bulkCaseImport.gLblViewAffectedTransactionsInNewTab' | translate: {issueCount: viewData.namingIssueCaseCount} }}</a>
+                    </h5>
+                    <h5 data-ng-if="!hasNameIssues()" class="bigger lighter bci-instructions">
+                        <i class="fa fa-info"></i>&nbsp;
+                        <span id="batchIdentifier">{{'bulkCaseImport.niLblSubTitleAllNamesMap' | translate}} -
+                            <b>'{{viewData.batchIdentifier}}'</b>. </span>
+                        <a id="niTransactionLink"
+                            href="#/bulkcaseimport/batchSummary/{{viewData.batchId}}/nameIssuesCases">{{ 'bulkCaseImport.gLblViewAffectedTransactions' | translate: {issueCount: viewData.namingIssueCaseCount} }}</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-container col-sm-12">
+        <div class="widget-box widget">
+            <div data-in-blocker="status !== 'idle'">
+                <div class="widget-main" data-ng-show="hasNameIssues()" id="nameResolutionContainer">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="panel panel-default no-margin" id="unresolvedNamesContainer">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">{{ 'bulkCaseImport.niUnresolvedNamesTitle' | translate }}
+                                    </h3>
+                                </div>
+                                <div class="list-group list">
+                                    <table class="table" data-in-navigate-by-keyboard
+                                        data-prevent-hotkey-in-input="true" data-selected-selector=".nr-row-selected"
+                                        data-key-modifier="alt"
+                                        data-item-literal="{{ 'bulkCaseImport.niUnresolvedNameItemLiteral' | translate }}" >
+                                        <tr data-ng-repeat="n in viewData.nameIssues"
+                                            data-ng-click="onUnresolvedNameSelected(n)" class="nr-selectable nr-row"
+                                            data-ng-class="{ 'nr-row-selected': n === selectedUnresolved }" style="overflow: hidden;">
+                                            <td class="nr-selectable cell">
+                                                <span class="nr-row-selectable">{{n.formattedName}}</span>
+                                                <p class="text-muted" style="font-size: smaller">
+                                                    <span class="text-right">{{n.nameType}}</span>
+                                                    <span data-ng-if="n.nameCode"
+                                                        class="text-right">{{n.nameCode}}</span>
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-8">
+                            <div id="workPaneContainer" class="workpane">
+                                <div class="panel panel-default no-margin" data-ng-controller="addCandidateController"
+                                    style="height: 100%">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title" style="display:inline">
+                                            {{ 'bulkCaseImport.niCandidatesTableTitle' | translate }}</h3>
+                                        <ip-typeahead name="namePicklist"
+                                            class="col-sm-6 no-padding pull-right position-relative" data-label=""
+                                            data-config="name" ng-model="nameSelected"></ip-typeahead>
+                                        <span class="clearfix"></span>
+                                    </div>
+                                    <div style="overflow:auto; width:100%; height: 70%">
+                                        <table class="table table-striped table-condensed"
+                                            data-prevent-hotkey-in-input="true" data-in-navigate-by-keyboard
+                                            data-selected-selector=".nr-row-selected"
+                                            data-item-literal="{{ 'bulkCaseImport.niCandidateItemLiteral' | translate }}"
+                                            tabindex="3">
+                                            <thead>
+                                                <tr>
+                                                    <th>{{ 'bulkCaseImport.niNameCode' | translate }}</th>
+                                                    <th>{{ 'bulkCaseImport.niName' | translate }}</th>
+                                                    <th>{{ 'bulkCaseImport.niFirstName' | translate }}</th>
+                                                    <th>{{ 'bulkCaseImport.niSearchKey1' | translate }}</th>
+                                                    <th>{{ 'bulkCaseImport.niRemarks' | translate }}</th>
+                                                    <th>{{ 'bulkCaseImport.niAddress' | translate }}</th>
+                                                </tr>
+                                            </thead>
+                                            <tr>
+                                                <td colspan="6"
+                                                    data-ng-if="selectedUnresolved.mapCandidates.length === 0">
+                                                    <span class="text-muted"
+                                                        style="font-size:smaller">{{ 'bulkCaseImport.niNoMatches' | translate }}</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6" data-ng-if="!selectedUnresolved.mapCandidates">
+                                                    <span class="text-muted" style="font-size:smaller">
+                                                        <em>{{ 'bulkCaseImport.niLoadingPotentialMatches' | translate }}</em>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr data-ng-repeat="m in selectedUnresolved.mapCandidates"
+                                                data-ng-click="onCandidateSelected(m)" class="nr-selectable"
+                                                data-ng-class="{ 'nr-row-selected': m === selectedCandidate }"
+                                                data-scroll-into-view="m === selectedCandidate && selectedAutomatically">
+                                                <td class="cell">{{m.nameCode}}</td>
+                                                <td class="cell">{{m.name}}</td>
+                                                <td class="cell">{{m.firstName}}</td>
+                                                <td class="cell">{{m.searchKey1}}</td>
+                                                <td class="cell">{{m.remarks}}</td>
+                                                <td class="cell">{{m.formattedAddress}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="workpane-details">
+                                <div class="panel panel-default no-margin" style="overflow-y: auto; height:99%">
+                                    <table class="table table-striped table-condensed" style="width: 100%; ">
+                                        <colgroup>
+                                            <col style="width: 180px">
+                                            </col>
+                                            <col style="width: 40%">
+                                            </col>
+                                            <col style="width: 40%">
+                                            </col>
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>{{ 'bulkCaseImport.niEdeNameTitle' | translate }} -
+                                                    {{ selectedUnresolved.nameType }}</th>
+                                                <th>{{ 'bulkCaseImport.niExistingNameTitle' | translate }}</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td class="nr-field-name">{{ 'bulkCaseImport.niNameCode' | translate }}
+                                            </td>
+                                            <td>{{ selectedUnresolved.nameCode }}</td>
+                                            <td>
+                                                <span
+                                                    data-ng-class="{ 'text-danger': selectedCandidate && selectedUnresolved.nameCode !== selectedCandidate.nameCode && selectedCandidate.nameCode !== '' }">{{ selectedCandidate.nameCode }}</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="nr-field-name">{{ 'bulkCaseImport.niName' | translate }}</td>
+                                            <td>{{ selectedUnresolved.formattedName }}</td>
+                                            <td>
+                                                <a href="{{ '../' + selectedCandidate.detailsLink }}" target="_blank">
+                                                    <span
+                                                        data-ng-class="{'text-danger': selectedCandidate && selectedUnresolved.formattedName !== selectedCandidate.formattedName && selectedCandidate.formattedName !== '' }">
+                                                        {{ selectedCandidate.formattedName }}</span>
+                                                    <span style="padding-left:10px"
+                                                        data-ng-show="selectedCandidate.formattedName"
+                                                        class="cpa-icon cpa-icon-link"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="nr-field-name">{{ 'bulkCaseImport.niAddress' | translate }}
+                                            </td>
+                                            <td>{{ selectedUnresolved.formattedAddress }}</td>
+                                            <td>
+                                                <span
+                                                    data-ng-class="{ 'text-danger': selectedCandidate && selectedUnresolved.formattedAddress !== selectedCandidate.formattedAddress && selectedCandidate.formattedAddress !== '' }">{{ selectedCandidate.formattedAddress }}</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="nr-field-name">{{ 'bulkCaseImport.niPhone' | translate }}
+                                            </td>
+                                            <td>{{ selectedUnresolved.phone }}</td>
+                                            <td>
+                                                <span
+                                                    data-ng-class="{ 'text-danger': selectedCandidate && selectedUnresolved.phone !== selectedCandidate.phone && selectedCandidate.phone !== '' }">{{ selectedCandidate.phone }}</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="nr-field-name">{{ 'bulkCaseImport.niFax' | translate }}</td>
+                                            <td>{{ selectedUnresolved.fax }}</td>
+                                            <td>
+                                                <span
+                                                    data-ng-class="{ 'text-danger': selectedCandidate && selectedUnresolved.fax !== selectedCandidate.fax && selectedCandidate.fax !== '' }">{{ selectedCandidate.fax }}</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="nr-field-name">{{ 'bulkCaseImport.niEmail' | translate }}
+                                            </td>
+                                            <td>{{ selectedUnresolved.email }}
+                                            </td>
+                                            <td>
+                                                <span
+                                                    data-ng-class="{ 'text-danger': selectedCandidate && selectedUnresolved.email !== selectedCandidate.email && selectedCandidate.email !== '' }">{{ selectedCandidate.email }}</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td class="nr-field-name">{{ 'bulkCaseImport.niContact' | translate }}
+                                            </td>
+                                            <td>{{ selectedUnresolved.contact }}</td>
+                                            <td>
+                                                <span
+                                                    data-ng-class="{ 'text-danger': selectedCandidate && selectedUnresolved.contact !== selectedCandidate.contact && selectedCandidate.contact !== '' }">{{ selectedCandidate.contact }}</span>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="3">
+                                                <div>
+                                                    <button id="btnMap" class="btn btn-primary pull-right"
+                                                        hotkey="{'ctrl+m': mapName }"
+                                                        hotkey-description="{{ 'bulkCaseImport.niLblMapNameExplanation' | translate }}"
+                                                        style="min-width: 100px" data-ng-disabled="!selectedCandidate"
+                                                        data-ng-click="mapName()">{{ 'bulkCaseImport.niBtnMap' | translate }}</button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div data-ng-show="status == 'complete'">
+                <div class="widget-main" data-ng-controller="resubmitController">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h4 style="margin-top: 15px">{{ 'bulkCaseImport.niComplete' | translate }}</h4>
+                            <h5 style="margin-top: 10px">
+                                {{ 'bulkCaseImport.niCompleteResubmit' | translate: {key: viewData.namingIssueCaseCount} }}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row" style="margin: 40px">&nbsp;</div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <button id='btnResubmit' class="btn btn-primary" data-ng-click="resubmitBatch()"
+                                data-ng-enabled="resubmitStatus == 'idle'">{{ 'bulkCaseImport.niBtnResubmit' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

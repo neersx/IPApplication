@@ -1,0 +1,30 @@
+<div id="recentTimeEntries">
+  <div class="modal-header">
+    <h2 class="modal-title">{{'accounting.time.recording.recentTimeEntries' | translate}}</h2>
+    <div class="modal-header-controls">
+      <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+  </div>
+  <div class="modal-body" *ngIf="!!searchGridOptions">
+    <ipx-kendo-grid #searchResultsGrid id="recentEntries" name="recentEntries" [dataOptions]="searchGridOptions" (dataItemClicked)="dataItemClicked($event)" style="cursor: pointer;">
+      <ng-template ipxTemplateColumnField="start" let-dataItem>
+        <ipx-date [model]="dataItem.entryDate"></ipx-date>
+      </ng-template>
+      <ng-template ipxTemplateColumnField="caseReference" let-dataItem>
+        <span>{{ dataItem.caseReference }}</span>
+      </ng-template>
+      <ng-template ipxTemplateColumnField="name" let-dataItem>
+        <span>{{ dataItem.name }}</span>
+      </ng-template>
+      <ng-template ipxTemplateColumnField="narrativeText" let-dataItem>
+        <span style="max-width: 50em; word-wrap: break-all;">{{dataItem.narrativeText}}</span>
+      </ng-template>
+      <ng-template ipxTemplateColumnField="narrativeText" let-dataItem>
+        <span style="max-width: 50em; word-wrap: break-all;">{{dataItem.narrativeText}}</span>
+      </ng-template>
+      <ng-template ipxTemplateColumnField="notes" let-dataItem>
+        <span style="max-width: 50em; word-wrap: break-all;">{{dataItem.notes}}</span>
+      </ng-template>
+    </ipx-kendo-grid>
+  </div>
+</div>

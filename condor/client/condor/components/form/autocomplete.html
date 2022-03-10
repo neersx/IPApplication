@@ -1,0 +1,19 @@
+<div ng-if="items != null &amp;&amp; items.length" class="autocomplete">
+    <ul class="suggestion-list" ng-mousedown="onClick();" ng-mouseup="onClickOff()" >
+        <li class="suggestion-item" ng-repeat="item in items track by $index" ng-mousedown="onSelect({item:item});$event.preventDefault()" ng-class="{selected: item.$selected}">
+            <ng-include src="::itemTemplateUrl"></ng-include>
+        </li>
+    </ul>
+    <div ng-if="total > items.length" class="suggestion-view-all">
+        <span>Showing {{items.length}} of {{total}} items,</span>
+        <a href="#" ng-mousedown="onViewAll()">view more</a>
+    </div>
+</div>
+
+<div ng-if="items != null &amp;&amp; !items.length" class="autocomplete">
+    <ul class="suggestion-list">
+        <li class="suggestion-item">
+            <i>No results found</i>
+        </li>
+    </ul>
+</div>

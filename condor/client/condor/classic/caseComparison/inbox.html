@@ -1,0 +1,89 @@
+<div id="inboxPage" data-in-available-height>
+    <ip-sticky-header id="inboxHeader">
+        <div class="container-fluid">
+            <div class="row">
+                <ip-page-title page-title="{{ 'caseComparison.ipTitle' | translate }}"></ip-page-title>
+            </div>
+        </div>
+    </ip-sticky-header>
+    <div id="inboxContainer">
+        <div id="noNotificationFoundBar" class="ng-hide i-lineHeight" ng-show="status !== 'loading' && dataSources.length===0">
+            <p data-ng-show="status !== 'loading'">{{ 'caseComparison.ipNoNotificationsFound' | translate }}</p>
+            <p data-ng-show="status === 'loading'">
+                <em>
+                    <i id="inboxLoadingSpinner" class="cpa-icon cpa-icon-circle-o-notch cpa-icon-spin" style="position:fixed; "></i>
+                    <span class="text-muted marginLeft">{{ 'caseComparison.gLblLoading' | translate }}</span>
+                </em>
+            </p>
+        </div>
+
+        <div id="filterSelectionBar" class="row form-inline" ng-show="dataSources.length!==0">
+            <div class="col-sm-8">
+                <ul class="nav-pills datasource-pills nav" ng-repeat="source in dataSources">
+                    <li class="i-filter" ng-class="{'active': isSelected(source) }" ng-click="filteringChanged(source)">
+                        <a href="">{{getSourceName(source.id)}}
+                            <span class="badge warning badge-left batch-sml datasource-pills-batch"
+                                id="pill{{source.id}}">
+                                <b>{{source.count}}</b>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-sm-4 inline pull-right control-group i-lineHeight" style="text-align:right;">
+                <label class="inline control-label" style="line-height:40px;">{{'caseComparison.ipInclude' | translate }}: &nbsp; </label>
+                <div class="inline  pull-right">
+                    <div class="inline pull-right i-filterCh">
+                        <ip-checkbox name="includeErrors" ng-model="filterParams.includeErrors" label="{{'caseComparison.ipIncludeErrors' | translate}}" id="cbincludeErrors" ng-change="inclusionChanged()"></ip-checkbox>
+                    </div>
+                    <div class="inline pull-right i-filterCh">
+                        <ip-checkbox name="includeRejected" ng-model="filterParams.includeRejected" label="{{'caseComparison.ipIncludeRejected' | translate}}" id="cbincludeRejected" ng-change="inclusionChanged()"></ip-checkbox>
+                    </div>
+                    <div class="inline pull-right i-filterCh">
+                        <ip-checkbox name="includeReviewed" ng-model="filterParams.includeReviewed" label="{{'caseComparison.ipIncludeReviewed' | translate}}" id="cbincludeReviewed" ng-change="inclusionChanged()"></ip-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="widget-main no-padding notification-separator i-noMargin">
+            <div class="col-sm-3 notifications-container">
+                <div class="col-sm-12 no-padding i-searchbarBorder" id="searchBar">
+                    <div class="input-group">
+                        <input class="form-control" type="text" data-ng-model="filterParams.searchText" ng-disabled="status!=='loaded'" ng-enter="search()" id="txtSearchText" />
+                        <span class="input-group-btn i-searchBtnGrp">
+
+                            <div class="tooltip-wrap ng-scope" ng-class="{'disabled' : !filterParams.searchText }" uib-tooltip="Clear">
+                                <button type="button" class="btn btn-icon ng-scope" ng-click="cancelSearch()" ng-class="{'disabled' : !filterParams.searchText }"
+                                    tabindex="-1">
+                                    <span class="cpa-icon cpa-icon-eraser" name="eraser"></span>
+                        </button>
+                    </div>
+                    <div class="tooltip-wrap ng-scope" ng-class="{'disabled' : !filterParams.searchText }" uib-tooltip="Search" style="margin-left:3px;">
+                        <button type="button" class="btn btn-icon ng-scope" ng-click="search()" ng-class="{'disabled' : !filterParams.searchText }" tabindex="-1">
+                                    <span class="cpa-icon cpa-icon-search" name="eraser"></span>
+                                </button>
+                    </div>
+                    </span>
+                </div>
+            </div>
+            <notifications-list notifications="notifications" show-view="showView(notification)" is-loaded="isLoaded()" current-selection="detailView" load-more="loadData()" has-more="hasMore" initial-selection="initialDetailView">
+            </notifications-list>
+        </div>
+
+        <detail-view can-update-case="canUpdateCase" notification="detailView" scroll-to="detailViewTop" on-navigate-to-duplicate-view="onNavigateToDuplicateView()"></detail-view>
+
+        <div class="cc-toolbar-container">
+
+            <div ng-include=" 'condor/classic/caseComparison/case-comparison-other-toolbar.html' " class="cc-toolbar-panel-other" ng-controller="caseComparisonOtherToolbarController" class="cc-toolbar-highlight" ng-show="canUpdateCase" ng-init="initialInit(detailView)"></div>
+
+            <div ng-include=" 'condor/classic/caseComparison/case-comparison-toolbar.html' " class="cc-toolbar-panel" ng-controller="caseComparisonToolbarController" class="cc-toolbar-highlight" ng-show="canUpdateCase" ng-init="initialInit(detailView)"></div>
+
+        </div>
+
+    </div>
+
+    <div style="clear:both"></div>
+</div>
+</div>

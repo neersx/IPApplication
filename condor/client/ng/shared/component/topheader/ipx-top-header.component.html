@@ -1,0 +1,15 @@
+<div class="top-header" id="topheader" *ngIf="ctxLoaded">
+    <ipx-ie-only-url style="cursor: pointer;" *ngIf="showLink" [url]="baseUrl" [text]="" class="pull-left">
+        <span class="brand-logo"></span>
+    </ipx-ie-only-url>
+    <span *ngIf="!showLink" class="brand-logo"></span>
+    <span class="logo"></span>
+    <ipx-inline-dialog class="quickSearchHelp" [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg cpa-quick-search-icon'" [adaptivePosition]="true" container="body" tooltipPlacement="bottom" [templateRef]="tooltipTemplate"></ipx-inline-dialog>
+    <ipx-quick-search class="quickSearch">
+    </ipx-quick-search>
+    <ipx-time-recording-widget *ngIf="showTimerInfo"></ipx-time-recording-widget>
+</div>
+<ng-template #tooltipTemplate>
+    <p>{{'quickSearch.helpText.line1' | translate}}</p>
+    <p>{{'quickSearch.helpText.line2' | translate}}</p>
+</ng-template>

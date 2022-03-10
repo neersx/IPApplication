@@ -1,0 +1,67 @@
+<div [ngStyle]="{'margin-right.px': isHosted ? 12 : 0}">
+    <div *ngIf="isLoading" class="col-sm-7 k-loading-image" style="position: relative;top:100px;height: 56px;"></div>
+    <div class="row">
+        <div class="pull-right">
+            <action-buttons>
+                <div class="input-wrap switch">
+                    <input id="recordalStepStatus" name="recordalStepStatus" type="checkbox" [(ngModel)]="setStepStatus" (ngModelChange)="toggleRecordalStepStatusColumn($event)">
+                    <label for="recordalStepStatus" [translate]="'caseview.affectedCases.stepStatusToggle'"></label>
+                </div>
+            </action-buttons>
+            <button id="recordalSteps" class="btn btn-prominent" style="padding: 3px;margin-left: 5px;" (click)="openRecordalSteps()" container="body" [tooltip]="recordalStepsTooltip | translate"
+                [adaptivePosition]="true">
+                <span translate="caseview.recordal.title"></span>
+            </button>
+            <div class="filter-dropdown" style="margin-left: 5px;margin-top: 3px;">
+                <button id="affectedCasesFilter" (click)="toggleFilter()" [ngClass]="{'filter-apply': showFilter || formGroup }" class="btn btn-icon" style="margin-right: 5px;">
+                    <span class="cpa-icon k-icon k-i-filter"></span>
+                </button>
+                <div *ngIf="showFilter">
+                    <ipx-affcase-filter-menu [caseKey]="topic.params.viewData.caseKey" [filterParams]="formGroup" (onFilterSelect)="getFilterData($event)"></ipx-affcase-filter-menu>
+                </div>
+            </div>
+            <ipx-add-button *ngIf="canMaintainCase" id="btnAdd" class="pull-right" style="margin-top:3px" (onclick)="openAddAffectedCases()">
+            </ipx-add-button>
+        </div>
+    </div>
+    <div class="row" [ngClass]="{'ipx-kendo-grid-locked': anyColumnLocked==true}">
+        <ipx-kendo-grid #ipxKendoGridRef id="affectedCases" [dataOptions]="gridOptions" *ngIf="gridOptions">
+        </ipx-kendo-grid>
+        <ng-template #columnTemplate let-dataItem let-c="ctx">
+            <ng-container [ngSwitch]="c.format">
+                <ng-container *ngSwitchCase="'Boolean'">
+                    <span style="text-align: center;">
+                        <ipx-checkbox name="{{c.id}}" id="{{dataItem.rowKey + '^' + c.id}}" [(ngModel)]="dataItem[c.id]" [disabled]="!this.isHosted || disableStatus(dataItem, c.id)" apply-edited
+                            (onChange)="onChange($event, rowIndex, dataItem, c)">
+                        </ipx-checkbox>
+                    </span>
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                    <div *ngIf="c.linkType && c.linkArgs">
+                        <ipx-hosted-url *ngIf="dataItem[c.id] && dataItem[c.id].link[c.linkArgs[0]]" [showLink]="dataItem[c.id].link[c.linkArgs[0]]" [action]="c.linkType" [key]="dataItem[c.id].link[c.linkArgs[0]]"
+                            [description]="dataItem[c.id]?.value" [linkType]="c.linkType" [dataField]="dataItem[c.id]" [linkArgs]="c.linkArgs" [debtorAction]="dataItem[c.linkArgs[0]]" [format]="c.format"
+                            [isInherited]="dataItem.isInheritedAgent">
+                            <ng-container *ngIf="c.linkType === 'CaseDetails'">
+                                <a class="result-cell-link" uiSref="caseview" [uiParams]="{id: dataItem[c.id].link[c.linkArgs[0]],rowKey:dataItem.rowKey}">{{dataItem[c.id].value}}</a>
+                            </ng-container>
+                            <ng-container *ngIf="c.linkType === 'NameDetails'">
+                                <ipx-ie-only-url *ngIf="showWebLink" class="result-cell-link" style="cursor: pointer;" [url]="encodeLinkData(dataItem[c.id].link)" [text]="dataItem[c.id].value">
+                                    <!-- <span style="margin-left: 5px;" *ngIf="dataItem.isInheritedAgent" class="cpa-icon text-blue-inherited cpa-icon-inheritance" name="inheritance"></span> -->
+                                    <ipx-inline-dialog style="margin-left: 5px;" *ngIf="dataItem.isInheritedAgent" [icon]="'cpa-icon text-blue-inherited cpa-icon-inheritance'" container="body"
+                                        [tooltipPlacement]="'right'" [content]="'caseview.affectedCases.setAgent.inheritedName' | translate">
+                                    </ipx-inline-dialog>
+                                </ipx-ie-only-url>
+                                <span *ngIf="!showWebLink">{{ dataItem[c.id].value }}</span>
+                                <span style="margin-left: 5px;" *ngIf="dataItem.isInheritedAgent && !showWebLink" class="cpa-icon text-blue-inherited cpa-icon-inheritance" name="inheritance"></span>
+                            </ng-container>
+                        </ipx-hosted-url>
+                        <span *ngIf="dataItem[c.id] && !dataItem[c.id].link[c.linkArgs[0]]" style="white-space: pre-wrap;">{{ dataItem[c.id].value }}</span>
+                    </div>
+                    <span *ngIf="!c.isHyperlink">
+                        <span style="white-space: pre-wrap;">{{ dataItem[c.id] }}</span>
+                    </span>
+                </ng-container>
+            </ng-container>
+        </ng-template>
+    </div>
+</div>

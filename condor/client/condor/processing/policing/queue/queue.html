@@ -1,0 +1,32 @@
+<style>
+    .switch {
+        width: 230px;
+    }
+</style>
+<ip-sticky-header>
+    <ip-page-title page-title="policing.title" page-subtitle="policing.queue.title" page-subtitle-tranlslate-values="{queueType:'{{vm.subheading | translate}}'}">
+        <before-title>
+            <ip-level-up-button data-to-state="policingDashboard"></ip-level-up-button>
+        </before-title>
+        <action-buttons>
+            <div class="input-wrap switch pull-right">
+                <input type="checkbox" id="refreshSwitch" ng-model="vm.refreshState" ng-change="vm.autoRefreshChange()">
+                <label for="refreshSwitch" translate="{{vm.refreshState ? 'policing.queue.autoRefresh.on' : 'policing.queue.autoRefresh.off'}}"
+                    translate-values="{refreshInterval: vm.refreshInterval}">
+                </label>
+            </div>
+        </action-buttons>
+    </ip-page-title>
+
+    <div class="container-fluid">
+        <div class="row policing-title-header">
+            <ip-policing-status-summary-bar data="vm.summary"></ip-policing-status-summary-bar>
+        </div>
+
+    </div>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="table-container">
+        <ip-kendo-grid data-id="queue" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<h1 class="pull-right">
+    <button class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'Add' | translate }}" data-ng-click="vm.onClickAdd()" ng-if="vm.canEdit">
+        <span class="cpa-icon cpa-icon-plus-circle"></span>
+    </button>
+</h1>
+<div class="row">
+    <div class="col-sm-7 col-lg-6" ng-form="vm.form">
+        <ip-typeahead            
+            name="event"     
+            ng-model="vm.shared.selectedEventInDetail"
+            ip-autofocus="{{!!vm.topic.isActive}}"
+            data-label="workflows.maintenance.findEvent"
+            data-config="event"
+            data-picklist-can-maintain="true">
+        </ip-typeahead>
+    </div>
+    <!-- Intentionally remove one column to avoid Add button affecting vertical alignment -->
+    <div class="col-sm-2 col-lg-2">
+        <ip-inline-dialog class="nudge-left" data-content="{{:: 'workflows.maintenance.events.eventControlFilterInfo' | translate}}"></ip-inline-dialog>
+        <span id="event-search-match-count" class="addevent-inline-dialog" ng-show="vm.eventMatches" >
+            <span>{{vm.eventMatches.length}} </span>
+            <span ng-show="vm.eventMatches.length === 1" translate="match"></span>
+            <span ng-show="vm.eventMatches.length !== 1" translate="matches"></span>
+        </span>
+    </div>
+    <div class="col-sm-2 col-lg-3">
+        <span>
+            <button ng-if="vm.canAddEventDirectly()" ng-click="vm.addEventDirectly()" class="addevent-btn addevent-btn-link grid-message">
+                <icon name="plus-circle"></icon>
+                <em translate="workflows.maintenance.addItemToCriteria"></em>
+            </button>
+        </span>   
+    </div>
+</div>
+<div class="row">
+    <ip-kendo-grid data-id="eventResults" data-grid-options="vm.gridOptions"
+                    data-show-add="vm.canEdit"
+                    data-on-add-click="vm.onClickAdd()"
+                    data-add-item-name="{{'workflows.maintenance.events.eventControl' | translate}}"></ip-kendo-grid>
+</div>

@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <h2 class="modal-title">{{'caseview.attachments.maintenance.fileBrowser.title' | translate}}</h2>
+  <div class="modal-header-controls">
+    <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="row" *ngIf="hasSettings===false">
+    <ipx-inline-alert [type]="'warning'" [text]="'caseview.attachments.maintenance.noSettings' | translate"></ipx-inline-alert>
+  </div>
+  <div *ngIf="hasSettings" class="row" style="line-height: 24px;">
+    <strong>{{'caseview.attachments.maintenance.fileBrowser.path' | translate}}:</strong><span id="selectedFolderPath"> {{selectedFolderPath}}</span><br />
+    <strong>{{'caseview.attachments.maintenance.fileBrowser.fileName' | translate}}:</strong><span id="selectedFile"> {{selectedFile}}</span>
+  </div>
+  <div *ngIf="!treeLoading && hasSettings" class="row">
+    <div class="row m-height-100-ofv" style="min-height: 320px;">
+      <kendo-splitter id="file-browser-splitter" orientation="horizontal" class="k-splitter-resizable tree-grid-splitter">
+        <kendo-splitter-pane id="file-browser-folders" size="30%">
+          <div class="tree-pane">
+            <kendo-treeview [nodes]="data" textField="pathShortName" [kendoTreeViewSelectable]="{mode:'single'}" childrenField="folders" [hasChildren]="hasChildren" (selectionChange)="handleSelection($event)"
+                            [(selectedKeys)]="selectedKeys" [selectBy]="'lowerFullPath'" [expandBy]="'lowerFullPath'" [expandedKeys]="expandedKeys" kendoTreeViewExpandable kendoTreeViewSelectable kendoTreeViewHierarchyBinding>
+              <ng-template kendoTreeViewNodeTemplate let-node>
+                <ipx-icon [large]="false" [name]="'folder'">
+                </ipx-icon>
+                <span style="padding-left: 5px;" [tooltip]="node.pathShortName">{{node.pathShortName}}</span>
+              </ng-template>
+            </kendo-treeview>
+          </div>
+        </kendo-splitter-pane>
+        <kendo-splitter-pane id="file-browser-documents">
+          <div class="tree-detail">
+            <div class="row" style="text-align: right; padding-right: 10px;">
+              <button type="button" [disabled]="selectedFolderPath==''" class="btn btn-prominent" name="refresh" (click)="refresh()" style="margin: 5px 0 0 2px;">{{'refresh' | translate}}</button>
+              <button type="button" [disabled]="storageLocation === null || storageLocation.canUpload !== true" class="btn btn-prominent" name="upload" (click)="upload()"
+                      style="margin: 5px 0 0 2px;">{{'caseview.attachments.maintenance.fileBrowser.uploadFiles' | translate}}</button>
+            </div>
+            <div class="row">
+              <ipx-kendo-grid *ngIf="gridOptions" #ipxKendoGridRef id="files" [dataOptions]="gridOptions" (dataItemClicked)="onRowSelectionChanged($event)" (rowSelectionChanged)="onRowSelectionChanged($event)">
+              </ipx-kendo-grid>
+            </div>
+          </div>
+        </kendo-splitter-pane>
+      </kendo-splitter>
+    </div>
+  </div>
+  <div *ngIf="treeLoading && hasSettings" class="row" style="height: 100px;">
+    <div class="col-sm-12 k-loading-image" style="position: relative;"></div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-save" name="confirm" (click)="select()" [disabled]="!selectedFile">&nbsp;{{'Ok' | translate}}&nbsp;</button>
+  <button type="button" class="btn" name="cancel" (click)="cancel()">{{'Cancel' | translate}}</button>
+</div>

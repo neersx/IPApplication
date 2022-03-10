@@ -1,0 +1,328 @@
+<article class="detail-view" *ngIf="!(_nameId && nameDetailData)">
+    <header>
+        <ipx-inline-alert type="info" text="caseSearch.topics.names.selectAName">
+        </ipx-inline-alert>
+    </header>
+</article>
+<article class="detail-view data" *ngIf="_nameId && nameDetailData">
+    <header>
+        <h5>
+            <ipx-hosted-url [showLink]="showLink" [action]="'NameDetails'" [key]="nameDetailData.key" [description]="nameDetailData.displayName + ' ' + (nameDetailData.code||'')" [linkType]="'NameDetails'"
+                [dataField]="{ link: nameDetailData }" [linkArgs]="['key']">
+                <a *ngIf="showLink" id="nameReference" href="#/nameview/{{nameDetailData.key}}" target="_blank">
+                    {{nameDetailData.displayName}} <span *ngIf="nameDetailData.code">({{nameDetailData.code}})</span>
+                    <ipx-debtor-restriction-flag [debtor]="_nameId" *ngIf="nameDetailData.debtorRestrictionFlag" style="margin-left: 5px"></ipx-debtor-restriction-flag>
+
+                </a>
+                <span *ngIf="!showLink">
+                    {{nameDetailData.displayName}} <span *ngIf="nameDetailData.code">({{nameDetailData.code}})</span>
+                    <ipx-debtor-restriction-flag [debtor]="_nameId" *ngIf="nameDetailData.debtorRestrictionFlag" style="margin-left: 5px"></ipx-debtor-restriction-flag>
+                </span>
+            </ipx-hosted-url>
+        </h5>
+    </header>
+    <hr>
+    <div class="container-fluid" *ngIf="nameDetailData.isIndividual && !nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.organisation"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.organisationName}}</span><span *ngIf="nameDetailData.organisationCode"> ({{nameDetailData.organisationCode}})</span>
+                <ipx-debtor-restriction-flag [debtor]="_nameId" *ngIf="nameDetailData.debtorRestrictionFlag" style="margin-left: 5px"></ipx-debtor-restriction-flag>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.signOffName"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.signOffName}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.abbreviatedName"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.abbreviatedName}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isOrganisation || !nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.postalAddress"></span>
+            </div>
+            <div class="col-lg-8">
+                <ipx-text-area [content]="nameDetailData.postalAddress"></ipx-text-area>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isOrganisation || (nameDetailData.isIndividual && !nameDetailData.isStaff)">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.streetAddress"></span>
+            </div>
+            <div class="col-lg-8">
+                <ipx-text-area [content]="nameDetailData.streetAddress"></ipx-text-area>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.telephone"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.mainPhone}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isIndividual && !nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.informalSalutation"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.informalSalutation}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isIndividual  && !nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.formalSalutation"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.formalSalutation}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.searchKey1"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.searchKey1}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.searchKey2"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.searchKey2}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isOrganisation">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.parentEntity"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.parentEntity}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.email"></span>
+            </div>
+            <div class="col-lg-8 break-text">
+                <span class="text">{{nameDetailData.mainEmail}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.group"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.group}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span id="nationality" translate="caseSearch.topics.names.nationality"></span>
+            </div>
+            <div class="col-lg-8">
+                <span id="nationality" class="text">{{nameDetailData.nationality}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="!nameDetailData.isStaff && !nameDetailData.lead">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span id="category" translate="caseSearch.topics.names.category"></span>
+            </div>
+            <div class="col-lg-8">
+                <span id="category" class="text">{{nameDetailData.category}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isOrganisation || nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.ceasedDate"></span>
+            </div>
+            <div class="col-lg-8" [ngClass]="{'ceased-date': nameDetailData.ceasedDateInPast}">
+                <ipx-date [model]="nameDetailData.dateCeased"></ipx-date>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isOrganisation">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.companyNumber"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.companyNo}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf=" nameDetailData.isOrganisation">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.incorporated"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.incorporated}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.startDate"></span>
+            </div>
+            <div class="col-lg-8">
+                <ipx-date [model]="nameDetailData.startDate"></ipx-date>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.staffClassification"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.staffClassification}}</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" *ngIf="nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.capacityToSign"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.capacityToSign}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.profitCenter"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.profitCenter}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isIndividual && nameDetailData.lead">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.leadOwner"></span>
+            </div>
+            <div class="col-lg-8">
+                <span id="leadOwner" class="text">{{nameDetailData.lead.leadOwner}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isIndividual && nameDetailData.lead">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.leadStatus"></span>
+            </div>
+            <div class="col-lg-8">
+                <span id="leadStatus" class="text">{{nameDetailData.lead.leadStatus}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isIndividual && nameDetailData.lead">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.leadSource"></span>
+            </div>
+            <div class="col-lg-8">
+                <span id="leadSource" class="text">{{nameDetailData.lead.leadSource}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isIndividual && nameDetailData.lead">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.estRevenue"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{nameDetailData.lead.estRevenue}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.isIndividual && nameDetailData.lead">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.comments"></span>
+            </div>
+            <div id="comments" class="col-lg-8">
+                <span class="text">{{nameDetailData.lead.comments}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span id="remarks" translate="caseSearch.topics.names.remarks"></span>
+            </div>
+            <div class="col-lg-8">
+                <span id="remarks" class="text">{{nameDetailData.remarks}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="!nameDetailData.isStaff">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.taxNo"></span>
+            </div>
+            <div class="col-lg-8">
+                <span id="taxNo" class="text">{{nameDetailData.taxNo}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="nameDetailData.filesIn">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span translate="caseSearch.topics.names.filesIn"></span>
+            </div>
+            <div class="col-lg-8">
+                <span id="taxNo" class="text">{{nameDetailData.filesIn}}</span>
+            </div>
+        </div>
+    </div>
+    <br>
+</article>

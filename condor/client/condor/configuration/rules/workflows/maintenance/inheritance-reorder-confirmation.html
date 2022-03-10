@@ -1,0 +1,28 @@
+<div id="inheritanceReorderConfirmationModal" translate-namespace="workflows.maintenance.reOrderConfirmation">
+    <div class="modal-header">
+        <h2 class="modal-title" id="modalPendingLabel" translate=".title"></h2>
+    </div>
+    <div class="modal-body">
+        <p translate=".message"></p>
+        <p translate=".detail"></p>
+        <div class="row" ng-repeat="item in vm.items">
+            <div class="col-sm-2 col-sm-offset-1">
+                <a href="#/configuration/rules/workflows/{{item.id}}" target="_blank">{{item.id}}</a>
+            </div>
+            <div class="col-sm-9">
+                <a href="#/configuration/rules/workflows/{{item.id}}" target="_blank">{{item.description}}</a>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-wrap-group group-inline pull-right">
+                    <button type="button" class="btn" data-ng-click="vm.cancel()" translate="button.cancel"></button>
+                    <button type="button" class="btn btn-primary" data-ng-click="vm.proceed()" translate="button.proceed"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

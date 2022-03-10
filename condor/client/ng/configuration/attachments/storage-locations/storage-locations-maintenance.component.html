@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{ title | translate}}</h2>
+    <div class="modal-header-controls">
+        <ipx-apply-button type="button" [disabled]="!formGroup.dirty || formGroup.status === 'INVALID'" (click)="apply($event)"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formGroup">
+        <div class="row">
+            <div class="col-sm-11">
+                <ipx-text-field name="name" formControlName="name" apply-edited label="attachmentsIntegration.storageLocations.displayName" ipx-autofocus required></ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-11">
+                <ipx-text-field name="path" formControlName="path" [loading]="validationInProgress" apply-edited label="attachmentsIntegration.storageLocations.path" required></ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-11">
+                <ipx-text-field name="allowedFileExtensions" formControlName="allowedFileExtensions" multiline="true" [rows]="4" apply-edited label="attachmentsIntegration.storageLocations.allowedFileExtensions">
+                </ipx-text-field>
+            </div>
+            <div class="col-sm-1">
+                <ipx-inline-dialog container="body" tooltipPlacement="bottom" title="{{'attachmentsIntegration.storageLocations.allowedFileExtensions'|translate}}"
+                                   [content]="'attachmentsIntegration.storageLocations.allowedFileExtensionsInfo' | translate">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-11 input-wrap"  style="line-height: 30px;">
+                <label style="width: 33%;" [translate]="'attachmentsIntegration.storageLocations.canUpload'"></label>
+                <ipx-checkbox name="canUploadModal" [label]="''" formControlName="canUpload">
+                </ipx-checkbox>
+            </div>
+        </div>
+    </form>
+</div>

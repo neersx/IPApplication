@@ -1,0 +1,13 @@
+<div class="grid-columns">
+    <button class="btn btn-icon" ng-class="{expand: isExpand,'icon-left': !iconRight,'icon-right': iconRight}" ng-click="vm.showColumns(); isExpand = !isExpand;">
+        <icon name="bars-vertical" data-tooltip-placement="top" ip-tooltip="{{::'picklistmodal.columns' | translate }}"></icon>
+    </button>
+    <div class="grid-columns-list" ng-show="isExpand" ng-class="{'columns-left': !iconRight,' columns-right': iconRight}">
+        <ul>
+            <li ng-repeat="item in vm.removableColumns" data-field="{{item.field}}">
+                <input type="checkbox" ng-model="item.isShown" ng-click="vm.toggleColumn(item)">
+                <label ng-click="vm.toggleColumn(item)">{{item.title}}</label>
+            </li>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="label20" id="task-planner">
+    <ipx-page-title>
+        <before-title>
+            <span translate="taskPlanner.pageHeader"></span>
+        </before-title>
+        <action-buttons>
+            <div class="input-wrap switch">
+                <input id="moreDetailsSwitch" name="moreDetailsSwitch" type="checkbox" [(ngModel)]="searchResult.showPreview" (ngModelChange)="setStoreOnToggle($event)">
+                <label for="moreDetailsSwitch" [translate]="'taskPlanner.moreDetails'"></label>
+            </div>
+        </action-buttons>
+    </ipx-page-title>
+    <div>
+        <ul id="tabsOrder" class="nav nav-tabs">
+            <ng-container *ngFor="let tab of tabs; index as i; trackBy: trackBy">
+                <li id="tab{{i}}" [ngClass]="{'active': activeTabSeq === tab.tabSequence}" class="">
+                    <a id="openTab{{i}}" (click)="selectTab(selectedSavedSearch[i], i, true)" class="nav-title" [ngClass]="{'with-close': selectedTab?.searchName === tab.searchName && tabs?.length > 1}">
+                        <ipx-typeahead name="savedSearch" [extended-params]="taskPlannerExtendedParam" picklistCanMaintain [picklistNewSearch]="canInsertTaskPlannerSearch"
+                            placeholder="{{'taskPlanner.customSearch' | translate}}" *ngIf="selectedTab.tabSequence === tab.tabSequence" config="taskPlannerSavedSearch" [(ngModel)]="selectedSavedSearch[i]"
+                            (onChange)="onChangeQueryKey($event, tab.tabSequence)"></ipx-typeahead>
+
+                        <div class="input-wrap" *ngIf="selectedTab.tabSequence !== tab.tabSequence">
+                            <div class="tab-label">
+                                {{selectedSavedSearch[i] && selectedSavedSearch[i].searchName ? selectedSavedSearch[i].searchName : ('taskPlanner.customSearch' | translate)}}
+                            </div>
+                        </div>
+                        <span class="divider">&nbsp;</span>
+                    </a>
+                </li>
+            </ng-container>
+        </ul>
+        <div class="tab-content">
+            <div class="content-block active">
+                <ipx-task-planner-search-result #searchResult (navigateToEvent)="isRedirected($event)"></ipx-task-planner-search-result>
+            </div>
+        </div>
+    </div>
+</div>

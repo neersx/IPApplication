@@ -1,0 +1,12 @@
+<div class="input-wrap" ng-class="{error: vm.ngModel.$invalid, warning: vm.ngModel.$valid && vm.warningText()}" ng-click="vm.ngModel.$setTouched()">
+    <label ng-if="::vm.label" translate="{{vm.label}}" for="textfield{{::vm.id}}"></label>
+    
+    <input type="{{ vm.mask ? 'password' : 'text'}}" ng-blur="vm.ngBlur()" ng-model="vm.model" ng-disabled="vm.disabled" ng-change="vm.change()" ng-trim="{{vm.trim}}" id="textfield{{::vm.id}}" placeholder="{{:: vm.placeholder ? (vm.placeholder | translate) : '' }}" />
+    
+    <span class="input-action tooltip-error">
+        <span class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{vm.getError() | translate:{ length: vm.maxLength, errorParam: vm.errorParam } }}" tooltip-class="tooltip-error"></span>
+    </span>
+    <span class="input-action tooltip-warning">
+        <span class="cpa-icon cpa-icon-exclamation-circle" uib-tooltip="{{vm.warningText() | translate }}" tooltip-class="tooltip-warning"></span>
+    </span>
+</div>

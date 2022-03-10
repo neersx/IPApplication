@@ -1,0 +1,4 @@
+<span ng-if="vm.isOverdue && !vm.isToday" class="text text-red-dark tooltip-error ip-hover-help" ip-tooltip="{{::'cases.eventOverdue' | translate }}">{{vm.date | localeDate}}</span>
+<span ng-if="vm.isOverdue && vm.isToday" class="text text-black-bold ip-hover-help" ip-tooltip="{{::'cases.dueToday' | translate }}">{{vm.date | localeDate}}</span>
+<span ng-if="!vm.isOverdue && !vm.showToolTip" class="text">{{vm.date | localeDate}}</span>
+<span ng-if="!vm.isOverdue && vm.showToolTip" ip-tooltip="{{::'cases.dueDate' | translate }}" class="text ip-hover-help text-blue-inherited">{{vm.date | localeDate}}</span>

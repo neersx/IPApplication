@@ -1,0 +1,85 @@
+<form [formGroup]="form">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <ipx-text-field name="name" class="input-textfield-margin" apply-edited ipx-autofocus required label="dataItem.maintenance.name" autocomplete="off" formControlName="code">
+                </ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ipx-text-field multiline rows="4" name="description" class="input-textfield-margin" apply-edited required label="dataItem.maintenance.description" autocomplete="off" formControlName="value">
+                </ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8" style="margin-left: -5.5%">
+                <ipx-typeahead id="dataitemgrouppicklist" multiselect multipick label="dataItem.maintenance.group" config="dataItemGroup" formControlName="itemGroups" [is-addanother]="true"></ipx-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8" style="margin-left: -5.5%">
+                <ipx-typeahead label="dataItem.maintenance.entryPoint" config="entryPoint" formControlName="entryPointUsage"></ipx-typeahead>
+            </div>
+            <div class="col-sm-1">
+                <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" container="body" [tooltipPlacement]="'right'" [content]="'dataItem.maintenance.entryPointHelp'|translate">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group group-inline" style="margin-left: 16%">
+                <label class="radio-inline">
+                    <input type="radio" id="rdbSqlStatement"
+                        [ngClass]="{'edited':(form.controls.isSqlStatement.touched)}" [value]=true
+                        formControlName="isSqlStatement" (change)="resetSql($event)">
+                    {{'dataItem.maintenance.sqlStatement'| translate}}
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" id="rdbSqlProcedure" style="margin-left: 26%"
+                        [ngClass]="{'edited':(form.controls.isSqlStatement.touched)}" [value]=false
+                        formControlName="isSqlStatement" (change)="resetSql($event)">
+                    <span style="margin-left: 66px; "> {{'dataItem.maintenance.storedProcedure'| translate}}</span>
+                </label>
+            </div>
+        </div>
+        <div class="row" style="margin-top: 5px;">
+            <div class="col-sm-7">
+                <ipx-checkbox class="input-checkbox-margin-left" label="dataItem.maintenance.returnsImage" name="returnsimage" formControlName="returnsImage" apply-edited (ngModelChange)="resetSqlError()">
+                </ipx-checkbox>
+            </div>
+            <div class="col-sm-5" *ngIf="!form.controls.isSqlStatement.value">
+                <ipx-checkbox style="margin-left: -35.2%" label="dataItem.maintenance.useSourceFile" name="useSourceFile" formControlName="useSourceFile" apply-edited>
+                </ipx-checkbox>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="form.controls.isSqlStatement.value">
+            <div class="col-sm-12">
+                <ipx-text-field sqlHighlighter name="statement" style="margin-left: -25.5%" required label="dataItem.maintenance.statement" autocomplete="off" formControlName="statement">
+                </ipx-text-field>
+            </div>
+        </div>
+        <div class="row" *ngIf="!form.controls.isSqlStatement.value">
+            <div class="col-sm-11">
+                <ipx-text-field name="procedurename" apply-edited style="margin-left: -23.5%" required label="dataItem.maintenance.procedureName" autocomplete="off" formControlName="procedurename">
+                </ipx-text-field>
+            </div>
+            <div class="col-sm-1">
+                <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" container="body" [tooltipPlacement]="'right'" [content]="'dataItem.maintenance.storedProcedureHelp'|translate">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+
+        <div class="row" style="margin-top: -.6%; margin-bottom: 1.75%">
+            <button (click)="validate()" [disabled]="isDisabled()" id="validate" class="btn btn-prominent clear" style="margin-left: 17.5%">
+                <span translate="dataItem.maintenance.validate"></span>
+            </button>
+        </div>
+        <div class="row">
+            <div class="input-wrap large" style="margin-left: -1%">
+                <ipx-text-field multiline name="notes" rows="4" apply-edited label="dataItem.maintenance.notes" autocomplete="off" formControlName="notes">
+                </ipx-text-field>
+            </div>
+        </div>
+    </div>
+</form>

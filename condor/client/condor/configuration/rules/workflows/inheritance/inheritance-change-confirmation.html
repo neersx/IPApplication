@@ -1,0 +1,19 @@
+<div translate-namespace="workflows.inheritance.inheritanceChangeConfirmation">
+    <div class="modal-header">
+        <h2 class="modal-title" translate=".title"></h2>
+    </div>
+    <div class="modal-body">
+        <p translate="workflows.inheritance.inheritanceChangeConfirmation.message" translate-values="{id: vm.childCriteriaId, name: vm.childName, parentId: vm.parentCriteriaId, parentName: vm.parentName}"></p>
+        <ip-checkbox label=".checkboxLabel" ng-model="vm.isReplaceChild" info="workflows.inheritance.inheritanceChangeConfirmation.blurb"></ip-checkbox>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-wrap-group group-inline pull-right">
+                    <button type="button" class="btn" data-ng-click="vm.cancel()" translate="button.cancel"></button>
+                    <button type="button" class="btn btn-primary" data-ng-click="vm.proceed()" translate="button.proceed"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

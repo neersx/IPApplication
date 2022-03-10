@@ -1,0 +1,14 @@
+<div class="text-right" ng-if="vm.canEdit">
+    <ip-add-button ng-click="vm.onAddClick()" ng-disabled="vm.topic.hasError()"></ip-add-button>
+</div>
+
+<div class="row inline-editing" ng-form="vm.form" ip-form>
+    <ip-kendo-grid 
+        data-id="eventsToUpdateGrid" 
+        data-grid-options="vm.gridOptions"
+        data-show-add="vm.canEdit"
+        data-on-add-click="vm.onAddClick()"
+        data-add-disabled="vm.topic.hasError()"
+        data-add-item-name="{{'workflows.eventcontrol.eventsToUpdate.eventToUpdate' | translate}}">
+    </ip-kendo-grid>
+</div>

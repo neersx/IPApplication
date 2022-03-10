@@ -1,0 +1,72 @@
+<ipx-sticky-header>
+    <ipx-page-title-save [title]="'taskPlannerConfig.title' | translate" (onSave)="onSave()" (onDiscard)="discard()" [isSaveEnabled]="isGridDirty() && isGridValid()" [isDiscardEnabled]="isGridDirty()">
+    </ipx-page-title-save>
+</ipx-sticky-header>
+
+<div ipx-resize-handler [resize-handler-type]="'Panel'" style="margin-top: 40px;">
+    <div class="table-container col-sm-12">
+        <div>
+            <h2 translate="taskPlannerConfig.header"></h2>
+            <span translate="taskPlannerConfig.informationText"> </span>
+            <br><br>
+            <span translate="taskPlannerConfig.informationText2"> </span>
+            <i><span translate="taskPlannerConfig.informationText3"> </span></i>
+            <span translate="taskPlannerConfig.informationText4"> </span>
+            <br>
+        </div>
+        <div class="row" style="margin: 0px;">
+            <ipx-kendo-grid #ipxKendoGridRef id="taskPlannerConfigGrid" (rowAdded)="getRowIndex($event)" (editRowEvent)="getEditedRowIndex($event)" [dataOptions]="gridOptions" *ngIf="gridOptions"
+                class="taskplanner-config-grid">
+
+                <ng-template ipxTemplateColumnField="profile" let-dataItem let-formGroup="formGroup">
+                    <span>{{dataItem?.profile?.name}}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="tab1" let-dataItem let-formGroup="formGroup">
+                    <span>{{dataItem?.tab1?.searchName}}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="tab1Locked" let-dataItem let-formGroup="formGroup">
+                    <ipx-checkbox [ngModel]="dataItem?.tab1Locked" disabled></ipx-checkbox>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="tab2" let-dataItem let-formGroup="formGroup">
+                    <span>{{dataItem?.tab2?.searchName}}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="tab2Locked" let-dataItem let-formGroup="formGroup">
+                    <ipx-checkbox [ngModel]="dataItem?.tab2Locked" disabled></ipx-checkbox>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="tab3" let-dataItem let-formGroup="formGroup">
+                    <span>{{dataItem?.tab3?.searchName}}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="tab3Locked" let-dataItem let-formGroup="formGroup">
+                    <ipx-checkbox [ngModel]="dataItem?.tab3Locked" disabled></ipx-checkbox>
+                </ng-template>
+
+                <ng-template ipxEditTemplateColumnField="profile" let-dataItem="dataItem" let-formGroup="formGroup">
+                    <ipx-typeahead name="profile" config="profile" [show-tags-errors]="true" apply-edited [formControl]="formGroup.controls.profile">
+                    </ipx-typeahead>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="tab1" let-dataItem="dataItem" let-formGroup="formGroup">
+                    <ipx-typeahead name="tab1" config="taskPlannerSavedSearch" [extend-query]="getExtendQuery" apply-edited required [formControl]="formGroup.controls.tab1">
+                    </ipx-typeahead>
+                </ng-template>
+
+                <ng-template ipxEditTemplateColumnField="tab1Locked" let-dataItem="dataItem" let-formGroup="formGroup">
+                    <ipx-checkbox [(ngModel)]="dataItem.tab1Locked" [formControl]="formGroup.controls.tab1Locked"></ipx-checkbox>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="tab2" let-dataItem="dataItem" let-formGroup="formGroup">
+                    <ipx-typeahead name="tab2" config="taskPlannerSavedSearch" [extend-query]="getExtendQuery" apply-edited required [formControl]="formGroup.controls.tab2">
+                    </ipx-typeahead>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="tab2Locked" let-dataItem="dataItem" let-formGroup="formGroup">
+                    <ipx-checkbox [(ngModel)]="dataItem.tab2Locked" [formControl]="formGroup.controls.tab2Locked"></ipx-checkbox>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="tab3" let-dataItem="dataItem" let-formGroup="formGroup">
+                    <ipx-typeahead name="tab3" config="taskPlannerSavedSearch" [extend-query]="getExtendQuery" apply-edited required [formControl]="formGroup.controls.tab3">
+                    </ipx-typeahead>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="tab3Locked" let-dataItem="dataItem" let-formGroup="formGroup">
+                    <ipx-checkbox [(ngModel)]="dataItem.tab3Locked" [formControl]="formGroup.controls.tab3Locked"></ipx-checkbox>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<style>
+    .dms-send-btn {
+        margin-bottom: 10px;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-offset-1 col-sm-11">
+
+        <form #dmsForm="ngForm">
+            <div class="row">
+                <div class="input-wrap-group group-inline col-sm-7">
+                    <span></span>
+                    <div class="input-wrap switch" [ngClass]="{edited: chkEnabled.dirty}">
+                        <input type="checkbox" id="{{'enabled_'+dataSource}}" name="enabled" [(ngModel)]="item.isEnabled" [disabled]="item.job && item.job.status === 'Started'" #chkEnabled="ngModel" />
+                        <label for="{{'enabled_'+dataSource}}" [translate]="'dmsIntegration.dmslblInUse' | translate"></label>
+                    </div>
+                </div>
+                <div class="col-sm-7 input-wrap">
+                    <ipx-text-field in-model-extension name="location" required [label]="'dmsIntegration.dmslblLocation' | translate" [(ngModel)]="item.location"
+                                    [disabled]="!item.isEnabled || (item.job && item.job.status) === 'Started'" #location="ngModel" [ngClass]="{edited: item.isEnabled && location.dirty}"></ipx-text-field>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="item.isEnabled && hasInitialLocation">
+                <div class="row col-sm-7">
+                    <button type="button" *ngIf="item.documents && (item.job && item.job.status !== 'Started')" [disabled]="dmsForm.dirty && item.job" (click)="sendAllToDms(item)"
+                            class="btn btn-default dms-send-btn pull-right">
+                        <i class="fa fa-folder fa-bigger-125"></i>
+                        <span>{{'dmsIntegration.dmsbtnSendAllToDms' | translate}}</span>
+                    </button>
+                </div>
+                <div class="row col-sm-7" *ngIf="item.job" [ngSwitch]="item.job.status">
+                    <div *ngSwitchCase="'Started'" [hidden]="!item.documents" class="alert alert-info started">
+                        <ipx-icon name="info-circle"></ipx-icon>
+                        <span [translate]="'dmsIntegration.dmslblSendingAllToDms'" [translateParams]="{ documents: item.documents }"></span>
+                    </div>
+                    <div *ngSwitchCase="'Failed'" [hidden]="item.job.acknowledged" class="alert alert-warning">
+                        <ipx-icon name="info-circle"></ipx-icon>
+                        <span [translate]="'dmsIntegration.dmslblFailedSending'" [translateParams]="{ sentDocuments: item.job.sentDocuments,  totalDocuments: item.job.totalDocuments}"></span>
+                        <button type="button" class="close" (click)="acknowledge(item)">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div *ngSwitchCase="'Completed'" [hidden]="item.job.acknowledged" class="alert alert-success">
+                        <ipx-icon name="info-circle"></ipx-icon>
+                        <span [translate]="'dmsIntegration.dmslblSentAllToDms'" [translateParams]="{ sentDocuments: item.job.sentDocuments }"></span>
+                        <button type="button " class="close " (click)="acknowledge(item) ">
+                            <span aria-hidden="true ">&times;</span>
+                        </button>
+                    </div>
+                    <div *ngSwitchDefault [hidden]="!item.documents " class="alert alert-info idle ">
+                        <ipx-icon name="info-circle "></ipx-icon>
+                        <span [translate]="'dmsIntegration.dmslblSendAllToDms'" [translateParams]="{ documents: item.documents }"></span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

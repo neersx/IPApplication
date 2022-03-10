@@ -1,0 +1,37 @@
+<div ng-form="vm.form" ip-form translate-namespace="dataMapping.maintenance">
+    <div class="modal-header">
+        <h2 class="modal-title" ng-switch on="vm.options.entity.state">
+            <div ng-switch-when="adding" translate="{{'.add'}}" translate-values="{ structure: vm.structure }"></div>
+            <div ng-switch-default translate="{{'.edit'}}" translate-values="{ structure: vm.structure }"></div>
+        </h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+            <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismissAll()"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <ip-nav-modal ng-if="vm.isEdit" all-items="vm.options.allItems" current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges">
+        </ip-nav-modal>
+        <div class="row" class="input-wrap">
+            <div class="col-sm-11">
+                <ip-text-field multiline rows="5" name="description" ip-required label=".inputDescription" ng-model="vm.entity.description" ng-class="{'edited': vm.form.description.$dirty}" data-ng-maxlength="254" ip-field-error="{{vm.getError() | translate}}" ip-autofocus></ip-text-field>
+            </div>
+        </div>
+        <div class="row" class="input-wrap">
+            <div class="col-sm-11">
+                <ip-typeahead name="event" ng-model="vm.entity.event" data-label=".systemEvent" data-config="event" ng-disabled="vm.onChange()">
+                </ip-typeahead>
+            </div>
+        </div>
+        <div class="row" class="input-wrap">
+            <div style="margin-left:32%">
+                OR
+            </div>
+        </div>
+        <div class="row" class="input-wrap">
+            <div style="margin-left:30%">
+                <ip-checkbox name="ignore" label=".ignore" ng-checked="false" ng-change="vm.onChange()" ng-model="vm.entity.ignore" ng-disabled="false" ng-class="{'edited': vm.form.ignore.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+    </div>
+</div>

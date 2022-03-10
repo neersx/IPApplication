@@ -1,0 +1,14 @@
+<div class="modal-header" ip-confirm-before-page-change="vm.hasUnsavedChanges()" data-confirm-message="{{::'ConfirmLeaveUnsavedChanges' | translate}}">
+    <h2 class="modal-title" translate="{{:: vm.pageTitle}}"></h2>
+    <div class="modal-header-controls">
+    	<ip-checkbox ng-if=":: !vm.isEditMode" label="{{ 'modal.addAnother' | translate}}" ng-model="vm.isAddAnother"></ip-checkbox>
+
+		<ip-save-button ng-if="showSave" disabled ng-disabled="!vm.isApplyEnabled()" ng-click="vm.onApply()">
+        </ip-save-button>
+
+        <ip-apply-button ng-if="showApply" disabled ng-disabled="!vm.isApplyEnabled()" ng-click="vm.onApply()">
+        </ip-apply-button>
+
+		<ip-close-button data-ng-click="vm.doClose()"></ip-close-button>
+    </div>
+</div>

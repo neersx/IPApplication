@@ -1,0 +1,34 @@
+<div>
+    <div class="row" *ngIf="loaded">
+        <ipx-kendo-grid #caseViewEvents [id]="'caseViewEvents' + eventType" [dataOptions]="gridOptions" [items]="taskItems" (popupOpen)="displayTaskItems($event)" (menuItemSelected)="onMenuItemSelected($event)">
+            <grid-toolbar>
+                <div class="col-sm-7">
+                    <ipx-dropdown [id] ="'importanceLevel'+ eventType" [name]="'importanceLevel'+ eventType" [disabled]="isEditing" *ngIf="!permissions.requireImportanceLevel" [label]="'caseview.actions.importanceLevel'" [(ngModel)]="importanceLevel" [options]="commonViewData.importanceLevelOptions" [displayField]="'description'"
+                        [keyField]="'code'" (change)="changeImportanceLevel()">
+                    </ipx-dropdown>
+                    <ipx-dropdown [id] ="'importanceLevel'+ eventType" [name]="'importanceLevel' + eventType" [disabled]="isEditing" *ngIf="permissions.requireImportanceLevel" required [label]="'caseview.actions.importanceLevel'" [(ngModel)]="importanceLevel" [options]="commonViewData.importanceLevelOptions" [displayField]="'description'"
+                        [keyField]="'code'" (change)="changeImportanceLevel()">
+                    </ipx-dropdown>
+                </div>
+            </grid-toolbar>
+            <ng-template ipxTemplateColumnField="eventDate" let-dataItem>
+                <ipx-due-date *ngIf="eventType === this.availableEventTypes.due" [date]="dataItem.eventDate"></ipx-due-date>
+                <ipx-date *ngIf="eventType !== this.availableEventTypes.due" [model]="dataItem.eventDate"></ipx-date>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="attachmentCount" let-dataItem>
+                <ipx-attachments-popover *ngIf="dataItem.attachmentCount" (click)="openAttachmentWindow(dataItem)" [caseKey]="viewData.caseKey" [eventNo]="dataItem.eventNo" [eventCycle]="dataItem.cycle" [total]="dataItem.attachmentCount">
+                </ipx-attachments-popover>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="defaultEventText" let-dataItem>
+                <div *ngIf="dataItem.defaultEventText" class="display-wrap"><textarea name="eventText" readonly rows="3" [(ngModel)]="dataItem.defaultEventText"></textarea></div>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+    <ng-template #ipxHasNotesColumn let-dataItem>
+        <span *ngIf="dataItem.eventNotes && dataItem.eventNotes.length > 0" class="cpa-icon text-grey-highlight cpa-icon-file-o" tooltip="{{notesHoverText | translate }}"></span>
+    </ng-template>
+    <ng-template #detailTemplate let-dataItem>
+        <ipx-event-other-details [event]="dataItem"></ipx-event-other-details>
+        <ipx-event-note-details *ngIf="eventNotesLoaded && permissions.canViewNotes && dataItem.eventNotes && dataItem.eventNotes.length" [siteControlId]="siteControlId" [notes]="dataItem.eventNotes" [categories]="commonViewData.eventNoteTypes"></ipx-event-note-details>
+    </ng-template>
+</div>

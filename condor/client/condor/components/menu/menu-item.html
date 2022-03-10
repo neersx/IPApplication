@@ -1,0 +1,27 @@
+<div class="menu-item row">
+
+  
+    <div ng-if="vm.type !=='searchPanel'" ip-tooltip="{{ vm.expanded ? '' : vm.text | translate}}" data-tooltip-placement="auto top">
+        <a ng-href="{{vm.queryKey ? '' : vm.url}}" ng-click="vm.loadUrl(vm.url, vm.queryKey, $event)" id="{{vm.text}}" target="{{vm.target}}" ng-if="vm.url" class="no-color col-sm-11"  ng-mouseover="vm.menuHover(vm.queryKey)" ng-mouseout="vm.menuHoverOut(vm.queryKey)">
+            <div ng-if="!vm.queryContextKey" ng-include="'condor/components/menu/menu-item-content.html'"></div>
+            <div ng-if="vm.queryContextKey" ng-include="'condor/components/menu/saved-search-menu-item.html'"></div>
+        </a>
+        <div ng-if="vm.queryContextKey" class="col-sm-1 edit-menu">
+            <div ip-tooltip="{{'savedSearch.editSavedSearch' | translate}}" tooltip-trigger="none" tooltip-is-open="vm.editTogglePopOver" data-tooltip-placement="top">
+                <a data-ng-class="{'disabled tooltip-wrap' : !vm.IsEditable()}" ng-click="vm.editSearch(vm.queryKey, $event)">
+                    <span class="cpa-icon cpa-icon-edit"></span>
+                </a>
+            </div>
+        </div>
+        <div ng-include="'condor/components/menu/menu-item-content.html'" ng-if="!vm.url" class="virtual-btn"></div>
+    </div>
+    <div ng-if="vm.type==='searchPanel'">
+        <span ng-click="vm.showSavedSearchMenu(true, $event, true)" ip-tooltip="{{ vm.expanded ? '' : vm.text | translate}}" data-tooltip-placement="auto top">
+            <div ng-include="'condor/components/menu/menu-item-content.html'" class="virtual-btn"></div>
+        </span>
+
+        <div id="{{'search' + vm.queryContextKey}}" class="saved-search-menu" style="display: none">
+            <saved-search-panel text="{{vm.text}}" url="{{vm.url}}" load-url="vm.editSearch()" icon-name={{vm.iconName}} query-context-key={{vm.queryContextKey}} child-comp-obj="vm.childCompObj"></saved-search-panel>
+        </div>
+    </div>
+</div>

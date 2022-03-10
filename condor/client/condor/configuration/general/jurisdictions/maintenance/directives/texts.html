@@ -1,0 +1,7 @@
+<div class="text-right" ng-if="vm.topic.canUpdate">
+    <ip-add-button ng-click="vm.onAddClick()" ng-disabled="vm.topic.hasError()" class="pull-right"></ip-add-button>
+</div>
+<div class="inline-editing" ng-form="vm.form" ip-form>
+    <ip-kendo-grid data-id="textsGrid" data-grid-options="vm.gridOptions" data-show-add="vm.topic.canUpdate" data-on-add-click="vm.onAddClick()" data-add-disabled="vm.topic.hasError()" data-add-item-name="{{'jurisdictions.maintenance.texts.text' | translate}}">
+    </ip-kendo-grid>
+</div>

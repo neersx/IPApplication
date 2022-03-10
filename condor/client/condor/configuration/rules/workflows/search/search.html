@@ -1,0 +1,68 @@
+<ip-master-detail-view data-state="workflows">
+    <ip-sticky-header>
+        <ip-page-title page-title="workflows.title"></ip-page-title>
+        <ip-search-options-header></ip-search-options-header>
+    </ip-sticky-header>    
+    <div ip-resize-handler resize-handler-type="Panel">
+        <ip-search-options on-clear="vm.reset()" is-search-disabled="vm.isSearchDisabled()" on-search="vm.search()" on-validate="vm.validate()">
+            <div class="row" ng-init="vm.initializeShortcuts()">
+                <div class="col-sm-12">
+                    <div class="input-wrap-group group-inline">
+                        <span style="width: 16.6667%" translate="workflows.search.searchBy"></span>
+                        <div class="input-wrap">
+                            <input type="radio" id="search-by-characteristics" ng-model="vm.searchBy" value="characteristics" ng-change="vm.optionChange()" />
+                            <label for="search-by-characteristics">
+                                <span translate="workflows.search.characteristics"></span>
+                            </label>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="radio" id="search-by-criteria" ng-model="vm.searchBy" value="criteria" ng-change="vm.optionChange()" />
+                            <label for="search-by-criteria">
+                                <span translate="workflows.search.criteria"></span>
+                            </label>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="radio" id="search-by-case" ng-model="vm.searchBy" value="case" ng-change="vm.optionChange()" />
+                            <label for="search-by-case">
+                                <span translate="workflows.search.case"></span>
+                            </label>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="radio" id="search-by-event" ng-model="vm.searchBy" value="event" ng-change="vm.optionChange()" />
+                            <label for="search-by-event">
+                                <span translate="workflows.search.event"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+    
+            <div ng-if="vm.mounted.characteristics" ng-show="vm.searchBy === 'characteristics'">
+                <ip-search-by-characteristics></ip-search-by-characteristics>
+            </div>
+    
+            <div ng-if="vm.mounted.criteria" ng-show="vm.searchBy === 'criteria'">
+                <ip-search-by-criteria></ip-search-by-criteria>
+            </div>
+    
+            <div ng-if="vm.mounted.case" ng-show="vm.searchBy === 'case'">
+                <ip-search-by-case></ip-search-by-case>
+            </div>
+    
+            <div ng-if="vm.mounted.event" ng-show="vm.searchBy === 'event'">
+                <ip-search-by-event></ip-search-by-event>
+            </div>
+        </ip-search-options>
+    
+        <div class="table-container">
+            <div class="table-title">
+                <h2 translate="Workflow Criteria"></h2>
+                <button type="button" id="criteria-add-btn" class="btn btn-icon pull-right" ip-tooltip="{{:: 'Add' | translate}}" ng-click="vm.openCharacteristicModal()">
+                    <icon name="plus-circle"></icon>
+                </button>
+            </div>
+            <ip-kendo-grid data-no-results-hint= "{{vm.noResultsHint | translate}}" data-id="searchResults" data-grid-options="vm.gridOptions" mode="search"></ip-kendo-grid>
+        </div>
+    </div>
+</ip-master-detail-view>

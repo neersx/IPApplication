@@ -1,0 +1,76 @@
+<div id="adjustValues">
+    <div class="modal-header">
+        <h2 class="modal-title">{{'accounting.time.recording.adjustValues' | translate}}</h2>
+    </div>
+    <div class="modal-body">
+        <ipx-inline-alert [type]="'info'" [text]="'accounting.time.recording.adjustValueInformation'"></ipx-inline-alert>
+        <br>
+        <div>
+            <section>
+                <div [ngClass]="{'col-sm-6': item.foreignCurrency, 'col-sm-12': !item.foreignCurrency}">
+                    <label class="col-sm-6">{{ 'accounting.time.fields.activity' | translate }}</label>
+                    <span class="col-sm-6">{{item.activity}}</span>
+                </div>
+                <div [ngClass]="{'col-sm-6': item.foreignCurrency, 'col-sm-12': !item.foreignCurrency}">
+                    <label class="col-sm-6">{{ 'accounting.time.fields.units' | translate }}</label>
+                    <span class="col-sm-6">{{item.totalUnits}}</span>
+                </div>
+                <div *ngIf="item.foreignCurrency" class="col-sm-6">
+                    <label class="col-sm-6">{{ 'accounting.time.fields.currency' | translate }}</label>
+                    <span class="col-sm-6">{{item.foreignCurrency}}</span>
+                </div>
+                <div *ngIf="item.foreignCurrency" class="col-sm-6">
+                    <label class="col-sm-6">{{ 'accounting.time.fields.exchangeRate' | translate }}</label>
+                    <span class="col-sm-6">{{viewItem.exchangeRate }}</span>
+                </div>
+            </section>
+        </div>
+        <span class="col-sm-12">
+            <hr>
+        </span>
+        <div class="col-sm-12">
+            <div [ngClass]="{'col-sm-6': item.foreignCurrency, 'col-sm-12': !item.foreignCurrency}">
+                <section>
+                    <div class="row col-sm-12">
+                        <ipx-numeric bold [isCurrency]="true" [label]="'accounting.time.fields.amount'" (onChange)="localAmountChanged($event)" [disabled]="!!item.foreignCurrency" ipx-autofocus="true"></ipx-numeric>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="col-sm-6">{{ 'accounting.time.fields.margin' | translate }}</label>
+                        <span class="col-sm-6 text-right">{{viewItem.localMargin | localCurrencyFormat | async}}</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="col-sm-6">{{ 'accounting.time.fields.localValue' | translate }}</label>
+                        <span class="col-sm-6 text-right">{{viewItem.localValue | localCurrencyFormat | async}}</span>
+                    </div>
+                    <div *ngIf="viewItem.localDiscount" class="col-sm-12">
+                        <label class="col-sm-6">{{ 'accounting.time.fields.localDiscount' | translate }}</label>
+                        <span class="col-sm-6 text-right">{{viewItem.localDiscount | localCurrencyFormat | async}}</span>
+                    </div>
+                </section>
+            </div>
+            <div *ngIf="item.foreignCurrency" class="col-sm-6">
+                <section>
+                    <div class="row col-sm-12">
+                        <ipx-numeric bold [isCurrency]="true" [currency]="item.foreignCurrency" (onChange)="foreignAmountChanged($event)" [label]="'accounting.time.fields.foreignAmount'" ipx-autofocus="true"></ipx-numeric>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="col-sm-6">{{ 'accounting.time.fields.foreignMargin' | translate }}</label>
+                        <span class="col-sm-6 text-right">{{viewItem.foreignMargin | localCurrencyFormat:item.foreignCurrency | async}}</span>
+                    </div>
+                    <div class="col-sm-12">
+                        <label class="col-sm-6">{{ 'accounting.time.fields.foreignValue' | translate }}</label>
+                        <span class="col-sm-6 text-right">{{viewItem.foreignValue | localCurrencyFormat:item.foreignCurrency | async}}</span>
+                    </div>
+                    <div *ngIf="viewItem.foreignDiscount" class="col-sm-12">
+                        <label class="col-sm-6">{{ 'accounting.time.fields.foreignDiscount' | translate }}</label>
+                        <span class="col-sm-6 text-right">{{viewItem.foreignDiscount | localCurrencyFormat:item.foreignCurrency | async}}</span>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-save" name="save" (click)="saveValues()" [disabled]="!canSave">{{'Save' | translate}}</button>
+        <button type="button" class="btn" name="cancel" (click)="cancelDialog()">{{'Cancel' | translate}}</button>
+    </div>
+</div>

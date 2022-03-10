@@ -1,0 +1,7 @@
+<div>
+    <div ng-if="data.addTagLabel" class="btn btn-icon btn-no-bg">
+        <icon name="plus-circle"></icon>
+    </div>
+    <span ng-bind-html="$highlight($getDisplayText())"></span>
+    <span ng-if="data.addTagLabel">({{data.addTagLabel | translate}})</span>
+</div>

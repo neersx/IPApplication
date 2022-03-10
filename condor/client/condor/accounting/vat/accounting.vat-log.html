@@ -1,0 +1,29 @@
+<style>
+    #accounting-vat-logs>table>tbody>tr>td {
+        vertical-align: text-top;
+    }
+</style>
+<div id="accountingVatLog" translate-namespace="accounting.vatLog">
+    <div class="modal-header">
+        <h2 class="modal-title">
+            <div translate=".vatLogs"></div>
+        </h2>
+        <div class="modal-header-controls">
+            <ip-close-button type="button" data-ng-click="vm.close()"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div>
+            <span translate=".vatDatePeriod"></span>
+            <span translate=".vatFromDate" translate-values="{ from: vm.fromDate }" class="text-black-bold"></span>
+            <span translate=".vatToPeriod"></span>
+            <span translate=".vatToDate" translate-values="{ to: vm.toDate }" class="text-black-bold"></span>
+            <span ng-if="vm.selectedEntitiesNames !== ''" translate=".vatDatePeriodTaxCodeGroup" translate-values="{ code: vm.entityTaxCode }"></span>
+            <span ng-if="vm.selectedEntitiesNames === ''" translate=".vatDatePeriodTaxCode" translate-values="{ entity: vm.entityName, code: vm.entityTaxCode }"></span>
+        </div>
+        <div>
+            <span ng-if="vm.selectedEntitiesNames !== ''">{{ vm.selectedEntitiesNames }}</span>
+        </div>
+    </div>
+</div>
+<ip-kendo-grid id="vat-error-log" data-grid-options="vm.gridOptions"></ip-kendo-grid>

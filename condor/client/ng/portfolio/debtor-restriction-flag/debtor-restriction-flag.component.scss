@@ -1,0 +1,13 @@
+.debtor-restrictions {
+    &.error {
+        color: #E90101
+    }
+
+    &.warning {
+        color: #feb81c
+    }
+
+    &.info {
+        color: #00aa00
+    }
+}

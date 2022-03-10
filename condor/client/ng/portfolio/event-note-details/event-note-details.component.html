@@ -1,0 +1,67 @@
+<div class="row" style="max-width: 100%;">
+    <ipx-kendo-grid #remindersGrid id="eventNoteDetails" [dataOptions]="gridOptions" (rowAdded)="getRowIndex($event)" (editRowEvent)="getEditedRowIndex($event)" (dataBound)="dataBound()">
+        <ng-template ipxTemplateColumnField="notes" let-dataItem>
+            <div *ngIf="dataItem.noteText" class="display-wrap">
+                <span [innerHTML]="dataItem?.noteText | html"></span>
+            </div>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="lastUpdatedDateTime" let-dataItem>
+            <ipx-date [model]="dataItem.noteLastUpdatedDate">
+            </ipx-date>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="notetype" let-dataItem>
+            <span>{{dataItem.noteTypeDescription}}</span>
+        </ng-template>
+
+        <ng-template ipxEditTemplateColumnField="notetype" let-dataItem="dataItem" let-formGroup="formGroup">
+            <div class="row" style="width: 96% !important;">
+                <ipx-dropdown apply-edited name="eventNoteType" label="" [formControl]="formGroup?.controls.eventNoteType" [options]="categories" [displayField]="'description'" [keyField]="'code'">
+                </ipx-dropdown>
+            </div>
+            <div class="row" *ngIf="isPredefinedNoteExists" style="padding-bottom: 20px;">
+                <ipx-typeahead apply-edited name="predefinedNote" (ngModelChange)="onChange($event)" placeholder="Select Predefined Notes" label="" config="predefinedNote"
+                    [formControl]="formGroup?.controls.predefinedNote"></ipx-typeahead>
+            </div>
+        </ng-template>
+
+        <ng-template ipxEditTemplateColumnField="notes" let-dataItem="dataItem" let-formGroup="formGroup">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ipx-text-field #eventNoteTextRef apply-edited name="requiredTextArea" placeholder="Enter event note" multiline rows="5" label="" placeholder="" [formControl]="formGroup?.controls.eventNoteText">
+                    </ipx-text-field>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="replaceEventNotes" class="input-wrap-group group-inline">
+                    <ipx-checkbox apply-edited *ngIf="replaceEventNotes" class="checkbox-inline" label="taskPlanner.eventNotes.replaceNotes" name="replaceNotes" [formControl]="formGroup?.controls.replaceNote">
+                    </ipx-checkbox>
+                    <ipx-inline-dialog *ngIf="replaceEventNotes" style="padding-left: 9px;" [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg active-by-default'" container="body" [tooltipPlacement]="'right'"
+                        [content]="'taskPlanner.eventNotes.replaceNotesToolTip' | translate">
+                    </ipx-inline-dialog>
+                    <action-buttons class="pull-right" style="margin-right: 25px;" *ngIf="!isFromProvideInstructions">
+                        <ipx-save-button [disabled]="!isFormDirty" (onclick)="onSave()" [displayLabel]="true">
+                            {{'Save' | translate}}</ipx-save-button>
+                        <ipx-revert-button (onclick)="rowDiscard()" [displayLabel]="true">
+                            {{'Discard' | translate}}
+                        </ipx-revert-button>
+                    </action-buttons>
+                    <action-buttons class="pull-right" style="margin-right: 25px;" *ngIf="isFromProvideInstructions">
+                        <button type="button" name="apply" [disabled]="!isFormDirty" class="btn btn-primary" (click)="onSave()">
+                            {{ 'button.apply' | translate }}
+                        </button> &nbsp;
+                        <button type="button" name="cancel" class="btn btn-cancel" (click)="rowDiscard()">
+                            {{ 'button.cancel' | translate }}</button>
+                    </action-buttons>
+
+                </div>
+            </div>
+            <div class="row" *ngIf="!isFromProvideInstructions">
+                <div class="input-wrap-group group-inline">
+                    <ipx-checkbox apply-edited class="checkbox-inline" label="taskPlanner.eventNotes.createAdhoc" name="createAdhoc" [formControl]="formGroup?.controls.createAdhoc">
+                    </ipx-checkbox>
+                </div>
+            </div>
+        </ng-template>
+    </ipx-kendo-grid>
+</div>
+<hr class="taskDetail" />

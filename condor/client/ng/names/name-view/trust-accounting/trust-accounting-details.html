@@ -1,0 +1,60 @@
+<div id="trust-accounting-details">
+    <div class="modal-header">
+        <h2 class="modal-title"> {{ 'nameview.trustAccounting.trustAccountingDetails.title' | translate }}</h2>
+        <div class="modal-header-controls">
+          <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+        </div>
+    </div>
+    <div class="modal-subheader">
+        <div class="readonly-label readonly-label-navy">
+            <label>{{ 'nameview.trustAccounting.trustAccountingDetails.transactionsfor' | translate }} </label> 
+            <span> {{this.entityName + ' (' + this.bankAccount + ')'}}</span> 
+        </div><br />
+        <div class="readonly-label readonly-label-navy">
+                <label translate="nameview.trustAccounting.trustAccountingDetails.localvalueTotal"></label>
+                <span class="lineheader" name="localValueTotal"> {{ this.localValueTotal | localCurrencyFormat | async }}</span>
+        </div>
+        <div class="readonly-label readonly-label-navy">
+            <label translate="nameview.trustAccounting.trustAccountingDetails.localbalanceTotal"></label>
+            <span class="lineheader" name="detailLocalBalanceTotal"> {{ this.localBalanceTotal | localCurrencyFormat | async }}</span>
+        </div>
+    </div>
+<div class="modal-body">    
+    <ipx-kendo-grid id="trustAccountingDetails" [dataOptions]="gridOptions" *ngIf="gridOptions">       
+        <ng-template ipxTemplateColumnField="date" let-dataItem>
+            <span class="display-wrap">{{ dataItem.date | localeDate }}</span>
+        </ng-template>
+        <ng-template class="display-wrap" ipxTemplateColumnField="itemrefno" let-dataItem>
+            <span>{{ dataItem.itemRefNo }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="referenceno" let-dataItem>
+            <span>{{ dataItem.referenceNo }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="localvalue" let-dataItem>
+            <span class="pull-right">{{ dataItem.localValue | localCurrencyFormat | async}}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="localbalance" let-dataItem>
+            <span class="pull-right">{{ dataItem.localBalance | localCurrencyFormat | async}}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="foreignvalue" let-dataItem>
+            <span class="pull-right" *ngIf="dataItem.foreignValue && dataItem.foreignValue != 0">{{ dataItem.currency}}{{ dataItem.foreignValue | number : '1.2-2' }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="foreignbalance" let-dataItem>
+            <span class="pull-right" *ngIf="dataItem.foreignBalance && dataItem.foreignBalance != 0">{{ dataItem.currency}}{{dataItem.foreignBalance | number : '1.2-2' }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="exchvariance" let-dataItem>
+            <span class="pull-right" *ngIf="dataItem.exchVariance && dataItem.foreignValue">{{ dataItem.localCurrency}}{{dataItem.exchVariance | number : '1.2-2' }}</span>
+            <span class="pull-right" *ngIf="!dataItem.exchVariance && dataItem.foreignValue">{{ dataItem.localCurrency}}{{0 | number : '1.2-2' }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="trader" let-dataItem>
+            <span class="display-wrap" title="{{ dataItem.traderFull }}">{{ dataItem.trader }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="transtype" let-dataItem>
+            <span>{{ dataItem.transType }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="description" let-dataItem>
+            <span class="display-wrap" title="{{ dataItem.descriptionFull }}">{{ dataItem.description }}</span>
+        </ng-template>
+    </ipx-kendo-grid> 
+    </div>
+</div>

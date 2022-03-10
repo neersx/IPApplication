@@ -1,0 +1,15 @@
+<div class="search-options">
+    <form ng-submit="doSearch()" class="collapse in" id="searchBody">
+        <ng-transclude></ng-transclude>
+
+        <div class="controls">
+            <button type="button" id="search-options-clear-btn" class="btn btn-icon" ip-tooltip="{{:: 'Clear' | translate}}" ng-click="onClear(); setFocus()" ng-disabled="isResetDisabled()" tabindex="-1">
+                <icon name="eraser"></icon>
+            </button>
+
+            <button type="submit" id="search-options-search-btn" ng-mousedown="onValidate()" class="btn btn-icon" ip-tooltip="{{:: 'Search' | translate}}" ng-disabled="isSearchDisabled()" aria-label="{{:: 'Search' | translate }}">
+                <icon name="search"></icon>
+            </button>
+        </div>
+    </form>
+</div>

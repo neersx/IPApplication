@@ -1,0 +1,38 @@
+<ng-container *ngTemplateOutlet="multiLine ? textarearef : textfieldref">
+</ng-container>
+<ng-template #textfieldref>
+    <div class="input-wrap" [ngClass]="{ error: (showError$ | async), warning: !invalid && warningText }" (click)="onClick.emit();touch()">
+        <label *ngIf="label" [translate]="label" [attr.for]="identifier"></label>
+
+        <input *ngIf="!applySqlHighlighter" [type]="singleLineFieldType" [(ngModel)]="value" [disabled]="disabled" [id]="identifier" [ngClass]="{edited: controledited()}" [placeholder]="placeholder ? (placeholder | translate) : ''" (change)="change($event)" (ngModelChange)="onModelChange($event)"
+            (blur)="blur()" [autocomplete]="autoCompleteName" class="{{fieldClass}}" />
+
+        <codemirror class="mirror" *ngIf="applySqlHighlighter" [(ngModel)]="value" [config]="config" [disabled]="disabled" [id]="identifier" [ngClass]="{edited: controledited()}" (ngModelChange)="onModelChange($event)">
+        </codemirror>
+        <span class="input-action tooltip-error">
+            <span class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="getError() | translate: getErrorParams()"
+                containerClass="tooltip-error"></span>
+        </span>
+        <span class="input-action tooltip-warning">
+            <span class="cpa-icon cpa-icon-exclamation-circle" [tooltip]="warningText | translate"
+                containerClass="tooltip-warning"></span>
+        </span>
+        <span *ngIf="loading" class="input-action">
+            <span class="cpa-icon loading-circle"></span>
+        </span>
+    </div>
+</ng-template>
+
+<ng-template #textarearef>
+    <div class="input-wrap" [ngClass]="{ error:  (showError$ | async) }" (click)="onClick.emit();touch()">
+        <label *ngIf="label" [translate]="label" [attr.for]="identifier"></label>
+
+        <textarea type="text" [(ngModel)]="value" [ngClass]="{edited: controledited()}" [disabled]="disabled" [id]="identifier" [rows]="rows" [placeholder]="placeholder ? (placeholder | translate) : ''" (change)="change($event)" (blur)="blur()" (ngModelChange)="onModelChange($event)">
+        </textarea>
+
+        <span class="input-action tooltip-error">
+            <span class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="getError() | translate: getErrorParams()"
+                containerClass="tooltip-error" [adaptivePosition]="false" container="body"></span>
+        </span>
+    </div>
+</ng-template>

@@ -1,0 +1,9 @@
+<ipx-kendo-grid id="groupHeaderItem" [dataOptions]="gridOptions">
+    <ng-template ipxTemplateColumnField="detail" let-dataItem>
+        <span><b>{{ dataItem.detail }} ({{ dataItem.count }})</b></span>
+    </ng-template>
+</ipx-kendo-grid>
+
+<ng-template #detailsTemplate let-dataItem>
+    <ipx-group-detail [items]="dataItem.items" [columns]="columns" [isShowContextMenu]="isShowContextMenu" [contextMenuParams]="contextMenuParams" [detailTemplate]="detailTemplate" [detailTemplateShowCondition]="detailTemplateShowCondition" (groupItemClicked)="onGroupItemClicked($event)"></ipx-group-detail>
+</ng-template>

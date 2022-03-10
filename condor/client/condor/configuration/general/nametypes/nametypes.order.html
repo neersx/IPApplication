@@ -1,0 +1,36 @@
+<style>
+    #validNameTypesResults>table tbody tr {
+        cursor: move;
+    }
+    
+    tbody>.k-state-selected {
+        background-color: #D2E7F3 !important;
+        color: black !important;
+    }
+</style>
+<form name="NameTypesOrder" novalidate>
+
+    <div class="modal-header" ng-init="vm.initShortcuts()">
+        <h2 class="modal-title" translate="nameType.setPriorityOrder"></h2>
+        <div class="modal-header-controls">
+            <button type="button" id="btnUp" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'nameType.moveUp' | translate }}" data-ng-disabled="vm.disableUpButton" ng-click="vm.moveUp()">
+                <span class="cpa-icon cpa-icon-arrow-up"></span>
+            </button>
+            <button type="button" id="btnDown" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'nameType.moveDown' | translate }}" data-ng-disabled="vm.disableDownButton" ng-click="vm.moveDown()">
+                <span class="cpa-icon cpa-icon-arrow-down"></span>
+            </button>
+            <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="!vm.hasChanges"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismiss()"></ip-close-button>
+        </div>
+    </div>
+
+    <div id="modal-content" class="modal-body">
+
+        <!-- NameTypes hint -->
+        <ip-inline-alert text="nameType.nameTypesSearchHint" type="info"></ip-inline-alert>
+        <br/>
+        <!-- NameTypes Grid -->
+        <kendo-grid id="validNameTypesResults" k-options="vm.gridOptions"></kendo-grid>
+        <ip-inline-alert data-ng-if="vm.displayNoItems" text="{{::'noResultsFound'}}" type="info"></ip-inline-alert>
+    </div>
+</form>

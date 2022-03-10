@@ -1,0 +1,25 @@
+<style>
+    .external-application-button {
+        margin-right: 8px;
+        margin-top: 8px;
+        min-width: 100px;
+    }
+</style>
+<ip-sticky-header>
+    <ip-page-title page-title="{{ 'externalApplication.iealblTitle' | translate }}"></ip-page-title>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="row">
+        <div class="col-sm-12 chart-container">
+            <div class="table-container">
+                <div class="table-title">
+                    <h2 translate="{{ 'externalApplication.iealblTableTitle' | translate }}"></h2>
+                    <span style="margin-left: 8px;">
+                        <ip-inline-dialog placement="right" data-content="{{ 'externalApplication.iealblSubtitle' | translate }}"></ip-inline-dialog>
+                    </span>
+                </div>
+                <ip-kendo-search-grid data-id="searchResults" data-grid-options="vm.gridOptions" data-search-hint="{{ :: 'dataDownload.uspto.noCertificatesFound' | translate }}"></ip-kendo-search-grid>
+            </div>
+        </div>
+    </div>
+</div>

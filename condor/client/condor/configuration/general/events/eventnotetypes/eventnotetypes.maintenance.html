@@ -1,0 +1,37 @@
+<style>        
+    .input-checkbox-margin-left {
+        margin-left: 22%;
+    }
+</style>
+<div ng-form="vm.form" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title" ng-switch on="vm.entity.state">
+            <div ng-switch-when="adding" translate="eventNoteType.maintenance.addEventNoteType"></div>
+            <div ng-switch-when="duplicating" translate="eventNoteType.maintenance.duplicateEventNoteType"></div>
+            <div ng-switch-default translate="eventNoteType.maintenance.editEventNoteType"></div>
+        </h2>
+        <div class="modal-header-controls">
+            <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismissAll(vm.form)"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <ip-nav-modal ng-if="vm.isEditState()" all-items="vm.options.allItems" current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges">
+        </ip-nav-modal>        
+        <div class="row">
+            <div>
+                <ip-text-field class="col-sm-8" name="description" ip-required label="eventNoteType.description" ng-model="vm.entity.description" data-ng-maxlength="250" ng-class="{'edited': vm.form.description.$dirty}" ip-autofocus="true" ip-field-error="{{vm.getError('description').message | translate}}"></ip-text-field>
+            </div>
+        </div>        
+        <div class="row">
+            <div>
+                <ip-checkbox class="input-checkbox-margin-left" name="sharingAllowed" ng-model="vm.entity.sharingAllowed" label="eventNoteType.sharingEventNotes" ng-class="{edited: vm.form.sharingAllowed.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-checkbox class="input-checkbox-margin-left" name="isExternal" ng-model="vm.entity.isExternal" label="eventNoteType.public" ng-class="{edited: vm.form.isExternal.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+    </div>
+</div>

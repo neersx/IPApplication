@@ -1,0 +1,57 @@
+<div class="topic-container">
+    <h1 translate="caseview.eventRules.reminders.header"></h1>
+    <span class="badge topics header" id="remindersCount">{{remindersInfo.length}}</span>
+    <div>
+        <div class="container-fluid" id="reminders">
+            <div class="row" *ngFor="let ri of remindersInfo; index as i;trackBy: byItem" [ngClass]="i % 2 == 0 ? '' : 'bg-color'">
+                <div class="row col-sm-12 margin-vertical">
+                    <div class="col-sm-12">
+                        <strong>
+                        <span>{{ ri.formattedDescription }}</span>
+                    </strong>
+                    </div>
+                 </div>
+                 <div class="row col-sm-12 margin-bottom">
+                    <div class="col-sm-3 field-label">
+                        <span>{{  "caseview.eventRules.reminders.recipientsLiteral" | translate  }}</span>
+                    </div>
+                    <div class="col-sm-9">
+                        <span class="text ng-binding">{{ ri.nameTypes}}</span>
+                    </div>
+                </div>  
+                <div *ngIf="ri.names" class="row col-sm-12 margin-bottom">
+                        <div class="col-sm-3 field-label">
+                            <span>{{  "caseview.eventRules.reminders.names" | translate  }}</span>
+                        </div>
+                        <div class="col-sm-3">
+                            <span class="text ng-binding">{{ ri.names}}</span>
+                        </div>
+                </div> 
+                <div class="row col-sm-12 margin-bottom">
+                    <div class="col-sm-3 field-label">
+                        <span>{{ ri.messageInfo }}</span>
+                    </div>
+                    <div class="col-sm-9">
+                        <span class="text ng-binding">{{ ri.message}}</span>
+                    </div>
+                </div>  
+                <div *ngIf="ri.subject" class="row col-sm-12 margin-bottom">
+                    <div class="col-sm-3 field-label">
+                        <span>{{ "caseview.eventRules.reminders.emailSubject" | translate }}</span>
+                    </div>
+                    <div class="col-sm-9">
+                        <span class="text ng-binding">{{ ri.subject | translate}}</span>
+                    </div>
+                </div>    
+                <div *ngIf="ri.alternateMessage" class="row col-sm-12 margin-bottom">
+                    <div class="col-sm-3 field-label ">
+                        <span>{{  "caseview.eventRules.reminders.alternateMessage" | translate }}</span>
+                    </div>
+                    <div class="col-sm-9 text ng-binding">
+                        <span class="text ng-binding">{{ ri.alternateMessage}}</span>
+                    </div>
+                </div>         
+            </div>
+        </div>
+    </div>
+</div>

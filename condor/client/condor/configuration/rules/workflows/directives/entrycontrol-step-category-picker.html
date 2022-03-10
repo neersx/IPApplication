@@ -1,0 +1,92 @@
+<div >
+        <ip-typeahead 
+                ng-if="vm.category.categoryCode === 'action'"
+                label="{{vm.translateCategory()}}" 
+                ng-class="{edited: vm.isDirty()}" 
+                ng-model="vm.category.categoryValue" 
+                data-config="action"
+                data-picklist-can-maintain="true"
+                ip-required="vm.required"
+                name="{{vm.name}}">
+        </ip-typeahead>
+        
+        <ip-typeahead 
+                ng-if="vm.category.categoryCode === 'checklist'"
+                label="{{vm.translateCategory()}}" 
+                ng-class="{edited: vm.isDirty()}" 
+                ng-model="vm.category.categoryValue"    
+                data-config="checklist"
+                data-picklist-can-maintain="true"
+                name="{{vm.name}}"
+                ip-required="vm.required">
+        </ip-typeahead>
+
+        <ip-typeahead 
+                ng-if="vm.category.categoryCode === 'designationStage'"
+                label="{{vm.translateCategory()}}" 
+                ng-class="{edited: vm.isDirty()}" 
+                ng-model="vm.category.categoryValue"    
+                data-config="designationStage"
+                data-picklist-can-maintain="true"
+                name="{{vm.name}}"
+                ip-required="vm.required"
+                data-extend-query="vm.designationStage.extendQuery" 
+                data-external-scope="vm.designationStage.externalScope">
+        </ip-typeahead>
+
+        <ip-typeahead 
+                ng-if="vm.category.categoryCode === 'nameTypeGroup'"
+                label="{{vm.translateCategory()}}" 
+                ng-class="{edited: vm.isDirty()}" 
+                ng-model="vm.category.categoryValue"    
+                data-config="nameTypeGroup"
+                data-picklist-can-maintain="true"
+                name="{{vm.name}}"
+                ip-required="vm.required">
+        </ip-typeahead>
+
+        <ip-typeahead 
+                ng-if="vm.category.categoryCode === 'relationship'"
+                label="{{vm.translateCategory()}}" 
+                ng-class="{edited: vm.isDirty()}" 
+                ng-model="vm.category.categoryValue"    
+                data-config="relationship"
+                data-picklist-can-maintain="true"
+                name="{{vm.name}}"
+                ip-required="vm.required">
+        </ip-typeahead>
+        
+	<ip-typeahead 
+        	ng-if="vm.category.categoryCode === 'numberType'"
+                label="{{vm.translateCategory()}}" 
+                ng-class="{edited: vm.isDirty()}" 
+                ng-model="vm.category.categoryValue" 
+                data-config="numberType"
+                data-picklist-can-maintain="true"
+                name="{{vm.name}}"
+                ip-required="vm.required">
+	</ip-typeahead>
+
+	<ip-typeahead 
+        	ng-if="vm.category.categoryCode === 'nameType'"
+                label="{{vm.translateCategory()}}" 
+                ng-class="{edited: vm.isDirty()}" 
+                ng-model="vm.category.categoryValue" 
+                data-config="nameType"
+                data-picklist-can-maintain="true"
+                name="{{vm.name}}"
+                ip-required="vm.required">
+	</ip-typeahead>
+
+	<ip-typeahead 
+        	ng-if="vm.category.categoryCode === 'textType'"
+                label="{{vm.translateCategory()}}" 
+                ng-class="{edited: vm.isDirty()}" 
+                ng-model="vm.category.categoryValue" 
+                data-config="textType"
+                data-picklist-can-maintain="true"
+                ip-required="vm.required"
+                name="{{vm.name}}"
+                data-extend-query="vm.extendTextTypeQuery" >
+	</ip-typeahead>
+</div>

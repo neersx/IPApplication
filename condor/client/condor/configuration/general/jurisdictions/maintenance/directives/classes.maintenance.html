@@ -1,0 +1,59 @@
+<style>
+.ip-text-field-alignment-width {
+    width: 20% !important;
+}
+
+.label-legend {
+    font-weight: bold;
+    font-size: 120%;
+    margin-right: 10px;
+}
+</style>
+<div ng-form="vm.form" ip-form translate-namespace="jurisdictions.maintenance.classes">
+    <ip-maintenance-modal-header data-page-title="{{::vm.title}}" data-dismiss="vm.dismiss()" data-on-apply="vm.apply()" data-is-apply-enabled="vm.isApplyEnabled()" data-has-unsaved-changes="vm.hasUnsavedChanges()" data-is-add-another="vm.isAddAnother" is-edit-mode="vm.isEdit">
+    </ip-maintenance-modal-header>
+    <div class="modal-body">
+        <ip-group-modal-subheader ng-if="vm.isEdit" is-edit-mode="vm.isEdit" all-items="vm.options.allItems" current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges" on-navigate="vm.onNavigate"></ip-group-modal-subheader>
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-typeahead id='property-type-picklist' ip-autofocus = "{{vm.isAddAnother && !vm.formData.propertyTypeModel ? false : true}}" name="propertyType" data-config='propertyType' ng-model="vm.formData.propertyTypeModel" ip-required data-ng-class="{edited: vm.form.propertyType.$dirty}" data-extend-query="vm.extendPropertyTypePicklist" data-picklist-can-maintain="true" data-external-scope="vm.picklistValidCombination" ng-change="vm.onPropertyChanged()">
+                </ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-text-field id="class" ip-autofocus = "{{vm.isAddAnother && vm.formData.propertyTypeModel ? true : false}}" class="col-sm-4" label="Class" style="width: 24%; margin-left: 14%" name="class" ng-model="vm.formData.class" data-ng-class="{edited: vm.form.class.$dirty}" ip-required ng-maxlength="5">
+                </ip-text-field>
+                <span class="pull-left input-wrap" style="margin-top: .5%" translate="{{'.subclass'}}"></span>
+                <ip-text-field class="col-sm-4" style="width: 17%; margin-left:-1%" name="subclass" data-ng-blur="vm.onSubClassChange()" ng-model="vm.formData.subClass" data-ng-class="{edited: vm.form.subclass.$dirty}" ng-maxlength="5" ng-disabled="!vm.formData.propertyTypeModel.allowSubClass">
+                </ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ip-text-field multiline style="margin-left: -17%" name="classheading" label="{{vm.isClassLabel ? '.classHeading' : '.subClassHeading' | translate}}" rows="6" ng-model="vm.formData.description" ng-class="{'edited': vm.form.classheading.$dirty}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-datepicker id="effectivedate" style="margin-left: 8.5%;width:315px" name="effectivedate" label="{{'jurisdictions.maintenance.classes.effectiveDate'}}" ng-model="vm.formData.effectiveDate"></ip-datepicker>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ip-text-field multiline style="margin-left: -17%" name="notes" label="{{'.notes' | translate}}" rows="4" ng-model="vm.formData.notes" ng-class="{'edited': vm.form.notes.$dirty}"></ip-text-field>
+            </div>
+        </div>
+        <div ng-if="vm.options.parentId !== 'ZZZ'">
+            <hr />
+            <div class="text-wrap">
+                <span class="label-legend" translate="{{'.associateClasses'}}"></span>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <ip-typeahead label="{{'.internationalClasses.heading' | translate}}" name="internationalclass" style="margin-left: -17%" data-multiselect data-config="tmClass" ng-model="vm.formData.internationalClasses" data-extend-query="vm.extendTMClassPicklist" data-ng-class="{edited: vm.form.internationalclass.$dirty}" ng-disabled="vm.formData.propertyTypeModel && vm.formData.propertyTypeModel.code !== 'T'"></ip-typeahead>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

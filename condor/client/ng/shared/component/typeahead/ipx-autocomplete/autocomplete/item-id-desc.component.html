@@ -1,0 +1,5 @@
+<div>
+    <p [innerHtml]="item.id | typeaheadHighlight:searchValue"></p>
+    <p *ngIf="item.description" [innerHtml]="item.description | typeaheadHighlight:searchValue"></p>
+    <i *ngIf="!item.description">&lt;{{ 'picklist.noDescription' | translate}}&gt;</i>
+</div>

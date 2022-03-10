@@ -1,0 +1,43 @@
+<div>
+    <div class="modal-header">
+        <h2 class="modal-title">
+            <translate>Keyboard Shortcuts</translate>
+        </h2>
+        <div class="modal-header-controls">
+            <ip-close-button data-ng-click="close()"></ip-close-button>
+        </div>
+    </div>
+
+    <div style="margin:10px;">
+        <div class="row">
+            <div class="col-sm-4">
+                <h4 translate>Main Menu</h4>
+                <div class="row" ng-repeat="hotkey in hotkeysList | filter:{ type: 'main'}">
+                    <div class='col-sm-8' class="cfp-hotkeys-text">{{ hotkey.description }}</div>
+                    <div class='col-sm-4' class="cfp-hotkeys-keys">
+                        <span ng-repeat="key in hotkey.format() track by $index" class="cfp-hotkeys-key">{{ key }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <h4 translate>Quick Menu</h4>
+                <div class="row" ng-repeat="hotkey in hotkeysList | filter:{ type: 'quick'}">
+                    <div class='col-sm-8' class="cfp-hotkeys-text">{{ hotkey.description }}</div>
+                    <div class='col-sm-4' class="cfp-hotkeys-keys">
+                        <span ng-repeat="key in hotkey.format() track by $index" class="cfp-hotkeys-key">{{ key }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <h4 translate>Contextual</h4>
+                <div class="row" ng-repeat="hotkey in hotkeysList | filter:{ type: 'context'}">
+                    <div class='col-sm-8' class="cfp-hotkeys-text">{{ hotkey.description }}</div>
+                    <div class='col-sm-4' class="cfp-hotkeys-keys">
+                        <span ng-repeat="key in hotkey.format() track by $index" class="cfp-hotkeys-key">{{ key }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-bind-html="footer" ng-if="footer"></div>
+</div>

@@ -1,0 +1,27 @@
+<div id="inheritanceBreakConfirmation" translate-namespace="workflows.inheritanceBreakConfirmation">
+    <div class="modal-header">
+        <h2 class="modal-title" translate=".title"></h2>
+    </div>
+    <div class="modal-body">
+        <div translate="{{:: vm.context + '.message'}}" translate-values="{ criteriaId: vm.criteriaId }"></div>
+        <br>
+        <div class="row">
+            <div class="col-sm-2 col-sm-offset-1 text-right">
+                <a href="#/configuration/rules/workflows/{{vm.parent.id}}" target="_blank">{{vm.parent.id}}</a>
+            </div>
+            <div class="col-sm-9">
+                <a href="#/configuration/rules/workflows/{{vm.parent.id}}" target="_blank">{{vm.parent.description}}</a>
+            </div>
+        </div>
+        <br>
+        <div translate="{{:: vm.context + '.blurb'}}"></div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="pull-right col-sm-12 modal-footer-buttons">
+                <button type="button" class="btn" data-ng-click="vm.cancel()" translate="button.cancel"></button>
+                <button type="button" class="btn btn-primary" data-ng-click="vm.proceed()" translate="button.proceed"></button>
+            </div>
+        </div>
+    </div>
+</div>

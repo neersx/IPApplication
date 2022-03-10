@@ -1,0 +1,871 @@
+<!doctype html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <title>Inprotech</title>
+    <meta name="description" content="Inprotech development lab">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Google Tag Manager -->
+    <script data-concat="false">
+        function inproInitGtag() {
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({
+                    'gtm.start': new Date().getTime(),
+                    event: 'gtm.js'
+                });
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-TMV3Z6D');
+        }
+    </script>
+    <!-- End Google Tag Manager -->
+    <link rel="shortcut icon" href="../favicon.ico" />
+
+    <script src="node_modules/jquery/dist/jquery.js" is-external="true"></script>
+    <script src="node_modules/jquery-ui-dist/jquery-ui.min.js" is-external="true"></script>
+    <script src="node_modules/jquery-validation/dist/jquery.validate.js" is-external="true"></script>
+    <script src="node_modules/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.js" is-external="true"></script>
+    <script src="node_modules/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js" is-external="true"></script>
+    <script src="node_modules/knockout/build/output/knockout-latest.debug.js" is-external="true"></script>
+    <script src="node_modules/knockout-postbox/build/knockout-postbox.js" is-external="true"></script>
+    <script src="node_modules/knockout-mapping/dist/knockout.mapping.js" is-external="true"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js" is-external="true"></script>
+    <script src="node_modules/underscore/underscore.js" is-external="true"></script>
+
+    <script src="externaldependency/modernizr/modernizr-custom.js" is-external="true"></script>
+    <script src="externaldependency/datejs/build/production/date.min.js" data-min-src="externaldependency/datejs/build/production/date.min.js" is-external="true"></script>
+    <script src="externaldependency/momentjs/moment.js" data-min-src="externaldependency/momentjs/min/moment.min.js" is-external="true"></script>
+
+    <script src="common/ko/ajaxHooks.js"></script>
+    <script src="common/ko/arrayExtensions.js"></script>
+    <script src="common/ko/httpClient.js"></script>
+    <script src="common/ko/httpStatusCode.js"></script>
+    <script src="common/ko/koHelpers.js"></script>
+    <script src="common/ko/sortable.js"></script>
+    <script src="common/ko/stringHelpers.js"></script>
+    <script src="common/ko/url.js"></script>
+    <script src="common/ko/utilities.js"></script>
+    <script src="common/ko/localise.js"></script>
+    <script src="common/ko/Dialogs/confirm.js"></script>
+    <script src="common/utilities/dateFormatting.js"></script>
+
+
+    <link rel="stylesheet" href="externalstyles/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="custom.css">
+
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+<p class="browsehappy">
+    You are using an <strong>outdated</strong> browser.
+    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.
+</p>
+<![endif]-->
+    <div class="header navbar-fixed-top">
+        <img class="logo pull-left" />
+        <span class="title pull-left" data-bind="with: systemInfo">
+            <small data-bind="text: appVersion"></small>
+        </span>
+        <div class="menu pull-right">
+            <div>
+                <a href="../../">Return to Inprotech Home</a>
+                <span class="delimiter">•</span>
+                <a href="../api/signout" data-bind="click: logout">Logout</a>
+            </div>
+            <div data-bind="if: currentUser" class="menu pull-right">
+                <i class="icon-user icon-color-inverted icon-size-small"></i>
+                <span data-bind="text: currentUser().displayName"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="spinner" class="hide alert navbar-notification">
+        Loading...
+    </div>
+    <div id="message-panel" class="hide alert navbar-notification">
+        <button id="message-panel-close" class="close">x</button>
+        <span id="message-body"></span>
+        <ul class="no-bullets" id="messages-list"></ul>
+    </div>
+
+    <div id="content" class="container-fluid hide">
+        <div class="work-area-container">
+            <div class="work-area">
+                <div class="header-custom header">
+
+                    <h3 data-bind="translate: 'title'"></h3>
+
+                    <!-- ko with: menu -->
+                    <div class="row-fluid">
+                        <div class="form-inline">
+                            <select id="openAction" class="list-with-optionCaption"
+                                data-bind="options: openActions, optionsText: 'Name', value: selectedAction, optionsCaption: 'Select an Action', translateOptionsCaption: 'optSelectActionCaption'"></select>
+                            <select id="entry" class="list-with-optionCaption"
+                                data-bind="options: dataEntryTasks, optionsText: 'Description', value: selectedDataEntryTask, optionsCaption: 'Select an Entry', translateOptionsCaption: 'optSelectEntryCaption'"></select>
+
+                            <!-- ko if: hasHiddenEntries -->
+                            <!-- ko if: shouldDisplayAllEntries -->
+                            <a title="Show only valid entries" data-bind="click: toggleAllEntries, clickBubble: false, translateTooltip: 'tooltipShowOnlyValidEntries'">
+                                <i class="icon-eye-open"></i>
+                            </a>
+                            <!-- /ko -->
+                            <!-- ko ifnot: shouldDisplayAllEntries -->
+                            <a title="Show all entries" data-bind="click: toggleAllEntries, clickBubble: false, translateTooltip: 'tooltipShowAllEntries'">
+                                <i class="icon-eye-close"></i>
+                            </a>
+                            <!-- /ko -->
+                            <!-- /ko -->
+
+                            <!-- ko if: hasOpenCycles -->
+                            <select id="cycle" class="list-with-optionCaption"
+                                data-bind="options: openCycles, value: selectedActionCycle, optionsCaption: 'Select a Cycle', translateOptionsCaption: 'optSelectCycleCaption'"></select>
+                            <!-- /ko -->
+
+                            <button class="btn" data-bind="enable: isSelectionValid, click: showMatchingCases">
+                                <span data-bind="translate: 'btnShowMatchingCases'"></span>
+                            </button>
+                        </div>
+                        <!-- ko with: cycleSelection -->
+                        <div data-bind="template: { name: 'select-cycle', data: $data, afterRender: onViewRendered }"></div>
+                        <!-- /ko -->
+                    </div>
+                    <!-- /ko -->
+                    <div>
+                    </div>
+
+                </div>
+
+                <div class="toolbar">
+
+                    <!-- ko if: currentView -->
+                    <!-- ko with: currentView -->
+                    <div class="row-fluid">
+                        <div class="span3">
+                            <div data-bind="if: saveMode() == 'None'">
+                                <button class="btn disabled" data-bind="translate: 'btnSave'"></button>
+                            </div>
+                            <div data-bind="if: saveMode() == 'Save'">
+                                <button class="btn btn-success" data-bind="click: submitChanges, translate: 'btnSave'"></button>
+                            </div>
+                            <div data-bind="if: saveMode() == 'AcknowledgeWarningsAndSave'">
+                                <button class="btn btn-warning" data-bind="click: submitChanges, translate: 'btnSaveWithWarnings'"></button>
+                            </div>
+                        </div>
+                        <div class="span8">
+                            <!-- ko if: currentCase -->
+                            <div class="pull-right" data-bind="template: { name: 'currentCaseInfoTemplate', data: $data }"></div>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <!-- /ko -->
+                    <!-- /ko -->
+
+                </div>
+
+                <div class="body">
+                    <table class="content-table">
+                        <tbody>
+                            <tr>
+                                <td class="content content-main">
+
+                                    <!-- ko with: menu -->
+                                    <!-- ko if: hasEntryInstructions() -->
+                                    <div>
+                                        <i class="icon-info-sign"></i>
+                                        <span data-bind="text: selectedDataEntryTask().UserInstruction"></span>
+                                    </div>
+                                    <!-- /ko -->
+                                    <!-- /ko -->
+                                    <!-- ko if: currentView -->
+                                    <div class="section" data-bind="template: { name: 'batch-event-update', data: currentView }"></div>
+
+
+                                    <!-- /ko -->
+
+                                    <input id="caseIds" type="hidden" value="" />
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="content">
+
+                                    <!-- ko with: nonUpdatableCases -->
+                                    <div class="section" data-bind="template: { name: 'invalid-cases' }"></div>
+                                    <!-- /ko -->
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div data-bind="with: messageBox">
+        <div data-bind="template: { name: 'message-box', data: $data, afterRender:onViewRendered }"></div>
+    </div>
+    <input type="text" style="visibility: hidden;" id="app-base-url" value="{[{path}]}" />
+    <script id="message-box" type="text/html">
+    <div class="modal fade hide">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3 data-bind="text: title"></h3>
+        </div>
+        <div class="modal-body">
+            <div class="row-fluid">
+                <div class="span3">
+                    <i class="icon-thumbs-down icon-size-medium" data-bind="visible: type() == 'error'"></i>
+                    <i class="icon-info-sign icon-size-medium" data-bind="visible: type() != 'error'"></i>
+                </div>
+                <div class="span6">
+                    <span data-bind="text: message"></span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="toolbar" data-bind="foreach: buttons">
+                <!-- ko if: isDefault -->
+                <button class="btn btn-primary" data-bind="dataAttributes:dataAttributeCollection, text:text, click:clicked" />
+                <!-- /ko -->
+                <!-- ko if: !isDefault -->
+                <button class="btn" data-bind="dataAttributes:dataAttributeCollection,text:text, click:clicked" />
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+    </script>
+    <footer></footer>
+    <script id="atleast-one-date-must-be-entered-template" type="text/html">
+    <ul data-bind="foreach: $data">
+        <li data-bind="text: $data"></li>
+    </ul>
+    </script>
+    <script id="AtleastOneDateRequiredValidationModel" type="text/html">
+    <i class="icon-remove-sign icon-error-color"></i>
+    <span data-bind="text: Message"></span>
+    <span class="atleast-one-date-is-required-details">
+        <i class="icon-comment"></i>
+    </span>
+    <div class="hidden"
+        data-bind="template: { name: 'atleast-one-date-must-be-entered-template', data: Events}, popover:{ titleTranslateId: 'validationAtleastOneDateRequired', targetSelector: '.atleast-one-date-is-required-details'}">
+    </div>
+    </script>
+    <script id="available-events-validation-results" type="text/html">
+    <ul class="no-bullets" data-bind="foreach: $data">
+        <li data-bind="template: { name: Type, data: $data }"></li>
+    </ul>
+    </script>
+    <script id="batch-event-update" type="text/html">
+    <div>
+
+        <div class="form-inline" style="width: auto">
+            <label class="checkbox"><span data-bind="translate: 'headingWarnings'"></span><input type="checkbox" data-bind="checked: filterWarnings" /></label>
+            <label class="checkbox"><span data-bind="translate: 'headingErrors'"></span><input type="checkbox" data-bind="checked: filterErrors" /></label>
+        </div>
+        <!-- ko if: firstCase -->
+        <table class="grid">
+            <colgroup data-bind="with: firstCase">
+                <col class="disable" />
+                <col class="disable" />
+                <col class="disable" />
+            </colgroup>
+            <thead data-bind="template: {name: 'ColumnHeaders', data: $data }">
+            </thead>
+            <tbody data-bind="template: {name: 'UpdatableCase', data: $data, foreach: updatableCases }"></tbody>
+        </table>
+        <!-- /ko -->
+    </div>
+    <!-- ko with: confirmOnSave -->
+    <div data-bind="template: {name: 'confirm-on-save', data: $data, afterRender: onViewRendered}"></div>
+    <!-- /ko -->
+    <!-- ko with: validationResults -->
+    <div data-bind="template: {name: 'validation-results', data: $data, afterRender: afterRender}"></div>
+    <!-- /ko -->
+    </script>
+    <script id="case-restrictions-info-template" type="text/html">
+    <div>
+        <div class="label-align-left" data-bind="translate: 'validationCaseRestrictionsWarnings'"></div>
+        <ul data-bind="foreach: $data" class="no-bullets">
+            <!-- ko template: {name: 'name-restriction-item-template'} -->
+            <!-- /ko -->
+        </ul>
+    </div>
+    </script>
+    <script id="ColumnHeaders" type="text/html">
+    <tr class="header1">
+        <th rowspan="2" style="min-width: 25px; text-align: center;"></th>
+        <th rowspan="2" style="min-width: 25px"></th>
+        <th rowspan="2" data-bind="click: function() {updatableCases().sort('CaseReference')}" style="min-width: 150px;">
+            <div class="sort_wrapper">
+                <div class="grid_order">
+                    <span data-bind="translate: 'columnHeadingCaseRef'" />
+                    <span data-bind="template: { name: 'SortIcon', data: {sortDescending: updatableCases().sortInDescendingOrder(), sortColumn: updatableCases().sortColumn(), currentSort: 'CaseReference'}}"></span>
+                </div>
+            </div>
+        </th>
+        <th rowspan="2" style="min-width: 150px">
+            <div class="sort_wrapper">
+                <div class="grid_order" data-bind="click: function() {updatableCases().sort('CurrentOfficialNumber')}">
+                    <span data-bind="translate: 'columnHeadingOfficialNo'" />
+                    <span
+                        data-bind="template: { name: 'SortIcon', data: { sortDescending: updatableCases().sortInDescendingOrder(), sortColumn: updatableCases().sortColumn(), currentSort: 'CurrentOfficialNumber' } }"></span>
+                </div>
+            </div>
+        </th>
+        <!-- ko if: $data.firstCase().OfficialNumberDescription -->
+        <th rowspan="2">
+            <div class="sort_wrapper">
+                <div class="grid_order">
+                    <span class="label-align-middle" data-bind="text: $data.firstCase().OfficialNumberDescription"></span>
+                    <a href="#" data-bind="click: function(data) { $parent.applyChangesToAll(data, 'OfficialNumber') }">
+                            <i class="icon-arrow-down icon-align-middle" data-bind="translateTooltip: 'tooltipApplyToAll'"></i>
+                        </a>
+                </div>
+            </div>
+        </th>
+        <!-- /ko -->
+        <!-- ko foreach: $data.firstCase().AvailableEvents -->
+        <th data-bind="text: $data.EventDescription, colspan: $data"></th>
+        <!-- /ko -->
+        <th rowspan="2">
+            <span data-bind="translate: 'columnHeadingFileLocation'"></span>
+            <!-- ko if: $parent.updatableCases().length > 1 -->
+            <a href="#" data-bind="click: function(data) { $parent.applyChangesToAll(data, 'FileLocationId') }">
+                    <i class="icon-arrow-down icon-align-middle" data-bind="translateTooltip: 'tooltipApplyToAll'"></i>
+                </a>
+            <!-- /ko -->
+        </th>
+    </tr>
+    <!-- ko with: $data.firstCase -->
+    <tr class="header2">
+        <!-- ko foreach: AvailableEvents -->
+        <!-- ko if: IsCyclic -->
+        <th style="text-align: center">
+            <span data-bind="translate: 'columnHeadingCycle'"></span>
+        </th>
+        <!-- /ko -->
+        <!-- ko if: EventDateEntryAttribute.IsVisible -->
+        <th>
+            <span class="label-align-middle" data-bind="translate: 'columnHeadingEventDate'"></span>
+            <!-- ko if: $parents[1].updatableCases().length > 1 && !EventDateEntryAttribute.IsDisplayOnly() -->
+            <a href="#" data-bind="click: function(data) { $parents[1].applyChangesToAll(data, 'eventDate') }">
+                    <i class="icon-arrow-down icon-align-middle" data-bind="translateTooltip: 'tooltipApplyToAll'"></i>
+                </a>
+            <!-- /ko -->
+        </th>
+        <!-- /ko -->
+        <!-- ko if: DueDateEntryAttribute.IsVisible -->
+        <th>
+            <span class="label-align-middle" data-bind="translate: 'columnHeadingDueDate'"></span>
+            <!-- ko if: $parents[1].updatableCases().length > 1 && !DueDateEntryAttribute.IsDisplayOnly() -->
+            <a href="#" data-bind="click: function(data) { $parents[1].applyChangesToAll(data, 'dueDate') }">
+                    <i class="icon-arrow-down icon-align-middle" data-bind="translateTooltip: 'tooltipApplyToAll'"></i>
+                </a>
+            <!-- /ko -->
+        </th>
+        <!-- /ko -->
+        <th>
+            <span data-bind="translate: 'columnHeadingEventText'"></span>
+            <!-- ko if: $parents[1].updatableCases().length > 1 -->
+            <a href="#" data-bind="click: function(data) { $parents[1].applyChangesToAll(data, 'EventText') }">
+                    <i class="icon-arrow-down icon-align-middle" data-bind="translateTooltip: 'tooltipApplyToAll'"></i>
+                </a>
+            <!-- /ko -->
+        </th>
+        <!-- /ko -->
+    </tr>
+    <!-- /ko -->
+    </script>
+    <script id="confirm-on-save" type="text/html">
+    <div class="modal fade hide">
+        <div class="modal-header">
+            <h2 data-bind="translate: 'headingStatusChangeVerification'"></h2>
+        </div>
+        <div class="modal-body">
+            <p>
+                <span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 50px 0;"></span>
+                <!-- ko if: statusChangingCases().length > 0 -->
+                <span data-bind="{translate: 'stvMultipleCaseStatusChange'}"></span>
+                <!-- /ko -->
+                <!-- ko if: statusChangingCases().length <= 0 -->
+                <span data-bind="{translate: 'stvSingleCaseStatusChange'}"></span>
+                <!-- /ko -->
+                <strong data-bind="text: newStatus"></strong>
+            </p>
+            <!-- ko if: statusChangingCases().length > 0 -->
+            <p>
+                <div class="confirmation-dialog-list horizontal-scroll">
+                    <table class="table table-condensed table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th data-bind="translate: 'columnHeadingCaseRef'"></th>
+                                <th data-bind="translate: 'columnHeadingOfficialNo'"></th>
+                                <th data-bind="translate: 'columnHeadingCaseStatus'"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- ko foreach: statusChangingCases -->
+                            <tr>
+                                <td><span data-bind="text: CaseReference"></span></td>
+                                <td><span data-bind="text: CurrentOfficialNumber"></span></td>
+                                <td><span data-bind="text: CaseStatusDescription"></span></td>
+                            </tr>
+                            <!-- /ko -->
+                        </tbody>
+                    </table>
+                </div>
+            </p>
+            <!-- /ko -->
+            <p>
+                <span data-bind="translate: 'confirmProceed'"></span>
+            </p>
+
+            <p data-bind="visible: isInvalidPassword" style="color: red;"><b><span data-bind="'stvPasswordIncorrect'"></span></b></p>
+
+            <div class="well" data-bind="visible: requiresPassword">
+                <span translate: 'stvEnterPasswordForStatusChange'></span>
+                <input type="password" data-bind="value: password" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" data-bind="click: onConfirm, translate: 'confirmYes'"></button>
+            <button class="btn" data-bind="click: close, translate: 'confirmNo'"></button>
+        </div>
+    </div>
+    </script>
+    <script id="currentCaseInfoTemplate" type="text/html">
+    <span class="label label-info" data-bind="translate: 'informationCurrentlyEditing'"></span>
+    <span class="label" data-bind="text: $data.currentCase().CaseReference"></span>
+    <span class="label" data-bind="text: $data.currentCase().CurrentOfficialNumber"></span>
+    <span class="label" data-bind="text: $data.currentCase().Title"></span>
+    </script>
+    <script id="data-validations-info-template" type="text/html">
+    <div>
+        <div class="label-align-left" data-bind="translate: 'sanityCheckValidationInfo'"></div>
+        <ul>
+            <!-- ko foreach: $data -->
+            <li>
+                <span data-bind="html: Message"></span>
+            </li>
+            <!-- /ko -->
+        </ul>
+    </div>
+    </script>
+    <script id="date-rule-info-template" type="text/html">
+    <div data-bind="foreach: $data">
+        <ul>
+            <li data-bind="translate: 'dateLogicComparisonEvent'"></li>
+            <span data-bind="text: ComparisonEvent"></span>
+            <li data-bind="translate: 'dateLogicComparisonDate'"></li>
+            <span data-bind="text: ComparisonDate"></span>
+            <li data-bind="translate:'dateLogicDateToCompare'"></li>
+            <span data-bind="text: DateToCompare"></span>
+            <li data-bind="translate: 'dateLogicMessage'"></li>
+            <span data-bind="text: Message"></span>
+        </ul>
+    </div>
+    </script>
+    <script id="DateRuleViolationModel" type="text/html">
+    <i data-bind="css: {'icon-remove-sign': !IsWarning, 'icon-error-color': !IsWarning, 'icon-exclamation-sign': IsWarning, 'icon-warning-color': IsWarning}"></i>
+    <span data-bind="text: Message"></span>
+    <span href="#" class="date-rule-violation-mode-details">
+        <i class="icon-comment"></i>
+    </span>
+    <div class="hidden" data-bind="template: { name: 'date-rule-info-template', data: DateRuleViolationInfos}, popover:{ titleTranslateId: 'headingMoreInformation', targetSelector: '.date-rule-violation-mode-details'}">
+    </div>
+    </script>
+    <script id="DebtorStatusPasswordInvalidValidationModel" type="text/html">
+    <i data-bind="css: {'icon-remove-sign': !IsWarning, 'icon-error-color': !IsWarning, 'icon-exclamation-sign': IsWarning, 'icon-warning-color': IsWarning}"></i>
+    <span data-bind="text: Message"></span>
+    </script>
+    <script id="default-validation-results" type="text/html">
+    <ul class="no-bullets" data-bind="foreach: $data">
+        <li data-bind="template: { name: Type, data: $data }"></li>
+    </ul>
+    </script>
+    <script id="invalid-cases" type="text/html">
+    <!-- ko if: $data.length > 0 -->
+    <div id="NonupdatableCasesList">
+        <h4 data-bind="translate: 'headingNonMatchingCases'"></h4>
+        <table class="grid">
+            <thead>
+                <tr class="header1">
+                    <th data-bind="click: function () { sort('CaseReference'); }" style="min-width: 150px;">
+                        <div class="sort_wrapper">
+                            <div class="grid_order">
+                                <span data-bind="translate: 'columnHeadingCaseRef'" />
+                                <span data-bind="template: { name: 'SortIcon', data: {sortDescending: sortInDescendingOrder(), sortColumn: sortColumn(), currentSort: 'CaseReference'}}"></span>
+                            </div>
+                        </div>
+                    </th>
+                    <th rowspan="2" style="min-width: 150px">
+                        <div class="sort_wrapper" data-bind="click: function () { sort('CurrentOfficialNumber');}">
+                            <div class="grid_order">
+                                <span data-bind="translate: 'columnHeadingOfficialNo'" />
+                                <span data-bind="template: { name: 'SortIcon', data: { sortDescending: sortInDescendingOrder(), sortColumn: sortColumn(), currentSort: 'CurrentOfficialNumber' } }"></span>
+                            </div>
+                        </div>
+                    </th>
+                    <th data-bind="translate: 'columnHeadingTitle'"></th>
+                    <th data-bind="translate: 'columnHeadingReason'"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- ko template: {name: 'NonmatchingCase', foreach: $data } -->
+                <!-- /ko -->
+            </tbody>
+        </table>
+    </div>
+    <!-- /ko -->
+    </script>
+    <script id="name-restriction-item-template" type="text/html">
+    <li>
+        <div class="row-fluid">
+            <div>
+                <span data-bind="text: FormattedName"></span>&nbsp;
+                <span>(</span><span data-bind="text: NameTypeDescription"></span><span>)</span>
+
+                <ul data-bind="foreach: $data.Restrictions" class="no-bullets">
+                    <li>
+                        <span>
+                            <i class="icon-flag"
+                               data-bind="css: { 'status-warning': Severity() == 'Warning', 'status-error': Severity() == 'Error', 'status-success': Severity() == 'Information' }"></i>
+                        </span>
+                        <span data-bind="text: Message" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </li>
+    </script>
+    <script id="NonmatchingCase" type="text/html">
+    <tr>
+        <td class="padded-content" data-bind="text: CaseReference" />
+        <td class="padded-content" data-bind="text: CurrentOfficialNumber" />
+        <td class="padded-content" data-bind="text: Title" />
+        <td class="padded-content" data-bind="template: { name: 'NonMatchingCasesInfo', data: $data ,
+                                                    title: 'Information' }" />
+    </tr>
+    </script>
+    <script id="NonMatchingCasesInfo" type="text/html">
+    <ul class="ul-list-bullets">
+        <!-- ko if: $data.HasNoRecordsForSelectedCycle() -->
+        <li data-bind="translate: 'headingNoRecordsForSelectedCycle'"></li>
+        <!-- /ko -->
+        <!-- ko if: $data.HasMultipleOpenActionCycles() -->
+        <li data-bind="translate: 'headingMultipleOpenActionCycles'"></li>
+        <!-- /ko -->
+        <!-- ko if: $data.HasNoMatchingActionCriteria() -->
+        <li data-bind="translate: 'headingNoOpenActionInTheSameCriteria'"></li>
+        <!-- /ko -->
+        <!-- ko if: $data.HasAccessRestriction() -->
+        <li data-bind="translate: 'headingInsufficientPermission'"></li>
+        <!-- /ko -->
+        <!-- ko if: $data.blockingNameRestrictions().length > 0 -->
+        <li>
+            <span data-bind="translate: 'headingBlockingNameRestriction'"></span>
+            <!-- ko foreach: $data.blockingNameRestrictions() -->
+            <ul class="no-bullets">
+                <!-- ko template: {name: 'name-restriction-item-template'} -->
+                <!-- /ko -->
+            </ul>
+            <!-- /ko -->
+        </li>
+        <!-- /ko -->
+        <!-- ko if: $data.nameRestrictionsRequiringPasswordApproval().length > 0 -->
+        <li>
+            <span data-bind="translate: 'headingNameRestrictionRequiringPasswordApproval'"></span>
+            <!-- ko foreach: $data.nameRestrictionsRequiringPasswordApproval()  -->
+            <ul class="no-bullets">
+                <!-- ko template: {name: 'name-restriction-item-template'} -->
+                <!-- /ko -->
+            </ul>
+            <!-- /ko -->
+        </li>
+        <!-- /ko -->
+    </ul>
+    </script>
+    <script id="SanityCheckResults" type="text/html">
+    <!-- ko if: $data.length > 0 -->
+    <i class="icon-comment validation-result-warning"></i>
+    <div class="hide invisible" data-bind="template: { name: 'data-validations-info-template', data: $data }, popover: { titleTranslateId: 'headingDataValidation', targetSelector: '.icon-comment' }" />
+    <!-- /ko -->
+    </script>
+    <script id="select-cycle" type="text/html">
+    <div class="modal fade hide">
+        <div class="modal-header">
+            <h2 class="item-title" data-bind="translate: 'headingCycleSelection'"></h2>
+        </div>
+        <div class="modal-body" data-bind="with: firstCase">
+            <div style="margin-bottom: 10px">
+
+                <strong><span data-bind="translate: 'csCaseForCycleSelection'"></span></strong><span data-bind="text: CaseReference"></span>
+                <div>
+                    <strong><span data-bind="translate: 'csCurrentOfficialNumber'"></span></strong><span data-bind="text:CurrentOfficialNumber"></span><br />
+                    <strong><span data-bind="translate: 'csEvent'"></span></strong><span data-bind="text:EventDescription"></span>
+                </div>
+            </div>
+
+            <table class="table table-striped table-align-middle table-outside-border">
+                <tr>
+                    <th>
+                        <span class="label-align-middle" data-bind="translate: 'columnHeadingEventDate'"></span>
+                    </th>
+                    <th>
+                        <span class="label-align-middle" data-bind="translate: 'columnHeadingDueDate'"></span>
+                    </th>
+                    <th>
+                        <span class="label-align-middle" data-bind="translate: 'columnHeadingCycle'"></span>
+                    </th>
+                </tr>
+                <!-- ko foreach: Events() -->
+                <tr>
+                    <td class="label-align-middle" data-bind="text: EventDateFormatted"></td>
+                    <td class="label-align-middle" data-bind="text: DueDateFormatted"></td>
+                    <td class="label-align-middle" data-bind="text: Cycle"></td>
+                </tr>
+                <!-- /ko -->
+            </table>
+        </div>
+        <div class="modal-footer">
+            <h4>
+                <span data-bind="translate: 'csRelativeCycle'"></span>
+            </h4>
+            <button class="btn btn-primary" data-bind="click: selectCurrentCycle, translate: 'csCurrentCycle'"></button>
+            <button class="btn" data-bind="click: selectNextCycle, translate: 'csNextCycle'"></button>
+            <button class="btn" data-bind="click: cancelCycleSelection, translate: 'btnCancel'"></button>
+        </div>
+    </div>
+    </script>
+    <script id="SortIcon" type="text/html">
+    <i style="cursor: pointer" data-bind="css: { 'icon-sort-down': $data.sortDescending && $data.sortColumn == $data.currentSort, 'icon-sort-up': !$data.sortDescending && $data.sortColumn == $data.currentSort, 'icon-sort': $data.sortColumn != $data.currentSort }"></i>
+    </script>
+    <script id="StatusIcon" type="text/html">
+    <!-- ko if: state() === "Dirty" || state() === "WarningsReviewed" || state() === "ErrorsAndOrWarningsReviewed" -->
+    <i class="icon-pencil"></i>
+    <!-- /ko -->
+    <!-- ko if: state() === "ReviewErrorsAndOrWarnings" -->
+    <i class="icon-remove-sign status-error"></i>
+    <!-- /ko -->
+    <!-- ko if: state() === "ReviewWarnings" -->
+    <i class="icon-warning-sign status-warning"></i>
+    <!-- /ko -->
+    <!-- ko if: state() === "Saved" -->
+    <i class="icon-ok-sign status-success"></i>
+    <!-- /ko -->
+    </script>
+    <script id="UpdatableCase" type="text/html">
+    <tr>
+        <td style="text-align: center; vertical-align: middle;">
+            <input type="checkbox" data-bind="checked: isSelected, disable: disableSelectCheckBox" />
+        </td>
+        <td style="text-align: center;">
+            <span data-bind="template: {name: 'StatusIcon'}"></span>
+            <!-- ko if: WarnOnlyRestrictions().length > 0 -->
+            <i class="icon-info-sign" />
+                <div class="hide invisible" data-bind="template: { name: 'case-restrictions-info-template', data: $data.WarnOnlyRestrictions }, popover: { titleTranslateId: 'ucAdditionalInformation', targetSelector: '.icon-info-sign' }" />
+                <!-- /ko -->
+            </td>
+            <td>
+                <span style="white-space: nowrap">
+                <span class="padded-content" data-bind="text: CaseReference" />
+                <span class="padded-content" data-bind="template: { name: 'SanityCheckResults', data: sanityCheckResults }"></span>
+                </span>
+            </td>
+            <td>
+                <div class="padded-content" data-bind="text: CurrentOfficialNumber">
+                </div>
+            </td>
+            <!-- ko if: OfficialNumberDescription -->
+            <td>
+                <div data-bind="template: {name: 'ValidationResult', foreach: fieldValidationResults('OfficialNumber')}"></div>
+                <input type="text" data-bind="value: OfficialNumber, select:isActive, attr: { 'title': OfficialNumberDescription }" />
+            </td>
+            <!-- /ko -->
+            <!-- ko foreach: AvailableEvents -->
+            <!-- ko if: IsCyclic -->
+            <td style="text-align: center;">
+                <div data-bind="text: Cycle" />
+            </td>
+            <!-- /ko -->
+            <!-- ko if: EventDateEntryAttribute.IsVisible -->
+            <!-- ko if: EventDateEntryAttribute.IsDisplayOnly -->
+            <td>
+                <input class="fixed-width10" readonly="readonly" type="text" data-bind="value: eventDate, select:$parent.isActive, translateTooltip: { args: EventDescription(), id: 'tooltipEventDate' }" />
+            </td>
+            <!-- /ko -->
+            <!-- ko ifnot: EventDateEntryAttribute.IsDisplayOnly -->
+            <td>
+                <div data-bind="template: {name: 'ValidationResult', foreach: $parent.eventInputValidationResults($data, 'EventDate')}"></div>
+                <input class="fixed-width10" type="text" data-bind="value: eventDate, select:$parent.isActive, translateTooltip: { args: EventDescription(), id: 'tooltipEventDate' }" />
+            </td>
+            <!-- /ko -->
+            <!-- /ko -->
+            <!-- ko if: DueDateEntryAttribute.IsVisible -->
+            <!-- ko if: DueDateEntryAttribute.IsDisplayOnly -->
+            <td>
+                <input class="fixed-width10" readonly="readonly" type="text" data-bind="value: dueDate, select:$parent.isActive, translateTooltip: { args: EventDescription(), id: 'tooltipDueDate' }" />
+            </td>
+            <!-- /ko -->
+            <!-- ko ifnot: DueDateEntryAttribute.IsDisplayOnly -->
+            <td>
+                <div data-bind="template: {name: 'ValidationResult', foreach: $parent.eventInputValidationResults($data, 'DueDate')}"></div>
+                <input class="fixed-width10" type="text" data-bind="value: dueDate, select:$parent.isActive, translateTooltip: { args: EventDescription(), id: 'tooltipDueDate' }" />
+            </td>
+            <!-- /ko -->
+            <!-- /ko -->
+            <td>
+                <div data-bind="template: {name: 'ValidationResult', foreach: $parent.eventInputValidationResults($data, 'EventText')}"></div>
+                <input type="text" data-bind="value: EventText, select:$parent.isActive, translateTooltip: { args: EventDescription(), id: 'tooltipEventText' }" />
+            </td>
+            <!-- /ko -->
+            <td>
+                <div data-bind="template: {name: 'ValidationResult', foreach: fieldValidationResults('FileLocation')}"></div>
+                <!-- Use tabindex to make the div focusable as button is not focusable -->
+                <div data-bind="select: isActive" tabindex="-1" class="nowrap">
+                    <input title="File Location" type="text" data-bind="jqAuto: { autoFocus: false, delay: 100, minLength: 0 }, jqAutoSource: $parent.fileLocations, jqAutoValue: FileLocationId, jqAutoSourceValue: 'LocationId', jqAutoSourceLabel: 'LocationName', jqAutoSourceInputValue: 'LocationName', jqAutoSourceUserCode: 'LocationCode'"
+                    />
+                    <button class="dropdown-toggle btn" type="button" data-dropdown="autocomplete" data-bind="click: function () { isActive(true) }">
+                    <i class="icon-chevron-down"></i>
+            </button>
+            </div>
+        </td>
+    </tr>
+    </script>
+    <script id="validation-results" type="text/html">
+    <div class="modal fade hide">
+        <div class="modal-header">
+            <h2 class="item-title" data-bind="translate: 'validationUnableToComplete'"></h2>
+        </div>
+        <div class="modal-body">
+            <!-- ko foreach: results -->
+            <div class="row-fluid">
+                <i data-bind="css: {'icon-remove-sign': !IsWarning, 'icon-exclamation-sign': IsWarning}"></i>
+                <span data-bind="text: Message"></span>
+            </div>
+            <!-- /ko -->
+            <ul class="no-bullets" data-bind="foreach: results">
+                <li>
+
+                </li>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <!-- ko if: hasOnlyWarnings() -->
+            <button class="btn" data-dismiss="modal" data-bind="click: confirm, translate: 'btnSaveCasesWithWarning'"></button>
+            <!-- /ko -->
+            <!-- ko if: !hasOnlyWarnings() -->
+            <button class="btn" data-dismiss="modal" data-bind="translate: 'btnOk'"></button>
+            <!-- /ko -->
+            <!-- ko if: hasOnlyWarnings() -->
+            <button class="btn cancel" data-dismiss="modal" data-bind="translate: 'btnCancel'"></button>
+            <!-- /ko -->
+        </div>
+    </div>
+    </script>
+    <script id="ValidationResult" type="text/html">
+    <!-- ko if: Severity === "Information" -->
+    <div class="validation-result validation-result-information">
+        <i class="icon-info-sign"></i>
+        <!-- ko if: MessageId -->
+        <span data-bind="translate: MessageId"></span>
+        <!-- /ko -->
+        <!-- ko if: !MessageId -->
+        <span data-bind="text: Message"></span>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <!-- ko if: Severity === "Warning" -->
+    <div class="validation-result validation-result-warning">
+        <i class="icon-warning-sign"></i>
+        <!-- ko if: MessageId -->
+        <span data-bind="translate: MessageId"></span>
+        <!-- /ko -->
+        <!-- ko if: !MessageId -->
+        <span data-bind="text: Message"></span>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+    <!-- ko if: Severity === "Error" -->
+    <div class="validation-result validation-result-error">
+        <i class="icon-remove-sign"></i>
+        <!-- ko if: MessageId -->
+        <span data-bind="translate: MessageId"></span>
+        <!-- /ko -->
+        <!-- ko if: !MessageId -->
+        <span data-bind="text: Message"></span>
+        <!-- /ko -->
+    </div>
+    <!-- /ko -->
+    </script>
+    <script id="ValidationResultModel" type="text/html">
+    <i data-bind="css: {'icon-remove-sign': !IsWarning, 'icon-error-color': !IsWarning, 'icon-exclamation-sign': IsWarning, 'icon-warning-color': IsWarning}"></i>
+    <span data-bind="text: Message"></span>
+    </script>
+
+    <input type="hidden" id="profile-settings-language" name="profile-settings-language" value="en-gb,en-us;q=0.8,en;q=0.6" />
+
+    <!-- build:js scripts/batch-event-update.js -->
+    <script src="scripts/resources.js"></script>
+    <script src="scripts/appViewModel.js"></script>
+    <script src="scripts/availableEventViewModel.js"></script>
+    <script src="scripts/caseState.js"></script>
+    <script src="scripts/cycleSelectionViewModel.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/menuViewModel.js"></script>
+    <script src="scripts/messages.js"></script>
+    <script src="scripts/nonUpdatableCaseViewModel.js"></script>
+    <script src="scripts/nonUpdatableViewModel.js"></script>
+    <script src="scripts/saveCommand.js"></script>
+    <script src="scripts/saveMode.js"></script>
+    <script src="scripts/spreadsheetViewModel.js"></script>
+    <script src="scripts/statusChangeConfirmationViewModel.js"></script>
+    <script src="scripts/updatableCaseViewModel.js"></script>
+    <script src="scripts/validationResultsViewModel.js"></script>
+    <script src="scripts/logout.js"></script>
+    <script src="scripts/Knockout/Bindings/colspan.js"></script>
+    <script src="scripts/Knockout/Bindings/translate.js"></script>
+
+    <script src="common/extensions/Knockout/dirtyFlag.js"></script>
+    <script src="common/extensions/Knockout/protectedObservable.js"></script>
+    <script src="common/extensions/Knockout/Bindings/collapse.js"></script>
+    <script src="common/extensions/Knockout/Bindings/dataAttributes.js"></script>
+    <script src="common/extensions/Knockout/Bindings/datepicker.js"></script>
+    <script src="common/extensions/Knockout/Bindings/jqauto.js"></script>
+    <script src="common/extensions/Knockout/Bindings/popover.js"></script>
+    <script src="common/extensions/Knockout/Bindings/select.js"></script>
+    <script src="common/extensions/Knockout/Bindings/slide.js"></script>
+    <script src="common/extensions/Knockout/Bindings/subscribableSubscribeChangedEvent.js"></script>
+    <script src="common/extensions/Knockout/Extenders/requiredExtender.js"></script>
+
+    <script src="common/application/appBaseViewModel.js"></script>
+    <script src="common/application/countryViewModel.js"></script>
+    <script src="common/application/messageBoxViewModel.js"></script>
+    <script src="common/application/messages.js"></script>
+    <script src="common/application/modalDialogViewModel.js"></script>
+    <script src="common/application/selectionDialogViewModel.js"></script>
+    <script src="common/application/toolbarButtonViewModel.js"></script>
+    <script src="common/application/windowViewModel.js"></script>
+
+    <script src="common/postInitialization/postInitialization.js"></script>
+    <script src="common/postInitialization/setDateFormat.js"></script>
+    <script src="common/postInitialization/showContentArea.js"></script>
+    <script src="common/postInitialization/workAreaAdjustment.js"></script>
+
+    <script src="externaldependency/momentjs/min/langs.min.js"></script>
+
+    <link rel="stylesheet" href="styles/_errors-root.css" />
+    <link rel="stylesheet" href="styles/_site-root.css" />
+    <link rel="stylesheet" href="styles/migrated-main.css" />
+    <link rel="stylesheet" href="styles/spinner.css" />
+    <link rel="stylesheet" href="styles/ace-part2.min.css" />
+</body>

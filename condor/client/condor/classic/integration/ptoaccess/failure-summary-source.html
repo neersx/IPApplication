@@ -1,0 +1,23 @@
+<div data-ng-if="vm.showRecoverableCasesHint()">
+    <div class="alert alert-warning" style="display:block; margin-bottom: 10px">
+        <icon name="info-circle"></icon>
+        <span data-ng-show="!vm.recoverPossible">{{::'dataDownload.failureSummary.recoveryInProgress' | translate}}</span>
+        <span data-ng-show="vm.recoverPossible">{{::'dataDownload.failureSummary.total' | translate}}
+            <a href="javascript:void(0)" data-ng-click="vm.showRecoverableCases()">
+                <span>{{::vm.failedCount}}</span> case(s)
+            </a>
+            <span data-ng-if="vm.failedDocumentCount>0" data-ng-show="vm.failedDocumentCount && vm.failedCount">, </span>
+            <a href="javascript:void(0)" data-ng-if="vm.failedDocumentCount>0" data-ng-click="vm.showRecoverableDocuments()">
+                <span>{{::vm.failedDocumentCount}}</span> document(s)
+            </a> {{::'dataDownload.failureSummary.failedToDownload' | translate}}
+            <button class="btn btn-sm btn-primary" data-ng-click="vm.recover()">{{::'dataDownload.schedule.retry' | translate}}</button>
+        </span>
+    </div>
+</div>
+<div ng-repeat="message in vm.scheduleMessages">
+    <ip-schedule-message-alert data-message="message"></ip-schedule-message-alert>
+</div>
+
+<div style="margin-bottom:10px;" class="row" data-ng-if="vm.showRecoverableCasesHint()">
+    <ip-kendo-grid data-id="{{::vm.dataSource}}Grid" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+</div>

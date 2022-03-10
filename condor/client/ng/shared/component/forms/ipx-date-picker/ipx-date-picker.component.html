@@ -1,0 +1,71 @@
+<style>
+
+</style>
+<!-- {{showError()?1:0}}|{{(errorsDetails.length===0 && warningDetails.length>0)}} -->
+<div class="input-wrap date" [ngClass]="{ 'error': showError() || (showError$ | async), 'warning': ((!errorsDetails || errorsDetails.length === 0) && !!warningDetails && warningDetails.length > 0) }">
+    <span class="date-content-wrap">
+        <label *ngIf="label">{{ label | translate }}</label>
+        <input type="text" #datePicker="bsDatepicker" #dateControl class="datepicker-input basic-addon-r-1" [ngClass]="{'edited': (isEdited$|async)}" bsDatepicker (bsValueChange)="dateChanged($event)"
+            (change)=onInputChange(); [(ngModel)]="value" [disabled]="disabled" [bsConfig]="bsConfig" (keyup)="parseKeyUp($event)" />
+        <span class="input-wrap-addon">
+            <button type="button" class="btn btn-default" [disabled]="disabled" (click)="datePicker.toggle()"><i class="cpa cpa-icon-calendar"></i></button>
+        </span>
+        <span *ngIf="!showAlertErrorDetails && showError$|async" class="input-action">
+            <span class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="getError() | translate: getErrorParams()" containerClass="tooltip-error" [tooltipPlacement]="'auto'"></span>
+        </span>
+        <span *ngIf="!showAlertErrorDetails && (errorsDetails?.length == 0 && warningDetails?.length == 1)" class="input-action" style="cursor: pointer; right:0px;">
+            <span [popover]="warnToolTipContent" [containerClass]="'tooltip-warning'" [placement]="'right'" [adaptivePosition]="false" [container]="'body'" triggers="mouseenter:mouseleave">
+                <span  class="cpa-icon cpa-icon-exclamation-circle"></span>
+            </span>
+        </span>
+        <span *ngIf="showAlertErrorDetails && (errorsDetails?.length > 0 || warningDetails?.length > 0)" class="input-action" style="cursor: pointer; right:0px;">
+            <span [popover]="toolTipContent" [containerClass]="'extraWidePopover'" [placement]="'right'" [adaptivePosition]="false" [container]="'body'" triggers="mouseenter:mouseleave">
+                <span *ngIf="errorsDetails?.length > 0" class="cpa-icon cpa-icon-exclamation-triangle"></span>
+                <span *ngIf="errorsDetails?.length === 0" class="cpa-icon cpa-icon-exclamation-circle"></span>
+            </span>
+        </span>
+    </span>
+</div>
+
+<ng-template #warnToolTipContent>
+        <span>{{warningDetails[0]}}</span>
+</ng-template>
+
+<ng-template #toolTipContent>
+    <div class="row">
+        <div class="k-grid">
+            <div class="k-grid-header">
+                <div class="k-grid-header-wrap">
+                    <table role="presentation" tabindex="0">
+                        <colgroup role="presentation">
+                            <col style="width:50px">
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr row="row">
+                                <th class="k-header">Type</th>
+                                <th class="k-header">Message</th>
+                            </tr>
+                        </thead>
+                        <tbody role="rowgroup">
+                            <tr class="k-master-row ng-scope errors" role="row" *ngFor="let errRow of errorsDetails trackBy:errRow">
+                                <td role="gridCell" role="rowstatus">
+                                    <span class="cpa-icon cpa-icon-exclamation-triangle"></span>
+                                </td>
+                                <td role="gridCell">{{errRow}}
+                                </td>
+                            </tr>
+                            <tr class="k-master-row ng-scope warnings" role="row" *ngFor="let warnRow of warningDetails trackBy:warnRow">
+                                <td role="gridCell" role="rowstatus">
+                                    <span class="cpa-icon cpa-icon-exclamation-circle"></span>
+                                </td>
+                                <td role="gridCell">{{warnRow}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,111 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{ 'dmsIntegration.iManage.databaseTitle' | translate}}</h2>
+    <div class="modal-header-controls">
+        <ipx-apply-button type="button" [disabled]="!formGroup.dirty || formGroup.status === 'INVALID' || connectionError" (click)="apply($event)"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel($event)"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formGroup">
+        <ipx-inline-alert *ngIf="connectionError" [type]="'info'" [text]="connectionError | translate"></ipx-inline-alert>
+        <ipx-inline-alert *ngIf="connectionMessage" [type]="'info'" [text]="connectionMessage | translate"></ipx-inline-alert>
+        <div class="row">
+            <div class="col-sm-10">
+                <ipx-text-field #server name="server" formControlName="server" [loading]="validationInProgress" apply-edited label="dmsIntegration.iManage.serverfield" ipx-autofocus required></ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <ipx-text-field name="Database" formControlName="database" apply-edited label="dmsIntegration.iManage.database" required></ipx-text-field>
+            </div>
+            
+            <div class="col-sm-2" style="padding-left: 0">
+                <ipx-inline-dialog [content]="'dmsIntegration.iManage.databaseDescription' | translate" tooltipPlacement="auto" style="vertical-align: top;">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <ipx-dropdown name="IntegrationType" #integrationType label="dmsIntegration.iManage.integrationType" [options]="integrationTypes" formControlName="integrationType"
+                    (onChange)="integrationTypeChange($event)" [warningText]="iComWarning" apply-edited required>
+                </ipx-dropdown>
+            </div>
+        </div>
+        <div class="row" *ngIf="showCustomerId$ | async">
+            <div class="col-sm-10">
+                <ipx-text-field name="CustomerId" [numberOnly]="true" formControlName="customerId" apply-edited label="dmsIntegration.iManage.customerId" maxLength="" required></ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10">
+                <ipx-dropdown name="LoginType" #loginType label="dmsIntegration.iManage.loginType" [options]="shownLoginTypes" formControlName="loginType" (onChange)="loginTypeChange($event)" apply-edited
+                    required>
+                </ipx-dropdown>
+            </div>
+        </div>
+        <div *ngIf="showWorkApiV2$ | async">
+            <div class="row">
+                <div class="col-sm-10">
+                    <ipx-text-field name="CallbackUrl" required formControlName="callbackUrl" multiLine="true" [rows]="4" apply-edited label="dmsIntegration.iManage.callbackUrl"></ipx-text-field>
+                </div>
+                <div class="col-sm-2" style="padding-left: 0">
+                    <ipx-inline-dialog [content]="'dmsIntegration.iManage.callbackUrlDescription' | translate" tooltipPlacement="top">
+                    </ipx-inline-dialog>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ipx-text-field name="AuthUrl" required formControlName="authUrl" apply-edited label="dmsIntegration.iManage.authUrl"></ipx-text-field>
+                </div>
+                <div class="col-sm-2" style="padding-left: 0">
+                    <ipx-inline-dialog [content]="'dmsIntegration.iManage.authUrlDescription' | translate" tooltipPlacement="top">
+                    </ipx-inline-dialog>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ipx-text-field name="AccessTokenUrl" required formControlName="accessTokenUrl" apply-edited label="dmsIntegration.iManage.accessTokenUrl"></ipx-text-field>
+                </div>
+                <div class="col-sm-2" style="padding-left: 0">
+                    <ipx-inline-dialog [content]="'dmsIntegration.iManage.accessTokenUrlDescription' | translate" tooltipPlacement="top">
+                    </ipx-inline-dialog>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ipx-text-field name="ClientId" required formControlName="clientId" apply-edited label="dmsIntegration.iManage.clientId"></ipx-text-field>
+                </div>
+                <div class="col-sm-2" style="padding-left: 0">
+                    <ipx-inline-dialog [content]="'dmsIntegration.iManage.clientIdDescription' | translate" tooltipPlacement="top" style="vertical-align: top;">
+                    </ipx-inline-dialog>
+
+                    <div style="display: inline-block; padding: 3px 6px 3px 9px">
+                        <button (click)="generateClientId()" class="btn btn-prominent clear" style="margin-left: 85%">{{'dmsIntegration.iManage.generate' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ipx-text-field name="ClientSecret" required [mask]="true" formControlName="clientSecret" apply-edited label="dmsIntegration.iManage.clientSecret"></ipx-text-field>
+                </div>
+                <div class="col-sm-2" style="padding-left: 0">
+                    <ipx-inline-dialog [content]="'dmsIntegration.iManage.clientSecretDescription' | translate" tooltipPlacement="top" style="vertical-align: top;">
+                    </ipx-inline-dialog>
+
+                    <div style="display: inline-block; padding: 3px 6px 3px 9px">
+                        <button (click)="generateClientSecret()" class="btn btn-prominent clear" style="margin-left: 85%">{{'dmsIntegration.iManage.generate' | translate}}</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="showPassword$ | async">
+            <div class="row">
+                <div class="col-sm-10">
+                    <ipx-text-field name="password" [mask]="true" formControlName="password" apply-edited label="dmsIntegration.iManage.password" maxLength="50" required></ipx-text-field>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

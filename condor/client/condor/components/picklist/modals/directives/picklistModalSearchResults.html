@@ -1,0 +1,61 @@
+<style>
+    .grid-actions {
+        white-space: nowrap;
+    }
+    
+    div.switch {
+        display: inline-block;
+        padding-right: 20px;
+        vertical-align: middle;
+    }
+    
+    div.switch.input-wrap-focus {
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+    }
+    
+    div.k-splitter {
+        min-height: 450px;
+        border: 0px !important;
+    }
+    
+    .fixed-detail-panel-right .detail-view {
+        margin: 5px;
+        border: 8px solid #F5F5F5;
+        padding: 8px;
+    }
+    
+    .fixed-detail-panel-right .article.data div {
+        padding: 0px;
+        margin: 0px;
+    }
+    
+    div.row.data {
+        padding: 5px 3px;
+    }
+    
+    div.article-label {
+        font-weight: bold;
+    }
+    
+    .dim {
+        font-family: 'Noto_SansItalic';
+        font-weight: 500;
+        color: #909090
+    }
+</style>
+
+<div ng-if="vm.modalState !== 'initialising' && !vm.showPreview">
+    <ip-kendo-grid mode="search" data-id="picklistResults" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+</div>
+<div ng-if="vm.modalState !== 'initialising' && vm.showPreview" class="row splitter-container">
+    <div kendo-splitter k-panes="vm.splitterOptions.panes" k-orientation="vm.splitterOptions.orientation" ng-if="vm.gridOptions" id="picklistSearchResults">
+        <div id="picklistSearchResultsPane" class="fixed-detail-panel-left">
+            <ip-kendo-grid mode="search" data-id="picklistResults" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+        </div>
+        <div class="fixed-detail-panel-right" id="picklistPreviewPane" ng-show="vm.isPreviewActive">
+            <ip-picklist-names-pane ng-if="vm.windowLabel==='Name'" ng-if="vm.isPreviewActive" data-name-id="vm.gridOptions.getSelectedRow().key"></ip-picklist-names-pane>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<form #frm="ngForm">
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+            <div class="row">
+                <div class="input-wrap-group">
+                    <span>
+                        <ipx-inline-dialog [content]="(matchType === 'case' ? 'sanityCheck.configurations.tableColumnInfoCase' : 'sanityCheck.configurations.tableColumnInfoName')| translate" [tooltipPlacement]="'top'"
+                                           style="margin-right:5px">
+                        </ipx-inline-dialog>
+                        <span translate="picklist.tableColumn.label"></span>
+                    </span>
+                    <ipx-typeahead apply-edited name="tableColumn" config="{{matchType === 'case' ? 'tableColumnCase': 'tableColumnName'}}" [(ngModel)]="formData.tableColumn">
+                    </ipx-typeahead>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

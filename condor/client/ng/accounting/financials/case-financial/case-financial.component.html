@@ -1,0 +1,65 @@
+<div *ngIf="caseFinancials">
+    <div *ngIf="canViewWip">
+        <hr />
+        <div class="container-fluid" *ngIf="!!caseFinancials.activeBudget">
+            <div class="row data">
+                <div class="col-lg-6 article-label">
+                    <span translate="accounting.time.recording.summary.budget"></span>
+                    <span id="budgetUsed">({{ caseFinancials.budgetUsed }}%)</span>
+                </div>
+                <div class="col-lg-4 col-lg-2-offset text-right">
+                    <span id="activeBudget" class="text">{{ caseFinancials.activeBudget | localCurrencyFormat | async }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row data">
+                <div class="col-lg-6 article-label">
+                    <span id="totalWorkPerformed" translate="accounting.time.recording.summary.totalWorkPerformed"></span>
+                </div>
+                <div class="col-lg-4 col-lg-2-offset text-right">
+                    <span class="text">{{ caseFinancials.totalWorkPerformed | localCurrencyFormat | async }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row data">
+                <div class="col-lg-6 article-label">
+                    <span id="unpostedTime" translate="accounting.time.recording.summary.unpostedTime"></span>
+                </div>
+                <div class="col-lg-4 col-lg-2-offset text-right">
+                    <span class="text">{{ caseFinancials.unpostedTime | localCurrencyFormat | async }}</span>
+                </div>
+            </div>
+        </div>
+        <div id="aged-wip-data" class="container-fluid" *ngIf="hasWipBalance" [ngClass]="{'detail': showWipBalances}">
+            <div class="row data">
+                <div class="col-lg-6 article-label">
+                    <span translate="accounting.time.recording.summary.wip"></span>
+                </div>
+                <div class="col-lg-4 col-lg-2-offset text-right">
+                    <span class="text">{{ caseFinancials.wip | localCurrencyFormat | async }}</span>
+                </div>
+                <div class="col-sm-1">
+                    <label (click)="showWipBalances = !showWipBalances" [ngClass]="{'cpa-icon-chevron-down': !showWipBalances, 'cpa-icon-chevron-up': showWipBalances}" class="pull-right cpa-icon no-color toggle"></label>
+                </div>
+            </div>
+            <div class="container-fluid row detail" *ngIf="hasWipBalance && showWipBalances">
+                <div>
+                    <ipx-aged-totals [caseKey]="caseKey"></ipx-aged-totals>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="caseFinancials.lastInvoiceDate">
+        <hr />
+        <div class="row data">
+            <div class="col-lg-6 article-label">
+                <span translate="accounting.time.recording.summary.lastInvoice"></span>
+            </div>
+            <div class="col-lg-6">
+                <span class="text" id="lastInvoiceDate">{{caseFinancials.lastInvoiceDate | localeDate}} </span>
+            </div>
+        </div>
+    </div>
+</div>

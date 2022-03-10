@@ -1,0 +1,5 @@
+<span class="radio-status" ng-class="vm.currentState.data.radioClass" translate="{{vm.currentState.data.message}}">
+</span>
+<button class="btn btn-icon" ng-class="{'btn-danger':vm.isRunning()}" ng-disabled="vm.isWaiting()" ng-if="vm.canAdminister" ng-click="vm.changeServerStatus()">
+    <i class="cpa-icon cpa-icon-power"></i>
+</button>

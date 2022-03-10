@@ -1,0 +1,66 @@
+<style>
+    .input-wrap.translation {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .input-wrap.translation textarea {
+        min-width: 300px;
+        width: calc(100% - 21px) !important;
+    }
+
+    .gap {
+        margin-right: 10px !important;
+    }
+</style>
+
+
+<ip-sticky-header>
+    <div class="page-title" ip-confirm-before-page-change="service.isDirty()" data-confirm-message="{{::'ConfirmLeaveUnsavedChanges' | translate}}">
+        <h1 translate="{{:: 'screenlabels.title' | translate }}"></h1>
+        <div class="controls">
+            <button class="btn btn-icon btn-icon-download gap" ip-tooltip="{{:: 'screenlabels.download' | translate }}" data-tooltip-placement="bottom" ng-click="vm.download()">
+                <icon name="cpa-icon cpa-icon-download"></icon>
+            </button>
+            <ip-revert-button ng-disabled="!service.isDirty()" ng-click="vm.discard()"></ip-revert-button>
+            <ip-save-button ng-disabled="!service.isDirty()" ng-click="vm.save()"></ip-save-button>
+        </div>
+    </div>
+
+    <ip-search-options-header></ip-search-options-header>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <ip-search-options on-clear="vm.resetOptions()" on-search="vm.search()" is-search-disabled="vm.isSearchDisabled()">
+
+        <div ng-form="vm.searchForm" ip-form>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-wrap">
+                        <label translate="screenlabels.language"></label>
+                        <select name="language" ng-options="r.description for r in vm.languages track by r.culture" ng-model="vm.selectedLanguage" ip-autofocus></select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-wrap">
+                        <label translate="screenlabels.textContaining"></label>
+                        <input type="text" ng-model="vm.searchCriteria.text">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-wrap-group group-inline">
+                        <div class="input-wrap">
+                            <ip-checkbox label="screenlabels.rotYetTranslated" name="search-options-untranslated" ng-model="vm.searchCriteria.isRequiredTranslationsOnly" ></ip-checkbox>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ip-search-options>
+
+    <h2 translate="{{ vm.heading() }}" translate-values="{ languageCode: vm.resultLanguageDescription }"></h2>
+    <ip-kendo-search-grid data-id="searchResults" data-grid-options="vm.gridOptions"></ip-kendo-search-grid>
+
+    <ip-inline-alert ng-if="vm.showNoResults()" text="NoResultsToDisplay" type="info"></ip-inline-alert>
+</div>

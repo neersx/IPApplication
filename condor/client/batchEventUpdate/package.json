@@ -1,0 +1,20 @@
+{
+    "name": "inprotech-batcheventupdate",
+    "author": "",
+    "license": "Proprietary",
+    "description": "inprotech condor project",
+    "version": "1.0.0",
+    "private": true,
+    "dependencies": {
+        "bootstrap": "3.4.1",
+        "jquery": "3.4.1",
+        "jquery-ajax-unobtrusive": "3.2.6",
+        "jquery-ui-dist": "1.12.1",
+        "jquery-validation": "1.19.3",
+        "jquery-validation-unobtrusive": "3.2.6",
+        "knockout": "3.5.1",
+        "knockout-mapping": "2.6.0",
+        "knockout-postbox": "0.6.0",
+        "underscore": "1.13.2"
+    }
+}

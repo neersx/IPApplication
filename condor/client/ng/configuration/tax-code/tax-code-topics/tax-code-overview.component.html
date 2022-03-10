@@ -1,0 +1,16 @@
+<form name="overViewForm" #overViewForm="ngForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-text-field [disabled]="true" maxlength="3" [label]="'taxCode.overview.code'" [(ngModel)]="formData.taxCode" name="taxCode"></ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <ipx-text-field [disabled]="!viewData.taskSecurity.canUpdateTaxCode" maxlength="30" ipx-autofocus required label="{{ 'taxCode.overview.description'}}" [(ngModel)]="formData.description" name="description"
+                    multiLine="true" rows="2">
+                </ipx-text-field>
+            </div>
+        </div>
+    </div>
+</form>

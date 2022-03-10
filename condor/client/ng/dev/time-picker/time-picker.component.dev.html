@@ -1,0 +1,15 @@
+<div class="container-fluid">
+    <h2>Time Picker</h2>
+    <div class="row">
+        <div class="col-sm-2">Without seconds</div>
+        <div class="col-sm-6">
+            <ipx-time-picker (onBlur)="onBlur()" [(ngModel)]="value" (ngModelChange)="timeChanged($event)" [disabled]="disabled" [showSeconds]="showSeconds"></ipx-time-picker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">With seconds</div>
+        <div class="col-sm-6">
+            <ipx-time-picker (onBlur)="onBlur()" [(ngModel)]="value" [disabled]="disabled" [showSeconds]="true"></ipx-time-picker>
+        </div>
+    </div>
+</div>

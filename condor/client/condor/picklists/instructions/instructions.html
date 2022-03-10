@@ -1,0 +1,33 @@
+<div data-ng-controller="instructionsController as iCtrl" ng-init="iCtrl.init(vm.maintenanceState, vm.entry)">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="input-wrap required" data-ng-class="{ 'error': vm.maintenance.description.$touched || !vm.maintenance.description.$pristine && !vm.maintenance.description.$valid || vm.entry.$error('description')}">
+                <label translate="picklist.instruction.Description"></label>
+                <input name="description" data-ng-model="vm.entry.description" type="text" required="required" data-ng-class="{'edited': vm.maintenance.description.$dirty }" data-ng-maxlength="50" ip-autofocus>
+                <span data-ng-if="vm.maintenance.description.$touched || !vm.maintenance.description.$pristine && !vm.maintenance.description.$valid || vm.entry.$error('description')">
+                    <span data-ng-if="vm.maintenance.description.$error.required" class="input-action tooltip-error" data-tooltip-placement="right" ip-tooltip="{{::'field.errors.required' | translate }}">
+                        <icon name="exclamation-triangle"></icon>
+                    </span>
+                    <span data-ng-if="vm.maintenance.description.$error.maxlength" class="input-action tooltip-error" data-tooltip-placement="right" ip-tooltip="{{::'field.errors.maxlength' | translate:{ length: 50 } }}">
+                        <icon name="exclamation-triangle"></icon>
+                    </span>
+                    <span data-ng-if="vm.entry.$error('description')" class="input-action tooltip-error" data-tooltip-placement="right" ip-tooltip="{{ vm.entry.$error('description').message | translate }}">
+                        <icon name="exclamation-triangle"></icon>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="input-wrap required" data-ng-class="{ 'error': !vm.maintenance.type.$touched && !vm.maintenance.type.$valid || vm.entry.$error('typeId') }">
+                <label translate="picklist.instruction.TypeDescription"></label>
+                <select name="type" required="required" data-ng-options="it.id as it.description for it in iCtrl.instructionTypes" data-ng-model="vm.entry.typeId" data-ng-class="{'edited': vm.maintenance.type.$dirty}">
+                </select>
+                <span data-ng-if="!vm.maintenance.type.$touched && !vm.maintenance.type.$valid || vm.entry.$error('typeId')" class="input-action tooltip-error" data-tooltip-placement="right" ip-tooltip="{{ vm.entry.$error('typeId').message | translate }}">
+                        <icon name="exclamation-triangle"></icon>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

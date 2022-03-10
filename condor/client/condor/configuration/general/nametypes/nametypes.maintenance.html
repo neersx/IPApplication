@@ -1,0 +1,289 @@
+<style>
+.modal-text-small {
+    margin-left: 10px;
+    width: 25% !important;
+}
+
+.label-legend {
+    font-weight: bold;
+    font-size: 120%;
+    margin-right: 10px;
+}
+
+.label-inner-legend {
+    font-weight: bold;
+    font-size: 110%;
+    margin-left: 10px;
+}
+
+.modal-footer-message {
+    text-align: left;
+    float: left;
+
+    p {
+        margin-bottom: 0;
+        line-height: 25px;
+    }
+}
+
+.input-wrap-group>span~.input-wrap {
+    width: 75%;
+}
+
+.input-wrap-group .input-wrap {
+    padding: 3px 6px 3px 3px;
+    margin: 0;
+}
+
+.inline-dialog {
+    top: -2px;
+}
+
+.ip-text-field-alignment-width {
+    width: 30% !important;
+}
+
+.input-left-margin {
+    margin-left: -19%;
+}
+</style>
+<div ng-form="vm.maintenance" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title" ng-switch on="vm.entity.state">
+            <div ng-switch-when="adding" translate="nameType.maintenance.addNameType"></div>
+            <div ng-switch-when="duplicating" translate="nameType.maintenance.duplicateNameType"></div>
+            <div ng-switch-default translate="nameType.maintenance.editNameType"></div>
+        </h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+            <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismissAll()"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div>
+
+                <ip-text-field name="nameTypeCode" class="pull-left modal-text-small col-sm-4" ip-required label="Code" ng-model="vm.entity.nameTypeCode" ng-class="{'edited': vm.maintenance.nameTypeCode.$dirty}" data-ng-maxlength="3" ng-disabled="{{vm.entity.state === 'updating'}}" ip-field-error="{{vm.getError('nameTypeCode').message | translate}}" ip-autofocus="{{vm.entity.state === 'duplicating'}}"></ip-text-field>
+
+                <ip-text-field class="pull-left modal-text col-sm-7" name="name" ip-required label="Description" ng-model="vm.entity.name" data-ng-maxlength="50" ng-class="{'edited': vm.maintenance.name.$dirty}"></ip-text-field>
+            </div>
+        </div>
+
+        <br />
+        <div class="text-wrap">
+            <span class="label-legend" translate="nameType.maintenance.nameTypeEntryLimits"></span>
+            <ip-inline-dialog data-content="{{::'nameType.maintenance.minAndMaxAllowed' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-wrap-group group-inline">
+                    <span translate="nameType.maintenance.minimumAllowedForCase" class="pull-left input-wrap"></span>
+                    <ip-radio-button label="0" value="0" ng-model="vm.entity.minAllowedForCase" name="min_0" ng-class="{edited: vm.maintenance.min_0.$dirty}">
+                    </ip-radio-button>
+                    <ip-radio-button label="1" value="1" ng-model="vm.entity.minAllowedForCase" name="min_1" ng-class="{edited: vm.maintenance.min_1.$dirty}">
+                    </ip-radio-button>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="input-wrap-group group-inline">
+                    <span translate="nameType.maintenance.maximumAllowedForCase" class="pull-left input-wrap"></span>
+                    <ip-text-field name="maximumAllowed" ip-data-type="nonnegativeinteger" class="pull-left ip-text-field-alignment-width" ng-model="vm.entity.maximumAllowed" data-ng-class="{edited: vm.maintenance.maximumAllowed.$dirty}" ng-change="vm.onChange(vm.entity.maximumAllowed)">
+                    </ip-text-field>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="text-wrap">
+            <span class="label-legend" translate="nameType.maintenance.namePicklistRestrictedTo"></span>
+            <ip-inline-dialog data-content="{{::'nameType.maintenance.nameRestrictions' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row ">
+            <div class="input-wrap-group">
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.organisation" ng-model="vm.entity.allowOrganisationNames" name="chkOrganisation" ng-class="{edited: vm.maintenance.chkOrganisation.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-2" label="nameType.maintenance.clients" ng-model="vm.entity.allowClientNames" name="chkClient" ng-class="{edited: vm.maintenance.chkClient.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-2" label="nameType.maintenance.suppliers" ng-model="vm.entity.allowSuppliers" name="chkSupplier" ng-class="{edited: vm.maintenance.chkSupplier.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-4" label="nameType.maintenance.sameNameType" ng-model="vm.entity.isClassified" name="chkSameNameTypes" ng-change="vm.isClassifiedChange()" ng-class="{edited: vm.maintenance.chkSameNameTypes.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group">
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.individuals" ng-model="vm.entity.allowIndividualNames" name="chkIndividual" ng-class="{edited: vm.maintenance.chkIndividual.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.staffMembers" ng-model="vm.entity.allowStaffNames" name="chkStaff" ng-class="{edited: vm.maintenance.chkStaff.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <br />
+        <div class="text-wrap">
+            <span class="label-legend" translate="nameType.maintenance.showDataFields"></span>
+            <ip-inline-dialog data-content="{{::'nameType.maintenance.showDataFieldsHint' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row ">
+            <div class="input-wrap-group">
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.attention" ng-model="vm.entity.isAttentionDisplayed" name="chkContact" ng-class="{edited: vm.maintenance.chkContact.$dirty}" ng-click="vm.toggleSelection('isStandardNameDisplayed')"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.address" ng-model="vm.entity.isAddressDisplayed" name="chkAddress" ng-class="{edited: vm.maintenance.chkAddress.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.assignDate" ng-model="vm.entity.isAssignDateDisplayed" name="chkAssignDate" ng-class="{edited: vm.maintenance.chkAssignDate.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.comments" ng-model="vm.entity.isRemarksDisplayed" name="chkRemarks" ng-class="{edited: vm.maintenance.chkRemarks.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group">
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.reference" ng-model="vm.entity.isReferenceNumberDisplayed" name="chkReferenceNo" ng-class="{edited: vm.maintenance.chkReferenceNo.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.correspondence" ng-model="vm.entity.isCorrespondenceDisplayed" name="chkCorrespondence" ng-class="{edited: vm.maintenance.chkCorrespondence.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.commenceDate" ng-model="vm.entity.isDateCommencedDisplayed" name="chkCommenceDate" ng-class="{edited: vm.maintenance.chkCommenceDate.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.billPercent" ng-model="vm.entity.isBillPercentDisplayed" name="chkBillPercent" ng-class="{edited: vm.maintenance.chkBillPercent.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group">
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.nameVariant" ng-model="vm.entity.isNameVariantDisplayed" name="chkNameVariant" ng-class="{edited: vm.maintenance.chkNameVariant.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.nationality" ng-model="vm.entity.isNationalityDisplayed" name="chkNationality" ng-class="{edited: vm.maintenance.chkNationality.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.expiryDate" ng-model="vm.entity.isDateCeasedDisplayed" name="chkExpiryDate" ng-class="{edited: vm.maintenance.chkExpiryDate.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="nameType.maintenance.inherited" ng-model="vm.entity.isInheritedDisplayed" name="chkInheritance" ng-class="{edited: vm.maintenance.chkInheritance.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <br />
+        <div class="text-wrap">
+            <span class="label-legend" translate="nameType.maintenance.ethicalWallOption"></span>
+            <ip-inline-dialog data-content="{{::'nameType.maintenance.ethicalWallSettings' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group">
+                <ip-radio-button class="col-sm-3" label="nameType.maintenance.notApplicable" value="notApplicable" ng-model="vm.entity.ethicalWallOption" name="notApplicable" ng-class="{edited: vm.maintenance.notApplicable.$dirty}">
+                </ip-radio-button>
+                <ip-radio-button class="col-sm-3" label="nameType.maintenance.allowAccess" value="allowAccess" ng-model="vm.entity.ethicalWallOption" name="allowAccess" ng-class="{edited: vm.maintenance.allowAccess.$dirty}">
+                </ip-radio-button>
+                <ip-radio-button class="col-sm-3" label="nameType.maintenance.denyAccess" value="denyAccess" ng-model="vm.entity.ethicalWallOption" name="denyAccess" ng-class="{edited: vm.maintenance.denyAccess.$dirty}">
+                </ip-radio-button>
+            </div>
+        </div>
+        <br />
+
+        <div class="text-wrap">
+            <span class="label-legend" translate="nameType.maintenance.otherOptions"></span>
+            <ip-inline-dialog data-content="{{::'nameType.maintenance.otherSettings' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+
+        <div class="row">
+            <div class="input-wrap-group">
+                <ip-checkbox label="nameType.maintenance.saveNameStreet" ng-model="vm.entity.isNameStreetSaved" name="chkSaveNameStreet" ng-class="{edited: vm.maintenance.chkSaveNameStreet.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group">
+                <ip-checkbox label="nameType.maintenance.checkNameRestrictions" ng-model="vm.entity.isEnforceNameRestriction" name="chkNameRestriction" ng-class="{edited: vm.maintenance.chkNameRestriction.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group">
+                <ip-checkbox label="nameType.maintenance.crmUseOnly" ng-model="vm.entity.allowCrmNames" name="chkCRMOnly" ng-class="{edited: vm.maintenance.chkCRMOnly.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-wrap-group group-inline col-sm-8">
+                <span translate="nameType.maintenance.displayNameCode"></span>
+                <ip-radio-button label="nameType.maintenance.start" value="start" ng-model="vm.entity.displayNameCode" name="displayStart" ng-class="{edited: vm.maintenance.displayStart.$dirty}">
+                </ip-radio-button>
+                <ip-radio-button label="nameType.maintenance.end" value="end" ng-model="vm.entity.displayNameCode" name="displayEnd" ng-class="{edited: vm.maintenance.displayEnd.$dirty}">
+                </ip-radio-button>
+                <ip-radio-button label="nameType.maintenance.none" value="none" ng-model="vm.entity.displayNameCode" name="displayNone" ng-class="{edited: vm.maintenance.displayNone.$dirty}">
+                </ip-radio-button>
+            </div>
+        </div>
+        <br />
+        <div class="text-wrap">
+            <span class="label-legend" translate="nameType.maintenance.setDefaultRelationship"></span>
+            <ip-inline-dialog data-content="{{::'nameType.maintenance.setDefaultRelationshipHint' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="input-wrap">
+                    <ip-typeahead name="nameType" data-config="nameType" ng-change="vm.onPathNameTypeChanged()" ng-class="{edited: vm.maintenance.nameType.$dirty}" ng-model="vm.entity.pathNameTypePickList"></ip-typeahead>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="input-wrap col-sm-3"></div>
+                <div class="input-wrap-group col-sm-7">
+                    <ip-checkbox label="nameType.maintenance.updateWhenParentNameChanges" ng-model="vm.entity.updateFromParentNameType" name="chkUpdateFromParent" ng-disabled="!vm.entity.pathNameTypePickList" ng-class="{edited: vm.maintenance.chkUpdateFromParent.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9" style="margin-left:-5.5%">
+                <div class="input-wrap">
+                    <ip-typeahead name="relationship" data-label="nameType.maintenance.relationship" data-key-field="key" data-text-field="value" data-api-url="api/configuration/nameRelationships" data-picklist-display-name="nameType.maintenance.relationship" data-picklist-columns="[{title:'Relationship Description', field:'relationDescription'}, {title:'Reverse Description', field:'reverseDescription'}, {title:'Code', field:'key'}]" ng-model="vm.entity.pathNameRelation" ng-change="vm.onPathNameTypeChanged()" ng-disabled="!vm.entity.pathNameTypePickList" ng-class="{edited: vm.maintenance.relationship.$dirty}">
+                    </ip-typeahead>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="input-wrap col-sm-3"></div>
+                <div class="text-wrap">
+                    <span class="label-inner-legend" translate="nameType.maintenance.ifRelationshipNotFound"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="input-wrap col-sm-3"></div>
+                <div class="input-wrap-group col-sm-7">
+                    <ip-checkbox label="nameType.maintenance.useNameType" ng-model="vm.entity.useNameType" name="chkUseNameType" ng-disabled="!vm.entity.pathNameRelation" ng-click="vm.toggleSelection('useHomeNameRelationship')" ng-class="{edited: vm.maintenance.chkUseNameType.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="input-wrap col-sm-3"></div>
+                <div class="input-wrap-group col-sm-7">
+                    <ip-checkbox label="nameType.maintenance.useHomeNameRelationship" ng-model="vm.entity.useHomeNameRelationship" name="chkUseHomeName" ng-disabled="!vm.entity.pathNameRelation" ng-click="vm.toggleSelection('useNameType')" ng-class="{edited: vm.maintenance.chkUseHomeName.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-9">
+                <div class="input-wrap col-sm-3"></div>
+                <div class="text-wrap">
+                    <span class="label-inner-legend" translate="nameType.maintenance.ifThatDoesntWork"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <div class="input-wrap col-sm-11">
+                    <ip-typeahead name="defaultToName" data-label="nameType.maintenance.defaultTo" data-config="name" data-picklist-display-name="DefaultTo" ng-model="vm.entity.defaultName" ng-class="{edited: vm.maintenance.defaultToName.$dirty}">
+                    </ip-typeahead>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <div class="text-wrap">
+            <span class="label-legend" translate="nameType.maintenance.changeEvent"></span>
+            <ip-inline-dialog data-content="{{::'nameType.maintenance.changeEventHint' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row">
+            <ip-typeahead class="col-sm-7" id="change-event-picklist" name="event" data-config="event" data-picklist-can-maintain="true" ng-change="eventChanged()" ng-class="{edited: vm.maintenance.event.$dirty}" ng-model="vm.entity.changeEvent">
+            </ip-typeahead>
+        </div>
+        <div class="row">
+            <ip-typeahead class="col-sm-7" data-config="nameType" name="futureNameType" data-label="nameType.maintenance.futureNameType" data-picklist-display-name="nameType.maintenance.futureNameType" ng-model="vm.entity.futureNameTypePickList" ng-class="{edited: vm.maintenance.futureNameType.$dirty}">
+            </ip-typeahead>
+        </div>
+        <div class="row">
+            <ip-typeahead class="col-sm-7" data-config="nameType" name="oldNameType" data-label="nameType.maintenance.oldNameType" data-picklist-display-name="nameType.maintenance.oldNameType" ng-model="vm.entity.oldNameTypePickList" ng-class="{edited: vm.maintenance.oldNameType.$dirty}">
+            </ip-typeahead>
+        </div>
+        <br />
+        <div class="text-wrap">
+            <span class="label-legend" translate="nameType.maintenance.nameTypeGroup"></span>
+        </div>
+        <div>
+            <div>
+                <ip-typeahead class="input-left-margin" id="nametype-group-picklist" data-multiselect data-label="nameType.maintenance.groupsBelongingTo" name="nameTypeGroup" data-config="nameTypeGroup" data-picklist-can-maintain="true" ng-class="{edited: vm.maintenance.nameTypeGroup.$dirty}" ng-model="vm.entity.nameTypeGroup">
+                </ip-typeahead>
+            </div>
+        </div>
+    </div>
+</div>

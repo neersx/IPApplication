@@ -1,0 +1,357 @@
+<style>
+    .modal-text-small {
+        margin-left: 10px;
+        margin-right: 28px !important;
+        width: 30% !important;
+    }
+    
+    .label-legend {
+        font-weight: bold;
+        font-size: 120%;
+        margin-right: 10px;
+    }
+    
+    .input-wrap-group {
+        padding-left: 0px !important
+    }
+    
+    .input-wrap-group .input-wrap {
+        padding: 3px 6px 3px 3px;
+        margin: 0;
+    }
+    
+    .input-wrap-group>label {
+        padding-top: 5px;
+    }
+    
+    .input-wrap-group .modal-text {
+        margin-left: 25px;
+    }
+    
+    .inline-dialog {
+        top: -2px;
+    }
+    
+    .inline-alert {
+        top: -2px;
+    }
+</style>
+<div>
+    <div class="modal-header">
+        <h2 class="modal-title" ng-show="!vm.request.requestId" translate="policing.request.maintenance.addTitle" ></h2>
+        <h2 class="modal-title" ng-show="vm.request.requestId" translate="policing.request.maintenance.editTitle" ></h2>
+        <div class="modal-header-controls">
+            <ip-icon-button ng-click="vm.runRequest()" ip-tooltip="{{:: 'policing.request.maintenance.runRequest.tooltip' | translate }}" data-tooltip-placement="bottom" id="affectedCases" button-icon="gears"></ip-icon-button>
+            <ip-save-button ng-click="vm.save()" id="Save" ng-disabled="!vm.requestMaintainForm.$dirty"></ip-save-button>
+            <ip-close-button ng-click="vm.dismissAll()" id="dismissAll"></ip-close-button>
+        </div>
+
+    </div>
+    <div ng-if="vm.currentAffectedCases.state!=0" class="search-options inline-alert">
+        <div ng-if="!vm.isRequestModifiedForAffectedCases()" class="col-sm-12">
+            <ip-inline-alert ng-if="vm.currentAffectedCases.cases === null" type="info" text="policing.request.maintenance.runRequest.calculatingCases"></ip-inline-alert>
+            <ip-inline-alert ng-if="!(vm.currentAffectedCases.cases === null)" type="success" text="policing.request.maintenance.runRequest.affectedCases" text-params="{cases:vm.currentAffectedCases.cases}"></ip-inline-alert>
+
+
+        </div>
+        <div ng-if="vm.isRequestModifiedForAffectedCases()" class="col-sm-12">
+            <ip-inline-alert type="warning" text="policing.request.maintenance.runRequest.pendingChanges"></ip-inline-alert>
+        </div>
+    </div>
+    <div class="modal-body" ng-form="vm.requestMaintainForm" ng-init="vm.initShortcuts()">
+
+        <div class="row">
+            <div class="text-wrap">
+                <span class="label-legend" translate="policing.request.maintenance.sections.overview.header"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap col-sm-12 required" ng-class="{'error': ((vm.requestMaintainForm.$submitted || vm.requestMaintainForm.requestTitle.$touched) &amp;&amp; !vm.requestMaintainForm.requestTitle.$valid)}">
+                <label class="col-sm-2" translate="policing.request.maintenance.sections.overview.title"></label>
+                <input name="requestTitle" style="float:left" type="text" ng-model="vm.request.title" ng-class="{{::vm.requestFieldClasses('title')}}" ng-maxlength="40" autocomplete="off" required data-ng-change="vm.resetErrors()" />
+                <span ng-if="((vm.requestMaintainForm.$submitted || vm.requestMaintainForm.requestTitle.$touched) &amp;&amp; !vm.requestMaintainForm.requestTitle.$valid)">
+                    <span ng-if="vm.requestMaintainForm.requestTitle.$error.required" class="input-action tooltip-error" style="right:auto" data-tooltip-placement="right" ip-tooltip="{{:: 'field.errors.required' | translate }}">
+                        <span class="cpa-icon cpa-icon-exclamation-triangle"></span>
+                </span>
+                <span data-ng-if="vm.requestMaintainForm.requestTitle.$error.maxlength" class="input-action tooltip-error" style="right:auto" data-tooltip-placement="right" ip-tooltip="{{:: 'field.errors.maxlength' | translate:{ length: 40 } }}">
+                        <icon name="exclamation-triangle"></icon>
+                    </span>
+                <span data-ng-if="vm.requestMaintainForm.requestTitle.$error.notunique" class="input-action tooltip-error" style="right:auto" data-tooltip-placement="right" ip-tooltip="{{:: 'field.errors.notunique' | translate }}">
+                        <icon name="exclamation-triangle"></icon>
+                    </span>
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap large">
+                <label translate="policing.request.maintenance.sections.overview.notes"></label>
+                <textarea name="requestNote" style="resize:none" type="text" ng-model="vm.request.notes" ng-class="{{::vm.requestFieldClasses('notes')}}"></textarea>
+            </div>
+        </div>
+
+        <div ng-form="vm.optionsForm">
+            <div class="row">
+                <div class="text-wrap">
+                    <span class="label-legend" translate="policing.request.maintenance.sections.eventsReminder.header"></span>
+                </div>
+            </div>
+            <div class="row">
+                <ip-datepicker id="startDate" name="startDate" class="col-sm-6" ng-model="vm.request.startDate" is-dirty="vm.request.isDirty('startDate')" is-disabled="vm.disableReminders()" label="policing.request.maintenance.sections.eventsReminder.startDate" on-blur="vm.onDateBlur"></ip-datepicker>
+                <div class="input-wrap col-sm-4" ng-class="{'error': vm.request.forDays===0 || (vm.request.forDays > 9999 || vm.request.forDays < -9999)}">
+                    <span class="pull-left" style="margin-right:15px;margin-top:5px;" translate="policing.request.maintenance.sections.eventsReminder.for"></span>
+                    <input name="forDays" class="pull-left modal-text-small col-sm-4" type="number" ng-class="{{::vm.requestFieldClasses('forDays')}}" ng-disabled="vm.disableReminders()" ng-model="vm.request.forDays" ng-change="vm.onChangeforDay()" ng-model-options="{ updateOn: 'blur' }"
+                    />
+                    <span class="pull-left" style="margin-right:15px;margin-top:5px;" translate="policing.request.maintenance.sections.eventsReminder.days"></span>
+                    <span>
+                        <span ng-if="vm.request.forDays===0" class="input-action tooltip-error" data-tooltip-placement="right" ip-tooltip="{{:: 'policing.request.maintenance.sections.eventsReminder.errors.days0' | translate}}">
+                            <icon name="exclamation-triangle"></icon>
+                        </span>
+                    <span data-ng-if="vm.request.forDays > 9999" class="input-action tooltip-error" style="right:auto" data-tooltip-placement="right" ip-tooltip="{{:: 'field.errors.max' | translate:{ max: 9999 } }}">
+                            <icon name="exclamation-triangle"></icon>
+                        </span>
+                    <span data-ng-if="vm.request.forDays < -9999" class="input-action tooltip-error" style="right:auto" data-tooltip-placement="right" ip-tooltip="{{:: 'field.errors.min' | translate:{ min: -9999 } }}">
+                            <icon name="exclamation-triangle"></icon>
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <ip-datepicker id="endDate" name="endDate" class="col-sm-6" ng-model="vm.request.endDate" is-dirty="vm.request.isDirty('endDate')" later-than="vm.minEndDate" is-disabled="vm.disableReminders()" label="policing.request.maintenance.sections.eventsReminder.endDate"
+                    on-blur="vm.onDateBlur"></ip-datepicker>
+            </div>
+            <div class="row">
+                <ip-datepicker id="dateLetters" name="dateLetters" class="col-sm-6" is-disabled="vm.disableReminders()" is-dirty="vm.request.isDirty('dateLetters')" ng-model="vm.request.dateLetters" label="policing.request.maintenance.sections.eventsReminder.dateLetters"
+                    ip-datepicker-loader="vm.dateLetterState"></ip-datepicker>
+            </div>
+            <div class="row">
+                <div class="input-wrap-group group-inline col-sm-6" ng-class="{{::vm.requestFieldClasses('dueDateOnly')}}">
+                    <span></span>
+                    <div class="input-wrap">
+                        <input type="checkbox" id="dueDateOnly" ng-model="vm.request.dueDateOnly" ng-disabled="vm.disableReminders()" />
+                        <label for="dueDateOnly" translate="policing.request.maintenance.sections.eventsReminder.dueDateOnly"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="text-wrap">
+                        <span class="label-legend" translate="policing.request.maintenance.sections.policingOptions.header"></span>
+                        <ip-inline-dialog placement="top" data-template="condor/processing/policing/requests/policingoptions-popover.html"></ip-inline-dialog>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="text-wrap">
+                        <span class="label-legend" translate="policing.request.maintenance.sections.recalculateOptions.header"></span>
+                        <ip-inline-dialog placement="top" data-template="condor/processing/policing/requests/recalculateoptions-popover.html"></ip-inline-dialog>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="input-wrap-group group-inline" ng-class="{{::vm.optionsFieldClasses('reminders')}}">
+                            <span></span>
+                            <div class="input-wrap">
+                                <input type="checkbox" id="reminders" ng-model="vm.options.reminders" ng-change="vm.onSelectionReminder()" />
+                                <label for="reminders" translate="policing.request.maintenance.sections.policingOptions.reminders"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline" ng-class="{{::vm.optionsFieldClasses('emailReminders')}}">
+                            <span></span>
+                            <div class="input-wrap">
+                                <input type="checkbox" id="emailReminders" ng-model="vm.options.emailReminders" ng-disabled="!vm.options.reminders" />
+                                <label for="emailReminders" translate="policing.request.maintenance.sections.policingOptions.emailReminders"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline" ng-class="{{::vm.optionsFieldClasses('documents')}}">
+                            <span></span>
+                            <div class="input-wrap">
+                                <input type="checkbox" id="optDocuments" ng-model="vm.options.documents" ng-disabled="!vm.options.reminders" />
+                                <label for="optDocuments" translate="policing.request.maintenance.sections.policingOptions.documents"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline" ng-class="{{::vm.optionsFieldClasses('update')}}">
+                            <span></span>
+                            <div class="input-wrap">
+                                <input type="checkbox" id="update" ng-model="vm.options.update" />
+                                <label for="update" translate="policing.request.maintenance.sections.policingOptions.update"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline" ng-class="{{::vm.optionsFieldClasses('adhocReminders')}}">
+                            <span></span>
+                            <div class="input-wrap">
+                                <input type="checkbox" id="adhocReminders" ng-model="vm.options.adhocReminders" ng-disabled="vm.options.recalculateReminderDates" />
+                                <label for="adhocReminders" translate="policing.request.maintenance.sections.policingOptions.adhocReminders"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="input-wrap-group group-inline" ng-class="{{::vm.optionsFieldClasses('recalculateCriteria')}}">
+                            <span></span>
+                            <div class="input-wrap">
+                                <input type="checkbox" id="recalculateCriteria" ng-model="vm.options.recalculateCriteria" ng-change="vm.onChangeReCalc.criteria()" />
+                                <label for="recalculateCriteria" translate="policing.request.maintenance.sections.recalculateOptions.recalculateCriteria"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline" ng-class="{{::vm.optionsFieldClasses('recalculateDueDates')}}">
+                            <span></span>
+                            <div class="input-wrap">
+                                <input type="checkbox" id="recalculateDueDates" ng-model="vm.options.recalculateDueDates" ng-change="vm.onChangeReCalc.dueDate()" ng-disabled="vm.options.recalculateCriteria" />
+                                <label for="recalculateDueDates" translate="policing.request.maintenance.sections.recalculateOptions.recalculateDueDates"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline" ng-class="{{::vm.optionsFieldClasses('recalculateReminderDates')}}">
+                            <span></span>
+                            <div class="input-wrap">
+                                <input type="checkbox" id="recalculateReminderDates" ng-model="vm.options.recalculateReminderDates" ng-change="vm.onChangeReCalc.reminderDate()" ng-disabled="vm.options.recalculateDueDates" />
+                                <label for="recalculateReminderDates" translate="policing.request.maintenance.sections.recalculateOptions.recalculateReminderDates"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-wrap-group group-inline" ng-class="{{::vm.optionsFieldClasses('recalculateEventDates')}}">
+                            <span></span>
+                            <div class="input-wrap">
+                                <input type="checkbox" id="recalculateEventDates" ng-model="vm.options.recalculateEventDates" ng-disabled="!vm.options.recalculateDueDates" />
+                                <label for="recalculateEventDates" translate="policing.request.maintenance.sections.recalculateOptions.recalculateEventDates"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-form="vm.form" ip-form>
+            <div class="row">
+                <div class="text-wrap">
+                    <span class="label-legend" translate="policing.request.maintenance.sections.caseCharacteristics.header"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="case" ng-model="vm.formData.caseReference" ng-change="vm.selectCase()" data-config="case" data-label="policing.request.maintenance.sections.caseCharacteristics.caseReference" ng-class="{{::vm.formDataFieldClasses('caseReference')}}">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="jurisdiction" ng-model="vm.formData.jurisdiction" ng-change="vm.validate();vm.clearExcludeCheckbox('jurisdiction', 'excludeJurisdiction')" data-config="jurisdiction" data-label="policing.request.maintenance.sections.caseCharacteristics.jurisdiction"
+                        ng-disabled="vm.isCaseReferenceSelected()" ng-class="{{::vm.formDataFieldClasses('jurisdiction')}}" data-picklist-can-maintain="true">
+                    </ip-typeahead>
+                </div>
+                <div class="col-sm-2">
+                    <div class="input-wrap" ng-class="{{::vm.formDataFieldClasses('excludeJurisdiction')}}">
+                        <input type="checkbox" id="excludeJurisdiction" ng-model="vm.formData.excludeJurisdiction" ng-disabled="!vm.formData.jurisdiction" />
+                        <label for="excludeJurisdiction" translate="policing.request.maintenance.sections.exclude"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="propertyType" ng-model="vm.formData.propertyType" ng-change="vm.validate();vm.clearExcludeCheckbox('propertyType', 'excludeProperty')" data-config="propertyType" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination" data-label="policing.request.maintenance.sections.caseCharacteristics.propertyType"
+                        ng-disabled="vm.isCaseReferenceSelected()" ng-class="{{::vm.formDataFieldClasses('propertyType')}}" data-picklist-can-maintain="true" data-key-field="key" data-code-field="code" data-text-field="value">
+                    </ip-typeahead>
+                </div>
+                <div class="col-sm-2">
+                    <div class="input-wrap" ng-class="{{::vm.formDataFieldClasses('excludeProperty')}}">
+                        <input type="checkbox" id="excludeProperty" ng-model="vm.formData.excludeProperty" ng-disabled="!vm.formData.propertyType || !vm.formData.propertyType.key" />
+                        <label for="excludeProperty" translate="policing.request.maintenance.sections.exclude"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="caseType" ng-model="vm.formData.caseType" ng-change="vm.caseTypeChanged();vm.validate()" data-config="caseType" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination" data-label="policing.request.maintenance.sections.caseCharacteristics.caseType"
+                        ng-disabled="vm.isCaseReferenceSelected()" ng-class="{{::vm.formDataFieldClasses('caseType')}}" data-picklist-can-maintain="true">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="caseCategory" ng-model="vm.formData.caseCategory" ng-change="vm.validate()" data-config="caseCategory" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination" data-label="policing.request.maintenance.sections.caseCharacteristics.category"
+                        ng-disabled="vm.isCaseReferenceSelected() || vm.isCaseCategoryDisabled()" ng-class="{{::vm.formDataFieldClasses('caseCategory')}}" data-picklist-can-maintain="true">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="subType" ng-model="vm.formData.subType" ng-change="vm.validate()" data-config="subType" data-picklist-can-maintain="true" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination" data-label="policing.request.maintenance.sections.caseCharacteristics.subType"
+                        ng-disabled="vm.isCaseReferenceSelected()" ng-class="{{::vm.formDataFieldClasses('subType')}}" data-key-field="key" data-code-field="code" data-text-field="value">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="office" ng-model="vm.formData.office" data-config="office" data-label="policing.request.maintenance.sections.caseCharacteristics.office" ng-disabled="vm.isCaseReferenceSelected()" ng-class="{{::vm.formDataFieldClasses('office')}}">
+                    </ip-typeahead>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="text-wrap">
+                    <span class="label-legend" translate="policing.request.maintenance.sections.caseEventAttributes.header"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="action" data-picklist-can-maintain="true" ng-model="vm.formData.action" ng-change="vm.validate();vm.handleActionSelected();vm.clearExcludeCheckbox('action', 'excludeAction');" data-config="action" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination"
+                        data-label="policing.request.maintenance.sections.caseEventAttributes.action" ng-class="{{::vm.formDataFieldClasses('action')}}">
+                    </ip-typeahead>
+                </div>
+                <div class="col-sm-2">
+                    <div class="input-wrap" ng-class="{{::vm.formDataFieldClasses('excludeAction')}}">
+                        <input type="checkbox" id="excludeAction" ng-model="vm.formData.excludeAction" ng-disabled="!vm.formData.action" />
+                        <label for="excludeAction" translate="policing.request.maintenance.sections.exclude"></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="event" ng-model="vm.formData.event" data-config="event" data-picklist-can-maintain="true" data-label="policing.request.maintenance.sections.caseEventAttributes.event" ng-class="{{::vm.formDataFieldClasses('event')}}">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="dateOfLaw" data-picklist-can-maintain="true" ng-model="vm.formData.dateOfLaw" ng-change="vm.validate()" data-config="dateOfLaw" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination" data-label="policing.request.maintenance.sections.caseEventAttributes.law"
+                        ng-disabled="vm.isDateOfLawDisabled()" ng-class="{{::vm.formDataFieldClasses('dateOfLaw')}}">
+                    </ip-typeahead>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="text-wrap">
+                    <span class="label-legend" translate="policing.request.maintenance.sections.caseAssociatedWithNames.header"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="nameType" data-config="nameType" data-label="policing.request.maintenance.sections.caseAssociatedWithNames.nameType" ng-model="vm.formData.nameType" ng-disabled="vm.isCaseReferenceSelected()" ng-class="{{::vm.formDataFieldClasses('nameType')}}">
+                    </ip-typeahead>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-10">
+                    <ip-typeahead name="name" data-config="name" data-label="policing.request.maintenance.sections.caseAssociatedWithNames.name" ng-model="vm.formData.name" ng-disabled="vm.isCaseReferenceSelected()" ng-class="{{::vm.formDataFieldClasses('name')}}">
+                    </ip-typeahead>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

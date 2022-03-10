@@ -1,0 +1,136 @@
+<form #nameSupplierDetailsForm="ngForm" ngOnChange="checkValidation()">
+<div *ngIf="isHosted">
+    <br />
+    <br />
+</div>
+<div name="supplierDetails" style="overflow: hidden;">
+        <div class="row">
+            <div class="col-sm-6">
+                <ipx-dropdown name="SupplierType" label="nameview.supplierDetails.supplierType" 
+                    [(ngModel)]="formData.supplierType" [options]="supplierTypes" required  apply-edited
+                    [displayField]="'value'" [keyField]="'key'" [disabled]="!isMaintainable">
+                </ipx-dropdown> 
+            </div>
+            <div class="col-sm-6"></div>
+        </div>
+        <div name="deafultPurchaseInformation">
+            <div class="row">
+                <span class="lineheader">{{ 'nameview.supplierDetails.deafultPurchaseInformation' | translate}}</span>
+            </div>
+            <div class="row col-sm-12">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <ipx-text-field multiline name="purchaseDescription" label="nameview.supplierDetails.purchaseDescription" apply-edited maxlength="500" [(ngModel)]="formData.purchaseDescription" [disabled]="!isMaintainable">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead name="PurchaseCurrency" label="nameview.supplierDetails.purchaseCurrency" apply-edited config="purchaseCurrency" [(ngModel)]="formData.purchaseCurrency" [disabled]="!isMaintainable"></ipx-typeahead>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead name="ExchangeRateSchedule" label="nameview.supplierDetails.exchangeRateSchedule" apply-edited config="exchangeRateSchedule" [(ngModel)]="formData.exchangeRate" [disabled]="!isMaintainable"></ipx-typeahead>
+                    </div>      
+                    <div class="row">
+                            <span class="col-sm-4 taxLabel">{{ 'nameview.supplierDetails.tax' | translate}}</span>
+                            <ipx-dropdown name="TaxRates"  apply-edited
+                                [(ngModel)]="formData.defaultTaxCode" [options]="taxRates" [disabled]="!isMaintainable"
+                                [displayField]="'value'" [keyField]="'key'" class="col-sm-4 taxDropdownFields">
+                            </ipx-dropdown> 
+                            <ipx-dropdown name="TaxTreatments" label=""  apply-edited
+                                [(ngModel)]="formData.taxTreatmentCode" [options]="taxTreatments" [disabled]="!isMaintainable" 
+                                [displayField]="'value'" [keyField]="'key'" class="col-sm-4 taxDropdownFields">
+                            </ipx-dropdown> 
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <ipx-dropdown name="PaymentTerm" label="nameview.supplierDetails.paymentTerm"  apply-edited
+                            [(ngModel)]="formData.paymentTermNo" [options]="paymentTerms" [disabled]="!isMaintainable" 
+                            [displayField]="'value'" [keyField]="'key'">
+                        </ipx-dropdown>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead name="ProfitCentre" config="profitCentre" [(ngModel)]="formData.profitCentre" [disabled]="!isMaintainable" apply-edited
+                            label="nameview.supplierDetails.profitCentre">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead name="LedgerAccount" [label]="'nameview.supplierDetails.ledgerAccount' | translate" apply-edited
+                            config="ledgerAccount" [(ngModel)]="formData.ledgerAcc" [disabled]="!isMaintainable"> </ipx-typeahead>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead name="wipTemplate" [label]="'nameview.supplierDetails.wipDisbursement' | translate" [disabled]="!isMaintainable" apply-edited 
+                            config="wipTemplate" [(ngModel)]="formData.wipDisbursement" [extend-query]="wipTemplateExtendQuery"> </ipx-typeahead>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <div name="paymentSendTo">
+        <div class="row">
+            <span class="lineheader">{{ 'nameview.supplierDetails.paymentSendTo' | translate}}</span>
+        </div>
+        <div class="row col-sm-12">
+            <div class="col-sm-6">
+                <div class="row">
+                    <ipx-typeahead name="sendToName" config="supplier" [label]="'nameview.supplierDetails.sendTo' | translate" [(ngModel)]="formData.sendToName" required 
+                    (onChange)="toggleAttention();" [disabled]="!isMaintainable" apply-edited></ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead name="attentionName" config="name" apply-edited [label]="'nameview.supplierDetails.attentionOf' | translate" [(ngModel)]="formData.sendToAttentionName"
+                    [extend-query]="sendToNameAttentionExtendQuery" [disabled]="formData.sendToName===null || formData.sendToName == '' || !isMaintainable"></ipx-typeahead>
+                </div>
+            </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <ipx-typeahead name="sendToNameAddress" apply-edited config="address" [label]="'nameview.supplierDetails.address' | translate" [(ngModel)]="formData.sendToAddress"
+                        [extend-query]="sendToNameExtendQuery" [disabled]="formData.sendToName===null || formData.sendToName == '' || !isMaintainable"></ipx-typeahead>
+                    </div>
+                </div>
+        </div>
+    </div>
+    
+        <div name="paymentDetails">
+            <div class="row">
+                <span class="lineheader">{{ 'nameview.supplierDetails.paymentDetails' | translate}}</span>
+            </div>
+            <div class="row col-sm-12">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <ipx-text-field multiline name="instruction" apply-edited label="nameview.supplierDetails.instructions" maxlength="254" [(ngModel)]="formData.instruction" [disabled]="!isMaintainable">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field multiline name="withPayee" apply-edited label="nameview.supplierDetails.withPayee" maxlength="254" [(ngModel)]="formData.withPayee" [disabled]="!isMaintainable">
+                        </ipx-text-field>
+                    </div>  
+                    <div class="row">
+                        <div class="row">
+                            <ipx-dropdown name="paymentMethod" apply-edited label="nameview.supplierDetails.paymentMethod" [(ngModel)]="formData.paymentMethod" [options]="paymentMethods" 
+                                [displayField]="'value'" [keyField]="'key'" [disabled]="!isMaintainable">
+                            </ipx-dropdown>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <ipx-dropdown name="intoBankAccount" apply-edited label="nameview.supplierDetails.intoBankAccount" [disabled]="!isMaintainable" 
+                            [(ngModel)]="formData.intoBankAccountCode" [options]="intoBankAccounts"
+                            [displayField]="'value'" [keyField]="'key'">
+                        </ipx-dropdown>
+                    </div>
+                    <div class="row">
+                        <ipx-dropdown name="paymentRestriction" apply-edited label="nameview.supplierDetails.paymentRestriction" 
+                            [(ngModel)]="formData.restrictionKey" [options]="paymentRestrictions" (onChange)="setReason()" 
+                            [displayField]="'value'" [keyField]="'key'" [disabled]="!isMaintainable">
+                        </ipx-dropdown>
+                    </div>      
+                    <div class="row">
+                        <ipx-dropdown name="reasonForRestriction" apply-edited label="nameview.supplierDetails.reasonForRestriction" (onChange)="checkValidationAndEnableSave()"
+                            [(ngModel)]="formData.reasonCode" [options]="reasonsForRestrictions" [displayField]="'value'" [keyField]="'key'">
+                        </ipx-dropdown>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

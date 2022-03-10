@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h2 class="modal-title"> {{ 'caseSearch.savedSearch.saveSearch' | translate }}</h2>
+    <div class="modal-header-controls">
+        <ipx-save-button name="savedSearch" (onclick)="saveSearch()" [disabled]="disable()" (keyup.enter)="saveSearch()">{{'Save' | translate}}</ipx-save-button>
+        <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+    </div>
+</div>
+
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-10">
+            <form name="saveSearchForm" #form="ngForm" novalidate>
+                <div class="required">
+                    <ipx-text-field name="searchName" ipx-autofocus required label="{{ 'caseSearch.savedSearch.searchName' | translate }}" autocomplete="off" [(ngModel)]="formData.searchName" apply-edited>
+                    </ipx-text-field>
+                </div>
+                <div>
+                    <ipx-text-field multiline name="description" apply-edited label="{{ 'caseSearch.savedSearch.description' | translate }}" autocomplete="off" [(ngModel)]="formData.description">
+                    </ipx-text-field>
+                </div>
+                <div *ngIf="isCaseSearchSave">
+                    <ipx-typeahead id="searchmenu-picklist" name="includeInSearchMenu" apply-edited label="{{ 'caseSearch.savedSearch.includeInSearchMenu' | translate}}" picklistCanMaintain [extend-query]="extendSearchGroupPicklist" [extended-params]="extendedParamGroupPicklist"
+                        config="searchGroup" [(ngModel)]="formData.includeInSearchMenu" [is-addanother]="true" [can-navigate]="true"></ipx-typeahead>
+                </div>
+                <div style="margin-left: 172px;">
+                    <ipx-checkbox name="public" label="{{ 'caseSearch.savedSearch.public' | translate}}" [(ngModel)]="formData.public" [disabled]="!canMaintainPublicSearch"></ipx-checkbox>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

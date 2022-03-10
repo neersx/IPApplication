@@ -1,0 +1,11 @@
+<ipx-kendo-grid #grid id="caseViewAttachments" [dataOptions]="gridOptions" [items]="taskItems" (menuItemSelected)="onMenuItemSelected($event)" (popupOpen)="displayTaskItems($event)">
+    <ng-template ipxTemplateColumnField="rawAttachmentName" let-dataItem>
+        <a (click)="getUrl(dataItem)">
+            {{dataItem.attachmentName}}
+        </a>
+    </ng-template>
+    <ng-template ipxTemplateColumnField="isPriorArt" let-dataItem>
+        <ipx-icon *ngIf="dataItem.isPriorArt" style="cursor: pointer" name="prior-art" [large]="true" [tooltip]="'caseview.attachments.priorArtTooltip' | translate">
+        </ipx-icon>
+    </ng-template>
+</ipx-kendo-grid>

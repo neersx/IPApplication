@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{'searchResults.dms.title' | translate}}</h2>
+    <div class="modal-header-controls">
+        <ipx-apply-button *ngIf="isMaintainance" type="button" [disabled]="!iwl" (click)="apply()"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+    </div>
+</div>
+
+<ipx-case-header *ngIf="caseKey" [caseKey]="caseKey"></ipx-case-header>
+<ipx-name-header *ngIf="nameKey" [nameKey]="nameKey"></ipx-name-header>
+<div *ngIf="isMaintainance" class="title-header">
+    <div class="row">
+        <div class="label-value col-sm-12">
+            <label translate="dmsIntegration.selectedDocument"></label>
+            <span class="text">{{ docName }}</span>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    <div>
+        <dms [topic]="topic" (onDocumentSelectedIwl)="iwlChanged($event)"></dms>
+    </div>
+</div>

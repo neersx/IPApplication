@@ -1,0 +1,45 @@
+<div ng-form="vm.form" ip-form>
+    <h3 translate="jurisdictions.maintenance.addressSettings.displayOptions"></h3>
+    <div class="row">
+        <div class="input-wrap col-sm-6">
+            <ip-text-field name="stateLabel" label="jurisdictions.maintenance.addressSettings.stateLabel" ng-model="vm.formData.stateLabel"
+                ng-class="{edited: vm.formData.isDirty('stateLabel')}" ng-maxlength="20" ng-disabled="!viewData.canEdit"></ip-text-field>
+        </div>
+        <div class="input-wrap col-sm-6">
+            <ip-checkbox label="{{ 'jurisdictions.maintenance.addressSettings.formatUsingAbbreviation' | translate}}" ng-class="{edited: vm.formData.isDirty('stateAbbreviated')}"
+                name="abbreviate" ng-model="vm.formData.stateAbbreviated" ng-disabled="!viewData.canEdit" ></ip-checkbox>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-wrap col-sm-6">
+            <ip-text-field name="postCodeLabel" label="jurisdictions.maintenance.addressSettings.postCodeLabel" ng-model="vm.formData.postCodeLiteral"
+                ng-class="{edited: vm.formData.isDirty('postCodeLiteral')}" ng-maxlength="20" ng-disabled="!viewData.canEdit"></ip-text-field>
+        </div>
+        <div class="input-wrap col-sm-6">
+            <ip-checkbox label="{{ 'jurisdictions.maintenance.addressSettings.postCodeFirst' | translate}}" ng-class="{edited: vm.formData.isDirty('postCodeFirst')}"
+                name="postCodeFirst" ng-model="vm.formData.postCodeFirst" ng-disabled="!viewData.canEdit" ></ip-checkbox>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-wrap col-sm-6">
+            <ip-typeahead name="nameStyle" data-config="nameStyle" ip-required ng-model="vm.formData.nameStyle" ng-disabled="!viewData.canEdit"
+                ng-class="{edited: vm.form.nameStyle.$dirty}" ng-change="vm.onPicklistChange()"></ip-typeahead>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-wrap col-sm-6">
+            <ip-typeahead name="addressStyle" data-config="addressStyle" ip-required ng-model="vm.formData.addressStyle" ng-disabled="!viewData.canEdit"
+                ng-class="{edited: vm.form.addressStyle.$dirty}" ng-change="vm.onPicklistChange()"></ip-typeahead>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-wrap col-sm-6">
+            <ip-typeahead name="populateCityFromPostCode" data-config="postCodeSearch" ng ng-model="vm.formData.populateCityFromPostCode"
+                ng-disabled="!viewData.canEdit" ng-class="{edited: vm.form.populateCityFromPostCode.$dirty}"></ip-typeahead>
+        </div>
+        <div class="input-wrap col-sm-6">
+            <ip-checkbox label="{{ 'jurisdictions.maintenance.addressSettings.populatePostcodeFromCity' | translate}}" ng-class="{edited: vm.formData.isDirty('postCodeAutoFlag')}"
+                name="postCodeAutoFlag" ng-model="vm.formData.postCodeAutoFlag" ng-disabled="!viewData.canEdit" ></ip-checkbox>
+        </div>
+    </div>
+</div>

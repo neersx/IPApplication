@@ -1,0 +1,24 @@
+<style>
+.k-grid-header th.k-header {
+    overflow: visible;
+}
+
+.k-grid-header-wrap,
+.k-grid-footer-wrap {
+    overflow: visible;
+}
+</style>
+<!--Summary section -->
+<div class="table-container">
+    <div class="table-title">
+        <h2 translate="validcombinations.summary"></h2>
+        <div class="controls" ng-hide="searchType == 'jurisdiction'">
+	        <button id="add" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'Add' | translate }}" data-ng-click="addValidCombination()">
+	            <span class="cpa-icon cpa-icon-plus-circle"></span>
+	        </button>
+    	</div>
+    </div>
+</div>
+
+<!-- Kendo Grid transclusion -->
+<div ng-transclude></div>

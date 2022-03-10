@@ -1,0 +1,10 @@
+<ipx-widget-frame *ngIf="!hasError" (propagateChange)="propagateHeightChange($event)" [autoFit]="true" [ngClass]="{'custom-content-default-height': !isExpanded}">
+    <div *ngIf="!isLoaded" class="row" class="custom-content-default-height">
+        <div class="col-sm-12 k-loading-image loaderHeight"></div>
+    </div>
+    <iframe style="border:none;" [hidden]="!isLoaded" (load)="onLoad()" #iframe [ngClass]="{'custom-content-default-height': !isExpanded}" [ngStyle]="{'height': height}" [src]="srcUrl|sanitize:'resourceUrl'" width="100%"></iframe>
+ 
+</ipx-widget-frame>
+<div *ngIf="hasError">
+    <span class="login-alert login-alert-error">{{'customContent.invalidUrl' | translate}}</span>
+</div>

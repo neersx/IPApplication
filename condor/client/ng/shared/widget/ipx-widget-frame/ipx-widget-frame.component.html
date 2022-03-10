@@ -1,0 +1,19 @@
+<div class="widget-frame" [ngClass]="{'expanded': expanded}">
+    <div class="widget-title" style="height: 25px;">
+        <span>{{ title | translate }}</span>
+
+        <div class="widget-buttons">
+            <div class="widget-button" (click)='expand()' *ngIf="!expanded">
+                <span class='cpa-icon-expand'></span>
+            </div>
+
+            <div class="widget-button" (click)='restore()' *ngIf="expanded">
+                <span class='cpa-icon-compress'></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="widget-body" #widgetBody [style.height]="height">
+        <ng-content></ng-content>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="row">
+  <ipx-typeahead name="case" config="case" [(ngModel)]="case" label="Case Reference" class="col-sm-5">
+  </ipx-typeahead>
+</div>
+<div class="row">
+  <ipx-attachments #attachments [viewData]="viewData" [caseDetails]="case"></ipx-attachments>
+</div>

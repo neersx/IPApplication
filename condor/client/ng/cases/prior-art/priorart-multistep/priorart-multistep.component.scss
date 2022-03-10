@@ -1,0 +1,11 @@
+.wizard-header ul li.step {
+    text-align: center;
+    margin-left: -30px;
+    &::before {
+        width: 150px;
+    };
+    white-space: nowrap;
+}
+.wizard-header ul li.first {
+    margin-right: 20px;
+}

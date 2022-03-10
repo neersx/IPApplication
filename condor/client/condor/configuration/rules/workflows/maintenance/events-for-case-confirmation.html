@@ -1,0 +1,20 @@
+<div id="eventsForCaseModal">
+    <div class="modal-header">
+        <h2 class="modal-title" id="modalPendingLabel" translate="Delete Warning"></h2>
+    </div>
+    <div class="modal-body">
+        <p translate="{{::vm.deleteEventConfirmText()}}"></p>
+        <div class="row" ng-repeat="item in vm.items.usedEvents">
+            <div class="col-sm-2 col-sm-offset-1">
+                <span class="text-grey-dark">{{item.eventId}}</span>
+            </div>
+            <div class="col-sm-9">
+                <span class="text-grey-dark">{{item.description}}</span>
+            </div>
+        </div>  
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" data-ng-click="vm.cancel()" translate="Cancel"></button>
+        <button type="button" class="btn btn-primary" data-ng-click="vm.proceed()" translate="Proceed"></button>
+    </div>
+</div>

@@ -1,0 +1,353 @@
+/* You can add global styles to this file, and also import other style files */
+//
+// Define relative paths to images and fonts
+// --------------------------------------------------
+$fonts-path: '../../../node_modules/designguide/www/dist/scss/fonts/';
+$flag-icon-css-path: './../../node_modules/designguide/www/dist/img/flags/';
+$images-path: '../../../node_modules/designguide/www/dist/img/';
+
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/variables';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/mixins';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/normalize';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/scaffolding';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/type';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/grid';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/forms';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/buttons';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/labels';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/quick-links';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/close';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/panels';
+@import '../../../node_modules/designguide/www/dist/scss/bootstrap/media';
+
+
+//Product
+$product-background-primary: #000080;
+$product-foreground-primary: #fff;
+$product-background-back: #CCC;
+$product-foreground-back: #000;
+$product-foreground-primary: #fff;
+$product-background-secondary: #2E2E9A;
+$product-background-error: #E90101;
+$product-foreground-error: #fff;
+$product-background-info: #bafaff;
+$product-foreground-info: #000;
+
+.login-layout .widget-box {
+    padding: 2px;
+    background-color: #14144D;
+}
+
+.login-container h2 {
+    font-family: $font-family-sans-serif;
+    font-size: 32px;
+}
+
+.login {
+    margin-top: 70px;
+
+    &-overflow {
+        overflow: auto !important;
+    }
+
+    &-background {
+        background: url($images-path + 'loginbg.png') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    &-panelHeader {
+        background-color: $product-background-primary;
+        color: $product-foreground-primary;
+        border-radius: 0;
+    }
+
+    &-panel {
+        border-color: #CCC;
+        border-radius: 0;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+        padding-bottom: 10px
+    }
+
+    &-footer {
+        margin-top: -10px;
+    }
+
+    &-content {
+        display: block;
+    }
+
+    &-label {
+        font-family: $font-family-sans-serif;
+        font-size: 13px;
+        margin-top: 5px;
+        margin-right: 10px;
+        word-wrap: break-word;
+        -ms-word-wrap: break-word;
+
+        &-holder {
+            text-align: right;
+        }
+
+        &-left {
+            text-align: left;
+        }
+    }
+
+    &-linkbtn {
+        cursor: pointer;
+    }
+
+    &-linkbtn[disabled] {
+        color: $product-background-back;
+        pointer-events: none;
+    }
+
+    &-input {
+        background: #FFF !important;
+        border: 1px solid #ccc !important;
+        border-radius: 3px !important;
+        font-size: 13px !important;
+        height: 30px !important;
+        color: black;
+
+        &:disabled {
+            background: rgb(214, 214, 214) !important;          
+        }
+    }
+
+  
+
+    &-btn {
+        margin-bottom: 0;
+        font-family: $font-family-sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        vertical-align: middle;
+        touch-action: manipulation;
+        background-image: none;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        padding: 2px 7px 5px;
+        line-height: 18px;
+        border-radius: 3px;
+        transition: all .2s;
+        -webkit-transition: all .2s;
+        box-sizing: border-box;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: $product-background-primary;
+        color: $product-foreground-primary !important;
+
+        &-secondary {
+            background-color: $product-background-back;
+            color: $product-foreground-back !important;
+            margin-right: 10px;
+
+            &:hover {
+                background-color: $product-background-secondary;
+                color: $product-foreground-primary !important;;
+                border-color: $product-background-primary;
+            }
+        }
+
+      
+
+        &:disabled{            
+            background-color: $product-background-back;
+            color: $product-foreground-back !important;
+            margin-right: 10px;           
+            &:hover {
+                background-color: $product-background-secondary;
+                color: $product-foreground-primary !important;;
+                border-color: $product-background-primary;
+                cursor: not-allowed;
+            }
+        }
+
+        &:hover {
+            background-color: $product-background-secondary;
+            border-color: $product-background-primary;
+        }
+    }
+
+    &-button {
+        margin-top: 10px;
+
+        &-signIn {
+            min-width: 120px;
+        }
+
+        &-cancel {
+            min-width: 120px;
+        }
+
+        &-windowsSignIn {
+            width: 225px;
+        }
+    }
+
+    &-marginTop {
+        margin-Top: 10px;
+    }
+
+    &-marginBottom {
+        margin-bottom: 10px;
+    }
+
+    &-centerAlign {
+        text-align: center;
+    }
+
+    &-border-left {
+        @media(min-width: 768px) {
+            border-left: $product-background-primary 2px solid;
+        }
+    }
+
+    &-border-top {
+        @media(max-width: 767px) {
+            border-top: $product-background-primary 2px solid;
+        }
+    }
+
+    &-centered {
+        text-align: center;
+
+        &>div {
+            float: none;
+            display: inline-block;
+        }
+    }
+
+    &-alert {
+        text-align: left;
+        width: auto;
+        font-family: $font-family-sans-serif;
+        line-height: 1.42857;
+        margin-bottom: 0;
+        margin-top: 2px;
+
+        &-error {
+            font-size: 13px;
+            max-width: 85%;
+            padding: 4px 25px 4px 25px;
+            border: 1px solid #ebccd1;
+            color: $product-foreground-error;
+            background-color: $product-background-error;
+            margin-left: -5px;
+            clear: both;
+        }
+
+        &-info {
+            font-size: 11px;
+            width: 85%;
+            margin-left: -5px;
+            color: $product-foreground-info;
+            background-color: $product-background-info;
+            border-bottom-right-radius: 35px;
+            margin-top: 15px;
+        }
+
+        &-notification {
+            font-size: 13px;
+            max-width: 85%;
+            padding: 4px 25px 4px 25px;
+            border: 1px solid #ebccd1;
+            color: $product-foreground-info;
+            background-color: $product-background-info;
+            margin-left: -5px;
+            clear: both;
+        }
+
+        &-infoheader {
+            margin-bottom: 5px;
+        }
+
+        &-infotext {
+            padding: 5px;
+        }
+
+        &-close {
+            margin-top: -5px;
+        }
+    }
+
+    &-loading {
+        &-info {
+            position: absolute;
+            left: 39.25%;
+            top: 35%;
+            z-index: 1000;
+        }
+
+        &-holder {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &-hideAlways {
+        margin-left: 10px;
+        margin-right: 5px;
+        font-size: 9px !important;
+        margin-top: 0px !important;
+
+        &-checkbox {
+            transform: scale(0.8);
+            vertical-align: sub;
+        }
+    }
+}
+
+.loader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.spinner {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    border-radius: 50%;
+    border-top-left-radius: 0;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.spinner .pie {
+    width: 50%;
+    height: 50%;
+    float: left;
+    display: block;
+    animation: colorchange .8s infinite;
+}
+
+.pie.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.pie.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.pie.delay-3 {
+    animation-delay: 0.3s;
+}
+
+@keyframes colorchange {
+    0% {
+        background: #bf1822
+    }
+
+    50% {
+        background: white
+    }
+}

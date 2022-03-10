@@ -1,0 +1,77 @@
+<div ng-form="vm.form.maintenance" ip-form>
+    <style>
+        .input-group-addon {
+            background-color: transparent;
+            border: inherit;
+            border-radius: 3px;
+            color: inherit;
+        }
+        
+        .form-control {
+            border-radius: 3px !important;
+            height: 25px;
+            padding-top: 3px;
+            padding-left: 8px;
+            font: inherit;
+        }
+        
+        .form-control.edited {
+            border: 2px solid #FEB81C !important;
+            padding-top: 2px;
+            padding-left: 7px;
+        }
+        
+        .form-control:focus {
+            transition: none;
+            border: 1px solid #ccc;
+            border-radius: 3px !important;
+            box-shadow: none;
+        }
+        
+        .mandatory-asterisk {
+            margin-left: 3px;
+            color: #E90101;
+        }
+        
+        .input-action.error .cpa-icon {
+            color: #E90101;
+        }
+    </style>
+    <div class="modal-header">
+        <h2 class="modal-title">
+            <div translate="dataDownload.newSchedule.title"></div>
+        </h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+            <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismissAll()"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <h3>
+                <span class="label-legend" translate="dataDownload.schedule.definition"></span>
+                <ip-inline-dialog data-content="{{::'dataDownload.newSchedule.description' | translate}}" data-placement="right"></ip-inline-dialog>
+            </h3>
+        </div>
+
+        <div class="row" class="input-wrap">
+            <div>
+                <ip-text-field name="schedule" ip-required label="dataDownload.newSchedule.name" ng-model="vm.schedule.name" ng-class="{'edited': vm.form.maintenance.schedule.$dirty}" data-ng-maxlength="50" ip-field-error="{{vm.getError('name').message | translate}}"
+                    ip-autofocus></ip-text-field>
+            </div>
+        </div>
+
+        <div class="row">
+            <ip-dropdown ng-class="{edited: vm.form.maintenance.selectedDataSource.$dirty}" ip-required name="selectedDataSource" label="dataDownload.newSchedule.dataSource" ng-model="vm.selectedDataSource" options="ad.name for ad in vm.availableDataSources" ip-field-error="{{vm.getError('selectedDataSource').message | translate}}"
+                ng-change="vm.onSelectedDataSourceChanged(vm.selectedDataSource)">
+            </ip-dropdown>
+        </div>
+
+        <div ng-if="vm.caseSourceTemplate" data-ng-include="vm.caseSourceTemplate" ></div>
+
+        <div ng-if="vm.downloadTypeTemplate" data-ng-include="vm.downloadTypeTemplate" ></div>
+
+        <ip-schedule-frequency schedule="vm.schedule" maintenance="vm.form.maintenance" ></ip-schedule-frequency>
+
+    </div>
+</div>

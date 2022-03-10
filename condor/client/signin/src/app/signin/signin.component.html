@@ -1,0 +1,223 @@
+<div class="login-centered" id="mainContent">
+    <div [ngClass]="layoutWidthClass()">
+        <div class="row">
+            <div class="login-brand-logo"></div>
+        </div>
+        <div class="loader login-loading-info" *ngIf="status === 'loading'">
+            <span class="spinner">
+                <div class="pie"></div>
+                <div class="pie delay-1"></div>
+                <div class="pie delay-3"></div>
+                <div class="pie delay-2"></div>
+            </span>
+        </div>
+
+        <div class="panel login-panel">
+            <div class="panel-heading login-panelHeader">
+                <h3 class="panel-title text-right" *ngIf="!methods.currentAuthMode && !criticalErrorOccurred">
+                    {{ 'lblWelcomeMsg' | translate }}</h3>
+                <h3 class="panel-title text-right" *ngIf="methods.currentAuthMode">
+                    {{ 'lblTwoStepVeification' | translate }}</h3>
+                <h3 class="panel-title text-right" *ngIf="criticalErrorOccurred">&nbsp;</h3>
+            </div>
+
+            <div class="row no-padding login-centered">
+                <div class="login-alert login-alert-info" *ngIf="info.isVisible && !methods.currentAuthMode">
+                    <div id="infoMessage" class="login-alert-infotext">
+                        <button type="button" class="close login-alert-close" aria-hidden="true"
+                            (click)="hideInfo()">×</button>
+                        <div *ngIf="info.header" class="login-alert-infoheader">{{ info.header | translate }}</div>
+                        <ul>
+                            <li *ngIf="info.formsAuthString">{{ info.formsAuthString | translate }}</li>
+                            <li *ngIf="info.windowsAuthString">{{ info.windowsAuthString | translate }}</li>
+                            <li *ngIf="info.ssoAuthString">{{ info.ssoAuthString | translate }}</li>
+                        </ul>
+                        <label class="login-label login-hideAlways"><input type="checkbox" [(ngModel)]="info.hideAlways"
+                                class="login-hideAlways-checkbox">&nbsp;{{ 'infoDontShowAgain' | translate }}</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-padding login-centered">
+                <div id="errorMessage" *ngIf="data.error || data.errorFromServer"
+                    [@toggle]="data.error || data.errorFromServer" class="login-alert login-alert-error">
+                    {{ (data.error|| data.errorFromServer) | translate }} </div>
+            </div>
+
+            <div class="row login-marginTop login-centered">
+                <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding login-centerAlign"
+                    *ngIf="(methods.showWindows || methods.showSso || methods.showAdfs) && !methods.currentAuthMode"
+                    style="vertical-align: top;">
+                    <div class="row form-group" *ngIf="methods.showWindows">
+                        <button class="login-btn login-button login-button-windowsSignIn" name="windowsSignIn"
+                            (click)="windowsSignIn()">{{ 'btnWindowsLogin' | translate }}</button>
+                    </div>
+                    <div class="row form-group" *ngIf="methods.showAdfs">
+                        <button type="submit" class="login-btn login-button login-button-windowsSignIn"
+                            name="adfsSignIn" (click)="adfsSignIn()">{{ 'btnAdfsLogin' | translate }}</button>
+                    </div>
+                    <div class="row form-group" *ngIf="methods.showSso">
+                        <button type="submit" class="login-btn login-button login-button-windowsSignIn" name="ssoSignIn"
+                            (click)="ssoSignIn()">{{ 'btnSsoLogin' | translate }}</button>
+                    </div>
+                </div>
+                <div class="col-xs-11 col-sm-6 col-md-6 col-lg-6  login-centerAlign login-border-left login-border-top"
+                    *ngIf="methods.showForms && (methods.showWindows || methods.showSso || methods.showAdfs) && !methods.currentAuthMode">
+                    <form (ngSubmit)="signIn()" name="form1" #form1>
+                        <div class="row form-group login-marginTop">
+                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-3 no-padding login-label-holder">
+                                <label class="login-label">{{ 'lblUsername' | translate }}</label>
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-8 col-lg-8 no-padding">
+                                <input type="text" autocomplete="off" name="username" [(ngModel)]="data.username"
+                                    autofocus class="form-control login-input" (change)="data.error=''">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-3 col-sm-4 col-md-3 col-lg-3 no-padding login-label-holder">
+                                <label class="login-label">{{ 'lblPassword' | translate }}</label>
+                            </div>
+                            <div class="col-xs-7 col-sm-7 col-md-8 col-lg-8 no-padding text-left">
+                                <input type="password" autocomplete="off" name="password" [(ngModel)]="data.password"
+                                    class="form-control login-input" (change)="data.error=''">
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding login-label-holder"
+                                style="top:4px;">
+                                <a id="lnkForgotPassword" style="font-size: 11px; top:4px; white-space: nowrap;"
+                                    [routerLink]='"reset-password"'
+                                    [queryParams]="{id:data.username}">{{ 'btnForgotPassword' | translate }}</a>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5 no-padding text-right">
+                                <button name="signIn" type="submit"
+                                    class="login-btn login-button-signIn">{{ 'btnSignIn' | translate }}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xs-10 col-sm-9 col-md-10 col-lg-10 login-centerAlign"
+                    *ngIf="methods.showForms && !(methods.showWindows || methods.showSso || methods.showAdfs) && !methods.currentAuthMode">
+                    <form (ngSubmit)="form2.form.valid && signIn()" name="form2" #form2="ngForm">
+                        <div class="row form-group login-marginTop">
+                            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 no-padding login-label-holder">
+                                <label class="login-label">{{ 'lblUsername' | translate }}</label>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 no-padding">
+                                <input type="text" autocomplete="off" name="username" [(ngModel)]="data.username"
+                                    autofocus class="form-control login-input" (change)="data.error=''">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3 no-padding login-label-holder">
+                                <label class="login-label">{{ 'lblPassword' | translate }}</label>
+                            </div>
+                            <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9 no-padding text-left">
+                                <input type="password" autocomplete="off" name="password" [(ngModel)]="data.password"
+                                    class="form-control login-input" (change)="data.error=''">
+                            </div>
+                        </div>
+
+                        <div class="row form-group">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 no-padding login-label-holder"
+                                style="top:4px;">
+                                <strong>
+                                    <a id="lnkForgotPassword" style="font-size: 11px; top:4px; white-space: nowrap;"
+                                        [routerLink]='"reset-password"'
+                                        [queryParams]="{id:data.username}">{{ 'btnForgotPassword' | translate }}</a></strong>
+                            </div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-5 no-padding text-right">
+                                <button name="signIn" type="submit"
+                                    class="login-btn login-button-signIn">{{ 'btnSignIn' | translate }}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-xs-12  no-padding login-centerAlign"
+                    *ngIf="methods.showForms && methods.currentAuthMode" style="vertical-align: top; padding: 0 24px;">
+                    <form (ngSubmit)="formCode.form.valid && clearError() && verifyCodeAndSignin()" name="formCode"
+                        #formCode="ngForm">
+                        <div class="no-padding login-centered">
+                            <div id="errorMessage"
+                                *ngIf="formCode.submitted && formCode.form.invalid && !(data.error || data.errorFromServer)"
+                                [@toggle]="formCode.submitted && formCode.form.invalid"
+                                class="login-alert login-alert-error"> {{ 'codeRequired' | translate }} </div>
+                            <div id="codeSent"
+                                *ngIf="!resentStatus.canResend && resentStatus.countdown>27 && methods.currentAuthMode === twoFactorModesString.email"
+                                class="login-alert login-alert-notification toggle"
+                                [@toggle]="!resentStatus.canResend && methods.currentAuthMode === twoFactorModesString.email">
+                                {{ 'codesent' | translate }} </div>
+                        </div>
+                        <div class="row form-group login-marginTop">
+                            <div class="col-xs-12 no-padding login-label-left">
+                                <label *ngIf="methods.currentAuthMode === twoFactorModesString.email"
+                                    class="login-label">{{ 'lblEmailCode' | translate }}</label>
+                                <label *ngIf="methods.currentAuthMode === twoFactorModesString.app"
+                                    class="login-label">{{ 'lblAppCode' | translate }}</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-7 col-md-4 no-padding">
+                                <input type="password" required autocomplete="off" name="userCode"
+                                    [(ngModel)]="authenticationCode" #userCode="ngModel" autofocus
+                                    class="form-control login-input"
+                                    [ngClass]="{ 'is-invalid': formCode.submitted && userCode.invalid }"
+                                    (change)=" data.error=''">
+                            </div>
+                            <div class=" col-xs-12 col-sm-4 col-md-7 no-padding login-label login-label-left"
+                                *ngIf="methods.currentAuthMode === twoFactorModesString.email">
+                                <div class="login-content">{{ 'lbldidnt' | translate }}
+                                    <a class="login-linkbtn" [attr.disabled]="resentStatus.canResend ? null : true"
+                                        id="resendCode"
+                                        (click)="formCode.resetForm(); resendCode()">{{ 'lblResend' | translate }}
+                                        {{ resentStatus.countdownMessage | async}}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-13 col-md-13 col-sm-13 col-xs-13">
+                                <button name="verifyCode" type="submit"
+                                    class="login-btn login-button-signIn pull-right">{{ 'verify' | translate }}</button>
+                                <button name="Back" type="button"
+                                    class="login-btn login-button-signIn pull-right login-btn-secondary"
+                                    (click)="cancelCode()">{{ 'back' | translate }}</button>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 login-label login-label-left"
+                            *ngIf="data.configuredTwoFactorAuthModes.length > 1">
+                            <span
+                                *ngIf="methods.currentAuthMode === twoFactorModesString.email">{{ 'changePreferenceApp' | translate }}
+                            </span>
+                            <span
+                                *ngIf="methods.currentAuthMode === twoFactorModesString.app">{{ 'changePreferenceEmail' | translate }}
+                            </span>
+                            <a class="login-linkbtn" id="changePreference"
+                                (click)="formCode.resetForm(); changePreference()">{{ 'clickHere' | translate }}</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row centered login-footer">
+            <div class="col-xs-12 login-label">
+                <p *ngIf="cookieConsentSettings.isResetConfigured">
+                    <small>
+                        <span>
+                            <a style="cursor: pointer;"
+                                (click)="resetCookiePrefrences()">{{ 'changeCookiePreferences' | translate }}</a>
+                        </span>
+                    </small>
+                </p>
+                <p>
+                    <small>
+                        <span>© {{ systemInfo.releaseYear }} CPA Global Software Solutions Australia Pty Ltd </span> |
+                        <span *ngIf="systemInfo.inprotechVersion != ''">Inprotech
+                            ({{ systemInfo.inprotechVersion }})</span>&nbsp;
+                        <span *ngIf="systemInfo.appVersion!= ''">App ({{ systemInfo.appVersion }})</span>
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

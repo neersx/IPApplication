@@ -1,0 +1,50 @@
+<form #createBills="ngForm">
+  <div id="createBills">
+    <div class="modal-header">
+      <h2 class="modal-title" translate="wipOverviewSearch.createBills.title"></h2>
+      <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-sm-3 input-wrap">
+          <label style="width: 100%;" class="pull-right">{{'wipOverviewSearch.createBills.entity' | translate}}</label>
+        </div>
+        <ipx-dropdown name="entity" [removeOptionalValue]="true" required class="col-sm-9" [(ngModel)]="formData.entityId" [displayField]="'entityName'" [keyField]="'entityKey'" [options]="entities">
+        </ipx-dropdown>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 input-wrap">
+          <label style="width: 100%;" class="pull-right">{{'wipOverviewSearch.createBills.raisedBy' | translate}}</label>
+        </div>
+        <ipx-typeahead class="col-sm-9" name="raisedBy" config="staff" required [(ngModel)]="formData.raisedBy">
+        </ipx-typeahead>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3 input-wrap">
+          <label class="pull-right" style="width: 100%;">{{'wipOverviewSearch.createBills.from' | translate}}</label>
+        </div>
+        <ipx-date-picker class="col-sm-3" name="fromDate" id="fromDate" [allowNull]="true" [earlierThan]="formData.toDate" [includeSameDate]="true" [(ngModel)]="formData.fromDate">
+        </ipx-date-picker>
+        <ipx-date-picker class="col-sm-4" name="toDate" id="toDate" label="wipOverviewSearch.createBills.to" [laterThan]="formData.fromDate" [allowNull]="true" [includeSameDate]="true" [(ngModel)]="formData.toDate">
+        </ipx-date-picker>
+      </div>
+
+      <div class="row">
+        <ipx-checkbox name="includeNonRenewal" class="col-sm-offset-3 col-sm-9" [(ngModel)]="formData.includeNonRenewal" label="wipOverviewSearch.createBills.includeNonRenewal">
+        </ipx-checkbox>
+        <ipx-checkbox name="includeRenewal" class="col-sm-offset-3 col-sm-9" [(ngModel)]="formData.includeRenewal" label="wipOverviewSearch.createBills.includeRenewal">
+        </ipx-checkbox>
+        <ipx-checkbox name="useRenewalDebtor" class="col-sm-offset-3 col-sm-9" [(ngModel)]="formData.useRenewalDebtor" label="wipOverviewSearch.createBills.useRenewalDebtor">
+        </ipx-checkbox>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" name="cancel" (click)="onClose()">{{'Cancel' | translate}}</button>
+      <button type="button" class="btn btn-save" name="save" (click)="proceed()" [disabled]="!isValid()">{{'wipOverviewSearch.createBills.proceed' | translate}}</button>
+    </div>
+  </div>
+</form>

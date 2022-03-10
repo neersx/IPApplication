@@ -1,0 +1,34 @@
+<div class="multistep-wizard">
+    <div id="wizard" class="wizard" ng-if="vm.multistepMode">
+        <h3 translate="MultiStepWizard.header"></h3>
+        <button id="btn-prev" type="button" class="btn-prev" ng-if="vm.allowNavigation" ng-click="vm.navigate(-1)" ng-disabled="vm.isScrolling">
+            <span aria-hidden="true" class="cpa-icon cpa-icon-lg cpa-icon-chevron-left"></span>
+        </button>
+        <div id="wizard-header" class="wizard-header">
+            <ul class="steps-indicator">
+                <li class="first" ng-class="{current: vm.steps[0].selected}">
+                    <ip-step-button id="step_0" ng-click="vm.goTo(vm.steps[0], false)" step-no="1" data-default="vm.steps[0].isDefault"></ip-step-button>
+                    <a class="btn-remove" ng-if="vm.steps[0].selected && vm.steps.length > 1" ng-click="vm.removeStep(vm.steps[0])">X</a>
+                </li>
+                <li ng-class="{step, default: !step.selected, current: step.selected}" ng-repeat="step in vm.steps track by $index" data-tooltip-placement="bottom" ip-tooltip="{{::'Step' | translate }}" ng-if="$index>0">
+                    <ip-dropdown required name="stepOperator" ng-show="{{!step.isDefault}}" class="col-sm-4" item-width="5%" ng-model="step.operator" options="option for option in vm.operators" ng-change="vm.onOperatorChange($index)">
+                    </ip-dropdown>
+                    <ip-step-button id="step_{{$index}}" ng-click="vm.goTo(step, false)" step-no="($index + 1)" data-default="step.isDefault"></ip-step-button>
+                    <a class="btn-remove" ng-if="step.selected && vm.steps.length > 1" ng-click="vm.removeStep(step)">X</a>
+                </li>
+                <li class="add">
+                    <ip-add-button ng-click="vm.addStep()" class="pull-right"></ip-add-button>
+                </li>
+            </ul>
+        </div>
+        <button id="btn-next" type="button" class="btn-next" ng-if="vm.allowNavigation" ng-click="vm.navigate(1)" ng-disabled="vm.isScrolling">
+            <span aria-hidden="true" class="cpa-icon cpa-icon-lg cpa-icon-chevron-right"></span>
+        </button>
+    </div>
+    <div class="steps">
+        <ip-topics data-options="vm.options" type="simpleRestrictWidth">
+            <ip-topics-header>
+            </ip-topics-header>
+        </ip-topics>
+    </div>
+</div>

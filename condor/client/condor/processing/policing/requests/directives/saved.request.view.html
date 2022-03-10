@@ -1,0 +1,11 @@
+<h1 class="pull-right">
+    <button id="add" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'Add' | translate }}" data-ng-click="vm.onClickAdd()">
+        <span class="cpa-icon cpa-icon-plus-circle"></span>
+    </button>
+</h1>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="table-container"></div>
+        <ip-kendo-grid data-id="savedRequestsGrid" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+    </div>
+</div>

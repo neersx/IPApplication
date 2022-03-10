@@ -1,0 +1,7 @@
+<select id="dateOperator{{column.field}}" ng-model="column.filter.operator" ng-required>
+	<option value="gte">{{ ::'grid.columns.dateoperators.gte' | translate }}</option>
+	<option value="eq">{{ ::'grid.columns.dateoperators.eq' | translate }}</option>
+	<option value="lt">{{ ::'grid.columns.dateoperators.lt' | translate }}</option>
+<select>
+
+<ip-datepicker id="date{{column.field}}" use-local-timezone="true" column-filter="true" name="date" ng-model="column.filter.date"></ip-datepicker>

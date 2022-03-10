@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{'caseview.attachments.maintenance.fileBrowser.title' | translate}}</h2>
+    <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row" *ngIf="hasSettings===false">
+        <ipx-inline-alert [type]="'warning'" [text]="'caseview.attachments.maintenance.noSettings' | translate"></ipx-inline-alert>
+    </div>
+    <div *ngIf="hasSettings" class="row" style="line-height: 24px;">
+        <strong>{{'caseview.attachments.maintenance.fileBrowser.path' | translate}}:</strong><span id="selectedFolderPath"> {{selectedFolderPath}}</span><br />
+    </div>
+    <div *ngIf="!treeLoading && hasSettings" class="row">
+        <div class="row m-height-100-ofv" style="min-height: 320px;">
+            <kendo-treeview #ktree [nodes]="data" textField="pathShortName" childrenField="folders" [hasChildren]="hasChildren" (selectionChange)="handleSelection($event)" kendoTreeViewExpandable
+                [expandedKeys]="expandedKeys" [kendoTreeViewSelectable]="selection" [(selectedKeys)]="selectedKeys" [selectBy]="'lowerFullPath'" [expandBy]="'lowerFullPath'" kendoTreeViewHierarchyBinding>
+                <ng-template kendoTreeViewNodeTemplate let-node>
+                    <ipx-icon [large]="false" [name]="'folder'">
+                    </ipx-icon>
+                    <span style="padding-left: 5px;" [tooltip]="node.pathShortName">{{node.pathShortName}}</span>
+                </ng-template>
+            </kendo-treeview>
+        </div>
+    </div>
+    <div *ngIf="treeLoading && hasSettings" class="row" style="height: 100px;">
+        <div class="col-sm-12 k-loading-image" style="position: relative;"></div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-save" name="confirm" (click)="select()" [disabled]="!selectedFolderPath">&nbsp;{{'Ok' | translate}}&nbsp;</button>
+    <button type="button" class="btn" name="cancel" (click)="cancel()">{{'Cancel' | translate}}</button>
+</div>

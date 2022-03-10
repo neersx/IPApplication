@@ -1,0 +1,33 @@
+<div class="input-wrap" ng-class="{error: showError(), loading: state==='loading'}">
+    <label ng-if="::label" translate="{{label}}" for="typeahead{{::uid}}"></label> 
+    <div class="typeahead-wrap">
+        <input
+            class="typeahead basic-addon-r-1"
+            placeholder="{{:: placeholder ? (placeholder | translate) : '' }}"
+            ng-model="text"
+            ng-disabled="disabled"
+            ng-change="textChange()"
+            ng-keydown="keydown($event)"
+            ng-blur="blur($event)"
+            id="typeahead{{::uid}}">
+        <ip-autocomplete
+            data-items="results"
+            data-total="total"
+            data-search-value="text"
+            data-on-view-all="openModal()"
+            data-on-select="select(item)"
+            data-on-Click="onListClicked(true)"
+            data-on-Click-Off="onListClicked(false)" 
+            id="typeahead{{::uid}}">
+        </ip-autocomplete>
+    </div>
+    <span class="input-wrap-addon" ng-if="!disabled">
+        <span class="btn btn-icon btn-no-bg" ng-click="$event.stopPropagation()" ng-mousedown="openModal();$event.preventDefault()" ip-tooltip="{{::'LookUp' | translate}}">
+            <icon name="ellipsis-h"></icon>
+        </span>
+    </span>
+    <span class="input-action">
+        <span class="cpa-icon loading-circle"></span>
+        <span class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{getError() | translate }}" tooltip-class="tooltip-error"></span>
+    </span>
+</div>

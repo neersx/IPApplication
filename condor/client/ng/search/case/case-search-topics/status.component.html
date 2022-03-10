@@ -1,0 +1,37 @@
+<form #caseSearchForm="ngForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-11 text-right">
+                <ipx-checkbox label="{{ 'status.pending' | translate}}" name="pending" [(ngModel)]="formData.isPending" (onChange)="updateStatusInputs('pending')"></ipx-checkbox>
+                <ipx-checkbox label="{{ 'status.registered' | translate}}" name="registered" [(ngModel)]="formData.isRegistered" (onChange)="updateStatusInputs('registered')"></ipx-checkbox>
+                <ipx-checkbox label="{{ 'status.dead' | translate}}" name="dead" [(ngModel)]="formData.isDead" (onChange)="updateStatusInputs('dead')"></ipx-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <ipx-dropdown-operator name="caseStatusOperator" label="status.caseStatus" [(ngModel)]="formData.caseStatusOperator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+        </div>
+        <div class="col-md-7 col-lg-6">
+            <div *ngIf="formData.caseStatusOperator!=='5' && formData.caseStatusOperator!=='6'">
+                <ipx-typeahead name="caseStatus" config="status" label="" [(ngModel)]="formData.caseStatus" multiselect multipick
+                ipx-autofocus="{{!!topic.isActive}}" [extend-query]="extendCaseStatus">
+                </ipx-typeahead>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <ipx-dropdown-operator name="renewalStatusOperator" label="status.renewalStatus" [(ngModel)]="formData.renewalStatusOperator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+        </div>
+        <div class="col-md-7 col-lg-6">
+            <div *ngIf="formData.renewalStatusOperator!=='5' && formData.renewalStatusOperator!=='6'">
+                <ipx-typeahead name="renewalStatus" config="status" label="" multiselect multipick
+                    [(ngModel)]="formData.renewalStatus" [extend-query]="extendRenewalStatus">
+                </ipx-typeahead>
+            </div>
+        </div>
+    </div>
+</form>

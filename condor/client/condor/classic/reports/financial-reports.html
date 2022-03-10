@@ -1,0 +1,22 @@
+<ip-sticky-header>
+    <div class="container-fluid">
+        <div class="row">
+            <ip-page-title page-title="{{'financialReports.frFinancialReportsTitle' | translate}}"></ip-page-title>
+        </div>
+    </div>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="row" ng-repeat="category in categorisedReports">
+        <div class="col-sm-12">
+            <h3>{{category.reportCategory}}</h3>
+            <div class="row" ng-repeat="report in category.reports">
+                <div class="col-sm-12">
+                    <a href="{{ downloadLink(report.id) }}" title="Click to download this report">
+                        <i class="fa fa-download"></i> {{report.title}}
+                    </a>
+                    {{report.description}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

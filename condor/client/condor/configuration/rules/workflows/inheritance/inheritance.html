@@ -1,0 +1,103 @@
+<div translate-namespace="workflows.inheritance">
+    <ip-sticky-header>
+        <div class="container-fluid">
+            <div class="row">
+                <ip-page-title page-title="workflows.title" page-subtitle="workflows.inheritance.title">
+                    <before-title><ip-level-up-button></ip-level-up-button></before-title>
+                    <action-buttons>
+                        <ip-icon-button button-icon="unlink" ng-disabled="!vm.isUnlinkEnabled()" ng-click="vm.onUnlinkClick()" ip-tooltip="{{::'workflows.inheritance.tooltips.unlink' | translate }}"></ip-icon-button>
+                        <ip-icon-button button-icon="trash-o" ng-disabled="!vm.isDeleteEnabled()" ng-click="vm.onDeleteClick()" ip-tooltip="{{::'workflows.inheritance.tooltips.delete' | translate}}"></ip-icon-button>
+                    </action-buttons>
+                </ip-page-title>
+            </div>
+        </div>
+    </ip-sticky-header>
+    <div class="container-fluid" ip-resize-handler resize-handler-type="Panel">
+        <br>
+        <div class="row">
+            <p class="col-sm-12">
+                <button class="btn" ng-click="vm.expandAll()" ng-disabled="!vm.isExpendAllEnabled()" translate=".expandAll"></button>
+                <button class="btn" ng-click="vm.collapseAll()" ng-disabled="!vm.isCollapseAllEnabled()" translate=".collapseAll"></button>
+            </p>
+        </div>
+        <div class="row">
+            <div ng-class="{'col-sm-8':vm.showsDetailView(), 'col-sm-12':!vm.showsDetailView()}">
+                <div class="kendo-tree-container">
+                    <br/>
+                    <ip-inline-alert data-type="info" data-text=".helpText"></ip-inline-alert>
+                    <br/>
+                    <div kendo-tree-view k-options="vm.treeOptions">
+                        <div k-template ng-class="::{isInSearch: dataItem.isInSearch}">
+                            <icon ng-if="::dataItem.isProtected" ip-tooltip="{{::'Protected' | translate}}" class="text-blue-secondary" name="protected"></icon>
+                            <span class="criteria-name">{{::dataItem.name}}</span>
+                            <a ng-click="vm.onNavigateClick(dataItem, $event)" ui-sref="workflows.details({id:dataItem.id})">({{::dataItem.id}})</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="vm.showsDetailView()" class="col-sm-4">
+                <div class="fixed-detail-view-container" match-parent-width>
+                    <div ip-resize-handler>
+                        <article class="detail-view">
+                            <header>
+                                <a ui-sref="workflows.details({id:vm.selectedCriteria.id})">{{vm.selectedCriteria.name}} ({{vm.selectedCriteria.id}})</a>
+                            </header>
+                            <hr />
+                            <button class="btn btn-icon" ng-click="vm.closeDetailView()">
+                                <span class="cpa-icon cpa-icon-times"></span>
+                            </button>
+                            <div ng-if="vm.hasOffices" class="input-wrap-group group-inline">
+                                <span translate="Office"></span>
+                                <span class="text">{{vm.selectedCriteria.detail.office}}</span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="Case Type"></span>
+                                <span class="text">{{vm.selectedCriteria.detail.caseType}}</span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="Jurisdiction"></span>
+                                <span class="text">{{vm.selectedCriteria.detail.jurisdiction}}</span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="propertyType"></span>
+                                <span class="text">{{vm.selectedCriteria.detail.propertyType}}</span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="Action"></span>
+                                <span class="text">{{vm.selectedCriteria.detail.action}}</span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="Case Category"></span>
+                                <span class="text">{{vm.selectedCriteria.detail.caseCategory}}</span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="Sub Type"></span>
+                                <span class="text">{{vm.selectedCriteria.detail.subType}}</span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="Basis"></span>
+                                <span class="text">{{vm.selectedCriteria.detail.basis}}</span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="Date of Law"></span>
+                                <span class="text">{{vm.selectedCriteria.detail.dateOfLaw}}</span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="Local or Foreign"></span>
+                                <span class="text" translate="{{vm.selectedCriteria.detail.localOrClient}}"></span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="In Use"></span>
+                                <span class="text" ng-hide="vm.selectedCriteria.detail.inUse == null">{{vm.selectedCriteria.detail.inUse ? "Yes" : "No" | translate}}</span>
+                            </div>
+                            <div class="input-wrap-group group-inline">
+                                <span translate="Protected"></span>
+                                <span class="text" ng-hide="vm.selectedCriteria.detail.isProtected == null">{{vm.selectedCriteria.detail.isProtected ? "Yes" : "No" | translate}}</span>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+<div data-ng-controller="dataitemgroupController as c">
+<div translate-namespace="picklist.dataitemgroup">
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="description" ip-required ip-autofocus label=".Description" ng-model="vm.entry.value" data-ng-maxlength="40" ng-class="{edited: vm.maintenance.description.$dirty}" ip-field-error="{{vm.entry.$error('description').message | translate}}">
+            </ip-text-field>
+        </div>
+    </div>
+</div>
+</div>

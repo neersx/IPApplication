@@ -1,0 +1,5 @@
+<div class="text-left" ng-if="!documentCanBeDownloaded(d)">{{d.description}}</div>
+<a href='{{ downloadLink(d) }}' target='_blank' ng-if="documentCanBeDownloaded(d)">{{d.description}}</a>
+<div class="text-left" data-ng-show="d.eventUpdatedDescription">
+    <span class="text-muted"><span>{{ 'caseComparison.ccEventUpdated' | translate }}: </span>{{ d.eventUpdatedDescription }}<span class="text-muted" data-ng-show="d.eventUpdatedCycle"><span>, {{ 'caseComparison.ccEventUpdatedCycle' | translate }}</span> {{ d.eventUpdatedCycle }}</span></span>
+</div>

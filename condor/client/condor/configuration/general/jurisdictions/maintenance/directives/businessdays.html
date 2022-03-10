@@ -1,0 +1,54 @@
+<style>
+    div#holidayDatePicker>.date span button {
+        top: -3px !important;
+    }
+</style>
+
+<div ng-form="vm.form" ip-form>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3 translate="jurisdictions.maintenance.businessDays.workDays"></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div>
+                <ip-checkbox name="monday" ng-model="vm.holidays[2].selected" label="jurisdictions.maintenance.businessDays.dayOfWeek.monday" ng-class="{edited: vm.form.monday.$dirty}" ng-disabled="!vm.topic.canUpdate"></ip-checkbox>
+            </div>
+            <div>
+                <ip-checkbox name="tuesday" ng-model="vm.holidays[3].selected" label="jurisdictions.maintenance.businessDays.dayOfWeek.tuesday" ng-class="{edited: vm.form.tuesday.$dirty}" ng-disabled="!vm.topic.canUpdate"></ip-checkbox>
+            </div>
+            <div>
+                <ip-checkbox name="wednesday" ng-model="vm.holidays[4].selected" label="jurisdictions.maintenance.businessDays.dayOfWeek.wednesday" ng-class="{edited: vm.form.wednesday.$dirty}" ng-disabled="!vm.topic.canUpdate"></ip-checkbox>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div>
+                <ip-checkbox name="thursday" ng-model="vm.holidays[5].selected" label="jurisdictions.maintenance.businessDays.dayOfWeek.thursday" ng-class="{edited: vm.form.thursday.$dirty}" ng-disabled="!vm.topic.canUpdate"></ip-checkbox>
+            </div>
+            <div>
+                <ip-checkbox name="friday" ng-model="vm.holidays[6].selected" label="jurisdictions.maintenance.businessDays.dayOfWeek.friday" ng-class="{edited: vm.form.friday.$dirty}" ng-disabled="!vm.topic.canUpdate"></ip-checkbox>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div>
+                <ip-checkbox name="saturday" ng-model="vm.holidays[0].selected" label="jurisdictions.maintenance.businessDays.dayOfWeek.saturday" ng-class="{edited: vm.form.saturday.$dirty}" ng-disabled="!vm.topic.canUpdate"></ip-checkbox>
+            </div>
+            <div>
+                <ip-checkbox name="sunday" ng-model="vm.holidays[1].selected" label="jurisdictions.maintenance.businessDays.dayOfWeek.sunday" ng-class="{edited: vm.form.sunday.$dirty}" ng-disabled="!vm.topic.canUpdate"></ip-checkbox>
+            </div>
+        </div>
+    </div>
+    <hr />
+</div>
+<div class="row inline-editing" ng-form="vm.holidayForm" ip-form>
+    <div class="row">
+        <div class="col-sm-6">
+            <h3 translate="jurisdictions.maintenance.businessDays.publicHolidays"></h3>
+        </div>
+    </div>  
+    <div class="text-right" ng-if="vm.topic.canUpdate">
+        <ip-add-button ng-click="vm.onAddClick()" ng-disabled="vm.topic.hasError()" class="pull-right"></ip-add-button>
+    </div>
+    <ip-kendo-grid id="holidays" data-show-add="vm.topic.canUpdate" data-on-add-click="vm.onAddClick()" data-add-disabled="vm.topic.hasError()" data-add-item-name="{{'jurisdictions.maintenance.businessDays.publicHoliday' | translate}}" data-grid-options="vm.gridOptions"></ip-kendo-grid>        
+</div>

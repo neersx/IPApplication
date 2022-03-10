@@ -1,0 +1,19 @@
+<div ng-form="vm.form" ip-form>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-wrap">
+                <ip-dropdown name="selectedCountryFlag"
+                ng-class="{edited: vm.form.selectedCountryFlag.$dirty, 'input-inherited': vm.selectedCountryFlag===vm.parentData.countryFlagForStopReminders}"
+                data-label=".designatedJurisdictions.stopStage" data-options="option.key as option.value for option in vm.countryFlags" ng-model="vm.selectedCountryFlag" ng-change="vm.topic.validate()"></ip-dropdown>
+            </div>
+        </div>
+    </div>
+    <div class="text-right">
+        <ip-add-button ng-click="vm.onAddClick()" ng-if="vm.canEdit"></ip-add-button>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <ip-kendo-grid data-id="selectedJurisdictions" data-grid-options="vm.gridOptions" data-show-add="vm.canEdit" data-on-add-click="vm.onAddClick()" data-add-item-name="{{'workflows.eventcontrol.designatedJurisdictions.addLabel' | translate}}"></ip-kendo-grid>
+        </div>
+    </div>
+</div>

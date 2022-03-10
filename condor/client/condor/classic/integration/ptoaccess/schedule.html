@@ -1,0 +1,20 @@
+<ip-sticky-header>
+    <div class="page-title">
+        <h2>
+            <ip-level-up-button data-to-state="classicPtoAccess.Schedules"></ip-level-up-button>
+            <span> {{ 'dataDownload.schedules.title' | translate }} – {{ 'dataDownload.schedule.subtitle' | translate }}</span>
+        </h2>
+    </div>
+</ip-sticky-header>
+
+<br />
+<br />
+<br />
+
+<ip-topics data-options="vm.topicOptions">
+    <ip-topics-header>
+        <ip-inline-alert ng-if="vm.viewData.missingBackgroundProcessLoginId" text="{{::'dataDownload.newSchedule.errors.background-process-loginid'|translate}}" type="danger"></ip-inline-alert>
+        <ip-schedule-recoverable-cases-alert data-model="vm.viewData"></ip-schedule-recoverable-cases-alert>
+        <ip-schedule-message-alert data-message="vm.viewData.scheduleMessage"></ip-schedule-message-alert>
+    </ip-topics-header>
+</ip-topics>

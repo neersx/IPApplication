@@ -1,0 +1,25 @@
+<div data-ng-if="vm.disabledSchedule" class="alert alert-warning" style="display:block; margin-bottom: 10px">
+    <icon name="info-circle"></icon>
+    <span>{{::'dataDownload.failureSummary.disabledSchedule' | translate}}</span>
+</div>
+<div data-ng-if="vm.showRecoverableCasesHint() || vm.showRecoverableDocumentsHint()">
+    <div class="alert alert-warning" style="display:block; margin-bottom: 10px">
+        <icon name="info-circle"></icon>
+        <span data-ng-switch="vm.recoveryScheduleStatus">
+            <span data-ng-switch-when="Pending">{{::'dataDownload.schedule.recoveryPending' | translate}}</span>
+            <span data-ng-switch-when="Running">{{::'dataDownload.schedule.recoveryRunning' | translate}}</span>
+            <span data-ng-switch-when="Idle" data-ng-show="::vm.recoverableCasesCount || vm.showRecoverableDocumentsHint()">{{::'There are' | translate}}
+                <a href="javascript:void(0)" data-ng-show="vm.recoverableCasesCount" data-ng-click="vm.showRecoverableCases()" id="recoverableCasesCount">
+                    <span>{{::vm.recoverableCasesCount}}</span> case(s)
+                </a>
+                <span data-ng-show="vm.recoverableCasesCount && vm.recoverableDocumentsCount">, </span>
+                <a href="javascript:void(0)" data-ng-click="vm.showRecoverableDocuments()" id="recoverableDocumentsCount" data-ng-show="vm.recoverableDocumentsCount">
+                    <span>{{::vm.recoverableDocumentsCount}}</span> document(s)
+                </a> 
+                {{::'dataDownload.schedule.for this Schedule did not download. Click Retry to download.' | translate}}
+                <button class="btn btn-sm btn-primary" data-ng-click="vm.recover()">{{::'dataDownload.schedule.retry' | translate}}</button>
+            </span>
+        </span>
+        </span>
+    </div>
+</div>

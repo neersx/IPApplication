@@ -1,0 +1,41 @@
+<div class="table-container">
+    <div ipx-resize-handler [resize-handler-type]="'Panel'">
+        <ipx-kendo-grid #ipxKendoGridRef [dataOptions]="gridOptions" id="taxRateResults" (addRowEvent)="updateChangeStatus()" (deleteRowEvent)="updateChangeStatus()" (cancelRowEditEvent)="updateChangeStatus()">
+            <ng-template *ngIf="viewData.taskSecurity.canUpdateTaxCode" ipxTemplateColumnField="sourceJurisdiction" let-dataItem>
+                <ipx-typeahead (onChange)="change(dataItem)" name="jurisdiction" label="" config="jurisdiction" [(ngModel)]="dataItem.sourceJurisdiction">
+                </ipx-typeahead>
+            </ng-template>
+            <ng-template *ngIf="viewData.taskSecurity.canUpdateTaxCode" ipxTemplateColumnField="taxRate" let-dataItem>
+                <ipx-numeric (onChange)="change(dataItem)" [customStyle]="numericStyle" [errorStyle]="errorStyle" [maxLength]="16" [isDecimal]="true" [roundUpto]="4" name="rate" [(ngModel)]="dataItem.taxRate" required>
+                </ipx-numeric>
+            </ng-template>
+
+            <ng-template *ngIf="viewData.taskSecurity.canUpdateTaxCode" ipxTemplateColumnField="effectiveDate" let-dataItem>
+                <ipx-date-picker (onChange)="change(dataItem)" name="effectiveDate" id="effectiveDate" [allowNull]="false" [includeSameDate]="true" [(ngModel)]="dataItem.effectiveDate" required>
+                </ipx-date-picker>
+            </ng-template>
+
+            <ng-template *ngIf="!viewData.taskSecurity.canUpdateTaxCode" ipxTemplateColumnField="sourceJurisdiction" let-dataItem>
+                {{dataItem.sourceJurisdiction.value}}
+            </ng-template>
+
+            <ng-template *ngIf="!viewData.taskSecurity.canUpdateTaxCode" ipxTemplateColumnField="effectiveDate" let-dataItem>
+                {{dataItem.effectiveDate | date: 'dd-MMM-yyyy'}}
+            </ng-template>
+
+            <ng-template ipxEditTemplateColumnField="sourceJurisdiction" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-typeahead (onChange)="change(dataItem)" [(ngModel)]="dataItem.sourceJurisdiction" name="jurisdiction" label="" config="jurisdiction" [formControl]="formGroup?.controls.sourceJurisdiction">
+                </ipx-typeahead>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="taxRate" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-numeric (onChange)="change(dataItem)" #amountCtrl [customStyle]="numericStyle" [errorStyle]="errorStyle" [maxLength]="16" [isDecimal]="true" [roundUpto]="4" name="rate"
+                    [formControl]="formGroup?.controls.taxRate" [(ngModel)]="dataItem.taxRate" required></ipx-numeric>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="effectiveDate" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <ipx-date-picker [(ngModel)]="dataItem.effectiveDate" (onChange)="change(dataItem)" name="effectiveDate" id="effectiveDate" [allowNull]="false" [includeSameDate]="true"
+                    [formControl]="formGroup?.controls.effectiveDate" required>
+                </ipx-date-picker>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

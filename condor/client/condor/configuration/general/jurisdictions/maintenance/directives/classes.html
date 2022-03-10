@@ -1,0 +1,6 @@
+<div class="text-right" ng-if="vm.topic.canUpdate">
+    <ip-add-button ng-click="vm.onAddClick()" ng-disabled="vm.topic.hasError()" class="pull-right"></ip-add-button>
+</div>
+<ip-kendo-grid id="localClasses" data-grid-options="vm.gridOptions" data-show-add="vm.topic.canUpdate" data-on-add-click="vm.onAddClick()" data-add-disabled="vm.topic.hasError()" data-add-item-name="{{'jurisdictions.maintenance.classes.class' | translate}}"></ip-kendo-grid>
+<br/>
+<class-inline-alert ng-if="vm.countryCode != 'ZZZ'"></class-inline-alert>

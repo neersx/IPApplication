@@ -1,0 +1,45 @@
+<form [formGroup]="formGroup" *ngIf="formGroup">
+    <div class="row" style="margin-top: 10px; display: flex; flex-flow: row; width: 100%;">
+        <div style="width: 18%;">
+            <div class="col-sm-4 text-right" style="margin-right: -8px;">
+                <label style="margin-top: 7px;" translate="accounting.billing.header.itemDate"></label><span style="color: #CC3300;" class="required">* </span>
+            </div>
+            <div class="col-sm-8" style="z-index: 1000;">
+                <ipx-date-picker required formControlName="itemDate" apply-edited id="transactionDate" name="transactionDate" [displayError]="true">
+                </ipx-date-picker>
+            </div>
+        </div>
+        <div style="width: 21%; margin-left: -30px;">
+            <div class="col-sm-3 text-right" style="margin-right: -8px;">
+                <label style="margin-top: 7px;" translate="accounting.billing.header.entity"></label><span style="color: #CC3300;" class="required">* </span>
+            </div>
+            <div class="col-sm-9">
+                <ipx-dropdown name="entity" apply-edited required [displayField]="'EntityName'" [keyField]="'EntityKey'" [options]="entities" formControlName="entity"></ipx-dropdown>
+            </div>
+        </div>
+        <div style="width: 18%; margin-left: -10px">
+            <label class="col-sm-4 text-right" style="margin-top: 7px; margin-right: -10px;" translate="accounting.billing.header.raisedBy"></label>
+            <div class="col-sm-8">
+                <ipx-typeahead name="raisedBy" apply-edited formControlName="raisedBy" config="staff">
+                </ipx-typeahead>
+            </div>
+        </div>
+        <div style="width: 13%; margin-left: -10px;" *ngIf="openItemData?.CanUseRenewalDebtor">
+            <ipx-checkbox name="useRenewalDebtor" apply-edited (onChange)="onRenewalDebtorChange($event)" [label]="'accounting.billing.header.useRenewalDebtor'" formControlName="useRenewalDebtor"></ipx-checkbox>
+        </div>
+        <div style="width: 24%; margin-left: -10px;">
+            <label class="col-sm-4 text-right" style="margin-top: 7px; margin-right: -10px;" translate="accounting.billing.header.currentAction"></label>
+            <div class="col-sm-8">
+                <ipx-typeahead name="currentAction" apply-edited config="action" formControlName="currentAction" (onChange)="onActionChange($event)" [extend-query]="extendedActionQuery"
+                    [external-scope]="validCombinationDescriptionsMap" entity="actions">
+                </ipx-typeahead>
+            </div>
+        </div>
+        <div style="width: 11%; margin-top: 7px; margin-left: -20px;">
+            <label class="col-sm-5" for="language" translate="accounting.billing.header.language"></label>
+            <div class="label-value col-sm-7">
+                <span class="text">{{ defaultLanguage }}</span>
+            </div>
+        </div>
+    </div>
+</form>

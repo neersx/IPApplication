@@ -1,0 +1,10 @@
+<div ng-if="vm.defaultJurisdiction">
+    <ip-master-detail-view data-state="jurisdictions.default">
+        <div ng-include="'condor/configuration/general/jurisdictions/maintenance/jurisdiction.maintenance.html'"></div>
+    </ip-master-detail-view>
+</div>
+<div ng-if="!vm.defaultJurisdiction">
+    <ip-master-detail-view data-state="jurisdictions.detail">
+        <div ng-include="'condor/configuration/general/jurisdictions/maintenance/jurisdiction.maintenance.html'"></div>
+    </ip-master-detail-view>
+</div>

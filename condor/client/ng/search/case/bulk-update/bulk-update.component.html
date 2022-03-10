@@ -1,0 +1,19 @@
+<div id="bulk-edit">
+    <ipx-sticky-header>
+        <ipx-page-title [title]="'bulkUpdate.pageTitle' | translate">
+            <before-title>
+                <ipx-level-up-button [tooltip]="'bulkUpdate.backToSearchResults' | translate" *ngIf="hasPreviousState"
+                    [toState]="previousState.name" [additionalStateParams]="additionalStateParam">
+                </ipx-level-up-button>
+            </before-title>
+            <action-buttons>
+                <ipx-clear-button (click)="discard()" [disabled]="!canDiscard()"></ipx-clear-button>
+                <span style="width:2px;">&nbsp;</span>
+                <ipx-apply-button (onclick)="openConfirmationDialog()" [disabled]="!canApply()"></ipx-apply-button>
+            </action-buttons>
+        </ipx-page-title>
+    </ipx-sticky-header>
+
+    <ipx-topics [options]="topicOptions" *ngIf="topicOptions">
+    </ipx-topics>
+</div>

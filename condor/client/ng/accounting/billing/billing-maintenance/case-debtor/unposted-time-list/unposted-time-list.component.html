@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{'accounting.billing.caseUnpostedTime.header' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="title-header">
+    <div class="col-sm-9">
+        <span style="font-weight: bold;" class="text">{{'accounting.billing.caseUnpostedTime.case' | translate}}</span>
+        <span style="font-weight: bold;" class="text"> '{{caseIRN}}' </span>
+        <span style="font-weight: bold;" class="text">{{'accounting.billing.caseUnpostedTime.hasUnpostedTime' | translate}}</span>
+    </div>
+    <div class="label-value col-sm-3">
+        <label translate="accounting.billing.caseUnpostedTime.total"></label>
+        <span class="text" id="total">{{total | localCurrencyFormat | async}}</span>
+    </div>
+</div>
+<div class="row" style="margin: 7px;">
+    <ipx-kendo-grid id="unpostedCaseTimeList" [dataOptions]="gridOptions" *ngIf="gridOptions">
+        <ng-template ipxTemplateColumnField="StartTime" let-dataItem>
+            <span> {{dataItem.StartTime | localeDate: 'HH:mm:ss a'}}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="TotalTime" let-dataItem>
+            <span class="pull-right"> {{dataItem.TotalTime | date: "H:mm"}}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="TimeValue" let-dataItem>
+            <span class="pull-right"> {{dataItem.TimeValue | localCurrencyFormat | async}}</span>
+        </ng-template>
+    </ipx-kendo-grid>
+</div>

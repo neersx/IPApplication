@@ -1,0 +1,111 @@
+<style>
+    .modal-text-small {
+        margin-left: 92px;
+        width: 25% !important;
+    }
+    
+    .label-legend {
+        font-weight: bold;
+        font-size: 120%;
+        margin-right: 10px;
+    }
+    
+    .label-inner-legend {
+        font-weight: bold;
+        font-size: 110%;
+        margin-left: 10px;
+    }
+    
+    .input-wrap-group>span~.input-wrap {
+        width: 75%;
+    }
+    
+    .input-wrap-group .input-wrap {
+        padding: 3px 6px 3px 3px;
+        margin: 0;
+    }
+    
+    .inline-dialog {
+        top: -2px;
+    }
+    
+    .ip-text-field-alignment-width {
+        width: 30% !important;
+    }
+    
+    .input-left-margin {
+        margin-left: -19%;
+    }
+    
+    .mark-required {
+        content: '*';
+        position: absolute;
+        top: -2px;
+        right: 6px;
+        font-size: 11px;
+        color: #CC3300;
+        z-index: 5;
+    }
+</style>
+<div ng-form="vm.form" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title" ng-switch on="vm.entity.currentState">
+            <div ng-switch-when="adding" translate="namerelation.maintenance.addTitle"></div>
+            <div ng-switch-when="duplicating" translate="namerelation.maintenance.duplicateTitle"></div>
+            <div ng-switch-default translate="namerelation.maintenance.editTitle"></div>
+        </h2>
+        <div class="modal-header-controls">
+            <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismissAll()"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <ip-nav-modal ng-if="vm.isEdit" all-items="vm.options.allItems" current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges">
+        </ip-nav-modal>
+        <div class="row">
+            <div>
+                <ip-text-field name="relationshipCode" class="col-sm-9" ip-required label="namerelation.relationshipcode" ng-model="vm.entity.relationshipCode" ng-class="{'edited': vm.form.relationshipCode.$dirty}" data-ng-maxlength="3" ng-disabled="vm.isEdit" ip-field-error="{{vm.getError('relationshipCode').message | translate}}"
+                    ip-autofocus="{{vm.entity.currentState === 'adding' || vm.entity.currentState === 'duplicating'}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-text-field name="relationshipDescription" class="col-sm-9" ip-required label="namerelation.relationshipdesc" ng-model="vm.entity.relationshipDescription" ng-class="{'edited': vm.form.relationshipDescription.$dirty}" data-ng-maxlength="30" ip-field-error="{{vm.getError('relationshipDescription').message | translate}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-text-field name="reverseDescription" class="col-sm-9" ip-required label="namerelation.reverserelationship" ng-model="vm.entity.reverseDescription" ng-class="{'edited': vm.form.reverseDescription.$dirty}" data-ng-maxlength="30" ip-field-error="{{vm.getError('reverseDescription').message | translate}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row text-wrap">
+            <span class="label-legend" translate="namerelation.maintenance.nameRelationApplicableFor"></span>
+            <ip-inline-dialog data-content="{{::'namerelation.maintenance.nameRelationRestrictions' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group">
+                <ip-checkbox class="col-sm-3" label="namerelation.employee" ng-model="vm.entity.isEmployee" name="chkEmployee" ng-class="{edited: vm.form.chkEmployee.$dirty}" ip-field-error="{{vm.getError('isEmployee').message | translate}}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="namerelation.individual" ng-model="vm.entity.isIndividual" name="chkIndividual" ng-class="{edited: vm.form.chkIndividual.$dirty}"></ip-checkbox>
+                <ip-checkbox class="col-sm-3" label="namerelation.organisation" ng-model="vm.entity.isOrganisation" name="chkOrganisation" ng-class="{edited: vm.form.chkOrganisation.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <div class="row text-wrap">
+            <span class="label-legend" translate="namerelation.maintenance.ethicalWallOption"></span>
+            <ip-inline-dialog data-content="{{::'namerelation.maintenance.ethicalWallSettings' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group">
+                <ip-radio-button ng-repeat="option in vm.ethicalWallOptions" class="col-sm-3" label="{{option.value}}" value="{{option.key}}" ng-model="vm.entity.ethicalWall" name="{{'rdo'+option.key}}" ng-class="{edited: vm.form.{{'rdo'+option.key}}.$dirty}">
+                </ip-radio-button>
+            </div>
+        </div>
+        <div class="text-wrap">
+            <span class="label-legend" translate="namerelation.maintenance.otherOptions"></span>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group">
+                <ip-checkbox class="col-sm-4" label="namerelation.crm" ng-model="vm.entity.isCrmOnly" name="chkCrmOnly" ng-class="{edited: vm.form.chkCrmOnly.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+    </div>
+</div>

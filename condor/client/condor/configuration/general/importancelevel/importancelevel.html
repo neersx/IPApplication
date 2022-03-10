@@ -1,0 +1,18 @@
+<ip-sticky-header>
+    <ip-page-title-save ng-init="vm.initShortcuts()" page-title="importanceLevel.maintenance" on-save="vm.save()" on-discard="vm.discard()"
+        is-save-enabled="vm.isSaveEnabled()" is-discard-enabled="vm.isDiscardEnabled()"></ip-page-title-save>
+</ip-sticky-header>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="container-fluid">
+        <div class="text-right">
+            <ip-add-button ng-click="vm.onAddClick()"></ip-add-button>
+        </div>
+    </div>
+    <div class="table-container">
+        <div class="inline-editing" ng-form="vm.form" ip-form>
+            <ip-kendo-grid data-id="importanceGrid" data-grid-options="vm.gridOptions" data-show-add="true" data-on-add-click="vm.onAddClick()"
+                data-add-item-name="{{'importanceLevel.level' | translate}}">
+            </ip-kendo-grid>
+        </div>
+    </div>
+</div>

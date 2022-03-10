@@ -1,0 +1,21 @@
+<span>
+    <strong><a data-ng-click="vm.details(vm.model.id)" data-ng-class="pointerCursor" data-ng-bind="vm.model.name"></a></strong>
+    <span data-ng-include="vm.model.template"></span>
+<div class="text-muted">
+        {{::vm.description}}
+        <span data-ng-show="vm.model.type !== vm.continuousRecurrence">
+            <span data-ng-show="vm.model.nextRun">
+                <span translate="dataDownload.schedules.startsAt"></span>:
+                <span data-ng-bind="vm.model.startTime"></span>.
+            </span>
+        </span>
+        <span data-ng-show="vm.model.type === vm.continuousRecurrence">
+            <span translate="dataDownload.schedules.runsContinuously"></span>.
+        </span>
+        <span data-ng-show="vm.model.expiresAfter">
+            <br />
+            <span translate="dataDownload.schedules.expiresAfter"> </span>:
+            <ip-date model="vm.model.expiresAfter"></ip-date>
+        </span>
+    </div>
+</span>

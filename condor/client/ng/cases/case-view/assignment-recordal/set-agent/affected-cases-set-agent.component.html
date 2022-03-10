@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{'caseview.affectedCases.setAgent.title' | translate }}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button id="save" type="button" (click)="onSave()" [disabled]="isSaveDisabled"></ipx-save-button>&nbsp;
+        <ipx-close-button id="close" type=" button" (click)="close()"></ipx-close-button>
+    </div>
+</div>
+<div class="title-header">
+    <div class="label-value col-sm-12">
+        <label class="text" translate="caseview.affectedCases.setAgent.caseRef" for="caseReference"></label>
+        <span class="text"> {{caseReference}}</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-5">
+        <ipx-typeahead name="agent" required [(ngModel)]="formData.agent" label="caseview.affectedCases.setAgent.selectAgent" config="name" apply-edited config="nameFiltered"
+            [extend-query]="namePickListExternalScope.extendQuery" [external-scope]="namePickListExternalScope" (onChange)="onAgentChanged($event)">
+        </ipx-typeahead>
+    </div>
+    <div class="col-sm-7">
+        <div style="float: left;">
+            <ipx-checkbox name="isCaseName" [label]="'caseview.affectedCases.setAgent.setAgentCaseName'" [(ngModel)]="formData.isCaseNameSet">
+            </ipx-checkbox>
+        </div>
+        <div style="float: left;">
+            <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" container="body" [tooltipPlacement]="'right'" [templateRef]="nameTypeStr">
+            </ipx-inline-dialog>
+            <ng-template #nameTypeStr>
+                <span translate="caseview.affectedCases.setAgent.info" [translateParams]="{ nameType: nameType }"></span>
+            </ng-template>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row" *ngIf="isSaving">
+        <div class="col-sm-12 k-loading-image" style="min-height: 50px;"></div>
+    </div>
+    <div class="row">
+        <ipx-kendo-grid id="setAgentGrid" #agentsGrid *ngIf="gridOptions" [dataOptions]="gridOptions">
+            <ng-template ipxTemplateColumnField="caseReference" let-dataItem>
+                <ipx-hosted-url *ngIf="dataItem.caseReference && dataItem.caseReference.link?.caseId" [action]="'CaseDetails'" [key]="dataItem.caseReference && dataItem.caseReference.link?.caseId"
+                    [description]="dataItem.caseReference.value" [showLink]="dataItem.caseReference.link?.caseId" [linkArgs]="['caseId', 'caseReference']" [dataField]="dataItem.caseReference" [linkType]="'CaseDetails'">
+                    <a uiSref="caseview" class="result-cell-link" [uiParams]="{id: dataItem.caseReference.link.caseId}" target="_blank">{{dataItem.caseReference.value}}</a>
+                </ipx-hosted-url>
+                <span *ngIf="dataItem.caseReference && !dataItem.caseReference.link?.caseId" style="white-space: pre-wrap;">{{ dataItem.caseReference.value }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="officialNo" let-dataItem>
+                <ipx-hosted-url *ngIf="dataItem.officialNo && dataItem.officialNo.link?.caseId" [action]="'CaseDetails'" [key]="dataItem.officialNo && dataItem.officialNo.link?.caseId"
+                    [description]="dataItem.officialNo.value" [showLink]="dataItem.caseReference.link?.caseId" [linkArgs]="['caseId', 'officialNo']" [dataField]="dataItem.officialNo" [linkType]="'CaseDetails'">
+                    <a uiSref="caseview" class="result-cell-link" [uiParams]="{id: dataItem.officialNo.link.caseId}" target="_blank">{{dataItem.officialNo.value}}</a>
+                </ipx-hosted-url>
+                <span *ngIf="dataItem.officialNo && !dataItem.officialNo.link?.caseId" style="white-space: pre-wrap;">{{ dataItem.officialNo.value }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="agent" let-dataItem>
+                <ipx-hosted-url *ngIf="dataItem.agent && dataItem.agent.link?.agentId" [action]="'NameDetails'" [key]="dataItem.agent && dataItem.agent.link?.agentId" [description]="dataItem.agent.value"
+                    [showLink]="dataItem.agent.link?.agentId" [linkArgs]="['agentId', 'agent']" [dataField]="dataItem.agent" [linkType]="'NameDetails'" [isInherited]="dataItem.isInheritedAgent">
+                    <ipx-ie-only-url *ngIf="showWebLink" class="result-cell-link" style="cursor: pointer;" [url]="encodeLinkData(dataItem.agent.link)" [text]="dataItem.agent.value">
+                    </ipx-ie-only-url>
+                    <span *ngIf="!showWebLink">{{ dataItem.agent.value }}</span>
+                    <ipx-inline-dialog style="margin-left: 5px;" *ngIf="dataItem.isInheritedAgent && !showWebLink" [icon]="'cpa-icon text-blue-inherited cpa-icon-inheritance'" container="body"
+                        [tooltipPlacement]="'right'" [content]="'caseview.affectedCases.setAgent.inheritedName' | translate">
+                    </ipx-inline-dialog>
+                </ipx-hosted-url>
+                <span *ngIf="dataItem.agent && !dataItem.agent.link?.agentId" style="white-space: pre-wrap;">{{ dataItem.agent.value }}</span>
+                 <ipx-inline-dialog style="margin-left: 5px;" *ngIf="dataItem.agent && !dataItem.agent.link?.agentId && dataItem.isInheritedAgent" [icon]="'cpa-icon text-blue-inherited cpa-icon-inheritance'" container="body"
+                        [tooltipPlacement]="'right'" [content]="'caseview.affectedCases.setAgent.inheritedName' | translate">
+                </ipx-inline-dialog>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

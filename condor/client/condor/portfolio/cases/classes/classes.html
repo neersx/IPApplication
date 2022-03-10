@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-sm-5">
+        <div class="row">
+            <div class="field-label col-sm-6">
+                <label
+                    translate="{{!vm.viewData.usesDefaultCountryForClasses ? 'caseview.classes.localClasses' : 'caseview.classes.classes'}}"></label>
+            </div>
+            <div class="col-sm-6">
+                <span class="text">{{::vm.viewData.classesData.localClasses}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="field-label col-sm-6">
+                <label
+                    translate="{{!vm.viewData.usesDefaultCountryForClasses ? 'caseview.classes.totalLocal' : 'caseview.classes.totalClass'}}"></label>
+            </div>
+            <div class="col-sm-6">
+                <span class="text">{{vm.viewData.classesData.totalLocal}}</span>
+            </div>
+        </div>
+        <div class="row" ng-if="vm.viewData.allowSubClass">
+            <div class="field-label col-sm-6">
+                <label translate="caseview.classes.totalItems"></label>
+            </div>
+            <div class="col-sm-6">
+                <span class="text">{{::vm.viewData.classesData.totalItem}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-7" ng-if="!vm.viewData.usesDefaultCountryForClasses">
+        <div class="row">
+            <div class="field-label col-sm-6">
+                <label translate="caseview.classes.internationalClasses"></label>
+            </div>
+            <div class="col-sm-6">
+                <span class="text">{{::vm.viewData.classesData.internationalClasses}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="field-label col-sm-6">
+                <label translate="caseview.classes.totalInternational"></label>
+            </div>
+            <div class="col-sm-6">
+                <span class="text">{{::vm.viewData.classesData.totalInternational}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="ip-picklist-modal-search-flex">
+        <ip-kendo-column-picker id="caseViewClassesColumnSelection" grid-options="vm.gridOptions"></ip-kendo-column-picker>
+    </div>
+</div>
+<div class="row">
+    <ip-kendo-grid data-id="caseViewClasses" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+</div>

@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{ (isAdding ? 'attachmentMaintenance.add' : 'attachmentMaintenance.maintain') | translate}}</h2>
+    <div class="modal-header-controls">
+        <ipx-checkbox *ngIf="this.isAdding" name="addAnother" label="modal.addAnother" [(ngModel)]="isAddAnotherChecked">
+        </ipx-checkbox>
+        <ipx-delete-button *ngIf="!this.isAdding && this.isHosted" (click)="deleteAttachment()" (keyup.enter)="deleteAttachment()"></ipx-delete-button>
+        <ipx-revert-button type="button" [disabled]="(hasValidChanges$ | async) == null" (onclick)="revert()"></ipx-revert-button>
+        <ipx-save-button type="button" [disabled]="(hasValidChanges$ | async) !== true" (onclick)="save()"></ipx-save-button>
+        <ipx-close-button id="close" *ngIf="!isHosted" type="button" (onclick)="close()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-subheader" *ngIf="baseType==='case' || baseType==='name'">
+    <div class="title-header">
+        <div class="label-value" *ngIf="baseType==='case'">
+            <label translate="caseview.attachments.maintenance.toCase"></label>
+            <span>{{viewData.irn}}</span>
+        </div>
+        <div class="label-value" *ngIf="baseType==='name' && viewData.displayName">
+            <label translate="caseview.attachments.maintenance.toName"></label>
+            <span>{{viewData.displayName}}</span>
+        </div>
+    </div>
+    <ipx-inline-alert [type]="'info'" [text]="'caseview.attachments.maintenance.info' | translate" *ngIf="baseType==='case' && hasSettings===true"></ipx-inline-alert>
+    <ipx-inline-alert [type]="'warning'" [text]="'caseview.attachments.maintenance.noSettings' | translate" *ngIf="hasSettings===false"></ipx-inline-alert>
+</div>
+<div class="modal-body" style="overflow: visible">
+    <attachment-maintenance-form #maintenanceForm *ngIf="viewData" [activityAttachment]="activityAttachment" [activityDetails]="activityDetails" [viewData]="viewData" [addAnother]="isAddAnotherChecked" (hasValidChanges)="subscribeChanges($event)" (hasSavedChanges)="subscribeSavedChanges($event)" (closeModal)="close($event)">
+    </attachment-maintenance-form>
+</div>

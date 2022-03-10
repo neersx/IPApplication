@@ -1,0 +1,118 @@
+<div>
+    <br/>
+    <form [formGroup]="formGroup" *ngIf="formGroup">
+        <div class="row">
+            <div class="section-header">
+                <span translate="caseview.attachments.maintenance.overView" style="text-align: left; width: auto;">
+                </span>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <ipx-text-field #server name="attachmentName" apply-edited [label]="'caseview.attachments.maintenance.attachmentName'" formControlName="attachmentName" ipx-autofocus></ipx-text-field>
+                </div>
+                <div class="col-sm-4 input-wrap-group group-inline">
+                    <ipx-checkbox name="allowClientAccess" id="allowClientAccess" [label]="'caseview.attachments.maintenance.allowClientAccess'" formControlName="allowClientAccess" apply-edited
+                                  [info]="'caseview.attachments.maintenance.allowClientAccessInfo'" [infoPlacement]="'left'" [disabled]="_disabled">
+                    </ipx-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <ipx-text-field name="filePath" [label]="'caseview.attachments.maintenance.filePath'" formControlName="filePath" [disabled]="isFileStoredInDb || disabled" [warningText]="filePathWarning" apply-edited
+                                    required>
+                    </ipx-text-field>
+                    <ipx-text-field [label]="translationPrefix + 'fileName'" name="fileName" apply-edited formControlName="fileName" *ngIf="_viewData.isAdHocGeneration" required></ipx-text-field>
+                </div>
+                <div class="col-sm-3">
+                    <ipx-inline-dialog style="margin-left: -12px; display: flex;" [templateRef]="filePathInfo" tooltipPlacement="right">
+                    </ipx-inline-dialog>
+                    <button type="button" class="btn btn-prominent" name="browse" [disabled]="_disabled || !canBrowse" (click)="browse()" style="margin: -18px 0 0 15px;">{{'caseview.attachments.maintenance.browse' |
+                        translate}}</button>
+                    <button type="button" class="btn btn-prominent" name="browseDms" *ngIf="canBrowseDms && !_viewData.isAdHocGeneration" (click)="browseDms()"
+                            style="margin: -18px 0 0 10px;">{{'caseview.attachments.maintenance.browseDms'
+                        | translate}}</button>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ipx-text-field #server name="description" apply-edited [label]="'caseview.attachments.maintenance.description'" formControlName="attachmentDescription" multiline="true">
+                        </ipx-text-field>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="baseType==='case'">
+                <div class="section-header">
+                    <span translate="caseview.attachments.maintenance.caseEvent" style="text-align: left; width: auto;"></span>
+                    <ipx-inline-dialog [content]="'caseview.attachments.maintenance.caseEventInfo' | translate" tooltipPlacement="right">
+                    </ipx-inline-dialog>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ipx-typeahead name="event" [disabled]="_disabled" [label]="'caseview.attachments.maintenance.event'" config="caseEvent" formControlName="event" apply-edited [extend-query]="caseEventsQuery"
+                                       [external-scope]="caseEventsScope">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="col-sm-2 left-align-label">
+                        <ipx-text-field name="eventCycle" label="caseview.attachments.maintenance.cycle" formControlName="eventCycle" class="number col-sm-11" [ipx-data-type]="dataType.positiveinteger" apply-edited
+                                        [fieldClass]="'pull-left'"></ipx-text-field>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="section-header">
+                    <span translate="caseview.attachments.maintenance.attributes" style="text-align: left; width: auto;"></span>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ipx-typeahead name="attachmentType" [label]="'caseview.attachments.maintenance.attachmentType'" [disabled]="_disabled" config="attachmentType" formControlName="attachmentType" apply-edited>
+                        </ipx-typeahead>
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ipx-dropdown name="activityType" [label]="'caseview.attachments.maintenance.activityType'" [disabled]="_disabled" [displayField]="'description'" [keyField]="'id'" [options]="activityTypes"
+                                      formControlName="activityType" apply-edited required>
+                        </ipx-dropdown>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ipx-dropdown name="activityCategory" [label]="'caseview.attachments.maintenance.activityCategory'" [disabled]="_disabled" [displayField]="'description'" [keyField]="'id'" [options]="categories"
+                                      formControlName="activityCategory" apply-edited required>
+                        </ipx-dropdown>
+                    </div>
+                    <div class="col-sm-4">
+                        <ipx-date-picker id="activityDate" ngDefaultControl name="activityDate" [label]="'caseview.attachments.maintenance.activityDate'" [includeSameDate]="true" [displayError]="true"
+                                         formControlName="activityDate" apply-edited class="col-sm-11">
+                        </ipx-date-picker>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <ipx-typeahead name="language" [disabled]="_disabled" [label]="'caseview.attachments.maintenance.language'" config="language" formControlName="language" apply-edited></ipx-typeahead>
+                    </div>
+                    <div class="col-sm-4" *ngIf="baseType==='case' || baseType==='priorArt'">
+                        <ipx-text-field name="pageCount" [label]="'caseview.attachments.maintenance.pageCount'" [disabled]="_disabled" formControlName="pageCount" class="number col-sm-11" [ipx-data-type]="dataType.positiveinteger"
+                                        apply-edited [fieldClass]="'col-sm-2 pull-left'">
+                        </ipx-text-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<ng-template #filePathInfo>
+    <div *ngIf="isFileStoredInDb">
+        <p>{{'caseview.attachments.maintenance.attachmentIsCaseDataComparison' | translate}}</p>
+    </div>
+    <div *ngIf="!isFileStoredInDb">
+        <p>{{'caseview.attachments.maintenance.filePathInfo' | translate}} </p>
+        <ul style="padding-left: 15px;padding-right: 10px;min-width: 260px;word-wrap:break-word">
+            <li>{{'caseview.attachments.maintenance.filePathInfoUnc' | translate}}</li>
+            <li>{{'caseview.attachments.maintenance.filePathInfoFile' | translate}}</li>
+            <li>{{'caseview.attachments.maintenance.filePathInfoDMS' | translate}}</li>
+            <li>{{'caseview.attachments.maintenance.filePathInfoUrl' | translate}}</li>
+        </ul>
+        <p>{{'caseview.attachments.maintenance.filePathInfoEnd' | translate}} </p>
+    </div>
+</ng-template>

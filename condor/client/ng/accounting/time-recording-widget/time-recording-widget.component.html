@@ -1,0 +1,49 @@
+<h4 *ngIf="isTimerRunning" (click)="widgetClick()">
+    <div class="col-xs-12">
+        <div class="pull-right">
+            <ipx-inline-dialog *ngIf="!isHosted" [templateRef]="timerInfo" container="body" [tooltipPlacement]="'bottom'" [icon]="'cpa-icon cpa-icon-clock-o'" [title]="'accounting.time.widget.activeTimerLbl' | translate">
+            </ipx-inline-dialog>
+            <span *ngIf="isHosted" class="cpa-icon cpa-icon-clock-o cpa-icon-lg"></span>
+            <ipx-clock #clock [start]="data.start"></ipx-clock>
+            <button class="btn btn-no-bg btn-icon" [tooltip]="isHosted ? '' : 'Stop'" container="body" [adaptivePosition]="false" [tooltipPlacement]="isHosted ? 'left' : 'bottom'" (click)="$event.stopPropagation();stopTimer()">
+                <span class="cpa-icon cpa-icon-square" [title]="isHosted ? 'Stop' : ''"></span>
+            </button>
+        </div>
+    </div>
+</h4>
+<ng-template #timerInfo >
+    <div style="min-width: 200px;">
+        <div class="col-sm-12 label-value">
+            <div class="col-sm-4 text-right text-nowrap">
+                <label translate="accounting.time.widget.startedAt"></label>
+            </div>
+            <div class="col-sm-8">
+                <span>{{data.start | date: timeFormat}}</span>
+            </div>
+        </div>
+        <div class="col-sm-12 label-value" *ngIf="!!data.caseReference">
+            <div class="col-sm-4 text-right">
+                <label translate="accounting.time.fields.case"></label>
+            </div>
+            <div class="col-sm-8">
+                <span>{{data.caseReference}}</span>
+            </div>
+        </div>
+        <div class="col-sm-12 label-value" *ngIf="data.name">
+            <div class="col-sm-4 text-right">
+                <label translate="accounting.time.fields.name"></label>
+            </div>
+            <div class="col-sm-8">
+                <span>{{data.name}}</span>
+            </div>
+        </div>
+        <div class="col-sm-12 label-value" *ngIf="!!data.activity">
+            <div class="col-sm-4 text-right">
+                <label translate="accounting.time.fields.activity"></label>
+            </div>
+            <div class="col-sm-8">
+                <span>{{data.activity}}</span>
+            </div>
+        </div>
+    </div>
+</ng-template>

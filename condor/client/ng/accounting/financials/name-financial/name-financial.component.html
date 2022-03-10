@@ -1,0 +1,21 @@
+<div id="debtor-receivable-{{nameKey}}" class="container-fluid" [ngClass]="{'detail': showAgedBalance}"
+    *ngIf="(nameBalances$ | async) as nameBalances">
+    <div class="row data">
+        <div class="col-lg-6 article-label">
+            <span id="receivableBalance" translate="accounting.time.recording.summary.receivableBalance"></span>
+        </div>
+        <div class="col-lg-4 col-lg-2-offset text-right">
+            <span class="text">{{ nameBalances.data.receivableBalance | localCurrencyFormat | async }}</span>
+        </div>
+        <div class="col-sm-1" *ngIf="canViewReceivables">
+            <label (click)="showAgedBalance = !showAgedBalance"
+                [ngClass]="{'cpa-icon-chevron-down': !showAgedBalance, 'cpa-icon-chevron-up': showAgedBalance}"
+                class="pull-right cpa-icon no-color toggle"></label>
+        </div>
+    </div>
+</div>
+<div id="debtor-receivable-detail-{{nameKey}}" class="container-fluid row detail" *ngIf="showAgedBalance">
+    <div>
+        <ipx-aged-totals [nameKey]="nameKey"></ipx-aged-totals>
+    </div>
+</div>

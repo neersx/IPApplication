@@ -1,0 +1,94 @@
+<div id="filterPanel" class="dropdown-filter-content">
+    <div class="text-left">
+        <div *ngIf="formGroup" class="row">
+            <form [formGroup]="formGroup" style="margin-left: -70px; margin-right: 5px;">
+                <ipx-text-field id="stepNumber" name="stepNumber" formControlName="stepNumber" label="{{ 'caseview.affectedCases.stepNumber' | translate }}">
+                </ipx-text-field>
+                <ipx-typeahead id="recordalType" [formControl]="recordalType" config="recordalTypes" label="{{'caseview.affectedCases.recordalType' | translate }}">
+                </ipx-typeahead>
+                <div class="row">
+                    <div class="col-md-10" style="padding-top:5px; padding-right: 15px; margin-left: 6%;">
+                        <ipx-text-field id="caseRef" name="caseRef" formControlName="caseRef" label="{{ 'caseview.affectedCases.columns.caseRef' | translate }}" autocomplete="off">
+                        </ipx-text-field>
+                    </div>
+                    <div class="col-md-1" style="margin-left: -2%;">
+                        <ipx-inline-dialog class="quickSearchHelp" [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" [adaptivePosition]="true" container="body" tooltipPlacement="bottom"
+                            [templateRef]="tooltipTemplate"></ipx-inline-dialog>
+                        <ng-template #tooltipTemplate>
+                            <p>{{'caseview.affectedCases.caseHelpText1' | translate}}</p>
+                        </ng-template>
+                    </div>
+                </div>
+                <ipx-typeahead id="jurisdiction" [formControl]="jurisdiction" multipick multiselect config="jurisdiction" label="picklist.jurisdiction.Type">
+                </ipx-typeahead>
+                <ipx-typeahead id="propertyType" [formControl]="propertyType" config="propertyType" label="picklist.propertytype.Type">
+                </ipx-typeahead>
+                <div class="row">
+                    <div class="col-md-10" style="padding-top:5px; padding-right: 15px; margin-left: 6%;">
+                        <ipx-text-field name="officialNo" formControlName="officialNo" label="{{ 'caseview.affectedCases.columns.officialNo' | translate }}" autocomplete="off">
+                        </ipx-text-field>
+                    </div>
+                    <div class="col-md-1" style="margin-left: -2%;">
+                        <ipx-inline-dialog class="quickSearchHelp" [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" [adaptivePosition]="true" container="body" tooltipPlacement="bottom"
+                            [templateRef]="tooltipTemplateOffc"></ipx-inline-dialog>
+                        <ng-template #tooltipTemplateOffc>
+                            <p>{{'caseview.affectedCases.officialNoInfo1' | translate}}</p>
+                        </ng-template>
+                    </div>
+                </div>
+                <ipx-typeahead id="currentOwner" [formControl]="currentOwner" config="nameFiltered" [extend-query]="ownerPickListExternalScope.extendQuery" [external-scope]="ownerPickListExternalScope"
+                    label="caseview.affectedCases.columns.currentOwner">
+                </ipx-typeahead>
+                <ipx-typeahead id="foreignAgent" [formControl]="foreignAgent" config="nameFiltered" [extend-query]="ownerPickListExternalScope.extendQuery" [external-scope]="ownerPickListExternalScope"
+                    label="caseview.affectedCases.columns.foreignAgent">
+                </ipx-typeahead>
+                <div class="row">
+                    <div class="col-md-4" style="line-height: 30px; text-align: right;">
+                        <label [translate]="'caseview.affectedCases.columns.caseStatus'"></label>
+                    </div>
+                    <div class="col-md-8" style="margin-left: -8px;">
+                        <div class="col-md-5" style="padding: 0%;">
+                            <ipx-checkbox id="pending" formControlName="pending" label="{{'caseview.affectedCases.caseStatus.pending' | translate}}" >
+                            </ipx-checkbox>
+                        </div>
+                        <div class="col-md-4" style="padding: 0%;">
+                            <ipx-checkbox formControlName="registered" label="{{'caseview.affectedCases.caseStatus.registered' | translate}}" >
+                            </ipx-checkbox>
+                        </div>
+                        <div class="col-md-3" style="padding: 0%;">
+                            <ipx-checkbox formControlName="dead" label="{{'caseview.affectedCases.caseStatus.dead' | translate}}" >
+                            </ipx-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4" style="line-height: 30px; text-align: right;">
+                        <label [translate]="'caseview.affectedCases.recordalStatus.title'"></label>
+                    </div>
+                    <div class="col-md-8" style="margin-left: -8px;">
+                        <div class="col-md-5" style="padding: 0%;">
+                            <ipx-checkbox id="notYetFiled" formControlName="notYetFiled" label="{{'caseview.affectedCases.recordalStatus.notYetFiled' | translate}}">
+                            </ipx-checkbox>
+                        </div>
+                        <div class="col-md-5" style="padding: 0%;">
+                            <ipx-checkbox formControlName="filed" label="{{'caseview.affectedCases.recordalStatus.filed' | translate}}">
+                            </ipx-checkbox>
+                        </div>
+                        <div class="col-md-5" style="padding: 0%;">
+                            <ipx-checkbox id="recorded" formControlName="recorded" label="{{'caseview.affectedCases.recordalStatus.recorded' | translate}}">
+                            </ipx-checkbox>
+                        </div>
+                        <div class="col-md-5" style="padding: 0%;">
+                            <ipx-checkbox formControlName="rejected" label="{{'caseview.affectedCases.recordalStatus.rejected' | translate}}">
+                            </ipx-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="row text-right" style="padding-bottom: 2%; margin-top: 5px;">
+                    <button id="btnFilter" (click)="submit()" class="btn btn-primary primary" style="margin-right: 3px; padding: 4px 15px 4px;">Filter</button>
+                    <button id="btnClear" (click)="clear()" class="btn" style="padding: 4px 15px 4px; margin-right: 25px;">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

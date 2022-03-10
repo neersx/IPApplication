@@ -1,0 +1,13 @@
+<div *ngIf="isIe || inproVersion16" class="name-link">
+    <a class="text" [href]="url" target="_blank"><span>{{ this.text }}</span>
+        <ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
+    </a>
+</div>
+<div *ngIf="!isIe && !inproVersion16" class="name-link">
+    <a (click)="showIeRequired()" class="text"><span>{{ this.text }}</span>
+        <ng-container *ngTemplateOutlet="tempOutlet"></ng-container>
+    </a>
+</div>
+<ng-template #tempOutlet>
+    <ng-content></ng-content>
+</ng-template>

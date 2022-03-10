@@ -1,0 +1,33 @@
+<div translate-namespace="validcombinations">
+    <div class="row">
+        <h3>
+            <span class="label-legend" translate=".labelValidChecklist"></span>
+            <ip-inline-dialog data-content="{{::'validcombinations.createValidCharacteristic' | translate}}" data-placement="right"></ip-inline-dialog>
+        </h3>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-case-type" name="caseType" data-config='caseType' data-picklist-can-maintain="true" ng-model="vm.entity.caseType" ip-required ng-class="{edited: vm.maintenance.caseType.$dirty}" ng-disabled="vm.entity.state == 'updating'">
+        </ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-jurisdiction" name="jurisdiction" data-multiselect data-config='jurisdiction' data-picklist-can-maintain="true" ng-model="vm.entity.jurisdictions" ng-class="{edited: vm.maintenance.jurisdiction.$dirty}" ip-required ng-disabled="vm.entity.state == 'updating'" ip-autofocus>
+        </ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-property-type" name="propertyType" data-config='propertyType' ng-model="vm.entity.propertyType" ip-required ng-class="{edited: vm.maintenance.propertyType.$dirty}" ng-disabled="vm.entity.state == 'updating'" data-picklist-can-maintain="true"
+            data-key-field="key" data-code-field="code" data-text-field="value">
+        </ip-typeahead>
+    </div>
+    <h3>
+        <span class="label-legend" translate=".labelNewValidChecklist"></span>
+    </h3>
+    <div class="row">
+        <ip-typeahead id="pk-checklist" name="checklist" data-config='checklist' data-picklist-can-maintain="true" ip-required ng-change="vm.onChecklistSelectionChanged(vm.maintenance.validDescription)" ng-model="vm.entity.checklist" ng-disabled="vm.entity.state == 'updating'"
+            ng-class="{edited: vm.maintenance.checklist.$dirty}">
+        </ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-text-field name="validDescription" ip-required label=".validDescription" ng-model="vm.entity.validDescription" ng-class="{edited: vm.maintenance.validDescription.$dirty}" data-ng-maxlength="50"></ip-text-field>
+    </div>
+</div>
+<br />

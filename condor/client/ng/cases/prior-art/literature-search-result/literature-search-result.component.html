@@ -1,0 +1,39 @@
+<div id="literature-search-result">
+    <div class="table-title">
+        <h2 translate="priorart.results"></h2>
+        <button id="add" class="btn btn-icon" tooltip="{{ showAddNewLiterature ?  null : 'priorart.addLiteratureToolTip' | translate }}" tooltipPlacement="left" (click)="addLiterature()" [disabled]="showAddNewLiterature">
+            <span class="cpa-icon cpa-icon-plus-circle"></span>
+        </button>
+    </div>
+    <div>
+        <ipx-kendo-grid #ipxKendoGridRef id="literatureResultSet" [dataOptions]="gridOptions" *ngIf="gridOptions" (onDetailCollapse)="onCollapse($event)">
+            <ng-template ipxTemplateColumnField="buttons" let-dataItem>
+                <ipx-icon-button *ngIf="searchData.sourceDocumentId || searchData.caseKey" type="button" [buttonIcon]="'link'" name="cite" (onclick)="cite(dataItem)" [disabled]="dataItem.isCited"
+                    tooltip="{{ (dataItem.isCited ? 'priorart.cited' : 'priorart.cite') | translate }}"></ipx-icon-button>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="canEdit" let-dataItem>
+                <ipx-icon-button type="button" [buttonIcon]="'edit'" name="edit" (onclick)="edit(dataItem)"
+                    tooltip="{{ 'priorart.maintenance.step1.priorArtTitle' | translate }}"></ipx-icon-button>
+            </ng-template>
+        </ipx-kendo-grid>
+        <button class="btn btn-link grid-message" [disabled]="showAddNewLiterature" (click)="addLiterature()">
+            <span class="cpa-icon cpa-icon-plus-circle"></span>
+            <em style="margin-left: 5px">{{ 'grid.messages.addItem' | translate: { itemName: itemName } }}</em>
+        </button>
+    </div>
+    <ng-template #dataDetailTemplate let-dataItem>
+        <section>
+            <ipx-priorart-detail #dataDetailComponent [details]="dataItem" [isLiterature]="true" [translationsList]="translationsList" (onSave)="onSaveData($event)"></ipx-priorart-detail>
+        </section>
+    </ng-template>
+</div>
+
+<div *ngIf="showAddNewLiterature" id="add-new-literature">
+    <div class="table-title">
+        <h2 translate="priorart.literatureNotFound.title">
+        </h2>
+        <ipx-inline-dialog style="margin-left: 8px" [content]="'priorart.literatureNotFound.searchInfo'| translate" [tooltipPlacement]="'auto'"></ipx-inline-dialog>
+    </div>
+    <br>
+    <ipx-priorart-detail #dataLiteratureDetailComponent [details]="details" [isLiterature]="true" [translationsList]="translationsList" (onSave)="onSaveData($event)" [asNew]="true"></ipx-priorart-detail>
+</div>

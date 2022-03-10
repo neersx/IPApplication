@@ -1,0 +1,22 @@
+<ipx-page-title [title]="'fileLocationOffice.title'">
+</ipx-page-title>
+<ipx-sticky-header>
+    <ipx-page-title-save [title]="'fileLocationOffice.title' | translate" (onSave)="save()" (onDiscard)="reload()" [isSaveEnabled]="(hasChanges$ | async)" [isDiscardEnabled]="(hasChanges$ | async)">
+    </ipx-page-title-save>
+</ipx-sticky-header>
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+    <br>
+    <div class="table-container">
+        <div class="row" style="margin: 0px;">
+            <ipx-kendo-grid #fileLocationOfficeGrid id="fileLocationOffice" [dataOptions]="gridOptions" *ngIf="gridOptions" ipxGridFocus>
+                <ng-template ipxTemplateColumnField="office" let-dataItem>
+                    <span>{{ dataItem.office ? dataItem.office.value : null }}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="office" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                    <ipx-typeahead name="office" apply-edited [formControl]="formGroup.controls.office" config="office" (onChange)="checkValidationAndEnableSave()">
+                    </ipx-typeahead>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>

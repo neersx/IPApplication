@@ -1,0 +1,40 @@
+<div ng-form="vm.form" ip-form class="container-fluid" translate-namespace="workflows.entrycontrol">
+    <div class="row">
+        <div class="col-sm-6" ng-class="{'input-inherited': vm.formData.description===vm.parentData.description}">
+            <ip-text-field 
+                name="description" 
+                label="workflows.common.entryDescription" 
+                ip-autofocus="{{!!vm.topic.isActive}}" 
+                ng-disabled="::!vm.canEdit" 
+                ng-model="vm.formData.description" 
+                ng-maxlength="100"
+                required
+                ip-field-error="{{vm.formData.getError('description')}}" 
+                data-ng-change="vm.formData.hasError('description', false)" 
+                ng-class="{{::vm.fieldClasses('description')}}"
+                ng-trim="false"  ></ip-text-field>
+        </div>
+         <div class="input-wrap-group col-sm-2" ng-if="vm.formData.isSeparator">
+            <div class="label-sm-2 input-wrap readonly-label-group">
+                <label translate="workflows.entrycontrol.definition.isSeparator"></label>
+                <span>
+                      <ip-inline-dialog data-content="{{::'workflows.entrycontrol.definition.separatorInfo' | translate}}" data-placement="bottom"></ip-inline-dialog>
+                </span>
+            </div>
+        </div>
+
+    </div>
+    <div class="row" ng-if="!vm.formData.isSeparator">
+        <div class="col-sm-6"  ng-class="{'input-inherited': vm.formData.userInstruction===vm.parentData.userInstruction}">
+            <ip-text-field 
+                ng-disabled="::!vm.canEdit" 
+                label=".definition.userInstructions" 
+                name="userInstruction" 
+                type="text" 
+                ng-model="vm.formData.userInstruction" 
+                multiline data-rows="3" 
+                ng-maxlength="254" 
+                ng-class="{{::vm.fieldClasses('userInstruction')}}" ></ip-text-field>
+        </div>
+    </div>
+</div>

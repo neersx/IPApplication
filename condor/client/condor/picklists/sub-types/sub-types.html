@@ -1,0 +1,17 @@
+<div translate-namespace="picklist.subtype" data-ng-controller="subTypesController as aCtrl">
+    <div ng-if="!vm.externalScope[(vm.entity || 'combination')]()">
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-text-field name="code" ip-required ip-autofocus label=".Code" ng-model="vm.entry.code" data-ng-maxlength="2" ng-disabled="vm.maintenanceState === 'updating' || vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.code.$dirty}" ip-field-error="{{vm.entry.$error('code').message | translate}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ip-text-field name="value" ip-required label=".Description" ng-model="vm.entry.value" data-ng-maxlength="50" ng-class="{edited: vm.maintenance.value.$dirty}" ng-disabled="vm.maintenanceState === 'viewing'" ip-field-error="{{vm.entry.$error('value').message | translate}}"></ip-text-field>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!!vm.externalScope[(vm.entity || 'combination')]()">
+        <ip-valid-picklist-maintenance data-model="vm.entry" data-maintenance="vm.maintenance" data-state="vm.maintenanceState" data-can-maintain="false" data-entity-type='subtype' update-item="vm.updateListItemFromMaintenance"></ip-valid-picklist-maintenance>
+    </div>
+</div>

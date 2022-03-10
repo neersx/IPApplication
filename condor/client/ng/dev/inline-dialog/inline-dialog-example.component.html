@@ -1,0 +1,125 @@
+<h2>Various examples of Inline Dialog</h2>
+<div>
+  <div class="row">
+    <div class="col-md-1">
+      Top Placement
+    </div>
+    <div class="col-md-2">
+      <ipx-inline-dialog [tooltipPlacement]="'top'" [content]="'Tooltip content for top'" [title]="'Top'">
+      </ipx-inline-dialog>
+    </div>
+  </div>
+  <div class="row">
+    <br />
+    <div class="col-md-1">
+      Bottom Placement
+    </div>
+    <div class="col-md-2">
+      <ipx-inline-dialog [tooltipPlacement]="'bottom'" [content]="'Tooltip content for bottom'" [title]="'Bottom'">
+      </ipx-inline-dialog>
+    </div>
+  </div>
+  <div class="row">
+    <br />
+    <div class="col-md-1">
+      Right Placement
+    </div>
+    <div class="col-md-2">
+      <ipx-inline-dialog [tooltipPlacement]="'right'" [content]="'Tooltip content for right'" [title]="'Right'">
+      </ipx-inline-dialog>
+    </div>
+  </div>
+  <div class="row">
+    <br />
+    <div class="col-md-1">
+      Left Placement
+    </div>
+    <div class="col-md-2">
+      <ipx-inline-dialog [tooltipPlacement]="'left'" [content]="'Tooltip content for left'" [title]="'Left'">
+      </ipx-inline-dialog>
+    </div>
+  </div>
+  <div class="row">
+    <br />
+    <div class="col-md-2">
+      Passing template as content in Inline Dialog
+    </div>
+    <div>
+      <ng-template #popTemplate>
+        <div [innerHtml]="html"></div>
+      </ng-template>
+      <ipx-inline-dialog [tooltipPlacement]="'top'" [templateRef]="popTemplate" [title]="'Title'"></ipx-inline-dialog>
+    </div>
+  </div>
+  <h2>Examples of Hover Help</h2>
+  <div>
+    <div class="row">
+      <div class="col-md-1">
+        Top Placement
+      </div>
+      <div class="col-md-2">
+        <ipx-hover-help [content]="'test hover help'" [placement]="'top'">
+          <span>hover help</span>
+        </ipx-hover-help>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        Right Placement
+      </div>
+      <div class="col-md-2">
+        <ipx-hover-help [content]="'test hover help'" [placement]="'right'">
+          <span>hover help</span>
+        </ipx-hover-help>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        Bottom Placement
+      </div>
+      <div class="col-md-2">
+        <ipx-hover-help [content]="'test hover help'" [placement]="'bottom'">
+          <span>hover help</span>
+        </ipx-hover-help>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        Left Placement
+      </div>
+      <div class="col-md-2">
+        <ipx-hover-help [content]="'test hover help'" [placement]="'left'">
+          <span>hover help</span>
+        </ipx-hover-help>
+      </div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-md-1">
+          No content
+        </div>
+        <div class="col-md-2">
+          <ipx-hover-help>
+            <span>No hover</span>
+          </ipx-hover-help>
+        </div>
+      </div>
+      <div class="row">&nbsp;</div>
+      <div class="row">
+        <div class="col-md-1">
+          Tooltip for error
+        </div>
+        <div class="col-md-2">
+          <span  class="text text-red-dark tooltip-error ip-hover-help ng-scope ng-binding" tooltip="Due date has passed" containerClass="tooltip-error">01-Nov-2006</span>
+        </div>
+      </div>
+      <div class="row">
+          <br />
+        <div class="col-md-1">
+          Tooltip in blue
+        </div>
+        <div class="col-md-2">
+            <span tooltip="Due date has passed" class="text ip-hover-help text-blue-inherited">01-Nov-2006</span>
+        </div>
+      </div>
+  </div>

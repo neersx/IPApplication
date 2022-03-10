@@ -1,0 +1,12 @@
+<div id="primary-nav">
+    <div class="navigation fixed">
+        <div class="container-fluid menu-container" ng-transclude>
+        </div>
+        <div class="pin-menu">
+            <a ng-click="vm.togglePinned()">
+                <span class="cpa-icon cpa-icon-skip-to-last no-color" name="thumb-tack" ng-if="!vm.pinned"></span>
+                <span class="cpa-icon cpa-icon-skip-to-first no-color" name="thumb-tack-pushed" ng-if="vm.pinned"></span>
+            </a>
+        </div>
+    </div>
+</div>

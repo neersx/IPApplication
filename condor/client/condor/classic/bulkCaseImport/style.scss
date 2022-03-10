@@ -1,0 +1,12 @@
+div[kendo-grid] .k-grid-content-locked ip-checkbox .input-wrap {
+    padding: 0;
+    top: -1px;
+    margin-left: 2px;
+    &:before{
+        display: inline;
+    }
+}
+
+div[kendo-grid] .k-grid-header .k-grid-header-locked thead tr th {
+     padding: 0px 5px; 
+}

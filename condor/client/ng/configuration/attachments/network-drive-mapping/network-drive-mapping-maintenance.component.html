@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{ title | translate}}</h2>
+    <div class="modal-header-controls">
+        <ipx-apply-button type="button" [disabled]="!formGroup.dirty || formGroup.status === 'INVALID'" (click)="apply($event)"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <form [formGroup]="formGroup">
+        <div class="row">
+            <div class="col-sm-12">
+                <ipx-dropdown name="driveLetter" formControlName="driveLetter" apply-edited label="attachmentsIntegration.networkDriveMapping.driveLetter" [options]="driveLetters" ipx-autofocus required>
+                </ipx-dropdown>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <ipx-text-field name="uncPath" formControlName="uncPath" [loading]="validationInProgress" apply-edited label="attachmentsIntegration.networkDriveMapping.uncPath" required></ipx-text-field>
+            </div>
+        </div>
+    </form>
+</div>

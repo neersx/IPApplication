@@ -1,0 +1,54 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{'caseview.recordal.title' | translate }}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button *ngIf="isHosted" id="save" type="button" (click)="onSave()" [disabled]="isSaveDisabled"></ipx-save-button>&nbsp;
+        <ipx-close-button id="close" type=" button" (click)="close()"></ipx-close-button>
+    </div>
+</div>
+<article class="detail-view" style="width: 97%;margin-left: 13px;">
+    <header>
+        <ipx-inline-alert [type]="'info'" [text]="'caseview.recordal.assignedStepInfo'">
+        </ipx-inline-alert>
+    </header>
+</article>
+<div class="modal-body">
+    <div class="row">
+        <ipx-kendo-grid id="recordalStepsGrid" #recordalStepsGrid [dataOptions]="gridOptions" ipxGridFocus (dataItemClicked)="dataItemClicked($event)" (deleteRowEvent)="onDeleteRow($event)"
+            (cancelRowEditEvent)="cancelRowEdit($event)" (addRowEvent)="onStepAddOrEdit($event)" (editRowEvent)="onStepAddOrEdit($event)">
+            <ng-template ipxTemplateColumnField="stepName" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <span class="text-nowrap">{{ dataItem.stepName.value }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="recordalType" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <span class="text-nowrap">{{ dataItem.recordalType?.value }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="modifiedDate" let-dataItem let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <span class="text-nowrap">{{ dataItem.modifiedDate.value }}</span>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="stepName" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <div *ngIf="formGroup && formGroup.controls.stepName" class="col-sm-2">
+                    <span class="text-nowrap">{{ formGroup.controls.stepName.value }}</span>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="recordalType" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <div class="row">
+                    <div *ngIf="formGroup && formGroup.controls">
+                        <ipx-typeahead [required]="true" id="recordalType" ipx-autofocus [formControl]="formGroup.controls.recordalType" apply-edited required config="recordalTypes"
+                            (ngModelChange)="onModelChange($event, dataItem)">
+                        </ipx-typeahead>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template ipxEditTemplateColumnField="modifiedDate" let-dataItem="dataItem" let-rowIndex="rowIndex" let-formGroup="formGroup">
+                <div *ngIf="formGroup && formGroup.controls.modifiedDate" class="col-sm-3">
+                    <span class="text-nowrap">{{ formGroup.controls.modifiedDate.value | localeDate }}</span>
+                </div>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+    <div class="row">
+        <h3 translate="{{'caseview.recordal.elementsTitle' | translate }}"></h3>
+    </div>
+    <ipx-recordal-step-elements *ngIf="selectedId && recordalType" [canMaintain]="canMaintain" [caseKey]="caseKey" [stepId]="selectedId" [isHosted]="isHosted" [recordalType]="recordalType?.key"
+        [isAssignedStep]="isAssignedStep" (disableSave)="disableSave($event)">
+    </ipx-recordal-step-elements>
+</div>

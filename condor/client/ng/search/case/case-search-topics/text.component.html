@@ -1,0 +1,55 @@
+<form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="titleMarkOperator" label="{{ 'caseSearch.topics.text.titleMark' | translate }}" [(ngModel)]="formData.titleMarkOperator" [operatorsGroup]="'FullSoundsLike'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6 col-lg-6 text-right">
+                <div *ngIf="formData.titleMarkOperator!==searchOperator.exists && formData.titleMarkOperator!==searchOperator.notExists">
+                    <ipx-text-field name="titleMarkValue" [(ngModel)]="formData.titleMarkValue" ipx-autofocus="{{!!topic.isActive}}">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="typeOfMarkOperator" label="caseSearch.topics.text.typeOfMark" [(ngModel)]="formData.typeOfMarkOperator" [operatorsGroup]="'EqualExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <div *ngIf="formData.typeOfMarkOperator!==searchOperator.exists && formData.typeOfMarkOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="typeOfMarkValue" label="" config="typeOfMark" data-picklist-can-maintain="false" [(ngModel)]="formData.typeOfMarkValue"></ipx-typeahead>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown name="textType" label="caseSearch.topics.text.textType" [(ngModel)]="formData.textType" [options]="textTypes" [displayField]="'value'" [keyField]="'key'" [optionalValue]="'caseSearch.topics.text.any'">
+                </ipx-dropdown>
+            </div>
+            <div class="col-md-2">
+                <ipx-dropdown-operator name="textTypeOperator" [(ngModel)]="formData.textTypeOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-4 col-lg-4">
+                <div class="text-right" *ngIf="formData.textTypeOperator!==searchOperator.exists && formData.textTypeOperator!==searchOperator.notExists">
+                    <ipx-text-field name="textTypeValue" label="" [(ngModel)]="formData.textTypeValue"></ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="keywordOperator" label="caseSearch.topics.text.keyword" [(ngModel)]="formData.keywordOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <div *ngIf="formData.keywordOperator!==searchOperator.exists && formData.keywordOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="keywordValue" label="" *ngIf="formData.keywordOperator == '0' || formData.keywordOperator == '1'" config="keyword" [(ngModel)]="formData.keywordValue"></ipx-typeahead>
+                    <ipx-text-field *ngIf="formData.keywordOperator !=='0' && formData.keywordOperator !== '1'" name="keywordTextValue" label="" [(ngModel)]="formData.keywordTextValue">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

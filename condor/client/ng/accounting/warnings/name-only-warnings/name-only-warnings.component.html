@@ -1,0 +1,99 @@
+<div id="nameOnlyWarningModal">
+    <div class="modal-header">
+        <h2 class="modal-title">{{'accounting.wip.additionalInfo.title' | translate}}</h2>
+        <div class="modal-header-controls">
+            <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="widget-frame">
+            <div class="row" class="widget-title">
+                <span>{{debtorName}}</span>
+            </div>
+            <div class="row" class="widget-body" *ngIf="!!name.restriction.debtorStatus">
+                <div>
+                    <label><i>{{'accounting.wip.warningMsgs.nameRestriction' | translate}}</i></label>
+                </div>
+                <div class="label-value">
+                    <div class="col-sm-6">
+                        <label>Restriction</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <span class="cpa-icon cpa-icon-flag debtor-restrictions" [ngClass]="name.restriction.severity">
+                        </span>&nbsp;&nbsp;
+                        <span class="text">{{ name.restriction.debtorStatus }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" class="widget-body" *ngIf="name.creditLimitCheckResult && name.creditLimitCheckResult.exceeded" id="creditLimitWarning">
+                <div>
+                    <label><i>{{'accounting.wip.warningMsgs.creditLimitExceeded' | translate:{limitPercentage :name.creditLimitCheckResult.limitPercentage} }}</i></label>
+                </div>
+                <div class="col-sm-11">
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6">{{'accounting.wip.labels.receivableBalance' | translate}}</label>
+                        <span class="text col-sm-5 text-right">{{ name.creditLimitCheckResult.receivableBalance | localCurrencyFormat | async }}</span>
+                    </div>
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.labels.creditLimit' | translate}}</label>
+                        <span class="text col-sm-5 text-right">{{ name.creditLimitCheckResult.creditLimit | localCurrencyFormat | async }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" class="widget-body" *ngIf="name.prepaymentCheckResult && name.prepaymentCheckResult.exceeded" id="prepaymentWarning">
+                <div>
+                    <label><i>{{'accounting.wip.warningMsgs.prepayments.message' | translate}}</i></label>
+                </div>
+                <div class="col-sm-11">
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6">{{'accounting.wip.warningMsgs.prepayments.forDebtor' | translate}}</label>
+                        <span class="text col-sm-5 text-right" id="debtorPrepayment">{{ name.prepaymentCheckResult.debtorPrepayments | localCurrencyFormat | async }}</span>
+                    </div>
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.prepayments.totalWork' | translate}}</label>
+                        <span class="text col-sm-5 text-right" id="totalWipAndTime">{{ name.prepaymentCheckResult.totalWip | localCurrencyFormat | async }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row" class="widget-body" *ngIf="name.billingCapCheckResult" id="billingCapWarning">
+                <div>
+                    <label><i>{{'accounting.wip.warningMsgs.billingCap.nameMessage' | translate }}</i></label>
+                </div>
+                <div class="col-sm-11">
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-5">{{'accounting.wip.warningMsgs.billingCap.value' | translate }}</label>
+                        <span class="text col-sm-6 text-right" id="billingCapValue">{{ name.billingCapCheckResult.value | localCurrencyFormat | async }}</span>
+                    </div>
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.billingCap.startDate' | translate }}</label>
+                        <span class="text col-sm-5" id="billingCapStartDate">{{ name.billingCapCheckResult.startDate | localeDate }}</span>
+                    </div>
+                </div>
+                <div class="col-sm-11">
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-5">{{'accounting.wip.warningMsgs.billingCap.totalBilled' | translate }}</label>
+                        <span class="text col-sm-6 text-right" id="totalBilled">{{ name.billingCapCheckResult.totalBilled | localCurrencyFormat | async }}</span>
+                    </div>
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.billingCap.period' | translate }}</label>
+                        <span class="text col-sm-6" id="billingCapPeriod">{{ name.billingCapCheckResult.periodTypeDescription }} <span
+                                *ngIf="!!name.billingCapCheckResult.isRecurring">({{'accounting.wip.warningMsgs.billingCap.recurring' | translate }})</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <ipx-text-field *ngIf="isPwdReqd" required name="pwd" [formControl]="formGroup.controls.pwd" [mask]="true" [label]="'accounting.wip.warningMsgs.confirmationPassword'" class="col-sm-9 label-sm-8">
+            </ipx-text-field>
+            <div class="input-wrap-group group-inline pull-right" *ngIf="!isBlockedState || (isBlockedState && !restrictOnWip)">
+                <button type="button" class="btn btn-primary" [disabled]="isPwdReqd && !formGroup.controls.pwd.dirty" (click)="proceed()" ipx-autofocus>{{'button.proceed' | translate}}</button>
+                <button type="button" class="btn" (click)="cancel()">{{'button.cancel' | translate}}</button>
+            </div>
+            <div class="input-wrap-group group-inline pull-right" *ngIf="isBlockedState && restrictOnWip">
+                <button type="button" class="btn" (click)="blocked()" ipx-autofocus>OK</button>
+            </div>
+        </div>
+    </div>
+</div>

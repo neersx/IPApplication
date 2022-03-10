@@ -1,0 +1,13 @@
+<div id="user-quick-links" class="col-sm-12">
+    <ul *ngFor="let l of links; trackBy: trackByFn">
+        <h3 class="groupHeader">{{l.group}}</h3>
+        <li *ngFor="let ql of l.links; index as i; trackBy: trackByFn" [ngClass]="i % 2 == 0 ? 'even' : 'odd'">
+            <a href="{{ql.url}}" target="{{(ql.shouldTargetBlank) ? '_blank' : undefined}}" tooltip="{{ql.tooltip}}"
+                placement="right">{{ql.title}}</a>
+        </li>
+        <hr *ngIf="'first' && links">
+    </ul>
+    <br />
+    <div *ngIf="!links" class="alert alert-info"><i class="cpa-icon cpa-icon-info-circle"></i>&nbsp;<span
+            translate="quicknav.links.noRecord"></span></div>
+</div>

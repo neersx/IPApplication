@@ -1,0 +1,135 @@
+<form>
+    <div class="container-fluid">
+        <div class="row" *ngIf="!isExternal">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="fileLocationOperator" label="caseSearch.topics.otherDetails.fileLocation" [(ngModel)]="formData.fileLocationOperator" [operatorsGroup]="'EqualExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-7 col-lg-6">
+                <div *ngIf="formData.fileLocationOperator!==searchOperator.exists && formData.fileLocationOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="fileLocation" config="fileLocation" multiselect multipick label="" ipx-autofocus="{{!!topic.isActive}}" [(ngModel)]="formData.fileLocation" *ngIf="formData.fileLocationOperator ===searchOperator.equalTo || formData.fileLocationOperator === searchOperator.notEqualTo">
+                    </ipx-typeahead>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!isExternal">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="bayNoOperator" label="caseSearch.topics.otherDetails.bayNo" [(ngModel)]="formData.bayNoOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6">
+                <div *ngIf="formData.bayNoOperator!==searchOperator.exists && formData.bayNoOperator!==searchOperator.notExists">
+                    <ipx-text-field name="bayNo" label="" [(ngModel)]="formData.bayNo">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="isEntitySizeVisible | async">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="entitySizeOperator" label="caseSearch.topics.otherDetails.entitySize" [(ngModel)]="formData.entitySizeOperator" [operatorsGroup]="'EqualExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6 withoutLabel">
+                <div *ngIf="formData.entitySizeOperator!==searchOperator.exists && formData.entitySizeOperator!==searchOperator.notExists">
+                    <ipx-dropdown name="entitySize" [options]="entitySizes" [(ngModel)]="formData.entitySize"
+                        displayField="value">
+                    </ipx-dropdown>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="input-wrap-group group-inline">
+                    <span style="margin-left:-12.5%">{{'caseSearch.topics.otherDetails.standingInstruction' | translate}}
+                    </span>
+                    <div class="input-wrap">
+                        <ipx-radio-button id="caseSpecific" label="{{ 'caseSearch.topics.otherDetails.caseSpecific' | translate }}" [value]=false [(ngModel)]="formData.includeInherited" name="caseSpecificWithInherited" (changeRadio)="onInheritedFromNameChange()">
+                        </ipx-radio-button>
+                    </div>
+                    <div class="input-wrap input-wrap-padding">
+                        <ipx-radio-button id="inheritedFromName" label="{{ 'caseSearch.topics.otherDetails.caseSpecificWithInherited' | translate }}" [value]=true [(ngModel)]="formData.includeInherited" name="caseSpecificWithInherited" (changeRadio)="onInheritedFromNameChange()">
+                        </ipx-radio-button>
+                    </div>
+                    <ipx-icon-button *ngIf="formData.includeInherited === true" class="tooltip-warning-cpa btn-no-bg policing-warning-icon btn-icon" buttonIcon="exclamation-circle" tooltip="{{'caseSearch.topics.otherDetails.inheritedWarning' | translate }}" placement="top"></ipx-icon-button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row" style="margin-left: 14.30%">
+            <div class="col-md-2" *ngIf="!isExternal">
+                <div class="input-wrap">
+                    <ipx-radio-button id="rdbInstruction" label="caseSearch.topics.otherDetails.instruction" [value]=true [(ngModel)]="formData.forInstruction" name="forInstruction" (change)="onStandingInstructionChange()">
+                    </ipx-radio-button>
+                </div>
+            </div>
+            <div class="col-md-2" *ngIf="formData.includeInherited === false">
+                <ipx-dropdown-operator name="forInstructionOperator" [disabled]="formData.forInstruction === false" label="" [(ngModel)]="formData.forInstructionOperator" [operatorsGroup]="'EqualExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-2" *ngIf="formData.includeInherited === true">
+                <ipx-dropdown-operator name="forInstructionOperator" [disabled]="formData.forInstruction === false" label="" [(ngModel)]="formData.forInstructionOperator" [operatorsGroup]="'Equal'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div *ngIf="formData.forInstructionOperator!==searchOperator.exists && formData.forInstructionOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="instruction" config="instruction" [disabled]="formData.forInstruction === false" label="" [(ngModel)]="formData.instruction" *ngIf="formData.forInstructionOperator ===searchOperator.equalTo || formData.forInstructionOperator === searchOperator.notEqualTo">
+                    </ipx-typeahead>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-left: 14.30%" *ngIf="!isExternal">
+            <div class="col-md-2">
+                <div class="input-wrap">
+                    <ipx-radio-button id="rdbCharacteristic" label="caseSearch.topics.otherDetails.characteristic" [value]=false [(ngModel)]="formData.forInstruction" name="forInstruction" (change)="onStandingInstructionChange()">
+                    </ipx-radio-button>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <ipx-dropdown-operator name="forCharacteristicOperator" [disabled]="formData.forInstruction === true" label="" [(ngModel)]="formData.forCharacteristicOperator" [operatorsGroup]="'EqualExist'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div *ngIf="formData.forCharacteristicOperator!==searchOperator.exists && formData.forCharacteristicOperator!==searchOperator.notExists">
+                    <ipx-typeahead name="characteristic" config="characteristic" [disabled]="formData.forInstruction === true" label="" [(ngModel)]="formData.characteristic" *ngIf="formData.forCharacteristicOperator ===searchOperator.equalTo || formData.forCharacteristicOperator === searchOperator.notEqualTo">
+                    </ipx-typeahead>
+                </div>
+            </div>
+        </div>
+        <br />
+
+        <div class="row" *ngIf="!isExternal">
+            <div class="col-md-8">
+                <div class="input-wrap-group group-inline">
+                    <span style="margin-left:-12.5%">{{'caseSearch.topics.otherDetails.queues' | translate}}</span>
+                    <ipx-checkbox class="col-sm-3" label="caseSearch.topics.otherDetails.letters" [(ngModel)]="formData.letters" name="chkLetters"></ipx-checkbox>
+                    <ipx-checkbox style="margin-left:12%" class="col-sm-2" label="caseSearch.topics.otherDetails.charges" [(ngModel)]="formData.charges" name="chkCharges">
+                    </ipx-checkbox>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="input-wrap-group group-inline">
+                    <span style="margin-left:-12.5%"></span>
+                    <ipx-checkbox *ngIf="!isExternal" class="col-sm-6" label="caseSearch.topics.otherDetails.policingIncomplete" [(ngModel)]="formData.policingIncomplete" name="chkPolicingIncomplete"></ipx-checkbox>
+                    <ipx-checkbox class="col-sm-4" label="caseSearch.topics.otherDetails.nameChangeIncomplete" [(ngModel)]="formData.globalNameChangeIncomplete" name="chkGlobalNameChangeIncomplete">
+                    </ipx-checkbox>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-dropdown-operator name="purchaseOrderNoOperator" label="caseSearch.topics.otherDetails.purchaseOrderNo" [(ngModel)]="formData.purchaseOrderNoOperator" [operatorsGroup]="'Full'">
+                </ipx-dropdown-operator>
+            </div>
+            <div class="col-md-6">
+                <div *ngIf="formData.purchaseOrderNoOperator!==searchOperator.exists && formData.purchaseOrderNoOperator!==searchOperator.notExists">
+                    <ipx-text-field name="purchaseOrderNo" label="" [(ngModel)]="formData.purchaseOrderNo">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

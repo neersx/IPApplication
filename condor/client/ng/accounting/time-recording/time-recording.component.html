@@ -1,0 +1,368 @@
+<div [ipxConfirmBeforeRouteChange]="isPageDirty" [confirmMessage]="'accounting.time.recording.confirmMessage' | translate">
+    <ipx-page-title [title]="'accounting.time.recording.pageTitle'">
+        <action-buttons>
+            <div class="col-sm-12">
+                <div class="pull-right">
+                    <div class="pull-right">
+                        <button class="btn" (click)="navigateToQuery()" id="btnSearch" [translate]="'accounting.time.query.button'" [tooltip]="'accounting.time.query.tooltip' | translate"
+                             style="padding: 5px;" container="body" [tooltipPlacement]="'bottom'">
+                        </button>
+                    </div>
+                    <div class="pull-right" *ngIf="!!isActionAllowed('POST_TIME')">
+                        <button class="btn" (click)="openPostModal()" id="btnPost" style="padding: 5px; margin-right: 5px;" [translate]="'accounting.time.postTime.button'" [tooltip]="'accounting.time.postTime.title' | translate"
+                            container="body" [tooltipPlacement]="'bottom'"></button>
+                    </div>
+                </div>
+                <div class="input-wrap switch">
+                    <input id="moreDetailsSwitch" name="moreDetailsSwitch" type="checkbox" (ngModelChange)="setStoreOnToggle($event)" [(ngModel)]="showSummary">
+                    <label for="moreDetailsSwitch" [translate]="'accounting.time.recording.showSummary'"></label>
+                </div>
+            </div>
+        </action-buttons>
+    </ipx-page-title>
+    <div class="title-header">
+        <time-recording-header [headerInfo]="headerInfo" [defaultedStaff]="navigateToStaff"></time-recording-header>
+    </div>
+    <div class="row splitter-container">
+        <kendo-splitter id="timeRecordingPane" orientation="horizontal">
+            <kendo-splitter-pane id="timeSheetPane">
+                <div class="table-container fixed-detail-panel-time-recording-left" ip-resize-handler-upg resize-handler-type="Panel">
+                    <div>
+                        <ipx-kendo-grid #ipxKendoGridRef id="timesheet" [dataOptions]="gridOptions" ipxKeyboardEventHandler ipxGridFocus (dataItemClicked)="dataItemClicked($event)" (rowAdded)="onRowAdded()" [autoApplySelection]="false" [items]="taskItems" (menuItemSelected)="onMenuItemSelected($event)"
+                            (popupOpen)="displayTaskItems($event)">
+                            <grid-toolbar>
+                                <div class="toolbar">
+                                    <div class="col-lg-10 col-md-6 col-sm-6">
+                                        <ipx-date-picker id="selectedDate" name="fieldName" ngDefaultControl [(ngModel)]="currentDate" label="accounting.time.recording.viewing" class="col-sm-6 col-md-4 col-lg-3" (onChange)="onDateChanged($event)">
+                                        </ipx-date-picker>
+                                        <div class="col-lg-2 col-md-4 col-sm-6">
+                                            <button class="btn btn-icon btn-no-bg" (click)="previous()"><span class="cpa-icon cpa-icon-chevron-circle-left"></span></button>
+                                            <button name="today" type="button" class="btn btn-default" (click)="today()" style="margin-top: 3px">{{ 'datepicker.today' | translate }}</button>
+                                            <button class="btn btn-icon btn-no-bg" (click)="next()"><span class="cpa-icon cpa-icon-chevron-circle-right"></span></button>
+                                        </div>
+                                        <div class="input-wrap switch pull-right" tooltip="{{'accounting.time.recording.timeOverlaps.tooltip' | translate}}" [adaptivePosition]="false">
+                                            <input id="showOverlapsSwitch" name="showOverlapsSwitch" type="checkbox" [(ngModel)]="displayOverlaps">
+                                            <label for="showOverlapsSwitch" [translate]="'accounting.time.recording.timeOverlaps.label'"></label>
+                                        </div>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button style="margin-top:3px;margin-right:5px" id="btnCopyTimeEntry" class="btn btn-icon" (click)="copyTimeEntry()" tooltip="{{'accounting.time.recording.copyTimeEntry' | translate }}" [adaptivePosition]="false" [disabled]="!gridOptions.canAdd || !gridOptions.enableGridAdd">
+                                            <span class="cpa-icon cpa-icon-calendar-plus-o"></span>
+                                        </button>
+                                        <button *ngIf="(userInfo.isLoggedInUser$ | async)" style="margin-top:3px;" id="btnStartTimer" class="btn btn-icon" (click)="startTimer()" [disabled]="!isTodaySelected" tooltip="{{'accounting.time.recording.startTimer' | translate }}" [adaptivePosition]="false">
+                                            <span class="cpa-icon cpa-icon-clock-timer"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </grid-toolbar>
+                            <ng-template ipxTemplateColumnField="isLastChildOrIncomplete" let-dataItem>
+                                <ng-template #popTemplate>
+                                    <div class="col-sm-12 row" style="border-bottom: solid 1px #F5F5F5; padding-bottom: 5px">
+                                        <div class="col-sm-5">{{'accounting.time.fields.start' | translate}}</div>
+                                        <div class="col-sm-5">{{'accounting.time.fields.finish' | translate}}</div>
+                                        <div class="col-sm-2 text-right">{{'accounting.time.fields.time' | translate}}</div>
+                                    </div>
+                                    <div class="col-sm-12 row" *ngFor="let item of getContinuedList(dataItem); trackBy: trackContinuationBy">
+                                        <div class="col-sm-5">{{ item.start | date: settingsService.timeFormat }}</div>
+                                        <div class="col-sm-5">{{ item.finish | date: settingsService.timeFormat }}</div>
+                                        <div class="col-sm-2 text-right">{{ item.elapsedTimeInSeconds | durationFormat: settingsService.displaySeconds }}</div>
+                                    </div>
+                                    <div class="col-sm-12 row" style="border-top: solid 1px #F5F5F5; padding-top: 5px; padding-bottom: 10px;">
+                                        <div class="col-sm-5 col-sm-offset-5">{{ 'accounting.time.recording.totalHours' | translate }}</div>
+                                        <div class="col-sm-2 text-right">{{(dataItem.secondsCarriedForward + dataItem.elapsedTimeInSeconds) | durationFormat: settingsService.displaySeconds}}</div>
+                                    </div>
+                                </ng-template>
+                                <ipx-inline-dialog *ngIf="dataItem.isLastChild" [icon]="'cpa-icon-clock-o text-blue-primary'" container="body" [tooltipPlacement]="'right'" [templateRef]="popTemplate" title="{{'accounting.time.recording.timeContinuationSummary'|translate}}"></ipx-inline-dialog>
+                                <ipx-inline-dialog *ngIf="dataItem.isIncomplete && !dataItem.isTimer" container="body" [adaptivePosition]="false" [icon]="'cpa-icon-exclamation-triangle text-red'" tooltipPlacement="auto" [content]="incompleteEntryText | translate">
+                                </ipx-inline-dialog>
+                            </ng-template>
+                            <ng-template ipxTemplateColumnField="isPosted" let-dataItem>
+                                <span class="cpa-icon-check-circle posted" *ngIf="dataItem.isPosted" [tooltip]="'accounting.time.recording.posted' | translate" container="body" [adaptivePosition]="false"></span>
+                                <div *ngIf="!!dataItem.isTimer" class="timerSpinner" [tooltip]="'accounting.time.recording.runningTimer' | translate" container="body" [adaptivePosition]="false" [tooltipPlacement]="'top'">
+                                    <div class="cpa-icon cpa-icon-clock-timer"></div>
+                                </div>
+                            </ng-template>
+
+                            <ng-template ipxTemplateColumnField="start" let-dataItem>
+                                <span class="text-nowrap" [ngClass]="{'overlap': !!dataItem.overlaps && !!displayOverlaps }">{{ dataItem.start | date: settingsService.timeFormat }}</span>
+                            </ng-template>
+
+                            <ng-template ipxEditTemplateColumnField="start" let-dataItem="dataItem">
+                                <ng-container *ngIf="dataItem.isTimer; else editableStart">
+                                    <span class="text-nowrap">{{ dataItem.start | date: settingsService.timeFormat }}</span>
+                                </ng-container>
+                                <ng-template #editableStart>
+                                    <ipx-time-picker [formControl]="formsService.start" id="startTime" [showSeconds]="settingsService.displaySeconds" [is12HoursFormat]="timeRecordingSettings?.timeFormat12Hours" [format]="settingsService.timeFormat" [timeInterval]="settingsService.timePickerInterval"></ipx-time-picker>
+                                </ng-template>
+                            </ng-template>
+
+                            <ng-template ipxTemplateColumnField="finish" let-dataItem>
+                                <span *ngIf="!dataItem.isTimer" class="text-nowrap" [ngClass]="{'overlap': !!dataItem.overlaps && !!displayOverlaps }">{{ dataItem.finish | date: settingsService.timeFormat }}</span>
+                            </ng-template>
+
+                            <ng-template ipxEditTemplateColumnField="finish" let-dataItem="dataItem">
+                                <ng-container *ngIf="dataItem.isTimer; else editableFinish">
+                                    <span class="text-nowrap"></span>
+                                </ng-container>
+                                <ng-template #editableFinish>
+                                    <ipx-time-picker [formControl]="formsService.finish" id="finishTime" [min]="this.timeCalcService.min" [showSeconds]="settingsService.displaySeconds" [is12HoursFormat]="timeRecordingSettings?.timeFormat12Hours" [format]="settingsService.timeFormat" [timeInterval]="settingsService.timePickerInterval"></ipx-time-picker>
+                                </ng-template>
+                            </ng-template>
+
+                            <ng-template ipxTemplateColumnField="elapsedTimeInSeconds" let-dataItem>
+                                <span *ngIf="!dataItem.isTimer && !dataItem.isContinuedParent">{{ dataItem.accumulatedTimeInSeconds | durationFormat: settingsService.displaySeconds }}</span>
+                                <div class="label-value" *ngIf="!!dataItem.isTimer">
+                                    <span style="white-space: nowrap;" class="text-blue-primary">
+                                        <strong>
+                                            <ipx-clock #timerClock [start]="dataItem.start" [format]="settingsService.timeFormat"></ipx-clock>
+                                        </strong>
+                                        <button class="btn btn-no-bg btn-icon" [tooltip]="'Stop'" container="body" [adaptivePosition]="false" [tooltipPlacement]="'top'" (click)="stopTimer(dataItem)">
+                                            <span class="cpa-icon cpa-icon-square text-blue-primary"></span>
+                                    </button>
+                                    <button class="btn btn-no-bg btn-icon" [tooltip]="'accounting.time.recording.resetTimer' | translate" container="body" [adaptivePosition]="false" [tooltipPlacement]="'top'" (click)="onReset(dataItem)">
+                                            <span class="cpa-icon cpa-icon-revert text-blue-primary"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </ng-template>
+                            <ng-template ipxEditTemplateColumnField="elapsedTimeInSeconds" let-dataItem="dataItem">
+                                <ng-container *ngIf="dataItem.isTimer; else editableDuration">
+                                    <span style="white-space: nowrap;" class="text-blue-primary">
+                                        <strong>
+                                            <ipx-clock #timerClock [start]="dataItem.start"></ipx-clock>
+                                        </strong>
+                                        <button class="btn btn-no-bg btn-icon" [tooltip]="'Stop'" container="body" [adaptivePosition]="false" [tooltipPlacement]="'top'" (click)="stopTimer(dataItem)">
+                                            <span class="cpa-icon cpa-icon-square text-blue-primary"></span>
+                                    </button>
+                                    <button class="btn btn-no-bg btn-icon" [tooltip]="'accounting.time.recording.resetTimer' | translate" container="body" [adaptivePosition]="false" [tooltipPlacement]="'top'" (click)="onReset(dataItem)">
+                                            <span class="cpa-icon cpa-icon-revert text-blue-primary"></span>
+                                        </button>
+                                    </span>
+                                </ng-container>
+                                <ng-template #editableDuration>
+                                    <ipx-time-picker id="elapsedTime" [formControl]="formsService.elapsedTime" [format]="settingsService.displaySeconds ? 'HH:mm:ss' : 'HH:mm'" [max]="this.timeCalcService.max" [showNowButton]="false" [canBeEmpty]="false" [isElapsedTime]="true" [timeInterval]="settingsService.durationPickerInterval">
+                                    </ipx-time-picker>
+                                </ng-template>
+                            </ng-template>
+
+                            <ng-template ipxTemplateColumnField="totalUnits" let-dataItem>
+                                <div class="right-aligned">{{ dataItem.totalUnits }}</div>
+                            </ng-template>
+
+                            <ng-template ipxEditTemplateColumnField="totalUnits" let-dataItem="dataItem">
+                                <ng-container *ngIf="dataItem.isTimer; else editableUnits">
+                                    <div class="right-aligned">{{ dataItem.totalUnits }}</div>
+                                </ng-container>
+                                <ng-template #editableUnits>
+                                    <ipx-text-field name="totalUnits" class="number" [formControl]="formsService.totalUnits" [ipx-data-type]="dataType.nonnegativeinteger"></ipx-text-field>
+                                </ng-template>
+                            </ng-template>
+
+                            <ng-template ipxTemplateColumnField="name" let-dataItem>
+                                <span>{{ dataItem.name }}</span>
+                            </ng-template>
+                            <ng-template ipxEditTemplateColumnField="name" let-dataItem>
+                                <ipx-typeahead #nameRef name="name" config="client" [formControl]="formsService.name" (onChange)="onNameChanged($event)">
+                                </ipx-typeahead>
+                            </ng-template>
+                            <ng-template ipxTemplateColumnField="caseReference" let-dataItem>
+                                <span>{{ dataItem.caseReference }}</span>
+                            </ng-template>
+                            <ng-template ipxEditTemplateColumnField="caseReference" let-dataItem="dataItem">
+                                <ipx-typeahead #caseRef name="caseRef" config="caseWithName" (onChange)="onCaseChanged($event, dataItem?.isPosted)" [formControl]="formsService.caseReference" [extend-query]="caseExtendQuery" [external-scope]="externalScope" [auto-bind]="!!formsService.getSelectedName()"
+                                    [include-recent]="true" [not-found-error]="'timeRecording.invalidCase'">
+                                </ipx-typeahead>
+                            </ng-template>
+                            <ng-template ipxTemplateColumnField="activity" let-dataItem>
+                                <span>{{ dataItem.activity }}</span>
+                            </ng-template>
+                            <ng-template ipxEditTemplateColumnField="activity" let-dataItem>
+                                <ipx-typeahead name="wipTemplates" config="wipTemplate" [formControl]="formsService.activity" [extend-query]="activityExtendQuery">
+                                </ipx-typeahead>
+                            </ng-template>
+                            <ng-template ipxTemplateColumnField="chargeOutRate" let-dataItem>
+                                <div class="right-aligned">
+                                    {{ dataItem.chargeOutRate | localCurrencyFormat:dataItem.foreignCurrency || dataItem.localCurrencyCode | async }}
+                                </div>
+                            </ng-template>
+                            <ng-template ipxTemplateColumnField="localValue" let-dataItem>
+                                <div class="right-aligned">
+                                    {{ dataItem.localValue | localCurrencyFormat | async }}</div>
+                            </ng-template>
+                            <ng-template ipxTemplateColumnField="foreignValue" let-dataItem>
+                                <div class="right-aligned">
+                                    {{ dataItem.foreignValue | localCurrencyFormat:dataItem.foreignCurrency | async }}
+                                </div>
+                            </ng-template>
+                            <ng-template ipxTemplateColumnField="localDiscount" let-dataItem>
+                                <div class="right-aligned">
+                                    {{ dataItem.localDiscount | localCurrencyFormat | async }}</div>
+                            </ng-template>
+                            <ng-template ipxTemplateColumnField="foreignDiscount" let-dataItem>
+                                <div class="right-aligned">
+                                    {{ dataItem.foreignDiscount | localCurrencyFormat:dataItem.foreignCurrency | async }}
+                                </div>
+                            </ng-template>
+                        </ipx-kendo-grid>
+                        <button class="btn btn-link grid-message" id="lnkStartTimer" (click)="startTimer()" *ngIf="(userInfo.isLoggedInUser$ | async)" [disabled]="!isTodaySelected">
+                            <span class="cpa-icon cpa-icon-clock-timer"></span>
+                            <em style="margin-left: 5px">{{ 'accounting.time.recording.startTimer' | translate }}</em>
+                        </button>
+                        <button class="btn btn-link grid-message" id="lnkcopyTimeEntry" (click)="copyTimeEntry()" [disabled]="!gridOptions.canAdd || !gridOptions.enableGridAdd">
+                            <span class="cpa-icon cpa-icon-calendar-plus-o"></span>
+                            <em style="margin-left: 5px">{{ 'accounting.time.recording.copyTimeEntry' | translate }}</em>
+                        </button>
+                    </div>
+                    <ng-template #detailTemplate let-dataItem>
+                        <section class="detail-view" [ngClass]="{'with-preview': showSummary}">
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="row">
+                                        <div class="col-sm-3 field-label">
+                                            <label>{{ 'accounting.time.fields.narrative' | translate }}</label>
+                                        </div>
+                                        <div class="col-sm-9 narrative-title">
+                                            <ipx-typeahead *ngIf="!isSavedEntry(dataItem.entryNo)" name="narrative" config="narrative" [formControl]="formsService.narrativeNo" (ngModelChange)="formsService.narrativeSelected($event)" [extend-query]="narrativeExtendQuery">
+                                            </ipx-typeahead>
+                                            <ipx-typeahead *ngIf="isSavedEntry(dataItem.entryNo) && dataItem.entryNo == entryInEdit" name="narrative" config="narrative" [formControl]="formsService.narrativeNo" (ngModelChange)="formsService.narrativeSelected($event)" #narrativeTitle [extend-query]="narrativeExtendQuery">
+                                            </ipx-typeahead>
+                                            <ipx-text-field *ngIf="isSavedEntry(dataItem.entryNo) && dataItem.entryNo !== entryInEdit" name="narrative" [(ngModel)]="dataItem.narrativeTitle" [disabled]="true" (onClick)="handleClickNarrativeTitle(dataItem)">
+                                            </ipx-text-field>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: -5px;">
+                                        <div class="col-sm-3 field-label">
+                                            <label>{{ 'accounting.time.fields.narrativeText' | translate }}</label>
+                                        </div>
+                                        <div class="col-sm-9 pull-right">
+                                            <ipx-text-field *ngIf="!isSavedEntry(dataItem.entryNo)" name="narrativeText" multiLine="true" [rows]="4" [formControl]="formsService.narrativeText" (ngModelChange)="formsService.narrativeTextChanged($event)">
+                                            </ipx-text-field>
+                                            <ipx-text-field *ngIf="isSavedEntry(dataItem.entryNo) && dataItem.entryNo == entryInEdit" name="narrativeText" multiLine="true" [rows]="4" [formControl]="formsService.narrativeText" (ngModelChange)="formsService.narrativeTextChanged($event)" #narrativeText>
+                                            </ipx-text-field>
+                                            <ipx-text-field *ngIf="isSavedEntry(dataItem.entryNo) && dataItem.entryNo !== entryInEdit" [disabled]="true" name="narrativeText" multiLine="true" [rows]="4" [(ngModel)]="dataItem.narrativeText" (onClick)="handleClickNarrativeText(dataItem)">
+                                            </ipx-text-field>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="notes">
+                                            <div class="col-sm-3 field-label">
+                                                <label>{{ 'accounting.time.fields.notes' | translate }}</label>
+                                            </div>
+                                            <div class="col-sm-9 pull-right">
+                                                <ipx-text-field *ngIf="!isSavedEntry(dataItem.entryNo)" name="notes" multiLine="true" [rows]="!2" [formControl]="formsService.notes" maxlength="254">
+                                                </ipx-text-field>
+                                                <ipx-text-field *ngIf="isSavedEntry(dataItem.entryNo) && dataItem.entryNo == entryInEdit" name="notes" multiLine="true" [rows]="2" [formControl]="formsService.notes" maxlength="254" #notes>
+                                                </ipx-text-field>
+                                                <ipx-text-field *ngIf="isSavedEntry(dataItem.entryNo) && dataItem.entryNo !== entryInEdit" [disabled]="true" name="notes" multiLine="true" [rows]="2" [(ngModel)]="dataItem.notes" (onClick)="handleClickNotes(dataItem)">
+                                                </ipx-text-field>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="timeValues" class="col-sm-6">
+                                    <div class="row">
+                                        <div *ngIf="dataItem.isLastChild" class="col-sm-5">
+                                            <div class="col-sm-9 field-label">
+                                                <label>{{ 'accounting.time.fields.accumulatedDuration' | translate }}</label>
+                                            </div>
+                                            <div id="accumulatedDuration" class="col-sm-3 text-right" style="margin-top: 3px">
+                                                <span *ngIf="!!formsService.formGroup && !!formsService.elapsedTime">{{ getAggregateDuration( formsService.elapsedTime.value , dataItem.secondsCarriedForward) |
+                                                    durationFormat:
+                                                    settingsService.displaySeconds}}</span>
+                                                <span *ngIf="!gridOptions.formGroup">{{ dataItem.accumulatedTimeInSeconds | durationFormat: settingsService.displaySeconds }} </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4 field-label" [ngClass]="{'col-sm-offset-5': !dataItem.isLastChild}">
+                                            <label>{{ 'accounting.time.fields.localValue' | translate }}</label>
+                                        </div>
+                                        <div id="localValue" class="col-sm-2 text-right" style="margin-top: 3px" *ngIf="!dataItem.debtorSplits?.length">
+                                            <span>{{ dataItem.localValue | localCurrencyFormat | async }}</span>
+                                        </div>
+                                        <div id="localValue" class="col-sm-2 text-right" style="margin-top: 3px;" *ngIf="dataItem.debtorSplits?.length" (click)="debtorSplitView(dataItem)">
+                                            <span style="cursor: pointer; text-decoration: underline;" [tooltip]="'accounting.time.multiDebtor.debtorValuation.tooltip' | translate" container="body" [adaptivePosition]="false" [tooltipPlacement]="'top'">{{ dataItem.localValue | localCurrencyFormat | async }}</span>
+                                        </div>
+                                        <ipx-inline-dialog class="pull-right" style="margin-top:3px;" *ngIf="!!dataItem.localValue && formsService.staleFinancials" [content]="'accounting.time.recording.staleFinancialsWarning' | translate" [tooltipPlacement]="'bottom'">
+                                        </ipx-inline-dialog>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 field-label col-sm-offset-5">
+                                            <label>{{ 'accounting.time.fields.localDiscount' | translate }}</label>
+                                        </div>
+                                        <div id="localDiscount" class="col-sm-2 text-right" style="margin-top: 3px">
+                                            <span>{{ dataItem.localDiscount | localCurrencyFormat | async }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4 field-label  col-sm-offset-5">
+                                            <label>{{ 'accounting.time.fields.chargeOutRate' | translate }}</label>
+                                        </div>
+                                        <div id="chargeOutRate" class="col-sm-2 text-right" style="margin-top: 3px; padding-right: 3px">
+                                            <ipx-inline-dialog *ngIf="dataItem.hasDifferentCurrencies" [content]="'accounting.time.multiDebtor.differentCurrencies' | translate"
+                                                [tooltipPlacement]="'right'">
+                                            </ipx-inline-dialog>
+                                            <ipx-inline-dialog *ngIf="!dataItem.hasDifferentCurrencies && dataItem.hasDifferentChargeRates" [content]="'accounting.time.multiDebtor.differentChargeRates' | translate"
+                                                [tooltipPlacement]="'right'">
+                                            </ipx-inline-dialog>
+                                            <span>{{ dataItem.chargeOutRate | localCurrencyFormat:dataItem.foreignCurrency || dataItem.localCurrencyCode | async }}</span>
+                                        </div>
+                                    </div>
+                                    <div id="foreignValues" *ngIf="dataItem.foreignCurrency || !!dataItem.foreignValue">
+                                        <div class="row">
+                                            <div class="col-sm-4 field-label  col-sm-offset-5">
+                                                <label>{{ 'accounting.time.fields.foreignValue' | translate }}</label>
+                                            </div>
+                                            <div class="col-sm-2 text-right" style="margin-top: 3px">
+                                                <span>{{ dataItem.foreignValue | localCurrencyFormat:dataItem.foreignCurrency | async }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4 field-label  col-sm-offset-5">
+                                                <label>{{ 'accounting.time.fields.foreignDiscount' | translate }}</label>
+                                            </div>
+                                            <div class="col-sm-2 text-right" style="margin-top: 3px">
+                                                <span>{{ dataItem.foreignDiscount | localCurrencyFormat:dataItem.foreignCurrency | async }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="pull-right detail-controls" *ngIf="!isSavedEntry(dataItem.entryNo)">
+                                    <ipx-save-button [disabled]="componentInvalid() || !formsService.isFormValid" (onclick)="saveTime()" (keyup.enter)="saveTime()" [displayLabel]="true">
+                                        {{'Save' | translate}}</ipx-save-button>
+                                    <ipx-clear-button (click)="onReset(dataItem, true)" (keyup.enter)="onReset(dataItem, true)" [displayLabel]="true">
+                                        {{'Clear' | translate}}</ipx-clear-button>
+                                    <ipx-revert-button *ngIf="newChildEntry != null && !dataItem.isTimer" (click)="cancelContinued(dataItem)" [tooltipTitle]="'Discard'" #discardBtn [displayLabel]="true">
+                                        {{'Discard' | translate}}
+                                    </ipx-revert-button>
+                                    <ipx-revert-button *ngIf="newChildEntry == null && !dataItem.isTimer" (click)="cancelAdd()" [tooltipTitle]="'Discard'" [displayLabel]="true">
+                                        {{'Discard' | translate}}
+                                    </ipx-revert-button>
+                                </div>
+                                <div class="pull-right detail-controls" *ngIf="isSavedEntry(dataItem.entryNo) && dataItem.entryNo === entryInEdit && !dataItem.isTimer">
+                                    <ipx-save-button (onclick)="updateTime(dataItem)" (keyup.enter)="updateTime(dataItem)" [disabled]="!formsService.isFormValid || !formsService.hasPendingChanges" [displayLabel]="true" [displayLabel]="true">
+                                        {{'Update' | translate}}
+                                    </ipx-save-button>
+                                    <ipx-revert-button (click)="cancelEdit(dataItem)" (keyup.enter)="cancelEdit(dataItem)" #discardBtn [displayLabel]="true">
+                                        {{'Discard' | translate}}
+                                    </ipx-revert-button>
+                                </div>
+                                <div class="pull-right detail-controls" *ngIf="isSavedEntry(dataItem.entryNo) && dataItem.entryNo === entryInEdit && dataItem.isTimer">
+                                    <ipx-save-button (onclick)="updateTimer(dataItem)" (keyup.enter)="updateTimer(dataItem)" [disabled]="!formsService.isFormValid || !formsService.hasPendingChanges" [displayLabel]="true">
+                                        {{'Update' | translate}}
+                                    </ipx-save-button>
+                                    <ipx-clear-button (click)="onReset(dataItem, true)" (keyup.enter)="onReset(dataItem, true)" [displayLabel]="true"></ipx-clear-button>
+                                    <ipx-delete-button (click)="deleteTime(dataItem)" (keyup.enter)="deleteTime(dataItem)" [displayLabel]="true"></ipx-delete-button>
+                                </div>
+                            </div>
+                        </section>
+                    </ng-template>
+                </div>
+            </kendo-splitter-pane>
+            <kendo-splitter-pane size="25%" id="caseSummaryPane" *ngIf="showSummary" [collapsible]="true">
+                <div class="fixed-detail-panel-time-recording-right detail-view">
+                    <ipx-case-summary-details [caseKey]="selectedCaseKey" [isDisplayed]="true" [showLink]="true">
+                    </ipx-case-summary-details>
+                </div>
+            </kendo-splitter-pane>
+        </kendo-splitter>
+    </div>
+</div>

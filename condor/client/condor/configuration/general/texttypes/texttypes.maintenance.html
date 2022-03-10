@@ -1,0 +1,57 @@
+<style>
+    .modal-text-small {
+        margin-left: 92px;
+        width: 25% !important;
+    }
+    
+    .modal-checkbox-offset {
+        margin-left: 135px;
+    }
+</style>
+<div ng-form="vm.form.maintenance" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title" ng-switch on="vm.entity.state">
+            <div ng-switch-when="adding" translate="textType.maintenance.addTextType"></div>
+            <div ng-switch-when="duplicating" translate="textType.maintenance.duplicateTextType"></div>
+            <div ng-switch-default translate="textType.maintenance.editTextType"></div>
+        </h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts(vm.form.maintenance)">
+            <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismissAll(vm.form.maintenance)"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <ip-nav-modal ng-if="vm.isEditState()" all-items="vm.options.allItems" current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges">
+        </ip-nav-modal>
+        <div class="row">
+            <div>
+                <ip-text-field name="textTypeCode" class="modal-text-small col-sm-8" ip-required label="Code" ng-model="vm.entity.id" ng-class="{'edited': vm.form.maintenance.textTypeCode.$dirty}" data-ng-maxlength="2" ng-disabled="vm.isEditState()" ip-field-error="{{vm.getError('textTypeCode').message | translate}}"
+                    ip-autofocus="{{vm.entity.state === 'adding' || vm.entity.state === 'duplicating'}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-text-field class="col-sm-8" name="description" ip-required label="Description" ng-model="vm.entity.description" data-ng-maxlength="50" ng-class="{'edited': vm.form.maintenance.description.$dirty}" ip-autofocus="{{vm.entity.state === 'updating'}}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row col-sm-9">
+            <div class="col-sm-1"></div>
+            <div class="input-wrap-group group-inline">
+                <span translate="textType.applicableFor" class="input-wrap"></span>
+                <ip-radio-button name="usedByCases" label="textType.forCases" ng-value="false" ng-model="vm.entity.usedByName" ng-change="vm.onUsedByNameChange()" ng-class="{edited: vm.form.maintenance.usedByCases.$dirty}"></ip-radio-button>
+                <ip-radio-button name="usedByNames" label="textType.forNames" ng-value="true" ng-model="vm.entity.usedByName" ng-class="{edited: vm.form.maintenance.usedByNames.$dirty}"></ip-radio-button>
+                <ip-inline-dialog data-content="{{::'textType.applicableForHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group group-inline col-sm-8 modal-checkbox-offset">
+                <ip-checkbox name="usedByEmployee" ng-model="vm.entity.usedByEmployee" label="textType.staff" ng-class="{edited: vm.form.maintenance.usedByEmployee.$dirty && vm.entity.usedByName}" ng-disabled="vm.entity.usedByName === false"></ip-checkbox>
+
+                <ip-checkbox name="usedByIndividual" ng-model="vm.entity.usedByIndividual" label="textType.individual" ng-class="{edited: vm.form.maintenance.usedByIndividual.$dirty && vm.entity.usedByName}" ng-disabled="vm.entity.usedByName === false"></ip-checkbox>
+
+                <ip-checkbox name="usedByOrganisation" ng-model="vm.entity.usedByOrganisation" label="textType.organisation" ng-class="{edited: vm.form.maintenance.usedByOrganisation.$dirty && vm.entity.usedByName}" ng-disabled="vm.entity.usedByName === false"></ip-checkbox>
+
+            </div>
+        </div>
+    </div>
+</div>

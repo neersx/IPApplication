@@ -1,0 +1,110 @@
+<div data-ng-controller="goodsServicesComparisonController">
+    <div data-ng-show="viewData.goodsServices.length">
+        <div class="widget-box">
+            <div class="topic-header header-color-blue">
+                <h1>
+                    {{ 'caseComparison.ccHeadingGoodsServices' | translate }}
+                </h1>
+            </div>
+            <div>
+                <div class="widget-main no-padding">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-striped-goods-services table-hover">
+                                <thead>
+                                    <tr>
+                                        <th style="width:20%">&nbsp;</th>
+                                        <th style="width:40%">{{ 'caseComparison.gLblProductName' | translate }}</th>
+                                        <th>&nbsp;</th>
+                                        <th style="width:40%" colspan="2">{{ externalSystem }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-ng-repeat-start="n in viewData.goodsServices" class="table-delimiter">
+                                        <td>
+                                            <strong>{{ 'caseComparison.ccLblClass' | translate }}:</strong>
+                                        </td>
+                                        <td>{{n.class.ourValue}}</td>
+                                        <td>
+                                            <ip-checkbox class="diff" ng-class="{edited: n.class.updated}" data-ng-show="!viewData.rejectionResetable && viewData.updateable && n.class.updateable" data-ng-change="toggleGoodsServicesSelection(n)" data-ng-model="n.class.updated" ></ip-checkbox>
+                                        </td>
+                                        <td colspan="2">
+                                            <span ng-class="{highlight:n.class.different && n.class.theirValue }">{{n.class.theirValue}}</span>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="showFirstUseDate">
+                                        <td>
+                                            <strong>{{ 'caseComparison.ccLblFirstUsedDate' | translate }}:</strong>
+                                        </td>
+                                        <td>
+                                            <span data-ng-show="n.firstUsedDate.ourValue">{{ n.firstUsedDate.ourValue | date: firstUsedDateFormat(n.firstUsedDate.format) }}</span>
+                                        </td>
+                                        <td>
+                                            <ip-checkbox class="diff" ng-class="{edited: n.firstUsedDate.updated}" data-ng-show="!viewData.rejectionResetable && viewData.updateable && n.firstUsedDate.updateable" data-ng-model="n.firstUsedDate.updated" ></ip-checkbox>
+                                        </td>
+                                        <td>
+                                            <span data-ng-show="n.firstUsedDate.theirValue" data-ng-class="{highlight:n.firstUsedDate.different}">{{n.firstUsedDate.theirValue | date: firstUsedDateFormat(n.firstUsedDate.format)}}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="showFirstUseDate">
+                                        <td>
+                                            <strong>{{ 'caseComparison.ccLblFirstUsedInCommerceDate' | translate }}:</strong>
+                                        </td>
+                                        <td>{{ n.firstUsedDateInCommerce.ourValue | date: firstUsedDateFormat(n.firstUsedDateInCommerce.format) }}</td>
+                                        <td>
+                                            <ip-checkbox class="diff" ng-class="{edited: n.firstUsedDateInCommerce.updated}" data-ng-show="!viewData.rejectionResetable && viewData.updateable && n.firstUsedDateInCommerce.updateable" data-ng-model="n.firstUsedDateInCommerce.updated" ></ip-checkbox>
+                                        </td>
+                                        <td>
+                                            <span data-ng-show="n.firstUsedDateInCommerce.theirValue" ng-class="{highlight:n.firstUsedDateInCommerce.different}">{{n.firstUsedDateInCommerce.theirValue | date: firstUsedDateFormat(n.firstUsedDateInCommerce.format)}}</span>
+                                        </td>
+                                        <td>
+                                            <span data-ng-show="n.firstUsedDateInCommerce && n.firstUsedDateInCommerce.parseError" class="text-muted"><i class="cpa-icon cpa-icon-info-circle">&nbsp;<span>{{n.firstUsedDateInCommerce.parseError}}</span></i>
+                                            </span>
+                                        </td>
+                                    </tr>                                     
+                                    <tr ng-if="showLanguage">
+                                        <td>
+                                            <strong>{{ 'caseComparison.ccLblLanguage' | translate }}:</strong>
+                                        </td>
+                                        <td>
+                                            <select style="width: 90%;" id="ourLanguage" name="ourLanguage" ng-model="n.language.ourValue" ng-options="option.value for option in languages track by option.key" ng-change="onOurLanguageChange(n)">
+                                                <option ng-hide="!n.language.ourValue || !n.language.ourValue.value" value=""></option>
+                                            </select>  
+                                        </td> 
+                                        <td></td>
+                                        <td>
+                                            <select ng-if="n.multipleImportedLanguage" style="width: 90%;" id="theirLanguage" name="theirLanguage" ng-model="n.language.theirValue" ng-options="option.value for option in languages track by option.key" ng-change="onTheirLanguageChange(n)">
+                                                <option ng-hide="!n.language.theirValue || !n.language.theirValue.value" value=""></option>
+                                            </select>
+                                            <div ng-if="!n.multipleImportedLanguage">{{ n.language.theirValue.value }}</div>
+                                        </td>                                       
+                                    </tr>
+                                    <tr data-ng-repeat-end class="delimiter">
+                                        <td>
+                                            <strong>{{ 'caseComparison.ccLblText' | translate }}:</strong>
+                                        </td>
+                                        <td>                                           
+                                            <div style="overflow: auto; max-height: 100px">{{ n.text.ourValue }}</div>
+                                        </td>
+                                        <td>
+                                            <ip-checkbox class="diff" ng-class="{edited: n.text.updated}" data-ng-show="!viewData.rejectionResetable && viewData.updateable && n.text.updateable" data-ng-model="n.text.updated"></ip-checkbox>
+                                            <div class="view-comparison-details btn-icon" data-ng-show="!viewData.rejectionResetable && viewData.updateable && (n.text.updateable || n.text.ourValue && n.text.theirValue)" data-ng-click="showTextCompare(n.text)" title="{{ 'caseComparison.ccTooltipExpandCompare' | translate:{externalSystem: externalSystem} }}"
+                                                style="margin-top:3px">
+                                                <i class="cpa-icon cpa-icon-expand"></i>&nbsp;
+                                            </div>
+                                        </td>
+                                        <td colspan="2">
+                                            <div data-ng-class="{highlight:n.text.different && n.text.theirValue}" style="overflow: auto; max-height: 100px">{{ n.text.theirValue }}</div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="space-10"></div>
+    </div>
+</div>

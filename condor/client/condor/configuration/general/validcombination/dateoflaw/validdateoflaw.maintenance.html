@@ -1,0 +1,46 @@
+<div ng-form="vm.form" data-ng-controller="ValidDateOfLawMaintenanceController as dCtrl" translate-namespace="picklist.dateoflaw">
+    <div class="row" style="margin-left: 12.7%">
+        <div class="col-sm-6">
+            <ip-datepicker id="dateOfLaw" data-date-only-string="model.defaultDateOfLaw.value" ip-required name="dateOfLaw" label="{{'picklist.dateoflaw.Type' | translate}}" ng-model="model.defaultDateOfLaw.date" is-disabled="state === 'viewing' || state === 'updating'" on-blur="dCtrl.onDateBlur"></ip-datepicker>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <ip-typeahead id="jurisdiction" ip-required data-label=".jurisdiction" name="jurisdiction" data-config="jurisdiction" ng-model="model.defaultDateOfLaw.jurisdiction" ng-disabled="state === 'viewing' || state === 'updating'" ng-class="{edited: vm.form.jurisdiction.$dirty}">
+            </ip-typeahead>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <ip-typeahead id="propertyType" ip-required data-label=".propertyType" name="propertyType" data-config="propertyType" ng-model="model.defaultDateOfLaw.propertyType" ng-disabled="state === 'viewing' || state === 'updating'" ng-class="{edited: vm.form.propertyType.$dirty}">
+            </ip-typeahead>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <ip-typeahead id="determiningEvent" ip-required data-label=".defaultDeterminingEvent" name="determiningEvent" data-config="event" ng-model="model.defaultDateOfLaw.defaultEventForLaw" ng-disabled="state === 'viewing'" ng-change="dCtrl.validate()" ng-class="{edited: vm.form.determiningEvent.$dirty}">
+            </ip-typeahead>
+        </div>
+        <ip-inline-dialog style="margin-left: 1%" data-content="{{::'picklist.dateoflaw.toolTipDeterminingEvent' | translate}}" data-placement="right"></ip-inline-dialog>
+    </div>
+    <div class="row">
+        <div class="col-sm-10">
+            <ip-typeahead id="retrospectiveEvent" data-label=".defaultRetrospectiveEvent" name="retrospectiveEvent" data-config="event" ng-model="model.defaultDateOfLaw.defaultRetrospectiveEvent" ng-disabled="state === 'viewing'" ng-class="{edited: vm.form.retrospectiveEvent.$dirty}">
+            </ip-typeahead>
+        </div>
+        <ip-inline-dialog style="margin-left: 1%" data-content="{{::'picklist.dateoflaw.toolTipRetrospectiveEvent' | translate}}" data-placement="right"></ip-inline-dialog>
+    </div>
+    <hr>
+    <div class="row">
+        <div style="margin-top: -3%">
+            <h1>{{'picklist.dateoflaw.affectedActions' | translate}}</h1>
+        </div>
+        <div class="text-right" ng-if="true" style="margin-top: -5%">
+            <ip-add-button ng-click="dCtrl.onAddClick()" ng-disabled="dCtrl.hasError()" class="pull-right" name="add-affected-actions"></ip-add-button>
+        </div>
+    </div>
+    <div class="row inline-editing">
+        <ip-kendo-grid data-id="affectedActions" data-show-add="true" data-on-add-click="dCtrl.onAddClick()" data-add-disabled="dCtrl.hasError()" data-grid-options="affectedActions.gridOptions">
+        </ip-kendo-grid>
+    </div>
+</div>

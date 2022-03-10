@@ -1,0 +1,12 @@
+.big-bold-error {
+    font-family: 'Open Sans Condensed',sans-serif;
+    font-weight: 300;
+    font-size: 48px;
+    line-height: 65px;
+}
+
+.box-in-middle {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}

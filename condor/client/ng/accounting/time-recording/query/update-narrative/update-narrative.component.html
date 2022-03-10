@@ -1,0 +1,28 @@
+<form id="updateNarrative" [formGroup]="formGroup" *ngIf="formGroup">
+  <div class="modal-header">
+    <h2 class="modal-title">{{'accounting.time.query.updateNarrative' | translate}}</h2>
+  </div>
+  <div class="modal-body">
+    <ipx-inline-alert [type]="'info'" [text]="'accounting.time.query.updateNarrativeInfo'">
+    </ipx-inline-alert>
+    <br>
+    <section>
+      <div class="row">
+        <div class="col-sm-12">
+          <ipx-typeahead [label]="'accounting.time.fields.narrative'" name="narrative" config="narrative" [formControl]="narrative" [extend-query]="narrativeExtendQuery">
+          </ipx-typeahead>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <ipx-text-field [label]="'accounting.time.fields.narrativeText'" required name="narrativeText" multiLine="true" [rows]="4" [formControl]="narrativeText">
+          </ipx-text-field>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-save" name="apply" (click)="apply()" [disabled]="formGroup.invalid || !formGroup.dirty">{{'button.apply' | translate}}</button>
+    <button type="button" class="btn" name="cancel" (click)="cancel()">{{'button.cancel' | translate}}</button>
+  </div>
+</form>

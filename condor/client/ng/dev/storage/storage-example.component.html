@@ -1,0 +1,21 @@
+<div>
+    <div class="col-sm-10 input-wrap switch">
+        <input id="showPreviewSwitch" [checked]="showPreview" type="checkbox">
+        <label for="showPreviewSwitch" [translate]="'Preview from Case Search'"></label>
+    </div>
+
+    <div class="col-sm-10 input-wrap switch">
+        <input id="showPreviewSwitchLocal" [checked]="showPreviewLocal" type="checkbox" (change)="changeShowPreviewLocal()">
+        <label for="showPreviewSwitchLocal" [translate]="'caseSearchResults.togglePreview'"></label>
+    </div>
+
+    <div class="col-sm-10 input-wrap">
+        Case View Page No value (local storage): 
+        <b>{{ caseViewActionPageNumberLocal }}</b>
+    </div>
+
+    <div class="col-sm-10 input-wrap">
+        Case View Page No value (local cache): 
+        <b>{{ caseViewActionPageNumberCache }}</b>
+    </div>
+</div>

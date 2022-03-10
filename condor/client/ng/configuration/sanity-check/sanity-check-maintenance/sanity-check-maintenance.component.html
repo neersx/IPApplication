@@ -1,0 +1,20 @@
+<div id="sanity-check-maintenance" [ipxConfirmBeforeRouteChange]="isPageDirty">
+    <ipx-sticky-header>
+        <ipx-page-title-save [title]="'sanityCheck.configurations.maintenance.' + (isEditMode ? 'pageTitleEdit' : 'pageTitleAdd')" [subtitle]="'sanityCheck.configurations.search.' + matchType" (onSave)="save()" (onDiscard)="reload()" [isSaveEnabled]="isSaveEnabled"
+            [isDiscardEnabled]="isDiscardEnabled">
+            <before-title>
+                <ipx-level-up-button *ngIf="stateParams.levelUpState && stateParams.matchType" [tooltip]="'caseview.backToSearchResults' | translate" [toState]="stateParams.levelUpState" [additionalStateParams]="{matchType: stateParams.matchType}">
+                </ipx-level-up-button>
+            </before-title>
+        </ipx-page-title-save>
+        <div class="title-header">
+            <div class="col-sm-12">
+                <ipx-detail-page-nav *ngIf="navData" [ids]="navData.keys" paramKey="rowKey" [routerState]="navigationState" [routerParams]="stateParams" [totalRows]="navData.totalRows" [fetchNext]="navData.fetchCallback" [pageSize]="navData.pageSize">
+                </ipx-detail-page-nav>
+            </div>
+        </div>
+    </ipx-sticky-header>
+
+    <ipx-topics #topicHost *ngIf="topicOptions" [options]="topicOptions">
+    </ipx-topics>
+</div>

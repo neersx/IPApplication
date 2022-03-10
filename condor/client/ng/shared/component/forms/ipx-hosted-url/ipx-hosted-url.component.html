@@ -1,0 +1,21 @@
+<ng-container *ngIf="isHosted">
+    <ipx-currency class="pull-right" *ngIf="format === 'Currency' || format === 'Local Currency'; else debtorRestriction" [renderHyperlink]="action && key && showLink" (onClick)="postMessage()" [value]="dataField?.value"
+        [decimalPlaces]="decimalPlaces" [currencyCode]="currencyCode"></ipx-currency>
+    <ng-template #debtorRestriction>
+        <ipx-debtor-status-icon style="text-align: center;" *ngIf="action === 'DebtorStatusIcon' ; else linkTypeWithoutHyperlink" [flagDescription]="description" [debtorAction]="debtorAction"></ipx-debtor-status-icon>
+    </ng-template>
+    <ng-template #linkTypeWithoutHyperlink>
+        <span *ngIf="action === 'IconImageKey' || action === 'ROIMoreInfo' || action === 'SupplierRestrictionIcon'; else linkWithInheritedIcon">{{description}}</span>
+    </ng-template>
+    <ng-template #linkWithInheritedIcon>
+        <a *ngIf="action === 'NameDetails' && key && showLink; else default" (click)="postMessage() ">{{description}}
+            <ipx-inline-dialog  style="margin-left: 5px;" *ngIf="isInherited" name="inheritance" [icon]="'cpa-icon text-blue-inherited cpa-icon-inheritance'" container="body" [tooltipPlacement]="'right'" [content]="'caseview.affectedCases.setAgent.inheritedName' | translate">
+            </ipx-inline-dialog>
+        </a>
+    </ng-template>
+    <ng-template #default>
+        <a *ngIf="(action && key && showLink)" (click)="postMessage() ">{{description}}</a>
+        <span *ngIf="!(action && key && showLink)">{{description}}</span>
+    </ng-template>
+</ng-container>
+<ng-content *ngIf="!isHosted"></ng-content>

@@ -1,0 +1,52 @@
+<div class="container-fluid">
+    <div class="col-sm-11" style="margin-bottom: -15px;    margin-top: -10px;">
+        <h3>{{('accounting.billing.step2.title') | translate}}</h3>
+    </div>
+</div>
+<hr>
+<ng-template #loading>
+    <div> {{('accounting.billing.step2.referenceLoading') | translate}}</div>
+</ng-template>
+
+<div *ngIf="defaultBillReference; else loading" class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1 article-label text-right">
+            <span translate="accounting.billing.step2.inReferenceTo"></span>
+        </div>
+        <div class="col-sm-11">
+            <button name="btnCopyCaseTitle" [disabled]="isFinalised" (click)="copyCaseTitle()"
+                style="margin-bottom: 5px; margin-left: 9px; color:#fff;background-color: #4C4CD7;border-color: #2D2D9A;text-decoration: none;" class="btn"> Copy
+                Case Titles as
+                Reference</button>
+            <ipx-text-field name="referenceText" [disabled]="isFinalised" [ngModel]="defaultBillReference.ReferenceText" multiline rows="5"></ipx-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1 article-label text-right">
+            <span translate="accounting.billing.step2.billScope"></span>
+        </div>
+        <div class="col-sm-11">
+            <ipx-text-field name="billScope" [ngModel]="defaultBillReference.BillScope" [disabled]="isFinalised" multiline rows="5"></ipx-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1 article-label text-right" style="margin-top: 7px;">
+            <span translate="accounting.billing.step2.regarding"></span>
+        </div>
+        <div class="col-sm-11">
+            <div style="width: 300px;">
+                <ipx-typeahead name="narrative" [disabled]="isFinalised" config="narrative" [ngModel]="narrativePickList" (ngModelChange)="onNarrativeChange($event)" [extend-query]="narrativeExtendQuery">
+                </ipx-typeahead>
+            </div>
+            <ipx-text-field name="regardingText" [ngModel]="defaultBillReference.Regarding" [disabled]="isFinalised" multiline rows="4"></ipx-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1 article-label text-right">
+            <span translate="accounting.billing.step2.statementText"></span>
+        </div>
+        <div class="col-sm-11">
+            <ipx-text-field name="statementText" [ngModel]="defaultBillReference.StatementText" [disabled]="isFinalised" multiline rows="5"></ipx-text-field>
+        </div>
+    </div>
+</div>

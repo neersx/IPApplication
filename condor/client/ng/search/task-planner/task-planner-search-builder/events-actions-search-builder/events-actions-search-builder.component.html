@@ -1,0 +1,80 @@
+<form name="eventsActionsForm" #eventsActionsForm="ngForm">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.eventsAndActions.event' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator class="col-sm-2" name="eventOperator" [(ngModel)]="formData.event.operator" [operatorsGroup]="operatorCombinations.EqualExist" (onChange)="changeOperator('event')">
+      </ipx-dropdown-operator>
+      <div class="col-sm-6" *ngIf="formData.event.operator!==searchOperator.exists && formData.event.operator!==searchOperator.notExists">
+        <ipx-typeahead name="event" multiselect multipick config="event" [(ngModel)]="formData.event.value"></ipx-typeahead>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.eventsAndActions.eventCategory' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator class="col-sm-2" name="eventCategoryOperator" [(ngModel)]="formData.eventCategory.operator" [operatorsGroup]="operatorCombinations.EqualExist" (onChange)="changeOperator('eventCategory')">
+      </ipx-dropdown-operator>
+      <div class="col-sm-6" *ngIf="formData.eventCategory.operator!==searchOperator.exists && formData.eventCategory.operator!==searchOperator.notExists">
+        <ipx-typeahead name="eventCategory" multiselect multipick config="eventCategory" [(ngModel)]="formData.eventCategory.value"></ipx-typeahead>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.eventsAndActions.eventGroup' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator class="col-sm-2" name="eventGroupOperator" [(ngModel)]="formData.eventGroup.operator" [operatorsGroup]="operatorCombinations.EqualExist" (onChange)="changeOperator('eventGroup')">
+      </ipx-dropdown-operator>
+      <div class="col-sm-6" *ngIf="formData.eventGroup.operator!==searchOperator.exists && formData.eventGroup.operator!==searchOperator.notExists">
+        <ipx-typeahead name="eventGroup" multiselect multipick config="eventGroup" [(ngModel)]="formData.eventGroup.value"></ipx-typeahead>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="showEventNoteType">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.eventsAndActions.eventNoteType' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator class="col-sm-2" name="eventNoteTypeOperator" [(ngModel)]="formData.eventNoteType.operator" [operatorsGroup]="operatorCombinations.EqualExist" (onChange)="changeOperator('eventNoteType')">
+      </ipx-dropdown-operator>
+      <div class="col-sm-6" *ngIf="formData.eventNoteType.operator!==searchOperator.exists && formData.eventNoteType.operator!==searchOperator.notExists">
+        <ipx-typeahead name="eventNoteType" multiselect multipick config="eventNoteType" [(ngModel)]="formData.eventNoteType.value"></ipx-typeahead>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.eventsAndActions.eventNotes' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator class="col-sm-2" name="eventNotesOperator" [(ngModel)]="formData.eventNotes.operator" [operatorsGroup]="operatorCombinations.StartEndExist" (onChange)="changeOperator('eventNotes')">
+      </ipx-dropdown-operator>
+      <ipx-text-field class="col-sm-6" *ngIf="formData.eventNotes.operator!==searchOperator.exists && formData.eventNotes.operator!==searchOperator.notExists" name="eventNotes" label=""
+        [(ngModel)]="formData.eventNotes.value"></ipx-text-field>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-2 text-right">
+        <label class="marginTop">{{'taskPlanner.searchBuilder.eventsAndActions.action' | translate}}</label>
+      </div>
+      <ipx-dropdown-operator class="col-sm-2" name="actionOperator" [(ngModel)]="formData.action.operator" [operatorsGroup]="operatorCombinations.EqualExist" (onChange)="changeOperator('action')">
+      </ipx-dropdown-operator>
+      <div class="col-sm-6" *ngIf="formData.action.operator!==searchOperator.exists && formData.action.operator!==searchOperator.notExists">
+        <ipx-typeahead name="action" multiselect multipick config="action" [(ngModel)]="formData.action.value"></ipx-typeahead>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-10 text-right">
+        <ipx-checkbox name="chkRenewals" [(ngModel)]="formData.isRenewals" label="taskPlanner.searchBuilder.eventsAndActions.renewals">
+        </ipx-checkbox>
+        <ipx-checkbox name="chkNonRenewals" [(ngModel)]="formData.isNonRenewals" label="taskPlanner.searchBuilder.eventsAndActions.nonRenewals">
+        </ipx-checkbox>
+        <ipx-checkbox name="chkClosed" [(ngModel)]="formData.isClosed" label="taskPlanner.searchBuilder.eventsAndActions.closed">
+        </ipx-checkbox>
+      </div>
+    </div>
+
+  </div>
+</form>

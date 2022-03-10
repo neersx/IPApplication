@@ -1,0 +1,47 @@
+<ipx-inline-alert *ngIf="signingIn" [type]="'info'" [text]="'dmsIntegration.signingIn'">
+</ipx-inline-alert>
+<div *ngIf="(service.isOAuth2Error$ | async) === true" style="text-align: center;">
+    <ipx-inline-alert [type]="'info'" [text]="'dmsIntegration.iManage.connectionErrors.oauth2'">
+        <a (click)="loginDms()" style="cursor: pointer;"> {{'dmsIntegration.iManage.connectionErrors.oauth2iManage'| translate}}</a>
+    </ipx-inline-alert>
+</div>
+<div *ngIf="dmsViewData && (service.isOAuth2Authenticated$ | async)===true">
+    <div *ngIf="!treeLoading">
+        <div *ngIf="errors">
+            <ipx-inline-alert *ngFor="let error of errors; trackBy: error" [type]="'warning'" [text]="'dmsIntegration.iManage.connectionErrors.' + error">
+            </ipx-inline-alert>
+        </div>
+        <div *ngIf="(!data || data.length === 0) && !errors">
+            <ipx-inline-alert [type]="'info'" [text]="'noResultsFound'"></ipx-inline-alert>
+        </div>
+        <div class="row m-height-100-ofv" *ngIf="data && data.length > 0">
+            <kendo-splitter id="dms-splitter" orientation="horizontal" class="k-splitter-resizable tree-grid-splitter">
+                <kendo-splitter-pane id="dms-folders" size="15%">
+                    <div class="tree-pane">
+                        <button class="btn btn-link grid-message" id="openIniManage" [disabled]="!(selectedId && selectedId.siteDbId && workspaceIwl)" (click)="openIniManage()" style="margin: 5px 0">
+                            <span class="cpa-icon cpa-icon-share-square-o"></span>
+                            <em style="margin-left: 5px">{{ 'caseview.caseDocumentManagementSystem.openIniManage' | translate }}</em>
+                        </button>
+                        <kendo-treeview #treeView [nodes]="data" textField="name" [children]="fetchChildren" [hasChildren]="hasChildren" (selectionChange)="handleSelection($event)" kendoTreeViewExpandable
+                                        [expandedKeys]="expandedKeys" kendoTreeViewSelectable [selectedKeys]="selectedKeys">
+                            <ng-template kendoTreeViewNodeTemplate let-dataItem>
+                                <ipx-icon [large]="false" [name]="dataItem.isFolderEmpty ? 'folder-o' : folderTypeIconMap[dataItem.folderType] || 'folder'">
+                                </ipx-icon>
+                                <span style="padding-left: 5px;" [tooltip]="dataItem.name">{{dataItem.name}}</span>
+                            </ng-template>
+                        </kendo-treeview>
+                    </div>
+                </kendo-splitter-pane>
+                <kendo-splitter-pane id="dms-documents">
+                    <div class="tree-detail">
+                        <dms-documents [selectedId]="selectedId" [callerType]="callerType" [dmsViewData]="dmsViewData" (onDocumentSelected)="documentSelected($event)">
+                        </dms-documents>
+                    </div>
+                </kendo-splitter-pane>
+            </kendo-splitter>
+        </div>
+    </div>
+    <div *ngIf="treeLoading" class="row" style="height: 100px;">
+        <div class="col-sm-12 k-loading-image" style="position: relative;"></div>
+    </div>
+</div>

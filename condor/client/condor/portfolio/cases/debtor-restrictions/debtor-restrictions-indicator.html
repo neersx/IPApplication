@@ -1,0 +1,5 @@
+<span ng-if="vm.severity" class="cpa-icon cpa-icon-flag debtor-restrictions" ng-class="::{ 
+    'error': vm.severity === 'error', 
+    'warning': vm.severity === 'warning',
+    'info': vm.severity === 'information' }" ip-tooltip="{{:: vm.description }}">
+</span>

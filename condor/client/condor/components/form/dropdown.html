@@ -1,0 +1,16 @@
+<div class="input-wrap" ng-class="{error: vm.ngModel.$invalid, warning: vm.ngModel.$valid && vm.warningText()}" ng-click="vm.ngModel.$setTouched()">
+    <label ng-if="::vm.label" translate="{{::vm.label}}" translate-values="{{vm.labelValue}}" for="dropdown{{::vm.id}}"></label>
+    <select ng-model="vm.model"
+            ng-options="{{vm.transform(vm.options)}}"
+            ng-disabled="vm.disabled"
+            ng-change="vm.change()"
+            id="dropdown{{::vm.id}}">
+            <option ng-if="vm.optional" value="">{{vm.optionalValue | translate}}</option>
+    </select>
+    <span class="input-action tooltip-error">
+        <span class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{(vm.getError() || vm.errorText()) | translate }}" tooltip-class="tooltip-error"></span>
+    </span>
+    <span class="input-action tooltip-warning">
+        <span class="cpa-icon cpa-icon-exclamation-circle" uib-tooltip="{{vm.warningText() | translate }}" tooltip-class="tooltip-warning"></span>
+    </span>
+</div>

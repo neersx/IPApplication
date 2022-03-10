@@ -1,0 +1,53 @@
+<div id="entryInheritanceConfirmation" translate-namespace="workflows.entrycontrol.inheritanceConfirmation">
+    <div class="modal-header">
+        <h2 class="modal-title" translate=".title"></h2>
+    </div>
+    <div class="modal-body">
+        <div class="input-wrap" translate=".changesMessage"></div>
+        <div id="breakingItems" ng-if="vm.breakingItems &amp;&amp; vm.breakingItems.length>0">
+            <div class="row">
+                <h3 translate="Breaking Changes"></h3>
+            </div>
+            <div class="input-wrap" translate=".breakMessage">
+            </div>
+            <div class="row" ng-repeat="item in vm.breakingItems">
+                <div class="col-sm-2 col-sm-offset-1">
+                    <a href="#/configuration/rules/workflows/{{item.id}}" target="_blank">{{item.id}}</a>
+                </div>
+                <div class="col-sm-9">
+                    <a href="#/configuration/rules/workflows/{{item.id}}" target="_blank">{{item.description}}</a>
+                </div>
+            </div>
+        </div>
+
+        <div id="applyChangesItems" ng-if="vm.items &amp;&amp; vm.items.length>0 ">
+            <h3 class="row" translate="Apply Changes" ng-if="vm.breakingItems &amp;&amp; vm.breakingItems.length>0"></h3>
+            <div class="input-wrap" translate=".message">}
+            </div>
+            <div id="items">
+                <div class="row" ng-repeat="item in vm.items">
+                    <div class="col-sm-2 col-sm-offset-1">
+                        <a href="#/configuration/rules/workflows/{{item.id}}" target="_blank">{{item.id}}</a>
+                    </div>
+                    <div class="col-sm-9">
+                        <a href="#/configuration/rules/workflows/{{item.id}}" target="_blank">{{item.description}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="pull-right col-sm-12 modal-footer-buttons">
+                <div class="footerCheckBox withInfo" ng-if="vm.items &amp;&amp; vm.items.length>0">
+                    <div>
+                        <ip-checkbox label=".checkboxLabel" ng-model="vm.applyChangesToChildren" data-info="workflows.entrycontrol.inheritanceConfirmation.blurb">
+                        </ip-checkbox>
+                    </div>
+                </div>
+                <button type="button" class="btn" data-ng-click="vm.cancel()" translate="button.cancel"></button>
+                <button type="button" class="btn btn-primary" data-ng-click="vm.proceed()" translate="button.proceed"></button>
+            </div>
+        </div>
+    </div>
+</div>

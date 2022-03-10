@@ -1,0 +1,22 @@
+<div kendo-splitter k-options="vm.splitterDetails.options" id="mainContent" class="main-content">
+    <div id="leftBar">
+        <collapsible-panel pinned="vm.leftBarExpanded">
+            <ul kendo-menu k-options="vm.menuDetails.options" class="navbar-nav main-menu" style="width:100%"
+                id="mainMenu" ng-class="{'collapsed': !vm.leftBarExpanded}" k-ng-delay="vm.menuDetails.options">
+            </ul>
+        </collapsible-panel>
+
+    </div>
+    <div id="mainPane" ng-class="{'expanded': vm.leftBarExpanded}" class="main-pane">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div ui-view></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="rightBar">
+        <dng-Quick-Nav ng-if="vm.appContext"></dng-Quick-Nav>
+    </div>
+</div>

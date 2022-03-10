@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{'currencies.history.title'}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="title-header">
+    <div class="col-sm-12">
+        <div class="label-value col-sm-6" style="margin-left: 10px; margin-top: 4px;">
+            <label translate="currencies.history.currency"></label>
+            <span class="text" id="currencyDesc">{{ currencyDesc | async }}</span>
+            <span class="text" id="currencyDesc">{{ ' (' + currencyId + ')' }}</span>
+        </div>
+        <ipx-detail-page-nav *ngIf="navData" [totalRows]="navData.totalRows" [currentKey]="currentKey" [fetchNext]="navData.fetchCallback" [noParams]="true" [ids]="navData.keys" [pageSize]="navData.pageSize"
+            (nextResult)="getNextItemDetail($event)">
+        </ipx-detail-page-nav>
+    </div>
+</div>
+<div class="modal-body">
+    <br>
+    <div class="row">
+        <ipx-kendo-grid id="historyGrid" [dataOptions]="gridOptions" *ngIf="gridOptions">
+            <ng-template ipxTemplateColumnField="effectiveDate" let-dataItem>
+                <span class="text-nowrap">{{ dataItem.effectiveDate | localeDate }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="bankRate" let-dataItem>
+                <span>{{ dataItem.bankRate | number : '1.4-4' }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="buyRate" let-dataItem>
+                <span>{{ dataItem.buyRate | number : '1.4-4' }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="sellRate" let-dataItem>
+                <span>{{ dataItem.sellRate | number : '1.4-4' }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="buyFactor" let-dataItem>
+                <span>{{ dataItem.buyFactor | number : '1.4-4' }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="sellFactor" let-dataItem>
+                <span>{{ dataItem.sellFactor | number : '1.4-4' }}</span>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

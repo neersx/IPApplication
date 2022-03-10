@@ -1,0 +1,44 @@
+<div id="duplicateEntryModal">
+  <div class="modal-header">
+    <h2 class="modal-title">{{'accounting.time.duplicateEntry.title' | translate}}</h2>
+    <div class="modal-header-controls">
+      <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+  </div>
+  <div class="modal-body" [formGroup]="form" *ngIf="form">
+    <div class="row">
+      <ipx-inline-alert [type]="'info'" [text]="'accounting.time.duplicateEntry.info'"></ipx-inline-alert>
+    </div>
+    <div class="row" style="margin-top: 10px">
+      <div class="input-wrap-group col-sm-9" style="margin-top: 5px">
+        <ipx-date-picker required id="startDate" ngDefaultControl formControlName="startDate" apply-edited label="accounting.time.duplicateEntry.start">
+        </ipx-date-picker>
+        <ipx-date-picker required id="endDate" ngDefaultControl formControlName="endDate" apply-edited label='accounting.time.duplicateEntry.end' [laterThan]="startDateValue" [includeSameDate]="true"
+          [displayError]="true">
+        </ipx-date-picker>
+      </div>
+    </div>
+    <div class="input-wrap-group">
+      <div class="row input-wrap" style="margin-top: 10px">
+        <span>{{'accounting.time.duplicateEntry.daysTitle'| translate}}</span>
+      </div>
+      <div class="row" style="margin-top: 5px">
+        <div class="input-wrap-group input-wrap col-sm-12" [ngClass]="{'error': !weekDays.valid}">
+          <ng-container formArrayName="weekDays">
+            <ipx-checkbox *ngFor="let dayControl of weekDays.controls;let i = index;trackBy:trackByFn" label="{{ 'common.dayOfWeekShort.' + getLabelText(i) | translate }}" [formControlName]="i" apply-edited>
+            </ipx-checkbox>
+          </ng-container>
+          <div class="input-action">
+            <span *ngIf="!weekDays.valid" class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="'accounting.time.duplicateEntry.selectOneCheckbox' | translate" containerClass="tooltip-error"
+              [tooltipPlacement]="'auto'" style="display: inline;">
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer" *ngIf="form">
+    <button type="button" class="btn btn-save" name="save" (click)="addDuplicateEntries()" [disabled]="!form.valid">{{'Save' | translate}}</button>
+    <button type="button" class="btn" name="cancel" (click)="cancel()">{{'Cancel' | translate}}</button>
+  </div>
+</div>

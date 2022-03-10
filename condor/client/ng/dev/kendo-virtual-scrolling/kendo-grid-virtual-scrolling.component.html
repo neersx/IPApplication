@@ -1,0 +1,28 @@
+<style>
+    .k-grid tbody td {
+        white-space: nowrap;
+        line-height: 20px;
+        padding: 8px 12px;
+    }
+</style>
+
+<div class="row">
+    <h3>Ipx Kendo Grid - Virtual Scrolling</h3>
+    <div class="col-sm-12">
+        <ipx-kendo-grid #resultsGrid [dataOptions]="gridOptions">
+            <ng-template ipxTemplateColumnField="executePermission" let-dataItem>
+                <ipx-threestate-checkbox [(ngModel)]="dataItem.executePermission"></ipx-threestate-checkbox>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="insertPermission" let-dataItem>
+                <ipx-threestate-checkbox [(ngModel)]="dataItem.insertPermission"></ipx-threestate-checkbox>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="updatePermission" let-dataItem>
+                <ipx-threestate-checkbox [(ngModel)]="dataItem.updatePermission"></ipx-threestate-checkbox>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="deletePermission" let-dataItem>
+                <ipx-threestate-checkbox [(ngModel)]="dataItem.deletePermission"></ipx-threestate-checkbox>
+            </ng-template>
+        </ipx-kendo-grid>
+
+    </div>
+</div>

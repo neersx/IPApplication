@@ -1,0 +1,18 @@
+<div class="input-wrap" [ngClass]="{ error: showError() || (showError$ | async), warning: !invalid && warningText}">
+    <label *ngIf="label" [translate]="label" [translateParams]="labelValue" [attr.for]="identifier"></label>
+    <select [attr.id]="identifier" [(ngModel)]="value" (change)="change(value)" #selectref [ngClass]="{ 'edited' :controledited()}" [disabled]="disabled">
+        <option *ngIf="isOptional" value="">{{ optionalValue | translate }}</option>
+        <option [ngValue]="item[keyField] != null? item[keyField]: item" *ngFor="let item of _options; trackBy: trackByFn">
+            {{( applyTranslate? ((displayField ? item[displayField] : item) | translate)
+            :(displayField ? item[displayField] : item))}}
+        </option>
+    </select>
+    <span class="input-action tooltip-error">
+        <span class="cpa-icon cpa-icon-exclamation-triangle" [tooltip]="tolTemplate" containerClass="tooltip-error"></span>
+    </span>
+    <ng-template #tolTemplate><span [innerHtml]="getError() | translate: getErrorParams()"></span>
+    </ng-template>
+    <span class="input-action tooltip-warning">
+        <span class="cpa-icon cpa-icon-exclamation-circle" [tooltip]="warningText | translate" containerClass="tooltip-warning"></span>
+    </span>
+</div>

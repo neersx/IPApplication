@@ -1,0 +1,106 @@
+<style>
+.login-loading-info {
+    position: absolute;
+    left: 39.25%;
+    top: 35%;
+    z-index: 1000;
+}
+
+.loader {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0;
+}
+
+.spinner {
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+    border-radius: 50%;
+    border-top-left-radius: 0;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.spinner .pie {
+    width: 50%;
+    height: 50%;
+    float: left;
+    display: block;
+    animation: colorchange .8s infinite;
+}
+
+.pie.delay-1 {
+    animation-delay: 0.1s;
+}
+
+.pie.delay-2 {
+    animation-delay: 0.2s;
+}
+
+.pie.delay-3 {
+    animation-delay: 0.3s;
+}
+
+@keyframes colorchange {
+    0% {
+        background: #bf1822;
+    }
+    50% {
+        background: white;
+    }
+}
+</style>
+<div id="confirmModal">
+    <div ng-if="autoLogin">
+        <div class="modal-header">
+            <h2 class="modal-title" translate="authentication.checkingSession"></h2>
+        </div>
+        <div class="modal-body">
+            <h3 style="margin-top:0" ng-if="error" translate="{{error}}" translate-values="{param:errorParam}"></h3>
+            <div class="loader" ng-if="!error">
+                <span class="spinner">
+                    <div class="pie"></div>
+                    <div class="pie delay-1"></div>
+                    <div class="pie delay-3"></div>
+                    <div class="pie delay-2"></div>
+                </span>
+            </div>
+            <div class="modal-footer" ng-if="error">
+                <hr/>
+                <a href="api/signout">
+                    <button type="button" class="btn btn-cancel" translate="authentication.backButton" ng-click="cancel()">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!autoLogin">
+        <div class="modal-header">
+            <h2 class="modal-title" translate="authentication.sessionTimeout"></h2>
+        </div>
+        <div class="modal-body">
+            <h3 style="margin-top:0" translate="authentication.heading"></h3>
+            <hr>
+            <!-- form submission in a modal is handled in global.js -->
+            <form name="form.loginForm" novalidate>
+                <div class="input-wrap readonly-label-value">
+                    <label translate="Username" class="ng-scope"></label>
+                    <span ng-bind="::credentials.username"></span>
+                </div>
+                <div class="input-wrap required" ng-class="{error: (form.loginForm.password.$invalid && form.loginForm.password.$touched) || credentials.invalidPassword}">
+                    <label translate="Password"></label>
+                    <input ip-autofocus type="password" ng-model="credentials.password" name="password" required ng-change="credentials.invalidPassword=false" />
+                    <span class="input-action tooltip-error" ip-tooltip="{{ (credentials.invalidPassword ? 'field.errors.invalidpassword' : 'field.errors.required') | translate }}">
+                        <icon name="exclamation-triangle"></icon>
+                    </span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-cancel" translate="Cancel" ng-click="cancel()"></button>
+                    <button type="button" class="btn btn-primary" translate="LogIn" ng-disabled="form.loginForm.$invalid" ng-click="submit()"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

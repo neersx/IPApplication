@@ -1,0 +1,8 @@
+<div ng-if="!vm.loaded">
+    <p translate="Loading"></p>
+</div>
+<div ng-if="vm.loaded" class="row col-sm-11">   
+    <div class="row">
+        <ip-kendo-grid id="caseview-class-texts" ng-if="vm.classTexts" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+    </div>
+</div>

@@ -1,0 +1,205 @@
+<ip-page-title page-title="Form Controls Examples"></ip-page-title>
+<h1>Text Dropdown Group</h1>
+<div ng-form="vm.form" ip-form>
+    <div class="row">
+        <ip-text-dropdown-group required ip-data-type="integer" ng-model="vm.model1" label="Example 1" options="item.value as item.name for item in vm.options" class="col-sm-6" is-text-disabled="vm.isTextDisabled"></ip-text-dropdown-group>
+        <div class="col-sm-6">{{vm.model1 | json}}</div>
+    </div>
+
+    <div class="row">
+        <ip-text-dropdown-group required ng-model="vm.model2" label="Example 2" class="col-sm-6" options="item.name for item in vm.options"></ip-text-dropdown-group>
+        <div class="col-sm-6">{{vm.model2 | json}}</div>
+    </div>
+
+    <div class="row">
+        <ip-text-dropdown-group label="Example 3" class="col-sm-6" options="item.name for item in vm.options" disabled="{{vm.isDisabled}}"></ip-text-dropdown-group>
+        <div class="col-sm-6">
+            <label>
+                <input ng-model="vm.isDisabled" type="checkbox" />Disabled</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <ip-text-dropdown-group label="Example 4" class="col-sm-6 edited" options="item.name for item in vm.options"></ip-text-dropdown-group>
+    </div>
+
+    <div class="row">
+        <ip-text-dropdown-group label="Example 5" class="col-sm-6 saved" options="item.name for item in vm.options"></ip-text-dropdown-group>
+    </div>
+
+    <div class="row">
+        <ip-text-dropdown-group label="Warning" class="col-sm-6 saved" options="item.name for item in vm.options" ng-model="vm.model1" warning-text="vm.getWarningText()">
+        </ip-text-dropdown-group>
+    </div>
+
+</div>
+
+<h1>Dropdown</h1>
+<div>
+    <div class="row">
+        <ip-dropdown ng-model="vm.dd.model1" label="Example 1" options="item.value as item.name for item in vm.options" class="col-sm-6"></ip-dropdown>
+        <div class="col-sm-6">{{vm.dd.model1 | json}}</div>
+    </div>
+
+    <div ng-form="vm.dd.form" ip-form class="row">
+        <ip-dropdown ip-required ng-model="vm.dd.model2" label="Example 2" class="col-sm-6" options="item.value as item.name for item in vm.options"></ip-dropdown>
+        <div class="col-sm-1">
+            <div class="input-wrap">
+                <button ng-click="vm.dd.form.$validate()">Validate</button>
+                <button ng-click="vm.dd.form.$reset()">Reset</button>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            {{vm.dd.model2 | json}}
+        </div>
+    </div>
+
+    <div class="row">
+        <ip-dropdown label="Example 3" class="col-sm-6" options="item.value as item.name for item in vm.options" ng-disabled="vm.dd.disabled"></ip-dropdown>
+        <div class="col-sm-6">
+            <label>
+                <input ng-model="vm.dd.disabled" type="checkbox" />
+                <span>Disabled</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+        <ip-dropdown label="Example 4" class="col-sm-6 edited" options="item.value as item.name for item in vm.options"></ip-dropdown>
+    </div>
+
+    <div class="row">
+        <ip-dropdown label="Example 5" class="col-sm-6 saved" options="item.value as item.name for item in vm.options"></ip-dropdown>
+    </div>
+
+    <div class="row">
+        <ip-dropdown label="Warning" class="col-sm-6" options="item.value as item.name for item in vm.options" ng-model="vm.dd.model1" warning-text="vm.getWarningText()">
+        </ip-dropdown>
+    </div>
+</div>
+
+<h1>Checkboxes &amp; Radio Buttons </h1>
+<div class="row">
+    <div class="col-sm-6">
+        <ip-checkbox label="Option 1" ng-model="vm.checkbox1"></ip-checkbox>
+        <ip-checkbox label="Option 2" ng-model="vm.checkbox2"></ip-checkbox>
+        <ip-checkbox label="Option 3" ng-model="vm.checkbox3" disabled></ip-checkbox>
+    </div>
+    <div class="col-sm-6">
+        {{vm.checkbox1 | json}} {{vm.checkbox2 | json}} {{vm.checkbox3 | json}}
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="input-wrap-group group-inline">
+            <ip-radio-button label="Option 1" ng-value="true" ng-model="vm.radio1"></ip-radio-button>
+            <ip-radio-button label="Option 2" ng-value="false" ng-model="vm.radio1"></ip-radio-button>
+            <ip-radio-button label="Option 3" ng-model="vm.radio1" disabled></ip-radio-button>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        {{vm.radio1 | json}}
+    </div>
+</div>
+<h1>Text Fields</h1>
+<div class="row" ng-form="vm.form1">
+    <div class="col-sm-3">
+        <ip-text-field name="textfield1" label="Example 1" ng-model="vm.textfield1" ng-class="{edited: vm.form1.textfield1.$dirty}"></ip-text-field>
+    </div>
+    <div class="col-sm-3">
+        {{vm.textfield1 | json}}
+    </div>
+</div>
+
+<div class="row" ng-form="vm.form2" ip-form>
+    <div class="col-sm-3">
+        <ip-text-field name="textfield2" label="Example 2" ng-model="vm.textfield2" required></ip-text-field>
+    </div>
+    <div class="col-sm-1">
+        <div class="input-wrap">
+            <button ng-click="vm.form2.$validate()">Validate</button>
+            <button ng-click="vm.form2.$reset()">Reset</button>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        {{vm.textfield2 | json}}
+    </div>
+</div>
+
+<div class="row" ng-form="vm.form3" ip-form>
+    <div class="col-sm-3">
+        <ip-text-field name="textfield2" label="Example 3" ng-model="vm.textfield3" ip-required class="saved"></ip-text-field>
+    </div>
+    <div class="col-sm-1">
+        <div class="input-wrap">
+            <button ng-click="vm.form3.$validate()">Validate</button>
+            <button ng-click="vm.form3.$reset()">Reset</button>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        {{vm.textfield3 | json}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <ip-text-field label="Example 4" ng-disabled="vm.isDisabled2"></ip-text-field>
+    </div>
+    <div class="col-sm-3">
+        <ip-checkbox label="Disabled" ng-model="vm.isDisabled2"></ip-checkbox>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <ip-text-field multiline name="textfield1" label="Example 5" ng-model="vm.textfield5" class="saved"></ip-text-field>
+    </div>
+    <div class="col-sm-3">
+        {{vm.textfield5 | json}}
+    </div>
+</div>
+
+<div class="row" ng-form="vm.form4" ip-form>
+    <div class="col-sm-3">
+        <ip-text-field multiline name="textfield2" label="Example 6" ng-model="vm.textfield6" required></ip-text-field>
+    </div>
+    <div class="col-sm-1">
+        <div class="input-wrap">
+            <button ng-click="vm.form4.$validate()">Validate</button>
+            <button ng-click="vm.form4.$reset()">Reset</button>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        {{vm.textfield6 | json}}
+    </div>
+</div>
+
+<div class="row" ng-form="vm.form5" ip-form>
+    <div class="col-sm-3">
+        <ip-text-field multiline name="textfield7" label="Example 7" ng-model="vm.textfield7" ip-required class="edited"></ip-text-field>
+    </div>
+    <div class="col-sm-1">
+        <div class="input-wrap">
+            <button ng-click="vm.form5.$validate()">Validate</button>
+            <button ng-click="vm.form5.$reset()">Reset</button>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        {{vm.textfield7 | json}}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <ip-text-field name="textfield8" label="Example 9" ng-model="vm.textfield8" ip-field-error="{{vm.errorMessage}}"></ip-text-field>
+    </div>
+    <div class="col-sm-3">
+        <ip-text-field label="Error" ng-model="vm.errorMessage"></ip-text-field>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-3">
+        <ip-text-field multiline label="Example 8" disabled></ip-text-field>
+    </div>
+</div>

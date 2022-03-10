@@ -1,0 +1,213 @@
+<kendo-grid class="ipx-grid" [scrollable]="dataOptions.scrollableOptions ? dataOptions.scrollableOptions.mode: 'none'" [ipxGridDataBinding]="dataOptions" (ipxOnGridDataBinding)="onDataBinding()"
+    [selectable]="dataOptions.selectable" [sortable]="dataOptions.sortable" [filterable]="dataOptions.filterable" [reorderable]="dataOptions.reorderable" [pageSize]="pageSize" [pageable]="false"
+    [rowClass]="dataOptions.rowClass" [kendoGridSelectBy]="gridSelectionHelper.rowSelectionKey" (pageChange)="pageChange($event)" (cellClick)="onCellClick($event)" [navigable]="dataOptions.navigable"
+    (columnReorder)="onReorder($event)" (groupChange)="groupChange($event)" [group]="dataOptions.groups" [groupable]="dataOptions.groupable" (sortChange)="onSort($event)" [sort]="dataOptions.sort"
+    (filterChange)="gridSelectionHelper.ClearSelection()" [hideHeader]="dataOptions.hideHeader" (detailExpand)="detailExpand($event)" (detailCollapse)="detailCollapse($event)" (dblclick)="onDbClick($event)">
+
+    <!-- Column Picker -->
+    <ng-template *ngIf="showToolBar" kendoGridToolbarTemplate>
+        <ipx-add-button class="pull-right" *ngIf="dataOptions.canAdd" [disabled]="!dataOptions.enableGridAdd" (onclick)="onAdd()">
+        </ipx-add-button>
+        <ng-content select="grid-toolbar"></ng-content>
+        <ipx-grid-column-picker style="float: right;padding-right: 7px;" *ngIf="dataOptions.columnPicker === true" [columnSelection]="dataOptions.columnSelection" [gridColumns]="dataOptions.columns">
+        </ipx-grid-column-picker>
+    </ng-template>
+
+    <kendo-grid-column [locked]="anyColumnLocked" *ngIf="dataOptions.selectable && dataOptions.selectable['mode'] === 'multiple' && (!isShowTemplateForGroup)" [width]="dataOptions.bulkActions ? 45 : 35"
+        [headerStyle]="{'overflow':'visible'}">
+        <ng-template *ngIf="dataOptions.bulkActions" kendoGridHeaderTemplate let-column>
+            <ipx-bulk-actions-menu [isScroll]="dataOptions.scrollableOptions && dataOptions.scrollableOptions.mode === 'virtual'" [actionItems]="dataOptions.bulkActions"></ipx-bulk-actions-menu>
+        </ng-template>
+
+        <ng-template *ngIf="!dataOptions.bulkActions" kendoGridHeaderTemplate>
+            <ipx-checkbox class="text-center" name="chkSelectAll" [(ngModel)]="gridSelectionHelper.isSelectAll" (onChange)="toggleSelectAll()" tooltip="{{'grid.toggleAllNone' | translate }}"></ipx-checkbox>
+        </ng-template>
+
+        <ng-template *ngIf="dataOptions.hasDisabledRows" kendoGridCellTemplate let-dataItem>
+            <ipx-checkbox *ngIf="dataItem.isEditable" class="text-center" [(ngModel)]="dataItem.selected" (onChange)="checkChanged(dataItem)"></ipx-checkbox>
+        </ng-template>
+        <ng-template *ngIf="!dataOptions.hasDisabledRows" kendoGridCellTemplate let-dataItem>
+            <ipx-checkbox class="text-center" [(ngModel)]="dataItem.selected" (onChange)="checkChanged(dataItem)"></ipx-checkbox>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column [locked]="anyColumnLocked" *ngIf="showContextMenu" [width]="40">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <ipx-icon-button name="tasksMenu" class="btn-default vertical" [disabled]="!enableTaskMenu(dataItem)" buttonIcon="ellipsis-h" [tooltipText]="'Tasks'"
+                (click)="showMenu($event, dataItem, rowIndex);$event.stopPropagation()">
+            </ipx-icon-button>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column *ngIf="rowMaintenance && (rowMaintenance.canEdit || rowMaintenance.canDelete || rowMaintenance.canDuplicate) && !rowMaintenance.hideButtons"
+        [width]="rowMaintenance.width ? rowMaintenance.width : (rowMaintenance.canDuplicate ? 106: 96)">
+        <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+            <div [ngStyle]="{'min-width': rowMaintenance.width}">
+                <span class="input-action tooltip-error">
+                    <span *ngIf="dataItem && dataItem.duplicate" class="cpa-icon cpa-icon-exclamation-triangle" tooltip="duplicate" containerClass="tooltip-error" [tooltipPlacement]="'auto'" style="display: inline;">
+                    </span>
+                </span>
+                <ipx-icon-button *ngIf="showEditButton(dataItem, rowMaintenance)" name="editRow" class="btn-no-bg" buttonIcon="pencil-square-o"
+                    tooltip="{{rowMaintenance.editTooltip ? (rowMaintenance.editTooltip | translate) : 'Edit' | translate }}" placement="top" [adaptivePosition]="false" container="body"
+                    (click)="rowEditHandler($event, rowIndex, dataItem)">
+                </ipx-icon-button>
+                <ipx-icon-button *ngIf="showRevertButton(dataItem, rowMaintenance)" name="cancelRow" class="btn-no-bg" buttonIcon="revert" tooltip="{{'Revert' | translate }}" placement="top" [adaptivePosition]="false"
+                    container="body" (click)="rowCancelHandler($event, rowIndex, dataItem)"></ipx-icon-button>
+                <ipx-icon-button *ngIf="dataItem && rowMaintenance.canDuplicate" name="duplicateRow" class="btn-no-bg" buttonIcon="files-o" tooltip="{{'Duplicate' | translate }}" placement="top"
+                    [adaptivePosition]="false" container="body" (click)="rowDuplicateHandler(rowIndex, dataItem)"></ipx-icon-button>
+                <ipx-icon-button *ngIf="showDeleteButton(dataItem, rowMaintenance)" name="deleteRow" class="btn-no-bg" buttonIcon="trash"
+                    tooltip="{{rowMaintenance.deleteTooltip ? (rowMaintenance.deleteTooltip | translate) : ('Delete' | translate) }}" placement="top" [adaptivePosition]="false" container="body"
+                    (click)="rowDeleteHandler($event, rowIndex, dataItem)"></ipx-icon-button>
+            </div>
+        </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column *ngIf="dataOptions.groupable && (dataOptions.groups && dataOptions.groups.length > 0) && isShowTemplateForGroup && !anyColumnLocked" width="1">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="pull-left" [apply-colspan]="dataOptions.groups && dataOptions.groups.length > 0 && dataOptions.columns && dataOptions.columns.length">
+                <b>{{ dataItem.detail | translate }} ({{ dataItem.count }})</b>
+            </div>
+        </ng-template>
+    </kendo-grid-column>
+
+    <kendo-grid-column *ngFor="let col of dataOptions.columns; trackBy: trackByColumnField" [field]="col.field" [title]="col.title | translate" [width]="col.width ? col.width : null"
+        [sortable]="dataOptions.sortable && !(col.sortable===false)" [filterable]="col.filter ? true : false" [filter]="col.filter === true ? '' : col.filter" [locked]="anyColumnLocked && col.locked"
+        [hidden]="col.hidden" [includeInChooser]="dataOptions.columnPicker === true && col.includeInChooser !== false" [headerClass]="col.headerClass">
+        <!-- Column Header Template -->
+        <ng-template kendoGridHeaderTemplate let-column>
+            <ipx-icon *ngIf="col.iconName!=null" [large]="true" [name]="col.iconName"></ipx-icon>
+            {{ column.title | translate }}
+            <span [attr.data-field]="column.field"></span>
+            <span *ngIf="column.sortable" class="k-icon col-sortable"></span>
+            <ipx-inline-dialog *ngIf="col.headerTooltip" size="sm" [content]="col.headerTooltip | translate" tooltipPlacement="auto" style="vertical-align: top;">
+            </ipx-inline-dialog>
+            <ng-container *ngTemplateOutlet="col.customizeHeaderTemplate">
+            </ng-container>
+        </ng-template>
+        <!-- Cell Template -->
+        <ng-template *ngIf="col._templateResolved" kendoGridCellTemplate let-dataItem>
+            <ng-container *ngIf="dataItem && (!dataOptions.groups || dataOptions.groups.length === 0)">
+                <ng-container *ngTemplateOutlet="col._templateResolved; context: { $implicit: dataItem, ctx: col.templateExternalContext }">
+                </ng-container>
+            </ng-container>
+        </ng-template>
+
+        <ng-template *ngIf="col.defaultColumnTemplate" ipxTemplateColumnField="col.field" kendoGridCellTemplate let-dataItem>
+            <ng-container [ngSwitch]="col.defaultColumnTemplate">
+                <ng-container *ngSwitchCase="'selection'">
+                    <ipx-checkbox *ngIf="dataItem" name="dataItem.key" [(ngModel)]="dataItem[col.field]" [disabled]="col.disabled">
+                    </ipx-checkbox>
+                </ng-container>
+                <ng-container *ngSwitchCase="'image'">
+                    <img *ngIf="dataItem" [src]="'data:image/jpeg;base64,' + dataItem[col.field]" style="max-width: 32px">
+                </ng-container>
+                <ng-container *ngSwitchCase="'icon'">
+                    <ipx-property-type-icon *ngIf="dataItem" imageKey="{{dataItem[col.field]}}">
+                    </ipx-property-type-icon>
+                </ng-container>
+                <ng-container *ngSwitchCase="'protected'">
+                    <ipx-icon *ngIf="dataItem && dataItem.isProtected" tooltip="{{'Protected' | translate}}" class="text-blue-secondary" name="protected"></ipx-icon>
+                </ng-container>
+                <ng-container *ngSwitchCase="'codeDescription'">
+                    <span *ngIf="dataItem && dataItem[col.field]">{{ dataItem[col.field].description || '' }}</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="'date'">
+                    <ipx-date *ngIf="dataItem && dataItem[col.field]" [model]="dataItem[col.field]"></ipx-date>
+                </ng-container>
+                <ng-container *ngSwitchCase="'textarea'">
+                    <ipx-text-area *ngIf="dataItem && dataItem[col.field]" [content]="dataItem[col.field]"></ipx-text-area>
+                </ng-container>
+                <ng-container *ngSwitchCase="'number'">
+                    {{ dataItem[col.field] | number }}
+                </ng-container>
+                <ng-container *ngSwitchDefault>
+                    <ng-container *ngIf="dataItem">{{dataItem.value}}</ng-container>
+                </ng-container>
+            </ng-container>
+        </ng-template>
+
+        <!-- Edit template -->
+        <ng-template *ngIf="col._editTemplateResolved" kendoGridEditTemplate let-dataItem let-item="dataItem" let-formGroup let-rowIndex="rowIndex">
+            <ng-container *ngTemplateOutlet="col._editTemplateResolved; context: {dataItem: item, rowIndex:rowIndex, formGroup:formGroup, ctx: col.templateExternalContext }">
+            </ng-container>
+        </ng-template>
+
+        <ng-template *ngIf="!col._editTemplateResolved && rowMaintenance && !rowMaintenance.inline" kendoGridEditTemplate let-dataItem let-formGroup let-rowIndex="rowIndex">
+            {{formGroup.value[col.field]}}
+        </ng-template>
+
+        <!-- Filter Templates -->
+        <ng-template *ngIf="dataOptions.filterable && col.filter" kendoGridFilterMenuTemplate let-filter let-column="column" let-filterService="filterService">
+            <!-- Text Filter -->
+            <kendo-grid-string-filter-menu *ngIf="column.filter === 'text'" [column]="column" [filter]="filter" [filterService]="filterService" [extra]="false" operator="startswith">
+                <kendo-filter-startswith-operator [text]="'grid.columns.textoperators.startswith' | translate">
+                </kendo-filter-startswith-operator>
+                <kendo-filter-contains-operator [text]="'grid.columns.textoperators.contains' | translate">
+                </kendo-filter-contains-operator>
+                <kendo-filter-eq-operator [text]="'grid.columns.textoperators.eq' | translate">
+                </kendo-filter-eq-operator>
+            </kendo-grid-string-filter-menu>
+
+            <!-- Date Filter -->
+            <kendo-grid-date-filter-menu *ngIf="column.filter === 'date'" [column]="column" [filter]="filter" [filterService]="filterService" [extra]="false">
+                <kendo-filter-after-eq-operator [text]="'grid.columns.dateoperators.gte' | translate">
+                </kendo-filter-after-eq-operator>
+                <kendo-filter-eq-operator [text]="'grid.columns.dateoperators.eq' | translate">
+                </kendo-filter-eq-operator>
+                <kendo-filter-before-operator [text]="'grid.columns.dateoperators.lt' | translate">
+                </kendo-filter-before-operator>
+            </kendo-grid-date-filter-menu>
+
+            <!-- Multi Checkbox Filter -->
+            <multicheck-filter *ngIf="col.filter === true" [filterService]="filterService" [column]="column" [currentFilter]="filter" [readFilterMeta]="dataOptions.filterMetaData$">
+            </multicheck-filter>
+        </ng-template>
+
+        <ng-template kendoGridFooterTemplate *ngIf="col.footer">
+            <ng-container *ngTemplateOutlet="col.footer">
+            </ng-container>
+        </ng-template>
+    </kendo-grid-column>
+
+
+    <kendo-grid-column *ngIf="maintainance && maintainance.picklistCanMaintain" title="{{'picklistmodal.actions' | translate}}" [includeInChooser]="false">
+        <ng-template kendoGridCellTemplate let-dataItem>
+            <div class="grid-actions k-grid-ignore-click">
+                <ipx-icon-button *ngIf="maintainance.showView" class="btn-no-bg" buttonIcon="info-circle" tooltip="{{'View' | translate }}" placement="top" [adaptivePosition]="false" container="body"
+                    (click)="onMaintenanceAction(dataItem,'view')"></ipx-icon-button>
+                <ipx-icon-button *ngIf="maintainance.showEdit" class="btn-no-bg" buttonIcon="pencil-square-o" tooltip="{{'Edit' | translate }}" placement="top" [adaptivePosition]="false" container="body"
+                    (click)="onMaintenanceAction(dataItem, 'edit')"></ipx-icon-button>
+                <ipx-icon-button *ngIf="maintainance.showDuplicate" class="btn-no-bg" buttonIcon="files-o" tooltip="{{'Duplicate' | translate }}" placement="top" [adaptivePosition]="false" container="body"
+                    (click)="onMaintenanceAction(dataItem, 'duplicate')"></ipx-icon-button>
+                <ipx-icon-button *ngIf="maintainance.showDelete" class="btn-no-bg" buttonIcon="trash" tooltip="{{'Delete' | translate }}" placement="top" [adaptivePosition]="false" container="body"
+                    (click)="onMaintenanceAction(dataItem, 'delete')"></ipx-icon-button>
+            </div>
+        </ng-template>
+    </kendo-grid-column>
+
+    <ng-template *ngIf="dataOptions.detailTemplate && (!dataOptions.groups || dataOptions.groups.length === 0)" kendoGridDetailTemplate kendoGridEditTemplate let-dataItem let-formGroup let-rowIndex
+        [kendoGridDetailTemplateShowIf]="showDetailTemplate">
+        <ng-container *ngTemplateOutlet="dataOptions.detailTemplate; context: {$implicit:dataItem, rowIndex:rowIndex, formGroup:formGroup}"></ng-container>
+    </ng-template>
+    <ng-template *ngIf="!anyColumnLocked && dataOptions.groupDetailTemplate && (dataOptions.groups && dataOptions.groups.length > 0)" kendoGridDetailTemplate let-dataItem
+        [kendoGridDetailTemplateShowIf]="showGroupDetailTemplate">
+        <ng-container *ngTemplateOutlet="dataOptions.groupDetailTemplate; context: {$implicit:dataItem}"></ng-container>
+    </ng-template>
+    <kendo-grid-messages pagerItemsPerPage="{{'grid.messages.itemsPerPage' | translate}}" pagerOf="{{'grid.messages.pagerOf' | translate}}" pagerItems="{{'grid.messages.pagerItems' | translate}}">
+    </kendo-grid-messages>
+</kendo-grid>
+<ipx-inline-alert id="grid-alert" *ngIf="gridMessage && dataOptions.showGridMessagesUsingInlineAlert" [type]="'info'" [text]="gridMessage | translate"></ipx-inline-alert>
+<span *ngIf="gridMessage && !dataOptions.showGridMessagesUsingInlineAlert" style="margin-left: 8px; margin-bottom: 8px; display: inline-block;">
+    {{ gridMessage | translate }} </span><br *ngIf="!dataOptions.hideExtraBreakInGrid" />
+<button *ngIf="dataOptions.canAdd" class="btn btn-link grid-message" [disabled]="!dataOptions.enableGridAdd" (click)="onAdd()">
+    <span class="cpa-icon cpa-icon-plus-circle"></span>
+    <em style="margin-left: 5px">{{ 'grid.messages.addItem' | translate: { itemName: itemName } }}</em>
+</button>
+
+<kendo-contextmenu #gridmenu [items]="items" (select)="onMenuItemSelected($event)">
+    <ng-template kendoMenuItemLinkTemplate let-item="item" let-index="index">
+        <hr *ngIf="item.isSeparator">
+        <div *ngIf="!item.isSeparator" class="taskMenuItem" id="{{item.id}}" disabled="item.disabled" (mouseover)="markActive(item)" [ngClass]="{disabled: item.disabled, 'active-task-item': isTaskItemActive(item.id)}">
+            <span class="{{item.icon}}" large></span>
+            <span translate="{{ item.text }}"></span>
+            <span *ngIf="item.items && item.items.length" [kendoMenuExpandArrow]="index" class="pull-right"></span>
+        </div>
+    </ng-template>
+</kendo-contextmenu>

@@ -1,0 +1,32 @@
+<div *ngIf="loaded">
+    <div class="modal-header">
+        <h2 class="modal-title" [translate]="baseType === 'priorArt' ? 'priorart.attachments.modal.title' : ( showDms ? 'caseview.attachments.modal.dmsTitle' : 'caseview.attachments.modal.title')"></h2>
+        <div class="modal-header-controls">
+            <div class="input-wrap switch" *ngIf="dmsConfigured && attachmentsVisible">
+                <input id="showDmsSwitch" name="showDmsSwitch" type="checkbox" [(ngModel)]="showDms">
+                <label for="showDmsSwitch" style="color: white;" [translate]="'caseview.attachments.modal.showDms'"></label>
+            </div>
+
+            <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+        </div>
+    </div>
+    <ipx-case-header *ngIf="baseType === 'case'" [caseKey]="key"></ipx-case-header>
+    <div *ngIf="headerData" class="title-header">
+        <div class="container-fluid">
+            <div class="label-value text-nowrap pull-left">
+                <label translate="{{headerData.label}}"></label>
+            </div>
+            <div class="label-value">
+                <span class="text" id="subHeader">{{headerData.value}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-body" *ngIf="key">
+        <div *ngIf="!showDms">
+            <ipx-attachments #attachments [viewData]="viewData" [caseDetails]="case" [eventDetails]="eventDetails" [(dataModified)]="dataModified"></ipx-attachments>
+        </div>
+        <div *ngIf="showDms">
+            <dms [topic]="topic"></dms>
+        </div>
+    </div>
+</div>

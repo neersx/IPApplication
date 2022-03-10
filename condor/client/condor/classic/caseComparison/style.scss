@@ -1,0 +1,437 @@
+//primary palette. https://color.adobe.com/create/color-wheel/?base=2&rule=Custom&selected=0&name=My%20Color%20Theme&mode=rgb&rgbvalues=0.0784313725490196,0.0784313725490196,0.30196078431372547,0.44313725490196076,0.7725490196078432,0.9098039215686274,0.5568627450980392,0.611764705882353,0.615686274509804,0.5529411764705883,0.5490196078431373,0.5411764705882353,0.5372549019607843,0.5529411764705883,0.5529411764705883&swatchOrder=0,1,2,3,4
+.notifications {
+    margin-bottom: 5px !important;
+    background-color: $off-white;
+}
+
+.notifications .list-group-item:first-child,
+.notifications .list-group-item:last-child {
+    border-radius: 0;
+}
+
+.notification-separator {
+    border-top: 1px solid lightgray;
+}
+
+.notifications .nf-error {
+    border-left: 3px solid $red-dark;
+}
+
+.notifications .nf-info {
+    border-left: 3px solid transparent;
+}
+
+.notifications .nf-rejected {
+    border-left: 3px solid $orange-dark;
+}
+
+.notifications .nf-reviewed {
+    border-left: 3px solid #757575;
+    padding-right: 5px;
+}
+
+.notifications .nf-rejected .nf-row-message {
+    color: #843534;
+}
+
+.notifications li {
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 5px;
+}
+
+.notifications {
+    border-top: none;
+    background-color: $off-white;
+    border-left: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    margin-right: 0px;
+    padding-top: 5px;
+}
+
+.list-group-li {
+    border: none;
+}
+
+.notifications-container {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    margin: 0px;
+    height: 100%;
+}
+
+.comparison-container {
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    .case-mark img {
+        max-width: 200px;
+    }
+}
+
+.badge-small {
+    font-size: 9px;
+}
+
+.nf-row {
+    font-size: 12px;
+    color: $text-color;
+    padding-left: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.notifications .nf-row {
+    margin-right: 0px;
+    overflow: hidden;
+}
+
+.notifications .nf-row-detail {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.notifications .nf-row-default .nf-row-main {
+    margin-right: 170px;
+}
+
+.notifications .nf-row-default .nf-row-main .nf-no-data {
+    margin-right: 170px;
+    margin-top: 50px;
+}
+
+.notifications .nf-row-date {
+    font-size: 10px;
+}
+
+.notifications .nf-row-default .nf-row-date {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+.notifications .nf-row-detail .nf-row-date {
+    padding-top: 2px;
+}
+
+.notifications .nf-row-title {
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    padding-top: -5px;
+    padding-right: 10px;
+}
+
+.notifications .nf-row-message {
+    text-overflow: ellipsis;
+    padding-top: -5px;
+    padding-right: 5px;
+}
+
+.notifications .nf-row .nf-row-caseRef {
+    white-space: nowrap;
+}
+
+.notifications>li:hover {
+    background-color: #f5f5f5;
+}
+
+.notifications .notification-selected {
+    background-color: $blue-highlight-darker;
+}
+
+.notifications .text-muted {
+    color: #757575 !important;
+}
+
+.nf-detailView {
+    font-size: 12px;
+    .btn {
+        width: 100%;
+    }
+}
+
+.nf-detailView .table {
+    margin-bottom: 10px;
+}
+
+.nf-detailView .highlight {
+    padding: 2px 4px;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+}
+
+.nf-detailView .explanations {
+    margin-top: 150px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.label-yellow {
+    position: relative;
+    top: -1px;
+    left: -2px;
+}
+
+.table {
+    &-striped-goods-services>tbody>tr:nth-child(4n+1) {
+        >td,
+        >th {
+            background-color: #fefefa;
+        }
+    }
+    &-striped-parent-related-cases>tbody>tr:nth-child(6n+1) {
+        >td,
+        >th {
+            background-color: #fefefa;
+        }
+    }
+    &-delimiter {
+        border-top: 4px double lightgrey !important;
+    }
+}
+
+.view-comparison-details {
+    cursor: pointer;
+}
+
+div .address {
+    white-space: pre-line;
+}
+
+.comparison-details-dialog {
+    &-width {
+        width: 80% !important;
+    }
+    &-left-text {
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-bottom: 5px;
+        height: 500px !important;
+    }
+    &-right-text {
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-bottom: 5px;
+        height: 500px !important;
+    }
+    &-single-text {
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-bottom: 5px;
+        height: 500px !important;
+    }
+    h4 {
+        margin-bottom: 4px;
+    }
+}
+
+.datasource-pills {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.datasource-pills>li>a {
+    padding: 5px 10px !important;
+}
+
+.datasource-pills-batch {
+    vertical-align: top !important;
+}
+
+ul.errorlist {
+    margin: 0px 0px 0px 0px;
+}
+
+ul.errorlistsublist {
+    margin: 0px 0px 0px 0px;
+    border: none;
+}
+
+li.erroritem {
+    padding: 0px 0px 0px 0px;
+}
+
+list-group-item .errorlistgroupItem {
+    padding: 0px 0px 0px 0px;
+    border: none;
+}
+
+tr.cc-redRow {
+    border-left: 3px solid $red-dark;
+}
+
+.cc {
+    &-fixedwidth {
+        min-width: 90px;
+    }
+}
+
+.table>thead>tr>th.cc {
+    &-iconcolumn {
+        width: 30px;
+    }
+    &-datecolumn {
+        width: 140px;
+    }
+}
+
+#caseComparisonDetailView:focus {
+    outline: none;
+}
+
+.i {
+    &-lineHeight {
+        height: 40px;
+    }
+    &-marginLeft {
+        margin-left: 5px
+    }
+    &-filter.li {
+        padding-right: 4px;
+        max-height: 20px
+    }
+    &-filterCh {
+        margin-top: 5px;
+    }
+    &-filterChMarginTop {
+        margin-top: 15px !important;
+    }
+    &-noMargin {
+        margin: 0;
+    }
+    &-searchbarBorder {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    &-searchBtnGrp {
+        padding-left: 3px;
+        padding-right: 3px;
+        background: $lightToolbarBackColor;
+        border-right: lightgray solid 1px;
+        border-top: lightgray solid 1px;
+        border-bottom: lightgray solid 1px;
+    }
+    &-searching {
+        padding: -10px;
+        text-align: center;
+        margin-top: 10px;
+    }
+    &-notificationList {
+        overflow-y: auto;
+        border-right: lightgrey 1px solid;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    &-paddingTop {
+        padding-top: 10px;
+    }
+    &-hideIcon {
+        visibility: hidden;
+    }
+}
+
+.cc {
+    &-fg {
+        color: White !important;
+    }
+    &-fixedwidth {
+        min-width: 90px;
+    }
+    &-toolbar {
+        text-align: right;
+        padding: 3px;
+        border: 3px outset;
+        border-radius: 2px;
+        border-color: transparent; //#F5F5F5;
+        /* Fallback for web browsers that doesn't support RGBa */
+        background: rgb(204, 204, 204);
+        /* RGBa with 0.6 opacity */
+        background: rgba(204, 204, 200, 0.3);
+        &:hover {
+            border: 3px outset;
+            border-radius: 2px;
+            background: rgba(204, 204, 200, 0.8);
+            border-color: $blue-highlight-darkerer;
+        }
+        &-button {
+            margin-right: 1px;
+            display: inline;
+            min-width: 110px;
+            &-left {
+                margin-left: 1px;
+            }
+        }
+        &-button[disabled],
+        &-button.disabled {
+            margin-right: 1px;
+            display: inline;
+            min-width: 110px;
+            &-left {
+                margin-left: 1px;
+            }
+            color: #ffffff;
+            background-color: #E6E6E6;
+        }
+        &-panel {
+            display: table-cell;
+        }
+        &-panel-other {
+            display: table-cell;
+            padding-right: 50px;
+        }
+    }
+    &-toolbar-container {
+        position: absolute;
+        right: 25px;
+        bottom: 2px;
+        display: table;
+        width: fit-content;
+    }
+    &-date {
+        white-space: nowrap;
+    }
+}
+
+.topic-header h1 {
+    margin-top: 0px;
+    padding: 0px 10px;
+    background-color: $off-white;
+}
+
+.widget-box {
+    border: solid transparent 3px;
+    padding: 5px;
+    &:active {
+        border: solid $blue-secondary 3px;
+    }
+    &:hover {
+        border: solid $blue-secondary 3px;
+    }
+}
+
+a.k-link {
+    color: #909090
+}
+
+[type="checkbox"] {
+    +label {
+        min-height: 25px;
+        .diff & {
+            min-height: 25px !important;
+        }
+    }
+}
+
+.import-documents .btn.disabled {
+    color: #ffffff;
+    background-color: #E6E6E6;
+}

@@ -1,0 +1,7 @@
+<div class="col-sm-offset-4 no-padding-horizontal">
+    <ip-radio-button id="radio-true" label="True" ng-value="true" ng-model="model.fixedValues[current.node.id]" name="boolean-{{current.node.id}}" class="col-sm-4"></ip-radio-button>
+    <ip-radio-button id="radio-true" label="False" ng-value="false" ng-model="model.fixedValues[current.node.id]" name="boolean-{{current.node.id}}" class="col-sm-4"></ip-radio-button>
+    <div class="col-sm-offset-1 col-sm-5">
+        <button class="btn" ng-click="model.fixedValues[current.node.id]=undefined" ng-disabled="model.fixedValues[current.node.id] !== true && model.fixedValues[current.node.id] !== false" class="">Clear</button>
+    </div>
+</div>

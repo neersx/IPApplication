@@ -1,0 +1,50 @@
+<div *ngIf="formGroup" class="modal-header">
+    <h2 class="modal-title" translate="{{ 'caseview.affectedCases.addCases' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button type="button" id="btSave" [disabled]="isSaveDisabled" (click)="submit()"></ipx-save-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div *ngIf="formGroup">
+            <form [formGroup]="formGroup">
+                <div class="row col-md-12">
+                    <div class="col-md-7" style="margin-left: -30px">
+                        <ipx-typeahead id="caseReference" (focusout)="onCaseChange()" (ngModelChange)="onCaseChange()" [disabled]="isCaseReferenceDisabled" [formControl]="cases" multiselect multipick apply-edited
+                            label="{{ 'caseview.summary.caseReference' | translate }}" config="case"> </ipx-typeahead>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <span>{{ 'caseview.summary.enterExternalCase' | translate }}</span>
+                </div>
+
+                <div class="row">
+                    <br>
+                    <div class="col-md-6">
+                        <ipx-typeahead id="jurisdiction" name="jurisdiction" formControlName="jurisdiction" [disabled]="isExternalCaseDisabled" (onChange)="checkChanges()" label="caseview.summary.jurisdiction"
+                            name="jurisdiction" apply-edited config="jurisdiction">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="col-md-6">
+                        <ipx-text-field name="officialNo" [disabled]="isExternalCaseDisabled" formControlName="officialNo" apply-edited label="{{ 'caseview.summary.officialNumber' | translate }}" autocomplete="off">
+                        </ipx-text-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <br>
+                    <div class="col-md-12">
+                        <span style="font-weight:800">{{'caseview.affectedCases.recordalStep' | translate}}<span style="color: red;">*</span></span>
+                    </div>
+                    <div class="col-md-4">
+                        <ng-container formArrayName="recordalSteps">
+                            <ipx-checkbox [id]="i" required *ngFor="let d of recordalSteps.controls;let i = index;trackBy:trackByFn" (onChange)="onCheckboxChange($event)"
+                                label="{{steps[i].recordalType.value + ' (' + steps[i].stepId + ')'}}" [ngModelOptions]="{standalone: true}" [(ngModel)]="steps[i].isSelected" apply-edited>
+                            </ipx-checkbox>
+                        </ng-container>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

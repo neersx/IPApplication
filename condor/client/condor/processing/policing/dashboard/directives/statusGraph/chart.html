@@ -1,0 +1,14 @@
+<div class="row">
+	<div class="col-sm-6">
+		<div class="chart-wrap" style="position: relative;">
+			<kendo-chart id="currentStatusChart" kendo-chart-resize k-options="vm.chartOptions" k-ng-delay="vm.chartOptions"></kendo-chart>
+			<div class="chart-loading"></div>
+		</div>
+	</div>
+	<div class="col-sm-6">
+		<div class="chart-wrap" style="position: relative;">
+			<kendo-chart id="currentErrorStatusChart" kendo-chart-resize k-options="vm.errorChartOptions" k-ng-delay="vm.errorChartOptions"></kendo-chart>
+			<div class="chart-loading"></div>
+		</div>
+	</div>
+</div>

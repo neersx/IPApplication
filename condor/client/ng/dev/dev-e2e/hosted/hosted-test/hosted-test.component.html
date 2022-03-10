@@ -1,0 +1,105 @@
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+
+    <ipx-dropdown name="viewComponent" [label]="'Component to View'" [displayField]="'displayName'" [options]="components" (onChange)="onComponentChange($event)" [(ngModel)]="selectedComponent" ipx-autofocus="true">
+    </ipx-dropdown>
+    <div *ngIf="selectedComponent">
+        <div [ngSwitch]="selectedComponent.componentType">
+            <div *ngSwitchCase="1">
+                <!--case topic-->
+                <ipx-typeahead #casePicklist name="caseKey" [label]="'picklist.case.Type' | translate" config="case" key-field="key" [(ngModel)]="selectedComponent.case"></ipx-typeahead>
+
+                <ipx-typeahead name="program" [(ngModel)]="selectedComponent.program" config="caseProgram" key-field="key" label="picklist.caseProgram.ShortType"></ipx-typeahead>
+                <button id="btnLoadCaseTopic" (click)="loadCaseTopic()">Load Case Topic</button>
+            </div>
+            <div *ngSwitchCase="2">
+                <!--name topic-->
+                <ipx-typeahead #namePicklist name="nameKey" [label]="'picklist.name.Name' | translate" config="name" key-field="key" [(ngModel)]="selectedComponent.name"></ipx-typeahead>
+
+                <button id="btnLoadNameTopic" (click)="loadNameTopic()">Load Name Topic</button>
+            </div>
+            <div *ngSwitchCase="3">
+                <ipx-typeahead *ngIf="selectedComponent.id == 12" #casePicklist name="caseKey" [label]="'picklist.case.Type' | translate" config="case" key-field="key" [(ngModel)]="selectedComponent.case">
+                </ipx-typeahead>
+                <ipx-typeahead *ngIf="selectedComponent.id == 13" #namePicklist name="nameKey" [label]="'picklist.name.Name' | translate" config="name" key-field="key" [(ngModel)]="selectedComponent.name">
+                </ipx-typeahead>
+                <ipx-text-field name="activityId" [label]="'Activity Id'" [(ngModel)]="selectedComponent.activityId"></ipx-text-field>
+                <ipx-text-field name="sequenceNo" [label]="'Sequence No'" [(ngModel)]="selectedComponent.sequenceNo"></ipx-text-field>
+
+                <button id="btnLoadAttachment" (click)="loadAttachment()">Load Attachment</button>
+            </div>
+            <div *ngSwitchCase="4">
+                <ipx-typeahead #casePicklist name="caseKey" [label]="'picklist.case.Type' | translate" config="case" key-field="key" [(ngModel)]="selectedComponent.case"></ipx-typeahead>
+
+                <button id="btnStartTimer" (click)="startTimer()">Start Timer</button>
+            </div>
+            <div *ngSwitchCase="5">
+
+                <ipx-typeahead *ngIf="selectedComponent.id == 16" #casePicklist name="caseKey" [label]="'picklist.case.Type' | translate" config="case" key-field="key" [(ngModel)]="selectedComponent.case">
+                </ipx-typeahead>
+                <ipx-typeahead *ngIf="selectedComponent.id == 17" #namePicklist name="nameKey" [label]="'picklist.name.Name' | translate" config="name" key-field="key" [(ngModel)]="selectedComponent.name">
+                </ipx-typeahead>
+                <ipx-checkbox name="isWord" [label]="'Is Word'" [(ngModel)]="selectedComponent.isWord">
+                </ipx-checkbox>
+                <button id="btnLoadGenerateDocument" (click)="loadGenerateDocument()">Load Generate Document</button>
+            </div>
+            <div *ngSwitchCase="6">
+                <ipx-text-field name="entityId" [label]="'Entity Id'" [(ngModel)]="selectedComponent.entityId"></ipx-text-field>
+                <ipx-text-field name="transKey" [label]="'Trans Key'" [(ngModel)]="selectedComponent.transKey"></ipx-text-field>
+                <ipx-text-field name="wipSeqKey" [label]="'Wip Seq Key'" [(ngModel)]="selectedComponent.wipSeqKey"></ipx-text-field>
+
+                <button id="btnLoadWIPAdjustment" (click)="loadWipAdjustmentDetails()">Load WIP Adjustment Details</button>
+            </div>
+            <div *ngSwitchCase="7">
+                <ipx-text-field name="entityId" [label]="'Entity No'" [(ngModel)]="selectedComponent.entityId"></ipx-text-field>
+                <ipx-text-field name="transKey" [label]="'Trans Key'" [(ngModel)]="selectedComponent.transKey"></ipx-text-field>
+                <ipx-text-field name="wipSeqKey" [label]="'Wip Seq Key'" [(ngModel)]="selectedComponent.wipSeqKey"></ipx-text-field>
+                <button id="btnLoadSplitWip" (click)="loadSplitWip()">Load Split WIP</button>
+            </div>
+        </div>
+    </div>
+    Selected URL: "{{selectedUrl}}"
+    <div *ngIf="selectedUrl">
+
+        <iframe #iframe id="searchResultHost" [src]="selectedUrl" height="600" style="width: 100%;">
+
+        </iframe>
+        <div class="row">
+            <div class="col-sm-3 field-label">
+                <label>post message</label>
+            </div>
+            <div class="col-sm-9">
+                <ipx-text-field name="postMessage" [(ngModel)]="postMessage" rows='5' multiline></ipx-text-field>
+            </div>
+        </div>
+        <button id="btnOnInit" (click)="sendEvent('onInit')">onInit()</button>
+        <button id="btnOnListenChanges" (click)="sendEvent('onListenChanges')">onListenChanges()</button>
+        <button id="btnOnUnlistenChanges" (click)="sendEvent('onUnListenChanges')">onUnListenChanges()</button>
+        <button id="bntOnNavigate" (click)="sendEvent('onNavigate')">onNavigate()</button>
+        <button id="btnOnReload" (click)="sendEvent('onReload')">onReload()</button>
+        <button id="btnOnRequestDataResponseReceived" (click)="sendEvent('onRequestDataResponseReceived')">onRequestDataResponseReceived()</button>
+        <div class="row">
+            <div class="col-sm-3 field-label">
+                <label>receivedAutoSizeMessages</label>
+            </div>
+            <div class="col-sm-9">
+                <ipx-text-field name="receivedAutoSizeMessages" [(ngModel)]="receivedAutoSizeMessages" multiline [rows]="5" [disabled]="true"></ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 field-label">
+                <label>receivedNavigationMessages</label>
+            </div>
+            <div class="col-sm-9">
+                <ipx-text-field name="receivedNavigationMessages" [(ngModel)]="receivedNavigationMessages" multiline [rows]="5" [disabled]="true"></ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 field-label">
+                <label>receivedLifeCycleMessages</label>
+            </div>
+            <div class="col-sm-9">
+                <ipx-text-field name="receivedLifeCycleMessages" [(ngModel)]="receivedLifeCycleMessages" multiline [rows]="5" [disabled]="true"></ipx-text-field>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div id="kotNotes" class="containerDiv">
+    <carousel [itemsPerSlide]="itemsPerSlide" [singleSlideOffset]="true" [showIndicators]="showIndicators" [noWrap]="!noWrap" [startFromIndex]="0" [interval]="false">
+        <slide *ngFor="let kot of notes; let index=index;trackBy: trackByFn">
+            <div class="kot-block-outer">
+                <div class="kot-block" (click)="clickKotNote(kot)" [ngStyle]="{'background': kot.backgroundColor ? kot.backgroundColor : 'white'}" [ngClass]="kot.expanded ? 'kot-block-expanded': ''">
+                    <div *ngIf="kot.expanded" class="row kot-expanded-icon">
+                        <ipx-icon name="chevron-down"></ipx-icon>
+                    </div>
+                    <div class="row" style="margin: 5px 5px 5px 0;">
+                        <div class="col-md-4">
+                            <div *ngIf="kot.textType">
+                                <span id="textType" class="text-black-bold">{{ kot.textType }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8 text-right">
+                            <div *ngIf="kot.caseRef">
+                                <span class="text-black-bold"> {{ 'kotTextTypes.caseRef' | translate }} </span>
+                                <span id="caseRef" class="text-black-bold">{{ kot.caseRef }}</span>
+                            </div>
+                            <div *ngIf="kot.name">
+                                <span class="text-black-bold">{{ kot.name }}</span>
+                                <span id="nameType" class="text-black-bold" *ngIf="kot.nameTypes">
+                                    {{ '('+ kot.nameTypes + ')' }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div [ngClass]="kot.expanded ? 'kot-note-expanded': 'kot-note'">
+                        <p>{{kot.note}}</p>
+                    </div>
+                </div>
+            </div>
+        </slide>
+    </carousel>
+</div>

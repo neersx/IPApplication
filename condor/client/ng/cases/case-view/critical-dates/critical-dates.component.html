@@ -1,0 +1,46 @@
+<div class="row">
+    <ipx-kendo-grid #caseViewCriticalDates id="caseViewCriticalDates" [dataOptions]="gridOptions">
+        <ng-template ipxTemplateColumnField="isCpaRenewalDate" let-dataItem>
+            <span *ngIf="dataItem.isCpaRenewalDate" [tooltip]="'caseview.criticalDates.renewalDate' | translate" class="no-underline text-red-dark cpa-icon-logo cpa-icon-sm">
+            </span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="date" let-dataItem>
+            <ipx-due-date *ngIf="!dataItem.isOccurred" [date]="dataItem.date" [showToolTip]="true"></ipx-due-date>
+            <span *ngIf="dataItem.isOccurred">{{ dataItem.date | localeDate }}</span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="officialNumber" let-dataItem>
+            <a *ngIf="dataItem.externalInfoLink" href="{{dataItem.externalInfoLink}}" target="_blank">
+              <span class="non-breaking">
+                {{dataItem.officialNumber}}
+              </span>
+            </a>
+            <span class="non-breaking" *ngIf="!dataItem.externalInfoLink">
+                {{dataItem.officialNumber}}
+            </span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="eventDescription" let-dataItem>
+            <span>
+
+                <ipx-hover-help *ngIf="!isExternal" [container]="'body'" [content]="dataItem.eventDefinition" [placement]="'top'">
+                    <span>
+                        <ng-container *ngTemplateOutlet="descriptionContent; context: dataItem">
+                        </ng-container>
+                    </span>
+                </ipx-hover-help>
+                <span *ngIf="isExternal">
+                    <ng-container *ngTemplateOutlet="descriptionContent; context: dataItem">
+                    </ng-container>
+                </span>
+            </span>
+            <ng-template #descriptionContent>
+              
+                <span *ngIf="!dataItem.isLastEvent && !dataItem.isNextDueEvent">{{dataItem.eventDescription}}</span>
+                <span *ngIf="dataItem.countryCode" translate="caseview.criticalDates.isPriorityEvent" [translateParams]="{countryCode: dataItem.countryCode, description: '' }"></span>
+                <span *ngIf="dataItem.renewalYear" translate="caseview.criticalDates.renewalYear" [translateParams]="{description:'', year: (dataItem.countryCode)?dataItem.renewalYear + ', ' + dataItem.countryCode :dataItem.renewalYear}"></span>
+                <span *ngIf="dataItem.isLastEvent" translate="caseview.criticalDates.lastEvent" [translateParams]="{description: (dataItem.countryCode ? dataItem.eventDescription + ', ' + dataItem.countryCode : dataItem.eventDescription)}"></span>
+                <span *ngIf="dataItem.isNextDueEvent" translate="caseview.criticalDates.nextEventDue" [translateParams]="{description: (dataItem.countryCode ? dataItem.eventDescription + ', ' + dataItem.countryCode : dataItem.eventDescription)}"></span>
+            </ng-template>
+        </ng-template>
+
+    </ipx-kendo-grid>
+</div>

@@ -1,0 +1,34 @@
+<div *ngIf="form" class="modal-header">
+    <h2 class="modal-title" translate="{{ this.isAdding? 'recordalType.recordalElement.add': 'recordalType.recordalElement.edit' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-checkbox *ngIf="this.isAdding" name="addAnother" label="modal.addAnother" [(ngModel)]="isAddAnotherChecked" (click)="onAddAnotherChanged($event)">
+        </ipx-checkbox>
+        <ipx-apply-button type="button" id="btSave" [disabled]="(!form.dirty && isSaveDisabled) || form.status === 'INVALID'" (click)="submit()"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div *ngIf="form">
+            <form [formGroup]="form">
+                <div class="row col-md-10">
+                    <ipx-dropdown id="element" name="element" apply-edited required [label]="'recordalType.recordalElement.column.element'" formControlName="element" [options]="elementOptions" [displayField]="'value'">
+                    </ipx-dropdown>
+                </div>
+                <div class="row col-md-10">
+                    <ipx-text-field id="elementLabel" name="elementLabel" required formControlName="elementLabel" apply-edited label="{{ 'recordalType.recordalElement.column.elementLabel' | translate }}" autocomplete="off">
+                    </ipx-text-field>
+                </div>
+                <div class="row col-md-10" style="margin-left: -4px;">
+                    <ipx-typeahead id="nameType" required name="nameType" formControlName="nameType" label="recordalType.recordalElement.column.nameType" apply-edited config="nameType">
+                    </ipx-typeahead>
+                </div>
+                <div class="row col-md-10">
+                    <ipx-dropdown id="attribute" name="attribute" required apply-edited [label]="'recordalType.recordalElement.column.attribute'" formControlName="attribute"
+                        [options]="[{key:attributeEnum.Display, value:'recordalType.recordalElement.display' | translate}, {key:attributeEnum.Mandatory, value:'recordalType.recordalElement.mandatory' | translate}]" [displayField]="'value'">
+                    </ipx-dropdown>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

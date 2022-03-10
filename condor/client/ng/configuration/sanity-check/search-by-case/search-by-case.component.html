@@ -1,0 +1,88 @@
+<fieldset ngModelGroup="caseCharacteristicsData" #searchForm="ngModelGroup">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="office" label="picklist.office.Type" config="office" [(ngModel)]="formData.caseOffice" ipx-autofocus="true" (onChange)="onCriteriaChange()"></ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="caseType" label="picklist.casetype.Type" config="caseType" [(ngModel)]="formData.caseType" (onChange)="onCriteriaChange()"></ipx-typeahead>
+                    <ipx-checkbox class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.caseType" name="caseTypeExclude" [(ngModel)]="formData.caseTypeExclude" (onChange)="onCriteriaChange()">
+                    </ipx-checkbox>
+                </div>
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="jurisdiction" label="picklist.jurisdiction.Type" config="jurisdiction" [(ngModel)]="formData.jurisdiction" (onChange)="onCriteriaChange()">
+                    </ipx-typeahead>
+                    <ipx-checkbox class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.jurisdiction" name="jurisdictionExclude" [(ngModel)]="formData.jurisdictionExclude"></ipx-checkbox>
+                </div>
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="propertyType" label="picklist.propertytype.Type" config="propertyType" [(ngModel)]="formData.propertyType" [extend-query]="extendValidCombinationPickList" [external-scope]="picklistValidCombination" entity="propertyTypes"
+                        (onChange)="onCriteriaChange()">
+                    </ipx-typeahead>
+                    <ipx-checkbox class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.propertyType" name="propertyTypeExclude" [(ngModel)]="formData.propertyTypeExclude"></ipx-checkbox>
+                </div>
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="caseCategory" label="picklist.casecategory.Type" config="caseCategory" [(ngModel)]="formData.caseCategory" [extend-query]="extendValidCombinationPickList" [external-scope]="picklistValidCombination" entity="caseCategories"
+                        [disabled]="isCaseCategoryDisabled|async" (onChange)="onCriteriaChange()"></ipx-typeahead>
+                    <ipx-checkbox class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.caseCategory" name="caseCategoryExclude" [(ngModel)]="formData.caseCategoryExclude"></ipx-checkbox>
+                </div>
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="subType" label="picklist.subtype.Type" config="subType" [(ngModel)]="formData.subType" [external-scope]="picklistValidCombination" entity="subTypes" [extend-query]="extendValidCombinationPickList" (onChange)="onCriteriaChange()">
+                    </ipx-typeahead>
+                    <ipx-checkbox class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.subType" name="subTypeExclude" [(ngModel)]="formData.subTypeExclude"></ipx-checkbox>
+                </div>
+                <div class="row">
+                    <ipx-typeahead class="col-sm-10" name="basis" label="picklist.basis.Type" config="basis" [(ngModel)]="formData.basis" [external-scope]="picklistValidCombination" entity="basis" [extend-query]="extendValidCombinationPickList" (onChange)="onCriteriaChange()">
+                    </ipx-typeahead>
+                    <ipx-checkbox class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.basis" name="basisExclude" [(ngModel)]="formData.basisExclude"></ipx-checkbox>
+                </div>
+                <div class="row">
+                    <ipx-dropdown class="col-sm-10" name="applyTo" label="sanityCheck.configurations.localOrForeignDropdown.label" [(ngModel)]="formData.applyTo" [displayField]="'label'" [keyField]="'value'" [options]="appliesToOptions">
+                    </ipx-dropdown>
+                </div>
+                <div class="row">
+                    <div class="input-wrap col-sm-10" name="status">
+                        <span class="col-sm-4" translate="sanityCheck.configurations.status" style="text-align: right; margin-top:5px;margin-right:5px;padding-right:10px"></span>
+                        <ipx-checkbox label="sanityCheck.configurations.pendingStatus" name="pending" [(ngModel)]="formData.statusIncludePending"></ipx-checkbox>
+                        <ipx-checkbox label="sanityCheck.configurations.registeredStatus" name="registered" [(ngModel)]="formData.statusIncludeRegistered"></ipx-checkbox>
+                        <ipx-checkbox label="sanityCheck.configurations.deadStatus" name="dead" [(ngModel)]="formData.statusIncludeDead"></ipx-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="row">
+                    <ipx-typeahead name="nameGroup" label="picklist.nameGroup.Type" config="nameGroup" [(ngModel)]="formData.nameGroup"></ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead name="name" label="picklist.name.Name" config="name" [(ngModel)]="formData.name"></ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead name="nameType" label="picklist.nameType.type" config="nameType" [(ngModel)]="formData.nameType">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead name="instructionType" label="picklist.instructiontype.Type" config="instructionType" [(ngModel)]="formData.instructionType" (ngModelChange)="instructionTypeSelected(!!$event)">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead name="characteristic" label="sanityCheck.configurations.characteristics" config="characteristic" [(ngModel)]="formData.characteristic" [extend-query]="characteristicsExtendQuery" [disabled]="(isInstructionTypeSelected | async) ===(false)">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead name="tableColumn" label="picklist.tableColumn.label" config="tableColumnCase" [(ngModel)]="formData.tableColumn">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead name="event" label="picklist.event.Type" config="event" [(ngModel)]="formData.event" (onChange)="eventSet()">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 col-sm-offset-4">
+                        <ipx-checkbox label="sanityCheck.configurations.dueEvent" [(ngModel)]="formData.eventIncludeDue" name="eventIncludeDue" [disabled]="!formData.event"></ipx-checkbox>
+                        <ipx-checkbox label="sanityCheck.configurations.occurredEvent" [(ngModel)]="formData.eventIncludeOccurred" name="eventIncludeOccurred" [disabled]="!formData.event"></ipx-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>

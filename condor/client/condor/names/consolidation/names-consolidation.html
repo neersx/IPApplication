@@ -1,0 +1,80 @@
+<ip-sticky-header>
+    <ip-page-title page-title="namesConsolidation.title">
+        <action-buttons>
+            <ip-clear-button ng-click="vm.reset()" ng-disabled="vm.requestSubmitted"></ip-clear-button>
+            <ip-icon-button class="btn-advancedsearch" ng-click="vm.runRequest()" ip-tooltip="{{:: 'namesConsolidation.runTooltip' | translate }}" data-tooltip-placement="bottom" id="execute-names-consolidation" button-icon="gears" ng-disabled="vm.isRunDisabled()"></ip-icon-button>
+        </action-buttons>
+    </ip-page-title>
+</ip-sticky-header>
+<div class="name-consolidation" ip-resize-handler resize-handler-type="Panel">
+    <div class="col-sm-12">
+        <ip-inline-alert ng-if="vm.requestSubmitted" type="info" text="namesConsolidation.inProgress"></ip-inline-alert>
+        <ip-inline-alert ng-if="!vm.requestSubmitted && vm.consolidateJobStatus === 'error'" type="danger" text="namesConsolidation.consolidationErrorMessage"></ip-inline-alert>
+        <ip-inline-alert ng-if="!vm.requestSubmitted && vm.consolidateJobStatus === 'success'" type="success" text="namesConsolidation.consolidationSuccessMessage"></ip-inline-alert>
+    </div>
+    <br/>
+    <div class="table-container">
+        <div class="table-title">
+            <h5 translate="namesConsolidation.gridHeader"></h5>
+            <div class="pull-right">
+                <button type="button" id="names-add-btn" class="btn btn-icon" ip-tooltip="{{:: 'namesConsolidation.addNameTooltip' | translate}}" ng-click="vm.openNamesPicklist()" ng-disabled="vm.requestSubmitted">
+                    <icon name="plus-circle"></icon>
+                </button>
+            </div>
+        </div>
+        <br />
+        <ip-kendo-grid id="names-consolidation-grid" data-grid-options="vm.gridOptions" data-show-add="!vm.requestSubmitted" data-on-add-click="vm.openNamesPicklist()" data-add-item-name="{{'namesConsolidation.newNameGridLabel' | translate}}"></ip-kendo-grid>
+    </div>
+    <div class="row topic-container"></div>
+    <div class="table-container" ng-class="{'greyBoxWithLabels':vm.targetName}" style="margin-top: 50px;">
+        <div class="table-title row">
+            <div class="col-lg-7 col-sm-12">
+                <h5 translate="namesConsolidation.picklistLabel"></h5>
+                <ip-typeahead id="names-picklist" class="col-sm-8" data-config="name" data-label="" ng-model="vm.targetName" data-extend-query="vm.includeCeasedName" ng-change="vm.clearErrors()" ng-disabled="vm.requestSubmitted"></ip-typeahead>
+            </div>
+            <div class="col-lg-5 col-sm-12">
+                <ip-checkbox ng-model="vm.keepAddressHistory" label="namesConsolidation.keepAddressHistory" ></ip-checkbox>
+                <ip-checkbox ng-model="vm.keepTelecomHistory" label="namesConsolidation.keepTelecomHistory" ></ip-checkbox>
+            </div>
+        </div>
+        <div class="row" ng-if="vm.targetName">
+            <div class="col-sm-4">
+                <div class="readonly-label-group">
+                    <div class="input-wrap readonly-label-value">
+                        <label translate="namesConsolidation.columns.name"></label>
+                        <a ng-if="::vm.showWebLink && (!vm.isIe && !vm.inproVersion16)" ng-click="vm.showIeRequired(vm.getNameLink(vm.targetName.key))" class="text"><span>{{ vm.targetName.displayName }}</span></a>
+                        <a ng-if="::vm.showWebLink && (vm.isIe || vm.inproVersion16)" href="{{vm.getNameLink(vm.targetName.key)}}" class="text" target="_blank"><span>{{ vm.targetName.displayName }}</span></a>
+                        <span ng-if="::!vm.showWebLink">{{vm.targetName.displayName}}</span>
+                    </div>
+                </div>
+                <div class="readonly-label-group">
+                    <div class="input-wrap readonly-label-value">
+                        <label translate="namesConsolidation.columns.nameCode"></label>
+                        <span>{{vm.targetName.code}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="readonly-label-group">
+                    <div class="input-wrap readonly-label-value">
+                        <label translate="namesConsolidation.columns.remarks"></label>
+                        <span>{{vm.targetName.remarks}}</span>
+                    </div>
+                </div>
+                <div class="readonly-label-group">
+                    <div class="input-wrap readonly-label-value">
+                        <label translate="namesConsolidation.columns.nameNo"></label>
+                        <span>{{vm.targetName.key}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="readonly-label-group">
+                    <div class="input-wrap readonly-label-value">
+                        <label translate="namesConsolidation.columns.dateCeased"></label>
+                        <ip-date model="vm.targetName.ceased"></ip-date>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

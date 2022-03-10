@@ -1,0 +1,71 @@
+<div id="createChecklist">
+    <div class="modal-header">
+        <h2 class="modal-title">{{'checklistConfiguration.create.title' | translate}}</h2>
+        <div class="modal-header-controls">
+            <ipx-save-button id="save" type="button" [disabled]="!isSaveEnabled()" (click)="onSave()"></ipx-save-button>
+            <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+        </div>
+    </div>
+    <div class="modal-body" style="overflow: visible">
+        <form #checklistCriteriaForm [formGroup]="formGroup">
+            <div class="row">
+                <div class="col-sm-12 input-wrap large">
+                    <ipx-text-field name="criteriaName" label="Criteria Name" class="col-sm-12" multiline="true" formControlName="criteriaName" required apply-edited ipx-autofocus></ipx-text-field>
+                </div>
+                <div class="col-sm-6">
+                    <ipx-typeahead *ngIf="hasOffices" name="office" formControlName="office" config="office" label="picklist.office.Type" (onChange)="onCriteriaChange()" apply-edited>
+                    </ipx-typeahead>
+                    <ipx-typeahead required name="checklist" formControlName="checklist" config="checklist" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" label="picklist.checklist.type" entity="checklists" apply-edited>
+                    </ipx-typeahead>
+                    <ipx-typeahead name="caseType" formControlName="caseType" config="caseType" label="picklist.casetype.Type" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination"
+                        (onChange)="onCriteriaChange()" apply-edited>
+                    </ipx-typeahead>
+                    <ipx-typeahead name="jurisdiction" formControlName="jurisdiction" config="jurisdiction" label="picklist.jurisdiction.Type" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination"
+                        (onChange)="onCriteriaChange()" apply-edited>
+                    </ipx-typeahead>
+                    <ipx-typeahead name="propertyType" formControlName="propertyType" config="propertyType" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" label="picklist.propertytype.Type"
+                        (onChange)="onCriteriaChange()" entity="propertyTypes" apply-edited>
+                    </ipx-typeahead>
+                    <div class="input-wrap-group group-inline">
+                        <span translate="checklistConfiguration.fields.protectCriteria"></span>
+                        <ipx-radio-button-group name="isProtected" formControlName="isProtected">
+                            <ipx-radio-button value="true" [disabled]="!canAddProtectedRules || !canAddRules" apply-edited>
+                                <span translate="True"></span>
+                            </ipx-radio-button>
+                            <ipx-radio-button value="false" [disabled]="!canAddProtectedRules || !canAddRules" apply-edited>
+                                <span translate="False"></span>
+                            </ipx-radio-button>
+                        </ipx-radio-button-group>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <ipx-typeahead name="caseCategory" formControlName="caseCategory" config="caseCategory" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" keyField="key" codeField="code"
+                        textField="value" [disabled]="isCaseCategoryDisabled|async" label="picklist.casecategory.Type" (onChange)="onCriteriaChange()" entity="caseCategories" apply-edited>
+                    </ipx-typeahead>
+                    <ipx-typeahead name="subType" formControlName="subType" config="subType" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" keyField="key" codeField="code" textField="value"
+                        label="picklist.subtype.Type" (onChange)="onCriteriaChange()" entity="subTypes" apply-edited>
+                    </ipx-typeahead>
+                    <ipx-typeahead name="basis" formControlName="basis" config="basis" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" keyField="key" codeField="code" textField="value"
+                        label="picklist.basis.Type" (onChange)="onCriteriaChange()" entity="basis" apply-edited>
+                    </ipx-typeahead>
+                    <ipx-typeahead name="profile" formControlName="profile" config="profile" [extend-query]="extendPicklistQuery" [external-scope]="picklistValidCombination" keyField="key" codeField="code" textField="value"
+                        label="picklist.profile.Type" (onChange)="onCriteriaChange()" apply-edited>
+                    </ipx-typeahead>
+                    <ipx-dropdown name="applyTo" label="checklistConfiguration.search.localOrForeignDropdown.label" formControlName="applyTo" [displayField]="'label'" [keyField]="'value'" [options]="appliesToOptions" apply-edited>
+                    </ipx-dropdown>
+                    <div class="input-wrap-group group-inline">
+                        <span translate="checklistConfiguration.fields.inUse"></span>
+                        <ipx-radio-button-group name="isInUse" formControlName="isInUse">
+                            <ipx-radio-button value="true" apply-edited>
+                                <span translate="Yes"></span>
+                            </ipx-radio-button>
+                            <ipx-radio-button value="false" apply-edited>
+                                <span translate="No"></span>
+                            </ipx-radio-button>
+                        </ipx-radio-button-group>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

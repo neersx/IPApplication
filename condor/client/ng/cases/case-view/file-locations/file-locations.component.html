@@ -1,0 +1,23 @@
+<style>
+    .hosted-history-icon {
+        margin-left: 578px;
+        margin-top: 19px;
+    }
+</style>
+<div class="row" [ngClass]="{'hosted-grid': isHosted}">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6 text-right" style="margin:5px 0 -28px -31px; padding-top: 15px; z-index: 899;" [ngClass]="{'hosted-history-icon': isHosted}">
+                <div class="display-inline">
+                    <ipx-history-button (click)="openFileLocationHistory()"></ipx-history-button>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div style="margin-top:-17px">
+            <file-locations-grid [topic]="topic" [isHosted]="isHosted" [permissions]="permissions" (gridChanged)="gridChanged($event)"></file-locations-grid>
+        </div>
+    </div>
+</div>

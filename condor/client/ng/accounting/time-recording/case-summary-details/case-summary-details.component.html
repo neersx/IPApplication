@@ -1,0 +1,171 @@
+<section class="detail-view" *ngIf="!caseKey">
+    <header>
+        <ipx-inline-alert [type]="'info'" [text]="'NoInformationAvailable'">
+        </ipx-inline-alert>
+    </header>
+</section>
+<section class="detail-view data" *ngIf="caseKey">
+    <div class="container-fluid">
+        <div class="row" *ngIf="caseSummary">
+            <div style="z-index: 5">
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span translate="accounting.time.recording.summary.caseReference"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <a id="caseReference" href="#/caseview/{{caseSummary.caseKey}}" target="_blank">{{ caseSummary.irn }}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span translate="accounting.time.recording.summary.title"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ caseSummary.title }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span translate="accounting.time.recording.summary.caseStatus"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ caseSummary.caseStatus }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span translate="accounting.time.recording.summary.renewalStatus"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ caseSummary.renewalStatus }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span translate="accounting.time.recording.summary.officialNumber"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ caseSummary.officialNumber }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span translate="accounting.time.recording.summary.instructorReference" [translateParams]="{ nameType: instructorNameType }"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ caseSummary.instructor.reference }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <ipx-case-financial [caseKey]="caseKey"></ipx-case-financial>
+            </div>
+            <div id="caseSummaryNames">
+                <div class="container-fluid" *ngFor="let n of caseSummary.debtors; trackBy: byEntity">
+                    <hr />
+                    <div *ngIf="!!n.canView">
+                        <ipx-name-financial [nameKey]="n.id"></ipx-name-financial>
+                    </div>
+                    <div id="debtor-{{ n.id }}" class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span>{{ n.type }}</span>
+                            <span *ngIf="n.showBillPercentage">({{ n.billingPercentage }}%)</span>
+                        </div>
+                        <div class="col-lg-6" style="display: inline-block">
+                            <div class="col-sm-12">
+                                <ipx-ie-only-url *ngIf="showLink === true" style="cursor: pointer;" [url]="encodeLinkData(n.id)" [text]="n.nameAndCode"></ipx-ie-only-url>
+                                <span *ngIf="showLink !== true">{{ n.nameAndCode }}</span>
+                                <ipx-debtor-restriction-flag [debtor]="n.id" *ngIf="n.showNameCodeRestriction" style="margin-left: 5px"></ipx-debtor-restriction-flag>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="z-index: 5">
+                <hr />
+                <div class="container-fluid" *ngIf="caseSummary.instructor.id">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span>{{ caseSummary.instructor.type }}</span>
+                        </div>
+                        <div class="col-lg-6">
+                            <ipx-ie-only-url *ngIf="showLink" style="cursor: pointer;" [url]="encodeLinkData(caseSummary.instructor.id)" [text]="caseSummary.instructor.nameAndCode"></ipx-ie-only-url>
+                            <span *ngIf="!showLink">{{ caseSummary.instructor.nameAndCode }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="caseSummaryNames">
+                <div class="container-fluid" *ngFor="let n of caseSummary.owners; trackBy: byEntity">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span>{{ n.type }}</span>
+                        </div>
+                        <div class="col-lg-6">
+                            <ipx-ie-only-url *ngIf="showLink" style="cursor: pointer;" [url]="encodeLinkData(n.id)" [text]="n.nameAndCode"></ipx-ie-only-url>
+                            <span *ngIf="!showLink">{{ n.nameAndCode }}</span>
+                            <ipx-debtor-restriction-flag [debtor]="n.id" style="margin-left: 5px">
+                            </ipx-debtor-restriction-flag>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="container-fluid" *ngFor="let n of caseSummary.staffMember; trackBy: byEntity">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span>{{ n.type }}</span>
+                        </div>
+                        <div class="col-lg-6">
+                            <ipx-ie-only-url *ngIf="showLink" style="cursor: pointer;" [url]="encodeLinkData(n.id)" [text]="n.nameAndCode"></ipx-ie-only-url>
+                            <span *ngIf="!showLink">{{ n.nameAndCode }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="container-fluid" *ngFor="let n of caseSummary.signatory; trackBy: byEntity">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span>{{ n.type }}</span>
+                        </div>
+                        <div class="col-lg-6">
+                            <ipx-ie-only-url *ngIf="showLink" style="cursor: pointer;" [url]="encodeLinkData(n.id)" [text]="n.nameAndCode"></ipx-ie-only-url>
+                            <span *ngIf="!showLink">{{ n.nameAndCode }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="z-index: 5" *ngIf="caseSummary.caseNarrativeText">
+                <hr />
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span translate="accounting.time.recording.summary.caseNarrative"></span>
+                        </div>
+                    </div>
+                    <div class="row data">
+                        <div *ngIf="caseSummary.enableRichText" class="col-lg-12">
+                            <span [innerHtml]="caseSummary.caseNarrativeText | sanitize:'html'"></span>
+                        </div>
+                        <div *ngIf="!caseSummary.enableRichText" class="col-lg-12">
+                            <span>{{ caseSummary.caseNarrativeText }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

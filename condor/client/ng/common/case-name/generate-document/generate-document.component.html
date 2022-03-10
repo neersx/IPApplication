@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <h2 class="modal-title">
+        <span *ngIf="modalTitle">
+            {{modalTitle | translate}}
+        </span>
+        <span *ngIf="!modalTitle">&nbsp;</span>
+    </h2>
+    <div class="modal-header-controls">
+        <button class="btn btn-icon btn-save" [disabled]="(documentId$ | async) === null || (addAsAttachment && (hasValidChanges$ | async) !== true)" (click)="generateAndSave()"
+                tooltip="{{ (documentId$ | async) === null ? '' : 'button.generate' | translate }}" placement="left" [adaptivePosition]="false" container="body">
+            <ipx-icon name="check"></ipx-icon>
+        </button>
+        <ipx-close-button *ngIf="!isHosted" type="button" (click)="onClose()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-subheader" *ngIf="hasSettings===false && addAsAttachment">
+    <ipx-inline-alert [type]="'warning'" [text]="'caseview.attachments.maintenance.noSettings' | translate" *ngIf="hasSettings===false && addAsAttachment"></ipx-inline-alert>
+</div>
+<div class="modal-body">
+    <br />
+    <div class="row">
+        <div class="col-sm-8">
+            <ipx-typeahead name="documentName" label="{{ 'picklist.document.label' | translate }}" required [extend-query]="vm.docGenTemplatesExtendedQuery" label="{{ 'picklist.document.label' | translate }}"
+                ipx-autofocus config="document" [(ngModel)]="document" (ngModelChange)="onDocumentChange()">
+            </ipx-typeahead>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8 input-wrap-group group-inline">
+            <ipx-checkbox name="addAsAttachment"  style="margin-left: 33%;" label="{{ translationPrefix + 'addAsAttachment' | translate }}" [disabled]="documentAttachmentsDisabled"
+                          *ngIf="canAddAttachments" [(ngModel)]="addAsAttachment" [info]="'caseview.attachments.maintenance.info'">
+            </ipx-checkbox>
+        </div>
+    </div>
+    <hr *ngIf="canAddAttachments" style="background-color: darkgray; height:1px;">
+    <attachment-maintenance-form #maintenanceForm *ngIf="canAddAttachments" [activityAttachment]="null" [activityDetails]="null" [viewData]="maintenanceViewData" [document]="documentId$ | async"
+                                 [disabled]="(documentId$| async) === null || !addAsAttachment" (hasValidChanges)="updateStatus($event)" [translationPrefix]="translationPrefix">
+    </attachment-maintenance-form>
+</div>

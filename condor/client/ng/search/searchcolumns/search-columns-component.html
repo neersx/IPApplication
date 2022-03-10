@@ -1,0 +1,57 @@
+<style>
+    .filter-label {
+        width: auto !important;
+        margin-left: 5px;
+    }
+</style>
+
+<ipx-sticky-header>
+    <ipx-page-title [title]="headerText">
+    </ipx-page-title>
+</ipx-sticky-header>
+
+<ipx-header></ipx-header>
+<ipx-search-option [isSearchDisabled]=false [isResetDisabled]=false (search)="search()" (clear)="clear()">
+    <div class="input-wrap">
+        <input inputRef type="text" [placeholder]="'SearchColumns.searchHint' | translate" [(ngModel)]="searchCriteria.text" ipx-autofocus />
+    </div>
+</ipx-search-option>
+<div>
+    <div class="table-container">
+        <div class="table-title">
+            <h2 *ngIf="displayFilterBy">{{"SearchColumns.columnSummary"|translate}}</h2>
+            <h2 *ngIf="!displayFilterBy">{{"SearchColumns.columnSummary"|translate}} - {{isInternalText}}
+            </h2>
+            <ipx-add-button (click)="openModal(null,searchColumnState.Adding)" class="pull-right"></ipx-add-button>
+        </div>
+        <div *ngIf="displayFilterBy" class="input-wrap-group group-inline">
+            <span class="filter-label">{{"SearchColumns.filterBy" | translate}}</span>
+            <div class="input-wrap">
+                <ipx-radio-button id="forInternal" name="FilterBy" [value]="true" [label]="'SearchColumns.internal'|translate" [(ngModel)]="filterValue.displayForInternal" (changeRadio)="toggleFilterOption(filterValue.internalContext)"></ipx-radio-button>
+            </div>
+            <div class="input-wrap">
+                <ipx-radio-button id="forExternal" name="FilterBy" [value]="false" [label]="'SearchColumns.external'|translate" [(ngModel)]="filterValue.displayForInternal" (changeRadio)="toggleFilterOption(filterValue.externalContext)"></ipx-radio-button>
+            </div>
+            <div class="input-wrap">
+                <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" container="body" [tooltipPlacement]="'right'" [templateRef]="toolTip">
+                </ipx-inline-dialog>
+            </div>
+        </div>
+
+        <div ipx-resize-handler [resize-handler-type]="'Panel'">
+            <ipx-kendo-grid [dataOptions]="gridOptions" id="searchResults" #searchColumnGrid>
+                <ng-template ipxTemplateColumnField="displayName" let-dataItem>
+                    <span><a (click)="openModal(dataItem.columnId,searchColumnState.Updating)">{{ dataItem.displayName }}</a></span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="columnNameDescription" let-dataItem>
+                    <span class="text-nowrap text-center">{{ dataItem.columnNameDescription }}</span>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>
+
+<ng-template #toolTip>
+    <p><b>{{'SearchColumns.internal' | translate}}</b> {{tooltipSearchInternal}}</p>
+    <p><b>{{'SearchColumns.external' | translate}}</b> {{tooltipSearchExternal}}</p>
+</ng-template>

@@ -1,0 +1,26 @@
+<ip-master-detail-view data-state="jurisdictions">
+    <ip-sticky-header>
+        <ip-page-title page-title="jurisdictions.pageTitle"></ip-page-title>
+        <ip-search-options-header></ip-search-options-header>
+    </ip-sticky-header>
+
+    <div ip-resize-handler resize-handler-type="Panel">
+        <ip-search-options on-clear="vm.reset()" on-search="vm.search()" is-reset-disabled="vm.isResetDisabled()">
+            <div class="input-wrap">
+                <input type="text" id="search-options-criteria" ng-model="vm.searchCriteria.text" placeholder="{{ 'jurisdictions.search.placeholder' | translate }}"
+                    ip-autofocus>
+            </div>
+        </ip-search-options>
+
+        <div class="table-container" ng-init="vm.initShortcuts()">
+            <div class="table-title">
+                <h2 translate="searchResult"></h2>
+                <button type="button" id="jurisdiction-add-btn" class="btn btn-icon pull-right" ip-tooltip="{{:: 'Add' | translate}}" ng-click="vm.openAddModal()"
+                    ng-if="vm.permissions.canMaintain">
+                    <icon name="plus-circle"></icon>
+                </button>
+            </div>
+            <ip-kendo-grid data-id="searchResults" data-grid-options="vm.gridOptions" mode="search"></ip-kendo-grid>
+        </div>
+    </div>
+</ip-master-detail-view>

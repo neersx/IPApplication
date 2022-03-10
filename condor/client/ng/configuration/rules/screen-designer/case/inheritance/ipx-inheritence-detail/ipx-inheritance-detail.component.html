@@ -1,0 +1,120 @@
+<article class="detail-view" *ngIf="!($criteriaDetails|async).id">
+    <header>
+        <ipx-inline-alert [type]="'info'" [text]="'screenDesignerCases.inheritance.message'">
+        </ipx-inline-alert>
+    </header>
+</article>
+<article class="detail-view data" *ngIf="($criteriaDetails|async).id">
+    <header>
+        <a id="criteriaReference"href="javascript:void(0);"  target="_self" (click)="navigateToCriteria()">
+          <h5>{{(($criteriaDetails | async).criteriaName || '') + ' (' + ($criteriaDetails | async).id + ')'}}</h5>
+      </a>
+    </header>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8" style="z-index: 5">
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span [translate]="'picklist.office.Type'"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ ($criteriaDetails | async)?.office?.value }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span [translate]="'picklist.caseProgram.ShortType'"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ ($criteriaDetails | async)?.program?.value}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'picklist.casetype.Type'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ ($criteriaDetails | async)?.caseType?.value }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'picklist.jurisdiction.Type'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ ($criteriaDetails | async)?.jurisdiction?.value }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'picklist.propertytype.Type'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ ($criteriaDetails | async)?.propertyType?.value }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'picklist.casecategory.Type'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ ($criteriaDetails | async)?.caseCategory?.value }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'picklist.subtype.Type'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ ($criteriaDetails | async)?.subType?.value }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'picklist.basis.Type'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ ($criteriaDetails | async)?.basis?.value }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'picklist.profile.Type'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ ($criteriaDetails | async)?.propertyType?.value }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'screenDesignerCases.criteriaMaintenance.criteriaName'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ ($criteriaDetails | async).criteriaName }}</span>
+            </div>
+        </div>
+    </div>    
+</article>

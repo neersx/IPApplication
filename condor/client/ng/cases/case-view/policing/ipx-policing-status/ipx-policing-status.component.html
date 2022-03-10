@@ -1,0 +1,15 @@
+<span [ngClass]="{'tooltip-error': hasFailedPolicing}">
+    <span *ngIf="policingStatus" data-tooltip-placement="left" tooltip="{{'caseview.summary.policing.status'+ policingStatus | translate }}" placement="left">
+        <div class="ipx-policing-cogs-container-small">
+
+            <div class="ipx-policing-cogs">
+                <div>
+                    <ipx-icon name="gear" [class]="(processing ? 'cpa-icon-spin ': '') + 'pending'"></ipx-icon>
+                    <ipx-icon name="gear" [class]="(processing ? 'cpa-icon-spin-back ' : '') + 'pending'"></ipx-icon>
+                    <ipx-icon *ngIf="hasFailedPolicing" name="exclamation-triangle" [class]=""></ipx-icon>
+               
+                </div>
+            </div>
+        </div>
+    </span>
+</span>

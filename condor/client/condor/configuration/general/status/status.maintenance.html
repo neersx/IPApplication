@@ -1,0 +1,102 @@
+<div ng-form="vm.maintenance" ip-form>
+    <div translate-namespace="status">
+        <div class="modal-header">
+            <h2 class="modal-title" ng-switch on="vm.entity.state">
+                <div ng-switch-when="adding" translate=".maintenance.addStatus"></div>
+                <div ng-switch-when="updating" translate=".maintenance.editStatus"></div>
+                <div ng-switch-when="duplicating" translate=".maintenance.duplicateStatus"></div>
+            </h2>
+            <div class="modal-header-controls" ip-confirm-before-page-change="vm.maintenance.$dirty" data-confirm-message="{{:: 'ConfirmLeaveUnsavedChanges' | translate}}" ng-init="vm.initShortcuts()">
+                <ip-save-button type="submit" data-ng-disabled="vm.disable()" data-ng-click="vm.save()"></ip-save-button>
+                <ip-close-button type="button" data-ng-click="vm.dismissAll();"></ip-close-button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <ip-text-field name="internalName" ip-required label=".internalDesc" ng-model="vm.entity.name" ng-class="{edited: vm.maintenance.internalName.$dirty}" data-ng-maxlength="50" data-ng-disabled="{{vm.entity.disabled}}" ip-field-error="{{vm.getError('internalName').message | translate}}"></ip-text-field>
+            </div>
+            <div class="row">
+                <ip-text-field name="externalName" label=".externalDesc" ng-model="vm.entity.externalName" ng-class="{edited: vm.maintenance.externalName.$dirty}" data-ng-maxlength="50" data-ng-disabled="{{vm.entity.disabled}}"></ip-text-field>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="input-wrap-group group-inline">
+                    <span translate=".maintenance.statusType" class="col-sm-6"></span>
+                    <ip-radio-button class="col-sm-3" label=".caseStatus" value="case" ng-model="vm.entity.statusType" name="caseStatus" ng-class="{edited: vm.maintenance.caseStatus.$dirty}">
+                    </ip-radio-button>
+                    <ip-radio-button class="col-sm-3" label=".renewalStatus" value="renewal" ng-model="vm.entity.statusType" name="renewalStatus" ng-class="{edited: vm.maintenance.renewalStatus.$dirty}">
+                    </ip-radio-button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-wrap-group group-inline">
+                    <span translate=".statusSummary" class="col-sm-6"></span>
+                    <ip-radio-button class="col-sm-3" label=".pending" value="pending" ng-model="vm.entity.statusSummary" name="pending" ng-class="{edited: vm.maintenance.pending.$dirty}">
+                    </ip-radio-button>
+                    <ip-radio-button class="col-sm-2" style="margin-left: 18px" label=".registered" value="registered" ng-model="vm.entity.statusSummary" name="registered" ng-class="{edited: vm.maintenance.registered.$dirty}">
+                    </ip-radio-button>
+                    <ip-radio-button class="col-sm-1" label=".dead" value="dead" ng-model="vm.entity.statusSummary" name="dead" ng-class="{edited: vm.maintenance.dead.$dirty}">
+                    </ip-radio-button>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="input-wrap-group group-inline">
+                    <span translate=".maintenance.functionsAllowed" class="col-sm-4"></span>
+                    <ip-checkbox class="col-sm-4" name="policeRenewals" ng-model="vm.entity.policeRenewals" label=".maintenance.policeRenewals" ng-class="{edited: vm.maintenance.policeRenewals.$dirty}"></ip-checkbox>
+                    <ip-checkbox class="col-sm-4" style="margin-left:20px" name="policeExamination" ng-model="vm.entity.policeExam" label=".maintenance.policeExamination" ng-class="{edited: vm.maintenance.policeExamination.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-wrap-group group-inline">
+                    <span class="col-sm-4"></span>
+                    <ip-checkbox class="col-sm-4" name="policeOther" ng-model="vm.entity.policeOtherActions" label=".maintenance.policeOther" ng-class="{edited: vm.maintenance.policeOther.$dirty}"></ip-checkbox>
+                    <ip-checkbox class="col-sm-4" style="margin-left:42px" name="produceLetters" ng-model="vm.entity.lettersAllowed" label=".maintenance.produceLetters" ng-class="{edited: vm.maintenance.produceLetters.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-wrap-group group-inline">
+                    <span class="col-sm-4"></span>
+                    <ip-checkbox class="col-sm-4" name="generateCharges" ng-model="vm.entity.chargesAllowed" label=".maintenance.generateCharges" ng-class="{edited: vm.maintenance.generateCharges.$dirty}"></ip-checkbox>
+                    <ip-checkbox class="col-sm-4" style="margin-left:7px" name="priorArt" ng-model="vm.entity.priorArtFlag" label=".maintenance.priorArtRelatedCases" ng-class="{edited: vm.maintenance.priorArt.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-wrap-group group-inline">
+                    <span class="col-sm-4"></span>
+                    <ip-checkbox class="col-sm-4" name="remindersAllowed" ng-model="vm.entity.remindersAllowed" label=".maintenance.remindersAllowed" ng-class="{edited: vm.maintenance.remindersAllowed.$dirty}"></ip-checkbox>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="input-wrap-group group-inline">
+                    <span translate=".maintenance.preventTransactionFor" class="col-sm-4"></span>
+                    <ip-checkbox class="col-sm-2" name="billing" ng-model="vm.entity.preventBilling" label=".maintenance.billing" ng-class="{edited: vm.maintenance.billing.$dirty}"></ip-checkbox>
+                    <ip-checkbox class="col-sm-2" name="prepayment" ng-model="vm.entity.preventPrepayment" label=".maintenance.prepayment" ng-class="{edited: vm.maintenance.prepayment.$dirty}"></ip-checkbox>
+                    <ip-checkbox class="col-sm-2" name="wip" ng-model="vm.entity.preventWip" label=".maintenance.wip" ng-class="{edited: vm.maintenance.wip.$dirty}"></ip-checkbox>
+
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="input-wrap-group group-inline">
+                    <span translate=".maintenance.passwordRequiredOn"></span>
+                    <ip-checkbox class="col-sm-4" name="manualStatusChange" ng-model="vm.entity.confirmationRequired" label=".maintenance.manualStatusChange" ng-class="{edited: vm.maintenance.manualStatusChange.$dirty}"></ip-checkbox>
+
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-wrap">
+                        <label translate=".maintenance.reasonStopPaying"></label>
+                        <select class="col-sm-5 pull-left modal-select" name="stoppayreasons" ng-options="r.name for r in vm.supportData.stopPayReasons track by r.id" ng-model="vm.entity.stopPayReason" data-ng-class="{'edited': vm.maintenance.stoppayreasons.$dirty}">
+                            <option ng-hide="!vm.entity.stopPayReason.name" value=""></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <br/>
+        </div>
+    </div>
+</div>

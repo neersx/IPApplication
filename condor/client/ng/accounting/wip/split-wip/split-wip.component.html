@@ -1,0 +1,128 @@
+<div class="label20" id="splitWip" name="splitWip">
+    <ipx-sticky-header *ngIf="form" style="border: 2px solid #ecebeb;background-color: #E6E6E6; height: 33px;">
+        <action-buttons class="pull-right" style="margin-top: 2px; margin-right:6px;">
+            <ipx-save-button id="save" type="button" (click)="submit()" [disabled]="isSaveDisabled()" style="padding-right: 4px; "></ipx-save-button>
+            <ipx-close-button id="close" type=" button" (click)="closeModal()"></ipx-close-button>
+        </action-buttons>
+    </ipx-sticky-header>
+
+    <ipx-split-wip-header *ngIf="splitWipData" #splitWipheader [splitWipData]="splitWipData" [reasonCollection]="viewData.reasonSupportCollection"></ipx-split-wip-header>
+
+    <article style="border: 2px solid #ecebeb;  padding-left: 25px; border-radius: 5px; margin-top: 3px;">
+        <div class="row header">
+            <div class="container-fluid input-wrap-group group-inline" *ngIf="splitWipTypeEnum">
+                <ipx-radio-button [ngModelOptions]="{standalone: true}" [(ngModel)]="splitByType" [value]="splitWipTypeEnum.amount" apply-edited (change)="changeSplitBy(splitWipTypeEnum.amount)">
+                    {{ "wip.splitWip.splitByAmount" | translate }}
+                </ipx-radio-button>
+                <ipx-radio-button [ngModelOptions]="{standalone: true}" [(ngModel)]="splitByType" [value]="splitWipTypeEnum.percentage" apply-edited (change)="changeSplitBy(splitWipTypeEnum.percentage)">
+                    {{ "wip.splitWip.splitByPercentage" | translate }}
+                </ipx-radio-button>
+                <ipx-radio-button [ngModelOptions]="{standalone: true}" [(ngModel)]="splitByType" [value]="splitWipTypeEnum.equally" apply-edited (change)="changeSplitBy(splitWipTypeEnum.equally)">
+                    {{ "wip.splitWip.splitEqually" | translate }}
+                </ipx-radio-button>
+            </div>
+        </div>
+    </article>
+    <article style="border: 2px solid #ecebeb;border-radius: 5px;margin-top: 3px;padding-top: 5px;border-top: 0px;">
+        <div class="container-fluid">
+            <div *ngIf="form" class="row">
+                <form [formGroup]="form">
+                    <div class="row" style="margin-right: 15px;">
+                        <div class="col-sm-6">
+                            <ipx-typeahead id="name" [disabled]="disableAll" #nameEl name="name" config="client" (onChange)="onNameChange($event)" [formControl]="name" [label]="'wip.splitWip.name' | translate"
+                                apply-edited></ipx-typeahead>
+                            <div class="row">
+                                <div class="col-sm-11" style="margin-left: 15px;">
+                                    <ipx-typeahead id="case" [disabled]="disableAll" #caseEl ip-autofocus name="case" (onChange)="onCaseChange($event)" [auto-bind]="!!name.value" [extend-query]="caseExtendQuery"
+                                        [external-scope]="externalScope" [formControl]="case" [disabled]="disableAll" label="{{ 'wip.splitWip.case' | translate }}" name="case" config="caseWithName" apply-edited>
+                                    </ipx-typeahead>
+                                </div>
+                                <div class="col-sm-1" style="margin-left:-44px; margin-top: 2px;">
+                                    <ipx-icon-button type="button" [buttonIcon]="'items-o'" class="pull-right" name="caseNarrative" [disabled]="disabledCaseNarrative()" (onclick)="openCaseNarrative()"
+                                        tooltip="{{'wip.splitWip.caseNarrative' | translate }}">
+                                    </ipx-icon-button>
+                                </div>
+                            </div>
+                            <ipx-typeahead id="staff" [disabled]="disableAll" #staffEl label="{{'wip.splitWip.staff' | translate}}" (onChange)="onStaffChange($event)" [formControl]="staff" config="staff" apply-edited>
+                            </ipx-typeahead>
+                            <div class="row">
+                                <div class="col-sm-6" style="margin-left: 86px;">
+                                    <div>
+                                        <ipx-numeric #amountCtrl [customStyle]="numericStyle" [errorStyle]="errorStyle" [isCurrency]="true" [maxLength]="14" [roundUpto]="decimalPlaces"
+                                            [currency]="splitWipData.foreignCurrency? splitWipData.foreignCurrency : splitWipData.localCurrency" name="amount" [disabled]="isAmountDisabled" [label]="'wip.splitWip.amount'"
+                                            formControlName="amount" (onChange)="onAmountChange($event)" apply-edited></ipx-numeric>
+                                    </div>
+                                    <div style="margin-left: -3px;">
+                                        <ipx-numeric #percentCtrl [errorStyle]="errorStyle" [customStyle]="percentStyle" [isDecimal]="true" [maxLength]="5" name="splitPercent" [disabled]="isPercentageDisabled"
+                                            [label]="'wip.splitWip.percentage'" formControlName="splitPercent" apply-edited (onChange)="onPercentageChange($event)" [roundUpto]=2>
+                                        </ipx-numeric>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" style="margin-top: 18px; padding-left: 18px;">
+                                    <button class="btn btn-default" name="allocateRemainder" [disabled]="disableAll || splitByType === splitWipTypeEnum.equally" (click)="onAllocateRemainder()">{{'wip.splitWip.allocateRemainder' |
+                                        translate}}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-typeahead id="profitCentre" [disabled]="disableAll" config="profitCentre" name="profitCentre" [formControl]="profitCentre" label="{{ 'wip.splitWip.profitCentre' | translate }}"
+                                name="profitCentre" apply-edited>
+                            </ipx-typeahead>
+                            <ipx-typeahead id="narrative" [disabled]="disableAll" name="narrative" (onChange)="onNarrativeChange($event)" [formControl]="narrative" label="{{ 'wip.splitWip.narrative' | translate }}"
+                                name="narrative" config="narrative" apply-edited>
+                            </ipx-typeahead>
+                            <ipx-text-field id="debitNoteText" [disabled]="disableAll" multiline rows="2" label="{{'wip.splitWip.debitNoteText' | translate}}" formControlName="debitNoteText" apply-edited>
+                            </ipx-text-field>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </article>
+
+    <div class="table-container">
+        <div *ngIf="form" class="table-title" style="margin-top: -37px;">
+            <ipx-apply-button class="pull-right" [disabled]="applyDisabled" style="padding-left: 5px;" (click)="applyForm()"> </ipx-apply-button>
+            <ipx-clear-button [disabled]="disableClear" (click)="clearForm()"></ipx-clear-button>
+        </div>
+        <div class="row" style="margin: 0px; overflow-x: auto;">
+            <ipx-kendo-grid #ipxKendoGridRef id="splitWip" [dataOptions]="gridOptions" *ngIf="gridOptions" (cancelRowEditEvent)="reset()" (deleteRowEvent)="onRowDeleted()" (addRowEvent)="onRowAdded($event)"
+                (editRowEvent)="onRowEdited($event)">
+                <ng-template ipxTemplateColumnField="name" let-dataItem>
+                    <span class="text-nowrap">{{ dataItem.name }}</span>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="case" let-dataItem>
+                    <span class="text-nowrap">{{ dataItem.case }}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="splitPercent" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span>{{dataItem.splitPercent | number : '1.2-2'}}%</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="localValue" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span>{{ splitWipData.localCurrency }} {{dataItem.localValue | number : '1.2-2'}}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="foreignValue" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span>{{ splitWipData.foreignCurrency }} {{ dataItem.foreignValue | number : '1.2-2' }}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="exchRate" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span>{{ dataItem.exchRate | number : '1.4-4' }}</span>
+                </ng-template>
+
+                <ng-template ipxEditTemplateColumnField="case" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span *ngIf="dataItem.case" class="text-nowrap">{{ (dataItem.case && dataItem.case.code)? dataItem.case.code : null }}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="name" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span *ngIf="dataItem.name" class="text-nowrap">{{ (dataItem.name && dataItem.name.displayName)? dataItem.name.displayName : null }}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="staff" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span *ngIf="dataItem.staff" class="text-nowrap">{{ (dataItem.staff && dataItem.staff.displayName)? dataItem.staff.displayName : null }}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="profitCentre" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span *ngIf="dataItem.profitCentre" class="text-nowrap">{{ (dataItem.profitCentre && dataItem.profitCentre.description)? dataItem.profitCentre.description : null }}</span>
+                </ng-template>
+                <ng-template ipxEditTemplateColumnField="narrative" let-dataItem="dataItem" let-rowIndex="rowIndex">
+                    <span *ngIf="dataItem.narrative" class="text-nowrap">{{ (dataItem.narrative && dataItem.narrative.value)? dataItem.narrative.value : null }}</span>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>

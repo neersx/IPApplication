@@ -1,0 +1,40 @@
+<div data-ng-show="viewData.caseSummary">
+    <div class="widget-box">
+        <div class="topic-header">
+            <h1>
+                {{ 'caseComparison.ccHeadingGeneral' | translate }}
+            </h1>
+        </div>
+        <div>
+            <div class="widget-main no-padding">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width:20%">&nbsp;</th>
+                                    <th style="width:40%">{{ 'caseComparison.gLblProductName' | translate }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblCaseReference' | translate }}:</strong>
+                                    </td>
+                                    <td>{{viewData.caseSummary.ref}}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblTitleOrMark' | translate }}:</strong>
+                                    </td>
+                                    <td>{{viewData.caseSummary.title}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+</div>

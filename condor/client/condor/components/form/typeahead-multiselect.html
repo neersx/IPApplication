@@ -1,0 +1,28 @@
+<div class="input-wrap" ng-class="{error: showError(), loading: state==='loading'}">
+    <label ng-if="::label" translate="{{::label}}"></label>
+    <div class="typeahead-wrap multiselect">
+        <div class="tags" ng-class="{disabled:disabled}" tabindex="20" ng-keydown="onTagsKeydown($event)">
+            <div class="label-tag" ng-class="{selected: item.isTagSelected}" ng-repeat="item in getSelectedItems() track by $index" ng-click="onSelected($index)">
+                <span class="text" ng-class="{'custom-class': item['customClassTrigger']}">{{item[tagField]}}</span>
+                <a href="javascript:void(0)" ng-if="!disabled" class="remove" ng-click="removeItem(item);$event.stopPropagation()">
+                    <span class="cpa-icon cpa-icon-times"></span>
+                </a>
+            </div>
+            <input class="typeahead" ng-model="text" ng-disabled="disabled" ng-change="textChange()" ng-keydown="keydown($event)" ng-blur="blur($event)"
+                id="typeahead{{::uid}}" />
+        </div>
+        <ip-autocomplete data-items="results" data-total="total" data-search-value="text" data-on-view-all="openModal()" data-on-select="select(item)"
+            data-on-Click="onListClicked(true)" data-on-Click-Off="onListClicked(false)" id="typeahead{{::uid}}">
+        </ip-autocomplete>
+    </div>
+    <span class="input-wrap-addon" ng-if="!disabled">
+        <span class="btn btn-icon btn-no-bg" ng-click="$event.stopPropagation()" ng-mousedown="openModal(); $event.preventDefault()"
+            ip-tooltip="{{::'LookUp' | translate}}">
+            <icon name="ellipsis-h"></icon>
+        </span>
+    </span>
+    <span class="input-action">
+        <span class="cpa-icon loading-circle"></span>
+        <span class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{getError() | translate }}" tooltip-class="tooltip-error"></span>
+    </span>
+</div>

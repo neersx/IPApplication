@@ -1,0 +1,15 @@
+<div class="row ipx-tabs" *ngIf="tabs">
+    <div class="col-sm-2">
+        <ul class="nav nav-tabs tabs-left tab-menu">
+            <ng-container *ngFor="let t of tabs; trackBy: byKey">
+                <li [ngClass]="{ 'active' : t.key === activeId }" (click)="selectionChanged(t)">
+                    <a>{{ (t.title || t.key) | translate }}</a>
+                </li>
+            </ng-container>
+        </ul>
+
+    </div>
+    <div class="col-sm-10 tab-details" *ngIf="selectedTemplate">
+        <ng-container *ngTemplateOutlet="selectedTemplate"></ng-container>
+    </div>
+</div> 

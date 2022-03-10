@@ -1,0 +1,24 @@
+<div name="topics" class="topics-simple" ip-resize-handler resize-handler-type="Panel">
+    <div class="topic-menu">
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane content-block active">
+                <ul ip-resize-handler>
+                    <li ng-repeat="topic in options.topics" ng-class="{active: topic.isActive}" ng-click="selectTopic(topic, true)" data-topic-ref="{{topic.key}}">
+                        <div>
+                            <ng-include src="::topicMenuItemTemplateUrl"></ng-include>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="topics-container" ng-class="{'topics-container-slim': restrictWidth}">
+        <div ng-repeat="topic in options.topics">
+            <div class="topic-container" ng-class="{active: topic.isActive, 'no-separator': topic.noSeparator}" ng-click="selectTopic(topic, false)" data-topic-key="{{topic.key}}">
+                <h1 ng-if="::topic.title" translate="{{::topic.title}}"></h1>
+                <ip-topic-content></ip-topic-content>
+            </div>
+        </div>
+    </div>
+</div>

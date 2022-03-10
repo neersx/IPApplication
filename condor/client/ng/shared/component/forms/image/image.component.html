@@ -1,0 +1,7 @@
+<ng-template #toolTipContent>
+    <ipx-image [imageKey]="imageKey" [isThumbnail]="false" [itemKey]="itemKey" [type]="type"></ipx-image>
+</ng-template>
+<div>
+    <img *ngIf="isThumbnail" [src]="imageSrc" alt="{{imageTitle}}" [tooltip]="toolTipContent" placement="auto" class="case-image-thumbnail" [ngClass]="{'img-responsive': isResponsive}" (click)="mouseClick()">
+    <img *ngIf="!isThumbnail" [src]="imageSrc" alt="{{imageTitle}}" style="width:300px">
+</div>

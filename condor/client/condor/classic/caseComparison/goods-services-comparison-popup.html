@@ -1,0 +1,37 @@
+<div id="goodsComparisonDialog">
+    <div class="modal-header">
+        <h2 class="modal-title">{{ 'caseComparison.gsHeadingGoodsServices' | translate }}
+        </h2>
+        <div class="modal-header-controls">
+            <ip-close-button type="button" data-ng-click="dismiss()"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row" data-ng-if="currentItem.ourValue && currentItem.theirValue">
+            <div class="col-xs-6">
+                <h5>{{ 'caseComparison.gLblProductName' | translate }}</h5>
+                <div class="space-10"></div>
+                <div class="well comparison-details-dialog-left-text">{{ currentItem.ourValue}}</div>
+            </div>
+            <div class="col-xs-6">
+                <h5>{{ externalSystem }}</h5>
+                <div class="space-10"></div>
+                <div class="well comparison-details-dialog-right-text" in-comparison text="{ left: currentItem.ourValue, right: currentItem.theirValue}"></div>
+            </div>
+        </div>
+        <div class="row" data-ng-if="currentItem.ourValue && !currentItem.theirValue">
+            <div class="col-xs-12">
+                <h5>{{ 'caseComparison.gLblProductName' | translate }}</h5>
+                <div class="space-10"></div>
+                <div class="well comparison-details-dialog-single-text">{{ currentItem.ourValue }}</div>
+            </div>
+        </div>
+        <div class="row" data-ng-if="!currentItem.ourValue && currentItem.theirValue">
+            <div class="col-xs-12">
+                <h5>{{ externalSystem }}</h5>
+                <div class="space-10"></div>
+                <div class="well comparison-details-dialog-single-text">{{ currentItem.theirValue }}</div>
+            </div>
+        </div>
+    </div>
+</div>

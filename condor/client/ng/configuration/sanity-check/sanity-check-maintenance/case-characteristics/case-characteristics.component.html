@@ -1,0 +1,54 @@
+<form #frm="ngForm">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="office" label="picklist.office.Type" config="office" [(ngModel)]="formData.caseOffice" ipx-autofocus="true" (onChange)="onCriteriaChange()"></ipx-typeahead>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="caseType" label="picklist.casetype.Type" config="caseType" [(ngModel)]="formData.caseType" (onChange)="onCriteriaChange()"></ipx-typeahead>
+                <ipx-checkbox apply-edited class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.caseType" name="caseTypeExclude" [(ngModel)]="formData.caseTypeExclude" (onChange)="onCriteriaChange()">
+                </ipx-checkbox>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="jurisdiction" label="picklist.jurisdiction.Type" config="jurisdiction" [(ngModel)]="formData.jurisdiction" (onChange)="onCriteriaChange()">
+                </ipx-typeahead>
+                <ipx-checkbox apply-edited class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.jurisdiction" name="jurisdictionExclude" [(ngModel)]="formData.jurisdictionExclude"></ipx-checkbox>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="propertyType" label="picklist.propertytype.Type" config="propertyType" [(ngModel)]="formData.propertyType" [extend-query]="extendValidCombinationPickList" [external-scope]="picklistValidCombination"
+                    entity="propertyTypes" (onChange)="onCriteriaChange()">
+                </ipx-typeahead>
+                <ipx-checkbox apply-edited class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.propertyType" name="propertyTypeExclude" [(ngModel)]="formData.propertyTypeExclude"></ipx-checkbox>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="caseCategory" label="picklist.casecategory.Type" config="caseCategory" [(ngModel)]="formData.caseCategory" [extend-query]="extendValidCombinationPickList" [external-scope]="picklistValidCombination"
+                    entity="caseCategories" [disabled]="isCaseCategoryDisabled|async" (onChange)="onCriteriaChange()"></ipx-typeahead>
+                <ipx-checkbox apply-edited class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.caseCategory" name="caseCategoryExclude" [(ngModel)]="formData.caseCategoryExclude"></ipx-checkbox>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="subType" label="picklist.subtype.Type" config="subType" [(ngModel)]="formData.subType" [external-scope]="picklistValidCombination" entity="subTypes" [extend-query]="extendValidCombinationPickList" (onChange)="onCriteriaChange()">
+                </ipx-typeahead>
+                <ipx-checkbox apply-edited class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.subType" name="subTypeExclude" [(ngModel)]="formData.subTypeExclude"></ipx-checkbox>
+            </div>
+            <div class="row">
+                <ipx-typeahead apply-edited class="col-sm-10" name="basis" label="picklist.basis.Type" config="basis" [(ngModel)]="formData.basis" [external-scope]="picklistValidCombination" entity="basis" [extend-query]="extendValidCombinationPickList" (onChange)="onCriteriaChange()">
+                </ipx-typeahead>
+                <ipx-checkbox apply-edited class="col-sm-2" label="sanityCheck.configurations.exclude" [disabled]="!formData.basis" name="basisExclude" [(ngModel)]="formData.basisExclude"></ipx-checkbox>
+            </div>
+            <div class="row">
+                <ipx-dropdown apply-edited class="col-sm-10" name="applyTo" label="sanityCheck.configurations.localOrForeignDropdown.label" [(ngModel)]="formData.applyTo" [displayField]="'label'" [keyField]="'value'" [options]="appliesToOptions">
+                </ipx-dropdown>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="input-wrap" name="status">
+                    <span class="col-sm-3 col-sm-offset-1" translate="sanityCheck.configurations.status" style="text-align: right; margin-top:5px;"></span>
+                    <ipx-checkbox apply-edited label="sanityCheck.configurations.pendingStatus" name="pending" [(ngModel)]="formData.statusIncludePending" (onChange)="statusChanged(false)" [disabled]="!!formData.statusIncludeDead"></ipx-checkbox>
+                    <ipx-checkbox apply-edited label="sanityCheck.configurations.registeredStatus" name="registered" [(ngModel)]="formData.statusIncludeRegistered" (onChange)="statusChanged(false)" [disabled]="!!formData.statusIncludeDead"></ipx-checkbox>
+                    <ipx-checkbox apply-edited label="sanityCheck.configurations.deadStatus" name="dead" [(ngModel)]="formData.statusIncludeDead" (onChange)="statusChanged(true)" [disabled]="!!formData.statusIncludePending || !!formData.statusIncludeRegistered"></ipx-checkbox>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

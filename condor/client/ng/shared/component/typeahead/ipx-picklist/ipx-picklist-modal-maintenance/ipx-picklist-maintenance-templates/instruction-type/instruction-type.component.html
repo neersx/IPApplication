@@ -1,0 +1,26 @@
+<form [formGroup]="form">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-8">
+                <ipx-text-field name="code" formControlName="code" [disabled]="!isAdd" apply-edited label="picklist.instructiontype.Code" ipx-autofocus required maxLength="3"></ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ipx-text-field name="value" formControlName="value" apply-edited label="picklist.instructiontype.Description" maxLength="50"></ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ipx-dropdown name="recordedAgainst" formControlName="recordedAgainst" apply-edited label="picklist.instructiontype.RecordedAgainst" [options]="nameTypes" [displayField]="'value'">
+                </ipx-dropdown>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ipx-dropdown name="restrictedBy" formControlName="restrictedBy" apply-edited label="picklist.instructiontype.RestrictedBy" [options]="nameTypes" [displayField]="'value'">
+                </ipx-dropdown>
+            </div>
+        </div>
+    </div>
+</form>

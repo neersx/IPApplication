@@ -1,0 +1,12 @@
+<div class="row" data-ng-if="vm.downloadTypes">
+    <div class="row">
+        <h3>
+            <span class="label-legend" translate="dataDownload.newSchedule.downloadTypeTitle"></span>
+            <ip-inline-dialog data-ng-if="vm.isDataSourceIpOne" data-template="condor/classic/integration/ptoaccess/download-type-tooltip.html" data-placement="right"></ip-inline-dialog>
+        </h3>
+    </div>
+
+    <ip-dropdown ng-class="{edited: vm.maintenance.selectedDownloadType.$dirty}" ip-required name="selectedDownloadType" label="dataDownload.newSchedule.downloadType" ng-model="vm.selectedDownloadType" options="option.label for option in vm.downloadTypes track by option.type"
+        data-ng-change="vm.downloadTypeChanged()">
+    </ip-dropdown>
+</div>

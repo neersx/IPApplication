@@ -1,0 +1,69 @@
+<style>
+    .schedule-button {
+        margin-right: 8px;
+        margin-top: 8px;
+        min-width: 100px;
+    }
+</style>
+
+<ip-sticky-header>
+    <ip-page-title page-title="dataDownload.schedules.title"> </ip-page-title>
+</ip-sticky-header>
+
+<br>
+<br>
+<br>
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="table-container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="table-container">
+                    <div class="table-title">
+                        <h2 translate="dataDownload.schedules.schedulesSectionTitle"></h2>
+                        <span style="margin-left: 8px;">
+                            <ip-inline-dialog placement="bottom" data-content="{{::'dataDownload.schedules.subtitle'|translate}}"></ip-inline-dialog>
+                        </span>
+                        <div class="pull-right">
+                            <button id="add" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'Add' | translate }}" data-ng-click="vm.onAdd()">
+                                <span class="cpa-icon cpa-icon-plus-circle"></span>
+                            </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ip-kendo-search-grid data-id="searchResults" data-grid-options="vm.gridOptions" data-search-hint="{{ :: 'dataDownload.schedules.noSchedulesFound' | translate }}"></ip-kendo-search-grid>
+    </div>
+
+    <hr data-ng-if="vm.schedules.length > 0">
+
+    <div class="row" data-ng-if="vm.schedules.length > 0">
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <h2 translate="dataDownload.schedules.downloadFailureSummary"></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <span translate="dataDownload.schedules.downloadFailureSummaryExplanation"></span>
+                    <br/>
+                    <br/>
+                    <div>
+                        <a ui-sref="classicPtoAccess.FailureSummary">
+                            <button id="failureSummary" class="btn btn-prominent clear">
+                                <span translate="dataDownload.schedules.downloadFailureSummaryButton"></span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>

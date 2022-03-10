@@ -1,0 +1,235 @@
+<style>
+    div.exchange-settings .input-wrap.switch [type="checkbox"]+label {
+        padding-left: 45px !important;
+    }
+
+    div.exchange-settings .input-wrap input[type="url"]+label {
+        margin-left: -100px;
+    }
+
+    .ews-server-url {
+        min-width: 300px !important;
+    }
+
+    .test-connection {
+        margin-right: 4px;
+    }
+</style>
+<div translate-namespace="exchangeIntegration.settings">
+    <ip-sticky-header>
+        <div class="container-fluid">
+            <div class="row">
+                <ip-page-title-save page-title="exchangeIntegration.title" page-subtitle="exchangeIntegration.settings.title" on-save="vm.save()" on-discard="vm.discard()" is-save-enabled="vm.isSaveEnabled()"
+                    is-discard-enabled="vm.isDiscardEnabled()"></ip-page-title-save>
+            </div>
+            <div class="row title-header">
+                <div class="col-sm-12">
+                    <button id="configure" class="btn btn-default cpa-icon-list-alt clear pull-right" ui-sref="exchangeRequests">
+                        <span translate="exchangeIntegration.link"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </ip-sticky-header>
+    <div ip-resize-handler resize-handler-type="Panel">
+        <div class="col-sm-2"></div>
+        <div class="exchange-settings col-sm-10" ng-form="vm.form" ip-form>
+            <div class="row">
+                <h2>
+                    <span translate=".serviceType.title"></span>
+                    <ip-inline-dialog placement="auto" data-title="{{:: 'exchangeIntegration.settings.serviceType.title' | translate}}" data-content="{{:: 'exchangeIntegration.settings.serviceType.info' | translate}}">
+                    </ip-inline-dialog>
+                </h2>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-7">
+                    <div class="input-wrap col-sm-4">
+                        <input type="radio" name="serviceType" id="serviceType-ews" ng-model="vm.formData.serviceType" value="Ews" />
+                        <label for="serviceType-ews" translate=".serviceType.exchangeEws"></label>
+                    </div>
+                    <div class="input-wrap col-sm-8">
+                        <input type="radio" name="serviceType" id="serviceType-graph" ng-model="vm.formData.serviceType" value="Graph" />
+                        <label for="serviceType-graph" translate=".serviceType.exchangeGraph"></label>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div ng-show="vm.formData.serviceType === 'Ews'">
+
+                <div class="row">
+                    <h2 translate=".server.title"></h2>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="input-wrap col-sm-7 required" ng-class="{error: vm.form.server.$invalid}">
+                        <label translate=".server.label"></label>
+                        <input class="col-sm-8" name="server" type="url" data-ng-model="vm.formData.server" required data-ng-class="{edited: vm.formData.isDirty('server')}" />
+                        <span class="input-action tooltip-error pull-left" ng-if="vm.form.server.$invalid">
+                            <span data-ng-if="vm.form.server.$error.required" class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{::'field.errors.required' | translate}}" tooltip-class="tooltip-error"></span>
+                            <span data-ng-if="vm.form.server.$error.url" class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{::'field.errors.invalidurl' | translate}}" tooltip-class="tooltip-error"></span>
+                        </span>
+                    </div>
+                    <ip-inline-dialog data-title="{{:: 'exchangeIntegration.settings.server.label' | translate}}" data-content="{{:: 'exchangeIntegration.settings.server.info' | translate}}"
+                        popover-class="ews-server-url" placement="bottom">
+                    </ip-inline-dialog>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <h2 translate=".administrator-details.title"></h2>
+                    <span translate=".administrator-details.description"></span>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <ip-text-field class="col-sm-7" name="userName" required label=".administrator-details.userName.label" ng-model="vm.formData.userName" ng-class="{edited: vm.formData.isDirty('userName')}">
+                    </ip-text-field>
+                    <ip-inline-dialog data-title="{{:: 'exchangeIntegration.settings.administrator-details.userName.label' | translate}}"
+                        data-content="{{:: 'exchangeIntegration.settings.administrator-details.userName.info' | translate}}" placement="bottom"></ip-inline-dialog>
+                </div>
+                <div class="row">
+                    <div class="input-wrap col-sm-7 required" ng-class="{error: vm.form.password.$invalid && (!vm.passwordExists || vm.formData.isDirty('password'))}">
+                        <label translate=".administrator-details.password.label"></label>
+                        <input name="password" placeholder="{{vm.passwordPlaceholder()}}" type="password" data-ng-model="vm.formData.password" required data-ng-class="{edited: vm.formData.isDirty('password')}" />
+                        <span class="input-action tooltip-error" ng-if="vm.form.password.$invalid">
+                            <span data-ng-if="vm.form.password.$error.required" class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{::'field.errors.required' | translate}}" tooltip-class="tooltip-error"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <ip-text-field class="col-sm-7" name="domain" label=".administrator-details.userDomain" ng-model="vm.formData.domain" ng-class="{edited: vm.formData.isDirty('domain')}"></ip-text-field>
+                </div>
+            </div>
+
+            <div ng-show="vm.formData.serviceType === 'Graph'">
+
+                <div class="row">
+                    <h2>
+                        <span translate=".exchangeGraph.title"></span>
+                        <ip-inline-dialog placement="auto" data-title="{{:: 'exchangeIntegration.settings.exchangeGraph.title' | translate}}"
+                            data-content="{{:: 'exchangeIntegration.settings.exchangeGraph.info' | translate}}">
+                        </ip-inline-dialog>
+                    </h2>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <ip-text-field class="col-sm-7" name="tenantId" required label=".exchangeGraph.tenantId" ng-model="vm.formData.tenantId" ng-class="{edited: vm.formData.isDirty('tenantId')}">
+                    </ip-text-field>
+                </div>
+                <div class="row">
+                    <ip-text-field class="col-sm-7" name="clientId" required label=".exchangeGraph.clientId" ng-model="vm.formData.clientId" ng-class="{'edited': vm.formData.isDirty('clientId')}">
+                    </ip-text-field>
+                </div>
+                <div class="row">
+                    <div class="input-wrap col-sm-7 required" ng-class="{error: vm.form.clientSecret.$invalid && (!vm.clientSecretExists || vm.formData.isDirty('clientSecret'))}">
+                        <label translate=".exchangeGraph.clientSecret"></label>
+                        <input name="clientSecret" placeholder="{{vm.clientSecretPlaceholder()}}" type="password" data-ng-model="vm.formData.clientSecret" required
+                            data-ng-class="{edited: vm.formData.isDirty('clientSecret')}" />
+                        <span class="input-action tooltip-error" ng-if="vm.form.clientSecret.$invalid">
+                            <span data-ng-if="vm.form.clientSecret.$error.required" class="cpa-icon cpa-icon-exclamation-triangle" uib-tooltip="{{::'field.errors.required' | translate}}"
+                                tooltip-class="tooltip-error"></span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <ip-text-field class="col-sm-7" name="redirectUri" multiline="true" disabled rows="4" label=".exchangeGraph.redirectUri" ng-model="vm.defaultRedirectUri"></ip-text-field>
+                    <div class="col-sm-2">
+                        <ip-inline-dialog placement="auto" data-content="{{:: 'exchangeIntegration.settings.exchangeGraph.redirectUriInfo' | translate}}">
+                        </ip-inline-dialog>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <h2>
+                    <span translate=".integrationOptions.title"></span>
+                    <ip-inline-dialog placement="auto" data-title="{{:: 'exchangeIntegration.settings.integrationOptions.title' | translate}}"
+                        data-content="{{:: 'exchangeIntegration.settings.integrationOptions.info' | translate}}">
+                    </ip-inline-dialog>
+                </h2>
+            </div>
+            <br />
+            <div class="input-wrap-group">
+                <div class="input-wrap">
+                    <div class="col-sm-2"> <span> <br /> </span>
+                    </div>
+
+                    <div class="input-wrap col-sm-8 switch" ng-class="{edited: vm.formData.isDirty('isReminderEnabled')}">
+                        <input type="checkbox" id="serviceReminder" ng-model="vm.formData.isReminderEnabled">
+                        <label for="serviceReminder" translate=".integrationOptions.reminderAndDueDates">
+                        </label>
+                    </div>
+                </div>
+                <div class="input-wrap">
+                    <div class="col-sm-2"> <span> <br /> </span>
+                    </div>
+                    <div class="input-wrap col-sm-8 switch" ng-class="{edited: vm.formData.isDirty('isDraftEmailEnabled')}">
+                        <input type="checkbox" id="serviceDraftEmail" ng-model="vm.formData.isDraftEmailEnabled">
+                        <label for="serviceDraftEmail" translate=".integrationOptions.savingDraftEmail">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="input-wrap">
+                    <div class="col-sm-2"> <span> <br /> </span>
+                    </div>
+                    <div class="input-wrap col-sm-8 switch" ng-class="{edited: vm.formData.isDirty('isBillFinalisationEnabled')}">
+                        <input type="checkbox" id="serviceBillFinalisation" ng-model="vm.formData.isBillFinalisationEnabled">
+                        <label for="serviceBillFinalisation" translate=".integrationOptions.reviewingInvoices">
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <br />
+            <br />
+            <div class="setting">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>
+                            <span translate=".testConnection.title"></span>
+                            <ip-inline-dialog data-title="{{:: 'exchangeIntegration.settings.testConnection.title' | translate}}" data-content="{{:: 'exchangeIntegration.settings.testConnection.Info' | translate}}">
+                            </ip-inline-dialog>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="text-wrap">
+                <span translate=".testConnection.description" class="col-sm-8"></span>
+            </div>
+            <br />
+            <div class="input-wrap-group">
+                <div class="col-sm-1">
+                    <span>
+                        <br />
+                    </span>
+                </div>
+                <div class="col-sm-8">
+                    <div>
+                        <div class="test-connection pull-left">
+                            <button ng-if="!vm.canCheckStatus()" id="testConnection" class="btn btn-prominent clear" translate=".testConnection.button" disabled></button>
+                            <button ng-if="vm.canCheckStatus()" id="testConnection" class="btn btn-prominent clear" ng-click="vm.checkStatus()" translate=".testConnection.button"></button>
+                        </div>
+                        <span class="col-sm-9" ng-if="(vm.isConnectionOk || vm.isConnectionFail) && vm.canCheckStatus()" ng-class="{'alert-success': vm.isConnectionOk, 'alert-danger': vm.isConnectionFail}">
+                            <span class="cpa-icon cpa-icon-lg" ng-class="{'cpa-icon-check-circle': vm.isConnectionOk, 'cpa-icon-exclamation-triangle': vm.isConnectionFail}"></span>
+                            <span ng-if="vm.isConnectionOk" translate=".testConnection.Ok"></span>
+                            <span ng-if="vm.isConnectionFail" translate=".testConnection.Fail"></span>
+                        </span>
+                        <div ng-if="vm.statusCheckInProgress && !vm.isConnectionFail && !vm.isConnectionOk">
+                            <span translate=".testConnection.InProgress">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+        </div>
+    </div>
+</div>

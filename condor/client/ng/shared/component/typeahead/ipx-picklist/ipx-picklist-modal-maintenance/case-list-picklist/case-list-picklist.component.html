@@ -1,0 +1,56 @@
+<form [formGroup]="form">
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-8">
+                <ipx-text-field name="caseListName" [disabled]="!isEditable()" apply-edited ipx-autofocus required label="caseList.maintenance.caseListName" autocomplete="off" formControlName="value">
+                </ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ipx-text-field name="description" [disabled]="!isEditable()" mu apply-edited label="caseList.maintenance.description" autocomplete="off" formControlName="description">
+                </ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <ipx-typeahead name="primeCase" [disabled]="!isEditable()" apply-edited label="caseList.maintenance.primeCase" config="case" formControlName="primeCase">
+                </ipx-typeahead>
+            </div>
+            <ipx-inline-dialog [tooltipPlacement]="'bottom'" [content]="'caseList.maintenance.primeCaseHelp' | translate">
+            </ipx-inline-dialog>
+        </div>
+        <div class="row">
+            <div class="table-container">
+                <div class="table-title">
+                    <h3 translate="caseList.maintenance.casesInList"></h3>
+                    <div class="text-wrap no-hover" *ngIf="isEditable()">
+                        <button style="margin-right: 3px;" class="btn btn-icon plus-circle" tooltip="{{ 'Add' | translate }}" placement="bottom" [adaptivePosition]="true" container="body" (click)="onAdd()">
+              <span class="cpa cpa-icon-plus-circle"></span>
+            </button></div>
+                </div>
+                <ipx-kendo-grid #caseGrid [dataOptions]="gridoptions" id="grdCaseList">
+                    <ng-template ipxTemplateColumnField="caseKey" let-dataItem>
+                        <ng-container *ngIf="!dataItem.isPrimeCase && isEditable()">
+                            <button *ngIf="!isDeletingCase(dataItem.caseKey)" class="btn btn-icon btn-no-bg" (click)="delete(dataItem.caseKey)" tooltip="{{ 'Delete' | translate }}" placement="bottom" [adaptivePosition]="false" container="body">
+                <span class="cpa-icon cpa-icon-trash-o"></span>
+              </button>
+                            <button *ngIf="isDeletingCase(dataItem.caseKey)" class="btn btn-icon btn-no-bg" (click)="revert(dataItem.caseKey)" tooltip="{{ 'Revert' | translate }}" placement="bottom" [adaptivePosition]="false" container="body">
+                <span class="cpa-icon cpa-icon-revert"></span>
+              </button>
+                        </ng-container>
+                    </ng-template>
+                    <ng-template ipxTemplateColumnField="isPrimeCase" let-dataItem>
+                        <ipx-checkbox [(ngModel)]="dataItem.isPrimeCase" class="text-center" [disabled]="true" [ngModelOptions]="{standalone: true}">
+                        </ipx-checkbox>
+                    </ng-template>
+
+                </ipx-kendo-grid>
+                <button class="btn btn-link grid-message" (click)="onAdd()" *ngIf="isEditable()">
+          <span class="cpa-icon cpa-icon-plus-circle"></span>
+          <em style="margin-left: 5px">{{ 'caseList.maintenance.addCase' | translate }}</em>
+        </button>
+            </div>
+        </div>
+    </div>
+</form>

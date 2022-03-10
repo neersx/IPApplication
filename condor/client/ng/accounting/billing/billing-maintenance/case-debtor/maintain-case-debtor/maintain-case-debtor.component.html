@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{'accounting.billing.step1.addCase' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-apply-button type="button" [disabled]="!form.dirty || !form.valid || (!disableCaseList && !disableCase)" (click)="apply()"></ipx-apply-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div class="modal-body" style="overflow: visible">
+    <div class="row">
+        <div class="col-md-11">
+            <form [formGroup]="form" *ngIf="form">
+                <div class="row">
+                    <ipx-typeahead name="case" apply-edited ipx-autofocus multiselect multipick config="case" [disabled]="disableCase" [formControl]="case" label="{{ 'accounting.wip.disbursements.columns.case' | translate }}"
+                        class="col-sm-offset-1 col-sm-12">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead name="caseList" apply-edited config="caseList" [disabled]="disableCaseList" formControlName="caseList" label="{{ 'accounting.billing.step1.caseList' | translate }}" class="col-sm-offset-1 col-sm-12">
+                    </ipx-typeahead>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

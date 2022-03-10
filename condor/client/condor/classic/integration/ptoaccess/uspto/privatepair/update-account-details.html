@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h2 class="modal-title">
+        <div translate="dataDownload.uspto.updateAccountDetails.title"></div>
+    </h2>
+    <div class="modal-header-controls" ng-init="vm.initShortcuts()">
+        <ip-save-button type="button" data-ng-click="vm.save()" data-ng-disabled="vm.disable()"></ip-save-button>
+        <ip-close-button data-ng-click="vm.dismissAll()"></ip-close-button>
+    </div>
+</div>
+<div class="modal-subheader">
+    <div class="readonly-label readonly-label-navy text-ellipsis">
+        <label translate="dataDownload.uspto.new.serviceInformation"></label>
+        <span>{{::vm.serviceInfo}}</span>
+    </div>
+    <ip-inline-alert type="warning" text="dataDownload.uspto.updateAccountDetails.warning"></ip-inline-alert>
+</div>
+
+<div class="modal-body" ng-form="vm.form" ip-form>    
+    <div class="row col-sm-11 input-wrap">
+        <ip-text-field name="queueUrl" ip-required label="dataDownload.uspto.updateAccountDetails.queueUrl" ng-model="vm.data.queueUrl" ng-class="{'edited': vm.form.queueUrl.$dirty,'error': !vm.form.queueUrl.$valid}"></ip-text-field>
+    </div>
+    <div class="row col-sm-11 input-wrap">
+        <ip-text-field name="queueId" ip-required label="dataDownload.uspto.updateAccountDetails.queueId" ng-model="vm.data.queueId" ng-class="{'edited': vm.form.queueId.$dirty,'error': !vm.form.queueId.$valid}"></ip-text-field>
+    </div>
+    <div class="row col-sm-11 input-wrap">
+        <ip-text-field name="queueSecret" mask="true" ip-required label="dataDownload.uspto.updateAccountDetails.queueSecret" ng-model="vm.data.queueSecret" ng-class="{'edited': vm.form.queueSecret.$dirty,'error': !vm.form.queueSecret.$valid}"></ip-text-field>
+    </div>
+</div>

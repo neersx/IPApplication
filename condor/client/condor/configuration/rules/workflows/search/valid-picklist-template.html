@@ -1,0 +1,26 @@
+<ip-picklist-modal-search>
+    <div class="row">
+        <div class="col-sm-6">
+            <ip-picklist-modal-search-field></ip-picklist-modal-search-field>
+        </div>
+        <div class="col-sm-6">
+            <ip-picklist-modal-search-add></ip-picklist-modal-search-add>
+        </div>
+    </div>
+    <div class="row" ng-if="::!!vm.externalScope[(vm.entity || 'combination')]()">
+        <div class="col-sm-12">
+            <div class="inline-readonly-list">
+                <label translate="Valid Combination"></label>
+                <span ng-repeat="characteristic in ::vm.externalScope[(vm.entity || 'combination')]()">{{::characteristic}}</span>
+                <ip-default-jurisdiction ng-if="vm.gridOptions.data().length > 0" data-results="vm.gridOptions.data()"></ip-default-jurisdiction>
+            </div>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-sm-12">
+            <ip-picklist-modal-search-results></ip-picklist-modal-search-results>
+        </div>
+    </div>
+</ip-picklist-modal-search>
+
+<ip-picklist-modal-maintenance></ip-picklist-modal-maintenance>

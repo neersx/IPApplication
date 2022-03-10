@@ -1,0 +1,17 @@
+<div data-ng-controller="nametypegroupController as c">
+<div translate-namespace="picklist.nametypegroup">
+    <div class="row">
+        <div class="col-sm-12">
+            <ip-text-field name="groupName" ip-required ip-autofocus label=".groupName" ng-model="vm.entry.value" data-ng-maxlength="50" ng-class="{edited: vm.maintenance.groupName.$dirty}" ip-field-error="{{vm.entry.$error('value').message | translate}}">
+            </ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <ip-typeahead id="nametype-picklist" data-multiselect data-label=".members" 
+            name="nameType" data-config="nameType" ng-model="vm.entry.nameType" ng-class="{edited: vm.maintenance.nameType.$dirty}">
+            </ip-typeahead>
+        </div>
+    </div>
+</div>
+</div>

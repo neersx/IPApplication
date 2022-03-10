@@ -1,0 +1,12 @@
+<ip-sticky-header>
+    <ip-page-title page-title="exchangeIntegration.title" page-subtitle="exchangeIntegration.queue.title">
+        <action-buttons>
+            <button id="configure" class="btn cpa-icon-wrench pull-right" ui-sref="exchangeSettings">
+                <span translate="exchangeIntegration.settings.link"></span>
+            </button>
+        </action-buttons>
+    </ip-page-title>
+</ip-sticky-header>
+<div class="table-container" ip-resize-handler resize-handler-type="Panel">
+    <ip-kendo-grid data-id="exchangeRequestList" data-grid-options="vm.gridOptions"></ip-kendo-grid>
+</div>

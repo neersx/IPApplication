@@ -1,0 +1,17 @@
+<div ng-form="vm.form" ip-form>
+    <div class="row">
+        <div class="col-sm-6">
+            <ip-typeahead name="defaultCurrency" data-config="currency" ng-model="vm.formData.defaultCurrency" ng-disabled="!vm.topic.canUpdate" ng-class="{edited: vm.form.defaultCurrency.$dirty}"></ip-typeahead>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <ip-dropdown ng-class="{edited: vm.form.defaultTaxRate.$dirty}" name="defaultTaxRate" label="jurisdictions.maintenance.defaults.taxCode" ng-model="vm.formData.defaultTaxRate" options="option.description for option in vm.taxExemptOptions track by option.id"
+                ng-disabled="!vm.topic.canUpdate" ng-class="{edited: vm.form.defaultTaxRate.$dirty}">
+            </ip-dropdown>
+        </div>
+        <div class="col-sm-6">
+            <ip-checkbox name="taxNoMandatory" label="jurisdictions.maintenance.defaults.taxNoMandatory" ng-model="vm.formData.isTaxNumberMandatory" ng-disabled="!vm.topic.canUpdate" ng-class="{'edited': vm.form.taxNoMandatory.$dirty}"></ip-checkbox>
+        </div>
+    </div>
+</div>

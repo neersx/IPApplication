@@ -1,0 +1,28 @@
+<div class="content row" *ngIf="dataItem.title || dataItem.eventDefinition || dataItem.eventDescription || dataItem.cycle">
+  <div class="container-fluid col-md-6">
+      <div class="row" *ngIf="dataItem.title">
+          <div class="field-label col-sm-5">
+              <label translate="caseview.relatedCases.title"></label>
+          </div>
+          <div class="col-sm-6">
+              <span class="text rc-title">{{dataItem.title}}</span>
+          </div>
+      </div>
+      <div class="row" *ngIf="dataItem.eventDescription">
+          <div class="field-label col-sm-5">
+              <label translate="caseview.relatedCases.relatedEvent"></label>
+          </div>
+          <div class="col-sm-6">
+              <span class="text rc-event-description" [tooltip]="dataItem.eventDefinition">{{dataItem.eventDescription}}</span>
+          </div>
+      </div>
+      <div class="row" *ngIf="dataItem.cycle">
+          <div class="field-label col-sm-5">
+              <label translate="caseview.relatedCases.relatedEventCycle"></label>
+          </div>
+          <div class="col-sm-6">
+              <span class="text rc-event-cycle">{{dataItem.cycle}}</span>
+          </div>
+      </div>
+  </div>
+</div>

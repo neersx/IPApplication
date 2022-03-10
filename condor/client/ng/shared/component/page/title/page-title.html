@@ -1,0 +1,14 @@
+<div class="page-title">
+    <h2>
+        <ng-content select="before-title"></ng-content>
+		<span *ngIf="subtitle" class="ipx-page-subtitle"><span>{{ title | translate }}</span> - <span class="text">{{ subtitle | translate: subtitleTranlslateValues }}</span></span>
+		<span *ngIf="!subtitle" class="ipx-page-title text">{{ title | translate }}</span>
+		<span *ngIf="description" class="ipx-page-description text">{{ description | translate }}</span>
+        <ng-content select="after-title"></ng-content>
+	</h2>
+    <div class="controls">
+		<div class="action-buttons">
+            <ng-content select="action-buttons"></ng-content>
+        </div>
+	</div>
+</div>

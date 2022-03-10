@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h2 class="modal-title">{{'caseview.attachments.maintenance.fileUploader.title' | translate}}</h2>
+  <div class="modal-header-controls">
+    <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+  </div>
+</div>
+<div class="modal-body">
+  <div id="fileUpload" class="upload-wrapper" style="margin-top: 1.5em; padding: 0 50px;">
+    <kendo-uploaddropzone zoneId="fileZone">
+      {{'caseview.attachments.maintenance.fileUploader.info' | translate}}
+    </kendo-uploaddropzone>
+    <kendo-upload #upload zoneId="fileZone" [saveUrl]="saveFilesApi" (upload)="onUpload($event)" (success)="onComplete()" [restrictions]="fileRestrictions" [autoUpload]="false" [concurrent]="false"
+                  (error)="onError()" (complete)="onComplete()" (select)="onSelectEvent($event)" (upload)="onUploadEvent()" (remove)="onRemoveEvent($event)">
+    </kendo-upload>
+    <div *ngIf="pendingFileCount > 0" class="row" style="text-align: right; padding-right: 10px;">
+      <button type="button" [disabled]="selectedFolderPath==''" class="btn" name="cancel" (click)="refresh()" style="margin: 5px 0 0 2px;"
+       (click)="onClearButtonClick(upload)">{{'caseview.attachments.maintenance.fileBrowser.clearAll' | translate}}</button>
+      <button type="button" [disabled]="selectedFolderPath==''" class="btn btn-prominent" name="upload" (click)="onUploadButtonClick(upload)"
+              style="margin: 5px 0 0 2px;" (click)="onUploadButtonClick(upload)">{{'caseview.attachments.maintenance.fileBrowser.upload' | translate}}</button>
+    </div>  
+  </div>
+</div>
+<div class="modal-footer">
+</div>

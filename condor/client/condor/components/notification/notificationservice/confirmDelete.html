@@ -1,0 +1,12 @@
+<div id="confirmDeleteModal">
+    <div class="modal-header">
+        <h2 class="modal-title" id="modalPendingLabel" translate="confirmDeletion"></h2>
+    </div>
+    <div class="modal-body">
+        <p translate="{{options.message}}" translate-values="options.messageParams"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" name="Cancel" class="btn" data-ng-click="cancel()" translate="Cancel"></button>
+        <button type="button" name="delete" class="btn btn-discard" data-ng-click="confirm()" translate="Delete"></button>
+    </div>
+</div>

@@ -1,0 +1,176 @@
+<div data-ng-show="viewData.case">
+    <div class="widget-box">
+        <div class="topic-header">
+            <h1>
+                {{ 'caseComparison.ccHeadingGeneral' | translate }}
+            </h1>
+        </div>
+        <div>
+            <div class="widget-main no-padding">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th style="width:20%">&nbsp;</th>
+                                    <th style="width:40%">{{ 'caseComparison.gLblProductName' | translate }}</th>
+                                    <th>&nbsp;</th>
+                                    <th style="width:40%">{{ externalSystem }}</th>
+                                </tr>
+                                <tr ng-show="viewData.case.messages.length">
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>
+                                        <div data-ng-repeat="m in viewData.case.messages"><span class="text-muted" title="{{ 'caseComparison.ccSourceMessagesExplanation' | translate}}"><i class="cpa-icon cpa-icon-info-circle">&nbsp;&nbsp;</i>{{::m}}</span></div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblCaseReference' | translate }}:</strong>
+                                    </td>
+                                    <td>
+                                        <ip-ie-only-url style="cursor: pointer;" ng-if="::viewData.case.ref.ourValue" data-url="caseDetailsLink" data-text="viewData.case.ref.ourValue"></ip-ie-only-url>
+                                    </td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: viewData.case.ref.updated}" name="chCaseRef" data-ng-show="!viewData.rejectionResetable && viewData.updateable && viewData.case.ref.updateable" ng-model="viewData.case.ref.updated"></ip-checkbox>
+                                    </td>
+                                    <td>
+                                        <a ng-if="viewData.case.sourceLink" target="_blank" href="{{::viewData.case.sourceLink}}" data-ng-class="{highlight:viewData.case.ref.different && viewData.case.ref.theirValue}">
+                                            <span data-ng-if="::viewData.case.ref.theirValue" data-ng-class="{highlight:viewData.case.ref.different && viewData.case.ref.theirValue}">{{viewData.case.ref.theirValue}}</span>
+                                            <span data-ng-if="::!viewData.case.ref.theirValue">{{ 'caseComparison.viewExternalSource' | translate: {source: externalSystem}  }}</span>
+                                        </a>
+
+                                        <span ng-if="!viewData.case.sourceLink" data-ng-class="{highlight:viewData.case.ref.different && viewData.case.ref.theirValue}">{{viewData.case.ref.theirValue}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblTitle' | translate }}:</strong>
+                                    </td>
+                                    <td>{{viewData.case.title.ourValue}}</td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: viewData.case.title.updated}" name="chTitle" data-ng-show="!viewData.rejectionResetable && viewData.updateable && viewData.case.title.updateable" ng-model="viewData.case.title.updated" id="cbTitle"></ip-checkbox>
+                                    </td>
+                                    <td>
+                                        <div data-ng-class="{highlight:viewData.case.title.different && viewData.case.title.theirValue}">{{viewData.case.title.theirValue}}</div>
+                                    </td>
+                                </tr>
+                                <tr ng-if="viewData.case.typeOfMark">
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblTypeOfMark' | translate }}:</strong>
+                                    </td>
+                                    <td>{{viewData.case.typeOfMark.ourValue}}</td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: viewData.case.typeOfMark.updated}" name="chTypeOfMark" data-ng-show="!viewData.rejectionResetable && viewData.updateable && viewData.case.typeOfMark.updateable" ng-model="viewData.case.typeOfMark.updated" id="cbTypeOfMark"></ip-checkbox>
+                                    </td>
+                                    <td>
+                                        <div data-ng-class="{highlight:viewData.case.typeOfMark.different && viewData.case.typeOfMark.theirDescription}">{{viewData.case.typeOfMark.theirDescription}}</div>
+                                    </td>
+                                </tr>
+                                <tr class="case-mark" ng-if="viewData.caseImage && isTrademark">
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblMark' | translate }}:</strong>
+                                    </td>
+                                    <td>
+                                        <a ng-if="caseImage.getCaseImageUrl().length" ng-click="caseImage.viewCaseImage()">
+                                            <img ng-src="{{caseImage.getCaseImageUrl()}}" />
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div style="display: inline-flex">
+                                            <ip-checkbox class="diff" ng-model="viewData.caseImage.importImage" name="chMark" ng-class="{edited: viewData.caseImage.importImage}" data-ng-show="!viewData.rejectionResetable && viewData.updateable && caseImage.getDownloadedImageUrl().length"></ip-checkbox>
+                                            <ip-icon-button style="width: 25px;" ng-click="onRefresh()" button-icon="refresh" data-tooltip-placement="top" ip-tooltip="{{:: 'caseComparison.refreshImageTooltip' | translate }}" data-ng-show="showRefresh() && !viewData.rejectionResetable && viewData.updateable && caseImage.getDownloadedImageUrl().length"></ip-icon-button>
+                                        </div>
+                                    </td>
+                                    <td ng-if="!refreshed">
+                                        <a ng-if="caseImage.getDownloadedImageUrl().length" ng-click="caseImage.viewDownloadedImage()">
+                                            <img ng-src="{{caseImage.getDownloadedImageUrl()}}" />
+                                        </a>
+                                    </td>
+                                    <td ng-if="refreshed">
+                                        <a ng-if="caseImage.getRefreshImageUrl().length" ng-click="caseImage.viewDownloadedImage()">
+                                            <img ng-src="{{caseImage.getRefreshImageUrl()}}" />
+                                        </a>
+                                    </td>
+                                </tr>
+
+                                <tr ng-show="viewData.case.status">
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblCaseStatus' | translate }}:</strong>
+                                    </td>
+                                    <td>{{viewData.case.status.ourValue}}</td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: viewData.case.status.updated}" name="chStatus" data-ng-show="!viewData.rejectionResetable && viewData.updateable && viewData.case.status.updateable" ng-model="viewData.case.status.updated"></ip-checkbox>
+                                    </td>
+                                    <td>
+                                        <span>{{viewData.case.status.theirValue}}</span>
+                                    </td>
+                                </tr>
+                                <tr ng-show="viewData.case.statusDate">
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblStatusDate' | translate }}:</strong>
+                                    </td>
+                                    <td>{{viewData.case.statusDate.ourValue | localeDate}}</td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: viewData.case.statusDate.updated}" name="chStatusDate" data-ng-show="!viewData.rejectionResetable && viewData.updateable && viewData.case.statusDate.updateable" ng-model="viewData.case.statusDate.updated"></ip-checkbox>
+                                    </td>
+                                    <td>
+                                        <span data-ng-show="viewData.case.statusDate.theirValue" data-ng-class="{highlight: viewData.case.statusDate.different}">{{viewData.case.statusDate.theirValue | localeDate}}</span>
+                                    </td>
+                                </tr>
+                                <tr ng-show="viewData.case.localClasses">
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblLocalClasses' | translate }}:</strong>
+                                    </td>
+                                    <td>{{viewData.case.localClasses.ourValue}}</td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: viewData.case.localClasses.updated}" name="chLocalClasses" data-ng-show="!viewData.rejectionResetable && viewData.updateable && viewData.case.localClasses.updateable" ng-model="viewData.case.localClasses.updated"></ip-checkbox>
+                                    </td>
+                                    <td>
+                                        <span data-ng-class="{highlight:viewData.case.localClasses.different && viewData.case.localClasses.theirValue}">{{viewData.case.localClasses.theirValue}}</span>
+                                    </td>
+                                </tr>
+                                <tr ng-show="viewData.case.intClasses">
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblIntClasses' | translate }}:</strong>
+                                    </td>
+                                    <td>{{viewData.case.intClasses.ourValue}}</td>
+                                    <td>
+                                        <ip-checkbox class="diff" ng-class="{edited: viewData.case.intClasses.updated}" name="chIntlClasses" data-ng-show="!viewData.rejectionResetable && viewData.updateable && viewData.case.intClasses.updateable" ng-model="viewData.case.intClasses.updated"></ip-checkbox>
+                                    </td>
+                                    <td>
+                                        <span data-ng-class="{highlight:viewData.case.intClasses.different && viewData.case.intClasses.theirValue}">{{viewData.case.intClasses.theirValue}}</span>
+                                    </td>
+                                </tr>
+                                <tr ng-show="viewData.case.country">
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblCountry' | translate }}:</strong>
+                                    </td>
+                                    <td>{{viewData.case.country.ourValue}}</td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr ng-show="viewData.case.propertyType">
+                                    <td>
+                                        <strong>{{ 'caseComparison.ccLblPropertyType' | translate }}:</strong>
+                                    </td>
+                                    <td>{{viewData.case.propertyType.ourValue}}</td>
+                                    <td>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="space-10"></div>
+</div>

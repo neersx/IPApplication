@@ -1,0 +1,11 @@
+<ipx-kendo-grid #ipxKendoGridRef *ngIf="gridOptions" id="storageLocations" [dataOptions]="gridOptions" (addRowEvent)="onRowAddedEdited($event,true)" (editRowEvent)="onRowAddedEdited($event,false)"
+    (deleteRowEvent)="updateChangeStatus()">
+    <ng-template ipxTemplateColumnField="canUpload" let-dataItem>
+        <ipx-checkbox name="canUpload" [label]="''" [ngModel]="dataItem.canUpload" disabled>
+        </ipx-checkbox>
+    </ng-template>
+    <ng-template ipxEditTemplateColumnField="canUpload" let-dataItem="dataItem" let-rowIndex="rowIndex">
+        <ipx-checkbox name="canUpload" [label]="''" [ngModel]="dataItem.canUpload" disabled>
+        </ipx-checkbox>
+    </ng-template>
+</ipx-kendo-grid>

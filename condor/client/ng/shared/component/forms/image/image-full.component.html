@@ -1,0 +1,15 @@
+<div class="modal-header">
+    <h2 class="modal-title">
+        <div>
+            <span [translate]="'image.imageView'"></span> </div>
+    </h2>
+    <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+    </div>
+</div>
+<div class="search-options h5" style="padding: 2px; margin:0px;">
+    {{imageTitle}}
+</div>
+<div class="modal-body">
+    <ipx-image [imageKey]="imageKey" [imageTitle]="imageTitle" [isThumbnail]="false" [isFullImage]="true" [itemKey]="itemKey" [type]="type"></ipx-image>
+</div>

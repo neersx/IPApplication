@@ -1,0 +1,37 @@
+<div class="row">
+    <ipx-kendo-grid id="caseViewRelatedCases" [dataOptions]="gridOptions">
+
+        <ng-template ipxTemplateColumnField="clientReference" let-dataItem>
+            <a *ngIf="dataItem.caseId" uiSref="caseview" [uiParams]="{id: dataItem.caseId}" target="_blank">{{dataItem.clientReference}}</a>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="internalReference" let-dataItem>
+            <a *ngIf="dataItem.caseId" uiSref="caseview" [uiParams]="{id: dataItem.caseId}" target="_blank">{{dataItem.internalReference}}</a>
+        </ng-template>
+
+        <ng-template ipxTemplateColumnField="eventDate" let-dataItem>
+            <ipx-date [model]="dataItem.eventDate"></ipx-date>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="direction" let-dataItem>
+            <span *ngIf="dataItem.direction ==='up'" class="cpa-icon-arrow-up" [tooltip]="'caseview.relatedCases.points.up' | translate"></span>
+            <span *ngIf="dataItem.direction==='down'" class="cpa-icon-arrow-down" [tooltip]="'caseview.relatedCases.points.down' | translate"></span>
+        </ng-template>
+
+        <ng-template ipxTemplateColumnField="officialNumber" let-dataItem>
+            <a *ngIf="dataItem.externalInfoLink" href="{{dataItem.externalInfoLink}}" target="_blank">
+              <span class="non-breaking">
+                {{dataItem.officialNumber}}
+              </span>
+            </a>
+            <span class="non-breaking" *ngIf="!dataItem.externalInfoLink">
+                {{dataItem.officialNumber}}
+            </span>
+        </ng-template>
+        <ng-template ipxTemplateColumnField="isFiled" let-dataItem>
+             <ipx-file-instruct-link [caseKey]="dataItem.caseId" [isFiled]="dataItem.isFiled" [canAccess]="dataItem.canViewInFile"></ipx-file-instruct-link>
+        </ng-template>
+
+    </ipx-kendo-grid>
+</div>
+<ng-template #detailTemplate let-dataItem>
+    <ipx-related-cases-other-details [dataItem]="dataItem"></ipx-related-cases-other-details>
+</ng-template>

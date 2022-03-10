@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table summary">
+            <tr>
+                <td>
+                    <h1>
+                        <span class='queue-items-total'>{{$ctrl.data.total}}</span>
+                    </h1>
+                    <a href="#/policing-queue/all" id="linkAll">
+                        <h5 translate="policing.summaryBar.total"></h5>
+                    </a>
+                </td>
+                <td>
+                    <h1>
+                        <span class='queue-items-progressing'>{{$ctrl.data.waitingToStart.total + $ctrl.data.inProgress.total}}</span>
+                    </h1>
+                    <a href="#/policing-queue/progressing" id="linkProgressing">
+                        <h5 translate="policing.summaryBar.progressing"></h5>
+                    </a>
+                </td>
+                <td>
+                    <h1>
+                        <span class='queue-items-requires-attention'>{{$ctrl.data.blocked.total + $ctrl.data.failed.total + $ctrl.data.inError.total}}</span>
+                    </h1>
+                    <a href="#/policing-queue/requires-attention" id="linkRequiresAttention">
+                        <h5 translate="policing.summaryBar.needsAttention"></h5>
+                    </a>
+                </td>
+                <td>
+                    <h1>
+                        <span class='queue-items-on-hold'>{{$ctrl.data.onHold.total}}</span>
+                    </h1>
+                    <a href="#/policing-queue/on-hold" id="linkOnHold">
+                        <h5 translate="policing.summaryBar.onHold"></h5>
+                    </a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

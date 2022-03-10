@@ -1,0 +1,74 @@
+<div ng-form="vm.form" ip-form translate-namespace="jurisdictions.maintenance.validNumbers">
+    <ip-maintenance-modal-header data-page-title="{{::vm.title}}" data-dismiss="vm.dismiss()" data-on-apply="vm.apply()" data-is-apply-enabled="vm.isApplyEnabled()" data-has-unsaved-changes="vm.hasUnsavedChanges()" data-is-add-another="vm.isAddAnother" is-edit-mode="vm.isEdit">
+    </ip-maintenance-modal-header>
+    <div class="modal-body">
+        <ip-group-modal-subheader ng-if="vm.isEdit" is-edit-mode="vm.isEdit" all-items="vm.options.allItems" current-item="vm.options.dataItem" has-unsaved-changes="vm.hasUnsavedChanges" on-navigate="vm.onNavigate"></ip-group-modal-subheader>
+        <div class="row">
+            <div class="col-md-9">
+                <ip-typeahead id='property-type-picklist' name="propertyType" data-config='propertyType' ng-model="vm.formData.propertyType" ip-required ip-autofocus data-ng-class="{edited: vm.form.propertyType.$dirty}" data-extend-query="vm.extendPicklistQuery"
+                    data-picklist-can-maintain="true" data-external-scope="vm.picklistValidCombination">
+                </ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <ip-typeahead id='number-type-picklist' name="numberType" data-config='numberType' ng-model="vm.formData.numberType" ip-required data-ng-class="{edited: vm.form.numberType.$dirty}" 
+                    data-picklist-can-maintain="true">
+                </ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <ip-typeahead id='case-type-picklist' name="caseType" data-config='caseType' ng-model="vm.formData.caseType" data-ng-class="{edited: vm.form.caseType.$dirty}" data-extend-query="vm.extendPicklistQuery"
+                    data-picklist-can-maintain="true" data-external-scope="vm.picklistValidCombination">
+                </ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <ip-typeahead id='case-category-picklist' name="caseCategory" data-config='caseCategory' ng-model="vm.formData.caseCategory" data-ng-class="{edited: vm.form.caseCategory.$dirty}" data-extend-query="vm.extendPicklistQuery"
+                ng-disabled="vm.isCaseCategoryDisabled()" data-picklist-can-maintain="true" data-external-scope="vm.picklistValidCombination">
+                </ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <ip-typeahead id='sub-type-picklist' name="subType" data-config='subType' ng-model="vm.formData.subType" data-ng-class="{edited: vm.form.subType.$dirty}" data-extend-query="vm.extendPicklistQuery"
+                    data-picklist-can-maintain="true" data-external-scope="vm.picklistValidCombination">
+                </ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <ip-text-field name="pattern" ip-required label="{{'.pattern' | translate}}" ng-maxlength="254" ng-model="vm.formData.pattern" ng-class="{'edited': vm.form.pattern.$dirty}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <ip-text-field multiline name="displayMessage" ng-maxlength="254" ip-required label="{{'.errorMessage' | translate}}" rows="3" ng-model="vm.formData.displayMessage" ng-class="{'edited': vm.form.displayMessage.$dirty}"></ip-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ip-datepicker id="validFrom" style="margin-left: 8.5%;width:315px" name="validFrom" label="{{'jurisdictions.maintenance.validNumbers.validFrom'}}" ng-model="vm.formData.validFrom"></ip-datepicker>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-push-4" style="margin-left: -9.5%">
+                <ip-checkbox name="warningFlag" label=".displayWarning" ng-checked="false" ng-model="vm.formData.warningFlag" ng-disabled="false" ng-class="{'edited': vm.form.warningFlag.$dirty}"></ip-checkbox>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <ip-typeahead id='additional-validation-picklist'  ng-change="vm.onAdditionalValidationChanged()" name="additionalValidation" data-config='additionalNumberValidation' ng-model="vm.formData.additionalValidation" data-ng-class="{edited: vm.form.additionalValidation.$dirty}" 
+                    data-picklist-can-maintain="true">
+                </ip-typeahead>
+            </div>
+        </div>
+        <div class="row">
+            <button id="validate" class="btn btn-prominent clear" style="margin-left: 26%" data-ng-click="vm.onTestPatternClick()">
+                <span translate=".testPattern"></span>
+            </button>
+        </div>
+    </div>
+</div>

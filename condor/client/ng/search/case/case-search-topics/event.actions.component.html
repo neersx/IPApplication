@@ -1,0 +1,122 @@
+<form>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <ipx-typeahead name="event" label="caseSearch.topics.dates.event" config="event" ipx-autofocus="{{!!topic.isActive}}" multiselect multipick [(ngModel)]="formData.event" (onChange)="onEventChange()"
+                    columnMenu></ipx-typeahead>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ipx-dropdown-operator name="eventOperator" [(ngModel)]="formData.eventOperator" (onChange)="eventOperatorChange()" [operatorsGroup]="'DatesFull'">
+                        </ipx-dropdown-operator>
+                    </div>
+                    <div class="col-md-6" *ngIf="formData.eventOperator!== searchOperator.exists && formData.eventOperator!== searchOperator.notExists">
+                        <div *ngIf="formData.eventOperator !== 'L' && formData.eventOperator !== 'N' && formData.eventOperator !== 'sd'">
+                            <ipx-typeahead name="eventForCompare" [disabled]="isEventToCompareDisabled()" label="" config="event" [(ngModel)]="formData.eventForCompare"></ipx-typeahead>
+                        </div>
+                        <div *ngIf="formData.eventOperator === 'sd'">
+                            <ipx-dropdown-operator name="eventDatesOperator" class="col-md-12" [(ngModel)]="formData.eventDatesOperator" [operatorsGroup]="'Between'">
+                            </ipx-dropdown-operator>
+                        </div>
+                        <div *ngIf="formData.eventOperator === 'L' || formData.eventOperator === 'N'">
+                            <ipx-text-dropdown-group ipx-data-type="nonNegativeInteger" apply-edited name="eventWithinValue" [(ngModel)]="formData.eventWithinValue" label="" [textField]="'value'" [optionField]="'type'"
+                                [displayField]="'value'" [keyField]="'key'" [options]="periodTypes">
+                            </ipx-text-dropdown-group>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="formData.eventOperator === 'sd'">
+                    <ipx-date-picker id="startDate" name="startDate" [earlierThan]="formData.endDate" [includeSameDate]="true" class="col-md-5" [(ngModel)]="formData.startDate" apply-edited>
+                    </ipx-date-picker>
+                    <div class="col-md-2">
+                        <div class="input-wrap no-background">
+                            <label>{{'caseSearch.topics.dates.and' | translate}}</label>
+                        </div>
+                    </div>
+                    <ipx-date-picker id="endDate" name="endDate" [laterThan]="formData.startDate" [includeSameDate]="true" class="col-md-5" [(ngModel)]="formData.endDate" apply-edited>
+                    </ipx-date-picker>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="input-wrap no-background">
+                    <label>{{'caseSearch.topics.dates.searchFor' | translate}}</label>
+                </div>
+            </div>
+            <div class="col-md-9" style="margin-left:-25%">
+                <ipx-checkbox label="{{ 'caseSearch.topics.dates.occurredEvent' | translate}}" name="occurredEvent" [(ngModel)]="formData.occurredEvent" (onChange)="updateSearchCheckbox('occurredEvent')"></ipx-checkbox>
+                <ipx-checkbox label="{{ 'caseSearch.topics.dates.dueEvent' | translate}}" name="dueEvent" [(ngModel)]="formData.dueEvent" (onChange)="updateSearchCheckbox('dueEvent')"></ipx-checkbox>
+                <ipx-checkbox label="{{ 'caseSearch.topics.dates.includeClosedActions' | translate}}" name="includeClosedActions" [(ngModel)]="formData.includeClosedActions"></ipx-checkbox>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <ipx-dropdown-operator name="importanceLevelOperator" label="caseSearch.topics.dates.importanceLevel" [disabled]="isImportanceLevelDisabled()" [(ngModel)]="formData.importanceLevelOperator"
+                [operatorsGroup]="'Between'">
+            </ipx-dropdown-operator>
+        </div>
+        <div class="col-md-2">
+            <ipx-dropdown name="importanceLevelFrom" label="" [disabled]="isImportanceLevelDisabled()" [(ngModel)]="formData.importanceLevelFrom" [displayField]="'value'" [keyField]="'key'"
+                [options]="importanceLevelOptions">
+            </ipx-dropdown>
+        </div>
+        <div class="col-md-1">
+            <div class="input-wrap no-background">
+                <label>{{'caseSearch.topics.dates.and' | translate}}</label>
+            </div>
+        </div>
+        <div class="col-md-2" style="margin-left:-20px;">
+            <ipx-dropdown name="importanceLevelTo" [disabled]="isImportanceLevelDisabled()" [(ngModel)]="formData.importanceLevelTo" [displayField]="'value'" [keyField]="'key'" [options]="importanceLevelOptions">
+            </ipx-dropdown>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="input-wrap">
+                <label>{{'caseSearch.topics.dates.renewals' | translate}}</label>
+            </div>
+        </div>
+        <div class="col-md-6" style="margin-left:-25%">
+            <ipx-checkbox label="{{ 'caseSearch.topics.dates.renewals' | translate}}" [disabled]="isImportanceLevelDisabled()" name="isRenewals" [(ngModel)]="formData.isRenewals"></ipx-checkbox>
+            <ipx-checkbox label="{{ 'caseSearch.topics.dates.nonRenewals' | translate}}" [disabled]="isImportanceLevelDisabled()" name="isNonRenewals" [(ngModel)]="formData.isNonRenewals"></ipx-checkbox>
+        </div>
+    </div>
+    <h4 translate="caseSearch.topics.dates.actions" *ngIf="!isExternal"></h4>
+    <div class="row" *ngIf="!isExternal">
+        <div class="col-md-5">
+            <ipx-dropdown-operator name="actionOperator" label="caseSearch.topics.dates.action" [(ngModel)]="formData.actionOperator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+        </div>
+        <div class="col-md-7 col-lg-6">
+            <ipx-typeahead name="actionValue" class="col-md-7" label="" *ngIf="formData.actionOperator == searchOperator.equalTo || formData.actionOperator == searchOperator.notEqualTo" config="action"
+                [(ngModel)]="formData.actionValue"></ipx-typeahead>
+            <ipx-checkbox class="col-md-5" label="{{ 'caseSearch.topics.dates.open' | translate}}" name="actionIsOpen" [(ngModel)]="formData.actionIsOpen"></ipx-checkbox>
+        </div>
+    </div>
+    <h4 translate="caseSearch.topics.dates.eventNotes" *ngIf="showEventNoteSection"></h4>
+    <div class="row" *ngIf="showEventNoteType">
+        <div class="col-md-5">
+            <ipx-dropdown-operator name="eventNoteTypeOperator" label="caseSearch.topics.dates.eventNoteType" [(ngModel)]="formData.eventNoteTypeOperator" [operatorsGroup]="'EqualExist'">
+            </ipx-dropdown-operator>
+        </div>
+        <div class="col-md-6" *ngIf="formData.eventNoteTypeOperator!==searchOperator.exists && formData.eventNoteTypeOperator!==searchOperator.notExists">
+            <ipx-typeahead name="eventNoteType" label="" config="eventNoteType" multiselect multipick [(ngModel)]="formData.eventNoteType" [extend-query]="extendNoteTypeFilter"></ipx-typeahead>
+        </div>
+    </div>
+    <div class="row" *ngIf="showEventNoteSection">
+        <div class="col-md-5">
+            <ipx-dropdown-operator name="eventNotesOperator" label="caseSearch.topics.dates.eventNotes" [(ngModel)]="formData.eventNotesOperator" [customOperators]="'startsWith,endsWith,contains,exists,notExists'">
+            </ipx-dropdown-operator>
+        </div>
+        <div class="col-md-6">
+            <div *ngIf="formData.eventNotesOperator!==searchOperator.exists && formData.eventNotesOperator!==searchOperator.notExists">
+                <ipx-text-field name="eventNotesText" label="" [(ngModel)]="formData.eventNotesText">
+                </ipx-text-field>
+            </div>
+        </div>
+    </div>
+</form>

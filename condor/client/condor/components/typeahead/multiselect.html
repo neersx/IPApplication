@@ -1,0 +1,10 @@
+<div ng-class="{error: hasError, edited: isEdited, saved: isSaved}">
+    <tags-input class="typeahead-multi-select" ng-model="items" display-property="{{::displayProperty}}" key-property="{{::keyProperty}}" on-tag-adding="addTag($tag)" add-from-autocomplete-only="true" placeholder="{{::placeholder | translate}}" min-length="1" allow-leftover-text="true" text="text" data-init-events="initInputEvents($events)" template="{{::tagTemplate}}" replace-spaces-with-dashes="false" input-template="condor/components/typeahead/multiselect-input.html" on-tag-removed="tagRemoved($tag)" on-tag-added="tagAdded($tag)" data-disabled="{{disabled}}" autofocus="{{::autofocus}}" ng-required="{{::required}}">
+        <auto-complete source="loadItems($query)" template="{{::autocompleteTemplate}}" min-length="1" debounce-delay="600" load-on-down-arrow="true" select-first-match="false" max-results-to-show="{{::maxResultCount}}" data-init-events="initAutocompleteEvents($events)" show-on-blur="true"></auto-complete>
+    </tags-input>
+
+    <span ng-show="showLoadingSpinner()" class="loading-icon loading-circle"></span>
+    <span class="error-icon input-action tooltip-error" data-tooltip-placement="auto right" ip-tooltip="{{::'invalidValue' | translate}}" ng-show="hasError">
+        <icon name="exclamation-triangle error-icon-position"></icon>
+    </span>
+</div>

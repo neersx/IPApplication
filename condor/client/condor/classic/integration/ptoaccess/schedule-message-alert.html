@@ -1,0 +1,9 @@
+<div data-ng-if="vm.message">
+    <div class="alert alert-info" style="display:block; margin-bottom: 10px">
+        <icon name="info-circle"></icon>
+        <span>
+            {{::('dataDownload.schedule.' + vm.message.message) | translate}}
+            <a data-ng-if="vm.message.link" href="{{vm.message.link.url}}">{{:: ('dataDownload.schedule.' + vm.message.link.text) | translate}}</a>
+        </span>
+    </div>
+</div>

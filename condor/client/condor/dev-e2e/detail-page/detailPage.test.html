@@ -1,0 +1,10 @@
+<ip-page-title-save page-title="Detail Page Tests" is-save-enabled="vm.isDirty()"></ip-page-title-save>
+
+<div ng-form="vm.form">
+    <p>Common components for detail pages can be tested here.</p>
+
+    <div class="row">
+        <ip-typeahead id="picklist" class="col-sm-6" data-label="Criteria" data-key-field="id" data-text-field="description" data-api-url="api/configuration/rules/workflows/typeaheadSearch" data-picklist-display-name="Criteria" data-picklist-columns="[{title:'Criteria No', field:'id'}, {title:'Description', field:'description'}]" data-state="vm.state" ng-model="vm.model">
+        </ip-typeahead>
+    </div>
+</div>

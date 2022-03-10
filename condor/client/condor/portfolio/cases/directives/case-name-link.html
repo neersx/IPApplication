@@ -1,0 +1,3 @@
+<ip-ie-only-url ng-if="::vm.canLink" style="cursor: pointer; display: inline-block;" data-url="::vm.encodeLinkData(vm.nameKey)" data-text="::vm.linkText()"></ip-ie-only-url>
+<span ng-if="::!vm.canLink">{{vm.linkText()}}</span>
+<span ng-if="::vm.showEmailLink" style="margin-left: 5px"><ip-email-link ng-if="vm.email" data-model="vm.email" data-show-icon="::vm.showEmailLink"></ip-email-link></span>

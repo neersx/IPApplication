@@ -1,0 +1,119 @@
+<div ng-form="vm.form" ip-form >
+    <div class="modal-header">
+        <h2 class="modal-title" ng-show="!vm.formData.criteriaId" translate="workflows.create.title" ></h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts(vm.form)">
+            <ip-save-button ng-click="vm.save()" id="Save" ng-disabled="!vm.isSaveEnabled()"></ip-save-button>
+            <ip-close-button ng-click="vm.dismissAll()" id="dismissAll"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body" ng-init="vm.validate()">
+        <div class="container-fluid" style="padding-bottom:15px">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-wrap large required"
+                        ng-class="{error:vm.form.criteriaName.$dirty && vm.form.criteriaName.$invalid}">
+                        <label translate="Criteria Name"></label>
+                        <textarea id="workflow-criteria-name" type="text" rows="2" name="criteriaName" required
+                            ip-autofocus ng-disabled="{{::!vm.canEdit}}" ng-model="vm.formData.criteriaName"
+                            ng-class="{{::vm.fieldClasses('criteriaName')}}" ng-change="vm.resetNameError()" data-ng-maxlength="254" >
+                </textarea>
+                        <span ng-if="vm.form.criteriaName.$error.required" class="input-action tooltip-error"
+                            ip-tooltip="{{:: 'field.errors.required' | translate }}" data-tooltip-placement="right">
+                            <icon name="exclamation-triangle"></icon>
+                        </span>
+                        <span ng-if="vm.form.criteriaName.$error.notunique" class="input-action tooltip-error"
+                            ip-tooltip="{{:: 'field.errors.notunique' | translate }}" data-tooltip-placement="right">
+                            <icon name="exclamation-triangle"></icon>
+                        </span>
+                        <span data-ng-if="vm.form.criteriaName.$error.maxlength" class="input-action tooltip-error"
+                            ip-tooltip="{{:: 'field.errors.maxlength' | translate:{ length: 254 } }}"
+                            data-tooltip-placement="right">
+                            <icon name="exclamation-triangle"></icon>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row" ng-if="::vm.hasOffices">
+                        <ip-typeahead name="office" ng-model="vm.formData.office" ng-disabled="::!vm.canEdit" ng-class="{{::vm.fieldClasses('office')}}" data-config="office">
+                        </ip-typeahead>
+                    </div>
+
+                    <div class="row">
+                        <ip-typeahead name="caseType" ng-model="vm.formData.caseType" ng-disabled="::!vm.canEdit" ng-class="{{::vm.fieldClasses('caseType')}}" ng-change="vm.caseTypeChanged();vm.validate()" data-config="caseType" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination"
+                            data-picklist-can-maintain="true">
+                        </ip-typeahead>
+                        <ip-typeahead name="jurisdiction" ng-model="vm.formData.jurisdiction" ng-disabled="::!vm.canEdit" ng-class="{{::vm.fieldClasses('jurisdiction')}}" ng-change="vm.validate()" data-config="jurisdiction" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true">
+                        </ip-typeahead>
+                        <ip-typeahead name="propertyType" ng-model="vm.formData.propertyType" ng-disabled="::!vm.canEdit" ng-class="{{::vm.fieldClasses('propertyType')}}" ng-change="vm.validate()" data-config="propertyType" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination"
+                            data-picklist-can-maintain="true" data-key-field="key" data-code-field="code" data-text-field="value">
+                        </ip-typeahead>
+                        <ip-typeahead name="dateOfLaw" ng-model="vm.formData.dateOfLaw" ng-disabled="vm.isDateOfLawDisabled()" ng-class="{{::vm.fieldClasses('dateOfLaw')}}" ng-change="vm.validate()" data-config="dateOfLaw" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true">
+                        </ip-typeahead>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <ip-typeahead name="action" ng-model="vm.formData.action" ng-disabled="::!vm.canEdit" ng-class="{{::vm.fieldClasses('action')}}" ng-change="vm.validate()" data-config="action" data-picklist-can-maintain="true" data-extend-query="vm.extendPicklistQuery"
+                            data-external-scope="vm.picklistValidCombination" required>
+                        </ip-typeahead>
+                    </div>
+
+                    <div class="row">
+                        <ip-typeahead name="caseCategory" ng-model="vm.formData.caseCategory" ng-disabled="vm.isCaseCategoryDisabled()" ng-class="{{::vm.fieldClasses('caseCategory')}}" ng-change="vm.validate()" data-config="caseCategory" data-extend-query="vm.extendPicklistQuery"
+                            data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true">
+                        </ip-typeahead>
+                        <ip-typeahead name="subType" ng-model="vm.formData.subType" ng-disabled="::!vm.canEdit" ng-class="{{::vm.fieldClasses('subType')}}" ng-change="vm.validate()" data-config="subType" data-picklist-can-maintain="true" data-extend-query="vm.extendPicklistQuery"
+                            data-external-scope="vm.picklistValidCombination" data-picklist-can-maintain="true" data-key-field="key" data-code-field="code" data-text-field="value">
+                        </ip-typeahead>
+                        <ip-typeahead name="basis" ng-model="vm.formData.basis" ng-disabled="::!vm.canEdit" ng-class="{{::vm.fieldClasses('basis')}}" ng-change="vm.validate()" data-config="basis" data-extend-query="vm.extendPicklistQuery" data-external-scope="vm.picklistValidCombination"
+                            data-picklist-can-maintain="true" data-key-field="key" data-code-field="code" data-text-field="value">
+                        </ip-typeahead>
+                        <ip-dropdown data-label="workflows.common.localOrForeignDropdown.label" ng-disabled="::!vm.canEdit" ng-class="{saved: vm.formData.isSaved('isLocalClient'), edited: vm.formData.isDirty('isLocalClient')}" ng-model="vm.formData.isLocalClient" data-options="option.value as option.label | translate for option in vm.appliesToOptions"></ip-dropdown>
+                        
+                        <ip-typeahead name="examinationType" ng-if="vm.showExaminationType(vm.formData)"
+                            ng-disabled="::!vm.canEdit" ng-class="{{::vm.fieldClasses('examinationType')}}"
+                            data-config="examinationType" data-picklist-can-maintain="true" ng-model="vm.formData.examinationType">
+                        </ip-typeahead>
+                        
+                        <ip-typeahead name="renewalType" ng-if="vm.showRenewalType(vm.formData)" 
+                            ng-disabled="::!vm.canEdit" ng-class="{{::vm.fieldClasses('renewalType')}}" 
+                            data-config="renewalType" data-picklist-can-maintain="true" ng-model="vm.formData.renewalType">
+                        </ip-typeahead>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-wrap-group group-inline" ng-class="{{::vm.fieldClasses('isProtected')}}">
+                        <span>{{'Protect Criteria' | translate}}</span>
+                        <div class="input-wrap" uib-popover="{{vm.protectionDisabledText | translate }}">
+                            <input type="radio" id="protect-yes" ng-disabled="vm.disableProtectedRadioButtons" ng-model="vm.formData.isProtected" ng-value="true" />
+                            <label for="protect-yes" translate="Yes"></label>
+                        </div>
+                        <div class="input-wrap" uib-popover="{{vm.protectionDisabledText | translate }}">
+                            <input type="radio" id="protect-no" ng-disabled="vm.disableProtectedRadioButtons" ng-model="vm.formData.isProtected" ng-value="false" />
+                            <label for="protect-no" translate="No"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="input-wrap-group group-inline" ng-class="{{::vm.fieldClasses('inUse')}}">
+                        <span translate="In Use"></span>
+                        <div class="input-wrap">
+                            <input type="radio" id="inUse-yes" ng-model="vm.formData.inUse" ng-disabled="::!vm.canEdit" ng-value="true" />
+                            <label for="inUse-yes" translate="Yes"></label>
+                        </div>
+                        <div class="input-wrap">
+                            <input type="radio" id="inUse-no" ng-model="vm.formData.inUse" ng-disabled="::!vm.canEdit" ng-value="false" />
+                            <label for="inUse-no" translate="No"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

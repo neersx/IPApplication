@@ -1,0 +1,17 @@
+<div ng-form="vm.form" ng-class="{edited: vm.form.$dirty, 'input-inherited': vm.ptaDelay===vm.parentData.ptaDelay}"
+    translate-namespace=".ptaDelaysCalc" class="row">
+    <div class="input-wrap-group  col-lg-12">
+        <span translate=".calcTitle" style="width:17%"></span>
+        <div class="group-inline input-wrap-group" style="float:unset;margin-top: 5px;">
+            <ip-radio-button label=".ipOfficeDelay" ng-model="vm.ptaDelay" value="ipOfficeDelay"
+                ng-disabled="::!vm.canEdit">
+            </ip-radio-button>
+            <ip-radio-button label=".applicantDelay" ng-model="vm.ptaDelay" value="applicantDelay"
+                ng-disabled="::!vm.canEdit">
+            </ip-radio-button>
+            <ip-radio-button label=".notApplicable" ng-model="vm.ptaDelay" value="notApplicable"
+                ng-disabled="::!vm.canEdit">
+            </ip-radio-button>
+        </div>
+    </div>
+</div>

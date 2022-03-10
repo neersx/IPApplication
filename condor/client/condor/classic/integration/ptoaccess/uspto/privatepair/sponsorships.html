@@ -1,0 +1,62 @@
+<ip-sticky-header>
+    <ip-page-title page-title="dataDownload.uspto.title"> </ip-page-title>
+</ip-sticky-header>
+<br />
+<br />
+<br />
+<div ip-resize-handler resize-handler-type="Panel">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <h2 translate="dataDownload.uspto.sponsorshipTitle"></h2>
+                    <span style="margin-left: 8px;">
+                        <ip-inline-dialog placement="bottom" data-content="{{::'dataDownload.uspto.sponsorshipSubTitle'|translate}}"></ip-inline-dialog>
+                    </span>
+                    <div class="pull-right">
+                        <button id="add" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'Add' | translate }}" data-ng-click="vm.onAddOrUpdate()">
+                            <span class="cpa-icon cpa-icon-plus-circle"></span>
+                        </button>
+
+                        <button style="margin-right: 5px;" id="edit" ng-if="vm.hasSponsorship" class="btn btn-icon" data-tooltip-placement="bottom"
+                            ip-tooltip="{{::'dataDownload.uspto.updateAccountTooltip' | translate }}" data-ng-click="vm.onUpdateAccountDetails()">
+                            <span class="cpa-icon cpa-icon-cog"></span>
+                        </button>
+                    </div>
+                </div>
+                <ip-inline-alert ng-if="vm.missingBackgroundProcessLoginId" text="{{::'dataDownload.newSchedule.errors.background-process-loginid'|translate}}" type="danger" style="display:block; margin-bottom: 30px"></ip-inline-alert>
+                <ip-inline-alert ng-if="vm.envInvalid" text="{{::'dataDownload.uspto.sponsorshipEnvMismatch'|translate}}" type="warning" style="display:block; margin-bottom: 30px"></ip-inline-alert>
+
+                <ip-kendo-search-grid data-id="searchResults" data-grid-options="vm.gridOptions" data-search-hint="{{ :: 'dataDownload.uspto.noSponsorshipsFound' | translate }}"></ip-kendo-search-grid>
+            </div>
+        </div>
+    </div>
+    <br />
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <h2 translate="dataDownload.schedules.title"></h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="table-container">
+                <div class="table-title">
+                    <span translate="dataDownload.schedules.subtitle"></span>
+                    <br />
+                    <br />
+                    <div>
+                        <a ui-sref="classicPtoAccess.Schedules">
+                            <button id="viewSchedules" class="btn btn-prominent clear">
+                                <span translate="dataDownload.uspto.viewSchedules"></span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>

@@ -1,0 +1,6 @@
+<app-hosted-page-header *ngIf="showHeaderBar" [type]="'save'" [disabled]="(disabled | async)|| (isSaving | async)" (onAction)="save($event);" (onRevert)="revert($event)" [position]="'top'">
+</app-hosted-page-header>
+<br>
+<ipx-component-resolver *ngIf="topicData" [componentData]="topicData" (onViewInit)="afterViewInit($event)"></ipx-component-resolver>
+<app-hosted-page-header *ngIf="showHeaderBar" [type]="'save'" [disabled]="(disabled | async)|| (isSaving | async)" (onAction)="save($event);" (onRevert)="revert($event)" [position]="'bottom'" [addShortcuts]="true">
+</app-hosted-page-header>

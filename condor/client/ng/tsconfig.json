@@ -1,0 +1,17 @@
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "baseUrl": ".",
+        "types": [
+            "angular",
+            "jest",
+            "node"
+        ]
+    },
+    "include": [
+        "../main.ts",
+        "../polyfills.ts",
+        "**/*.ts"
+    ],
+    "exclude": []
+}

@@ -1,0 +1,29 @@
+<style>
+  #quick-links {
+    z-index: 1040 !important;
+  }
+
+  #quick-links-content {
+    z-index: 1040 !important;
+  }
+</style>
+
+<div class="modal-header">
+  <h2 class="modal-title">
+    {{ 'help.thirdPartySoftwareLicenses' | translate }}
+  </h2>
+  <div class="modal-header-controls">
+    <ipx-close-button type="button" (click)="close()"></ipx-close-button>
+  </div>
+</div>
+<div class="modal-subheader">
+  <div class="readonly-label">
+    {{ 'help.thirdPartySoftwareLicensesBlurb' | translate }}
+  </div>
+</div>
+<div class="modal-body">
+  <div *ngFor="let i of lines; trackBy: trackByFn">
+    <a *ngIf="i.link" href="{{i.link}}" target="_blank">{{i.oss}}</a>
+    <span *ngIf="!i.link">{{i.oss}}</span>
+  </div>
+</div>

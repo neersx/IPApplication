@@ -1,0 +1,23 @@
+<div id="priorart-inprotech-cases-result">
+    <div class="table-title">
+        <h4 translate="priorart.inprotechCases.gridHeading">
+            <ipx-inline-dialog [content]="'priorart.inprotechCases.searchInfo'| translate" [tooltipPlacement]="'auto'"></ipx-inline-dialog>
+        </h4>
+    </div>
+    <div>
+        <ipx-kendo-grid #ipxKendoGridRef id="priorartInprotechCasesSet" [dataOptions]="gridOptions" *ngIf="gridOptions" (onDetailCollapse)="onCollapse($event)" (pageChanged)="pageChanged($event)">
+            <ng-template ipxTemplateColumnField="reference" let-dataItem>
+                <a *ngIf="dataItem.id" uiSref="caseview" [uiParams]="{id: dataItem.id}" target="_blank">{{dataItem.reference}}</a>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="buttons" let-dataItem>
+                <ipx-icon-button type="button" [buttonIcon]="'check-in'" name="import" (onclick)="import(dataItem)" [disabled]="dataItem.imported"
+                tooltip="{{ ((searchData.sourceDocumentId || searchData.caseKey) ? (dataItem.imported ? 'priorart.importedAndCited' : 'priorart.importAndCite') : (dataItem.imported ? 'priorart.imported' : 'priorart.import')) | translate }}"></ipx-icon-button>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+    <ng-template #caseDataDetailTemplate let-dataItem>
+        <section>
+            <ipx-priorart-detail #caseDataDetailComponent [details]="dataItem" [translationsList]="translationsList"></ipx-priorart-detail>
+        </section>
+    </ng-template>
+</div>

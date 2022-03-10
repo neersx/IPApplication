@@ -1,0 +1,46 @@
+<form name="caseStatusUpdateForm" #ngForm="ngForm">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <div class="input-wrap-group group-inline">
+              <ipx-radio-button [value]="false" name="caseStatus" [(ngModel)]="formData.isRenewal"
+                (click)="clearCaseStatus()">
+                <span translate="bulkUpdate.caseStatusUpdate.caseStatus"></span>
+              </ipx-radio-button>
+              <ipx-radio-button [value]="true" name="renewalStatus" [(ngModel)]="formData.isRenewal"
+                (click)="clearCaseStatus()">
+                <span translate="bulkUpdate.caseStatusUpdate.renewalStatus"></span>
+              </ipx-radio-button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <ipx-typeahead name="status" config="status" [(ngModel)]="formData.status"
+              label="{{labelTranslationKey + (formData.isRenewal ? '.renewalStatus' : '.caseStatus')}}"
+              [extend-query]="extendStatus" [disabled]="clear" (onChange)="changeStatus($event)">
+            </ipx-typeahead>
+          </div>
+          <div class="col-sm-3">
+            <ipx-checkbox name="chkClearCaseStatus" [(ngModel)]="clear" label="bulkUpdate.remove"
+              (click)="clearCaseStatus()">
+            </ipx-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9 text-center">
+            <ipx-checkbox label="{{ 'bulkUpdate.caseStatusUpdate.pending' | translate}}" name="pending"
+              [ngModel]="formData.status?.isPending" [disabled]="true"></ipx-checkbox>
+            <ipx-checkbox label="{{ 'bulkUpdate.caseStatusUpdate.registered' | translate}}" name="registered"
+              [ngModel]="formData.status?.isRegistered" [disabled]="true"></ipx-checkbox>
+            <ipx-checkbox label="{{ 'bulkUpdate.caseStatusUpdate.dead' | translate}}" name="dead"
+              [ngModel]="formData.status?.isDead" [disabled]="true"></ipx-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

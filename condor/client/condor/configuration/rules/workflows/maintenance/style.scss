@@ -1,0 +1,21 @@
+body[page-state~="workflows"][page-state~="details"] {
+	ip-kendo-grid {
+		table {
+		    border-collapse: collapse !important;
+		    tr {
+			    &.found {
+		            background-color: #FFF1BF !important;
+		        }
+			    &.bold {
+			        border: 2px solid #FEB81C;
+			        td:first-child {
+				        border-left: inherit !important;
+				    }
+				    &:last-child td {
+				    	border-bottom: inherit !important;
+				    }
+			    }
+		    }
+		}
+	}
+}

@@ -1,0 +1,8 @@
+<div [ipxConfirmBeforeRouteChange]="isPageDirty" [confirmMessage]="'attachmentsIntegration.discardMessage' | translate">
+    <ipx-sticky-header>
+        <ipx-page-title-save [title]="'attachmentsIntegration.title' | translate" [subtitle]="'attachmentsIntegration.subtitle'" (onSave)="save()" (onDiscard)="reload()" [isSaveEnabled]="isSaveEnabled"
+            [isDiscardEnabled]="isDiscardEnabled">
+        </ipx-page-title-save>
+    </ipx-sticky-header>
+    <ipx-topics *ngIf="topicOptions" [options]="topicOptions"></ipx-topics>
+</div>

@@ -1,0 +1,36 @@
+<div id="sanity-check-result">
+    <ipx-sticky-header>
+        <ipx-page-title>
+            <before-title>
+                <span id="totalSanityCheckRecords"> {{ headerTitle }}</span>
+            </before-title>
+            <action-buttons>
+                <div class="col-sm-1" style="float: right; margin-right: 15px;">
+                    <button id="closeSanityCheckResults" class="btn btn-icon" placement="bottom" tooltip="{{'button.close' | translate}}" (click)="close()">
+                        <span class="cpa-icon cpa-icon-times"></span>
+                    </button>
+                </div>
+            </action-buttons>
+        </ipx-page-title>
+    </ipx-sticky-header>
+    <div class="pane-content">
+        <div class="table-container fixed-detail-panel-left">
+            <ipx-kendo-grid id="sanityCheckResultsGrid" [dataOptions]="gridOptions" *ngIf="gridOptions">
+                <ng-template ipxTemplateColumnField="caseReference" let-dataItem>
+                    <a class="result-cell-link" uiSref="caseview" [uiParams]="{id: dataItem.caseKey,rowKey:dataItem.caseKey}">{{ dataItem.caseReference }}</a>
+                </ng-template>
+                <ng-template ipxTemplateColumnField="displayMessage" let-dataItem>
+                    <div [innerHTML]="dataItem.displayMessage"></div>
+                </ng-template>
+                <ng-template  ipxTemplateColumnField="status" let-dataItem>
+                    <div class="cpa-icon-flag" [tooltip]="'sanityCheck.'+dataItem.status | translate" [ngStyle]="getFlagStyle(dataItem.status)">
+                    </div>
+                </ng-template>
+            </ipx-kendo-grid>
+            <ng-template #groupDetailTemplate let-dataItem>
+                <ipx-group-detail *ngIf="gridOptions.columns" [items]="dataItem.items" [columns]="gridOptions.columns">
+                </ipx-group-detail>
+            </ng-template>
+        </div>
+    </div>
+</div>

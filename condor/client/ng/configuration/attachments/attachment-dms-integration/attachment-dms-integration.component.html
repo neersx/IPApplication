@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="input-wrap-group group-inline col-sm-8">
+    <div class="input-wrap switch" [ngClass]="{edited: enableChanged}">
+      <input id="enableDms" name="enableDms" type="checkbox" [disabled]="!viewData.hasDmsSettings" [(ngModel)]="isDmsEnabled" (ngModelChange)="changeStatus($event)">
+      <label for="enableDms" [translate]="'attachmentsIntegration.attachmentDmsIntegration.label'"></label>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <button class="btn" (click)="navigateToDmsConfiguration()" id="btnSearch" [translate]="'attachmentsIntegration.attachmentDmsIntegration.navigateToDms'" [tooltip]="'attachmentsIntegration.attachmentDmsIntegration.navigateToDms' | translate"
+            style="padding: 4px; float: right;" container="body" [tooltipPlacement]="'bottom'">
+    </button>
+  </div>
+</div>

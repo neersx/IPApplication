@@ -1,0 +1,6 @@
+<div class="input-wrap" [ngClass]="{'edited':(radioModel.control.dirty && isControlEdited)}">
+    <input #radio class="input-wrap" type="radio" [id]="inputId" [name]="name" [value]="value" [disabled]="disabled" [(ngModel)]="model" #radioModel="ngModel" [checked]="checked" (click)="_onRadioClick($event)" />
+    <label [for]="inputId"><span [translate]="label">
+            <ng-content></ng-content>
+        </span></label> 
+</div>

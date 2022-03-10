@@ -1,0 +1,20 @@
+<form #forwardReminder="ngForm">
+  <div id="forwardReminder">
+    <div class="modal-header">
+      <h2 class="modal-title" translate="taskPlanner.forwardReminder.title"></h2>
+      <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <ipx-typeahead name="names" multiselect multipick label="taskPlanner.forwardReminder.toNames" config="staff" [(ngModel)]="names">
+        </ipx-typeahead>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" name="cancel" (click)="onClose()">{{'Cancel' | translate}}</button>
+      <button type="button" class="btn btn-save" name="save" (click)="save()" [disabled]="!isValid()">{{'taskPlanner.forwardReminder.forward' | translate}}</button>
+    </div>
+  </div>
+</form>

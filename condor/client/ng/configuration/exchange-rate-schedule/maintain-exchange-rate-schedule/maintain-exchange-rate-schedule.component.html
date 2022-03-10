@@ -1,0 +1,32 @@
+<div *ngIf="form" class="modal-header">
+    <h2 class="modal-title" translate="{{ isAdding? 'exchangeRateSchedule.maintenance.add': 'exchangeRateSchedule.maintenance.edit' | translate}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button type="button" id="btSave" [disabled]="form.status === 'INVALID' || !form.dirty" (click)="submit()"></ipx-save-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+<div *ngIf="canNavigate" class="title-header">
+    <ipx-detail-page-nav *ngIf="navData" paramKey="id" [totalRows]="navData.totalRows" [hasUnsavedChanges]="form.dirty" [currentKey]="currentKey" [fetchNext]="navData.fetchCallback" [noParams]="true" [ids]="navData.keys"
+        [pageSize]="navData.pageSize" (nextResult)="getNextExchangeRateSchedule($event)">
+    </ipx-detail-page-nav>
+</div>
+<div class="modal-body">
+    <br>
+    <div *ngIf="form">
+        <form [formGroup]="form">
+            <div class="row">
+                <div class="col-md-7">
+                    <ipx-text-field id="code" required name="code" formControlName="code" [disabled]="!isAdding" (change)="validateExchangeRateScheduleCode()" required
+                        label="{{ 'exchangeRateSchedule.column.code' |translate}}" apply-edited autocomplete="off">
+                    </ipx-text-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11" style="margin-left: -72px;">
+                    <ipx-text-field id="description" name="description" required formControlName="description" apply-edited label="{{ 'exchangeRateSchedule.maintenance.description' | translate }}" autocomplete="off">
+                    </ipx-text-field>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

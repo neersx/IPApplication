@@ -1,0 +1,54 @@
+<h1 class="ng-scope">Checkboxes </h1>
+<div class="row">
+  <form #checkform="ngForm">
+  <div class="col-sm-8">
+    <div class="col-sm-4">
+      <ipx-checkbox label="validcombinations.defaultJurisdiction" name="jurisdiction" [(ngModel)]="viewDefault" apply-edited
+        (ngModelChange)="onViewDefaultChange()">
+      </ipx-checkbox>
+    </div>
+    <div class="col-sm-4">
+      {{ 'validcombinations.defaultJurisdiction' | translate }}: <strong> {{ viewDefault | json }} </strong> 
+    </div>
+    <div class="col-sm-4">
+      On Checkbox Change: <strong> {{ jurisdictions | json }} </strong> 
+    </div>
+  </div>
+</form>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="col-sm-4">
+      <ipx-checkbox label="option 1" name="option1" [(ngModel)]="option1" apply-edited>
+      </ipx-checkbox>
+    </div>
+    <div class="col-sm-4">
+      Option 2: <strong> {{ option1 | json }} </strong>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="col-sm-4">
+      <ipx-checkbox label="option 2" name="option2" [(ngModel)]="option2" apply-edited
+        disabled> </ipx-checkbox>
+    </div>
+    <div class="col-sm-4">
+      Disabled Option 1: <strong> {{ option2 | json }} </strong>
+    </div>
+  </div>
+</div>
+
+
+<h1 class="ng-scope">Checkboxes with inline Dialog </h1>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="col-sm-4">
+      <ipx-checkbox label="option info" name="optionInfo" [(ngModel)]="optionInfo" [info]="'workflows.maintenance.inheritanceConfirmation.blurb'" [infoData]="infoData">
+      </ipx-checkbox>
+    </div>
+    <div class="col-sm-4">
+      Option Info: <strong> {{ optionInfo | json }} </strong>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<style>
+    .greyHighlight {
+        color: blueviolet;
+    }
+</style>
+<div *ngIf="gridOptions">
+    <div id="actionFirstRow" class="row">
+        <div class="col-sm-6">
+            <ipx-dropdown name="importanceLevel" [disabled]="isEditing" *ngIf="!permissions.requireImportanceLevel" [label]="'caseview.actions.importanceLevel'" [(ngModel)]="formData.importanceLevel" [options]="importanceLevelOptions" [displayField]="'description'" [keyField]="'code'" (change)="changeImportanceLevel()">
+            </ipx-dropdown>
+            <ipx-dropdown name="importanceLevel" [disabled]="isEditing" *ngIf="permissions.requireImportanceLevel" required [label]="'caseview.actions.importanceLevel'" [(ngModel)]="formData.importanceLevel" [options]="importanceLevelOptions" [displayField]="'description'" [keyField]="'code'" (change)="changeImportanceLevel()">
+            </ipx-dropdown>
+        </div>
+        <div class="col-sm-6 text-right">
+            <div class="display-inline">
+                <ipx-checkbox id="caseview-actions-openActions" [disabled]="isEditing" [(ngModel)]="formData.includeOpenActions" [label]="'caseview.actions.openActions'" (onChange)="applyOption('open')" [ngClass]="{'error': !formData.includeOpenActions && !formData.includeClosedActions && !formData.includePotentialActions}">
+                </ipx-checkbox>
+                <ipx-checkbox id="caseview-actions-closedActions" [disabled]="isEditing" [(ngModel)]="formData.includeClosedActions" [label]="'caseview.actions.closedActions'" (onChange)="applyOption('close')" [ngClass]="{'error': !formData.includeOpenActions && !formData.includeClosedActions && !formData.includePotentialActions}">
+                </ipx-checkbox>
+                <ipx-checkbox id="caseview-actions-potentialActions" [disabled]="isEditing" [(ngModel)]="formData.includePotentialActions" [label]="'caseview.actions.potentialActions'" (onChange)="applyOption('potential')" [ngClass]="{'error': !formData.includeOpenActions && !formData.includeClosedActions && !formData.includePotentialActions}">
+                </ipx-checkbox>
+                <span class="tooltip-error pull-right error" style="color:#E90101; line-height: 30px;" *ngIf="!formData.includeOpenActions && !formData.includeClosedActions && !formData.includePotentialActions" tooltip="{{'caseview.actions.mustSelectError' | translate}}">
+                    <ipx-icon name="exclamation-triangle"></ipx-icon>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row" [ngStyle]="{'pointer-events': isEditing ? 'none':'all'}">
+        <ipx-kendo-grid #ipxKendoGridRef id="caseViewActions" [dataOptions]="gridOptions" (dataBound)="caseviewActionDatabound()" (dataItemClicked)="itemClicked($event)">
+            <ng-template ipxTemplateColumnField="criteriaId" let-dataItem>
+                <a *ngIf="dataItem.hasEditableCriteria" uiSref="workflows.details"
+                    [uiParams]="{id: dataItem.criteriaId}">{{dataItem.criteriaId}}</a>
+                <span *ngIf="!dataItem.hasEditableCriteria">{{dataItem.criteriaId}}</span>
+            </ng-template>
+              <ng-template ipxTemplateColumnField="refresh" let-dataItem>
+                <ipx-icon-button type="button" class="btn-no-bg" [buttonIcon]="'refresh'" container="body" *ngIf="selectedAction && selectedAction.actionId === dataItem.code" name="refreshAction" (onclick)="refreshEvents(dataItem)"
+                                 tooltip="{{'caseview.actions.refreshActionTooltip' | translate }}">
+                </ipx-icon-button>               
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>
+<ipx-case-view-action-events #actionEvents *ngIf="selectedAction" [viewData]="viewData" [action]="selectedAction" [isPotential]="formData.includePotentialActions" [eventNoteTypes]="eventNoteTypes" [dmsConfigured]="dmsConfigured"></ipx-case-view-action-events>
+<ng-template #ipxActionStatusColumn let-dataItem>
+    <span *ngIf="dataItem.isOpen">{{dataItem.status}}</span>
+    <span *ngIf="dataItem.isClosed" [translate]="'caseview.actions.closedStatus'" [translateParams]="{ status: dataItem.status || ''}"></span>
+    <span class="text-grey-highlight" *ngIf="dataItem.isPotential" [translate]="'caseview.actions.potentialStatus'"></span>
+</ng-template>
+<ng-template #ipxPoliceColumn let-dataItem>
+    <a *ngIf="permissions.canPoliceActions" class="btn btn-icon policing" (click)="policeAction(dataItem)" [tooltip]="'caseview.actions.policeAction' | translate">
+        <div class="ipx-policing-cogs-container-small cpa-icon">
+            <div class="ipx-policing-cogs">
+                <div>
+                    <ipx-icon name="gear"></ipx-icon>
+                    <ipx-icon name="gear"></ipx-icon>
+                </div>
+            </div>
+        </div>
+    </a>
+</ng-template>
+
+<ng-template #ipxHasNotesColumn let-dataItem>
+    <span *ngIf="dataItem.hasEventsWithNotes" class="cpa-icon text-grey-highlight cpa-icon-file-o" tooltip="{{'caseview.actions.eventHasNotes' | translate}}"></span>
+</ng-template>

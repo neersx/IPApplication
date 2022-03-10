@@ -1,0 +1,16 @@
+<div ng-form="vm.maintenance" ip-form translate-namespace="workflows.eventcontrol.maintenance">
+    <ip-maintenance-modal-header 
+        data-page-title="{{:: vm.title}}" 
+        data-dismiss="vm.dismiss()" 
+        data-on-apply="vm.apply()" 
+        data-is-apply-enabled="vm.isApplyEnabled()" 
+        data-has-unsaved-changes="vm.hasUnsavedChanges()" 
+        data-is-add-another="vm.isAddAnother"
+        data-button-mode="save"
+        is-edit-mode="vm.isEditMode">
+    </ip-maintenance-modal-header>
+
+    <div class="modal-body">            
+        <ip-dynamic-content src="vm.templateSrc"></ip-dynamic-content>
+    </div>
+</div>

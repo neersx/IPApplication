@@ -1,0 +1,27 @@
+<ip-sticky-header>
+    <ip-page-title page-title="numberType.numberTypeMaintenance">
+        <action-buttons>
+            <button id="add" class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'Add' | translate }}" data-ng-click="vm.add()">
+                <span class="cpa-icon cpa-icon-plus-circle"></span>
+            </button>
+        </action-buttons>
+    </ip-page-title>
+</ip-sticky-header>
+<div class="container-fluid" ip-resize-handler resize-handler-type="Panel">
+    <div class="row">
+        <div class="col-sm-6">
+            <br>
+            <ip-search-field data-value="vm.searchCriteria.text" ip-autofocus data-search="vm.gridOptions.search()"></ip-search-field>
+        </div>
+        <div class="col-sm-2">
+            <br>
+            <span style="line-height: 30px;">
+                <a role="button" id="numbertype-priority-link" translate="numberType.setPriorityOrder" data-ng-click="vm.launchNumberTypesPriorityOrder()"></a>
+            </span>
+        </div>
+    </div>
+    <br/>
+    <div class="table-container">
+        <ip-kendo-search-grid data-id="searchResults" data-grid-options="vm.gridOptions"></ip-kendo-search-grid>
+    </div>
+</div>

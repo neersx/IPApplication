@@ -1,0 +1,15 @@
+<div translate-namespace="workflows.inheritance.unableToDelete">
+    <div class="modal-header">
+        <h2 class="modal-title" translate="modal.unableToComplete"></h2>
+    </div>
+    <div class="modal-body">
+        <p translate=".paragraph1" translate-values="{criteriaId: options.criteriaId}"></p>
+        <p>
+            <span translate=".paragraph2"></span>
+            <ip-inline-dialog data-content="{{:: 'workflows.inheritance.unableToDelete.info' | translate}}" popover-placement="auto"></ip-inline-dialog>
+        </p>                    
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" data-dismiss="modal" data-ng-click="$close()" translate="button.ok"></button>
+    </div>
+</div>

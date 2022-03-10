@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-sm-12">
+        <ipx-kendo-grid id="webPartGrid" #resultsGrid [dataOptions]="gridOptions" (onFilterChanged)="onFilterchanged()">
+            <ng-template ipxTemplateColumnField="selectPermission" let-dataItem>
+                <div style="text-align: center;">
+                    <ipx-multistate-checkbox [disabled]="!viewData.canUpdateRole" [(ngModel)]="dataItem.selectPermission" (onChange)="onValueChanged(dataItem,'s')"></ipx-multistate-checkbox>
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="mandatoryPermission" let-dataItem>
+                <div style="text-align: center;">
+                    <ipx-multistate-checkbox [disabled]="!viewData.canUpdateRole" [(ngModel)]="dataItem.mandatoryPermission" (onChange)="onValueChanged(dataItem,'m')"></ipx-multistate-checkbox>
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="feature" let-dataItem>
+                <p style="text-align: left;margin-left: 9px">{{dataItem.feature}}</p>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="subFeature" let-dataItem>
+                <p style="text-align: left;margin-left: 9px">{{dataItem.subFeature}}</p>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

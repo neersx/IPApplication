@@ -1,0 +1,58 @@
+<div id="stackTraceDialog{{errorView}}">
+    <div class="modal-header">
+        <h2 class="modal-title">
+            {{ 'caseComparison.errTitleErrorDetails' | translate }}
+        </h2>
+        <div class="modal-header-controls">
+            <ip-close-button type="button" data-ng-click="dismiss()"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body monospaced">
+        <div ng-if="errorView ==='caseCompareErrorView' && currentItem.category">{{ 'caseComparison.cc' + currentItem.category + 'Message' | translate}}</div>
+        <div ng-if="errorView ==='caseCompareErrorView' && !currentItem.category">{{ 'caseComparison.ccDocDownloadFailedMessage' | translate}}</div>
+        <div ng-if="errorView ==='caseCompareErrorView' && currentItem.message" class="space-10"></div>
+        <div>{{ currentItem.message }}</div>
+        <div class="space-10"></div>
+        <div>
+            <div data-ng-if="currentItem.exceptionDetails.length === 1 && errorView ==='errorView'">
+
+                <div class="error-panel">
+                    <span class="error-panel-title">{{currentItem.exceptionDetails[0].type}}</span>
+                </div>
+                <pre class="error-stacktrace">{{currentItem.exceptionDetails[0].details}}</pre>
+            </div>
+            <ul data-ng-if="currentItem.exceptionDetails.length > 1" class="list-group errorlist">
+                <li class="list-group-item erroritem">
+                    <ul class="list-group-item errorlistsublist" data-ng-repeat="subError in currentItem.exceptionDetails track by $id(subError)">
+                        <li class="list-group-item erroritem errorlistgroupItem">
+                            <div class="error-panel">
+                                <span class="error-panel-title">{{subError.type}}</span>
+                            </div>
+                            <div class="error-panel">
+                                <span class="error-panel-title">{{subError.message}}</span>
+                            </div>
+
+                            <pre class="error-stacktrace">{{subError.details}}</pre>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul data-ng-if="currentItem.length > 1 || (errorView ==='caseCompareErrorView' && _.isArray(currentItem))" class="list-group errorlist">
+                <li class="list-group-item erroritem" data-ng-repeat="e in currentItem track by $id(e)">
+                    <ul class="list-group-item errorlistsublist" data-ng-repeat="subError in e.exceptionDetails track by $id(subError)" data-ng-if="e.exceptionDetails.length > 0">
+                        <li class="list-group-item erroritem errorlistgroupItem">
+                            <div class="error-panel">
+                                <span class="error-panel-title">{{subError.type}}</span>
+                            </div>
+                            <div class="error-panel">
+                                <span class="error-panel-title">{{subError.message}}</span>
+                            </div>
+
+                            <pre class="error-stacktrace">{{subError.details}}</pre>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

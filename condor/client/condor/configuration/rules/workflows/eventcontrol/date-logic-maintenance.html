@@ -1,0 +1,141 @@
+<div ng-form="vm.form" ip-form translate-namespace="workflows.eventcontrol.dateLogic.maintenance">
+    <ip-maintenance-modal-header 
+        data-page-title="{{:: vm.title}}" 
+        data-dismiss="vm.dismiss()" 
+        data-on-apply="vm.apply()" 
+        data-is-apply-enabled="vm.isApplyEnabled()" 
+        data-has-unsaved-changes="vm.hasUnsavedChanges()" 
+        data-is-add-another="vm.isAddAnother"
+        is-edit-mode="vm.isEditMode">
+    </ip-maintenance-modal-header>    
+    <ip-workflows-eventcontrol-modal-subheader
+        is-edit-mode="vm.isEditMode"
+        all-items="vm.allItems" 
+        current-item="vm.currentItem" 
+        criteria-number="vm.criteriaId"
+        event-number="vm.eventId"
+        event-description="vm.eventDescription"
+        on-navigate="vm.onNavigate">            
+    </ip-workflows-eventcontrol-modal-subheader>
+    <div class="modal-body">
+        <div class="row">
+            <h3>
+                <span translate=".ruleApplies"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group group-inline">
+                <span translate=".toCurrentEvents"></span>
+
+                <ip-radio-button name='appliesToEventDate' label=".eventDate" value="Event" ng-model="vm.formData.appliesTo" ng-class="{edited: vm.form.appliesToEventDate.$dirty}">
+                </ip-radio-button>
+
+                <ip-radio-button name='appliesToDueDate' label=".dueDate" value="Due" ng-model="vm.formData.appliesTo" ng-class="{edited: vm.form.appliesToDueDate.$dirty}">
+                </ip-radio-button>
+            </div>               
+        </div>
+
+        <div class="row">
+            <h3>
+                <span translate=".theEnteredDateShouldBe"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <ip-dropdown ng-class="{edited: vm.form.operator.$dirty}" 
+                         name="operator" 
+                         ip-required
+                         ip-autofocus
+                         label=".operator" 
+                         ng-model="vm.formData.operator" 
+                         options="option.value for option in vm.operators track by option.key">
+            </ip-dropdown>               
+        </div>
+
+        <div class="row">
+            <h3>
+                <span translate=".comparisonEvent"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <ip-typeahead label=".event" 
+                          ip-required ng-class="{edited: vm.form.compareEvent.$dirty}" 
+                          name="compareEvent" 
+                          ng-model="vm.formData.compareEvent"  
+                          data-config="eventsFilteredByCriteria"
+                          ng-change="vm.onComparisonEventChange()"
+                          data-picklist-can-maintain="true"
+                          data-external-scope="vm.eventPicklistScope"
+                          data-extend-query="vm.eventPicklistScope.extendQuery">
+            </ip-typeahead>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group group-inline">
+                <span translate=".use"></span>
+
+                <ip-radio-button name='useEvent' label=".eventDate" value="Event" ng-model="vm.formData.compareType" ng-class="{edited: vm.form.useEvent.$dirty}">
+                </ip-radio-button>
+
+                <ip-radio-button name='useDue' label=".dueDate" value="Due" ng-model="vm.formData.compareType" ng-class="{edited: vm.form.useDue.$dirty}">
+                </ip-radio-button>               
+
+                <ip-radio-button name='useEither' label=".eventDue" value="Either" ng-model="vm.formData.compareType"  ng-class="{edited: vm.form.useEither.$dirty}">
+                </ip-radio-button>
+            </div>
+        </div>
+        <div class="row">
+            <ip-dropdown ng-class="{edited: vm.form.relativeCycle.$dirty}" 
+                         name="relativeCycle" 
+                         ip-required 
+                         label=".relativeCycle" 
+                         ng-model="vm.formData.relativeCycle"
+                         options="option.key as option.value | translate for option in vm.relativeCycles | filter:{ showAll: 'true'}">
+            </ip-dropdown>               
+        </div>
+        <div class="row">
+            <ip-typeahead label=".caseRelationship" 
+                          ng-class="{edited: vm.form.caseRelationship.$dirty}" 
+                          name="caseRelationship" 
+                          ng-model="vm.formData.caseRelationship"  
+                          data-config="relationship" 
+                          data-picklist-can-maintain="false">
+            </ip-typeahead>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-push-4">
+                <ip-checkbox data-label=".eventMustExist"
+                             ng-class="{edited: vm.form.eventMustExist.$dirty}"
+                             ng-model="vm.formData.eventMustExist">
+                </ip-checkbox>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="row">
+            <h3>
+                <span translate=".ifConditionAboveNotMet"></span>
+            </h3>
+        </div>
+        <div class="row">
+            <div class="input-wrap-group group-inline">
+                <span>&nbsp;</span>
+                <ip-radio-button name='warnUser' label=".warnUser" value="Warn" ng-model="vm.formData.ifRuleFails" ng-class="{edited: vm.form.warnUser.$dirty}">
+                </ip-radio-button>
+                <ip-radio-button name='blockUser' label=".blockUser" value="Block" ng-model="vm.formData.ifRuleFails"  ng-class="{edited: vm.form.blockUser.$dirty}">
+                </ip-radio-button>
+            </div>               
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ip-text-field name="failureMessage"
+                               label=".message"
+                               ng-model="vm.formData.failureMessage"
+                               ng-class="{edited: vm.form.failureMessage.$dirty}"
+                               multiline data-rows="3"
+                               ip-required>
+                </ip-text-field>
+            </div>
+        </div>
+
+    </div>
+</div>

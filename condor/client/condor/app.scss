@@ -1,0 +1,198 @@
+//
+// Define relative paths to images and fonts
+// --------------------------------------------------
+$images-path: '../../node_modules/designguide/www/dist/img/';
+$fonts-path: '../../node_modules/designguide/www/dist/scss/fonts/';
+$flag-icon-css-path: '../../node_modules/designguide/www/dist/img/flags/';
+@import '../../node_modules/designguide/www/dist/scss/style.scss';
+@import 'configuration/rules/workflows/style.scss';
+@import 'configuration/general/sitecontrols/style.scss';
+@import 'processing/policing/style.scss';
+@import 'configuration/general/jurisdictions/style.scss';
+@import 'classic/style.scss';
+@import 'portfolio/style.scss';
+@import 'components/savedSearchPanel/style.scss';
+@import 'configuration/general/ede/datamapping/style.scss';
+
+/* modal specific style */
+
+.modal-text {
+    margin-left: 10px;
+    width: 59% !important;
+}
+
+.modal-select {
+    margin-left: 10px;
+}
+
+
+/* style for valid combination in picklist */
+
+.inline-readonly-list {
+    padding: 5px 10px;
+
+    label {
+        color: $grey-dark;
+    }
+
+    span {
+        padding-left: 15px;
+    }
+}
+
+
+/* bar chart styles */
+
+.chart-container {
+    overflow-y: hidden;
+    min-width: 750px;
+}
+
+.chart {
+    overflow-y: hidden;
+}
+
+.mark-favorite {
+    background-image: url($images-path + 'fav_home.png');
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 15px;
+    background-size: cover;
+}
+
+.marked-favorite {
+    background-image: url($images-path + 'fav_home_yel.png');
+}
+
+
+/* examination mark for required field */
+
+*[ip-required-flag].input-wrap.date span.date-content-wrap label:after,
+*[ip-required-flag]>.input-wrap label:after,
+*[required]>.input-wrap label:after,
+.input-wrap.required label:after {
+    content: '*';
+    position: absolute;
+    top: -2px;
+    right: 6px;
+    font-size: 11px;
+    color: #CC3300;
+    z-index: 5;
+}
+
+*[ip-required-flag].input-wrap.date span.date-content-wrap label,
+*[ip-required-flag]>.input-wrap label,
+*[required]>.input-wrap label {
+    padding-right: 15px;
+}
+
+.text-grey-dark-alert {
+    color: #909090 !important;
+    padding-left: 15px;
+}
+
+.tooltip-warning-cpa .tooltip-inner {
+    background-color: #F46604 !important;
+}
+
+.tooltip-warning-cpa .tooltip-arrow {
+    border-top-color: #F46604 !important;
+}
+
+.greyBoxWithLabels {
+    border: solid #F5F5F5 3px !important;
+
+    label:after {
+        content: ':';
+    }
+}
+
+.name-consolidation {
+    h5 {
+        float: left;
+        margin-top: 5px;
+    }
+
+    .readonly-label-value a {
+        cursor: pointer;
+        line-height: 25px;
+    }
+}
+
+.debtor-restrictions {
+    &.error {
+        color: #E90101
+    }
+
+    &.warning {
+        color: #feb81c
+    }
+
+    &.info {
+        color: #00aa00
+    }
+}
+
+
+// Progress Bar ------------------------------------
+.wizard-navigation-progress {
+    width: 100%;
+}
+
+.wizard-navigation-progress li {
+    float: left;
+    position: relative;
+    text-align: center;
+    list-style-type: none;
+}
+
+.wizard-navigation-progress {
+    li:before {
+        content: "";
+        width: 20px;
+        height: 20px;
+        border: 2px solid #bebebe;
+        display: block;
+        margin: 0 auto 10px auto;
+        border-radius: 50%;
+        line-height: 27px;
+        background: white;
+        color: #bebebe;
+        background: #bebebe;
+        text-align: center;
+        font-weight: bold;
+    }
+}
+
+.wizard-navigation-progress li:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 7px;
+    border-top: 1px solid #bebebe;
+    border-bottom: 1px solid #bebebe;
+    background: #bebebe;
+    top: 7px;
+    left: -50%;
+    z-index: -1;
+}
+
+.wizard-navigation-progress li:first-child:after {
+    content: none;
+}
+
+.step-label {
+    min-height: 40px
+}
+
+.wizard-navigation-progress li.active:after {
+    background: #4C4CD7;
+    border-top: #4C4CD7;
+    border-bottom: #4C4CD7;
+}
+
+.wizard-navigation-progress li.active:before {
+    border-color: #4C4CD7;
+    background: #4C4CD7;
+    color: white
+}

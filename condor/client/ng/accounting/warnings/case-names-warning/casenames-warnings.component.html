@@ -1,0 +1,207 @@
+<div id="caseNamesWarningModal">
+    <div class="modal-header" *ngIf="!isHosted">
+        <h2 class="modal-title">{{'accounting.wip.additionalInfo.title' | translate}}</h2>
+        <div class="modal-header-controls">
+            <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+        </div>
+    </div>
+    <div class="modal-body" [ngClass]="{'maxheightAuto': isHosted}">
+        <div class="widget-frame" *ngIf="!!budgetCheckResult" id="budgetWarnings">
+            <div class="row" class="widget-title">
+                <div>
+                    <span>{{'accounting.wip.warningMsgs.budgetDetails' | translate}}</span>
+                </div>
+            </div>
+            <div class="row" class="widget-body">
+                <div>
+                    <label><i>{{'accounting.wip.warningMsgs.budgetExceeded' | translate}}</i></label>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.budget' | translate}}</label>
+                        <span class="col-sm-4 text-right" id="budget">{{ activeBudget | localCurrencyFormat | async}}</span>
+                    </div>
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.billed' | translate}}</label>
+                        <span class="col-sm-4 text-right" id="billedTotal">{{budgetCheckResult.billedTotal | localCurrencyFormat | async}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.budgetUsed' | translate}}</label>
+                        <span class="col-sm-4 text-right" id="usedTotal">{{budgetCheckResult.usedTotal | localCurrencyFormat | async}}</span>
+                    </div>
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.unbilled' | translate}}</label>
+                        <span class="col-sm-4 text-right" id="unbilledTotal">{{budgetCheckResult.unbilledTotal | localCurrencyFormat | async}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.budgetUsedPerc' | translate}}</label>
+                        <span class="col-sm-4 text-right" id="budgetUsedPerc">{{budgetCheckResult.percentageUsed}}%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-frame" *ngIf="!!prepaymentCheckResult && prepaymentCheckResult.exceeded" id="prepaymentWarning">
+            <div class="row" class="widget-title">
+                <div>
+                    <span>{{'accounting.wip.warningMsgs.prepayments.title' | translate}}</span>
+                </div>
+            </div>
+            <div class="row" class="widget-body">
+                <div>
+                    <label><i>{{'accounting.wip.warningMsgs.prepayments.message' | translate}}</i></label>
+                </div>
+                <div class="col-sm-7 label-value text-right">
+                    <div class="col-sm-10">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.prepayments.forCase' | translate}}</label>
+                        <span class="col-sm-6 text" id="casePrepayment">{{ prepaymentCheckResult.casePrepayments | localCurrencyFormat | async }}</span>
+                    </div>
+                    <div class="col-sm-10">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.prepayments.forCaseDebtor' | translate}}</label>
+                        <span class="col-sm-6 text" id="debtorPrepayment">{{ prepaymentCheckResult.debtorPrepayments | localCurrencyFormat | async }}</span>
+                    </div>
+                    <div class="col-sm-10">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.prepayments.total' | translate}}</label>
+                        <span class="col-sm-6 text" id="totalPrepayment">{{ (prepaymentCheckResult.casePrepayments + prepaymentCheckResult.debtorPrepayments) | localCurrencyFormat | async }}</span>
+                    </div>
+                    <div class="col-sm-10">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.prepayments.totalWork' | translate}}</label>
+                        <span class="col-sm-6 text" id="totalWipAndTime">{{ prepaymentCheckResult.totalWip | localCurrencyFormat | async }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-frame" *ngIf="!!billingCapCheckResults && billingCapCheckResults.length > 0" id="billingCapWarning">
+            <div class="row" class="widget-title">
+                <div>
+                    <span>{{'accounting.wip.warningMsgs.billingCap.title' | translate }}</span>
+                </div>
+            </div>
+            <div *ngFor="let billingCapCheckResult of billingCapCheckResults;" class="row" class="widget-body">
+                <div>
+                    <label><i>{{'accounting.wip.warningMsgs.billingCap.caseMessage' | translate : { debtorName : billingCapCheckResult.debtorName} }}</i></label>
+                </div>
+                <div class="col-sm-11">
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-5">{{'accounting.wip.warningMsgs.billingCap.value' | translate }}</label>
+                        <span class="text col-sm-6 text-right" id="billingCapValue">{{ billingCapCheckResult.value | localCurrencyFormat | async }}</span>
+                    </div>
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.billingCap.startDate' | translate }}</label>
+                        <span class="text col-sm-6" id="billingCapStartDate">{{ billingCapCheckResult.startDate | localeDate }}</span>
+                    </div>
+                </div>
+                <div class="col-sm-11">
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-5">{{'accounting.wip.warningMsgs.billingCap.totalBilled' | translate }}</label>
+                        <span class="text col-sm-6 text-right" id="totalBilled">{{ billingCapCheckResult.totalBilled | localCurrencyFormat | async }}</span>
+                    </div>
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.warningMsgs.billingCap.period' | translate }}</label>
+                        <span class="text col-sm-6" id="billingCapPeriod">{{ billingCapCheckResult.periodTypeDescription }} <span *ngIf="!!billingCapCheckResult.isRecurring">({{'accounting.wip.warningMsgs.billingCap.recurring' | translate }})</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!useNameOnlyTemplate">
+            <div *ngIf="namesWithCreditLimits.length" class="widget-frame" id="creditLimitWarning">
+                <div class="row" class="widget-title">
+                    <span>{{'accounting.wip.warningMsgs.creditLimit' | translate}}</span>
+                </div>
+                <div class="row" class="widget-body">
+                    <div>
+                        <label><i>{{'accounting.wip.warningMsgs.followingExceededCreditLimit' | translate:{ limitPercentage : namesWithCreditLimits[0].limitPercentage} }}</i></label>
+                    </div>
+                    <div id="creditLimit_{{n.nameKey}}" *ngFor="let n of namesWithCreditLimits; trackBy: n">
+                        <div class="col-sm-6 label-value">
+                            <span>{{n.name}}</span>
+                        </div>
+                        <div class="col-sm-6 label-value">
+                            <label class="col-sm-6 text-right">{{'accounting.wip.labels.receivableBalance' | translate}}</label>
+                            <span class="col-sm-4 text-right">{{n.receivableBalance | localCurrencyFormat | async}}</span>
+                        </div>
+                        <div class="col-sm-6 col-sm-offset-6 label-value">
+                            <label class="col-sm-6 text-right">{{'accounting.wip.labels.creditLimit' | translate}}</label>
+                            <span class="col-sm-4 text-right">{{n.creditLimit | localCurrencyFormat | async}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="namesWithRestrictions.length" class="widget-frame">
+                <div class="row" class="widget-title">
+                    <span>{{'accounting.wip.warningMsgs.restrictions' | translate}}</span>
+                </div>
+                <div class="row" class="widget-body">
+                    <div>
+                        <label><i>{{'accounting.wip.warningMsgs.caseNameRestriction' | translate}}</i></label>
+                    </div>
+                    <div class="input-wrap" *ngFor="let n of namesWithRestrictions; trackBy: n">
+                        <div class="col-sm-4 label-value">
+                            <span>{{n.name}}</span>
+                        </div>
+                        <div class="col-sm-4">
+                            <span>{{n.type}}</span>
+                        </div>
+                        <div class="col-sm-4 label-value">
+                            <span class="cpa-icon cpa-icon-flag debtor-restrictions" [ngClass]="n.severity">
+                            </span>&nbsp;&nbsp;
+                            <span>{{n.description}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="widget-frame" *ngIf="useNameOnlyTemplate">
+            <div class="row" class="widget-title">
+                <span>{{debtorName}}</span>
+            </div>
+            <div class="row" class="widget-body">
+                <div *ngIf="this.namesWithRestrictions.length">
+                    <div>
+                        <label><i>{{'accounting.wip.warningMsgs.nameRestriction' | translate}}</i></label>
+                    </div>
+                    <div class="row input-wrap">
+                        <div class="col-sm-6 label-value">
+                            <span>{{name.type}}</span>
+                        </div>
+                        <div class="col-sm-6 label-value">
+                            <span class="cpa-icon cpa-icon-flag debtor-restrictions" [ngClass]="name.severity">
+                            </span>&nbsp;&nbsp;
+                            <span>{{name.description}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="this.namesWithCreditLimits.length" id="creditLimitWarning">
+                    <div>
+                        <label><i>{{'accounting.wip.warningMsgs.creditLimitExceeded' | translate:{ limitPercentage : name.limitPercentage} }}</i></label>
+                    </div>
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.labels.receivableBalance' | translate}}</label>
+                        <span class="col-sm-4 text text-right">{{ name.receivableBalance | localCurrencyFormat | async }}</span>
+                    </div>
+                    <div class="col-sm-6 label-value">
+                        <label class="col-sm-6 text-right">{{'accounting.wip.labels.creditLimit' | translate}}</label>
+                        <span class="col-sm-4 text text-right">{{ name.creditLimit | localCurrencyFormat | async }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="col-sm-12">
+            <ipx-text-field *ngIf="isPwdReqd" required name="pwd" [formControl]="formGroup.controls.pwd" [mask]="true" [label]="'accounting.wip.warningMsgs.confirmationPassword'" class="col-sm-9 label-sm-8">
+            </ipx-text-field>
+            <div class="input-wrap-group group-inline pull-right" *ngIf="!isBlockedState || (isBlockedState && !restrictOnWip)">
+                <button type="button" class="btn btn-primary" id="btnProceed" [disabled]="isPwdReqd && !formGroup.controls.pwd.dirty" (click)="proceed()" ipx-autofocus>{{'button.proceed' | translate}}</button>
+                <button type="button" class="btn" id="btnCancel" (click)="cancel()">{{'button.cancel' | translate}}</button>
+            </div>
+            <div class="input-wrap-group group-inline pull-right" *ngIf="isBlockedState && restrictOnWip">
+                <button type="button" class="btn" (click)="blocked()" id="btnOk" ipx-autofocus>OK</button>
+            </div>
+        </div>
+    </div>
+</div>

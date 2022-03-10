@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div class="input-wrap" ng-class="{error:item.hasError('value')}">
+            <label translate="settingValue"></label>
+
+            <input ng-if="item.dataType === 'String'" type="text" name="value" ng-model="item.value" ng-class="{edited:item.isDirty('value'), saved:item.isSaved('value')}" ng-disabled="!canUpdate" ip-autofocus />
+
+            <input ng-if="item.dataType === 'Decimal'" type="text" name="value" ng-model="item.value" ng-class="{edited:item.isDirty('value'), saved:item.isSaved('value')}" ipt-data-type="decimal" data-parent-model="item" ng-disabled="!canUpdate" ip-autofocus/>
+
+            <input ng-if="item.dataType === 'Integer'" type="text" name="value" ng-model="item.value" ng-class="{edited:item.isDirty('value'), saved:item.isSaved('value')}" ipt-data-type="integer" data-parent-model="item" ng-disabled="!canUpdate" ip-autofocus/>
+
+            <select ng-if="item.dataType === 'Boolean'" name="value" ng-model="item.value" ng-options="item for item in [true, false]" ng-class="{edited:item.isDirty('value'), saved:item.isSaved('value')}" ng-disabled="!canUpdate" ip-autofocus></select>
+
+            <span ng-if="item.hasError('value')" class="input-action tooltip-error" data-tooltip-placement="bottom" ip-tooltip="{{:: 'DataTypeErrorTooltip' | translate }}">
+                <icon name="exclamation-triangle"></icon>
+            </span>
+        </div>
+        <div class="input-wrap">
+            <label translate="Tags"></label>
+            <ipt-typeahead-multi-select source-url="api/configuration/tags" add-url="api/configuration/tags" items="item.tags" display-property="tagName" placeholder="Add a tag" is-edited="item.isDirty('tags')" is-saved="item.isSaved('tags')" ng-disabled="!canUpdate"></ipt-typeahead-multi-select>
+        </div>        
+    </div>
+    <div class="col-sm-6">
+        <div class="input-wrap">
+            <label translate="dataType"></label>
+            <input type="text" value="{{::item.dataType}}" disabled="disabled" />
+        </div>
+        <div class="input-wrap">
+            <label translate="initialSetting"></label>
+            <input type="text" value="{{::item.initialValue}}" disabled="disabled" />
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="input-wrap large">
+            <label translate="notes"></label>
+            <textarea name="notes" type="text" rows="6" ng-model="item.notes" ng-class="{edited:item.isDirty('notes'), saved:item.isSaved('notes')}" ng-change="change()" ng-disabled="!canUpdate"></textarea>
+        </div>
+    </div>
+</div>

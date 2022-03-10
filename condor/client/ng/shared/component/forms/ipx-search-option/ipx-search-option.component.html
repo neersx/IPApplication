@@ -1,0 +1,22 @@
+<div class="search-options">
+    <form (ngSubmit)="doSearch()" id="searchBody">
+        <ng-content></ng-content>
+        <div *ngIf="!hideControls" class="controls">
+            <button type="button" style="margin-right: 3px;" class="btn btn-icon" *ngIf="!showButtonText" container="body" placement="bottom" tooltip="{{'clear'}}" (click)="onClear();setFocus()" [disabled]="isResetDisabled" tabindex="-1">
+                <span class="cpa-icon cpa-icon-eraser"></span>
+            </button>
+
+            <button type="button" style="margin-right: 3px;" class="btn" *ngIf="showButtonText" container="body" placement="bottom" (click)="onClear();setFocus()" [disabled]="isResetDisabled" tabindex="-1">
+                <span>{{'Clear' | translate}}</span>
+            </button>
+
+            <button type="submit" class="btn btn-icon" *ngIf="!showButtonText" container="body" placement="bottom" tooltip="{{'search'}}" [disabled]="isSearchDisabled">
+                <span class="cpa-icon cpa-icon-search"></span>
+            </button>
+
+            <button type="submit" class="btn btn-primary" *ngIf="showButtonText" container="body" placement="bottom" [disabled]="isSearchDisabled">
+                <span>{{'Search' | translate}}</span>
+            </button>
+        </div>
+    </form>
+</div>

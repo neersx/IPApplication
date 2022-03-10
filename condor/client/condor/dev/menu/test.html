@@ -1,0 +1,93 @@
+<head>
+    <style>
+        html {
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+    <title></title>
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.621/styles/kendo.common-material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.621/styles/kendo.material.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.2.621/styles/kendo.material.mobile.min.css" />
+
+    <script src="https://kendo.cdn.telerik.com/2017.2.621/js/kendo.all.min.js"></script>
+</head>
+
+<div id="example" ng-controller="MenuController">
+    <div class="demo-section k-content">
+        <div kendo-splitter>
+            <div>A</div>
+            <div>B</div>
+        </div>
+        <div>
+            <h4>Menu orientation</h4>
+            <select kendo-drop-down-list k-ng-model="menuOrientation" k-value-primitive="true">
+                    <option value="horizontal">Horizontal</option>
+                    <option value="vertical">Vertical</option>
+                </select>
+        </div>
+
+        <div>
+            <h4 style="padding-top: 2em;">Preview</h4>
+            <ul kendo-menu k-orientation="menuOrientation" k-rebind="menuOrientation" k-on-select="onSelect(kendoEvent)" Class="col-sm-2" Style="border:1px solid lightgrey">
+                <li>
+                    Dashboard
+                </li>
+                <li>
+                    Advanced Search
+                    <ul>
+                        <li>Case</li>
+                        <li>Names</li>
+                        <li>Opportunities</li>
+                    </ul>
+                </li>
+                <li>
+                    Create
+                    <ul style="width:300px;">
+                        <li>
+                            <div id="template" style="padding: 10px;">
+                                <h2>Cases</h2>
+                                <div class="row">
+                                    <div style="text-align:middle;" class="col-sm-3">
+                                        <i class="cpa-icon cpa-icon-add-file  cpa-icon-3x" ></i>
+                                        <h6>Case</h6>
+                                    </div>
+                                    <div style="text-align:middle;" class="col-sm-4">
+                                        <i class="cpa-icon cpa-icon-add-file  cpa-icon-3x" ></i>
+                                        <h6>Case Takeover</h6>
+                                    </div>
+                                    <div style="text-align:middle;" class="col-sm-3">
+                                        <i class="cpa-icon cpa-icon-add-file  cpa-icon-3x" ></i>
+                                        <h6>Opportunity</h6>
+                                    </div>
+                                </div>
+                                <h2 class="row">Names</h2>
+                                <div class="row">
+                                    <div style="text-align:middle;" class="col-sm-3">
+                                        <i class="cpa-icon cpa-icon-add-file  cpa-icon-3x" ></i>
+                                        <h6>Organisation</h6>
+                                    </div>
+                                    <div style="text-align:middle;" class="col-sm-3">
+                                        <i class="cpa-icon cpa-icon-add-file  cpa-icon-3x" ></i>
+                                        <h6>Individual</h6>
+                                    </div>
+                                    <div style="text-align:middle;" class="col-sm-3">
+                                        <i class="cpa-icon cpa-icon-add-file  cpa-icon-3x" ></i>
+                                        <h6>Staff</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Workflow Wizard
+                </li>
+                <hr style="margin:0px" />
+                <li>
+                    Docketing Wizard
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div translate-namespace="validcombinations" data-ng-controller="validPropertyTypeMaintenanceController as ctrl">
+    <div class="row">
+        <h3>
+            <span class="label-legend" translate=".labelValidPropertyType"></span>
+            <ip-inline-dialog data-content="{{::'validcombinations.createValidCharacteristic' | translate}}" data-placement="right"></ip-inline-dialog>
+        </h3>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-jurisdiction" name="jurisdiction" data-multiselect data-config='jurisdiction' data-picklist-can-maintain="true" ng-model="model.jurisdictions" ng-class="{edited: maintenance.jurisdiction.$dirty}" ip-required ng-disabled="state == 'updating'"
+            ip-autofocus>
+        </ip-typeahead>
+    </div>
+
+    <div class="text-wrap">
+        <span class="label-legend" translate=".labelNewValidPropertyType"></span>
+    </div>
+    <div class="row">
+        <ip-typeahead id="pk-property-type" name="propertyType" data-config='validPropertyType' ng-model="model.propertyType" ip-required ng-change="vm.onPicklistSelectionChanged(maintenance.validDescription)" ng-class="{edited: maintenance.propertyType.$dirty}"
+            ng-disabled="state == 'updating'" data-picklist-can-maintain="canMaintain === 'true' ? true : false" data-key-field="key" data-code-field="code" data-text-field="value">
+        </ip-typeahead>
+    </div>
+    <div class="row">
+        <ip-text-field name="validDescription" ip-required label=".validDescription" ng-model="model.validDescription" ng-class="{edited: maintenance.validDescription.$dirty}" data-ng-maxlength="50"></ip-text-field>
+    </div>
+
+    <h3>
+        <span class="label-legend" translate=".labelAnnuityOptions"></span>
+    </h3>
+    <div class="row">
+        <div class="input-wrap-group">
+            <label class="text-right col-sm-4" translate=".annuityCalculatedFrom"></label>
+            <div class="col-sm-7" ng-init="model.annuityType = (state == 'adding' ? 'betweenRenewalDate' : model.annuityType)">
+                <div class="input-wrap">
+                    <ip-radio-button label=".annuityOffset" value="betweenRenewalDate" ng-model="model.annuityType" name="rbAnnuityOffset" ng-class="{edited: maintenance.rbAnnuityOffset.$dirty}" ng-click="ctrl.clearAnnuityOptions()">
+                    </ip-radio-button>
+                    <ip-text-field name="annuityOffset" class="pull-left modal-text" ng-model="model.offset" data-ng-class="{'edited': maintenance.annuityOffset.$dirty}" ip-data-type="integer" ng-change="ctrl.onOffsetChange(model.offset)" ng-disabled="model.annuityType != 'betweenRenewalDate'"></ip-text-field>
+                </div>
+                <div class="input-wrap">
+                    <ip-radio-button label=".annuityCycleOffset" value="nextRenewalDate" ng-model="model.annuityType" name="rbAnnuityCycleOffset" ng-class="{edited: maintenance.rbAnnuityCycleOffset.$dirty}" ng-click="ctrl.clearAnnuityOptions()">
+                    </ip-radio-button>
+                    <ip-text-field name="annuityCycleOffset" ip-data-type="nonnegativeinteger" class="pull-left modal-text" ng-model="model.cycleOffset" ng-class="{'edited': maintenance.annuityCycleOffset.$dirty}" ng-change="ctrl.onOffsetChange(model.cycleOffset)" ng-disabled="model.annuityType != 'nextRenewalDate'">
+                    </ip-text-field>
+                </div>
+                <div class="input-wrap">
+                    <ip-radio-button label=".noAnnuity" value="noAnnuity" ng-model="model.annuityType" name="rbNoAnnuity" ng-class="{edited: maintenance.rbNoAnnuity.$dirty}" ng-click="ctrl.clearAnnuityOptions()">
+                    </ip-radio-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />

@@ -1,0 +1,94 @@
+<form name="fieldUpdateForm" #ngForm="ngForm">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="row">
+          <div class="col-md-9">
+            <ipx-typeahead name="caseOffice" config="office" [(ngModel)]="formData.caseOffice"
+              label="{{labelTranslationKey + '.caseOffice'}}" [disabled]="formControls.caseOffice">
+            </ipx-typeahead>
+          </div>
+          <div class="col-sm-3">
+            <ipx-checkbox name="chkClearCaseOffice" [(ngModel)]="formControls.caseOffice" label="bulkUpdate.remove"
+              (click)="clear('caseOffice')">
+            </ipx-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <ipx-typeahead name="profitCentre" config="profitCentre" [(ngModel)]="formData.profitCentre"
+              label="{{labelTranslationKey + '.profitCentre'}}" [disabled]="formControls.profitCentre">
+            </ipx-typeahead>
+          </div>
+          <div class="col-sm-3">
+            <ipx-checkbox name="chkClearProfitCentre" [(ngModel)]="formControls.profitCentre" label="bulkUpdate.remove"
+              (click)="clear('profitCentre')">
+            </ipx-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <ipx-typeahead name="caseFamily" config="caseFamily" [(ngModel)]="formData.caseFamily"
+              label="{{labelTranslationKey + '.caseFamily'}}" [disabled]="formControls.caseFamily">
+            </ipx-typeahead>
+          </div>
+          <div class="col-sm-3">
+            <ipx-checkbox name="chkClearCaseFamily" [(ngModel)]="formControls.caseFamily" label="bulkUpdate.remove"
+              (click)="clear('caseFamily')">
+            </ipx-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <ipx-text-field name="purchaseOrder" autocomplete="off" [(ngModel)]="formData.purchaseOrder"
+              label="{{labelTranslationKey + '.purchaseOrder'}}" [disabled]="formControls.purchaseOrder">
+            </ipx-text-field>
+          </div>
+          <div class="col-sm-3">
+            <ipx-checkbox name="chkClearPurchaseOrder" [(ngModel)]="formControls.purchaseOrder"
+              label="bulkUpdate.remove" (click)="clear('purchaseOrder')">
+            </ipx-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <ipx-dropdown name="entitySize" [options]="entitySizes" [(ngModel)]="formData.entitySize"
+              label="{{labelTranslationKey +'.entitySize'}}" displayField="value" keyField="key"
+              [disabled]="formControls.entitySize">
+            </ipx-dropdown>
+          </div>
+          <div class="col-sm-3">
+            <ipx-checkbox name="chkClearEntitySize" [(ngModel)]="formControls.entitySize" label="bulkUpdate.remove"
+              (click)="clear('entitySize')">
+            </ipx-checkbox>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-md-9">
+            <ipx-typeahead name="typeOfMark" config="typeOfMark" [(ngModel)]="formData.typeOfMark"
+              label="{{labelTranslationKey + '.typeOfMark'}}" [disabled]="formControls.typeOfMark">
+            </ipx-typeahead>
+          </div>
+          <div class="col-sm-3">
+            <ipx-checkbox name="chkClearTypeOfMark" [(ngModel)]="formControls.typeOfMark" label="bulkUpdate.remove"
+              (click)="clear('typeOfMark')">
+            </ipx-checkbox>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9">
+            <ipx-text-field multiline name="titleMark" [(ngModel)]="formData.titleMark"
+              label="{{labelTranslationKey + '.titleMark'}}" [disabled]="formControls.titleMark">
+            </ipx-text-field>
+          </div>
+          <div class="col-sm-3">
+            <ipx-checkbox name="chkClearTitleMark" [(ngModel)]="formControls.titleMark" label="bulkUpdate.remove"
+              (click)="clear('titleMark')">
+            </ipx-checkbox>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

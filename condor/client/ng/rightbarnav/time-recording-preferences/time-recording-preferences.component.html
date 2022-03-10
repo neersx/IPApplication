@@ -1,0 +1,33 @@
+<form #f="ngForm">
+    <div class="title-header">
+            <h5>
+                {{ 'accounting.time.recording.contextMenu.heading' | translate }}
+                <div class="col-sm-4 btn-toolbar pull-right">
+                    <button class="btn btn-discard pull-right" id="resetToDefaultPreferences" [disabled]="!hasUserPreferences" (click)="resetToDefault(f)" tooltip="{{'userPreferences.resetToDefault.tooltip'|translate}}" placement="top">{{ 'userPreferences.resetToDefault.button' | translate }}</button>
+                    <button class="btn pull-right" id="previewDefaultPreferences" [disabled]="!hasUserPreferences" (click)="previewDefault(f)" tooltip="{{'userPreferences.previewDefault.tooltip'|translate}}" placement="top">{{ 'userPreferences.previewDefault.button' | translate }}</button>
+                </div>
+            </h5>
+    </div>
+    <div class="input-wrap-group">
+        <div *ngIf="isLoading" class="col-sm-7 k-loading-image"></div>
+        <div *ngIf="!isLoading">
+            <div class="col-sm-4">
+                <div *ngFor="let setting of booleanSettings(); trackBy: trackByFn" class="input-wrap switch">
+                    <ipx-checkbox apply-edited id="userPreference_{{setting.id}}" name="userPreference_{{setting.id}}" [(ngModel)]="setting.booleanValue" [label]="setting.name"
+                        tooltip="{{setting.description}}" placement="right"></ipx-checkbox>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div *ngFor="let setting of integerSettings(); trackBy: trackByFn" class="input-wrap label-sm-10">
+                    <ipx-text-field apply-edited id="userPreference_{{setting.id}}" name="userPreference_{{setting.id}}" [label]="setting.name" [(ngModel)]="setting.integerValue" tooltip="{{setting.description}}" placement="left" (ngModelChange)="validateNumber($event, setting.id, 59)">
+                    </ipx-text-field>
+                </div>
+            </div>
+            <div class="btn-toolbar col-sm-10">
+                <br />
+                <button class="btn btn-save" id="applyPreferenceChanges" [disabled]="!f.dirty || this.hasErrors" (click)="apply(f)">{{ 'Apply' | translate }}</button>
+                <button class="btn" id="cancelPreferenceChanges" [disabled]="!f.dirty" (click)="reset(f)">{{ 'Cancel' | translate }}</button>
+            </div>
+        </div>
+    </div>
+</form>

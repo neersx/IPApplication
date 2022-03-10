@@ -1,0 +1,54 @@
+<div translate-namespace="workflows.eventcontrol">
+    <ip-sticky-header>
+        <div class="container-fluid">
+            <div class="row">
+                <ip-page-title-save data-ng-if="vm.canEdit || vm.canDelete" page-title="workflows.title" page-subtitle="workflows.eventcontrol.title"
+                    on-save="vm.onSaveClick()" on-discard="vm.discard()" is-save-enabled="vm.isSaveEnabled()" is-discard-enabled="vm.isDiscardEnabled()"
+                    is-delete-enabled="vm.isDeleteEnabled()" on-delete="vm.delete()" is-save-available="vm.isSaveDiscardAvailable()"
+                    is-discard-available="vm.isSaveDiscardAvailable()">
+                    <ip-level-up-button></ip-level-up-button>
+                </ip-page-title-save>
+                <ip-page-title data-ng-if="!vm.canEdit && !vm.canDelete" page-title="workflows.title" page-subtitle="workflows.eventcontrol.title">
+                    <before-title>
+                        <ip-level-up-button></ip-level-up-button>
+                    </before-title>
+                </ip-page-title>
+            </div>
+            <div class="row title-header workflow-details event-control-header">
+                <div class="col-sm-12">
+                    <div ng-if="vm.eventControl.inheritanceLevel !== 'None'" class="btn btn-icon btn-no-bg protected-icon">
+                        <ip-inheritance-icon inheritance-level="{{::vm.eventControl.inheritanceLevel}}"></ip-inheritance-icon>
+                    </div>
+
+                    <div ng-if="vm.eventControl.isProtected" class="btn btn-icon btn-no-bg protected-icon">
+                        <icon ip-tooltip="{{::'Protected' | translate }}" data-tooltip-placement="bottom" class="text-blue-secondary" name="protected"></icon>
+                    </div>
+
+                    <div class="readonly-label-group">
+                        <div class="readonly-label-value">
+                            <label translate="criteriaNumber"></label>:
+                            <span class="criteria-number">{{vm.eventControl.criteriaId}}</span>
+                        </div>
+                        <div class="readonly-label-value">
+                            <label translate="workflows.common.eventNumber"></label>:
+                            <span class="event-number">{{vm.eventControl.eventId}}</span>
+                        </div>
+                        <div class="readonly-label-value">
+                            <label translate="eventDescription"></label>:
+                            <span class="event-desc">{{vm.eventControl.overview.data.description}}</span>
+                        </div>
+                    </div>
+
+                    <ip-detail-page-nav data-ids="::vm.workflowEventIds" data-router-state="workflows.details.eventcontrol" data-param-key="eventId">
+                    </ip-detail-page-nav>
+                </div>
+            </div>
+        </div>
+    </ip-sticky-header>
+    <ip-topics data-options="vm.topicOptions" data-on-topic-selected="vm.onTopicSelected(topicKey)">
+        <ip-topics-header>
+            <ip-inline-permission-alert current-page="Event Control" data-options="vm.eventControl"></ip-inline-permission-alert>
+        </ip-topics-header>
+    </ip-topics>
+
+</div>

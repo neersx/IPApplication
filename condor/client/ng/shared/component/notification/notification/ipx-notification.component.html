@@ -1,0 +1,150 @@
+<div id="{{id}}">
+    <div class="modal-header">
+        <h2 class="modal-title" id="modalErrorLabel">{{ config.title | translate}}</h2>
+    </div>
+
+    <ng-container *ngTemplateOutlet="configuredTemplate$ | async"></ng-container>
+</div>
+<ng-template #alert>
+    <div class="modal-body">
+        <p style="white-space: pre-line">{{config.message | translate:{values: config.messageParams} }}</p>
+        <ng-container *ngIf="config.errors">
+            <p *ngFor="let m of config.errors; trackBy: m">{{m | translate}}</p>
+        </ng-container>
+
+        <p *ngIf="config.actionMessage">{{config.actionMessage | translate}}</p>
+    </div>
+    <div class="modal-footer">
+        <!--data-dismiss="modal"-->
+        <button type="button" class="btn" name="cancel" (click)="cancel()" [translate]="'button.ok'"></button>
+    </div>
+</ng-template>
+
+<ng-template #alertList>
+    <div class="modal-body">
+        <p style="white-space: pre-line">{{config.message | translate}}</p>
+        <ul>
+            <li *ngFor="let item of config.messageParams; trackBy: item" style="padding-left:10px" [innerHTML]="item"></li>
+        </ul>
+
+    </div>
+    <div class="modal-footer">
+        <!--data-dismiss="modal"-->
+        <button type="button" class="btn" name="cancel" (click)="cancel()" [translate]="'button.ok'"></button>
+    </div>
+</ng-template>
+
+<ng-template #sanityCheck>
+    <div class="modal-body">
+        <div *ngIf="config.errors.length > 0">
+            <p style="white-space: pre-line">{{config.message | translate:{values: config.messageParams} }}</p>
+            <div *ngFor="let m of config.errors; trackBy: m">
+                <span class="cpa-icon cpa-icon-flag debtor-restrictions" [ngClass]="{
+                'error': !m.isWarning }"> </span>
+                <span style="padding-left:10px" [innerHTML]="m.displayMessage"></span>
+            </div>
+            <br>
+        </div>
+        <div *ngIf="config.warnings.length > 0">
+            <p style="white-space: pre-line" *ngIf="config.errors.length == 0">{{config.message | translate:{values: config.messageParams} }}</p>
+            <br>
+            <p style="white-space: pre-line" [translate]="'sanityChecks.warning.detailMessage'"></p>
+            <div *ngFor="let m of config.warnings; trackBy: m">
+                <span class="cpa-icon cpa-icon-flag debtor-restrictions" [ngClass]="{
+                'warning': m.isWarning }"> </span>
+                <span style="padding-left:10px" [innerHTML]="m.displayMessage"></span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <!--data-dismiss="modal"-->
+        <button type="button" name="close" class="btn" (click)="cancel();$event.stopPropagation();" [translate]="'sanityChecks.closebtn'"></button>
+        <button type="button" name="ignoreErrors" *ngIf="config.confirmText !== ''" class="btn" (click)="confirm();$event.stopPropagation();" [translate]="'sanityChecks.ignoreErrors'"></button>
+    </div>
+</ng-template>
+
+<ng-template #confirmOk>
+    <div class="modal-body">
+        <!-- <div class="modal-footer">
+        <div class="modal-footer-message"> -->
+        <p>{{config.message | translate:config.messageParams }}</p>
+        <!--<br *ngIf="config.messages" />
+         <div *ngFor="let m of config.messages; trackBy: m">
+            <p>{{ m | translate}}</p>
+            <br>
+        </div>         -->
+    </div>
+    <div class="modal-footer">
+        <div class="modal-footer-message">
+            <ipx-checkbox id="deleteOption" *ngIf="showCheckBox" label="{{checkboxLabel}}" [(ngModel)]="isChecked">
+            </ipx-checkbox>
+        </div>
+        <div class="buttons pull-right">
+            <button type="button" name="cancel" class="btn" (click)="cancel()" [translate]="config.cancelText" ipx-autofocus></button>
+            <button type="button" name="confirm" class="btn btn-primary" (click)="confirm()" [translate]="config.confirmText"></button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #confirmDelete>
+    <div class="modal-body">
+        <p>{{config.message | translate:{values: config.messageParams} }}</p>
+    </div>
+    <div class="modal-footer">
+        <div class="modal-footer-message">
+            <ipx-checkbox id="deleteOption" *ngIf="showCheckBox" label="{{checkboxLabel}}" [(ngModel)]="isChecked">
+            </ipx-checkbox>
+        </div>
+        <div class="buttons pull-right">
+            <button type="button" class="btn" name="cancel" (click)="cancel()" ipx-autofocus>{{'button.cancel' | translate}}</button>
+            <button type="button" class="btn btn-discard" name="delete" (click)="confirm()">{{'modal.confirmation.delete' | translate}}</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #adhocMaintenance>
+    <div class="modal-body">
+        <p>{{config.message | translate:config.messageParams }}</p>
+    </div>
+    <div class="modal-footer">
+        <div class="buttons pull-right">
+            <button type="button" name="confirm" class="btn btn-primary" (click)="confirm()" [translate]="config.confirmText"></button>
+            <button type="button" name="createCopy" class="btn btn-primary" (click)="createCopy()" [translate]="config.createCopy"></button>
+            <button type="button" name="cancel" class="btn" (click)="cancel()" [translate]="config.cancelText" ipx-autofocus></button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #info>
+    <div class="modal-body">
+        <p>{{config.message | translate:{values: config.messageParams} }}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" name="ok" (click)="confirm()">{{'button.ok' | translate}}</button>
+    </div>
+</ng-template>
+
+<ng-template #discard>
+    <div class="modal-body">
+        <p>{{'modal.discardchanges.discardMessage' | translate}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" name="cancel" (click)="cancel()" ipx-autofocus>{{'modal.discardchanges.cancel' | translate}}</button>
+        <button type="button" class="btn btn-discard" name="discard" (click)="confirm()">{{'modal.discardchanges.discardButton' | translate}}</button>
+    </div>
+</ng-template>
+<ng-template #policing>
+    <div class="modal-body">
+        <div class="ipx-policing-cogs-container">
+            <div class="ipx-policing-cogs">
+                <div>
+                    <ipx-icon name="gear" [large]="true" [class]="'cpa-icon-spin'"></ipx-icon>
+                    <ipx-icon name="gear" [large]="true" [class]="'cpa-icon-spin-back'"></ipx-icon>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div translate="caseview.actions.runningPolicing" style="text-align: center">
+        </div>
+    </div>
+</ng-template>

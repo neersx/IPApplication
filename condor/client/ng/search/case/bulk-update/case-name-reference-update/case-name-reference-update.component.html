@@ -1,0 +1,26 @@
+<form name="caseNameReferenceUpdateForm" #ngForm="ngForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="row">
+                    <div class="col-md-9">
+                        <ipx-typeahead name="nameTypeValue" config="nameType" [(ngModel)]="formData.nameType"
+                            label="{{labelTranslationKey + '.nameType'}}"></ipx-typeahead>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">
+                        <ipx-text-field name="reference" [(ngModel)]="formData.reference" [disabled]="clear"
+                            label="{{labelTranslationKey + '.reference'}}">
+                        </ipx-text-field>
+                    </div>
+                    <div class="col-sm-3">
+                        <ipx-checkbox name="chkClearNameType" [(ngModel)]="clear" label="bulkUpdate.remove"
+                            (onChange)="resetReference()">
+                        </ipx-checkbox>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

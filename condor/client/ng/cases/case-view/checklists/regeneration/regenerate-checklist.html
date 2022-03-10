@@ -1,0 +1,41 @@
+<style>
+li {
+    list-style: none;
+}
+</style>
+
+<div id="checklistRegenerationModal">
+    <div class="modal-header">
+        <h2 class="modal-title">{{ 'caseview.checklists.regenerateChecklist.title' | translate }}</h2>
+    </div>
+    <div class="modal-body">
+        <div *ngIf="listOfCharges.length > 0 || listOfLetters.length > 0">
+            <span>{{ 'caseview.checklists.regenerateChecklist.checklistChanges' | translate }}</span>
+            <br /><br />
+        </div>       
+        <div *ngIf="listOfCharges.length > 0">
+            <span>{{ 'caseview.checklists.regenerateChecklist.selectChargeItems' | translate }}</span>
+            <li style="list-style-type:none" *ngFor="let v of listOfCharges; trackBy: byQuestionId">
+                <ipx-checkbox label="{{ v.question }}" (onChange)="toggleItem(v, $event, 'charge')"></ipx-checkbox>
+            </li>
+            <br />
+        </div>
+        <div *ngIf="listOfLetters.length > 0">
+            <span>{{ 'caseview.checklists.regenerateChecklist.selectDocumentItems' | translate }}</span>
+            <li style="list-style-type:none" *ngFor="let v of listOfLetters; trackBy: byQuestionId">
+                <ipx-checkbox label="{{ v.question }}" (onChange)="toggleItem(v, $event, 'letter')"></ipx-checkbox>
+            </li>
+            <br />
+        </div>
+        <div *ngIf="listOfCommonDocuments.length > 0">
+            <span>{{ 'caseview.checklists.regenerateChecklist.selectGeneralDocumentItems' | translate }}</span>
+            <li style="list-style-type:none" *ngFor="let v of listOfCommonDocuments; trackBy: byDocumentId">
+                <ipx-checkbox label="{{ v.documentName }}" (onChange)="toggleGeneralDoc(v, $event)"></ipx-checkbox>
+            </li>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" (click)="cancel()">{{ 'button.cancel' | translate }}</button>
+        <button type="button" class="btn btn-primary" (click)="proceed()">{{ 'button.proceed' | translate }}</button>
+    </div>
+</div>

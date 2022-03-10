@@ -1,0 +1,94 @@
+<div class="modal-header">
+    <h2 class="modal-title" translate="{{this.title}}"></h2>
+    <div class="modal-header-controls">
+        <ipx-save-button type="button" (click)="save()" [disabled]="!formGroup.dirty || formGroup.status === 'INVALID'"></ipx-save-button>
+        <ipx-close-button type="button" (click)="cancel()"></ipx-close-button>
+    </div>
+</div>
+
+<div *ngIf="canNavigate" class="title-header">
+    <ipx-detail-page-nav *ngIf="navData" [totalRows]="navData.totalRows" [hasUnsavedChanges]="formGroup.dirty" [currentKey]="currentKey" [fetchNext]="navData.fetchCallback" [noParams]="true" [ids]="navData.keys"
+        [pageSize]="navData.pageSize" (nextResult)="getNextItemDetail($event)">
+    </ipx-detail-page-nav>
+</div>
+
+<div class="modal-body">
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <form [formGroup]="formGroup">
+                <div class="row">
+                    <ipx-text-field id="officeDesc" maxlength="80" required ipx-autofocus label="{{ 'office.column.description' | translate }}" formControlName="description" apply-edited></ipx-text-field>
+                </div>
+                <div class="row">
+                    <ipx-typeahead id="organisation" name="organisation" [formControl]="organization" apply-edited label="{{ 'office.column.organisation' | translate }}" config="organisation"
+                        (onChange)="onChangeOrganisation($event)">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-typeahead id="country" name="organisation" [formControl]="country" apply-edited label="{{ 'office.column.country' | translate }}" config="jurisdiction" [disabled]="isCountryDisabled">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <ipx-dropdown name="region" [label]="'office.column.region'" apply-edited [options]="regions" [displayField]="'value'" [keyField]="'key'" formControlName="regionCode">
+                    </ipx-dropdown>
+                </div>
+                <div class="row">
+                    <ipx-typeahead id="language" name="language" [formControl]="language" apply-edited label="{{ 'office.column.language' | translate }}" config="language">
+                    </ipx-typeahead>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7" style="margin-left: 13.4%;">
+                        <ipx-text-field id="userCode" maxlength="10" label="{{ 'office.column.userCode' | translate }}" formControlName="userCode" apply-edited></ipx-text-field>
+                    </div>
+                    <div class="col-sm-1" style="margin-left: -1%;">
+                        <ipx-inline-dialog container="body" class="nudge-left" [content]="'office.maintenance.userCodeInfo' | translate" tooltipPlacement="right">
+                        </ipx-inline-dialog>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7" style="margin-left: 13.4%;">
+                        <ipx-text-field id="cpaCode" maxlength="3" label="{{ 'office.column.cpaCode' | translate }}" formControlName="cpaCode" apply-edited></ipx-text-field>
+                    </div>
+                    <div class="col-sm-1" style="margin-left: -1%;">
+                        <ipx-inline-dialog container="body" class="nudge-left" [content]="'office.maintenance.cpaCodeInfo' | translate" tooltipPlacement="right">
+                        </ipx-inline-dialog>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-7" style="margin-left: 13.4%;">
+                        <ipx-text-field id="irnCode" maxlength="3" label="{{ 'office.column.irnOfficeCode' | translate }}" formControlName="irnCode" apply-edited></ipx-text-field>
+                    </div>
+                    <div class="col-sm-1" style="margin-left: -1%;">
+                        <ipx-inline-dialog container="body" class="nudge-left" [content]="'office.maintenance.irnCodeInfo' | translate" tooltipPlacement="right">
+                        </ipx-inline-dialog>
+                    </div>
+                </div>
+                <div class="row">
+                    <ipx-dropdown name="printer" [label]="'office.column.printer'" apply-edited [options]="printerOptions | async" [displayField]="'value'" [keyField]="'key'" formControlName="printerCode">
+                    </ipx-dropdown>
+                </div>
+                <hr style="margin-top: 10px; margin-bottom: 5px">
+                <div class="row">
+                    <div class="col-sm-6" style="margin-left: 30px;">
+                        <label translate="office.maintenance.lastDebitNote"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-3">
+                        <ipx-text-field id="itemPrefix" maxlength="2" label="{{ 'office.maintenance.itemPrefix' | translate }}" formControlName="itemNoPrefix" apply-edited (onChange)="setFromTo($event)"></ipx-text-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <ipx-text-field id="itemFrom" class="number" [ipx-data-type]="dataType.positiveinteger" label="{{ 'office.maintenance.itemFrom' | translate }}" [formControl]="itemNoFrom" apply-edited>
+                        </ipx-text-field>
+                    </div>
+                    <div class="col-sm-4">
+                        <ipx-text-field id="itemTo" class="number" [ipx-data-type]="dataType.positiveinteger" label="{{ 'office.maintenance.itemTo' | translate }}" [formControl]="itemNoTo" apply-edited>
+                        </ipx-text-field>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

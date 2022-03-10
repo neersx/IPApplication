@@ -1,0 +1,7 @@
+<!-- wrapping it inside a div as the tooltip stays when the button is disabled after clicking on it -->
+<div tooltip="{{'Add' | translate }}" [adaptivePosition]="false">
+    <button class="btn btn-icon" [disabled]="disabled" container="body" placement="bottom"
+        (click)="onClickButton($event)">
+        <span class="cpa-icon cpa-icon-plus-circle"></span>
+    </button>
+</div>

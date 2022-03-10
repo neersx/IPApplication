@@ -1,0 +1,12 @@
+<div [ngClass]="{ 'error': showError() }">
+    <kendo-timepicker [(value)]="value" [disabled]="disabled" [format]="format"  (click)="onclick(kendoTimerPicker)" #kendoTimerPicker
+        (blur)="_onBlur()" (valueChange)="timeChanged($event)" formatPlaceholder="formatPattern" [min]="min" [max]="max"
+        [tooltip]="getError() | translate: getErrorParams()" containerClass="tooltip-error" container="body" placement="top" [adaptivePosition]="false" [nowButton]="showNowButton"
+        [ngClass]="{'char-8': showSeconds || is12HoursFormat, 'char-4':!showSeconds && !is12HoursFormat}">
+        <kendo-timepicker-messages [accept]="'timepicker.buttons.set' | translate"
+            [acceptLabel]="'timepicker.tooltips.set' | translate" [cancel]="'timepicker.buttons.cancel' | translate"
+            [cancelLabel]="'timepicker.tooltips.cancel' | translate" [now]="'timepicker.buttons.now' | translate"
+            [nowLabel]="'timepicker.tooltips.now' | translate" [toggle]="'timepicker.toggle' | translate">
+        </kendo-timepicker-messages>
+    </kendo-timepicker>
+</div>

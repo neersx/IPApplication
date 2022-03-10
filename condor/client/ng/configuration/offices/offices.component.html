@@ -1,0 +1,42 @@
+<style>
+    .overflow {
+        overflow: visible !important;
+    }
+</style>
+<ipx-page-title [title]="'office.maintenance.title'">
+</ipx-page-title>
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+    <ipx-search-option (search)="search()" (clear)="clear()">
+        <div class="container-fluid">
+            <div class="heading">
+                <h5 translate="searchOptions"></h5>
+                <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showSearchBar}" (click)="showSearchBar = !showSearchBar">
+                    <div placement="left" tooltip="{{'collapseExpand' | translate}}">
+                        <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                    </div>
+                </a>
+            </div>
+            <div [@slideInOutVisible]="showSearchBar ? 'open' : 'closed'">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ipx-text-field name="office" ipx-autofocus placeholder="SearchColumns.searchHint" [(ngModel)]="searchText" maxlength="50">
+                        </ipx-text-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ipx-search-option>
+    <br>
+    <div class="table-container">
+        <div class="table-title" style="margin-top: -15px;" *ngIf="viewData.canAdd">
+            <ipx-add-button class="pull-right" (click)="onRowAddedOrEdited(null, 'Add')"> </ipx-add-button>
+        </div>
+        <div class="row" style="margin: 0px;">
+            <ipx-kendo-grid #officeGrid id="officeGrid" [dataOptions]="gridOptions" *ngIf="gridOptions">
+                <ng-template ipxTemplateColumnField="value" let-dataItem>
+                    <span><a (click)="onRowAddedOrEdited(dataItem.key, 'Edit')">{{ dataItem.value }}</a></span>
+                </ng-template>
+            </ipx-kendo-grid>
+        </div>
+    </div>
+</div>

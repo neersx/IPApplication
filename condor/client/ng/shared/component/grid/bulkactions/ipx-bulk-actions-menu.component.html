@@ -1,0 +1,60 @@
+<div #bulkButton class="dd-menu" (clickOutside)="hide()">
+    <!-- Use base uib-tooltip because ip-tooltip has issues with style.js in design guide -->
+    <button  class="btn btn-icon btn-next dd-link" (click)="onClick()" [ngClass]="{'active': isOpen}">
+        <span class="cpa-icon cpa-icon-list-ul" name="list-ul"></span>
+        <span class="badge" *ngIf="hasItemsSelected()">{{ items.selected }}</span>
+    </button>
+    <div #ddMenu class="dd-dropdown" (blur)="hide()" (focusout)="hide()" [ngStyle]="{'display':isOpen?'block':'none'}" *ngIf="actionItems.length > 0">
+
+        <div class="group-heading selected">
+            <span>{{ (paging.available ? 'bulkactionsmenu.selectionNoTotalCount': 'bulkactionsmenu.selection') | translate: {count: items.selected, all: items.totalCount} }}</span>
+        </div>
+        <div class="group">
+            <ul>
+
+                <li *ngIf="paging.available">
+                    <a name="selectall" [ngClass]="{'disabled': isSelectAllEnable}" (click)="selectAllPage($event)" id="{{context}}_selectall">
+                        <span class="cpa-icon cpa-icon-check" name="check"></span>
+                        <span>{{ (isSelectPage ? 'bulkactionsmenu.deselectFullSet' : 'bulkactionsmenu.selectFullSet') | translate}}</span>
+                    </a>
+                </li>
+                <li>
+                    <a (click)="doClear($event)" [ngClass]="{disabled: isClearDisabled()}" data-ng-disabled="isClearDisabled()">
+                        <span class="cpa-icon cpa-icon-times" name="times"></span>
+                        <span translate="bulkactionsmenu.clear" [translateParams]="{count: items.selected}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+
+        <div class="group-heading" data-ng-if="actionItems.length > 0">
+            <span translate="bulkactionsmenu.actions"></span>
+        </div>
+
+        <div id="wrap-menu" class="group">
+            <ul>
+                <li *ngFor="let a of actionItems; trackBy: trackByFn">
+                    <a *ngIf="!a.items" id="bulkaction_{{context}}_{{a.id}}" (click)="invokeIfEnabled(a)" [ngClass]="{'disabled': !a.enabled}">
+                        <span class="{{a.icon}}" large></span>
+                        <span class="text-elipses" title="{{ a.text | translate}}" translate="{{ a.text }}"></span>
+                    </a>
+                    <label *ngIf="a.items" id="bulkaction_{{context}}_{{a.id}}" [ngClass]="{disabled: !a.enabled}">
+                        <span class="{{a.icon}}" large></span>
+                        <span class="menuText text-elipses" title="{{ a.text | translate}}" translate="{{ a.text }}"></span>
+                        <span class="cpa-icon-right cpa-icon-chevron-right"></span>
+                    </label>
+                    <div class="wrap-menu-group" *ngIf="a.items&&a.enabled">
+                        <ul>
+                            <li *ngFor="let item of a.items; trackBy: trackByFn">
+                                <a id="bulkaction_{{context}}_{{item.id}}" (click)="invokeIfEnabled(item)" [ngClass]="{disabled: !item.enabled}">
+                                    <span class="text-elipses" title="{{  item.text | translate }}">{{ item.text | translate }}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

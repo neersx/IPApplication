@@ -1,0 +1,23 @@
+<form #dueDateRespForm="ngForm">
+  <div id="dueDateReminder">
+    <div class="modal-header">
+      <h2 class="modal-title" translate="taskPlanner.dueDateResponsibility.title"></h2>
+      <div class="modal-header-controls">
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <ipx-typeahead class="col-sm-9" placeholder="{{ picklistPlaceholder | translate}}" name="name" label="taskPlanner.dueDateResponsibility.toName" config="staff" [(ngModel)]="name">
+        </ipx-typeahead>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-save" name="assignToMe" (click)="assignToMe()">{{'taskPlanner.dueDateResponsibility.assignToMe' | translate}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn" name="cancel" (click)="onClose()">{{'Cancel' | translate}}</button>
+      <button type="button" class="btn btn-save" name="save" (click)="save()" [disabled]="!isDirty()">{{'taskPlanner.dueDateResponsibility.save' | translate}}</button>
+    </div>
+  </div>
+</form>

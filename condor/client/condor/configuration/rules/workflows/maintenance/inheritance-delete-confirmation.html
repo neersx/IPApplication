@@ -1,0 +1,30 @@
+<div id="inheritanceDeleteConfirmationModal" translate-namespace="workflows.maintenance">
+    <div class="modal-header">
+        <h2 class="modal-title" translate=".deleteConfirmationEntry.title"></h2>
+    </div>
+    <div class="modal-body">
+        <div class="input-wrap" translate="{{::vm.deleteConfirmationMessage()}}">
+        </div>
+        <div class="input-wrap" translate="{{::vm.deleteConfirmationDetail()}}">
+        </div>
+        <div class="row" ng-repeat="item in vm.items.descendants">
+            <div class="col-sm-2 col-sm-offset-1">
+                <a href="#/configuration/rules/workflows/{{item.id}}" target="_blank">{{item.id}}</a>
+            </div>
+            <div class="col-sm-9">
+                <a href="#/configuration/rules/workflows/{{item.id}}" target="_blank">{{item.description}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="pull-right col-sm-12 modal-footer-buttons">
+                <div class="footerCheckBox">
+                    <ip-checkbox data-label="workflows.maintenance.applyToDescendants" ng-model="vm.applyToDescendants"></ip-checkbox>
+                </div>
+                <button type="button" class="btn" data-ng-click="vm.cancel()" translate="button.cancel"></button>
+                <button type="button" class="btn btn-discard" data-ng-click="vm.del()" translate="Delete"></button>
+            </div>
+        </div>
+    </div>
+</div>

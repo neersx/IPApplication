@@ -1,0 +1,236 @@
+<article class="detail-view" *ngIf="!caseSearchSummary">
+    <header>
+        <ipx-inline-alert [type]="'info'" [text]="'cases.selectACase'">
+        </ipx-inline-alert>
+    </header>
+</article>
+<article class="detail-view data" *ngIf="caseSearchSummary">
+    <header>
+        <ipx-hosted-url [showLink]="showLink" [action]="'CaseDetails'" [key]="caseSearchSummary.caseData.caseKey" [description]="caseSearchSummary.caseData.irn + ' – ' + (caseSearchSummary.caseData.title || '')"
+            [linkType]="'CaseDetails'" [dataField]="{link: caseSearchSummary.caseData}" [linkArgs]="['caseKey', 'irn']">
+            <a *ngIf="showLink" id="caseReference" uiSref="caseview" [uiParams]="{id: caseSearchSummary.caseData.caseKey,rowKey:rowKey,programId:programId}">
+                <h5>{{ caseSearchSummary.caseData.irn }} – {{ caseSearchSummary.caseData.title }}</h5>
+            </a>
+            <span *ngIf="!showLink" id="caseReference">
+                <h5>{{ caseSearchSummary.caseData.irn }} – {{ caseSearchSummary.caseData.title }}</h5>
+            </span>
+        </ipx-hosted-url>
+    </header>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 pull-right" style="z-index: 10">
+                <div style="text-align: right">
+                    <ipx-image *ngIf="caseSearchSummary.showImage" [itemKey]="caseKey$|async" [type]="'case'" [imageKey]="caseSearchSummary.caseData.imageKey" [imageTitle]="caseSearchSummary.caseData.imageTitle"
+                        [maxWidth]="80" [maxHeight]="80" [isThumbnail]="true"></ipx-image>
+                </div>
+            </div>
+            <div *ngIf="caseSearchSummary" class="col-lg-8" style="z-index: 5">
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span [translate]="'cases.jurisdiction'"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ caseSearchSummary.caseData.countryName }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span [translate]="'cases.caseType'"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ caseSearchSummary.caseData.caseTypeDescription }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span [translate]="'cases.propertyType'"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ caseSearchSummary.caseData.propertyTypeDescription }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row data">
+                        <div class="col-lg-6 article-label">
+                            <span [translate]="'cases.caseCategory'"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <span class="text">{{ caseSearchSummary.caseData.caseCategoryDescription }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'cases.subType'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ caseSearchSummary.caseData.subTypeDescription }}</span>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isExternal && hasOffices" class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'cases.caseOffice'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ caseSearchSummary.caseData.caseOffice }}</span>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!isExternal && hasFileLocation" class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'cases.fileLocation'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ caseSearchSummary.caseData.fileLocation }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'cases.status'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ caseSearchSummary.caseData.caseStatusDescription }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="caseSearchSummary.caseData.showYear">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'cases.year'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ caseSearchSummary.caseData.ageOfCase }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'cases.renewalStatus'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ caseSearchSummary.caseData.renewalStatusDescription }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'cases.renewalInstructions'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ caseSearchSummary.caseData.renewalInstruction }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" *ngIf="caseSearchSummary.caseData.classes">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <span [translate]="'cases.classes'"></span>
+            </div>
+            <div class="col-lg-8">
+                <span class="text">{{ caseSearchSummary.caseData.classes }}</span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div id="caseSummaryNames">
+        <div class="container-fluid" *ngFor="let n of caseSearchSummary.names; trackBy: trackByFn">
+            <div class="row data">
+                <div class="col-lg-4 article-label">
+                    <span>{{ n.nameTypeDescription }}</span>
+                </div>
+                <div *ngIf="!n.restrictAccess" class="col-lg-8">
+                    <ipx-hosted-url [showLink]="showLink" [action]="'NameDetails'" [key]="n.nameKey" [description]="n.nameAndCode" [programId]="programId" [linkType]="'NameDetails'" [dataField]="{ link: n }"
+                        [linkArgs]="['nameKey', 'rowKey']">
+                        <ipx-ie-only-url *ngIf="showLink" class="result-cell-link" style="cursor: pointer;" [url]="encodeLinkData(n.nameKey)" [text]="n.nameAndCode"></ipx-ie-only-url>
+                        <span *ngIf="!showLink">
+                            {{ n.nameAndCode }}
+                        </span>
+                    </ipx-hosted-url>
+                </div>
+                <div *ngIf="n.restrictAccess" class="col-lg-8">
+                    <span class="cpa-icon cpa-icon-ban" tooltip="{{ 'caseview.designatedJurisdiction.nameAccessDenied' | translate }}"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div *ngIf="caseSearchSummary.criticalDates.length == 0">
+        <span [translate]="'cases.noCriticalDates'"></span>
+    </div>
+    <div *ngIf="caseSearchSummary.criticalDates.length" id="caseSummaryDates">
+        <div class="container-fluid">
+            <div class="row data" *ngFor="let event of caseSearchSummary.criticalDates; trackBy: trackByFn">
+                <div class="col-lg-4 article-label">
+                    <ipx-hover-help *ngIf="event.eventDefinition && !isExternal" [content]="event.eventDefinition">
+                        <span>{{ event.eventDescription }}</span>
+                    </ipx-hover-help>
+
+                    <span *ngIf="event.eventDefinition && isExternal">{{ event.eventDescription }}</span>
+
+                    <span *ngIf="!event.eventDefinition">{{ event.eventDescription }}</span>
+                </div>
+                <div class="col-lg-4 criticalDateField">
+                    <ipx-due-date *ngIf="!event.isOccurred" [date]="event.date"></ipx-due-date>
+                    <span *ngIf="event.isOccurred" class="text">{{ event.date | localeDate }}</span>
+                </div>
+                <div class="col-lg-4">
+                    <span class="text">{{ event.officialNumber }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <ipx-hover-help *ngIf="caseSearchSummary.nextDueEvent && caseSearchSummary.nextDueEvent.eventDefinition  && !caseSearchSummary.isExternal" [content]="caseSearchSummary.nextDueEvent.eventDefinition">
+                    <span [translate]="'cases.nextEventDue'"></span>
+                </ipx-hover-help>
+                <span *ngIf="caseSearchSummary.nextDueEvent && caseSearchSummary.nextDueEvent.eventDefinition  && isExternal" [translate]="'cases.nextEventDue'"></span>
+                <span *ngIf="!(caseSearchSummary.nextDueEvent && caseSearchSummary.nextDueEvent.eventDefinition)" [translate]="'cases.nextEventDue'"></span>
+            </div>
+            <div class="col-lg-3">
+                <ipx-due-date *ngIf="caseSearchSummary.nextDueEvent" [date]="caseSearchSummary.nextDueEvent.date"></ipx-due-date>
+            </div>
+            <div class="col-lg-5">
+                <span *ngIf="caseSearchSummary.nextDueEvent" class="text">{{ caseSearchSummary.nextDueEvent.eventDescription }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row data">
+            <div class="col-lg-4 article-label">
+                <ipx-hover-help *ngIf="caseSearchSummary.lastEvent && caseSearchSummary.lastEvent.eventDefinition && !caseSearchSummary.isExternal" [content]="caseSearchSummary.lastEvent.eventDefinition">
+                    <span [translate]="'cases.lastEvent'"></span>
+                </ipx-hover-help>
+                <span *ngIf="caseSearchSummary.lastEvent && caseSearchSummary.lastEvent.eventDefinition && caseSearchSummary.isExternal" [translate]="'cases.lastEvent'"></span>
+                <span *ngIf="!(caseSearchSummary.lastEvent && caseSearchSummary.lastEvent.eventDefinition)" [translate]="'cases.lastEvent'"></span>
+            </div>
+            <div class="col-lg-3">
+                <span *ngIf="caseSearchSummary.lastEvent" class="text">{{ caseSearchSummary.lastEvent.date | localeDate }}</span>
+            </div>
+            <div class="col-lg-5">
+                <span *ngIf="caseSearchSummary.lastEvent" class="text">{{ caseSearchSummary.lastEvent.eventDescription }}</span>
+            </div>
+        </div>
+    </div>
+    <br>
+</article>

@@ -1,0 +1,25 @@
+<ip-picklist-modal-search>
+    <style ng-if="vm.hasColumnMenu">
+    ip-picklist-modal-search div.modal-body {
+        min-height: 255px;
+    }
+    </style>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <ip-picklist-modal-search-field></ip-picklist-modal-search-field>
+        </div>
+        <div class="ip-picklist-modal-search-flex">
+            <ip-picklist-modal-customize-columns ng-if="vm.hasColumnMenu"></ip-picklist-modal-customize-columns>
+            <ip-picklist-modal-search-add></ip-picklist-modal-search-add>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ip-picklist-modal-search-results></ip-picklist-modal-search-results>
+        </div>
+    </div>
+</ip-picklist-modal-search>
+
+<ip-picklist-modal-maintenance></ip-picklist-modal-maintenance>

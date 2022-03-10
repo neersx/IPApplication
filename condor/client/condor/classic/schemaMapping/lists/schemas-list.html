@@ -1,0 +1,7 @@
+<h1 class="pull-right">
+    <button class="btn btn-icon" data-tooltip-placement="bottom" ip-tooltip="{{::'Add' | translate }}" data-ng-click="vm.onClickAdd()">
+        <span class="cpa-icon cpa-icon-plus-circle"></span>
+    </button>
+</h1>
+<ip-kendo-grid data-id="schemas" data-grid-options="vm.gridOptions" data-search-hint="{{:: 'schemaMapping.usLblNoSchema' | translate}}" data-show-add="true" data-on-add-click="vm.onClickAdd()" data-add-item-name="{{'schemaMapping.usBtnAddSchemaPackage' | translate}}">
+</ip-kendo-grid>

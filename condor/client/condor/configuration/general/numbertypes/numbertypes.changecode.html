@@ -1,0 +1,36 @@
+<style>
+    .modal-text-small {
+        margin-left: 60px;
+        width: 40% !important;
+    }
+    
+    .modal-label-align-left {
+        margin-left: -75px;
+    }
+</style>
+<div ng-form="vm.changeCodeForm" ip-form>
+    <div class="modal-header">
+        <h2 class="modal-title">
+            <div translate="numberType.changeCode.changeNumberTypeCode"></div>
+        </h2>
+        <div class="modal-header-controls" ng-init="vm.initShortcuts(vm.changeCodeForm)">
+            <ip-save-button type="button" data-ng-click="vm.save(vm.changeCodeForm)" data-ng-disabled="!vm.formValid()"></ip-save-button>
+            <ip-close-button data-ng-click="vm.dismissAll(vm.changeCodeForm)"></ip-close-button>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="input-wrap">
+                <label translate="numberType.changeCode.currentCode" class="col-sm-4 modal-label-align-left"></label>
+                <span class="input-wrap col-sm-4">{{vm.entity.numberTypeCode}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <ip-text-field name="newNumberTypeCode" class="modal-text-small col-sm-6" ip-required label="numberType.changeCode.newCode" ng-model="vm.entity.newNumberTypeCode" ng-class="{'edited': vm.changeCodeForm.newNumberTypeCode.$dirty}" data-ng-maxlength="vm.options.maxNumberTypeLength"
+                    ng-disabled="vm.isEditState()" ip-field-error="{{vm.getError('numberTypeCode').message | translate}}"></ip-text-field>
+                <ip-inline-dialog class="col-sm-1" data-content="{{::'numberType.changeCode.newCodeHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+            </div>
+        </div>
+    </div>
+</div>

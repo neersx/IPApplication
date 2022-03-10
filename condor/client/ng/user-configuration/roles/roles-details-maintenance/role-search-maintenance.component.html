@@ -1,0 +1,45 @@
+<div class="modal-header">
+    <h2 class="modal-title">{{ (title()) | translate }}</h2>
+    <div class="modal-header-controls">
+        <ipx-save-button name="saveRoles" (onclick)="save()" [disabled]="disable()">
+            {{'Save' | translate}}</ipx-save-button>
+        <ipx-close-button type="button" (click)="onClose()"></ipx-close-button>
+    </div>
+</div>
+<form name="roleSearch" #roleSearch="ngForm">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <ipx-text-field maxlength="254" required ipx-autofocus [label]="'roleDetails.overview.roleName'" apply-edited [(ngModel)]="formData.roleName" name="rolename"></ipx-text-field>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ipx-text-field maxlength="1000" label="{{ 'roleDetails.overview.roleDescription'}}" apply-edited [(ngModel)]="formData.description" name="roledescription" multiLine="true" rows="2">
+                </ipx-text-field>
+            </div>
+        </div>
+        <div class="row">
+            <div style="padding-left: 33%;" class="input-wrap-group group-inline col-md-12">
+                <ipx-radio-button [disabled]="states === roleSearchState.DuplicateRole" label="roleDetails.overview.internal" [value]="false" [(ngModel)]="formData.isExternal" name="internalOrExternal" id="isInternal">
+                </ipx-radio-button>
+                <ipx-radio-button [disabled]="states === roleSearchState.DuplicateRole" label="roleDetails.overview.external" [value]="true" [(ngModel)]="formData.isExternal" name="internalOrExternal" id="isExternal">
+                </ipx-radio-button>
+                <div class="input-wrap">
+                    <ipx-inline-dialog [icon]="'cpa-icon cpa-icon-question-circle cpa-icon-lg'" container="body" [tooltipPlacement]="'right'" [templateRef]="toolTip">
+                    </ipx-inline-dialog>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+
+    </div>
+</form>
+<ng-template #toolTip>
+    <p>
+        <b>{{'roleSearch.internal' | translate}}</b> {{'roleSearch.internalTooltip' | translate}}<br>
+        <b>{{'roleSearch.external' | translate}}</b> {{'roleSearch.externalTooltip' | translate}}
+    </p>
+</ng-template>

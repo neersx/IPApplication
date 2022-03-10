@@ -1,0 +1,37 @@
+<div ng-form="mainform">
+    <div data-ng-if="!viewData">
+        <div>&nbsp;</div>
+        <span id="caseComparisonLoadSpinner" style="margin-top: 10px; margin-left: 15px;">
+        <em>
+            <i class="cpa-icon cpa-icon-circle-o-notch cpa-icon-spin" style="position:fixed"></i>
+            <span class="text-muted" style="margin-left:15px">{{ 'caseComparison.gLblLoading' | translate }}</span>
+        </em>
+        </span>
+    </div>
+
+    <div data-ng-include=" 'condor/classic/caseComparison/compare-case-error.html' "></div>
+
+    <div data-ng-include=" 'condor/classic/caseComparison/compare-case-match-rejected.html' " ></div>
+
+    <div data-ng-include=" 'condor/classic/caseComparison/compare-case-duplicate-indicator.html' " data-ng-show='!viewData.rejectionResetable && viewData.hasDuplicates && !hideDuplicateWarning'></div>
+
+    <div data-ng-include=" 'condor/classic/caseComparison/compare-case-header.html' " ></div>
+
+    <div data-focus-next-diff="viewData" focus-next-diff-hint="{{ 'caseComparison.ccJumpToNextDiffExplanation' | translate }}">
+
+        <div data-ng-include=" 'condor/classic/caseComparison/compare-goods-and-services.html' " ></div>
+
+        <div data-ng-include=" 'condor/classic/caseComparison/compare-names.html' " ></div>
+
+        <div data-ng-include=" 'condor/classic/caseComparison/compare-official-numbers.html' " ></div>
+
+        <div data-ng-include=" 'condor/classic/caseComparison/compare-parent-related-cases.html' " ></div>
+
+        <div data-ng-include=" 'condor/classic/caseComparison/compare-events.html' "></div>
+
+        <div data-ng-include=" 'condor/classic/caseComparison/compare-case-summary.html' "></div>
+
+        <div data-ng-include=" 'condor/classic/caseComparison/doctemplates/available-documents.html' " ></div>
+
+    </div>
+</div>

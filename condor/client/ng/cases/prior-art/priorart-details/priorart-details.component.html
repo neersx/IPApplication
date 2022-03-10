@@ -1,0 +1,193 @@
+<form #priorArtForm="ngForm" ngOnChange="checkExistingChanges()" (keydown.shift.alt.z)="revertForm($event)" (keydown.shift.alt.s)="savePriorArt($event)" [ipxConfirmBeforeRouteChange]="isPageDirty"
+    [confirmMessage]="'priorart.maintenance.confirmMessage' | translate">
+    <div class="content row col-sm-11 detail-offset">
+        <div *ngIf="!isLiterature">
+            <div class="row">
+                <div class="col-sm-2 field-label">
+                    <label>{{ 'priorart.abstract' | translate}}</label>
+                </div>
+                <div class="col-sm-10 set-contentleft-10">
+                    <ipx-text-field [disabled]="formData.imported" multiline name="Abstract" apply-edited [rows]="3" [(ngModel)]="formData.abstract" (onChange)="checkChanges($event)">
+                    </ipx-text-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" multiline name="Title" apply-edited label="priorart.title" maxlength="254" [(ngModel)]="formData.title" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" multiline name="Citation" apply-edited label="priorart.citation" maxlength="254" [(ngModel)]="formData.citation" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" multiline name="Name" apply-edited label="priorart.name" maxlength="254" [(ngModel)]="formData.name" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" multiline name="ReferenceDocumentParts" apply-edited label="priorart.referenceDocumentParts" maxlength="254" [(ngModel)]="formData.refDocumentParts"
+                            (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" multiline name="Description" apply-edited label="priorart.description" [(ngModel)]="formData.description" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="row set-contentright">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-dropdown [disabled]="formData.imported" name="Translation" apply-edited [(ngModel)]="formData.translation" [options]="translationsList" label="priorart.translation"
+                                [displayField]="'value'" [keyField]="'key'" (onChange)="checkChanges($event)"></ipx-dropdown>
+                        </div>
+                        <div class="col-sm-4">
+                            <ipx-text-field [disabled]="formData.imported" name="KindCode" apply-edited label="priorart.kindCode" maxlength="20" [(ngModel)]="formData.kind" (onChange)="checkChanges($event)">
+                            </ipx-text-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-date-picker id="priorityDate" [disabled]="formData.imported" apply-edited name="PriorityDate" [formControl]="formGroup.controls.priorityDate" label="priorart.priority"
+                                (onChange)="checkChanges($event)"></ipx-date-picker>
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-date-picker id="applicationFiled" [disabled]="formData.imported" name="applicationFiled" apply-edited [formControl]="formGroup.controls.applicationDate" (onChange)="checkChanges($event)"
+                                label="priorart.applicationFiled"></ipx-date-picker>
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-date-picker id="publishedDate" [disabled]="formData.imported" apply-edited name="publishedDate" [formControl]="formGroup.controls.publishedDate" label="priorart.published"
+                                (onChange)="checkChanges($event)"></ipx-date-picker>
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-date-picker id="grantedDate" name="GrantedDate" [disabled]="formData.imported" apply-edited [formControl]="formGroup.controls.grantedDate" label="priorart.granted" (onChange)="checkChanges($event)">
+                            </ipx-date-picker>
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-date-picker id="ptoCited" name="PtoCited" [disabled]="formData.imported" apply-edited [formControl]="formGroup.controls.ptoCitedDate" label="priorart.ptoCited" (onChange)="checkChanges($event)">
+                            </ipx-date-picker>
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                    </div>
+                    <div class="row set-contentright">
+                        <ipx-text-field [disabled]="formData.imported" multiline name="Comments" apply-edited label="priorart.comments" maxlength="254" [(ngModel)]="formData.comments" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isLiterature">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row">
+                        <ipx-text-field *ngIf="!asNew" [disabled]="formData.imported" multiline name="Name" apply-edited label="priorart.inventorNameLiterature" maxlength="254" [(ngModel)]="formData.name" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                        <ipx-text-field *ngIf="asNew" ipx-autofocus [disabled]="formData.imported" multiline name="Name" apply-edited label="priorart.inventorNameLiterature" maxlength="254" [(ngModel)]="formData.name" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field *ngIf="isLiterature" [disabled]="formData.imported" multiline name="Title" apply-edited label="priorart.titleLiterature" maxlength="254" [formControl]="formGroup.controls.title"
+                            (onChange)="checkChanges($event)" required>
+                        </ipx-text-field>
+                    </div>
+
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" multiline name="ReferenceDocumentParts" apply-edited label="priorart.referenceDocumentParts" maxlength="254" [(ngModel)]="formData.refDocumentParts"
+                            (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-sm-6">
+                            <ipx-date-picker id="publishedDate" [disabled]="formData.imported" apply-edited name="publishedDate" [formControl]="formGroup.controls.publishedDate" label="priorart.published"
+                                (onChange)="checkChanges($event)"></ipx-date-picker>
+                        </div>
+                        <div class="col-sm-4">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" name="publisher" apply-edited label="priorart.publisher" [(ngModel)]="formData.publisher" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" name="city" apply-edited label="priorart.city" maxlength="30" [(ngModel)]="formData.city" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+
+                    <div class="row">
+                        <ipx-typeahead name="country" [formControl]="formGroup.controls.country" config="jurisdiction" label="priorart.maintenance.step1.country" apply-edited (onChange)="checkChanges($event)">
+                        </ipx-typeahead>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+
+                    <div class="row">
+                        <ipx-text-field label="priorart.abstract" [disabled]="formData.imported" multiline name="Abstract" apply-edited [rows]="3" [(ngModel)]="formData.abstract" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" multiline name="Citation" apply-edited label="priorart.citation" maxlength="254" [(ngModel)]="formData.citation" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+
+                    <div class="row">
+                        <ipx-dropdown [disabled]="formData.imported" name="Translation" apply-edited [(ngModel)]="formData.translation" [options]="translationsList" label="priorart.translation" [displayField]="'value'"
+                            [keyField]="'key'" (onChange)="checkChanges($event)"></ipx-dropdown>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" multiline name="Description" apply-edited label="priorart.description" [(ngModel)]="formData.description" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                        <button class="btn pull-right right-aligned-button" name="generateDescription" translate="button.generate" [tooltip]="'priorart.maintenance.generateDescription' | translate" tooltipPlacement="left" (click)="generateDescription()"></button>
+                    </div>
+                    <div class="row">
+                        <ipx-text-field [disabled]="formData.imported" multiline name="Comments" apply-edited label="priorart.comments" maxlength="254" [(ngModel)]="formData.comments" (onChange)="checkChanges($event)">
+                        </ipx-text-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10"></div>
+            <div class="col-sm-2 pullright">
+                <ipx-save-button #saveButton *ngIf="showSaveButton" [disabled]="!isFormDirty || !formGroup.valid" (onclick)="savePriorArt($event)" (keyup.enter)="savePriorArt($event)">
+                    {{'Save' | translate}}</ipx-save-button>
+                <ipx-revert-button [disabled]="!isFormDirty" (onclick)="revertForm($event)">
+                    {{'Revert' | translate}}
+                </ipx-revert-button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,11 @@
+<div id="ImportStatusErrorPopup">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ vm.options.details.titleResId | translate }}</h4>
+    </div>
+    <div class="modal-body">
+        <p data-ng-repeat="i in vm.options.details.issues track by $index">{{i}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" data-ng-click="vm.ok()"translate="button.ok"></button>
+    </div>
+</div>

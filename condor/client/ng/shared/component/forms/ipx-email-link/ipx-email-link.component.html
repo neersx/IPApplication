@@ -1,0 +1,6 @@
+<span *ngIf="showIcon">
+    <a *ngIf="email != null" href="{{email}}"><span class="cpa-icon cpa-icon-envelope"></span></a>
+</span>
+<span *ngIf="!showIcon">
+    <a *ngIf="email != null" href="{{email}}">{{text}}</a><span *ngIf="email == null">{{text}}</span>
+</span>

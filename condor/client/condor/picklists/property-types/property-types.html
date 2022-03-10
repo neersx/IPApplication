@@ -1,0 +1,41 @@
+<div data-ng-controller="propertyTypesController as c" translate-namespace="picklist.propertytype" ng-if="!vm.externalScope[(vm.entity || 'combination')]()">
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="code" ip-required ip-autofocus label=".Code" ng-model="vm.entry.code" data-ng-maxlength="1" ng-disabled="vm.maintenanceState === 'updating' || vm.maintenanceState === 'viewing'" ng-class="{edited: vm.maintenance.code.$dirty}" ip-field-error="{{vm.entry.$error('code').message}}"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-text-field name="value" ip-required label=".Description" ng-model="vm.entry.value" ng-class="{edited: vm.maintenance.value.$dirty}" data-ng-maxlength="50" ng-disabled="vm.maintenanceState === 'viewing'" ip-field-error="{{vm.entry.$error('value').message}}"></ip-text-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-dropdown required label=".maintenance.allowSubClass" name="allowSubClass" ng-model="vm.entry.allowSubClass" options="option.key as option.value for option in c.subClassType" ng-class="{edited: vm.maintenance.allowSubClass.$dirty}" ng-change="c.allowSubClassChange(vm.maintenanceState)">
+            </ip-dropdown>
+        </div>
+        <ip-inline-dialog data-content="{{::'picklist.propertytype.maintenance.allowSubClassInfoMessage' | translate}}" data-placement="right"></ip-inline-dialog>
+    </div>
+    <div data-ng-if="vm.entry.crmOnly || vm.maintenanceState === 'viewing'" class="row">
+        <div class="col-sm-8">
+            <div class="input-wrap-group">
+                <span class="input-wrap"></span>
+                <ip-checkbox name="crmOnly" ng-model="vm.entry.crmOnly" label=".maintenance.crmOnly" ng-disabled="true" ng-class="{edited: vm.maintenance.crmOnly.$dirty}" ></ip-checkbox>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <ip-typeahead name="imageDescription" label=".Icon" ng-class="{edited: vm.maintenance.imageDescription.$dirty}" data-config="images" ng-model="vm.entry.imageData" ng-disabled="vm.maintenanceState === 'viewing'" ip-field-error="{{vm.entry.$error('imageDescription').message | translate}}" data-extend-query="c.propertyTypeImages.extendQuery"></ip-typeahead>
+            <div class="input-wrap-group">
+                <span></span>
+                <div class="input-wrap col-sm-6">
+                    <img ng-if="vm.entry.imageData" ng-src="data:image/jpeg;base64,{{vm.entry.imageData.image}}" style='max-width: 420px'></img>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-if="!!vm.externalScope[(vm.entity || 'combination')]()">
+    <ip-valid-picklist-maintenance data-model="vm.entry" data-maintenance="vm.maintenance" data-state="vm.maintenanceState" data-can-maintain="false" data-entity-type='propertyType'></ip-valid-picklist-maintenance>
+</div>

@@ -1,0 +1,4 @@
+<button class="btn btn-warning" [ngClass]="{'btn-icon': !displayLabel}" [disabled]="disabled" (click)="onClickButton($event)" tooltip="{{ disabled || displayLabel ? '' : tooltipTitle | translate }}" placement="bottom" [adaptivePosition]="false" container="body">
+    <ipx-icon name="revert"></ipx-icon>
+    <span *ngIf="displayLabel">{{ tooltipTitle | translate}}</span>
+</button>

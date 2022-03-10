@@ -1,0 +1,164 @@
+<ipx-page-title [title]="'accounting.time.query.pageTitle'">
+    <action-buttons>
+        <div>
+            <div class="col-sm-1 pull-right" style="float: right; margin-right: 15px;">
+                <button id="closeSearch" class="btn btn-icon" placement="bottom" tooltip="{{'button.close' | translate}}" (click)="close()" [disabled]="!isFromTimeRecording">
+                    <span class="cpa-icon cpa-icon-times"></span>
+                </button>
+            </div>
+        </div>
+    </action-buttons>
+</ipx-page-title>
+<div ipx-resize-handler [resize-handler-type]="'Panel'">
+    <form class="form" #searchForm="ngForm">
+        <ipx-search-option [isSearchDisabled]="searchForm.form.invalid" [isResetDisabled]="false" (clear)="clear()" (search)="search(true)" [hideControls]="!showSearchBar">
+            <div class="container-fluid">
+                <div class="heading">
+                    <h5 translate="searchOptions"></h5>
+                    <a class="btn btn-icon btn-no-bg" role="button" [ngClass]="{collapsed: !showSearchBar}" (click)="showSearchBar = !showSearchBar">
+                        <div placement="left" tooltip="{{'collapseExpand' | translate}}">
+                            <span class="cpa-icon cpa-icon-chevron-up" name="chevron-up"></span>
+                        </div>
+                    </a>
+                </div>
+                <div [@slideInOutVisible]="showSearchBar ? 'open' : 'closed'">
+                    <div class="row">
+                        <ipx-dropdown [label]="'accounting.time.query.dates'" name="timePeriod" [removeOptionalValue]="true" [options]="periods" displayField="description" keyField="id"
+                        class="col-sm-offset-2 col-sm-2" (onChange)="onChangePeriod($event)" [(ngModel)]="formData.selectedPeriodId">
+                        </ipx-dropdown>
+                        <div class="col-sm-4">
+                            <ipx-date-picker id="fromDate" name="fromDate" ngDefaultControl [(ngModel)]="formData.fromDate" class="col-sm-6" [label]="'accounting.time.query.fromDate'" [includeSameDate]="true">
+                            </ipx-date-picker>
+                            <span class="field-text">{{'accounting.time.query.toDate' | translate}}</span>
+                            <ipx-date-picker id="toDate" name="toDate" [(ngModel)]="formData.toDate" class="col-sm-4" [laterThan]="formData.fromDate" [includeSameDate]="true" [allowNull]="true">
+                            </ipx-date-picker>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ipx-dropdown name="entity" label="Entity" [displayField]="'displayName'" [keyField]="'id'" [options]="searchParams.entities" [(ngModel)]="formData.entity"
+                        class="col-sm-offset-1 col-sm-5" (onChange)="onEntityChanged($event)">
+                        </ipx-dropdown>
+                        <div class="col-sm-5">
+                            <ipx-checkbox name="isPosted" [label]="'accounting.time.query.posted'" [(ngModel)]="formData.isPosted" (onChange)="togglePostedOptions('isPosted')" [disabled]="!!formData.entity">
+                            </ipx-checkbox>
+                            <ipx-checkbox name="isUnposted" [label]="'accounting.time.query.unposted'" [(ngModel)]="formData.isUnposted" (onChange)="togglePostedOptions('isUnposted')" [disabled]="!!formData.entity">
+                            </ipx-checkbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead name="case" config="case" [(ngModel)]="formData.cases" multiselect multipick label="Case Reference" class="col-sm-offset-1 col-sm-5">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead name="name" [(ngModel)]="formData.name" config="client" label="Name" class="col-sm-offset-1 col-sm-5" (onChange)='onNameChanged($event)'>
+                        </ipx-typeahead>
+                        <div class="col-sm-4">
+                            <ipx-checkbox label="Acting as Instructor" name="asInstructor" [disabled]="!formData.name" [(ngModel)]="formData.asInstructor" (onChange)="toggleNameOptions('asInstructor')"></ipx-checkbox>
+                            <ipx-checkbox label="Acting as Debtor" name="asDebtor" [disabled]="!formData.name" [(ngModel)]="formData.asDebtor" (onChange)="toggleNameOptions('asDebtor')"></ipx-checkbox>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead name="wipTemplates" config="wipTemplate" label="Activity" [(ngModel)]="formData.activity" class="col-sm-offset-1 col-sm-5">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="row">
+                        <ipx-typeahead [label]="'accounting.time.query.staff'" name="staff" config="staffWithTimesheetViewAccess" [(ngModel)]="formData.staff" picklist-display-name="picklist.staff" required
+                            class="col-sm-offset-1 col-sm-5" (onChange)="onStaffChanged($event)">
+                        </ipx-typeahead>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-offset-1 col-sm-5">
+                            <ipx-text-field [label]="'accounting.time.fields.narrativeText'" name="narrativeText" [(ngModel)]="formData.narrative" maxlength="50">
+                            </ipx-text-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ipx-search-option>
+    </form>
+    <div class="table-container">
+        <div class="table-title">
+            <h2 class="col-sm-3" translate="Search Results"></h2>
+            <div class="label-value col-sm-9 pull-right" *ngIf="!!timeSummary">
+                <div id="totalTime" class="label-value col-sm-3 summary" *ngIf="!!timeSummary.totalHours">
+                    <div>
+                        {{ 'accounting.time.query.totalTime' | translate}}
+                    </div>
+                    <div>
+                        <span class="text">{{ timeSummary.totalHours | durationFormat : displaySeconds }}</span>
+                        <span class="text"> ({{ timeSummary.totalUnits }} {{ 'accounting.time.fields.units' | translate }})</span>
+                    </div>
+                </div>
+                <div id="totalValue" class="label-value col-sm-3 summary" *ngIf="timeSummary.totalValue != null">
+                    <div>
+                        {{ 'accounting.time.query.totalValue' | translate}}
+                    </div>
+                    <div>
+                        <span class="text">{{ timeSummary.totalValue | localCurrencyFormat | async }}</span>
+                    </div>
+                </div>
+                <div id="totalDiscount" class="label-value col-sm-3 summary" *ngIf="timeSummary.totalDiscount != null">
+                    <div>
+                        {{ 'accounting.time.query.totalDiscount' | translate}}
+                    </div>
+                    <div>
+                        <span class="text">{{ timeSummary.totalDiscount | localCurrencyFormat | async }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ipx-kendo-grid #searchResultsGrid id="timeSearchResults" name="searchResults" [dataOptions]="searchGridOptions" (dataItemClicked)="dataItemClicked($event)">
+            <ng-template ipxTemplateColumnField="entryDate" let-dataItem>
+                <a href="javascript:void(0);" (click)="navigateToTimeRecording(dataItem.entryDate, dataItem.entryNo)"><ipx-date [model]="dataItem.entryDate"></ipx-date></a>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="caseReference" let-dataItem>
+                <a id="caseReference" href="#/caseview/{{dataItem.caseKey}}" target="_blank">{{ dataItem.caseReference }}</a>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="name" let-dataItem>
+                <ipx-ie-only-url *ngIf="!!this.showWebLinks" style="cursor: pointer;" [url]="encodeLinkData(dataItem.nameKey)" [text]="dataItem.name"></ipx-ie-only-url>
+                <span *ngIf="!this.showWebLinks">{{ dataItem.name }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="isPostedOrIncomplete" let-dataItem>
+                <ipx-inline-dialog *ngIf="dataItem.isIncomplete && !dataItem.isTimer" container="body" [adaptivePosition]="false" [icon]="'cpa-icon-exclamation-triangle text-red'" tooltipPlacement="auto"
+                    [content]="'accounting.time.recording.incompleteEntry' | translate">
+                </ipx-inline-dialog>
+                <span class="cpa-icon-check-circle posted" *ngIf="dataItem.isPosted" [tooltip]="'accounting.time.recording.posted' | translate" container="body" [adaptivePosition]="false" tooltipPlacement="right"></span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="totalDuration" let-dataItem>
+                <span>{{ dataItem.totalDuration | durationFormat: displaySeconds }}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="totalUnits" let-dataItem>
+                <div class="right-aligned">{{ dataItem.totalUnits }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="chargeOutRate" let-dataItem>
+                <div class="right-aligned">
+                    {{ dataItem.chargeOutRate | localCurrencyFormat:dataItem.foreignCurrency || dataItem.localCurrencyCode | async }}
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="localValue" let-dataItem>
+                <div class="right-aligned">
+                    {{ dataItem.localValue | localCurrencyFormat | async }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="foreignValue" let-dataItem>
+                <div class="right-aligned">
+                    {{ dataItem.foreignValue | localCurrencyFormat:dataItem.foreignCurrency | async }}
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="localDiscount" let-dataItem>
+                <div class="right-aligned">
+                    {{ dataItem.localDiscount | localCurrencyFormat | async }}</div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="foreignDiscount" let-dataItem>
+                <div class="right-aligned">
+                    {{ dataItem.foreignDiscount | localCurrencyFormat:dataItem.foreignCurrency | async }}
+                </div>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="narrativeText" let-dataItem>
+                <span style="max-width: 50em; word-wrap: break-all;">{{dataItem.narrativeText}}</span>
+            </ng-template>
+            <ng-template ipxTemplateColumnField="notes" let-dataItem>
+                <span style="max-width: 50em; word-wrap: break-all;">{{dataItem.notes}}</span>
+            </ng-template>
+        </ipx-kendo-grid>
+    </div>
+</div>

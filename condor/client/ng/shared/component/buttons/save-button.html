@@ -1,0 +1,5 @@
+<button class="btn btn-save" [ngClass]="{'btn-icon': !displayLabel}" [disabled]="disabled" (click)="onClickButton($event)" tooltip="{{ disabled || displayLabel ? '' : 'button.save' | translate }}" placement="bottom"
+    [adaptivePosition]="false" container="body">
+    <ipx-icon name="floppy-o"></ipx-icon>
+    <span *ngIf="displayLabel">{{'button.save' | translate}}</span>
+</button>

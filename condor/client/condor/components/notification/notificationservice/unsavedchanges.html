@@ -1,0 +1,14 @@
+<div id="modal-unsaved-changes">
+    <div class="modal-header">
+        <h2 class="modal-title" id="modalPendingLabel" translate="modal.unsavedchanges.title"></h2>
+    </div>
+    <div class="modal-body">
+        <p translate="modal.unsavedchanges.message"></p>
+        <p translate="modal.unsavedchanges.confirmation"></p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn" data-ng-click="cancel()" translate="button.cancel"></button>
+        <button type="button" class="btn btn-discard" data-ng-click="confirm()" translate="button.discard"></button>
+        <button type="button" class="btn btn-primary" data-ng-click="confirm('Save')" translate="button.save"></button>
+    </div>
+</div>

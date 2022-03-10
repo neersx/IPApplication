@@ -1,0 +1,61 @@
+<div class="topic-container active" data-topic-key="References">
+  <h1>Dropdown Examples</h1>
+  <div class="row">
+    <div class="col-md-5 col-lg-5">
+      <label class="col-sm-3">Example for dropdown required</label>
+      <ipx-dropdown class="col-sm-8" [options]="options1" [label]="label" apply-edited [displayField]="'value'" required
+        [(ngModel)]="selectedValue1"></ipx-dropdown>
+    </div>
+    <div class="col-md-7 col-lg-6">
+      <div>model: {{ selectedValue1 | json }}</div>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+      <div class="col-md-5 col-lg-5 column">
+        <label class="col-sm-3">Example for disable dropdown</label>
+        <ipx-dropdown class="col-sm-8" [options]="options2" [disabled]="isDisabled" [label]="'Enable Disable'" required
+          [displayField]="'value'" [(ngModel)]="selectedValue2"></ipx-dropdown>
+      </div>
+      <div class="col-md-7 col-lg-6">
+        <input type="checkbox" (change)="isDisabled = !isDisabled" />
+        <div>model: {{ selectedValue2 | json }}</div>
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="row">
+      <div class="col-md-5 col-lg-5 column">
+        <label class="col-sm-3">Example for dropdown not required</label>
+        <ipx-dropdown class="col-sm-8" [options]="options2" [label]="'Not required'" [displayField]="'value'"
+          [(ngModel)]="selectedValue3" [optionalValue]="optionalValue"></ipx-dropdown>
+      </div>
+      <div class="col-md-7 col-lg-6">
+        <input [(ngModel)]="optionalValue" type="text" />
+        <div>model: {{ selectedValue3 | json }}</div>
+      </div>
+    </div>
+  </div>
+  <h1>Text Dropdown Group Examples</h1>
+  <div>
+    <div class="row">
+      <ipx-text-dropdown-group ipx-data-type="decimal" [(ngModel)]="model1" label="Example 1" [textField]="'text'" [optionField]="'option'" [displayField]="'value'" [keyField]="'key'" [options]="options"
+        class="col-sm-6"></ipx-text-dropdown-group>
+      <div class="col-sm-6">{{ model1 | json }}</div>
+    </div>
+    <div class="row">
+      <ipx-text-dropdown-group [(ngModel)]="model2" label="Example 2" [displayField]="'value'"  apply-edited class="col-sm-6" [options]="options">
+      </ipx-text-dropdown-group>
+      <div class="col-sm-6">{{ model2 | json }}</div>
+    </div>
+    <div class="row">
+      <ipx-text-dropdown-group label="Example 3" [options]="options" [disabled]="true" class="col-sm-6">
+      </ipx-text-dropdown-group>
+      <div class="col-sm-6">
+        <label> <input checked="true" type="checkbox" />Disabled</label>
+      </div>
+    </div>
+    <div class="row">
+      <ipx-text-dropdown-group [(ngModel)]="model1" label="Example 4" [options]="options" class="col-sm-6"
+        [warningText]="'This is warning'"></ipx-text-dropdown-group>
+    </div>
+    </div>
+</div>

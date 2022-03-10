@@ -1,0 +1,28 @@
+<div class="row" ng-if="vm.topic.canUpdate">
+    <ip-add-button ng-click="vm.onAddClick()" class="pull-right"></ip-add-button>
+</div>
+<div class="row" translate-namespace="jurisdictions.maintenance.groupMemberships">
+    <div id="groups" class="input-wrap-group group-inline" ng-if="vm.type==='1'">
+        <span translate="Display" class="pull-left input-wrap"></span>        
+        <div class="input-wrap">
+            <input type="radio" id="display-members" name="displayMember" ng-checked="vm.displayGroups === false" ng-change="vm.search(false)" ng-model="vm.displayGroups">
+            <label for="display-members">
+                <span translate=".membersOfThisGroup" ></span>
+            </label>
+        </div>
+        <div class="input-wrap">
+            <input type="radio" id="display-groups" name="displayGroup" ng-checked="vm.displayGroups === true" ng-change="vm.search(true)" ng-model="vm.displayGroups">
+            <label for="display-groups">
+                <span translate=".groupsBelongingTo" ></span>
+            </label>
+        </div>
+        <div class="input-wrap" style="margin-left:9%;">
+            <ip-checkbox name="allMembersFlag" label=".allMembersFlag" ng-model="vm.allMembersFlag" ng-disabled="false" ng-change="vm.setFormDirty()" ng-class="{'edited': vm.form.$dirty}"></ip-checkbox>
+        </div>
+        <div class="input-wrap" style="margin-left:-1%;">
+            <ip-inline-dialog data-content="{{::'jurisdictions.maintenance.groupMemberships.allMembersFlagHelp' | translate}}" data-placement="right"></ip-inline-dialog>
+        </div>
+    </div>
+</div>
+<ip-kendo-grid id="groupMembers" data-grid-options="vm.gridOptions" data-show-add="vm.topic.canUpdate" data-on-add-click="vm.onAddClick()" data-add-item-name="{{'jurisdictions.maintenance.groupMemberships.item' | translate}}">
+</ip-kendo-grid>

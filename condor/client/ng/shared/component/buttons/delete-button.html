@@ -1,0 +1,5 @@
+<button class="btn btn-discard" [ngClass]="{'btn-icon': !displayLabel}" [disabled]="disabled" (click)="onClickButton($event)" tooltip="{{ displayLabel? '' : 'Delete' | translate }}" placement="bottom"
+    [adaptivePosition]="false" container="body">
+    <ipx-icon name="trash-o"></ipx-icon>
+    <span *ngIf="displayLabel">{{'Delete' | translate}}</span>
+</button>
