@@ -1,0 +1,20 @@
+<Project>
+       <PropertyGroup>
+              <OutputPath>bin\$(Configuration)</OutputPath>
+              <TargetFramework>net472</TargetFramework>
+              <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+              <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+              <LangVersion>latestMajor</LangVersion>
+       </PropertyGroup>
+       <ItemDefinitionGroup>
+              <PackageReference>
+                     <PrivateAssets>all</PrivateAssets>
+              </PackageReference>
+              <ProjectReference>
+                     <PrivateAssets>all</PrivateAssets>
+              </ProjectReference>
+       </ItemDefinitionGroup>       
+       <ItemGroup>
+              <SourceRoot Include="$(MSBuildThisFileDirectory)/"/>
+       </ItemGroup>
+</Project>

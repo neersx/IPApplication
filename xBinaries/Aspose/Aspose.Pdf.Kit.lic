@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<License>
+  <Data>
+    <LicensedTo>CPA Software Solutions</LicensedTo>
+    <LicenseType>Developer OEM Subscription</LicenseType>
+    <LicenseNote>Limited to 1 developer.</LicenseNote>
+    <OrderID>100901195744</OrderID>
+    <OEM>This is a redistributable license</OEM>
+    <Products>
+      <Product>Aspose.Pdf.Kit for .NET</Product>
+    </Products>
+    <EditionType>Enterprise</EditionType>
+    <SerialNumber>c76270fd-a23f-4cf4-91df-e3527b075876</SerialNumber>
+    <SubscriptionExpiry>20111125</SubscriptionExpiry>
+    <LicenseVersion>2.2</LicenseVersion>
+  </Data>
+  <Signature>Wy1AMqkP6YXoRuOliNmbTSNBl9SqGvoX81xUpiFt7Uz9JJ7LmD5yPLiYIi8Z5rK9FwFc8TxTD4hqivsFy8KFWjtCwUaPCAAmUKVY6jglLGOVifUqnMx/rAKNpIveH9AeTcd9LSA0l5I424dKkmjf7qeOX7bO8LcKrSsYwf4Zp2A=</Signature>
+</License>
