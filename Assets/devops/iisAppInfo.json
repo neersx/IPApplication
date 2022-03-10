@@ -1,0 +1,83 @@
+[{
+        "Site": "Default Web Site",
+        "VirtualPath": "/CPAInproma",
+        "PhysicalPath": "C:\\src\\inprotech\\IPNCode\\CPA Inproma\\CPA Inproma",
+        "ApplicationPool": "Development",
+        "Protocols": "http",
+        "ServiceUser": "NT AUTHORITY\\NETWORK SERVICE",
+        "IsBuiltInServiceUser": true,
+        "IdentityType": 0,
+        "Username": "",
+        "Password": "",
+        "BindingUrls": "http://*:80,https://*:443",
+        "WebConfig": {
+            "InprotechConnectionString": "Data Source=.;Initial Catalog=IPDEV;Integrated Security=True;Application Name=Inprotech",
+            "InprotechAdministrationConnectionString": "Data Source=.;Initial Catalog=IPDEV;Integrated Security=True;Application Name=Inprotech",
+            "IntegrationAdministrationConnectionString": "Data Source=.;Initial Catalog=IPDEVIntegration;Integrated Security=True;Application Name=Inprotech",
+            "AuthenticationMode": "Forms",
+            "IntegrationConnectionString": "Data Source=.;Initial Catalog=IPDEVIntegration;Integrated Security=True;Application Name=Inprotech",
+            "SmtpServer": "localhost",
+            "CookieName": ".CPASSInprotech",
+            "CookiePath": null,
+            "TimeoutInterval": "60",
+            "ContactUsEmailAddress": "someone@cpaglobal.com",
+            "FeaturesAvailable": [
+                "AppsBridgeHttpModule"
+            ],
+            "Backup": {
+                "Exists": false,
+                "AuthenticationMode": null
+            }
+        },
+        "Version": {
+            "Major": 12,
+            "Minor": 1,
+            "Build": 0,
+            "Revision": 0,
+            "MajorRevision": 0,
+            "MinorRevision": 0
+        },
+        "AuthModeToBeSetFromApps": true
+    },
+    {
+        "Site": "Default Web Site",
+        "VirtualPath": "/CPAInpro",
+        "PhysicalPath": "C:\\Program Files (x86)\\CPA Global\\Web Version Software",
+        "ApplicationPool": "Inprotech AppPool",
+        "Protocols": "http",
+        "ServiceUser": "NT AUTHORITY\\NETWORK SERVICE",
+        "IsBuiltInServiceUser": true,
+        "IdentityType": 0,
+        "Username": "",
+        "Password": "",
+        "BindingUrls": "http://*:80,https://*:443",
+        "WebConfig": {
+            "InprotechConnectionString": "data source=(local);database=INPRO;Trusted_Connection=true;Pooling=true;Connection Reset=false;APPLICATION NAME=Inprotech",
+            "InprotechAdministrationConnectionString": "Data Source=(local);Initial Catalog=INPRO;Integrated Security=True;Pooling=True;Connection Reset=False;Application Name=Inprotech",
+            "IntegrationAdministrationConnectionString": "Data Source=(local);Initial Catalog=INPROIntegration;Integrated Security=True;Pooling=True;Connection Reset=False;Application Name=Inprotech",
+            "AuthenticationMode": "Forms",
+            "IntegrationConnectionString": "Data Source=(local);Initial Catalog=INPROIntegration;Integrated Security=True;Pooling=True;Connection Reset=False;Application Name=Inprotech",
+            "SmtpServer": "relay.cpaglobal.com",
+            "CookieName": ".CPASSInprotech",
+            "CookiePath": "/",
+            "TimeoutInterval": "120",
+            "ContactUsEmailAddress": "someone@cpaglobal.com",
+            "FeaturesAvailable": [
+                "AppsBridgeHttpModule"
+            ],
+            "Backup": {
+                "Exists": false,
+                "AuthenticationMode": null
+            }
+        },
+        "Version": {
+            "Major": 13,
+            "Minor": 1,
+            "Build": 0,
+            "Revision": 88,
+            "MajorRevision": 0,
+            "MinorRevision": 88
+        },
+        "AuthModeToBeSetFromApps": true
+    }
+]

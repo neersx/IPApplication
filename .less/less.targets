@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">  
+  <Target Name="IncludeCompiledCssFiles">
+    <ItemGroup>
+      <CompiledCssFiles Include="Content\css\**\*" />
+      <FilesForPackagingFromProject  Include="%(CompiledCssFiles.Identity)">
+        <DestinationRelativePath>Content\css\%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+      </FilesForPackagingFromProject>
+    </ItemGroup>
+  </Target>
+  <Target Name="CompileLess">
+    <PropertyGroup>
+      <DotLessToolsPath>$([System.IO.Path]::Combine($(SolutionDir), ".less"))</DotLessToolsPath>
+      <DotLessExeFile>dotless.compiler.exe</DotLessExeFile>
+      <DotLessExePath>$(DotLessToolsPath)\$(DotLessExeFile)</DotLessExePath>
+      <DotLessExePath>$(DotLessToolsPath)\$(DotLessExeFile)</DotLessExePath>      
+    </PropertyGroup>    
+    <ItemGroup>
+      <LessFiles Include="Content\*-root.less" />
+      <IeFiles Include="Content\ie\*-root.less" />
+    </ItemGroup>
+    <Exec Condition="'@(LessFiles)' != ''" Command="$(DotLessExePath) -m %(LessFiles.FullPath) $(ProjectDir)Content\css\%(LessFiles.Filename).css" LogStandardErrorAsError="true"/>
+    <Exec Condition="'@(IeFiles)' != ''" Command="$(DotLessExePath) -m %(IeFiles.FullPath) $(ProjectDir)Content\css\ie\%(IeFiles.Filename).css" LogStandardErrorAsError="true"/>
+  </Target>
+  <PropertyGroup>
+    <BuildDependsOn>
+      CompileLess;
+      $(BuildDependsOn);
+    </BuildDependsOn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PipelineCollectFilesPhaseDependsOn>
+      IncludeCompiledCssFiles;
+      $(PipelineCollectFilesPhaseDependsOn);
+    </PipelineCollectFilesPhaseDependsOn>
+  </PropertyGroup>
+</Project>
