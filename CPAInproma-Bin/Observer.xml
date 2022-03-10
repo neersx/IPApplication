@@ -1,0 +1,213 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Observer
+</name>
+</assembly>
+<members>
+<member name="T:Observer.WeakEventGC">
+ -----------------------------------------------------------------------------
+ Project	 : Observer
+ Class	 : WeakEventGC
+ 
+ -----------------------------------------------------------------------------
+ <summary>
+ This class contains the garbage collector code for cleaning up the resources
+ used by the weak Observer/channel event system.
+ </summary>
+ <remarks>
+ <para>
+ This class keeps track of all event managers and their respective multicast
+ delegates, in order to be able to clean them up if they are no longer in use.
+ </para><para>
+ Since all delegates are based on weak references, the delegates will not
+ prevent any of their observers from being disposed of. When an observer is
+ disposed, there is no way for the delegate to know this in order to remove
+ the observer from the invocation list (unless the observer explicity
+ unregisters itself). Therefore, this class makes sure that all delegates
+ are checked at a regular interval and removed if required. The same goes
+ for multicast delegate and event managers.
+ </para><para>
+ The garbage collection is done by a background worker process which runs on
+ another thread, so that the main application thread is not affected by this
+ processing. The background worker code is based on this article:
+ <see href="http://www.codeproject.com/vb/net/backgroundworker.asp" />.
+ </para>
+ </remarks>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.#cctor">
+ -----------------------------------------------------------------------------
+ <summary>
+ Instantiates the background worker process.
+ </summary>
+ -----------------------------------------------------------------------------
+</member>
+<member name="F:Observer.WeakEventGC.mMulticastDelegates">
+ -----------------------------------------------------------------------------
+ <summary>
+ The list of all multicast delegates created.
+ </summary>
+ -----------------------------------------------------------------------------
+</member>
+<member name="F:Observer.WeakEventGC.mEventManagers">
+ -----------------------------------------------------------------------------
+ <summary>
+ The list of all event managers created.
+ </summary>
+ -----------------------------------------------------------------------------
+</member>
+<member name="F:Observer.WeakEventGC.mBackgroundWorker">
+ -----------------------------------------------------------------------------
+ <summary>
+ The background worker used for garbage collection.
+ </summary>
+ <remarks/>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.AddMulticastDelegate(System.WeakReference)">
+ -----------------------------------------------------------------------------
+ <summary>
+ This method is called by multicast delegates to add themselves to the list
+ so that they are known to this class for the purposes of garbage collection.
+ </summary>
+ <param name="w">The weak reference to the multicast delegate.</param>
+ <remarks>
+ </remarks>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.AddEventManager(System.WeakReference)">
+ -----------------------------------------------------------------------------
+ <summary>
+ This method is called by event managers to add themselves to the list
+ so that they are known to this class for the purposes of garbage collection.
+ </summary>
+ <param name="w">The weak reference to the event manager.</param>
+ <remarks>
+ </remarks>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.Add(System.Collections.ArrayList,System.WeakReference)">
+ -----------------------------------------------------------------------------
+ <summary>
+ This is a genertic method used by the above methods to add a weak
+ reference to an arraylist.
+ </summary>
+ <param name="list">The arraylist to add to.</param>
+ <param name="w">The weak reference to be added.</param>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.RemoveMulticastDelegate(System.WeakReference)">
+ -----------------------------------------------------------------------------
+ <summary>
+ This method is called by multicast delegates to remove themselves from the 
+ list so that they are not processed later by the garbage collection.
+ </summary>
+ <param name="w">The weak reference to the multicast delegate.</param>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.RemoveEventManager(System.WeakReference)">
+ -----------------------------------------------------------------------------
+ <summary>
+ This method is called by event managers to remove themselves from the 
+ list so that they are not processed later by the garbage collection.
+ </summary>
+ <param name="w">The weak reference to the event manager.</param>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.Remove(System.Collections.ArrayList,System.WeakReference)">
+ -----------------------------------------------------------------------------
+ <summary>
+ This is a genertic method used by the above methods to remove a weak
+ reference from an arraylist.
+ </summary>
+ <param name="list">The arraylist to remove from.</param>
+ <param name="w">The weak reference to be removed.</param>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.BackgroundWorkerDoWork(System.Object,Observer.DoWorkEventArgs)">
+ -----------------------------------------------------------------------------
+ <summary>
+ This method kicks off the garbage collection process at regular intervals.
+ </summary>
+ <param name="sender"></param>
+ <param name="e"></param>
+ <remarks>
+ This method repeatedly performs garbage collection at regular intervals.
+ Between garbage collections, it goes to sleep for the duration specified by
+ the constant GarbageCollectionInterval.
+ </remarks>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.DoGarbageCollection">
+ -----------------------------------------------------------------------------
+ <summary>
+ This method performs all the steps required for garbage collection.
+ </summary>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.CollectDelegates">
+ -----------------------------------------------------------------------------
+ <summary>
+ This method removes obsolete delegates from each multicast delegate.
+ </summary>
+ <remarks>
+ <para>
+ This method processes all multicast delegates in the list, allowing each
+ one to remove any delegates it contains which are obsolete (ie. the
+ delegate's observer does not exist any longer).
+ </para><para>
+ Since the list multicast delegates is based on weak references, it is
+ possible some of the multicast delegates are actually obsolete (ie. they
+ have been removed via some unregister/unsubscribe process in code),
+ therefore this method checks whether each multicast delegate is still
+ actually valid, and if not, it is removed from the list.
+ </para>
+ </remarks>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.CollectMulticastDelegates">
+ -----------------------------------------------------------------------------
+ <summary>
+ This method removes obsolete multicast delegates from each event manager.
+ </summary>
+ <remarks>
+ <para>
+ This method processes all event managers in the list, allowing each
+ one to remove any multicast delegates it contains which are obsolete (ie.
+ the multicast delegate no longer contains any delegates).
+ </para><para>
+ Since the list event managers is based on weak references, it is
+ possible some of the event managers are actually obsolete (ie. they
+ have been removed via some unregister/unsubscribe process in code),
+ therefore this method checks whether each event manager is still
+ actually valid, and if not, it is removed from the list.
+ </para>
+ </remarks>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.CollectEventManagers">
+ -----------------------------------------------------------------------------
+ <summary>
+ This method removes obsolete event managers from each event channel.
+ </summary>
+ <remarks>
+ This method allows the event channels object to remove any event managers
+ it contains which are obsolete (ie. the event manager no longer contains
+ any multicast delegates).
+ </remarks>
+ -----------------------------------------------------------------------------
+</member>
+<member name="M:Observer.WeakEventGC.IsAlive(System.WeakReference)">
+ -----------------------------------------------------------------------------
+ <summary>
+ This method indicates whether the weak reference's underlying object is
+ still alive.
+ </summary>
+ <param name="w"></param>
+ <returns></returns>
+ -----------------------------------------------------------------------------
+</member>
+</members>
+</doc>
