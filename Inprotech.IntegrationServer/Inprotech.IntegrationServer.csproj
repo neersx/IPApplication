@@ -1,0 +1,212 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+	  <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>..\Inprotech.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CodeAnalysisRuleSet>..\Inprotech.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CPA.IAM.Proxy">
+      <HintPath>..\xBinaries\CPA\CPA.IAM.Proxy.dll</HintPath>
+    </Reference>
+    <Reference Include="CPA.SingleSignOn">
+      <HintPath>..\xBinaries\CPA\CPA.SingleSignOn.dll</HintPath>
+    </Reference>
+    <Reference Include="CPA.SingleSignOn.Client">
+      <HintPath>..\xBinaries\CPA\CPA.SingleSignOn.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Activation" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="Aspose.Words, Version=9.4.0.0, Culture=neutral, PublicKeyToken=716fcc553a201e56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\xBinaries\Aspose\Aspose.Words.dll</HintPath>
+    </Reference>    
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Update="Properties\ExchangeResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExchangeResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\PtoAccess.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PtoAccess.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="App.Debug.config">
+      <DependentUpon>App.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <None Include="App.Release.config">
+      <DependentUpon>App.config</DependentUpon>
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+    <Content Update="ApplicationInsights.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="AppSettings.Debug.config">
+      <DependentUpon>AppSettings.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="AppSettings.Release.config">
+      <DependentUpon>AppSettings.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="PtoAccess\Epo\OPS\Schema\CPCSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="PtoAccess\Epo\OPS\Schema\exchange-documents.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="PtoAccess\Epo\OPS\Schema\fulltext-documents.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="PtoAccess\Epo\OPS\Schema\ops.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="PtoAccess\Epo\OPS\Schema\ops_legal.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Update="PtoAccess\Epo\OPS\Schema\rplus.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Inprotech.Contracts\Inprotech.Contracts.csproj" />
+    <ProjectReference Include="..\Inprotech.Infrastructure\Inprotech.Infrastructure.csproj" />
+    <ProjectReference Include="..\Inprotech.Integration\Inprotech.Integration.csproj" />
+    <ProjectReference Include="..\InprotechKaizen.Model.Components\InprotechKaizen.Model.Components.csproj" />
+    <ProjectReference Include="..\InprotechKaizen.Model\InprotechKaizen.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\ExchangeResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExchangeResources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\PtoAccess.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PtoAccess.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ApplicationInsights.OwinExtensions">
+      <Version>0.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="Autofac">
+      <Version>4.9.4</Version>
+    </PackageReference>
+    <PackageReference Include="Autofac.Wcf">
+      <Version>4.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Autofac.WebApi2">
+      <Version>4.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="cpaglobal-Dependable.Extensions.Dependencies.Autofac">
+      <Version>0.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="cpaglobal-Dependable.Extensions.Persistence.Sql">
+      <Version>0.0.57</Version>
+    </PackageReference>
+    <PackageReference Include="CpaGlobal.CPAXML" Version="1.6.15" />
+    <PackageReference Include="Dapper">
+      <Version>1.60.6</Version>
+    </PackageReference>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+    <PackageReference Include="log4net">
+      <Version>2.0.12</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.ApplicationInsights.NLogTarget">
+      <Version>2.9.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.ApplicationInsights.WindowsServer">
+      <Version>2.9.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost">
+      <Version>5.2.7</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.Exchange.WebServices">
+      <Version>2.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Graph" Version="3.24.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.26.0" />
+    <PackageReference Include="Microsoft.Owin.Host.HttpListener">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Owin.Hosting">
+      <Version>4.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Rest.ClientRuntime">
+      <Version>2.3.20</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="NLog">
+      <Version>4.6.7</Version>
+    </PackageReference>
+    <PackageReference Include="Otp.NET">
+      <Version>1.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers">
+      <Version>1.1.118</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource">
+      <Version>4.7.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt">
+      <Version>4.0.4.403061554</Version>
+    </PackageReference>
+    <PackageReference Include="System.Management" Version="5.0.0" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+    <PackageReference Include="System.Runtime.Caching" Version="5.0.0" />
+    <PackageReference Include="Topshelf.NLog">
+      <Version>4.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Z.EntityFramework.Plus.EF6">
+      <Version>1.8.25</Version>
+    </PackageReference>    
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="OwinContextAccessor.cs" />
+    <Compile Remove="PtoAccess\DmsIntegration\SendDocumentToDms.cs" />
+    <Compile Remove="PtoAccess\Innography\RelatedParentCasesResolver.cs" />
+    <Compile Remove="PtoAccess\Innography\Relations.cs" />
+  </ItemGroup>
+</Project>
