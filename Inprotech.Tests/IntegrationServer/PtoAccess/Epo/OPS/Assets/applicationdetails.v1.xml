@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><?xml-stylesheet type='text/xsl' href='/3.0/style/rplus.xsl' ?>
+<ops:world-patent-data xmlns:ops="http://ops.epo.org" xmlns:reg="http://www.epo.org/register" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:cpc="http://www.epo.org/cpcexport" xmlns:cpcdef="http://www.epo.org/cpcdefinition">
+    <ops:meta name="elapsed-time" value="16"/>
+    <ops:register-search total-result-count="1">
+        <ops:query syntax="CQL">publication=EP2557228</ops:query>
+        <ops:range end="1" begin="1"/>
+        <reg:register-documents produced-by="RO">
+            <reg:register-document date-produced="20150415" dtd-version="1.0" lang="en" produced-by="RO" status="EXAMINATION REQUESTED">
+                <reg:bibliographic-data country="EP" id="EP11765120P" lang="en" status="EXAMINATION REQUESTED">
+                </reg:bibliographic-data>
+            </reg:register-document>
+        </reg:register-documents>
+    </ops:register-search>
+</ops:world-patent-data>

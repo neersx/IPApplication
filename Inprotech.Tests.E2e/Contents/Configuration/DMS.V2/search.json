@@ -1,0 +1,30 @@
+{
+  "data": [
+      {
+        "name": "1001.001 - Microsoft vs. U.S. Department of Justice",
+        "subtype": "work",
+        "has_subfolders": true,
+        "database": "TPSDK",
+        "workspace_id": "TPSDK!7020",
+        "sub_class": "DMATTER",
+        "subclass": "DMATTER",
+        "custom1": "1001",
+        "custom2": "001",
+        "iwl": "iwl:dms=sdksandbox.goimanage.com&&lib=&&num=31592&&ver=1",
+        "id": "TPSDK!7020",
+        "wstype": "workspace"
+      },
+      {
+        "name": "Workfff",
+        "subtype": "work",
+        "has_subfolders": true,
+        "database": "TPSDK",
+        "workspace_id": "TPSDK!17837",
+        "custom1": "1001",
+        "custom2": "001",
+        "iwl": "iwl:dms=sdksandbox.goimanage.com&&lib=&&num=40704&&ver=1",
+        "id": "TPSDK!17837",
+        "wstype": "workspace"
+      }
+    ]
+}

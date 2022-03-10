@@ -1,0 +1,326 @@
+<?xml version='1.0' encoding='utf-8'?>
+<schema xmlns = 'http://www.w3.org/2001/XMLSchema' targetNamespace = 'http://tempuri.org/a' xmlns:t = 'http://tempuri.org/a' >
+  <element name='debitform'>
+    <complexType>
+      <sequence>
+        <element minOccurs='0' maxOccurs='1' ref='t:intrefid'/>
+        <element ref='t:accountholder'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:mandate'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:debnkac'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:deakzs'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:signatories'/>
+      </sequence>
+      <attribute name='durdebit'>
+        <simpleType>
+          <restriction base='string'>
+            <enumeration value='dur'/>
+            <enumeration value='rev'/>
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name='debitchange' default="no">
+        <simpleType>
+          <restriction base='string'>
+            <enumeration value='yes'/>
+            <enumeration value='no'/>
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name='dedate' type='string'/>
+      <attribute name='date' type='string'/>
+    </complexType>
+  </element>
+
+  <element name='intrefid' type='string'>
+  </element>
+
+  <element name='accountholder'>
+    <complexType>
+      <sequence>
+        <element ref='t:addressbook'/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='addressbook'>
+    <complexType>
+      <sequence>
+        <sequence>
+          <element ref='t:name'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:prefix'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:first-name'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:suffix'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:orgname'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:department'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:registered-number'/>
+        </sequence>
+        <element ref='t:address'/>
+        <element minOccurs='0' maxOccurs='unbounded' ref='t:phone'/>
+        <element minOccurs='0' maxOccurs='unbounded' ref='t:fax'/>
+        <element minOccurs='0' maxOccurs='unbounded' ref='t:email'/>
+        <element minOccurs='0' maxOccurs='unbounded' ref='t:url'/>
+        <element minOccurs='0' maxOccurs='unbounded' ref='t:ead'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:dtext'/>
+      </sequence>
+      <attribute name='lang' type='string'/>
+    </complexType>
+  </element>
+
+  <element name='address'>
+    <complexType>
+      <sequence>
+        <sequence>
+          <element minOccurs='0' maxOccurs='1' ref='t:address-1'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:address-2'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:address-3'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:mailcode'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:pobox'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:room'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:address-floor'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:building'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:street'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:city'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:county'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:state'/>
+          <element minOccurs='0' maxOccurs='1' ref='t:postcode'/>
+          <element ref='t:country'/>
+        </sequence>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='phone' type='string'>
+  </element>
+
+  <element name='fax' type='string'>
+  </element>
+
+  <element name='email' type='string'>
+  </element>
+
+  <element name='url' type='string'>
+  </element>
+
+  <element name='ead' type='string'>
+  </element>
+
+  <element name='dtext' type='string'>
+  </element>
+
+  <element name='name'>
+    <complexType>
+      <simpleContent>
+        <extension base='string'>
+          <attribute name='name-type'>
+            <simpleType>
+              <restriction base='string'>
+                <enumeration value='legal'/>
+                <enumeration value='natural'/>
+              </restriction>
+            </simpleType>
+          </attribute>
+        </extension>
+      </simpleContent>
+    </complexType>
+  </element>
+
+  <element name='suffix' type='string'>
+  </element>
+
+  <element name='first-name' type='string'>
+  </element>
+
+  <element name='prefix' type='string'>
+  </element>
+
+  <element name='registered-number' type='string'>
+  </element>
+
+  <element name='orgname' type='string'>
+  </element>
+
+  <element name='department' type='string'>
+  </element>
+
+  <element name='address-1' type='string'>
+  </element>
+
+  <element name='address-2' type='string'>
+  </element>
+
+  <element name='address-3' type='string'>
+  </element>
+
+  <element name='mailcode' type='string'>
+  </element>
+
+  <element name='pobox' type='string'>
+  </element>
+
+  <element name='room' type='string'>
+  </element>
+
+  <element name='address-floor' type='string'>
+  </element>
+
+  <element name='building' type='string'>
+  </element>
+
+  <element name='street' type='string'>
+  </element>
+
+  <element name='city' type='string'>
+  </element>
+
+  <element name='county' type='string'>
+  </element>
+
+  <element name='state' type='string'>
+  </element>
+
+  <element name='postcode' type='string'>
+  </element>
+
+  <element name='country' type='string'>
+  </element>
+
+  <element name='mandate' type='string'>
+  </element>
+
+  <element name='debnkac'>
+    <complexType>
+      <sequence>
+        <element ref='t:debnknam'/>
+        <element ref='t:debnkadr'/>
+        <element ref='t:debkactn'/>
+        <element ref='t:debkswif'/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='debnknam' type='string'>
+  </element>
+
+  <element name='debnkadr' type='string'>
+  </element>
+
+  <element name='debkactn' type='string'>
+  </element>
+
+  <element name='debkswif' type='string'>
+  </element>
+
+  <element name='deakzs'>
+    <complexType>
+      <sequence maxOccurs='unbounded'>
+        <element ref='t:deakz'/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='deakz'>
+    <complexType>
+      <sequence>
+        <element ref='t:akz'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:akzop'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:proprietor'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:fees'/>
+      </sequence>
+      <attribute name='type'>
+        <simpleType>
+          <restriction base='string'>
+            <enumeration value='pa'/>
+            <enumeration value='gbm'/>
+            <enumeration value='tm'/>
+            <enumeration value='gsm'/>
+            <enumeration value='tg'/>
+            <enumeration value='ddpa'/>
+            <enumeration value='pct'/>
+            <enumeration value='schutz'/>
+          </restriction>
+        </simpleType>
+      </attribute>
+      <attribute name='internalAkz' type='string'/>
+    </complexType>
+  </element>
+
+  <element name='akz' type='string'>
+  </element>
+
+  <element name='akzop' type='string'>
+  </element>
+
+  <element name='proprietor' type='string'>
+  </element>
+
+  <element name='fees'>
+    <complexType>
+      <sequence maxOccurs='unbounded'>
+        <element ref='t:fee'/>
+      </sequence>
+      <attribute name='amount' type='string' use='required'/>
+    </complexType>
+  </element>
+
+  <element name='fee'>
+    <complexType>
+      <sequence>
+        <element ref='t:feecode'/>
+        <element ref='t:feeusage'/>
+        <element ref='t:feeamount'/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='feecode' type='string'>
+  </element>
+
+  <element name='feeusage' type='string'>
+  </element>
+
+  <element name='feeamount' type='string'>
+  </element>
+
+  <element name='signatories'>
+    <complexType>
+      <sequence>
+        <element maxOccurs='unbounded' ref='t:signatory'/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='signatory'>
+    <complexType>
+      <sequence>
+        <element ref='t:name'/>
+        <element ref='t:first-name'/>
+        <element ref='t:electronic-signature'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:signatory-capacity'/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='electronic-signature'>
+    <complexType>
+      <sequence>
+        <element ref='t:basic-signature'/>
+      </sequence>
+      <attribute name='date' type='string'/>
+      <attribute name='place-signed' type='string'/>
+    </complexType>
+  </element>
+
+  <element name='basic-signature'>
+    <complexType>
+      <sequence>
+        <element ref='t:text-string'/>
+      </sequence>
+    </complexType>
+  </element>
+
+  <element name='text-string' type='string'>
+  </element>
+
+  <element name='signatory-capacity' type='string'>
+  </element>
+</schema>

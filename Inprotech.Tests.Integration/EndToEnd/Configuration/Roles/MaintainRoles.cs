@@ -1,0 +1,656 @@
+﻿using Inprotech.Tests.Integration.Extensions;
+using Inprotech.Tests.Integration.PageObjects;
+using Inprotech.Tests.Integration.Utils;
+using NUnit.Framework;
+using OpenQA.Selenium;
+
+namespace Inprotech.Tests.Integration.EndToEnd.Configuration.Roles
+{
+    [Category(Categories.E2E)]
+    [TestFixture]
+    public class MaintainRoles : IntegrationTest
+    {
+        [TestCase(BrowserType.Chrome)]
+        [TestCase(BrowserType.FireFox)]
+        [TestCase(BrowserType.Ie)]
+        public void DeleteRolesFromEdit(BrowserType browserType)
+        {
+            new RolesDbSetup().SetupData();
+            var driver = BrowserProvider.Get(browserType);
+            SignIn(driver, "/#/user-configuration/roles");
+            var page = new RolesPageObject(driver);
+            driver.WaitForAngularWithTimeout();
+            page.RoleName.SendKeys("e2e");
+            page.SearchButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            var grid = page.ResultGrid;
+            Assert.AreEqual(2, grid.Rows.Count, "2 record is returned by search");
+            grid.Cell(1, grid.FindColByText("Role Name")).FindElement(By.TagName("a")).Click();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            page.DeleteButton.ClickWithTimeout();
+            page.Delete.Click();
+            driver.WaitForGridLoader();
+            Assert.AreEqual("Your changes have been successfully saved.", page.SuccessMessage.Text, "The changes have been successfully saved.");
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            page.DeleteButton.ClickWithTimeout();
+            page.Delete.Click();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.AreEqual("Your changes have been successfully saved.", page.SuccessMessage.Text, "The changes have been successfully saved.");
+            Assert.AreEqual(0, grid.Rows.Count, "No record is returned by search");
+            page.ClearButton.Click();
+            page.RoleName.SendKeys("all");
+            page.SearchButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            grid.Cell(1, grid.FindColByText("Role Name")).FindElement(By.TagName("a")).Click();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            page.DeleteButton.ClickWithTimeout();
+            page.Delete.Click();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.AreEqual("Item cannot be deleted as it is in use.", page.AlertMessage.Text);
+            page.AlertOkButton.Click();
+        }
+
+        [TestCase(BrowserType.Chrome)]
+        [TestCase(BrowserType.FireFox)]
+        [TestCase(BrowserType.Ie)]
+        public void DeleteRolesFromBulkMenu(BrowserType browserType)
+        {
+            new RolesDbSetup().SetupData();
+            var driver = BrowserProvider.Get(browserType);
+            SignIn(driver, "/#/user-configuration/roles");
+            var page = new RolesPageObject(driver);
+            driver.WaitForAngularWithTimeout();
+            page.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            var grid = page.ResultGrid;
+            grid.Cell(1, 0).FindElement(By.TagName("ipx-checkbox")).Click();
+            grid.ActionMenu.OpenOrClose();
+            page.DeleteAllButton.Click();
+            page.Delete.ClickWithTimeout();
+            Assert.AreEqual("Items highlighted in red cannot be deleted as they are in use.", page.AlertMessage.Text);
+            page.AlertOkButton.Click();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            page.RoleName.SendKeys("external");
+            page.SearchButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            grid.ActionMenu.OpenOrClose();
+            page.SelectAllButton.Click();
+            page.DeleteAllButton.Click();
+            page.Delete.ClickWithTimeout();
+            var alertMessage = page.AlertMessage.Text;
+            Assert.True(alertMessage.Contains("This process has been partially completed."));
+            Assert.True(alertMessage.Contains("Items highlighted in red cannot be deleted as they are in use."));
+            page.AlertOkButton.Click();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            page.ClearButton.ClickWithTimeout();
+            page.RoleName.SendKeys("e2e");
+            page.SearchButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.AreEqual(1, grid.Rows.Count, "1 record is returned by search");
+            grid.ActionMenu.OpenOrClose();
+            page.SelectAllButton.Click();
+            page.DeleteAllButton.Click();
+            page.Delete.ClickWithTimeout();
+            Assert.AreEqual("Your changes have been successfully saved.", page.SuccessMessage.Text, "The changes have been successfully saved.");
+            driver.WaitForGridLoader();
+            Assert.AreEqual(0, grid.Rows.Count, "No record is returned by search");
+        }
+
+        [TestCase(BrowserType.Chrome)]
+        [TestCase(BrowserType.FireFox)]
+        [TestCase(BrowserType.Ie)]
+        public void MaintainEditRolesManually(BrowserType browserType)
+        {
+            new RolesDbSetup().SetupData();
+            var driver = BrowserProvider.Get(browserType);
+            SignIn(driver, "/#/user-configuration/roles");
+            var page = new RolesPageObject(driver);
+            driver.WaitForAngularWithTimeout();
+            page.RoleName.SendKeys("e2e");
+            page.SearchButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            var grid = page.ResultGrid;
+            Assert.AreEqual(2, grid.Rows.Count, "2 record is returned by search");
+            grid.Cell(1, grid.FindColByText("Role Name")).FindElement(By.TagName("a")).Click();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            page.RoleName.Clear();
+            Assert.IsTrue(new TextField(driver, "rolename").HasError, "Role name is a Required field");
+            page.RoleName.SendKeys("e2e role internal");
+            page.Tasks.NavigateTo();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            var taskGrid = page.Tasks.TasksGrid;
+            page.Tasks.SearchTasks.SendKeys("Maintain Case Family");
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+            taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.AreEqual("Your changes have been successfully saved.", page.SuccessMessage.Text, "The changes have been successfully saved.");
+            driver.WaitForAngularWithTimeout();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            page.WebParts.NavigateTo();
+            var webPartGrid = page.WebParts.WebPartsGrid;
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.IsTrue(webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).Click();
+            webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.IsFalse(webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).Click();
+            webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.IsFalse(webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).IsChecked());
+            page.Subjects.NavigateTo();
+            var subjectGrid = page.Subjects.SubjectsGrid;
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            subjectGrid.Cell(2, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.IsTrue(subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(subjectGrid.Cell(2, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(subjectGrid.Cell(2, subjectGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.IsFalse(subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.IsFalse(subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+        }
+
+        [TestCase(BrowserType.Chrome)]
+        [TestCase(BrowserType.FireFox)]
+        [TestCase(BrowserType.Ie)]
+        public void MaintainEditRolesFromBulkMenuWithAllPermission(BrowserType browserType)
+        {
+            new RolesDbSetup().SetupData();
+            var driver = BrowserProvider.Get(browserType);
+            SignIn(driver, "/#/user-configuration/roles");
+            var page = new RolesPageObject(driver);
+            driver.WaitForAngularWithTimeout();
+            page.RoleName.SendKeys("e2e");
+            page.SearchButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            var grid = page.ResultGrid;
+            Assert.AreEqual(2, grid.Rows.Count, "2 record is returned by search");
+            grid.Cell(1, grid.FindColByText("Role Name")).FindElement(By.TagName("a")).Click();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            page.Tasks.NavigateTo();
+            driver.WaitForAngularWithTimeout();
+            var taskGrid = page.Tasks.TasksGrid;
+            page.Tasks.SearchTasks.SendKeys("Maintain Case Family");
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            taskGrid.Cell(0, 0).FindElement(By.TagName("ipx-checkbox")).Click();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.GrantAllPermissionButton.Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            taskGrid.Cell(0, 0).FindElement(By.TagName("ipx-checkbox")).Click();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.DenyAllPermissionButton.Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            taskGrid.Cell(0, 0).FindElement(By.TagName("ipx-checkbox")).Click();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.ClearAllPermissionButton.Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+        }
+
+        [TestCase(BrowserType.Chrome)]
+        [TestCase(BrowserType.FireFox)]
+        [TestCase(BrowserType.Ie)]
+        public void MaintainEditRolesFromBulkMenuWithOneByOnePermission(BrowserType browserType)
+        {
+            new RolesDbSetup().SetupData();
+            var driver = BrowserProvider.Get(browserType);
+            SignIn(driver, "/#/user-configuration/roles");
+            var page = new RolesPageObject(driver);
+            driver.WaitForAngularWithTimeout();
+            page.RoleName.SendKeys("e2e");
+            page.SearchButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            var grid = page.ResultGrid;
+            Assert.AreEqual(2, grid.Rows.Count, "2 record is returned by search");
+            grid.Cell(1, grid.FindColByText("Role Name")).FindElement(By.TagName("a")).Click();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            page.Tasks.NavigateTo();
+            driver.WaitForAngularWithTimeout();
+            var taskGrid = page.Tasks.TasksGrid;
+            page.Tasks.SearchTasks.SendKeys("Maintain Case Family");
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            taskGrid.Cell(0, 0).FindElement(By.TagName("ipx-checkbox")).Click();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenGrantPermissionBulkOption("execute");
+            driver.WaitForAngularWithTimeout();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenGrantPermissionBulkOption("insert");
+            driver.WaitForAngularWithTimeout();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenGrantPermissionBulkOption("update");
+            driver.WaitForAngularWithTimeout();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenGrantPermissionBulkOption("delete");
+            driver.WaitForAngularWithTimeout();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            taskGrid.Cell(0, 0).FindElement(By.TagName("ipx-checkbox")).Click();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenDenyPermissionBulkOption("execute");
+            driver.WaitForAngularWithTimeout();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenDenyPermissionBulkOption("insert");
+            driver.WaitForAngularWithTimeout();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenDenyPermissionBulkOption("update");
+            driver.WaitForAngularWithTimeout();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenDenyPermissionBulkOption("delete");
+            driver.WaitForAngularWithTimeout();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            taskGrid.Cell(0, 0).FindElement(By.TagName("ipx-checkbox")).Click();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenClearPermissionBulkOption("execute");
+            driver.WaitForAngularWithTimeout();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenClearPermissionBulkOption("insert");
+            driver.WaitForAngularWithTimeout();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenClearPermissionBulkOption("update");
+            driver.WaitForAngularWithTimeout();
+            taskGrid.ActionMenu.OpenOrClose();
+            page.OpenClearPermissionBulkOption("delete");
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+        }
+
+        [TestCase(BrowserType.Chrome)]
+        [TestCase(BrowserType.FireFox)]
+        [TestCase(BrowserType.Ie)]
+        public void CreateInternalRole(BrowserType browserType)
+        {
+            new RolesDbSetup().SetupData();
+            var driver = BrowserProvider.Get(browserType);
+            SignIn(driver, "/#/user-configuration/roles");
+            var page = new RolesPageObject(driver);
+            driver.WaitForAngularWithTimeout();
+            page.AddButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            page.AddRoleName.SendKeys("e2e role internal");
+            page.RoleDescriptionTextArea.SendKeys("e2e internal description");
+            Assert.IsTrue(page.InternalRadioButton.IsChecked);
+            Assert.IsFalse(page.ExternalRadioButton.IsChecked);
+            Assert.IsFalse(page.InternalRadioButton.IsDisabled);
+            Assert.IsFalse(page.ExternalRadioButton.IsDisabled);
+            page.SaveRolesButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.AreEqual("The field entered must be unique.", page.AlertMessage.Text);
+            page.AlertOkButton.Click();
+            page.AddRoleName.Clear();
+            page.AddRoleName.SendKeys("e2e internal role");
+            page.RoleDescriptionTextArea.Clear();
+            page.RoleDescriptionTextArea.SendKeys("e2e internal role description");
+            Assert.IsTrue(page.InternalRadioButton.IsChecked);
+            Assert.IsFalse(page.ExternalRadioButton.IsChecked);
+            Assert.IsFalse(page.InternalRadioButton.IsDisabled);
+            Assert.IsFalse(page.ExternalRadioButton.IsDisabled);
+            page.SaveRolesButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.AreEqual("e2e internal role",page.RoleName.Value());
+            Assert.AreEqual("e2e internal role description", page.RoleDescriptionTextArea.Value());
+            Assert.IsTrue(page.InternalRadioButton.IsChecked);
+            Assert.IsFalse(page.ExternalRadioButton.IsChecked);
+            Assert.IsTrue(page.InternalRadioButton.IsDisabled);
+            Assert.IsTrue(page.ExternalRadioButton.IsDisabled);
+            page.Tasks.NavigateTo();
+            var taskGrid = page.Tasks.TasksGrid;
+            page.Tasks.SearchTasks.SendKeys("Maintain Case Family");
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).Click();
+            page.WebParts.NavigateTo();
+            var webPartGrid = page.WebParts.WebPartsGrid;
+            webPartGrid.Cell(0, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            webPartGrid.Cell(2, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).Click();
+            page.Subjects.NavigateTo();
+            var subjectGrid = page.Subjects.SubjectsGrid;
+            subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            page.Tasks.NavigateTo();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Execute")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+            page.WebParts.NavigateTo();
+            Assert.IsTrue(webPartGrid.Cell(0, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(0, webPartGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsFalse(webPartGrid.Cell(0, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsTrue(webPartGrid.Cell(2, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(2, webPartGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(webPartGrid.Cell(2, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(2, webPartGrid.FindColByText("Mandatory")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            page.Subjects.NavigateTo();
+            Assert.IsTrue(subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsFalse(subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+        }
+
+        [TestCase(BrowserType.Chrome)]
+        [TestCase(BrowserType.FireFox)]
+        [TestCase(BrowserType.Ie)]
+        public void CreateExternalRole(BrowserType browserType)
+        {
+            new RolesDbSetup().SetupData();
+            var driver = BrowserProvider.Get(browserType);
+            SignIn(driver, "/#/user-configuration/roles");
+            var page = new RolesPageObject(driver);
+            driver.WaitForAngularWithTimeout();
+            page.AddButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            page.AddRoleName.SendKeys("e2e role external");
+            page.RoleDescriptionTextArea.SendKeys("e2e external description");
+            page.ExternalRadioButton.Click();
+            Assert.IsFalse(page.InternalRadioButton.IsChecked);
+            Assert.IsFalse(page.InternalRadioButton.IsDisabled);
+            Assert.IsFalse(page.ExternalRadioButton.IsDisabled);
+            page.SaveRolesButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.AreEqual("The field entered must be unique.", page.AlertMessage.Text);
+            page.AlertOkButton.Click();
+            page.AddRoleName.Clear();
+            page.AddRoleName.SendKeys("e2e external role");
+            page.RoleDescriptionTextArea.Clear();
+            page.RoleDescriptionTextArea.SendKeys("e2e external role description");
+            page.ExternalRadioButton.Click();
+            Assert.IsFalse(page.InternalRadioButton.IsChecked);
+            Assert.IsFalse(page.InternalRadioButton.IsDisabled);
+            Assert.IsFalse(page.ExternalRadioButton.IsDisabled);
+            page.SaveRolesButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.AreEqual("e2e external role", page.RoleName.Value());
+            Assert.AreEqual("e2e external role description", page.RoleDescriptionTextArea.Value());
+            Assert.IsFalse(page.InternalRadioButton.IsChecked);
+            Assert.IsTrue(page.ExternalRadioButton.IsChecked);
+            Assert.IsTrue(page.InternalRadioButton.IsDisabled);
+            Assert.IsTrue(page.ExternalRadioButton.IsDisabled);
+            page.Tasks.NavigateTo();
+            var taskGrid = page.Tasks.TasksGrid;
+            page.Tasks.SearchTasks.SendKeys("Maintain Activity Template");
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).Click();
+            taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).Click();
+            page.WebParts.NavigateTo();
+            var webPartGrid = page.WebParts.WebPartsGrid;
+            webPartGrid.Cell(0, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            webPartGrid.Cell(2, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).Click();
+            page.Subjects.NavigateTo();
+            var subjectGrid = page.Subjects.SubjectsGrid;
+            subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).Click();
+            page.SaveButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            page.Tasks.NavigateTo();
+            page.Tasks.SearchButton.ClickWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+            page.WebParts.NavigateTo();
+            Assert.IsTrue(webPartGrid.Cell(0, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(0, webPartGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsFalse(webPartGrid.Cell(0, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsFalse(webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(1, webPartGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsFalse(webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(1, webPartGrid.FindColByText("Mandatory")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+            Assert.IsTrue(webPartGrid.Cell(2, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(2, webPartGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(webPartGrid.Cell(2, webPartGrid.FindColByText("Mandatory")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(2, webPartGrid.FindColByText("Mandatory")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            page.Subjects.NavigateTo();
+            Assert.IsTrue(subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsFalse(subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(subjectGrid.Cell(1, subjectGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:indeterminate")).Displayed);
+        }
+
+        [TestCase(BrowserType.Chrome)]
+        [TestCase(BrowserType.FireFox)]
+        [TestCase(BrowserType.Ie)]
+        public void DuplicateRole(BrowserType browserType)
+        {
+            new RolesDbSetup().SetupData();
+            var driver = BrowserProvider.Get(browserType);
+            SignIn(driver, "/#/user-configuration/roles");
+            var page = new RolesPageObject(driver);
+            driver.WaitForAngularWithTimeout();
+            page.RoleName.SendKeys("e2e role internal");
+            page.SearchButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            var grid = page.ResultGrid;
+            Assert.AreEqual(1, grid.Rows.Count, "1 record is returned by search");
+            grid.Cell(0, 0).FindElement(By.TagName("ipx-checkbox")).Click();
+            grid.ActionMenu.OpenOrClose();
+            page.DuplicateButton.Click();
+            driver.WaitForAngularWithTimeout();
+            page.AddRoleName.SendKeys("e2e role internal");
+            page.RoleDescriptionTextArea.SendKeys("e2e internal role description");
+            Assert.IsTrue(page.InternalRadioButton.IsChecked);
+            Assert.IsFalse(page.ExternalRadioButton.IsChecked);
+            Assert.IsTrue(page.InternalRadioButton.IsDisabled);
+            Assert.IsTrue(page.ExternalRadioButton.IsDisabled);
+            page.SaveRolesButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.AreEqual("The field entered must be unique.", page.AlertMessage.Text);
+            page.AlertOkButton.Click();
+            page.AddRoleName.Clear();
+            page.AddRoleName.SendKeys("e2e internal duplicate");
+            page.RoleDescriptionTextArea.Clear();
+            page.RoleDescriptionTextArea.SendKeys("e2e internal duplicate role description");
+            Assert.IsTrue(page.InternalRadioButton.IsChecked);
+            Assert.IsFalse(page.ExternalRadioButton.IsChecked);
+            Assert.IsTrue(page.InternalRadioButton.IsDisabled);
+            Assert.IsTrue(page.ExternalRadioButton.IsDisabled);
+            page.SaveRolesButton.ClickWithTimeout();
+            driver.WaitForAngularWithTimeout();
+            Assert.AreEqual("Your changes have been successfully saved.", page.SuccessMessage.Text, "The changes have been successfully saved.");
+            driver.WaitForAngularWithTimeout();
+            driver.WaitForGridLoader();
+            Assert.AreEqual("e2e internal duplicate",page.RoleName.Value());
+            Assert.AreEqual("e2e internal duplicate role description", page.RoleDescriptionTextArea.Value());
+            Assert.IsTrue(page.InternalRadioButton.IsChecked);
+            Assert.IsFalse(page.ExternalRadioButton.IsChecked);
+            Assert.IsTrue(page.InternalRadioButton.IsDisabled);
+            Assert.IsTrue(page.ExternalRadioButton.IsDisabled);
+            page.Tasks.NavigateTo();
+            var taskGrid = page.Tasks.TasksGrid;
+            page.Tasks.ToggleDescriptionColumn.WithJs().Click();
+            driver.WaitForAngularWithTimeout();
+            page.Tasks.TogglePermissionSets.WithJs().Click();
+            driver.WaitForAngularWithTimeout();
+            Assert.AreEqual(1, taskGrid.Rows.Count, "1 record is returned in the grid");
+            Assert.IsTrue(taskGrid.HeaderColumnsText.Contains("Task Description"));
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Insert")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Update")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(taskGrid.Cell(0, taskGrid.FindColByText("Delete")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            page.WebParts.NavigateTo();
+            driver.WaitForAngularWithTimeout();
+            var webPartGrid = page.WebParts.WebPartsGrid;
+            Assert.IsTrue(webPartGrid.HeaderColumnsText.Contains("Web Part Description"));
+            Assert.IsTrue(webPartGrid.Cell(0, webPartGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(0, webPartGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+            page.Subjects.NavigateTo();
+            driver.WaitForAngularWithTimeout();
+            var subjectGrid = page.Subjects.SubjectsGrid;
+            Assert.IsTrue(subjectGrid.Cell(0, subjectGrid.FindColByText("Access")).FindElement(By.TagName("input")).IsChecked());
+            Assert.IsTrue(webPartGrid.Cell(0, webPartGrid.FindColByText("Access")).FindElement(By.CssSelector(".cbxMultiState:checked")).Displayed);
+        }
+    }
+}

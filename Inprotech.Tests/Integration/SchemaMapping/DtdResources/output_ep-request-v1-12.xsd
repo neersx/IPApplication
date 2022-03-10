@@ -1,0 +1,1743 @@
+<?xml version='1.0' encoding='utf-8'?>
+<schema xmlns = 'http://www.w3.org/2001/XMLSchema' targetNamespace = 'http://tempuri.org/a' xmlns:t = 'http://tempuri.org/a' >
+ <element name='ep-request'>
+  <complexType>
+   <choice>
+    <sequence>
+     <element minOccurs='0' maxOccurs='1' ref='t:file-reference-id'/>
+     <element ref='t:request-petition'/>
+     <element minOccurs='0' maxOccurs='unbounded' ref='t:invention-title'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:ep-previously-filed-application'/>
+     <element ref='t:parties'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:designation-of-states'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:priority-claims'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:search-authority'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:declarations'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:check-list'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:figure-to-publish'/>
+     <element maxOccurs='unbounded' ref='t:ep-language-of-filing'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:signatories'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:dtext'/>
+     <element ref='t:ep-office-specific-data'/>
+    </sequence>
+    <element maxOccurs='unbounded' ref='t:doc-page'/>
+   </choice>
+   <attribute name='lang' type='string' use='required'/>
+   <attribute name='dtd-version' type='string'/>
+   <attribute name='file' type='string'/>
+   <attribute name='status' type='string'/>
+   <attribute name='date-produced' type='string'/>
+   <attribute name='ro' type='string' use='required'/>
+   <attribute name='produced-by' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='applicant'/>
+      <enumeration value='RO'/>
+      <enumeration value='ISA'/>
+      <enumeration value='IPEA'/>
+      <enumeration value='IB'/>
+      <enumeration value='DO'/>
+      <enumeration value='EO'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='file-reference-id' type='string'>
+ </element>
+
+ <element name='request-petition' type='string'>
+ </element>
+
+ <element name='invention-title'>
+  <complexType mixed='true'>
+   <choice minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:b'/>
+    <element ref='t:i'/>
+    <element ref='t:u'/>
+    <element ref='t:sup'/>
+    <element ref='t:sub'/>
+   </choice>
+   <attribute name='id' type='ID'/>
+   <attribute name='lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='b'>
+  <complexType mixed='true'>
+   <choice minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:i'/>
+    <element ref='t:u'/>
+    <element ref='t:smallcaps'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='i'>
+  <complexType mixed='true'>
+   <choice minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:b'/>
+    <element ref='t:u'/>
+    <element ref='t:smallcaps'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='u'>
+  <complexType mixed='true'>
+   <choice minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:b'/>
+    <element ref='t:i'/>
+    <element ref='t:smallcaps'/>
+   </choice>
+   <attribute name='style' default="single">
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='single'/>
+      <enumeration value='double'/>
+      <enumeration value='dash'/>
+      <enumeration value='dots'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='smallcaps'>
+  <complexType mixed='true'>
+   <choice minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:b'/>
+    <element ref='t:u'/>
+    <element ref='t:i'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='sup'>
+  <complexType mixed='true'>
+   <choice minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:b'/>
+    <element ref='t:u'/>
+    <element ref='t:i'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='sub'>
+  <complexType mixed='true'>
+   <choice minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:b'/>
+    <element ref='t:u'/>
+    <element ref='t:i'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='ep-previously-filed-application'>
+  <complexType>
+   <sequence>
+    <element ref='t:document-id'/>
+   </sequence>
+   <attribute name='filing-date' type='string' use='required'/>
+   <attribute name='ep-document-type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='patent'/>
+      <enumeration value='provisional'/>
+      <enumeration value='utility'/>
+      <enumeration value='PCT'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='replaces-claims' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='number-of-claims' type='string' use='required'/>
+   <attribute name='contains-sequence-listing' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='is-also-priority' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='certified-copy'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='attached'/>
+      <enumeration value='later'/>
+      <enumeration value='available'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='parties'>
+  <complexType>
+   <sequence>
+    <element ref='t:applicants'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:inventors'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:correspondence-address'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:agents'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='applicants'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:applicant'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='applicant'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:addressbook'/>
+    <element ref='t:nationality'/>
+    <element ref='t:residence'/>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:us-rights'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:designated-states'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:designated-states-as-inventor'/>
+   </sequence>
+   <attribute name='sequence' type='string' use='required'/>
+   <attribute name='app-type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='applicant'/>
+      <enumeration value='applicant-inventor'/>
+      <enumeration value='employee'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='designation' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='all'/>
+      <enumeration value='all-except-us'/>
+      <enumeration value='us-only'/>
+      <enumeration value='as-indicated'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='addressbook'>
+  <complexType>
+   <choice>
+    <sequence>
+     <sequence>
+      <choice>
+       <element ref='t:name'/>
+       <sequence>
+        <element minOccurs='0' maxOccurs='1' ref='t:prefix'/>
+        <choice>
+         <element ref='t:last-name'/>
+         <element ref='t:orgname'/>
+        </choice>
+        <element minOccurs='0' maxOccurs='1' ref='t:first-name'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:middle-name'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:suffix'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:iid'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:role'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:orgname'/>
+        <element minOccurs='0' maxOccurs='1' ref='t:department'/>
+        <element minOccurs='0' maxOccurs='unbounded' ref='t:synonym'/>
+       </sequence>
+      </choice>
+      <element minOccurs='0' maxOccurs='1' ref='t:registered-number'/>
+     </sequence>
+     <element ref='t:address'/>
+     <element minOccurs='0' maxOccurs='unbounded' ref='t:phone'/>
+     <element minOccurs='0' maxOccurs='unbounded' ref='t:fax'/>
+     <element minOccurs='0' maxOccurs='unbounded' ref='t:email'/>
+     <element minOccurs='0' maxOccurs='unbounded' ref='t:url'/>
+     <element minOccurs='0' maxOccurs='unbounded' ref='t:ead'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:dtext'/>
+    </sequence>
+    <element ref='t:text'/>
+   </choice>
+   <attribute name='lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='name'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='name-type'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='legal'/>
+      <enumeration value='natural'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='prefix' type='string'>
+ </element>
+
+ <element name='last-name' type='string'>
+ </element>
+
+ <element name='orgname' type='string'>
+ </element>
+
+ <element name='first-name' type='string'>
+ </element>
+
+ <element name='middle-name' type='string'>
+ </element>
+
+ <element name='suffix' type='string'>
+ </element>
+
+ <element name='iid' type='string'>
+ </element>
+
+ <element name='role' type='string'>
+ </element>
+
+ <element name='department' type='string'>
+ </element>
+
+ <element name='synonym' type='string'>
+ </element>
+
+ <element name='registered-number' type='string'>
+ </element>
+
+ <element name='address'>
+  <complexType>
+   <choice>
+    <sequence>
+     <element minOccurs='0' maxOccurs='1' ref='t:address-1'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:address-2'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:address-3'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:mailcode'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:pobox'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:room'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:address-floor'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:building'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:street'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:city'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:county'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:state'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:postcode'/>
+     <element ref='t:country'/>
+    </sequence>
+    <element ref='t:text'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='address-1' type='string'>
+ </element>
+
+ <element name='address-2' type='string'>
+ </element>
+
+ <element name='address-3' type='string'>
+ </element>
+
+ <element name='mailcode' type='string'>
+ </element>
+
+ <element name='pobox' type='string'>
+ </element>
+
+ <element name='room' type='string'>
+ </element>
+
+ <element name='address-floor' type='string'>
+ </element>
+
+ <element name='building' type='string'>
+ </element>
+
+ <element name='street' type='string'>
+ </element>
+
+ <element name='city' type='string'>
+ </element>
+
+ <element name='county' type='string'>
+ </element>
+
+ <element name='state' type='string'>
+ </element>
+
+ <element name='postcode' type='string'>
+ </element>
+
+ <element name='country' type='string'>
+ </element>
+
+ <element name='text' type='string'>
+ </element>
+
+ <element name='phone' type='string'>
+ </element>
+
+ <element name='fax' type='string'>
+ </element>
+
+ <element name='email' type='string'>
+ </element>
+
+ <element name='url' type='string'>
+ </element>
+
+ <element name='ead' type='string'>
+ </element>
+
+ <element name='dtext' type='string'>
+ </element>
+
+ <element name='nationality'>
+  <complexType>
+   <sequence>
+    <element ref='t:country'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='residence'>
+  <complexType>
+   <sequence>
+    <element ref='t:country'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='us-rights'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='to-dead-inventor' type='string' use='required'/>
+   <attribute name='kind' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='heir'/>
+      <enumeration value='heiress'/>
+      <enumeration value='executor'/>
+      <enumeration value='executrix'/>
+      <enumeration value='estate'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='designated-states'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:country'/>
+    <sequence minOccurs='0' maxOccurs='1'>
+     <element ref='t:region'/>
+     <element minOccurs='0' maxOccurs='unbounded' ref='t:country'/>
+    </sequence>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='region'>
+  <complexType>
+   <sequence>
+    <element ref='t:country'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='designated-states-as-inventor'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:country'/>
+    <sequence minOccurs='0' maxOccurs='unbounded'>
+     <element ref='t:region'/>
+     <element maxOccurs='unbounded' ref='t:country'/>
+    </sequence>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='inventors'>
+  <complexType>
+   <choice maxOccurs='unbounded'>
+    <element ref='t:ep-inventor'/>
+    <element ref='t:deceased-inventor'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='ep-inventor'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:addressbook'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:designated-states'/>
+   </sequence>
+   <attribute name='sequence' type='string' use='required'/>
+   <attribute name='designation'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='all'/>
+      <enumeration value='all-except-us'/>
+      <enumeration value='us-only'/>
+      <enumeration value='as-indicated'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='waiver' type='string'/>
+   <attribute name='renunciation' type='string'/>
+   <attribute name='inv-rights'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='employee'/>
+      <enumeration value='successor'/>
+      <enumeration value='under-agreement'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='inv-rights-date' type='string'/>
+   <attribute name='deceased'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='deceased-inventor'>
+  <complexType>
+   <sequence>
+    <choice>
+     <element ref='t:name'/>
+     <sequence>
+      <element minOccurs='0' maxOccurs='1' ref='t:prefix'/>
+      <choice>
+       <element ref='t:last-name'/>
+       <element ref='t:orgname'/>
+      </choice>
+      <element minOccurs='0' maxOccurs='1' ref='t:first-name'/>
+      <element minOccurs='0' maxOccurs='1' ref='t:middle-name'/>
+      <element minOccurs='0' maxOccurs='1' ref='t:suffix'/>
+      <element minOccurs='0' maxOccurs='1' ref='t:iid'/>
+      <element minOccurs='0' maxOccurs='1' ref='t:role'/>
+      <element minOccurs='0' maxOccurs='1' ref='t:orgname'/>
+      <element minOccurs='0' maxOccurs='1' ref='t:department'/>
+      <element minOccurs='0' maxOccurs='unbounded' ref='t:synonym'/>
+     </sequence>
+    </choice>
+    <element minOccurs='0' maxOccurs='1' ref='t:registered-number'/>
+   </sequence>
+   <attribute name='lang' type='string'/>
+   <attribute name='sequence' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='correspondence-address'>
+  <complexType>
+   <choice>
+    <element ref='t:customer-number'/>
+    <element maxOccurs='unbounded' ref='t:addressbook'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='customer-number' type='string'>
+ </element>
+
+ <element name='agents'>
+  <complexType>
+   <choice>
+    <element ref='t:customer-number'/>
+    <element maxOccurs='unbounded' ref='t:ep-agent'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='ep-agent'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:addressbook'/>
+   </sequence>
+   <attribute name='sequence' type='string' use='required'/>
+   <attribute name='rep-type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='agent'/>
+      <enumeration value='attorney'/>
+      <enumeration value='common-representative'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='ep-authorisation'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='filed-not-yet-registered'/>
+      <enumeration value='registered'/>
+      <enumeration value='attached'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='general_authorisation_number' type='string'/>
+   <attribute name='ep-association-number' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='designation-of-states'>
+  <complexType>
+   <sequence>
+    <element ref='t:designation-pct'/>
+    <sequence minOccurs='0' maxOccurs='1'>
+     <element ref='t:precautionary-designation-statement'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:exclusion-from-designation'/>
+    </sequence>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='designation-pct'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:regional'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:national'/>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:new-designation-country'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='regional'>
+  <complexType>
+   <sequence>
+    <element ref='t:region'/>
+    <sequence maxOccurs='unbounded'>
+     <element ref='t:country'/>
+     <element minOccurs='0' maxOccurs='unbounded' ref='t:protection-request'/>
+    </sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:any-other-state'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='protection-request'>
+  <complexType>
+   <sequence>
+    <element ref='t:kind-of-protection'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:document-id'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='kind-of-protection' type='string'>
+ </element>
+
+ <element name='document-id'>
+  <complexType>
+   <sequence>
+    <element ref='t:country'/>
+    <element ref='t:doc-number'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:kind'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:name'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:date'/>
+   </sequence>
+   <attribute name='lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='doc-number' type='string'>
+ </element>
+
+ <element name='kind' type='string'>
+ </element>
+
+ <element name='date' type='string'>
+ </element>
+
+ <element name='any-other-state'>
+  <complexType/>
+ </element>
+
+ <element name='national'>
+  <complexType>
+   <sequence maxOccurs='unbounded'>
+    <element ref='t:country'/>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:protection-request'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='new-designation-country' type='string'>
+ </element>
+
+ <element name='precautionary-designation-statement' type='string'>
+ </element>
+
+ <element name='exclusion-from-designation'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:regional'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:national'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='priority-claims'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:ep-priority-claim'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ep-priority-claim'>
+  <complexType>
+   <sequence>
+    <element ref='t:country'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:doc-number'/>
+    <element ref='t:date'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:office-of-filing'/>
+    <choice minOccurs='0' maxOccurs='1'>
+     <element ref='t:priority-doc-requested'/>
+     <element ref='t:priority-doc-attached'/>
+    </choice>
+    <element minOccurs='0' maxOccurs='1' ref='t:earlier-searches'/>
+   </sequence>
+   <attribute name='sequence' type='string' use='required'/>
+   <attribute name='kind' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='national'/>
+      <enumeration value='regional'/>
+      <enumeration value='international'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='ep-document-type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='patent'/>
+      <enumeration value='provisional'/>
+      <enumeration value='utility'/>
+      <enumeration value='PCT'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='translation' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='office-of-filing'>
+  <complexType>
+   <choice>
+    <sequence>
+     <element ref='t:region'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:country'/>
+    </sequence>
+    <element ref='t:country'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='priority-doc-requested'>
+  <complexType/>
+ </element>
+
+ <element name='priority-doc-attached'>
+  <complexType/>
+ </element>
+
+ <element name='earlier-searches'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:earlier-search'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='earlier-search'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:application-reference'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:date-search-completed'/>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:doc-page'/>
+   </sequence>
+   <attribute name='id' type='ID'/>
+   <attribute name='office' type='string' use='required'/>
+   <attribute name='search-type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='international-type'/>
+      <enumeration value='isr'/>
+      <enumeration value='sisr'/>
+      <enumeration value='national'/>
+      <enumeration value='national-supplementary'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='declaration-of-no-search' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+      <enumeration value='not-determined'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='application-reference'>
+  <complexType>
+   <sequence>
+    <element ref='t:document-id'/>
+   </sequence>
+   <attribute name='id' type='ID'/>
+   <attribute name='appl-type' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='date-search-completed'>
+  <complexType>
+   <sequence>
+    <element ref='t:date'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='search-authority'>
+  <complexType>
+   <sequence>
+    <element ref='t:isa'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:earlier-search-request'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='isa'>
+  <complexType>
+   <sequence>
+    <element ref='t:country'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='earlier-search-request'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:document-id'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='declarations'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:declaration1'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:declaration2'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:declaration3'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:declaration4'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:declaration5'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='declaration1'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='declaration2'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='declaration3'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='declaration4'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='declaration5'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='check-list'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-request'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-description'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-claims'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-abstract'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-drawings'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-sequence-listing'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-fee-calculation'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-separate-power-of-attorney'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-general-power-of-attorney'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-copy-general-power-of-attorney'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-lack-of-signature'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-priority-document'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-translation-of-application'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:cl-biological-material'/>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:cl-other-document'/>
+   </sequence>
+   <attribute name='total-page-count' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='cl-request'>
+  <complexType>
+   <attribute name='page-count' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='cl-description'>
+  <complexType>
+   <attribute name='page-count' type='string'/>
+   <attribute name='ppf' type='string'/>
+   <attribute name='ppl' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='cl-claims'>
+  <complexType>
+   <attribute name='page-count' type='string'/>
+   <attribute name='number-of-claims' type='string'/>
+   <attribute name='number-claims-fee-calculation' type='string'/>
+   <attribute name='ppf' type='string'/>
+   <attribute name='ppl' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='cl-abstract'>
+  <complexType>
+   <attribute name='page-count' type='string'/>
+   <attribute name='ppf' type='string'/>
+   <attribute name='ppl' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='cl-drawings'>
+  <complexType>
+   <attribute name='page-count' type='string'/>
+   <attribute name='ppf' type='string'/>
+   <attribute name='ppl' type='string'/>
+   <attribute name='fig-count' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='cl-sequence-listing'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+   <attribute name='page-count' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='cl-fee-calculation'>
+  <complexType/>
+ </element>
+
+ <element name='cl-separate-power-of-attorney'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='cl-general-power-of-attorney'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='cl-copy-general-power-of-attorney'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:ref-number'/>
+   </sequence>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ref-number' type='string'>
+ </element>
+
+ <element name='cl-lack-of-signature'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='cl-priority-document'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:sequence-number'/>
+   </sequence>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='sequence-number' type='string'>
+ </element>
+
+ <element name='cl-translation-of-application'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+   <attribute name='lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='cl-biological-material'>
+  <complexType>
+   <attribute name='quantity' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='cl-other-document'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='page-count' type='string'/>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='figure-to-publish'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:fig-number'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='fig-number' type='string'>
+ </element>
+
+ <element name='ep-language-of-filing'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='lang-code' type='string'/>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='signatories'>
+  <complexType>
+   <sequence>
+    <element maxOccurs='unbounded' ref='t:signatory'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='signatory'>
+  <complexType>
+   <sequence>
+    <sequence>
+     <choice>
+      <element ref='t:name'/>
+      <sequence>
+       <element minOccurs='0' maxOccurs='1' ref='t:prefix'/>
+       <choice>
+        <element ref='t:last-name'/>
+        <element ref='t:orgname'/>
+       </choice>
+       <element minOccurs='0' maxOccurs='1' ref='t:first-name'/>
+       <element minOccurs='0' maxOccurs='1' ref='t:middle-name'/>
+       <element minOccurs='0' maxOccurs='1' ref='t:suffix'/>
+       <element minOccurs='0' maxOccurs='1' ref='t:iid'/>
+       <element minOccurs='0' maxOccurs='1' ref='t:role'/>
+       <element minOccurs='0' maxOccurs='1' ref='t:orgname'/>
+       <element minOccurs='0' maxOccurs='1' ref='t:department'/>
+       <element minOccurs='0' maxOccurs='unbounded' ref='t:synonym'/>
+      </sequence>
+     </choice>
+     <element minOccurs='0' maxOccurs='1' ref='t:registered-number'/>
+    </sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:address'/>
+    <element ref='t:electronic-signature'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:signatory-capacity'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='electronic-signature'>
+  <complexType>
+   <choice>
+    <element ref='t:basic-signature'/>
+    <element ref='t:enhanced-signature'/>
+   </choice>
+   <attribute name='date' type='string' use='required'/>
+   <attribute name='place-signed' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='basic-signature'>
+  <complexType>
+   <choice>
+    <element ref='t:fax-image'/>
+    <element ref='t:text-string'/>
+    <element ref='t:click-wrap'/>
+   </choice>
+  </complexType>
+ </element>
+
+ <element name='fax-image'>
+  <complexType>
+   <attribute name='file' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='text-string' type='string'>
+ </element>
+
+ <element name='click-wrap'>
+  <complexType/>
+ </element>
+
+ <element name='enhanced-signature'>
+  <complexType>
+   <sequence>
+    <element ref='t:pkcs7'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='pkcs7'>
+  <complexType/>
+ </element>
+
+ <element name='signatory-capacity' type='string'>
+ </element>
+
+ <element name='ep-office-specific-data'>
+  <complexType>
+   <sequence>
+    <element ref='t:ep-designated-states'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:ep-divisional-appl'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:ep-request-for-exam-art94'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:ep-art61-appl'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:ep-declarations'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:ep-fax'/>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:ep-biological-material'/>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:ep-electronic-files'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:ep-financial-data'/>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:ep-notes-to-EPO'/>
+   </sequence>
+   <attribute name='office' type='string' use='required'/>
+   <attribute name='office-dtd' type='string'/>
+   <attribute name='file' type='string'/>
+   <attribute name='id' type='string'/>
+   <attribute name='lang' type='string' use='required'/>
+   <attribute name='status' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='ep-designated-states'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:country'/>
+    <sequence minOccurs='0' maxOccurs='1'>
+     <element ref='t:region'/>
+     <element minOccurs='0' maxOccurs='unbounded' ref='t:country'/>
+    </sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:extension-states'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:validation-states'/>
+   </sequence>
+   <attribute name='waiver-communication-and-processing-of-non-designated-states' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='extension-states'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:country'/>
+    <sequence minOccurs='0' maxOccurs='1'>
+     <element ref='t:region'/>
+     <element minOccurs='0' maxOccurs='unbounded' ref='t:country'/>
+    </sequence>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='validation-states'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:country'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ep-divisional-appl'>
+  <complexType>
+   <sequence>
+    <element ref='t:parent-doc'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:ep-earliest-doc'/>
+    <choice minOccurs='0' maxOccurs='1'>
+     <element ref='t:ep-first-communication-raising-lack-of-unity'/>
+     <element ref='t:ep-first-communication'/>
+     <element ref='t:ep-no-communication'/>
+    </choice>
+    <element minOccurs='0' maxOccurs='1' ref='t:ep-divisional-generation'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='parent-doc'>
+  <complexType>
+   <sequence>
+    <element ref='t:document-id'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ep-first-communication-raising-lack-of-unity'>
+  <complexType>
+   <sequence>
+    <element ref='t:date'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ep-earliest-doc'>
+  <complexType>
+   <sequence>
+    <element ref='t:document-id'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ep-first-communication'>
+  <complexType>
+   <sequence>
+    <element ref='t:date'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ep-no-communication'>
+  <complexType/>
+ </element>
+
+ <element name='ep-divisional-generation'>
+  <complexType>
+   <attribute name='generation' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='1'/>
+      <enumeration value='2'/>
+      <enumeration value='3'/>
+      <enumeration value='4'/>
+      <enumeration value='5'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='ep-request-for-exam-art94'>
+  <complexType>
+   <attribute name='lang' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ep-art61-appl' type='string'>
+ </element>
+
+ <element name='ep-declarations'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:waiver-to-indicate-further-processing'/>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:request-re-establishment'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:declaration-complete-translation-of-priority'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:declaration-no-intention-to-file-further-priority'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:declaration-intention-to-file-claims-later'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:declaration-translation-filed-later'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:declaration-of-entity-or-natural-person-under-rule-6-3'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='waiver-to-indicate-further-processing'>
+  <complexType/>
+ </element>
+
+ <element name='request-re-establishment'>
+  <complexType>
+   <sequence>
+    <element ref='t:document-id'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='declaration-complete-translation-of-priority'>
+  <complexType>
+   <sequence>
+    <element ref='t:document-id'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='declaration-no-intention-to-file-further-priority'>
+  <complexType/>
+ </element>
+
+ <element name='declaration-intention-to-file-claims-later'>
+  <complexType/>
+ </element>
+
+ <element name='declaration-translation-filed-later'>
+  <complexType/>
+ </element>
+
+ <element name='declaration-of-entity-or-natural-person-under-rule-6-3'>
+  <complexType/>
+ </element>
+
+ <element name='ep-fax'>
+  <complexType>
+   <sequence>
+    <element ref='t:date'/>
+   </sequence>
+   <attribute name='office-name' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='ep-biological-material'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:depositary'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:bio-accno'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:bio-receipt'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:bio-authorization'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:bio-waiver'/>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:ep-biological-material-reference'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:bio-other-deposant'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:bio-restriction-to-expert'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:dtext'/>
+   </sequence>
+   <attribute name='id' type='ID'/>
+   <attribute name='num' type='string'/>
+   <attribute name='url' type='string'/>
+   <attribute name='dnum' type='string'/>
+   <attribute name='bio-info'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='1'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='depositary'>
+  <complexType mixed='true'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:address'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='bio-accno' type='string'>
+ </element>
+
+ <element name='bio-receipt'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='will-be-filed-later' default="no">
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='bio-authorization'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='will-be-filed-later' default="no">
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='bio-waiver' type='string'>
+ </element>
+
+ <element name='ep-biological-material-reference'>
+  <complexType>
+   <sequence>
+    <element ref='t:ep-bio-references-page'/>
+    <element ref='t:ep-bio-references-lines'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='ep-bio-references-page' type='string'>
+ </element>
+
+ <element name='ep-bio-references-lines' type='string'>
+ </element>
+
+ <element name='bio-other-deposant' type='string'>
+ </element>
+
+ <element name='bio-restriction-to-expert'>
+  <complexType/>
+ </element>
+
+ <element name='ep-electronic-files'>
+  <complexType>
+   <choice>
+    <sequence>
+     <element ref='t:applicant-file-name'/>
+     <element minOccurs='0' maxOccurs='1' ref='t:epo-file-name'/>
+    </sequence>
+    <element ref='t:epo-file-name'/>
+   </choice>
+   <attribute name='doc-type' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='applicant-file-name' type='string'>
+ </element>
+
+ <element name='epo-file-name' type='string'>
+ </element>
+
+ <element name='ep-financial-data'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:mode-of-payment'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:reimbursement'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:sr-refund'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:addcopies'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:fees'/>
+   </sequence>
+   <attribute name='curr' type='string' use='required'/>
+   <attribute name='fee-amounts-unlocked-by-user'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='mode-of-payment'>
+  <complexType mixed='true'>
+   <sequence minOccurs='0' maxOccurs='unbounded'>
+    <element ref='t:cheque-info'/>
+   </sequence>
+   <attribute name='accno' type='string' use='required'/>
+   <attribute name='mode-type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='auto'/>
+      <enumeration value='deposit'/>
+      <enumeration value='batch'/>
+      <enumeration value='bank'/>
+      <enumeration value='giro'/>
+      <enumeration value='cheque'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='currency' type='string'/>
+   <attribute name='deferred-execution-date' type='string'/>
+  </complexType>
+ </element>
+
+ <element name='cheque-info'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='chequeno' type='string' use='required'/>
+   <attribute name='amount' type='string' use='required'/>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='reimbursement'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='accno' type='string' use='required'/>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='sr-refund' type='string'>
+ </element>
+
+ <element name='addcopies' type='string'>
+ </element>
+
+ <element name='fees'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:standard-fee'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:other-fee'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:additional-fee'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:fee-calc-info'/>
+    <element ref='t:fee-total-amount'/>
+   </sequence>
+   <attribute name='date' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='standard-fee'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:fee'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='fee'>
+  <complexType>
+   <sequence>
+    <element ref='t:type-of-fee'/>
+    <element ref='t:fee-factor'/>
+    <element ref='t:fee-schedule'/>
+    <element ref='t:fee-sub-amount'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:fee-reduction-factor'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:fee-reduction-amount'/>
+   </sequence>
+   <attribute name='index' type='string' use='required'/>
+   <attribute name='topay' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='yes'/>
+      <enumeration value='no'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='type-of-fee' type='string'>
+ </element>
+
+ <element name='fee-factor'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='user-input' type='string'/>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='fee-schedule' type='string'>
+ </element>
+
+ <element name='fee-sub-amount' type='string'>
+ </element>
+
+ <element name='fee-reduction-factor'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='user-input' type='string'/>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='fee-reduction-amount'>
+  <complexType>
+  <simpleContent>
+  <extension base='string'>
+   <attribute name='user-input' type='string'/>
+   </extension>
+   </simpleContent>
+  </complexType>
+ </element>
+
+ <element name='other-fee'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:fee'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='additional-fee'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='unbounded' ref='t:fee'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='fee-calc-info'>
+  <complexType>
+   <sequence>
+    <element ref='t:search-region'/>
+    <element ref='t:IPEA'/>
+    <element ref='t:IPER'/>
+   </sequence>
+  </complexType>
+ </element>
+
+ <element name='search-region'>
+  <complexType>
+   <attribute name='region' default="EP">
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='Other'/>
+      <enumeration value='EP'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='IPEA'>
+  <complexType>
+   <attribute name='ipea' default="EP">
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='EP'/>
+      <enumeration value='other'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='IPER'>
+  <complexType>
+   <attribute name='iper-type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='rational'/>
+      <enumeration value='detailed'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+
+ <element name='fee-total-amount' type='string'>
+ </element>
+
+ <element name='ep-notes-to-EPO'>
+  <complexType>
+   <sequence>
+    <element minOccurs='0' maxOccurs='1' ref='t:author'/>
+    <element minOccurs='0' maxOccurs='1' ref='t:subject'/>
+    <element ref='t:date'/>
+    <element ref='t:dtext'/>
+   </sequence>
+   <attribute name='id' type='ID'/>
+   <attribute name='page' type='string' use='required'/>
+  </complexType>
+ </element>
+
+ <element name='author' type='string'>
+ </element>
+
+ <element name='subject' type='string'>
+ </element>
+
+ <element name='doc-page'>
+  <complexType>
+   <attribute name='id' type='ID'/>
+   <attribute name='he' type='NMTOKEN' use='required'/>
+   <attribute name='wi' type='NMTOKEN' use='required'/>
+   <attribute name='type' use='required'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='jpg'/>
+      <enumeration value='pdf'/>
+      <enumeration value='tif'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='alt' type='string'/>
+   <attribute name='pp' type='string'/>
+   <attribute name='ppf' type='string'/>
+   <attribute name='ppl' type='string'/>
+   <attribute name='file' type='string' use='required'/>
+   <attribute name='color'>
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='color'/>
+      <enumeration value='bw'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+   <attribute name='orientation' default="portrait">
+    <simpleType>
+     <restriction base='string'>
+      <enumeration value='portrait'/>
+      <enumeration value='landscape'/>
+     </restriction>
+    </simpleType>
+   </attribute>
+  </complexType>
+ </element>
+</schema>

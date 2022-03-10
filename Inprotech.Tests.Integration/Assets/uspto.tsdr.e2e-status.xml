@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Transaction xmlns="http://www.cpasoftwaresolutions.com">
+  <TransactionHeader>
+    <SenderDetails>
+      <SenderRequestType>Extract Cases Response</SenderRequestType>
+      <SenderRequestIdentifier>12dca2c3-fa75-44fd-8ae5-4d504e06a187</SenderRequestIdentifier>
+      <Sender>USPTO.TSDR</Sender>
+      <SenderXSDVersion>1.5</SenderXSDVersion>
+      <SenderSoftware>
+        <SenderSoftwareName>Inprotech.DataExtract</SenderSoftwareName>
+        <SenderSoftwareVersion>1.0.0.0</SenderSoftwareVersion>
+      </SenderSoftware>
+      <SenderFilename>cpa-xml-130692919310199551.xml</SenderFilename>
+      <SenderProducedDateTime>2015-02-25T09:52:11.0199551+11:00</SenderProducedDateTime>
+    </SenderDetails>
+  </TransactionHeader>
+  <TransactionBody>
+    <TransactionIdentifier>5a9676b2-16c8-4914-9ec2-43c54d820bd1</TransactionIdentifier>
+    <TransactionContentDetails>
+      <TransactionCode>Case Import</TransactionCode>
+      <TransactionData>
+        <CaseDetails>
+          <CaseTypeCode>Property</CaseTypeCode>
+          <CasePropertyTypeCode>Trademark</CasePropertyTypeCode>
+          <CaseCountryCode>US</CaseCountryCode>
+          <CaseStatus>774</CaseStatus>
+          <DescriptionDetails>
+            <DescriptionCode>Short Title</DescriptionCode>
+            <DescriptionText>IPAD</DescriptionText>
+          </DescriptionDetails>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>Application</IdentifierNumberCode>
+            <IdentifierNumberText>77913563</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <EventDetails>
+            <EventCode>Application</EventCode>
+            <EventDate>2010-01-16</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Publication</EventCode>
+            <EventDate>2012-06-26</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Status</EventCode>
+            <EventDate>2012-10-23</EventDate>
+            <EventText>774</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>OP.IT</EventCode>
+            <EventDate>2012-10-23</EventDate>
+            <EventDescription>OPPOSITION INSTITUTED NO. 999999</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>ETOFT</EventCode>
+            <EventDate>2012-07-12</EventDate>
+            <EventDescription>EXTENSION OF TIME TO OPPOSE RECEIVED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>NPUBE</EventCode>
+            <EventDate>2012-06-26</EventDate>
+            <EventDescription>OFFICIAL GAZETTE PUBLICATION CONFIRMATION E-MAILED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>PUBOA</EventCode>
+            <EventDate>2012-06-26</EventDate>
+            <EventDescription>PUBLISHED FOR OPPOSITION</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>NONPE</EventCode>
+            <EventDate>2012-06-06</EventDate>
+            <EventDescription>NOTIFICATION OF NOTICE OF PUBLICATION E-MAILED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>PREVO</EventCode>
+            <EventDate>2012-05-22</EventDate>
+            <EventDescription>LAW OFFICE PUBLICATION REVIEW COMPLETED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>EXPTT</EventCode>
+            <EventDate>2012-05-22</EventDate>
+            <EventDescription>EXPARTE APPEAL TERMINATED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>CNSAP</EventCode>
+            <EventDate>2012-05-22</EventDate>
+            <EventDescription>APPROVED FOR PUB - PRINCIPAL REGISTER</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>TEMEI</EventCode>
+            <EventDate>2012-05-14</EventDate>
+            <EventDescription>TEAS/EMAIL CORRESPONDENCE ENTERED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>CRFAI</EventCode>
+            <EventDate>2012-05-14</EventDate>
+            <EventDescription>CORRESPONDENCE RECEIVED IN LAW OFFICE</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>ERFRI</EventCode>
+            <EventDate>2012-04-18</EventDate>
+            <EventDescription>TEAS REQUEST FOR RECONSIDERATION RECEIVED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>EXPIT</EventCode>
+            <EventDate>2012-04-18</EventDate>
+            <EventDescription>EX PARTE APPEAL-INSTITUTED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>JURTT</EventCode>
+            <EventDate>2012-04-18</EventDate>
+            <EventDescription>JURISDICTION RESTORED TO EXAMINING ATTORNEY</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>EXAFT</EventCode>
+            <EventDate>2012-04-18</EventDate>
+            <EventDescription>EXPARTE APPEAL RECEIVED AT TTAB</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>GNFNO</EventCode>
+            <EventDate>2011-10-18</EventDate>
+            <EventDescription>NOTIFICATION OF FINAL REFUSAL EMAILED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>GNFRO</EventCode>
+            <EventDate>2011-10-18</EventDate>
+            <EventDescription>FINAL REFUSAL E-MAILED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>CNFRR</EventCode>
+            <EventDate>2011-10-18</EventDate>
+            <EventDescription>FINAL REFUSAL  WRITTEN</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>DPCCD</EventCode>
+            <EventDate>2011-09-22</EventDate>
+            <EventDescription>DIVISIONAL PROCESSING COMPLETE</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>DPCCD</EventCode>
+            <EventDate>2011-09-22</EventDate>
+            <EventDescription>DIVISIONAL PROCESSING COMPLETE</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>DPCCD</EventCode>
+            <EventDate>2011-09-22</EventDate>
+            <EventDescription>DIVISIONAL PROCESSING COMPLETE</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>DRRRI</EventCode>
+            <EventDate>2010-10-25</EventDate>
+            <EventDescription>DIVISIONAL REQUEST RECEIVED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>TEMEI</EventCode>
+            <EventDate>2011-08-26</EventDate>
+            <EventDescription>TEAS/EMAIL CORRESPONDENCE ENTERED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>CRFAI</EventCode>
+            <EventDate>2011-08-26</EventDate>
+            <EventDescription>CORRESPONDENCE RECEIVED IN LAW OFFICE</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>PARII</EventCode>
+            <EventDate>2011-08-19</EventDate>
+            <EventDescription>TEAS VOLUNTARY AMENDMENT RECEIVED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>INCDO</EventCode>
+            <EventDate>2011-08-10</EventDate>
+            <EventDescription>ITU OFFICE ACTION ISSUED FOR DIVISIONAL REQUEST</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>AITUA</EventCode>
+            <EventDate>2011-08-10</EventDate>
+            <EventDescription>CASE ASSIGNED TO INTENT TO USE PARALEGAL</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>TEMEI</EventCode>
+            <EventDate>2011-07-15</EventDate>
+            <EventDescription>TEAS/EMAIL CORRESPONDENCE ENTERED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>CRFAI</EventCode>
+            <EventDate>2011-07-14</EventDate>
+            <EventDescription>CORRESPONDENCE RECEIVED IN LAW OFFICE</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>TROAI</EventCode>
+            <EventDate>2011-07-14</EventDate>
+            <EventDescription>TEAS RESPONSE TO OFFICE ACTION RECEIVED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>GNRNO</EventCode>
+            <EventDate>2011-01-14</EventDate>
+            <EventDescription>NOTIFICATION OF NON-FINAL ACTION E-MAILED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>GNRTO</EventCode>
+            <EventDate>2011-01-14</EventDate>
+            <EventDescription>NON-FINAL ACTION E-MAILED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>CNRTR</EventCode>
+            <EventDate>2011-01-14</EventDate>
+            <EventDescription>NON-FINAL ACTION  WRITTEN</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>TEMEI</EventCode>
+            <EventDate>2010-10-26</EventDate>
+            <EventDescription>TEAS/EMAIL CORRESPONDENCE ENTERED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>CRFAI</EventCode>
+            <EventDate>2010-10-25</EventDate>
+            <EventDescription>CORRESPONDENCE RECEIVED IN LAW OFFICE</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>TROAI</EventCode>
+            <EventDate>2010-10-25</EventDate>
+            <EventDescription>TEAS RESPONSE TO OFFICE ACTION RECEIVED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>ERTDI</EventCode>
+            <EventDate>2010-10-25</EventDate>
+            <EventDescription>TEAS REQUEST TO DIVIDE RECEIVED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>GNRNO</EventCode>
+            <EventDate>2010-04-23</EventDate>
+            <EventDescription>NOTIFICATION OF NON-FINAL ACTION E-MAILED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>GNRTF</EventCode>
+            <EventDate>2010-04-23</EventDate>
+            <EventDescription>NON-FINAL ACTION E-MAILED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>CNRTR</EventCode>
+            <EventDate>2010-04-23</EventDate>
+            <EventDescription>NON-FINAL ACTION  WRITTEN</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>DOCKD</EventCode>
+            <EventDate>2010-04-13</EventDate>
+            <EventDescription>ASSIGNED TO EXAMINER</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>AMPXO</EventCode>
+            <EventDate>2010-03-19</EventDate>
+            <EventDescription>APPLICANT AMENDMENT PRIOR TO EXAMINATION - ENTERED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>ALIEA</EventCode>
+            <EventDate>2010-03-19</EventDate>
+            <EventDescription>ASSIGNED TO LIE</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>PARII</EventCode>
+            <EventDate>2010-03-10</EventDate>
+            <EventDescription>TEAS VOLUNTARY AMENDMENT RECEIVED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>MPMKO</EventCode>
+            <EventDate>2010-01-23</EventDate>
+            <EventDescription>NOTICE OF PSEUDO MARK MAILED</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>NWOSI</EventCode>
+            <EventDate>2010-01-22</EventDate>
+            <EventDescription>NEW APPLICATION OFFICE SUPPLIED DATA ENTERED IN TRAM</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>NWAPI</EventCode>
+            <EventDate>2010-01-20</EventDate>
+            <EventDescription>NEW APPLICATION ENTERED IN TRAM</EventDescription>
+            <EventText>National prosecution history entry</EventText>
+          </EventDetails>
+          <NameDetails>
+            <NameTypeCode>Applicant</NameTypeCode>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <NameKind>Organisation</NameKind>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>IP Application Development LLC</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+                <Address>
+                  <FormattedAddress>
+                    <AddressStreet>2711 Centerville Road, Suite 400</AddressStreet>
+                    <AddressCity>Wilmington</AddressCity>
+                    <AddressState>DELAWARE</AddressState>
+                    <AddressPostcode>19808</AddressPostcode>
+                    <AddressCountryCode>US</AddressCountryCode>
+                  </FormattedAddress>
+                </Address>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <NameDetails>
+            <NameTypeCode>Applicant</NameTypeCode>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <NameKind>Organisation</NameKind>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>IP Application Development LLC</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+                <Address>
+                  <FormattedAddress>
+                    <AddressStreet>2711 Centerville Road, Suite 400</AddressStreet>
+                    <AddressCity>Wilmington</AddressCity>
+                    <AddressState>DELAWARE</AddressState>
+                    <AddressPostcode>19808</AddressPostcode>
+                    <AddressCountryCode>US</AddressCountryCode>
+                  </FormattedAddress>
+                </Address>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <GoodsServicesDetails>
+            <ClassificationTypeCode>Nice</ClassificationTypeCode>
+            <ClassDescriptionDetails>
+              <ClassDescription>
+                <ClassNumber>038</ClassNumber>
+                <GoodsServicesDescription>telecommunication access services; communications by computer terminals; communication services between computers, namely, electronic transmission of data and documents among users of computers; electronic sending of data and documentation via the Internet or other databases; electronic transmission of news and data; providing telecommunication access to websites and electronic news services online allowing the download of information and data; providing telecommunication access to web sites on the Internet; delivery of digital music by telecommunications; providing wireless telecommunications, namely, transmission of voice, audio, visual images, and data, via electronic communications networks; wireless digital messaging, paging services, and electronic mail services, including services that enable a user to send and/or receive messages through a wireless data network; one-way and two-way paging services; teletext, telegram transmission, and telephone services; broadcasting or transmission of radio and television programs; provision of telecommunications access and the Internet; electronic transmission of streamed and downloadable audio and video files for others via computer and other communications networks; webcasting services (transmission); delivery of messages by electronic transmission; provision of telecommunication connectivity services and access to electronic communications networks, for transmission or reception of audio, video or multimedia content; provision of telecommunications connections to electronic communication networks, for transmission or reception of audio, video or multimedia content; providing telecommunication access to digital music web sites on the Internet; providing telecommunication access to MP3 web sites on the Internet; delivery of digital music by telecommunications, namely, by electronic transmission; provision of telecommunications connections to the Internet or computer databases. electronic mail services; telecommunication of information, namely, computer aided transmission of information and images, including webpages; video broadcasting, broadcasting pre-recorded videos featuring music and entertainment, television programs, motion pictures, news, sports, games, cultural events, and entertainment-related programs of all kinds, via a global computer network; streaming of video content via a global computer network; subscription audio broadcasting via a global computer network; audio broadcasting; audio broadcasting of spoken word, music, concerts, and radio programs, broadcasting pre-recorded videos featuring music and entertainment, television programs, motion pictures, news, sports, games, cultural events, and entertainment-related programs of all kinds, via computer and other communications networks; streaming of audio content via a global computer network; electronic transmission of audio and video files via communications networks; peer-to-peer network computer services, namely, electronic transmission of music, video, and audio recordings among computers via communication networks; providing on-line bulletin boards for the transmission of messages among computer users concerning entertainment, music, concerts, videos, radio, television, film, news, sports, games and cultural events; rental of telecommunication apparatus; providing email services; news agency services for electronic transmission; telecommunications consultation; facsimile, message collection and transmission services; transmission of data and of information by electronic means, namely, by computer, cable, radio, teleprinter, teleletter, electronic mail, telecopier, television, microwave, laser beam, communications satellite or electronic communication means; electronic transmission of data, namely, transmission of data by digital audio-visual apparatus controlled by electronic data processing apparatus or computers; information, advisory and consultancy services relating to all the aforesaid. provision of telecommunication access to web-sites featuring multimedia materials; providing telecommunication access to databases and directories via communications networks for obtaining data in the fields of music, video, film, books, television, games and sports; providing users with telecommunication access time to electronic communications networks with means of identifying, locating, grouping, distributing, and managing data and links to third-party computer servers, computer processors and computer users; Internet access provider services</GoodsServicesDescription>
+                <FirstUsedDate>20130000</FirstUsedDate>
+                <FirstUsedDateInCommerce>20131200</FirstUsedDateInCommerce>
+              </ClassDescription>
+            </ClassDescriptionDetails>
+          </GoodsServicesDetails>
+          <GoodsServicesDetails>
+            <ClassificationTypeCode>Nice</ClassificationTypeCode>
+            <ClassDescriptionDetails>
+              <ClassDescription>
+                <ClassNumber>042</ClassNumber>
+                <GoodsServicesDescription>Providing web-sites, via a global computer network, to enable users to program the scheduling of audio, video, text and other multimedia content, including music, concerts, videos, radio, television, news, sports, games, cultural events, and entertainment-related programs as they will be aired; design and development of computer hardware and software; computer hardware and software consulting services; rental of computer hardware and software apparatus and equipment; multimedia software and audio-visual software consulting services; computer programming; support and consultation services for developing computer systems, databases and software applications; graphic design for the compilation of web pages on the Internet; providing a website that features information on computer technology and programming; creating and maintaining web-sites; hosting the web-sites of others; providing search engines for obtaining data via communications networks; application service provider (ASP) services featuring software for use in connection with online music subscription service, software that enables users to play and program music and entertainment-related audio, video, text and multimedia content, and software featuring musical sound recordings, entertainment-related audio, video, text and multimedia content; providing temporary use of on-line non-downloadable software to enable users to program audio, video, text and other multimedia content, including music, concerts, videos, radio, television, news, sports, games, cultural events, and entertainment-related programs; providing search engines for obtaining data on a global computer network; information, advisory and consultancy services relating to all the aforesaid; provision of Internet search engines; creating indexes of online information, sites and other resources available on global computer networks for others; providing websites, via a global computer network, featuring technology that enables users to program the scheduling of audio, video, text, and other multimedia content, including music, concerts, videos, radio, television, news, sports, games, cultural events, and entertainment-related programs as they will be aired</GoodsServicesDescription>
+                <FirstUsedDate>20130601</FirstUsedDate>
+                <FirstUsedDateInCommerce>20131204</FirstUsedDateInCommerce>
+              </ClassDescription>
+            </ClassDescriptionDetails>
+          </GoodsServicesDetails>
+			<GoodsServicesDetails>
+				<ClassificationTypeCode>Nice</ClassificationTypeCode>
+				<ClassDescriptionDetails>
+					<ClassDescription>
+						<ClassNumber>043</ClassNumber>
+						<GoodsServicesDescription>Providing web-sites, via a global computer network, to enable users to program the scheduling of audio, video, text and other multimedia content, including music, concerts, videos, radio, television, news, sports, games, cultural events, and entertainment-related programs as they will be aired; design and development of computer hardware and software; computer hardware and software consulting services; rental of computer hardware and software apparatus and equipment; multimedia software and audio-visual software consulting services; computer programming; support and consultation services for developing computer systems, databases and software applications; graphic design for the compilation of web pages on the Internet; providing a website that features information on computer technology and programming; creating and maintaining web-sites; hosting the web-sites of others; providing search engines for obtaining data via communications networks; application service provider (ASP) services featuring software for use in connection with online music subscription service, software that enables users to play and program music and entertainment-related audio, video, text and multimedia content, and software featuring musical sound recordings, entertainment-related audio, video, text and multimedia content; providing temporary use of on-line non-downloadable software to enable users to program audio, video, text and other multimedia content, including music, concerts, videos, radio, television, news, sports, games, cultural events, and entertainment-related programs; providing search engines for obtaining data on a global computer network; information, advisory and consultancy services relating to all the aforesaid; provision of Internet search engines; creating indexes of online information, sites and other resources available on global computer networks for others; providing websites, via a global computer network, featuring technology that enables users to program the scheduling of audio, video, text, and other multimedia content, including music, concerts, videos, radio, television, news, sports, games, cultural events, and entertainment-related programs as they will be aired</GoodsServicesDescription>
+						<FirstUsedDate>2130601</FirstUsedDate>
+						<FirstUsedDateInCommerce>2131204</FirstUsedDateInCommerce>
+					</ClassDescription>
+				</ClassDescriptionDetails>
+			</GoodsServicesDetails>
+        </CaseDetails>
+      </TransactionData>
+    </TransactionContentDetails>
+  </TransactionBody>
+</Transaction>

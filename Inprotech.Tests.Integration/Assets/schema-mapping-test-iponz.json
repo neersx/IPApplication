@@ -1,0 +1,22 @@
+﻿{
+  "mappingEntries": {
+    "21fffd91083828c3e72a5bc7ca72ac95": {
+      "docItemBinding": {
+        "nodeId": "6a7562e5a949e89a80c539729fa07b95",
+        "columnId": 0,
+        "docItemId": 1051
+      }
+    },
+    "6a7562e5a949e89a80c539729fa07b95": {
+      "docItem": {
+        "id": 1051,
+        "parameters": [
+          {
+            "id": "gstrEntryPoint",
+            "type": "global"
+          }
+        ]
+      }
+    }
+  }
+}

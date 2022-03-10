@@ -1,0 +1,1174 @@
+[{
+        "ID": "0ebebcb1-45ba-4605-af48-ea411ca92b4d",
+        "Fields": [{
+            "FieldName": "AttyDocketNum",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_IRN",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "0a138fcd-909e-46f0-8dd9-b75b9421499e",
+        "Fields": [{
+            "FieldName": "FirstNamedInventor",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_FULL_NAME",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "811e121f-3d78-4348-8b17-d4fee4245d67",
+        "Fields": [{
+            "FieldName": "AppNum",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "APPLICATION_NO",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "95c49031-a130-48bf-bf71-5a45e9ec0cfa",
+        "Fields": [{
+            "FieldName": "dvDecSubwInitFiling",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_YESNO_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-497",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "1dcf121e-d67a-4a1a-996a-d780eb2e1df7",
+        "Fields": [{
+            "FieldName": "dvDecSubaInitFiling",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_YESNO_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-485",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "021081bd-070c-414a-bd0d-9ecb367c7fd6",
+        "Fields": [{
+            "FieldName": "FilingDate",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "CASE_FILING_DATE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "084a896e-d81b-4f5a-bfe4-961459d7f562",
+        "Fields": [{
+            "FieldName": "ArtUnit",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_TEXT_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-499",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "146a089f-0345-43f4-a22b-83c002fc5a00",
+        "Fields": [{
+            "FieldName": "ExaminerName",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_TEXT_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-498",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "bfea9d13-4742-47a5-8278-2614189d763f",
+        "Fields": [{
+            "FieldName": "TitleofInvention",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "TITLE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "d4b19ce7-859c-4a26-bf45-72b386fa5649",
+        "Fields": [{
+            "FieldName": "dvIsAttached",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_YESNO_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-484",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "f639ae91-aacb-4060-8ed3-ac970f98c948",
+        "Fields": [{
+            "FieldName": "dvFilingDate2",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "CASE_FILING_DATE_US_FORMAT",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "9be7e733-910e-49b1-965e-9df298c6c334",
+        "Fields": [{
+            "FieldName": "dvAppNumb1",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "APPLICATION_NO",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "aa37f1c3-2b13-4f2b-98d4-905c2b814d49",
+        "Fields": [{
+            "FieldName": "dvAppNumb2",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_RELATED_CASE_OFFICIALNUMBER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "NPC^A",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "54c3e035-871f-4305-8a13-dbdd93fab48d",
+        "Fields": [{
+            "FieldName": "dvDtAmended",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_EVENT_DATE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-11481",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "b3b0cbb4-6254-42f1-adc9-f8f091519af6",
+        "Fields": [{
+            "FieldName": "PriorForeignAppNum",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_OFFICIALNUMBER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^1^A",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "52b5bc01-64de-461f-98a8-7b1b49cca04e",
+        "Fields": [{
+            "FieldName": "Country",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_COUNTRY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "4f2ba608-be3d-4ab1-837e-22a3bdbcf8e8",
+        "Fields": [{
+            "FieldName": "ForFilDt",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_DATE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^1^-4",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "a1fdc2e0-94e3-497c-936d-6fc87ec838be",
+        "Fields": [{
+            "FieldName": "PriorForeignAppNum2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_OFFICIALNUMBER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^2^A",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "3196ed0e-31c9-41bd-a49c-90bf5830070f",
+        "Fields": [{
+            "FieldName": "Country2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_COUNTRY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "3c0fd59f-1532-4096-b0b6-1ed63602f6bb",
+        "Fields": [{
+            "FieldName": "ForFilDt2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_DATE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^2^-4",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "219a7b4e-c70f-41aa-85c3-cce7253d13c8",
+        "Fields": [{
+            "FieldName": "PriorForeignAppNum3",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_OFFICIALNUMBER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^3^A",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "db4c2315-8b93-4916-9d6a-ab9650cf589e",
+        "Fields": [{
+            "FieldName": "Country3",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_COUNTRY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^3",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "dae1205f-fe74-4c9b-bdf7-79205e9ceb7b",
+        "Fields": [{
+            "FieldName": "ForFilDt3",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_DATE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^3^-4",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "5c856919-d6cd-4610-bfea-1e66aa5606b7",
+        "Fields": [{
+            "FieldName": "PriorForeignAppNum4",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_OFFICIALNUMBER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^4^A",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "f0739ec8-4eb6-47e7-a06a-8c3f800db4ea",
+        "Fields": [{
+            "FieldName": "Country4",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_COUNTRY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^4",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "6598f4a6-fe19-465f-a516-145c84e1666e",
+        "Fields": [{
+            "FieldName": "ForFilDt4",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_RELATED_CASE_DATE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "BAS^4^-4",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "9156f33c-29db-44e1-af1b-84c807d50e78",
+        "Fields": [{
+            "FieldName": "dvAddlApps",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_YESNO_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-463",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "f2c49f05-993b-4d8d-bab3-2395948d3c35",
+        "Fields": [{
+            "FieldName": "dvUseCustNum",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_YESNO_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-483",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "a11e7def-6af7-4d0e-bda1-f501d9c8e199",
+        "Fields": [{
+            "FieldName": "CustNum",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_NAME_ALIAS",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "I^CN",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "152bdfc8-4f39-4896-b3a4-ab6e67db75f8",
+        "Fields": [{
+            "FieldName": "dvUseCorrespAddress",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_YESNO_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-482",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "319ccb98-a934-4a87-be56-9fd822566a0a",
+        "Fields": [{
+            "FieldName": "dvCorrName",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "INSTRUCT_NAME",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "6fabfa8d-45a3-4cd2-98f9-3ed6a5146488",
+        "Fields": [{
+            "FieldName": "dvCorrAddress",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_STREET1",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "I^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "8bdab46a-e886-48e4-b551-dbf37f8609df",
+        "Fields": [{
+            "FieldName": "dvCorrAddress2",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_STREET2",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "I^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "ae5603de-4298-4f4f-8d81-b45241ded875",
+        "Fields": [{
+            "FieldName": "dvCorrCity",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_CITY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "I^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "ac3db8e2-a1c5-48ca-934b-8aaa097e4f45",
+        "Fields": [{
+            "FieldName": "dvCorrState",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_STATE_CODE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "I^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "8a49bab4-ea5f-43e7-91b9-eebdcf073f0e",
+        "Fields": [{
+            "FieldName": "dvCorrZip",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_POSTCODE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "I^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "9af00801-529f-4763-b51b-ce3fd9a70c4c",
+        "Fields": [{
+            "FieldName": "dvCorrCountry",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_COUNTRY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "I^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "e27d8759-033b-4b18-ba9f-17e603c25327",
+        "Fields": [{
+            "FieldName": "dvCorrTelephone",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_PHONE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "I",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "3758565e-4a29-4dac-b39f-ed562c429eae",
+        "Fields": [{
+            "FieldName": "dvCorrFax",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_FAX_1",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "I",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "90331391-f165-42c9-aaf5-ff2af520b109",
+        "Fields": [{
+            "FieldName": "dvPetition1",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_YESNO_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-481",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "bb20142f-c155-4b96-840a-0e4a07b4949f",
+        "Fields": [{
+            "FieldName": "GivenName",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_GIVEN_NAME",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "a215d141-a9c4-413b-9f7f-3c030d7b768a",
+        "Fields": [{
+            "FieldName": "Surname",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_SURNAME",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "e9c3abfa-68c7-4296-af90-cab24eff6552",
+        "Fields": [{
+            "FieldName": "DateSigned",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "LETTER_DATE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "e785e251-c76f-4126-b8d0-65119064a974",
+        "Fields": [{
+            "FieldName": "InvCity",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_STREET_CITY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "1e5cd868-4dfc-458a-a5cc-e8165d12e28e",
+        "Fields": [{
+            "FieldName": "InvState",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_STREET_STATE_CODE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "bb6b1ea4-3cc7-402c-9108-5df92ddfccca",
+        "Fields": [{
+            "FieldName": "InvCountry",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_STREET_COUNTRY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "97cec923-aad8-4dec-8b86-38934c59d886",
+        "Fields": [{
+            "FieldName": "Citizenship",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_NATIONALITY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "716975bb-24fd-43aa-a19d-6577fe35cae8",
+        "Fields": [{
+            "FieldName": "CorrAddress3",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_STREET1",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "90f63699-01b6-4106-92e4-eec4f8a31611",
+        "Fields": [{
+            "FieldName": "CorrAddress4",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_STREET2",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "d5284756-43ee-4d13-8ca1-e1f322748918",
+        "Fields": [{
+            "FieldName": "MailingCity",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_CITY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "3a6cf059-7eb9-4821-9c8d-473c763f5c70",
+        "Fields": [{
+            "FieldName": "MailingState",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_STATE_CODE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "f77341bf-b472-420c-8cc6-71f4f3463b4b",
+        "Fields": [{
+            "FieldName": "MailingZip",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_POSTCODE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "bbbe351e-9190-4f7a-9943-d591074ff4db",
+        "Fields": [{
+            "FieldName": "MailingCountry",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_COUNTRY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^1",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "5ccc192d-8de1-47e0-b9fc-08730451e9cc",
+        "Fields": [{
+            "FieldName": "dvPetition2",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_YESNO_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-480",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "c22bbdb8-116f-4ad3-a926-032612d73c01",
+        "Fields": [{
+            "FieldName": "GivenName2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_GIVEN_NAME",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "e037fc96-91bd-4f52-ba1a-87d4e80a7028",
+        "Fields": [{
+            "FieldName": "Surname2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_SURNAME",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "13f684c5-7fc9-4a79-8854-30bfddc30853",
+        "Fields": [{
+            "FieldName": "DateSigned2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "LETTER_DATE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "9fdceb6e-2293-488e-ae5a-a67d6b4989f5",
+        "Fields": [{
+            "FieldName": "InvCity2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_STREET_CITY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "067e84ea-0b49-4c10-ac59-0cc1be7db959",
+        "Fields": [{
+            "FieldName": "InvState2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_STREET_STATE_CODE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "c726fcc2-c858-42eb-9fa9-ca9365cee789",
+        "Fields": [{
+            "FieldName": "InvCountry2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_STREET_COUNTRY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "bb4be76f-0b2b-4334-b16e-e38a9cfb5640",
+        "Fields": [{
+            "FieldName": "Citizenship2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_NATIONALITY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "28cbaab7-9aea-4d4b-83b0-6d9f7e04d27e",
+        "Fields": [{
+            "FieldName": "CorrAddress5",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_STREET1",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "593fda3f-323d-47c1-83f5-2165f42edea5",
+        "Fields": [{
+            "FieldName": "CorrAddress6",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_STREET2",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "850db757-6a40-427a-a54c-3aa20505032a",
+        "Fields": [{
+            "FieldName": "MailingCity2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_CITY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "b9d974df-a131-4074-a805-2a42022f56bb",
+        "Fields": [{
+            "FieldName": "MailingState2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_STATE_CODE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "7f82a16d-9022-41ca-986f-236d42f4b564",
+        "Fields": [{
+            "FieldName": "MailingZip2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_POSTCODE",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "c0314165-a750-4206-ba75-567721279e1e",
+        "Fields": [{
+            "FieldName": "MailingCountry2",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "GEN_N_POSTAL_COUNTRY",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "J^2",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "8db598e2-7d79-401a-8f24-aaf37f484321",
+        "Fields": [{
+            "FieldName": "dvMoreInventors",
+            "DestinationType": 1,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_YESNO_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-462",
+        "EntryPointValue": "1234/A"
+    },
+    {
+        "ID": "b09a5dfe-6b0d-4969-8172-88ceb166c13c",
+        "Fields": [{
+            "FieldName": "SupplementalInv",
+            "DestinationType": 0,
+            "RowsReturnedMode": 0
+        }],
+        "DocItem": {
+            "ItemKey": 0,
+            "ItemName": "MXMPDF_GEN_CHECKLIST_INT_ANSWER",
+            "ItemDescription": null,
+            "EntryPointUsage": null
+        },
+        "Separator": "",
+        "Parameters": "-461",
+        "EntryPointValue": "1234/A"
+    }
+]

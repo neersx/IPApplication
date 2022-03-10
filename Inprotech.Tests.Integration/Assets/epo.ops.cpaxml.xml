@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Transaction xmlns="http://www.cpasoftwaresolutions.com">
+  <TransactionHeader>
+    <SenderDetails>
+      <SenderRequestType>Extract Cases Response</SenderRequestType>
+      <SenderRequestIdentifier>8a091b06-b283-4e76-95ac-29ddc13912fa</SenderRequestIdentifier>
+      <Sender>EPO</Sender>
+      <SenderXSDVersion>1.5</SenderXSDVersion>
+      <SenderSoftware>
+        <SenderSoftwareName>Inprotech.DataExtract</SenderSoftwareName>
+        <SenderSoftwareVersion>1.0.0.0</SenderSoftwareVersion>
+      </SenderSoftware>
+      <SenderFilename>cpa-xml-130737291764560236.xml</SenderFilename>
+      <SenderProducedDateTime>2015-04-17T17:26:16.4560236+10:00</SenderProducedDateTime>
+    </SenderDetails>
+  </TransactionHeader>
+  <TransactionBody>
+    <TransactionIdentifier>1a4b9ef9-d397-4f87-b11c-ae16472a66e9</TransactionIdentifier>
+    <TransactionContentDetails>
+      <TransactionCode>Case Import</TransactionCode>
+      <TransactionData>
+        <CaseDetails>
+          <CaseTypeCode>Property</CaseTypeCode>
+          <CasePropertyTypeCode>Patent</CasePropertyTypeCode>
+          <CaseCountryCode>EP</CaseCountryCode>
+          <DescriptionDetails>
+            <DescriptionCode>Short Title</DescriptionCode>
+            <DescriptionText languageCode="fr">Circuit d'échange de données bidirectionnel</DescriptionText>
+          </DescriptionDetails>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>Publication</IdentifierNumberCode>
+            <IdentifierNumberText>EP2743835</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>Application</IdentifierNumberCode>
+            <IdentifierNumberText>EP13197817</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <EventDetails>
+            <EventCode>PUBLICATION</EventCode>
+            <EventDate>2014-06-18</EventDate>
+            <EventDescription>PUBLICATION</EventDescription>
+            </EventDetails>
+          <EventDetails>
+            <EventCode>APPLICATION</EventCode>
+            <EventDate>2013-12-17</EventDate>
+            <EventDescription>APPLICATION</EventDescription>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>DDIV</EventCode>
+            <EventDate>2015-03-26</EventDate>
+            <EventDescription>First communication from the examining division (date of dispatch)</EventDescription>
+            <EventText>APPLICATION NUMBER: 13197817</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>IGRA</EventCode>
+            <EventDate>2015-03-26</EventDate>
+            <EventDescription>Intention to grant the patent (date of dispatch)</EventDescription>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>EPIDOSNIGR1</EventCode>
+            <EventDate>2015-03-26</EventDate>
+            <EventDescription>New entry: Communication of intention to grant a patent</EventDescription>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>0008199IPCL</EventCode>
+            <EventDate>2015-02-06</EventDate>
+            <EventDescription>Change - classification</EventDescription>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>0008199OBSC</EventCode>
+            <EventDate>2015-02-06</EventDate>
+            <EventDescription>Change - classification</EventDescription>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>EPIDOS ABEX</EventCode>
+            <EventDate>2014-12-20</EventDate>
+            <EventDescription>Amendment by applicant</EventDescription>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>ABEX</EventCode>
+            <EventDate>2014-12-18</EventDate>
+            <EventDescription>Amendments (date of request)</EventDescription>
+            <EventText>Kind of amendment: (claims and/or description)</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>0009199DEST</EventCode>
+            <EventDate>2014-07-18</EventDate>
+            <EventDescription>Change - designated states</EventDescription>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>0009199EXAM</EventCode>
+            <EventDate>2014-07-18</EventDate>
+            <EventDescription>Change - request for examination</EventDescription>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>0009012</EventCode>
+            <EventDate>2014-06-17</EventDate>
+            <EventDescription>Publication in section I.1 EP Bulletin</EventDescription>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>0009171</EventCode>
+            <EventDate>2014-05-16</EventDate>
+            <EventDescription>Request for examination filed</EventDescription>
+          </EventDetails>
+          <NameDetails>
+            <NameTypeCode>Applicant</NameTypeCode>
+            <NameSequenceNumber>1</NameSequenceNumber>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>Thales</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+                <Address>
+                  <FormattedAddress>
+                    <AddressLine>45, rue de Villiers</AddressLine>
+                    <AddressLine>92200 Neuilly Sur Seine</AddressLine>
+                    <AddressCountryCode>FR</AddressCountryCode>
+                  </FormattedAddress>
+                </Address>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <NameDetails>
+            <NameTypeCode>Inventor</NameTypeCode>
+            <NameSequenceNumber>1</NameSequenceNumber>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>Pubert, Laurent</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+                <Address>
+                  <FormattedAddress>
+                    <AddressLine>Thales Communications &amp; Security S.A.S.</AddressLine>
+                    <AddressLine>110 avenue Leclerc</AddressLine>
+                    <AddressCountryCode>FR</AddressCountryCode>
+                  </FormattedAddress>
+                </Address>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <NameDetails>
+            <NameTypeCode>Inventor</NameTypeCode>
+            <NameSequenceNumber>2</NameSequenceNumber>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>Pichet, Jérôme</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+                <Address>
+                  <FormattedAddress>
+                    <AddressLine>Thales Communications &amp; Security S.A.S.</AddressLine>
+                    <AddressLine>110 avenue Leclerc</AddressLine>
+                    <AddressCountryCode>FR</AddressCountryCode>
+                  </FormattedAddress>
+                </Address>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <NameDetails>
+            <NameTypeCode>Inventor</NameTypeCode>
+            <NameSequenceNumber>3</NameSequenceNumber>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>Grimonprez, Benjamin</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+                <Address>
+                  <FormattedAddress>
+                    <AddressLine>Thales Communications &amp; Security S.A.S.</AddressLine>
+                    <AddressLine>110 avenue Leclerc</AddressLine>
+                    <AddressCountryCode>FR</AddressCountryCode>
+                  </FormattedAddress>
+                </Address>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <NameDetails>
+            <NameTypeCode>Inventor</NameTypeCode>
+            <NameSequenceNumber>4</NameSequenceNumber>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>Collange, Thierry</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+                <Address>
+                  <FormattedAddress>
+                    <AddressLine>Thales Communications &amp; Security S.A.S.</AddressLine>
+                    <AddressLine>110 avenue Leclerc</AddressLine>
+                    <AddressCountryCode>FR</AddressCountryCode>
+                  </FormattedAddress>
+                </Address>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <AssociatedCaseDetails>
+            <AssociatedCaseRelationshipCode>Priority</AssociatedCaseRelationshipCode>
+            <AssociatedCaseCountryCode>FR</AssociatedCaseCountryCode>
+            <AssociatedCaseIdentifierNumberDetails>
+              <IdentifierNumberCode>Priority</IdentifierNumberCode>
+              <IdentifierNumberText>20120003440</IdentifierNumberText>
+            </AssociatedCaseIdentifierNumberDetails>
+            <AssociatedCaseEventDetails>
+              <EventCode>Priority</EventCode>
+              <EventDate>2012-12-17</EventDate>
+            </AssociatedCaseEventDetails>
+          </AssociatedCaseDetails>
+        </CaseDetails>
+      </TransactionData>
+    </TransactionContentDetails>
+  </TransactionBody>
+</Transaction>

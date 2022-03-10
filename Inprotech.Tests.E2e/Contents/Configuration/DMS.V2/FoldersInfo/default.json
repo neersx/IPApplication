@@ -1,0 +1,25 @@
+﻿{
+  "data": [
+    {
+      "default_security": "inherit",
+      "name": "Billingfff",
+      "owner": "MATTHEW.CALLAHAN",
+      "has_subfolders": false,
+      "has_documents": false,
+      "is_content_saved_search": false,
+      "is_container_saved_search": false,
+      "database": "TPSDK",
+      "is_hidden": false,
+      "is_external_as_normal": false,
+      "edit_date": "2018-07-31T16:04:07Z",
+      "owner_description": "Matthew Callahan",
+      "view_type": "document",
+      "id": "TPSDK!18076",
+      "parent_id": "TPSDK!17837",
+      "workspace_id": "TPSDK!17837",
+      "workspace_name": "Workfff",
+      "wstype": "folder",
+      "folder_type": "regular"
+    }
+  ]
+}

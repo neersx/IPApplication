@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Transaction xmlns="http://www.cpasoftwaresolutions.com">
+  <TransactionHeader>
+    <SenderDetails>
+      <SenderRequestIdentifier>38386795-300b-45aa-92a8-d764454328dc</SenderRequestIdentifier>
+      <Sender>Innography</Sender>
+      <SenderXSDVersion />
+    </SenderDetails>
+  </TransactionHeader>
+  <TransactionBody>
+    <TransactionIdentifier>e62d1eb4-2574-4703-acbc-ef1b2cc789d1</TransactionIdentifier>
+    <TransactionContentDetails>
+      <TransactionCode>Case Import</TransactionCode>
+      <TransactionData>
+        <CaseDetails>
+          <SenderCaseIdentifier>T-000096327031</SenderCaseIdentifier>
+          <CaseTypeCode>Property</CaseTypeCode>
+          <CasePropertyTypeCode>Trademark</CasePropertyTypeCode>
+          <CaseCountryCode>CA</CaseCountryCode>
+		  <TypeOfMark>WORD MARK</TypeOfMark>
+          <DescriptionDetails>
+            <DescriptionCode>Short Title</DescriptionCode>
+            <DescriptionText>ION GUIDE ARRAY</DescriptionText>
+          </DescriptionDetails>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>Publication</IdentifierNumberCode>
+            <IdentifierNumberText>CA2737449A1</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>Application</IdentifierNumberCode>
+            <IdentifierNumberText>CA20092737449</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>Registration/Grant</IdentifierNumberCode>
+            <IdentifierNumberText>CA2737449A1</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <EventDetails>
+            <EventCode>Publication</EventCode>
+            <EventDate>2010-03-25</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Application</EventCode>
+            <EventDate>2008-09-18</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Registration/Grant</EventCode>
+            <EventDate>2010-03-25</EventDate>
+          </EventDetails>
+          <NameDetails>
+            <NameTypeCode>Inventor</NameTypeCode>
+            <NameSequenceNumber>0</NameSequenceNumber>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>Hoyes, John Brian</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <NameDetails>
+            <NameTypeCode>Inventor</NameTypeCode>
+            <NameSequenceNumber>1</NameSequenceNumber>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>Langridge, David</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+		  <GoodsServicesDetails>
+            <ClassificationTypeCode>Nice</ClassificationTypeCode>
+            <ClassDescriptionDetails>
+              <ClassDescription>
+                <ClassNumber>11</ClassNumber>
+                <GoodsServicesDescription>(1) Water heating units.</GoodsServicesDescription>
+              </ClassDescription>
+            </ClassDescriptionDetails>
+          </GoodsServicesDetails>
+        </CaseDetails>
+      </TransactionData>
+    </TransactionContentDetails>
+  </TransactionBody>
+</Transaction>

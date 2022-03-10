@@ -1,0 +1,1716 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Transaction xmlns="http://www.cpasoftwaresolutions.com">
+  <TransactionHeader>
+    <SenderDetails>
+      <SenderRequestType>Extract Cases Response</SenderRequestType>
+      <SenderRequestIdentifier>99f87f22-6fb3-48bc-b1e6-c21e561bc01b</SenderRequestIdentifier>
+      <Sender>USPTO.PrivatePAIR</Sender>
+      <SenderXSDVersion>1.5</SenderXSDVersion>
+      <SenderSoftware>
+        <SenderSoftwareName>Inprotech.IntegrationServer</SenderSoftwareName>
+        <SenderSoftwareVersion>3.6.98.0</SenderSoftwareVersion>
+      </SenderSoftware>
+      <SenderFilename>cpa-xml-131182446144173732.xml</SenderFilename>
+      <SenderProducedDateTime>2016-09-13T22:50:14.4173732+10:00</SenderProducedDateTime>
+    </SenderDetails>
+  </TransactionHeader>
+  <TransactionBody>
+    <TransactionIdentifier>13980534-2904-4b5d-81c7-973ae0ae8354</TransactionIdentifier>
+    <TransactionContentDetails>
+      <TransactionCode>Case Import</TransactionCode>
+      <TransactionData>
+        <CaseDetails>
+          <SenderCaseReference>05002993-1354US  SC/sm</SenderCaseReference>
+          <CaseTypeCode>Property</CaseTypeCode>
+          <CasePropertyTypeCode>Patent</CasePropertyTypeCode>
+          <CaseCountryCode>US</CaseCountryCode>
+          <DescriptionDetails>
+            <DescriptionCode>Short Title</DescriptionCode>
+            <DescriptionText>SEAL ARRANGEMENT FOR SEGMENTED GAS TURBINE ENGINE COMPONENTS</DescriptionText>
+          </DescriptionDetails>
+          <DescriptionDetails>
+            <DescriptionCode>Class/SubClass</DescriptionCode>
+            <DescriptionText>277/641</DescriptionText>
+          </DescriptionDetails>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>Application</IdentifierNumberCode>
+            <IdentifierNumberText>13094916</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>Publication</IdentifierNumberCode>
+            <IdentifierNumberText>US 2012-0274034 A1</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>Confirmation</IdentifierNumberCode>
+            <IdentifierNumberText>1566</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>Group Art Unit</IdentifierNumberCode>
+            <IdentifierNumberText>3675</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <EventDetails>
+            <EventCode>Status</EventCode>
+            <EventDate>2016-08-19</EventDate>
+            <EventText>93 - Notice of Allowance Mailed -- Application Received in Office of Publications</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Publication</EventCode>
+            <EventDate>2012-11-01</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Application</EventCode>
+            <EventDate>2011-04-27</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Electronic Review</EventCode>
+            <EventDate>2016-08-23</EventDate>
+            <EventDescription>Electronic Review</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2016-08-23</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Notice of Allowance</EventCode>
+            <EventDate>2016-08-23</EventDate>
+            <EventDescription>Mail Notice of Allowance</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Notice of Allowance Data Verification Completed</EventCode>
+            <EventDate>2016-08-18</EventDate>
+            <EventDescription>Notice of Allowance Data Verification Completed</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Case Docketed to Examiner in GAU</EventCode>
+            <EventDate>2016-08-18</EventDate>
+            <EventDescription>Case Docketed to Examiner in GAU</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Reasons for Allowance</EventCode>
+            <EventDate>2016-08-08</EventDate>
+            <EventDescription>Reasons for Allowance</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Date Forwarded to Examiner</EventCode>
+            <EventDate>2016-05-17</EventDate>
+            <EventDescription>Date Forwarded to Examiner</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Response after Non-Final Action</EventCode>
+            <EventDate>2016-05-03</EventDate>
+            <EventDescription>Response after Non-Final Action</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Request for Extension of Time - Granted</EventCode>
+            <EventDate>2016-05-03</EventDate>
+            <EventDescription>Request for Extension of Time - Granted</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Electronic Review</EventCode>
+            <EventDate>2016-01-05</EventDate>
+            <EventDescription>Electronic Review</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2016-01-05</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Non-Final Rejection</EventCode>
+            <EventDate>2016-01-05</EventDate>
+            <EventDescription>Mail Non-Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Non-Final Rejection</EventCode>
+            <EventDate>2015-12-29</EventDate>
+            <EventDescription>Non-Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Date Forwarded to Examiner</EventCode>
+            <EventDate>2015-12-19</EventDate>
+            <EventDescription>Date Forwarded to Examiner</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Request for Continued Examination (RCE)</EventCode>
+            <EventDate>2015-12-17</EventDate>
+            <EventDescription>Request for Continued Examination (RCE)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Disposal for a RCE / CPA / R129</EventCode>
+            <EventDate>2015-12-19</EventDate>
+            <EventDescription>Disposal for a RCE / CPA / R129</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Request for Extension of Time - Granted</EventCode>
+            <EventDate>2015-12-17</EventDate>
+            <EventDescription>Request for Extension of Time - Granted</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Workflow - Request for RCE - Begin</EventCode>
+            <EventDate>2015-12-17</EventDate>
+            <EventDescription>Workflow - Request for RCE - Begin</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2015-12-17</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Advisory Action (PTOL - 303)</EventCode>
+            <EventDate>2015-12-17</EventDate>
+            <EventDescription>Mail Advisory Action (PTOL - 303)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>After Final Consideration Program Amendment too Extensive</EventCode>
+            <EventDate>2015-12-14</EventDate>
+            <EventDescription>After Final Consideration Program Amendment too Extensive</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Advisory Action (PTOL-303)</EventCode>
+            <EventDate>2015-12-14</EventDate>
+            <EventDescription>Advisory Action (PTOL-303)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Date Forwarded to Examiner</EventCode>
+            <EventDate>2015-11-20</EventDate>
+            <EventDescription>Date Forwarded to Examiner</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Response after Final Action</EventCode>
+            <EventDate>2015-11-18</EventDate>
+            <EventDescription>Response after Final Action</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>PILOT- Request for After Final Consideration Program</EventCode>
+            <EventDate>2015-11-18</EventDate>
+            <EventDescription>PILOT- Request for After Final Consideration Program</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Electronic Review</EventCode>
+            <EventDate>2015-08-20</EventDate>
+            <EventDescription>Electronic Review</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2015-08-20</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Final Rejection (PTOL - 326)</EventCode>
+            <EventDate>2015-08-20</EventDate>
+            <EventDescription>Mail Final Rejection (PTOL - 326)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Final Rejection</EventCode>
+            <EventDate>2015-08-14</EventDate>
+            <EventDescription>Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Date Forwarded to Examiner</EventCode>
+            <EventDate>2015-05-05</EventDate>
+            <EventDescription>Date Forwarded to Examiner</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Response after Non-Final Action</EventCode>
+            <EventDate>2015-05-04</EventDate>
+            <EventDescription>Response after Non-Final Action</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Electronic Review</EventCode>
+            <EventDate>2015-02-03</EventDate>
+            <EventDescription>Electronic Review</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2015-02-03</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Non-Final Rejection</EventCode>
+            <EventDate>2015-02-03</EventDate>
+            <EventDescription>Mail Non-Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Non-Final Rejection</EventCode>
+            <EventDate>2015-01-26</EventDate>
+            <EventDescription>Non-Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Date Forwarded to Examiner</EventCode>
+            <EventDate>2014-10-10</EventDate>
+            <EventDescription>Date Forwarded to Examiner</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Request for Continued Examination (RCE)</EventCode>
+            <EventDate>2014-10-06</EventDate>
+            <EventDescription>Request for Continued Examination (RCE)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Disposal for a RCE / CPA / R129</EventCode>
+            <EventDate>2014-10-10</EventDate>
+            <EventDescription>Disposal for a RCE / CPA / R129</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Request for Extension of Time - Granted</EventCode>
+            <EventDate>2014-10-06</EventDate>
+            <EventDescription>Request for Extension of Time - Granted</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Workflow - Request for RCE - Begin</EventCode>
+            <EventDate>2014-10-06</EventDate>
+            <EventDescription>Workflow - Request for RCE - Begin</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2014-09-10</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Advisory Action (PTOL - 303)</EventCode>
+            <EventDate>2014-09-10</EventDate>
+            <EventDescription>Mail Advisory Action (PTOL - 303)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Advisory Action (PTOL-303)</EventCode>
+            <EventDate>2014-09-05</EventDate>
+            <EventDescription>Advisory Action (PTOL-303)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Date Forwarded to Examiner</EventCode>
+            <EventDate>2014-08-07</EventDate>
+            <EventDescription>Date Forwarded to Examiner</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Response after Final Action</EventCode>
+            <EventDate>2014-08-06</EventDate>
+            <EventDescription>Response after Final Action</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Electronic Review</EventCode>
+            <EventDate>2014-06-06</EventDate>
+            <EventDescription>Electronic Review</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2014-06-06</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Final Rejection (PTOL - 326)</EventCode>
+            <EventDate>2014-06-06</EventDate>
+            <EventDescription>Mail Final Rejection (PTOL - 326)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Final Rejection</EventCode>
+            <EventDate>2014-05-29</EventDate>
+            <EventDescription>Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Date Forwarded to Examiner</EventCode>
+            <EventDate>2014-05-18</EventDate>
+            <EventDescription>Date Forwarded to Examiner</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Response after Non-Final Action</EventCode>
+            <EventDate>2014-05-15</EventDate>
+            <EventDescription>Response after Non-Final Action</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Request for Extension of Time - Granted</EventCode>
+            <EventDate>2014-05-15</EventDate>
+            <EventDescription>Request for Extension of Time - Granted</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Electronic Review</EventCode>
+            <EventDate>2014-01-15</EventDate>
+            <EventDescription>Electronic Review</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2014-01-15</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Non-Final Rejection</EventCode>
+            <EventDate>2014-01-15</EventDate>
+            <EventDescription>Mail Non-Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Non-Final Rejection</EventCode>
+            <EventDate>2013-12-31</EventDate>
+            <EventDescription>Non-Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Date Forwarded to Examiner</EventCode>
+            <EventDate>2013-12-17</EventDate>
+            <EventDescription>Date Forwarded to Examiner</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Request for Continued Examination (RCE)</EventCode>
+            <EventDate>2013-12-11</EventDate>
+            <EventDescription>Request for Continued Examination (RCE)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Disposal for a RCE / CPA / R129</EventCode>
+            <EventDate>2013-12-17</EventDate>
+            <EventDescription>Disposal for a RCE / CPA / R129</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Request for Extension of Time - Granted</EventCode>
+            <EventDate>2013-12-11</EventDate>
+            <EventDescription>Request for Extension of Time - Granted</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Workflow - Request for RCE - Begin</EventCode>
+            <EventDate>2013-12-11</EventDate>
+            <EventDescription>Workflow - Request for RCE - Begin</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2013-11-20</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Advisory Action (PTOL - 303)</EventCode>
+            <EventDate>2013-11-20</EventDate>
+            <EventDescription>Mail Advisory Action (PTOL - 303)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Advisory Action (PTOL-303)</EventCode>
+            <EventDate>2013-11-12</EventDate>
+            <EventDescription>Advisory Action (PTOL-303)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>PILOT- Request for After Final Consideration Program</EventCode>
+            <EventDate>2013-10-15</EventDate>
+            <EventDescription>PILOT- Request for After Final Consideration Program</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Date Forwarded to Examiner</EventCode>
+            <EventDate>2013-10-16</EventDate>
+            <EventDescription>Date Forwarded to Examiner</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Response after Final Action</EventCode>
+            <EventDate>2013-10-15</EventDate>
+            <EventDescription>Response after Final Action</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Post Card</EventCode>
+            <EventDate>2013-08-24</EventDate>
+            <EventDescription>Mail Post Card</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2013-08-16</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Final Rejection (PTOL - 326)</EventCode>
+            <EventDate>2013-08-16</EventDate>
+            <EventDescription>Mail Final Rejection (PTOL - 326)</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Final Rejection</EventCode>
+            <EventDate>2013-08-12</EventDate>
+            <EventDescription>Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Date Forwarded to Examiner</EventCode>
+            <EventDate>2013-05-17</EventDate>
+            <EventDescription>Date Forwarded to Examiner</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Response after Non-Final Action</EventCode>
+            <EventDate>2013-05-16</EventDate>
+            <EventDescription>Response after Non-Final Action</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Request for Extension of Time - Granted</EventCode>
+            <EventDate>2013-05-16</EventDate>
+            <EventDescription>Request for Extension of Time - Granted</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Electronic Review</EventCode>
+            <EventDate>2013-01-16</EventDate>
+            <EventDescription>Electronic Review</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2013-01-16</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Mail Non-Final Rejection</EventCode>
+            <EventDate>2013-01-16</EventDate>
+            <EventDescription>Mail Non-Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Non-Final Rejection</EventCode>
+            <EventDate>2013-01-14</EventDate>
+            <EventDescription>Non-Final Rejection</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Information Disclosure Statement considered</EventCode>
+            <EventDate>2011-04-27</EventDate>
+            <EventDescription>Information Disclosure Statement considered</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2012-11-02</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>PG-Pub Issue Notification</EventCode>
+            <EventDate>2012-11-01</EventDate>
+            <EventDescription>PG-Pub Issue Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Case Docketed to Examiner in GAU</EventCode>
+            <EventDate>2012-09-06</EventDate>
+            <EventDescription>Case Docketed to Examiner in GAU</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Case Docketed to Examiner in GAU</EventCode>
+            <EventDate>2012-08-23</EventDate>
+            <EventDescription>Case Docketed to Examiner in GAU</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Reference capture on IDS</EventCode>
+            <EventDate>2011-04-27</EventDate>
+            <EventDescription>Reference capture on IDS</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Information Disclosure Statement (IDS) Filed</EventCode>
+            <EventDate>2011-04-27</EventDate>
+            <EventDescription>Information Disclosure Statement (IDS) Filed</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Application Dispatched from OIPE</EventCode>
+            <EventDate>2011-05-31</EventDate>
+            <EventDescription>Application Dispatched from OIPE</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Application Is Now Complete</EventCode>
+            <EventDate>2011-05-12</EventDate>
+            <EventDescription>Application Is Now Complete</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Email Notification</EventCode>
+            <EventDate>2011-05-12</EventDate>
+            <EventDescription>Email Notification</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Sent to Classification Contractor</EventCode>
+            <EventDate>2011-05-11</EventDate>
+            <EventDescription>Sent to Classification Contractor</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Filing Receipt</EventCode>
+            <EventDate>2011-05-12</EventDate>
+            <EventDescription>Filing Receipt</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Applicants have given acceptable permission for participating foreign</EventCode>
+            <EventDate>2011-04-27</EventDate>
+            <EventDescription>Applicants have given acceptable permission for participating foreign</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Information Disclosure Statement (IDS) Filed</EventCode>
+            <EventDate>2011-04-27</EventDate>
+            <EventDescription>Information Disclosure Statement (IDS) Filed</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Cleared by OIPE CSR</EventCode>
+            <EventDate>2011-04-28</EventDate>
+            <EventDescription>Cleared by OIPE CSR</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>IFW Scan &amp; PACR Auto Security Review</EventCode>
+            <EventDate>2011-04-27</EventDate>
+            <EventDescription>IFW Scan &amp; PACR Auto Security Review</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>Initial Exam Team nn</EventCode>
+            <EventDate>2011-04-27</EventDate>
+            <EventDescription>Initial Exam Team nn</EventDescription>
+            <EventText>File Content History</EventText>
+          </EventDetails>
+          <NameDetails>
+            <NameTypeCode>Examiner</NameTypeCode>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FormattedName>
+                    <FirstName>EUGENE</FirstName>
+                    <MiddleName>G</MiddleName>
+                    <LastName>BYRD</LastName>
+                  </FormattedName>
+                </Name>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <NameDetails>
+            <NameTypeCode>Inventor</NameTypeCode>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FormattedName>
+                    <FirstName>Richard</FirstName>
+                    <LastName>BOUCHARD</LastName>
+                  </FormattedName>
+                </Name>
+                <Address>
+                  <FormattedAddress>
+                    <AddressCity>Sorel-Tracy</AddressCity>
+                    <AddressCountryCode>CA</AddressCountryCode>
+                  </FormattedAddress>
+                </Address>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <NameDetails>
+            <NameTypeCode>Inventor</NameTypeCode>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FormattedName>
+                    <FirstName>John</FirstName>
+                    <LastName>Pietrobon</LastName>
+                  </FormattedName>
+                </Name>
+                <Address>
+                  <FormattedAddress>
+                    <AddressCity>Outremont</AddressCity>
+                    <AddressCountryCode>CA</AddressCountryCode>
+                  </FormattedAddress>
+                </Address>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <DocumentDetails>
+            <Document>
+              <DocumentIdentifier>6bf4dfd9-1688-4ee1-bab5-7753ba50f274</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2016-08-23</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>daa62964-ff58-4bdf-9c6b-1f3467f1dbac</DocumentIdentifier>
+              <DocumentName>Notice of Allowance and Fees Due (PTOL-85)</DocumentName>
+              <DocumentDate>2016-08-23</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>7</DocumentNumberPages>
+              <DocumentComment>NOA</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>68149b3d-1449-4c23-8fe2-a6f11b610349</DocumentIdentifier>
+              <DocumentName>Search information including classification, databases and other search related notes</DocumentName>
+              <DocumentDate>2016-08-23</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>SRFW</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>a8a24d74-44fb-434c-b183-bcaeb2ebcd9f</DocumentIdentifier>
+              <DocumentName>Issue Information including classification, examiner, name, claim, renumbering, etc.</DocumentName>
+              <DocumentDate>2016-08-23</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>IIFW</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>e13b7024-3c31-4075-8990-735571a632fb</DocumentIdentifier>
+              <DocumentName>Examiner''s search strategy and results</DocumentName>
+              <DocumentDate>2016-08-23</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>4</DocumentNumberPages>
+              <DocumentComment>SRNT</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>36f4f20a-94d5-45c1-9c6a-d8541a65b008</DocumentIdentifier>
+              <DocumentName>Index of Claims</DocumentName>
+              <DocumentDate>2016-08-23</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>FWCLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>615e2fb8-2d58-4002-a5e3-5dda6a6a50a5</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2016-05-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>792d179e-3bdd-4691-8bf1-1f0b29aabde8</DocumentIdentifier>
+              <DocumentName>Amendment/Req. Reconsideration-After Non-Final Reject</DocumentName>
+              <DocumentDate>2016-05-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>A...</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>02701eea-7451-4778-ab44-4768f51a5bd2</DocumentIdentifier>
+              <DocumentName>Claims</DocumentName>
+              <DocumentDate>2016-05-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>4</DocumentNumberPages>
+              <DocumentComment>CLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>7663fe3a-9844-46b1-b94b-708a41653872</DocumentIdentifier>
+              <DocumentName>Applicant Arguments/Remarks Made in an Amendment</DocumentName>
+              <DocumentDate>2016-05-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>REM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>b252ae64-c51e-48a5-aa8f-45a6613bdc06</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2016-05-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>cc524dd8-5dd6-46a8-ab98-60cdba7d0013</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2016-05-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>8c452a2e-9fa0-46b1-bef9-101e98d8f572</DocumentIdentifier>
+              <DocumentName>Extension of Time</DocumentName>
+              <DocumentDate>2016-05-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>XT/</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>7e696822-96c9-46ec-be02-b3ce6352f160</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2016-01-05</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>bdabfdbb-c046-4f43-9661-b256d234cd8b</DocumentIdentifier>
+              <DocumentName>Non-Final Rejection</DocumentName>
+              <DocumentDate>2016-01-05</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>8</DocumentNumberPages>
+              <DocumentComment>CTNF</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>0b069ea8-d393-4cf9-b6eb-0c39723ed568</DocumentIdentifier>
+              <DocumentName>Index of Claims</DocumentName>
+              <DocumentDate>2016-01-05</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>FWCLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>87f0a933-1721-4be4-9b27-e183da9e8e44</DocumentIdentifier>
+              <DocumentName>Examiner''s search strategy and results</DocumentName>
+              <DocumentDate>2016-01-05</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>SRNT</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>b631c1a7-7650-46db-ac58-3644cedbb31b</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2015-12-17</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>8bc26cb5-c0cc-44de-a52d-4ac0efa63e72</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2015-12-17</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>083a9917-3b6c-4ba5-881e-a5165f5b6e56</DocumentIdentifier>
+              <DocumentName>Request for Continued Examination (RCE)</DocumentName>
+              <DocumentDate>2015-12-17</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>RCEX</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>9c590fc5-2972-42ea-bd87-e3c8f4dc5acc</DocumentIdentifier>
+              <DocumentName>Extension of Time</DocumentName>
+              <DocumentDate>2015-12-17</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>XT/</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>a35a6066-9a48-42c9-b73e-dada0d281a42</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2015-12-17</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>e41659f4-63f1-437d-af7b-9b7628c294fa</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2015-12-17</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>5614cfbb-f8d5-47fd-a7ec-f7296eb2ac5b</DocumentIdentifier>
+              <DocumentName>Advisory Action (PTOL-303)</DocumentName>
+              <DocumentDate>2015-12-17</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>CTAV</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>e0284d97-5017-4d0e-9e82-1ac5a72c0498</DocumentIdentifier>
+              <DocumentName>Amendment After Final or under 37CFR 1.312, initialed by the examiner.</DocumentName>
+              <DocumentDate>2015-12-17</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>ANE.I</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>9f3242e4-39d0-46f7-8f79-0e24d9e18c1f</DocumentIdentifier>
+              <DocumentName>After Final Consideration Program Decision</DocumentName>
+              <DocumentDate>2015-12-17</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>A.NE.AFCP.D</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>01d3b789-1368-43ea-9955-81ffb73ade07</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2015-11-18</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>c1ff0b38-87e6-4ea1-bbb3-45d2e2d85fa0</DocumentIdentifier>
+              <DocumentName>Amendment Submitted/Entered with Filing of CPA/RCE</DocumentName>
+              <DocumentDate>2015-11-18</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>AMSB</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>2512280b-85ed-4a6a-9aa2-030439e6c701</DocumentIdentifier>
+              <DocumentName>Claims</DocumentName>
+              <DocumentDate>2015-11-18</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>CLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>75e46dd7-1c51-4d22-8da9-bd868be1074a</DocumentIdentifier>
+              <DocumentName>Applicant Arguments/Remarks Made in an Amendment</DocumentName>
+              <DocumentDate>2015-11-18</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>REM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>371efbe6-e292-448c-ad39-ab925f3d95f3</DocumentIdentifier>
+              <DocumentName>After Final Consideration Program Request</DocumentName>
+              <DocumentDate>2015-11-18</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>A.NE.AFCP</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>51a670e2-4786-45cf-91d5-21272bcf3493</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2015-11-18</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>2d5c4d06-cd5c-410d-bd94-f314bf7a7bd3</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2015-08-20</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>5223fa09-81d5-4715-a4cc-06ef158a5d66</DocumentIdentifier>
+              <DocumentName>Final Rejection</DocumentName>
+              <DocumentDate>2015-08-20</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>9</DocumentNumberPages>
+              <DocumentComment>CTFR</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>7696f869-462c-4591-a75a-45c9b6a717e5</DocumentIdentifier>
+              <DocumentName>Index of Claims</DocumentName>
+              <DocumentDate>2015-08-20</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>FWCLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>cfa861e1-fa56-44a1-824d-6472c1e3075f</DocumentIdentifier>
+              <DocumentName>Examiner''s search strategy and results</DocumentName>
+              <DocumentDate>2015-08-20</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>SRNT</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>59100ad4-c770-4413-814f-7328f9e900c4</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2015-05-04</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>c0e19964-ed68-4b84-92b1-0905fb0d4f28</DocumentIdentifier>
+              <DocumentName>Amendment/Req. Reconsideration-After Non-Final Reject</DocumentName>
+              <DocumentDate>2015-05-04</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>A...</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>5feafc84-5ed6-40e1-99ae-949a9b60e229</DocumentIdentifier>
+              <DocumentName>Claims</DocumentName>
+              <DocumentDate>2015-05-04</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>CLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>a7e6f707-0239-4a43-8f64-effcab78d19f</DocumentIdentifier>
+              <DocumentName>Applicant Arguments/Remarks Made in an Amendment</DocumentName>
+              <DocumentDate>2015-05-04</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>REM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>9e9a71ed-f2c9-4891-9831-738ad29af69b</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2015-05-04</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>cfe23fd8-f260-41e2-ba3d-b6873358fe35</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2015-02-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>eb8ee0ac-f2e9-4124-b446-2b7f38252276</DocumentIdentifier>
+              <DocumentName>Non-Final Rejection</DocumentName>
+              <DocumentDate>2015-02-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>7</DocumentNumberPages>
+              <DocumentComment>CTNF</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>de8251c2-72b6-4204-83bf-cf17112ac7c8</DocumentIdentifier>
+              <DocumentName>List of references cited by examiner</DocumentName>
+              <DocumentDate>2015-02-03</DocumentDate>
+              <DocumentTypeCode>PRIOR ART</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>892</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>2d208582-c3f6-43b4-bc0d-f34a3066aabc</DocumentIdentifier>
+              <DocumentName>Index of Claims</DocumentName>
+              <DocumentDate>2015-02-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>FWCLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>8d348f9e-77e4-47f7-8875-b8757c89272a</DocumentIdentifier>
+              <DocumentName>Examiner''s search strategy and results</DocumentName>
+              <DocumentDate>2015-02-03</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>SRNT</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>01386f65-9287-4aa7-b38e-b6cc8034e2f4</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2014-10-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>c2f596e4-3be9-4ab3-8fb2-c5f3c8276bda</DocumentIdentifier>
+              <DocumentName>Request for Continued Examination (RCE)</DocumentName>
+              <DocumentDate>2014-10-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>RCEX</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>c1fc5ca9-c7e4-4d34-9278-9f08d3fc46fc</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2014-10-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>e1890831-82ad-4ed6-8b98-66476af46477</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2014-10-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>abd3e7ac-cfd6-42b8-bfae-bdbf269e98d6</DocumentIdentifier>
+              <DocumentName>Extension of Time</DocumentName>
+              <DocumentDate>2014-10-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>XT/</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>3c3dd2b6-887c-4052-89f9-3db7569f0872</DocumentIdentifier>
+              <DocumentName>Amendment Submitted/Entered with Filing of CPA/RCE</DocumentName>
+              <DocumentDate>2014-10-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>AMSB</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>ec4fe33f-ef5b-4ee7-b4c8-6a086661e078</DocumentIdentifier>
+              <DocumentName>Claims</DocumentName>
+              <DocumentDate>2014-10-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>CLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>94dbe5af-6d7b-4374-aaec-9fbe004825ba</DocumentIdentifier>
+              <DocumentName>Applicant Arguments/Remarks Made in an Amendment</DocumentName>
+              <DocumentDate>2014-10-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>REM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>143ba3e5-7d37-410e-9a65-9b47dd8318e8</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2014-09-10</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>6b5e605d-ab31-4099-a7ff-22eaabd1233e</DocumentIdentifier>
+              <DocumentName>Advisory Action (PTOL-303)</DocumentName>
+              <DocumentDate>2014-09-10</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>CTAV</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>31cd996f-3fd8-4eb2-b820-3876e2d4b435</DocumentIdentifier>
+              <DocumentName>Amendment After Final or under 37CFR 1.312, initialed by the examiner.</DocumentName>
+              <DocumentDate>2014-09-10</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>ANE.I</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>4ae5285e-8a0f-4648-86eb-6e4ac21daa90</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2014-08-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>48c81946-d41f-4911-9ce8-575aa2a31a05</DocumentIdentifier>
+              <DocumentName>Response After Final Action</DocumentName>
+              <DocumentDate>2014-08-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>A.NE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>8e3e9347-79d5-4b27-85ef-03ffe1a76a6b</DocumentIdentifier>
+              <DocumentName>Claims</DocumentName>
+              <DocumentDate>2014-08-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>CLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>5fa85679-0cec-4cc4-b1c4-104700dc5139</DocumentIdentifier>
+              <DocumentName>Applicant Arguments/Remarks Made in an Amendment</DocumentName>
+              <DocumentDate>2014-08-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>REM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>afa243ef-28b9-461f-814c-63ff6c0f462d</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2014-08-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>069838f4-cb4c-4371-8b1d-5a56df9ab179</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2014-06-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>00caf8d0-1c43-4dd0-9769-c1bc16724690</DocumentIdentifier>
+              <DocumentName>Final Rejection</DocumentName>
+              <DocumentDate>2014-06-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>8</DocumentNumberPages>
+              <DocumentComment>CTFR</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>01d6de21-acbf-4e9f-9b30-f94a44a66806</DocumentIdentifier>
+              <DocumentName>Examiner''s search strategy and results</DocumentName>
+              <DocumentDate>2014-06-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>SRNT</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>b87e8be6-de2a-4543-9af8-6b9ea97e5ca1</DocumentIdentifier>
+              <DocumentName>Index of Claims</DocumentName>
+              <DocumentDate>2014-06-06</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>FWCLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>d7e0221b-bddb-4586-8c04-8e64d8dcb9dc</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2014-05-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>67ea32ed-826b-4449-a420-cad5d8b39598</DocumentIdentifier>
+              <DocumentName>Amendment/Req. Reconsideration-After Non-Final Reject</DocumentName>
+              <DocumentDate>2014-05-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>A...</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>f3fccb3f-82be-4661-abb1-825332804bba</DocumentIdentifier>
+              <DocumentName>Claims</DocumentName>
+              <DocumentDate>2014-05-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>CLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>ae6a33e7-a21c-4ca7-a806-a822bf4b173d</DocumentIdentifier>
+              <DocumentName>Applicant Arguments/Remarks Made in an Amendment</DocumentName>
+              <DocumentDate>2014-05-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>REM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>c2d25032-e3a1-48df-920b-31cb2a2cbe52</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2014-05-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>340be78b-cfbb-480c-b07b-53b19abfe7b1</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2014-05-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>738e8b68-3e80-40ba-8370-22ed4dc2df8a</DocumentIdentifier>
+              <DocumentName>Extension of Time</DocumentName>
+              <DocumentDate>2014-05-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>XT/</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>c4c75afd-170c-45f5-beca-522deaa1a6b0</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2014-01-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>b9402b49-86df-4b5b-b115-9911f52e6cfe</DocumentIdentifier>
+              <DocumentName>Non-Final Rejection</DocumentName>
+              <DocumentDate>2014-01-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>7</DocumentNumberPages>
+              <DocumentComment>CTNF</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>d456cae6-059b-433a-9cf5-45b614bc60dc</DocumentIdentifier>
+              <DocumentName>Index of Claims</DocumentName>
+              <DocumentDate>2014-01-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>FWCLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>263a0f08-ebe3-46e6-b698-e46abc49f709</DocumentIdentifier>
+              <DocumentName>Examiner''s search strategy and results</DocumentName>
+              <DocumentDate>2014-01-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>SRNT</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>1eb7b3e3-225d-4ab9-9bc1-a54b7ecbf2cd</DocumentIdentifier>
+              <DocumentName>Request for Continued Examination (RCE)</DocumentName>
+              <DocumentDate>2013-12-11</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>RCEX</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>6996f0ac-3d84-4d2e-ae19-426611f9d92c</DocumentIdentifier>
+              <DocumentName>Extension of Time</DocumentName>
+              <DocumentDate>2013-12-11</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>XT/</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>48aefa76-7c0b-4d70-a787-5a36ad45ef49</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2013-12-11</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>7240b5d3-8a57-4ea9-891a-fb68b6e5445a</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2013-12-11</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>1048b79b-9c0b-448a-a967-b2c496e05d2d</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2013-11-20</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>6c36733a-9208-4efa-bd5f-06b57c0a70de</DocumentIdentifier>
+              <DocumentName>Advisory Action (PTOL-303)</DocumentName>
+              <DocumentDate>2013-11-20</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>CTAV</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>e3ccb1da-ec28-4c00-a80b-91f19e8d7d1d</DocumentIdentifier>
+              <DocumentName>Amendment After Final or under 37CFR 1.312, initialed by the examiner.</DocumentName>
+              <DocumentDate>2013-11-20</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>ANE.I</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>a96e11f6-6152-4d86-a83f-495e7b31276d</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2013-10-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>8470f43b-fbee-448c-a1b9-87d6e978a2fa</DocumentIdentifier>
+              <DocumentName>After Final Consideration Program Request</DocumentName>
+              <DocumentDate>2013-10-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>A.NE.AFCP</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>f87aa260-1720-42a1-a56a-83974af30eb9</DocumentIdentifier>
+              <DocumentName>Amendment Submitted/Entered with Filing of CPA/RCE</DocumentName>
+              <DocumentDate>2013-10-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>AMSB</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>3bbe1538-8570-47b1-b412-1b264960d113</DocumentIdentifier>
+              <DocumentName>Claims</DocumentName>
+              <DocumentDate>2013-10-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>CLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>ed774380-9976-4164-a63a-86f89fd83a65</DocumentIdentifier>
+              <DocumentName>Applicant Arguments/Remarks Made in an Amendment</DocumentName>
+              <DocumentDate>2013-10-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>REM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>899a73a1-a92f-41d9-bde9-59c0af79de45</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2013-10-15</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>04a6312d-4e4d-469c-b7e2-7b41c56b086a</DocumentIdentifier>
+              <DocumentName>A courtesy postcard sent by USPTO to users who opt-in for e-Office Action</DocumentName>
+              <DocumentDate>2013-08-24</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.POSTCARD</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>19026557-c6ff-4b7c-a137-b1a4575f0680</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2013-08-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>92289860-8d04-45b4-be1f-b3ebb87ce8ee</DocumentIdentifier>
+              <DocumentName>Final Rejection</DocumentName>
+              <DocumentDate>2013-08-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>7</DocumentNumberPages>
+              <DocumentComment>CTFR</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>6ce312b9-bf23-4b67-8722-faebe3c0eb8e</DocumentIdentifier>
+              <DocumentName>Index of Claims</DocumentName>
+              <DocumentDate>2013-08-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>FWCLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>117d1699-0bf1-4df6-8efc-6d43ae9c0a0d</DocumentIdentifier>
+              <DocumentName>Examiner''s search strategy and results</DocumentName>
+              <DocumentDate>2013-08-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>SRNT</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>560d0fa8-ac16-44a2-9fc3-7c7d217eee07</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2013-05-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>882cde33-25c0-461c-988c-46761f6854e4</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2013-05-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>2c80b54a-c7fa-4284-a07b-8e22972e5c38</DocumentIdentifier>
+              <DocumentName>Amendment/Req. Reconsideration-After Non-Final Reject</DocumentName>
+              <DocumentDate>2013-05-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>A...</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>09a16a3f-f58e-4b3f-9fad-f42394f4c586</DocumentIdentifier>
+              <DocumentName>Claims</DocumentName>
+              <DocumentDate>2013-05-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>CLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>718bfc47-6bc8-46ad-becb-1c4df1598aeb</DocumentIdentifier>
+              <DocumentName>Applicant Arguments/Remarks Made in an Amendment</DocumentName>
+              <DocumentDate>2013-05-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>REM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>7da180ef-243e-46e9-b935-ab2ad9979b14</DocumentIdentifier>
+              <DocumentName>Extension of Time</DocumentName>
+              <DocumentDate>2013-05-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>XT/</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>5600f8ab-4d90-44f8-8be8-79ccb292c892</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2013-05-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>ab65bc69-17dc-457b-bb0f-8b02141cd770</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2013-05-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>2df68698-5740-4558-8e02-aa290cbbcd65</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2013-01-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>ca981b48-8d73-4708-a92e-8094e4bef8f9</DocumentIdentifier>
+              <DocumentName>Non-Final Rejection</DocumentName>
+              <DocumentDate>2013-01-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>7</DocumentNumberPages>
+              <DocumentComment>CTNF</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>45d9e122-5cbf-47ad-aa6f-81d41c25307d</DocumentIdentifier>
+              <DocumentName>List of references cited by examiner</DocumentName>
+              <DocumentDate>2013-01-16</DocumentDate>
+              <DocumentTypeCode>PRIOR ART</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>892</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>fdeecdac-a9c3-4ccb-8ee3-c33deba8f6ce</DocumentIdentifier>
+              <DocumentName>Bibliographic Data Sheet</DocumentName>
+              <DocumentDate>2013-01-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>BIB</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>d4aa2730-327b-4257-9acc-a75df6e71510</DocumentIdentifier>
+              <DocumentName>Search information including classification, databases and other search related notes</DocumentName>
+              <DocumentDate>2013-01-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>SRFW</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>c96449ee-7211-41db-aaba-62681ffffa7f</DocumentIdentifier>
+              <DocumentName>Index of Claims</DocumentName>
+              <DocumentDate>2013-01-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>FWCLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>42af15b7-30ac-4943-b403-08ef7b423905</DocumentIdentifier>
+              <DocumentName>List of References cited by applicant and considered by examiner</DocumentName>
+              <DocumentDate>2013-01-16</DocumentDate>
+              <DocumentTypeCode>PRIOR ART</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>1449</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>3b447ba8-f72f-45cd-9760-e6edf182c00e</DocumentIdentifier>
+              <DocumentName>Examiner''s search strategy and results</DocumentName>
+              <DocumentDate>2013-01-16</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>SRNT</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>b43bf17c-7483-41ef-ac96-5036798a6f7f</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2012-11-02</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>d23581f4-9350-4923-bf81-05f2436775fe</DocumentIdentifier>
+              <DocumentName>Notice of Publication</DocumentName>
+              <DocumentDate>2012-11-01</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>NTC.PUB</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>097cf95b-a54e-42b8-a456-f3ef0882cba3</DocumentIdentifier>
+              <DocumentName>Email Notification</DocumentName>
+              <DocumentDate>2011-05-12</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>OA.EMAIL</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>d64fdbae-fe0e-4c93-a365-9d70471837d2</DocumentIdentifier>
+              <DocumentName>Filing Receipt</DocumentName>
+              <DocumentDate>2011-05-12</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>APP.FILE.REC</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>7750c7bd-fcf0-4896-9a63-2f7038811715</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2011-05-12</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>18739aca-2ed5-40ab-958c-a788b7cb3486</DocumentIdentifier>
+              <DocumentName>Information Disclosure Statement (IDS) Form (SB08)</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>IDS</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>aed49e15-1649-46ec-bca7-5c9f01f89b05</DocumentIdentifier>
+              <DocumentName>Fee Worksheet (SB06)</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>WFEE</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>b903261d-1807-480b-8576-76d66d2275ab</DocumentIdentifier>
+              <DocumentName>EFS Acknowledgment Receipt</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>N417</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>79c15864-6e15-4899-902c-519e9ea4a9dc</DocumentIdentifier>
+              <DocumentName>Auth or Resc of Auth to Access Appl by DAS/PDX Office</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>PD.TO.AUTH</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>a29fa7ed-d488-46b4-93c9-9a9a2f529bec</DocumentIdentifier>
+              <DocumentName>Specification</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>7</DocumentNumberPages>
+              <DocumentComment>SPEC</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>3411a99d-9885-43a8-bed3-59c2dd200e43</DocumentIdentifier>
+              <DocumentName>Claims</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>CLM</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>a9bafdf7-b23e-4624-b033-501e1165f054</DocumentIdentifier>
+              <DocumentName>Abstract</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>1</DocumentNumberPages>
+              <DocumentComment>ABST</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>20d5ddcd-65e7-4a27-8a67-a2e3bd0c21aa</DocumentIdentifier>
+              <DocumentName>Oath or Declaration filed</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>OATH</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>94bf2fdc-0ffe-4c48-b406-06c03cc14c8b</DocumentIdentifier>
+              <DocumentName>Drawings-only black and white line drawings</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>3</DocumentNumberPages>
+              <DocumentComment>DRW</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>6134350a-1968-4e47-a50c-f687dac31b10</DocumentIdentifier>
+              <DocumentName>Transmittal Letter</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>TRAN.LET</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>3edf108b-c11e-4ad6-909a-279786f0ab9e</DocumentIdentifier>
+              <DocumentName>Transmittal of New Application</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>TRNA</DocumentComment>
+            </Document>
+            <Document>
+              <DocumentIdentifier>c9975506-aecf-4cb7-9848-f56ab9d67981</DocumentIdentifier>
+              <DocumentName>Authorization for Extension of Time all replies</DocumentName>
+              <DocumentDate>2011-04-27</DocumentDate>
+              <DocumentTypeCode>PROSECUTION</DocumentTypeCode>
+              <DocumentNumberPages>2</DocumentNumberPages>
+              <DocumentComment>136A</DocumentComment>
+            </Document>
+          </DocumentDetails>
+        </CaseDetails>
+      </TransactionData>
+    </TransactionContentDetails>
+  </TransactionBody>
+</Transaction>

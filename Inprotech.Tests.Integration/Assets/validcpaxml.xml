@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Transaction>
+    <TransactionHeader>
+        <SenderDetails>
+            <SenderRequestType>Case Import</SenderRequestType>
+            <SenderRequestIdentifier>E2E Batch - importxml</SenderRequestIdentifier>
+            <Sender>MYAC</Sender>
+            <SenderXSDVersion>1.4</SenderXSDVersion>
+            <SenderSoftware>
+                <SenderSoftwareName>CPA Inprotech</SenderSoftwareName>
+                <SenderSoftwareVersion>Release 10 Beta</SenderSoftwareVersion>
+            </SenderSoftware>
+            <SenderFilename>validcpaxml.XML</SenderFilename>
+            <SenderProducedDate>2014-08-11</SenderProducedDate>
+        </SenderDetails>
+    </TransactionHeader>
+    <TransactionBody>
+        <TransactionIdentifier>99999</TransactionIdentifier>
+        <TransactionContentDetails>
+            <TransactionCode>Case Export</TransactionCode>
+            <TransactionData>
+                <CaseDetails>
+                    <SenderCaseIdentifier>-487</SenderCaseIdentifier>
+                    <SenderCaseReference>9999</SenderCaseReference>
+                    <CaseTypeCode>Property</CaseTypeCode>
+                    <CasePropertyTypeCode>Trademark</CasePropertyTypeCode>
+                    <CaseCategoryCode>Normal</CaseCategoryCode>
+                    <CaseSubTypeCode>Normal</CaseSubTypeCode>
+                    <CaseCountryCode>AU</CaseCountryCode>
+                    <CaseStatus>Registered</CaseStatus>
+                    <CaseRenewalStatus>In Force</CaseRenewalStatus>
+                    <TypeOfMark>Word</TypeOfMark>
+                    <DescriptionDetails>
+                        <DescriptionCode>Short Title</DescriptionCode>
+                        <DescriptionText>Flower Power Containment Device</DescriptionText>
+                    </DescriptionDetails>
+                    <DescriptionDetails>
+                        <DescriptionCode>Goods/Services</DescriptionCode>
+                        <DescriptionText>Providing of food and drink; temporary accommodation; medical, hygienic and beauty care; veterinary and agricultural services; legal services; scientific and industrial research; computer programming; services that cannot be placed in other classes. </DescriptionText>
+                    </DescriptionDetails>
+                    <DescriptionDetails>
+                        <DescriptionCode>Goods/Services</DescriptionCode>
+                        <DescriptionText>Providing of food and drink; temporary accommodation; medical, hygienic and beauty care; veterinary and agricultural services; legal services; scientific and industrial research; computer programming; services that cannot be placed in other classes.
+
+</DescriptionText>
+                    </DescriptionDetails>
+                    <IdentifierNumberDetails>
+                        <IdentifierNumberCode>Acceptance</IdentifierNumberCode>
+                        <IdentifierNumberText>432543</IdentifierNumberText>
+                    </IdentifierNumberDetails>
+                    <IdentifierNumberDetails>
+                        <IdentifierNumberCode>Registration/Grant</IdentifierNumberCode>
+                        <IdentifierNumberText>7562676</IdentifierNumberText>
+                        <IdentifierNumberDateInForce>2010-05-02</IdentifierNumberDateInForce>
+                    </IdentifierNumberDetails>
+                    <EventDetails>
+                        <EventCode>Last Amendment</EventCode>
+                        <EventDate>2010-06-24</EventDate>
+                        <EventCycle>1</EventCycle>
+                    </EventDetails>
+                    <EventDetails>
+                        <EventCode>Next Renewal</EventCode>
+                        <EventDueDate>2020-05-01</EventDueDate>
+                        <EventCycle>1</EventCycle>
+                    </EventDetails>
+                    <EventDetails>
+                        <EventCode>Next Renewal</EventCode>
+                        <EventDueDate>2030-05-01</EventDueDate>
+                        <EventCycle>2</EventCycle>
+                    </EventDetails>
+                    <EventDetails>
+                        <EventCode>Renewal Start Date</EventCode>
+                        <EventDate>2010-05-01</EventDate>
+                        <EventDueDate>2010-05-01</EventDueDate>
+                        <EventCycle>1</EventCycle>
+                    </EventDetails>
+                    <EventDetails>
+                        <EventCode>Registration/Grant</EventCode>
+                        <EventDate>2010-05-02</EventDate>
+                        <EventCycle>1</EventCycle>
+                    </EventDetails>
+                    <EventDetails>
+                        <EventCode>Application</EventCode>
+                        <EventDate>2010-05-01</EventDate>
+                        <EventCycle>1</EventCycle>
+                    </EventDetails>
+                    <EventDetails>
+                        <EventCode>Earliest Priority</EventCode>
+                        <EventDate>2010-06-01</EventDate>
+                        <EventCycle>1</EventCycle>
+                    </EventDetails>
+                    <NameDetails>
+                        <NameTypeCode>Debtor</NameTypeCode>
+                        <NameSequenceNumber>0</NameSequenceNumber>
+                        <AddressBook>
+                            <FormattedNameAddress>
+                                <Name>
+                                    <ReceiverNameIdentifier>200430</ReceiverNameIdentifier>
+                                    <SenderNameInternalIdentifier>-493</SenderNameInternalIdentifier>
+                                    <FormattedName>
+                                        <Salutation>Mrs Hayes</Salutation>
+                                        <OrganizationName>Asparagus Farming Equipment Pty Ltd</OrganizationName>
+                                    </FormattedName>
+                                </Name>
+                                <Address>
+                                    <FormattedAddress>
+                                        <AddressLine sequenceNumber="1">24 Green Street</AddressLine>
+                                        <AddressCity>Bondi</AddressCity>
+                                        <AddressState>NSW</AddressState>
+                                        <AddressPostcode>2026</AddressPostcode>
+                                        <AddressCountryCode>AU</AddressCountryCode>
+                                    </FormattedAddress>
+                                </Address>
+                                <AttentionOf>
+                                    <FormattedAttentionOf>
+                                        <NamePrefix>Mrs</NamePrefix>
+                                        <FirstName>Helen</FirstName>
+                                        <LastName>Hayes</LastName>
+                                    </FormattedAttentionOf>
+                                </AttentionOf>
+                            </FormattedNameAddress>
+                            <ContactInformationDetails>
+                                <Phone sequenceNumber="1">9361 2233</Phone>
+                                <Fax sequenceNumber="1">9361 3334</Fax>
+                            </ContactInformationDetails>
+                        </AddressBook>
+                    </NameDetails>
+                    <NameDetails>
+                        <NameTypeCode>Client</NameTypeCode>
+                        <NameSequenceNumber>0</NameSequenceNumber>
+                        <AddressBook>
+                            <FormattedNameAddress>
+                                <Name>
+                                    <ReceiverNameIdentifier>200430</ReceiverNameIdentifier>
+                                    <SenderNameInternalIdentifier>-493</SenderNameInternalIdentifier>
+                                    <FormattedName>
+                                        <Salutation>Mrs Hayes</Salutation>
+                                        <OrganizationName>Asparagus Farming Equipment Pty Ltd</OrganizationName>
+                                    </FormattedName>
+                                </Name>
+                                <Address>
+                                    <FormattedAddress>
+                                        <AddressLine sequenceNumber="1">24 Green Street</AddressLine>
+                                        <AddressCity>Bondi</AddressCity>
+                                        <AddressState>NSW</AddressState>
+                                        <AddressPostcode>2026</AddressPostcode>
+                                        <AddressCountryCode>AU</AddressCountryCode>
+                                    </FormattedAddress>
+                                </Address>
+                                <AttentionOf>
+                                    <FormattedAttentionOf>
+                                        <NamePrefix>Mrs</NamePrefix>
+                                        <FirstName>Helen</FirstName>
+                                        <LastName>Hayes</LastName>
+                                    </FormattedAttentionOf>
+                                </AttentionOf>
+                            </FormattedNameAddress>
+                            <ContactInformationDetails>
+                                <Phone sequenceNumber="1">9361 2233</Phone>
+                                <Fax sequenceNumber="1">9361 3334</Fax>
+                            </ContactInformationDetails>
+                        </AddressBook>
+                    </NameDetails>
+                    <NameDetails>
+                        <NameTypeCode>Applicant</NameTypeCode>
+                        <NameSequenceNumber>0</NameSequenceNumber>
+                        <AddressBook>
+                            <FormattedNameAddress>
+                                <Name>
+                                    <ReceiverNameIdentifier>200430</ReceiverNameIdentifier>
+                                    <SenderNameInternalIdentifier>-492</SenderNameInternalIdentifier>
+                                    <FormattedName>
+                                        <Salutation>Mr Jones</Salutation>
+                                        <OrganizationName>Aspargus Holdings Pty Limited</OrganizationName>
+                                    </FormattedName>
+                                </Name>
+                                <Address>
+                                    <FormattedAddress>
+                                        <AddressLine sequenceNumber="1">Level 3, Harvester Building</AddressLine>
+                                        <AddressLine sequenceNumber="2">123 Victoria Street</AddressLine>
+                                        <AddressLine sequenceNumber="3">just a test</AddressLine>
+                                        <AddressLine sequenceNumber="4">just a test1</AddressLine>
+                                        <AddressLine sequenceNumber="5">just a test2</AddressLine>
+                                        <AddressCity>Bondi Junction</AddressCity>
+                                        <AddressState>NSW</AddressState>
+                                        <AddressPostcode>2020</AddressPostcode>
+                                        <AddressCountryCode>AU</AddressCountryCode>
+                                    </FormattedAddress>
+                                </Address>
+                                <AttentionOf>
+                                    <FormattedAttentionOf>
+                                        <NamePrefix>Mr</NamePrefix>
+                                        <FirstName>Brian</FirstName>
+                                        <LastName>Jones</LastName>
+                                    </FormattedAttentionOf>
+                                </AttentionOf>
+                            </FormattedNameAddress>
+                            <ContactInformationDetails>
+                                <Phone sequenceNumber="1">+61 2 9389 2234</Phone>
+                                <Fax sequenceNumber="1">+61 2 9389 2223</Fax>
+                            </ContactInformationDetails>
+                        </AddressBook>
+                    </NameDetails>
+                    <AssociatedCaseDetails>
+                        <AssociatedCaseRelationshipCode>Foreign Priority</AssociatedCaseRelationshipCode>
+                        <AssociatedCaseCountryCode>GB</AssociatedCaseCountryCode>
+                        <AssociatedCaseIdentifierNumberDetails>
+                            <IdentifierNumberCode>Application</IdentifierNumberCode>
+                            <IdentifierNumberText>55555</IdentifierNumberText>
+                        </AssociatedCaseIdentifierNumberDetails>
+                        <AssociatedCaseEventDetails>
+                            <EventCode>Earliest Priority</EventCode>
+                            <EventDate>1998-04-01</EventDate>
+                        </AssociatedCaseEventDetails>
+                    </AssociatedCaseDetails>
+                    <AssociatedCaseDetails>
+                        <AssociatedCaseRelationshipCode>Foreign Priority</AssociatedCaseRelationshipCode>
+                        <AssociatedCaseCountryCode>NZ</AssociatedCaseCountryCode>
+                        <AssociatedCaseIdentifierNumberDetails>
+                            <IdentifierNumberCode>Application</IdentifierNumberCode>
+                            <IdentifierNumberText>1234</IdentifierNumberText>
+                        </AssociatedCaseIdentifierNumberDetails>
+                        <AssociatedCaseIdentifierNumberDetails>
+                            <IdentifierNumberCode>Registration/Grant</IdentifierNumberCode>
+                            <IdentifierNumberText>678543</IdentifierNumberText>
+                        </AssociatedCaseIdentifierNumberDetails>
+                        <AssociatedCaseEventDetails>
+                            <EventCode>Earliest Priority</EventCode>
+                            <EventDate>2010-06-01</EventDate>
+                        </AssociatedCaseEventDetails>
+                    </AssociatedCaseDetails>
+                    <GoodsServicesDetails>
+                        <ClassificationTypeCode>Nice</ClassificationTypeCode>
+                        <ClassDescriptionDetails>
+                            <ClassDescription>
+                                <ClassNumber>42</ClassNumber>
+                            </ClassDescription>
+                        </ClassDescriptionDetails>
+                    </GoodsServicesDetails>
+                    <GoodsServicesDetails>
+                        <ClassificationTypeCode>Domestic</ClassificationTypeCode>
+                        <ClassDescriptionDetails>
+                            <ClassDescription>
+                                <ClassNumber>42</ClassNumber>
+                            </ClassDescription>
+                        </ClassDescriptionDetails>
+                    </GoodsServicesDetails>
+                </CaseDetails>
+            </TransactionData>
+        </TransactionContentDetails>
+    </TransactionBody>
+</Transaction>

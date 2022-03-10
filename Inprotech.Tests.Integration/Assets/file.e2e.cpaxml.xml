@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Transaction xmlns="http://www.cpasoftwaresolutions.com">
+  <TransactionHeader>
+    <SenderDetails>
+      <SenderRequestIdentifier>1855c2c4-c7c9-4f36-86e0-7891da5bf1a6</SenderRequestIdentifier>
+      <Sender>FILE</Sender>
+      <SenderXSDVersion />
+    </SenderDetails>
+  </TransactionHeader>
+  <TransactionBody>
+    <TransactionIdentifier>d69d29ed-b0c5-4092-a25c-cb4bbb9ac2e6</TransactionIdentifier>
+    <TransactionContentDetails>
+      <TransactionCode>Case Import</TransactionCode>
+      <TransactionData>
+        <CaseDetails>
+          <SenderCaseIdentifier>584</SenderCaseIdentifier>
+          <SenderCaseReference>ABCD-GoT-AU</SenderCaseReference>
+          <CaseTypeCode>Property</CaseTypeCode>
+          <CasePropertyTypeCode>Patent</CasePropertyTypeCode>
+          <CaseCountryCode>AU</CaseCountryCode>
+          <IdentifierNumberDetails>
+            <IdentifierNumberCode>LOCAL FILING</IdentifierNumberCode>
+            <IdentifierNumberText>12345</IdentifierNumberText>
+          </IdentifierNumberDetails>
+          <EventDetails>
+            <EventCode>LOCAL FILING</EventCode>
+            <EventDate>2017-09-22</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>FILING RECEIPT RECEIVED</EventCode>
+            <EventDate>2017-09-22</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>SENT TO AGENT</EventCode>
+            <EventDate>2017-09-22</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>RECEIVED BY AGENT</EventCode>
+            <EventDate>2017-09-22</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>SENT TO PTO</EventCode>
+            <EventDate>2017-09-22</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>ACKNOWLEDGED</EventCode>
+            <EventDate>2017-09-21</EventDate>
+          </EventDetails>
+          <EventDetails>
+            <EventCode>STATUS</EventCode>
+            <EventText>INSTRUCTED</EventText>
+          </EventDetails>
+          <NameDetails>
+            <NameTypeCode>Applicant</NameTypeCode>
+            <NameSequenceNumber>0</NameSequenceNumber>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>ABCD</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <NameDetails>
+            <NameTypeCode>Foreign Agent</NameTypeCode>
+            <NameSequenceNumber>0</NameSequenceNumber>
+            <NameReference>AA</NameReference>
+            <AddressBook>
+              <FormattedNameAddress>
+                <Name>
+                  <FreeFormatName>
+                    <FreeFormatNameDetails>
+                      <FreeFormatNameLine>Snow, John</FreeFormatNameLine>
+                    </FreeFormatNameDetails>
+                  </FreeFormatName>
+                </Name>
+              </FormattedNameAddress>
+            </AddressBook>
+          </NameDetails>
+          <AssociatedCaseDetails>
+            <AssociatedCaseRelationshipCode>PCT APPLICATION</AssociatedCaseRelationshipCode>
+            <AssociatedCaseCountryCode>PCT</AssociatedCaseCountryCode>
+            <AssociatedCaseIdentifierNumberDetails>
+              <IdentifierNumberCode>APPLICATION</IdentifierNumberCode>
+              <IdentifierNumberText>111222333</IdentifierNumberText>
+            </AssociatedCaseIdentifierNumberDetails>
+            <AssociatedCaseEventDetails>
+              <EventCode>APPLICATION</EventCode>
+              <EventDate>2017-09-22</EventDate>
+            </AssociatedCaseEventDetails>
+          </AssociatedCaseDetails>
+        </CaseDetails>
+      </TransactionData>
+    </TransactionContentDetails>
+  </TransactionBody>
+</Transaction>

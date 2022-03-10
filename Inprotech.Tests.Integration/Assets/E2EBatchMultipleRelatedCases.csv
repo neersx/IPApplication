@@ -1,0 +1,4 @@
+Property Type,Country,Case Category,Sub Type,Priority Country-A,Priority Number-A,Parent Relationship-Z,Parent Country-Z,Parent Number-Z,Priority Country-K,Priority Number-K
+Patent,AU,Normal,Normal,AU,111111,Rel1,US,99991111,NZ,88881111
+Patent,PCT,Normal,Normal,US,333333,,,,US,88883333
+Patent,AU,PCT National Phase,Normal,AU,444444,Rel1,NZ,99994444,,

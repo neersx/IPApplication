@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "database": "TPSDK",
+      "default_security": "inherit",
+      "edit_date": "2020-06-04T01:40:44Z",
+      "folder_type": "regular",
+      "has_documents": false,
+      "has_subfolders": false,
+      "id": "TPSDK!66142",
+      "is_container_saved_search": false,
+      "is_content_saved_search": false,
+      "is_external_as_normal": false,
+      "is_hidden": false,
+      "name": "Another Folder 3",
+      "owner": "JOSE.TONY",
+      "owner_description": "Jose Tony",
+      "parent_id": "TPSDK!66136",
+      "view_type": "document",
+      "workspace_id": "TPSDK!7020",
+      "workspace_name": "1001.001 - Microsoft vs. U.S. Department of Justice",
+      "wstype": "folder"
+    },
+    {
+      "database": "TPSDK",
+      "default_security": "inherit",
+      "edit_date": "2020-06-04T01:40:44Z",
+      "folder_type": "regular",
+      "has_documents": false,
+      "has_subfolders": true,
+      "id": "TPSDK!66137",
+      "is_container_saved_search": false,
+      "is_content_saved_search": false,
+      "is_external_as_normal": false,
+      "is_hidden": false,
+      "name": "Level 4",
+      "owner": "JOSE.TONY",
+      "owner_description": "Jose Tony",
+      "parent_id": "TPSDK!66136",
+      "view_type": "document",
+      "workspace_id": "TPSDK!7020",
+      "workspace_name": "1001.001 - Microsoft vs. U.S. Department of Justice",
+      "wstype": "folder"
+    }
+  ]
+}

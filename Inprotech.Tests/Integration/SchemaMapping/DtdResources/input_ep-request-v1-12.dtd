@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--************************************************************************
+* EPO REQUEST.DTD - for epoline OLF Version 2.0 (old REQUEST Form 1001)
+* DTD Version 1.1 27 June 2003
+* P.Brewin, epoline, EPO, The Hague
+* pbrewin@epo.org
+* DTD Version 1.2 1 February 2007
+* DTD Version 1.5 20 January 2009
+* DTD Version 1.6 23 November 2009
+* DTD Version 1.7 17 September 2010
+* T. Westhues, epoline, EPO, Munich
+* twesthues@epo.org
+" www.epoline.org
+* DTD Version 1.8 23 March 2011
+* D. Van Haken, EPO, dvanhaken@epo.org
+* DTD Version 1.9 1 September 2011
+* D. Van Haken, EPO, dvanhaken@epo.org
+* DTD Version 1.10 07 August 2013
+* D. Van Haken, EPO, dvanhaken@epo.org
+* DTD Version 1.11 28 November 2013
+* D. Van Haken, EPO, dvanhaken@epo.org
+* DTD Version 1.12 24 September 2014
+* D. Van Haken, EPO, dvanhaken@epo.org
+
+************************************************************************
+* PUBLIC
+************************************************************************
+* This DTD is based on:
+* http://pcteasy.wipo.int/efiling_standards/schemaDocs/request.dtd
+* Request v1.1 2003 FEBRUARY
+* It conforms, as far as possible, to:
+* WIPO PCT Annex F DTDs and the latest PFCs:
+* PFC EF/PFC 02/010 and 11); see:
+* http://www.wipo.int/pct/efiling_standard/en/pfc_files.htm
+*
+* There are some minor changes to the main part:
+* EPO added implied (optional) attributes:
+* ELEMENT: ATTRIBUTE
+* cl-abstract: ppf, ppl
+* cl-claims: number-of-claims, ppf, ppl
+* cl-description: ppf,ppl
+* cl-drawings: fig-count
+* The above will be in a recent PFC for Jan 2004 so we leave as is
+*
+* Changes (24-06-2003)
+* inventor changes to
+* ep-inventor because of: renunciation, waiver, inv-rights
+* agent changes to ep-agent
+* priority-claim changes to ep-priority-claim
+* language-of-filing changes to ep-language-of-filing
+* office-specific changes to ep-office-specific (because of content)
+* bio-deposit changes to ep-bio-deposit
+* Other changes are marked in the dtd.
+*
+* Changes(20-01-2009)
+* EPO renamed element:
+* referenced-application: ep-previously-filed-application
+* EPO added implied (optional) attributes:
+* ep-financial-data: fee-amounts-unlocked-by-user
+* fee-factor: user-input
+*
+* Changes(13-07-2010)
+* EPO added child element to ep-priority-claim:
+* earlier-searches (earlier-search+)
+* earlier-search (application-reference?, date-search-completed?)
+* with the following attributes:
+* id, office, search-type, declaration-of-no-search
+* and elements:
+* application-reference  (document-id)
+* date-search-completed  (date)
+*
+* Change(17-09-2010)
+* EPO applied the following change:
+* <!ELEMENT ep-divisional-appl (parent-doc, (ep-first-communication-raising-lack-of-unity | (ep-earliest-doc, ep-first-communication) | ep-no-communication))> 
+* changed to 
+* <!ELEMENT ep-divisional-appl  (parent-doc, ep-earliest-doc?, (ep-first-communication-raising-lack-of-unity | ep-first-communication | ep-no-communication))>
+*
+* Changes v1-7 -> v1-8 
+* EPO applied the following change:
+*
+* There are, of course, many PCT tags which are NOT used by the EPO
+*
+* Changes v1-9 -> v1-10 
+* EPO applied the following change:
+* added attribute number-claims-fee-calculation CDATA #IMPLIED
+*
+* Changes v1-10 -> v1-11
+* ep-divisional-generation added
+* made optional: (ep-first-communication-raising-lack-of-unity | ep-first-communication | ep-no-communication)
+* declaration-of-entity-or-natural-person-under-rule-6-3 added
+*   deferred-execution-date added
+*
+* Changes v1-11 -> v1-12
+* EPO added implied (optional) attributes:
+* ep-inventor: deceased (yes | no) #IMPLIED
+
+************************************************************************
+* START OF EP-REQUEST DTD - MAIN PART
+*
+************************************************************************
+
+attributes for the request
+
+Attributes:
+lang = language of application - use ISO639 language code
+dtd-version = dtd version number
+file = filename of the whole application
+status = status of the application; values: n = new application
+date-produced = YYYYMMDD e.g, 20011230
+if desired, 12 characters maximum
+ro = Receiving office name, country code ST.3
+produced-by = creator of this document
+-->
+<!ENTITY % name_group "((name | (prefix?,(last-name | orgname),first-name?,
+               middle-name?,suffix?,iid?,role?,orgname?,department?,synonym*)),
+               registered-number?)">
+<!ELEMENT ep-request ((file-reference-id?, request-petition, invention-title*, ep-previously-filed-application?, parties, designation-of-states?, priority-claims?, search-authority?, declarations?, check-list?, figure-to-publish?, ep-language-of-filing+, signatories?, dtext?, ep-office-specific-data) | doc-page+)>
+<!ATTLIST ep-request
+	lang CDATA #REQUIRED
+	dtd-version CDATA #IMPLIED
+	file CDATA #IMPLIED
+	status CDATA #IMPLIED
+	date-produced CDATA #IMPLIED
+	ro CDATA #REQUIRED
+	produced-by (applicant | RO | ISA | IPEA | IB | DO | EO) #REQUIRED
+>
+<!--applicant's or agent's file reference, if desired,
+12 characters maximum
+-->
+<!ELEMENT file-reference-id (#PCDATA)>
+<!--(PCT Rule 4.1(a)):
+"The request shall contain:
+(i) a petition,"
+(PCT Rule 4.2):
+"The petition shall be to the following effect and shall preferably
+be worded as follows: 'The undersigned requests that the present
+international application be processed according to the Patent
+Cooperation Treaty.'"
+-->
+<!ELEMENT request-petition (#PCDATA)>
+<!--Title of the Invention: preferably two to seven words when
+in English or translated into English and precise. (PCT Rule 4.3)
+
+* EP 1001 *
+Changed to multiple titles possible (translations)
+in the order : EN, FR, DE
+PB 14-01-2003
+
+EPC Rule 26 (b) title of the invention, which shall clearly and
+concisely state the technical designation of the invention
+and shall exclude all fancy names;
+
+Recommended id = 'invt'
+-->
+<!ELEMENT invention-title (#PCDATA | b | i | u | sup | sub)*>
+<!ATTLIST invention-title
+	id ID #IMPLIED
+	lang CDATA #REQUIRED
+>
+<!--bold formatting for text
+-->
+<!ELEMENT b (#PCDATA | i | u | smallcaps)*>
+<!--italic formatting for text
+-->
+<!ELEMENT i (#PCDATA | b | u | smallcaps)*>
+<!--underscore: style - single is default
+-->
+<!ELEMENT u (#PCDATA | b | i | smallcaps)*>
+<!ATTLIST u
+	style (single | double | dash | dots) "single"
+>
+<!--small capitals
+-->
+<!ELEMENT smallcaps (#PCDATA | b | u | i)*>
+<!--superscripted text
+-->
+<!ELEMENT sup (#PCDATA | b | u | i)*>
+<!--subscripted text
+-->
+<!ELEMENT sub (#PCDATA | b | u | i)*>
+<!--EPC2000 addition to EP1001
+a patent application can be filed by reference to an existing earlier IP document
+attribute certified-copy is optional - if not existing - nothing is indicated - otherwise one of the three options:
+- attached
+- later = declaration that it will be filed later 
+- available = should be already available to the office or ...
+...can be made available through electronic document exchange between offices
+-->
+<!ELEMENT ep-previously-filed-application (document-id)>
+<!ATTLIST ep-previously-filed-application
+	filing-date CDATA #REQUIRED
+	ep-document-type (patent | provisional | utility | PCT) #REQUIRED
+	replaces-claims (yes | no) #REQUIRED
+	number-of-claims CDATA #REQUIRED
+	contains-sequence-listing (yes | no) #REQUIRED
+	is-also-priority (yes | no) #REQUIRED
+	certified-copy (attached | later | available) #IMPLIED
+>
+<!--PCT/RO/101 Box No.II, III and IV APPLICANTS, FURTHER APPLICANT(S)
+AND/OR (FURTHER) INVENTOR(S)AGENT OR COMMON REPRESENTATIVE;
+OR ADDRESS FOR CORRESPONDENCE (PCT Rule 4.5, 4.6, 4.7, 4.8)
+-->
+<!ELEMENT parties (applicants, inventors?, correspondence-address?, agents?)>
+<!--Applicants information:
+At least one of the applicants named must be a resident or national
+of a PCT Contracting State for which the receiving Office acts.
+-->
+<!ELEMENT applicants (applicant+)>
+<!--Applicant information:
+attributes for applicant
+sequence : sequence number of each applicant
+e.g, sequence="1"
+app-type : applicant type
+app-type="applicant" : the applicant is only applicant
+app-type="applicant-inventor" : the applicant is also inventor
+* EP 1001 *
+added 16-01-2003:
+app-type="employee" - the applicant is an employee,- EPC Art. 133(3)
+
+designation: This person is applicant for the purpose of:
+designation="all" : all designated states
+designation="all-except-us" : all designated states
+except US
+designation="us-only" : US only
+designation="as-indicated" : the states indicated in
+designated-states element
+under applicant element
+-->
+<!ELEMENT applicant (addressbook+, nationality, residence, us-rights*, designated-states?, designated-states-as-inventor?)>
+<!ATTLIST applicant
+	sequence CDATA #REQUIRED
+	app-type (applicant | applicant-inventor | employee) #REQUIRED
+	designation (all | all-except-us | us-only | as-indicated) #REQUIRED
+>
+<!ELEMENT addressbook ((%name_group;, address, phone*, fax*, email*, url*, ead*, dtext?) | text)>
+<!ATTLIST addressbook
+	lang CDATA #REQUIRED
+>
+<!--name: if no distinction or detail can be given.
+Also to be used for: personal (natural person) and corporate
+(legal entity) names
+-->
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name
+	name-type (legal | natural) #IMPLIED
+>
+<!--title: e.g., Mr., Mrs., Dr. etc
+-->
+<!ELEMENT prefix (#PCDATA)>
+<!--last, family, surname
+-->
+<!ELEMENT last-name (#PCDATA)>
+<!--organisation name or company name - 
+* EPO - also use when "Legal person" clicked on
+applicant OLF screen
+-->
+<!ELEMENT orgname (#PCDATA)>
+<!--First or given name(s), initial(s)
+-->
+<!ELEMENT first-name (#PCDATA)>
+<!--middle name(s) or initial(s)
+-->
+<!ELEMENT middle-name (#PCDATA)>
+<!--name suffix (e.g., II, Jr., Dip., Ing., BA, etc.)
+-->
+<!ELEMENT suffix (#PCDATA)>
+<!--individual id
+
+* EPO 1001
+for applicant as employee use this
+tag for the authorisation number - GENA-->
+<!ELEMENT iid (#PCDATA)>
+<!--role, e.g. President, Chairman, etc.
+-->
+<!ELEMENT role (#PCDATA)>
+<!--department, division, section, etc. name
+-->
+<!ELEMENT department (#PCDATA)>
+<!--synonym
+-->
+<!ELEMENT synonym (#PCDATA)>
+<!--registered, customer number,
+* EPO 1001
+Use for APPR and FREP-->
+<!ELEMENT registered-number (#PCDATA)>
+<!--address components:
+Address formats differ from country to country
+If no structure possible use text
+-->
+<!ELEMENT address ((address-1?, address-2?, address-3?, mailcode?, pobox?, room?, address-floor?, building?, street?, city?, county?, state?, postcode?, country) | text)>
+<!--Address, first line
+-->
+<!ELEMENT address-1 (#PCDATA)>
+<!--Address, second line
+-->
+<!ELEMENT address-2 (#PCDATA)>
+<!--Address, third line
+-->
+<!ELEMENT address-3 (#PCDATA)>
+<!--organizational mail code
+-->
+<!ELEMENT mailcode (#PCDATA)>
+<!--Post Office Box number
+-->
+<!ELEMENT pobox (#PCDATA)>
+<!--address room; e.g., Room 55B
+-->
+<!ELEMENT room (#PCDATA)>
+<!--address floor, e.g., 10th
+-->
+<!ELEMENT address-floor (#PCDATA)>
+<!--building information in address, e.g., Hoffman building
+-->
+<!ELEMENT building (#PCDATA)>
+<!--street may contain house number or name
+-->
+<!ELEMENT street (#PCDATA)>
+<!--City or town name
+-->
+<!ELEMENT city (#PCDATA)>
+<!--County, parish, department, etc (mainly UK, USA)
+-->
+<!ELEMENT county (#PCDATA)>
+<!--Region of country eg. state, province, etc.
+-->
+<!ELEMENT state (#PCDATA)>
+<!--postal code or zip code
+-->
+<!ELEMENT postcode (#PCDATA)>
+<!--Country: use ST.3 country code, e.g. DE, FR, GB, NL, etc.
+Also includes EP, WO
+-->
+<!ELEMENT country (#PCDATA)>
+<!--if no structure is possible, enter text (without markup)
+-->
+<!ELEMENT text (#PCDATA)>
+<!--telephone number
+-->
+<!ELEMENT phone (#PCDATA)>
+<!--fax number
+-->
+<!ELEMENT fax (#PCDATA)>
+<!--email address
+-->
+<!ELEMENT email (#PCDATA)>
+<!--Universal Resource Locator; e.g. www.wipo.int
+-->
+<!ELEMENT url (#PCDATA)>
+<!--electronic address use for other than email
+-->
+<!ELEMENT ead (#PCDATA)>
+<!--Descriptive text
+-->
+<!ELEMENT dtext (#PCDATA)>
+<!--country of nationality
+-->
+<!ELEMENT nationality (country)>
+<!--country of residence
+-->
+<!ELEMENT residence (country)>
+<!--This person is successor to the rights of an inventor who is
+deceased, insane, or legally incapacitated, for the purposes
+of the designation of the United States of America
+-->
+<!ELEMENT us-rights (#PCDATA)>
+<!ATTLIST us-rights
+	to-dead-inventor CDATA #REQUIRED
+	kind (heir | heiress | executor | executrix | estate) #REQUIRED
+>
+<!--indication of specific Contracting States in or for which
+the applicant is seeking protection for his invention
+(Rule 4.9(a))
+-->
+<!ELEMENT designated-states (country*, (region, country*)?)>
+<!--the region for which protection or exclusion (depending upon
+context) is desired
+-->
+<!ELEMENT region (country)>
+<!--Rule 4.6(c):
+"The request may, for different designated states, indicate
+different persons as inventors where, in this respect, the
+requirements of the national laws of the designated States
+are not the same. In such a case, the request shall contain
+a separate statement for each designated State or group of
+States in which a particular person, or the same person, is
+to be considered the inventor, or in which particular persons,
+or the same persons, are to be considered the inventors."
+-->
+<!ELEMENT designated-states-as-inventor (country*, (region, country+)*)>
+<!--Inventors information:
+If the US is designated, all of the inventors must also
+be named as applicants for purposes of that designation.
+-->
+<!ELEMENT inventors (ep-inventor | deceased-inventor)+>
+<!--the individual or entity responsible for creating the
+matter that protection is sought for
+-->
+<!ELEMENT ep-inventor (addressbook+, designated-states?)>
+<!--Renunciation - EPC Rule 18(3)
+Waiver - EPC Rule 17(3)-->
+<!ATTLIST ep-inventor
+	sequence CDATA #REQUIRED
+	designation (all | all-except-us | us-only | as-indicated) #IMPLIED
+	waiver CDATA #IMPLIED
+	renunciation CDATA #IMPLIED
+	inv-rights (employee | successor | under-agreement) #IMPLIED
+	inv-rights-date CDATA #IMPLIED
+	deceased (yes | no) #IMPLIED
+>
+<!--deceased inventor name
+-->
+<!ELEMENT deceased-inventor ((name | (prefix?, (last-name | orgname), first-name?, middle-name?, suffix?, iid?, role?, orgname?, department?, synonym*)), registered-number?)>
+<!ATTLIST deceased-inventor
+	lang CDATA #IMPLIED
+	sequence CDATA #IMPLIED
+>
+<!--address used for general correspondence
+-->
+<!ELEMENT correspondence-address (customer-number | addressbook+)>
+<!--customer number for agents by office
+-->
+<!ELEMENT customer-number (#PCDATA)>
+<!--information regarding agents or (EPO) representatives
+-->
+<!ELEMENT agents (customer-number | ep-agent+)>
+<!--Agent or common representative (PCT Rules 90.1, 90.2)
+EPC articles 133 and 134
+* EPO
+agent = authorised representative
+attorney = Legal practitioner
+common-representative = association
+* rep-address used for multiple reps.
+yes = same address as 1st rep.
+no = different address
+
+* removed in v1-8
+	rep-address (yes | no) #IMPLIED
+* Added in v1-8 ep-authorisation, general_authorisation_number, ep-association-number 
+
+-->
+
+<!ELEMENT ep-agent (addressbook+)>
+<!ATTLIST ep-agent
+	sequence CDATA #REQUIRED
+	rep-type (agent | attorney | common-representative) #REQUIRED
+	ep-authorisation ( filed-not-yet-registered | registered | attached) #IMPLIED
+	general_authorisation_number CDATA #IMPLIED
+	ep-association-number CDATA #IMPLIED
+>
+<!--PCT/RO/101 Box No.V Designation Of States (PCT Rule 4.9)
+* EPO 1001
+Do not use this for EPO designated states;
+use the office specific area
+-->
+<!ELEMENT designation-of-states (designation-pct, (precautionary-designation-statement, exclusion-from-designation?)?)>
+<!--the Contracting States in which protection is desired
+(Rules 4.1(a)(iv) and 4.9(a))
+-->
+<!ELEMENT designation-pct (regional*, national?, new-designation-country*)>
+<!--regional (as opposed to national) protection being sought
+-->
+<!ELEMENT regional (region, (country, protection-request*)+, any-other-state?)>
+<!--protection request for the designated office.
+-->
+<!ELEMENT protection-request (kind-of-protection, document-id?)>
+<!--kind of protection; e.g., patent, utility model
+-->
+<!ELEMENT kind-of-protection (#PCDATA)>
+<!--Document identification refers to patents (and patent
+applications) only. See WIPO ST.14
+-->
+<!ELEMENT document-id (country, doc-number, kind?, name?, date?)>
+<!ATTLIST document-id
+	lang CDATA #REQUIRED
+>
+<!--the number of the referenced patent (or application) document
+-->
+<!ELEMENT doc-number (#PCDATA)>
+<!--document kind code; e.g. A1
+-->
+<!ELEMENT kind (#PCDATA)>
+<!--date: components of a date. Format: YYYYMMDD
+-->
+<!ELEMENT date (#PCDATA)>
+<!--any other state in which protection is being sought
+-->
+<!ELEMENT any-other-state EMPTY>
+<!--the States for which protection or exclusion (depending upon
+context) is desired
+-->
+<!ELEMENT national (country, protection-request*)+>
+<!--New PCT member country states (e.g., not yet published in WIPO ST.3,
+joined after PCT electronic filing software published)
+-->
+<!ELEMENT new-designation-country (#PCDATA)>
+<!--Rule 4.9(b),(c)
+In addition to the designations made above [i.e, designation-of
+states], the applicant also makes under Rule 4.9(b) all other
+designations which would be permitted under the PCT except any
+designation(s) indicated in the Supplemental Box [i.e.,
+exclusion-from-designation] as being excluded form the scope of
+this statement. The applicant declares that those additional
+designations are subject to confirmation and that any designation
+which is not confirmed before the expiration of 15 months from
+the priority date is to be regarded as withdrawn by the applicant
+at the expiration of that time limit.
+-->
+<!ELEMENT precautionary-designation-statement (#PCDATA)>
+<!--state(s) excluded from precautionary designations
+under Rule 4.9(b)
+-->
+<!ELEMENT exclusion-from-designation (regional*, national?)>
+<!--PCT/RO/101 BOX No.VI Priority Claim (PCT Rule 4.10)
+-->
+<!ELEMENT priority-claims (ep-priority-claim+)>
+<!--priority claim (PCT Rule 4.10)
+* EPO 1001
+added:
+translation
+earlier-searches
+-->
+<!ELEMENT ep-priority-claim (country, doc-number?, date, office-of-filing?, (priority-doc-requested | priority-doc-attached)?, earlier-searches?)>
+<!--EP added - translation-->
+<!ATTLIST ep-priority-claim
+	sequence CDATA #REQUIRED
+	kind (national | regional | international) #REQUIRED
+	ep-document-type (patent | provisional | utility | PCT) #REQUIRED
+	translation CDATA #IMPLIED
+>
+<!--Where the earlier application is an ARIPO application,indicate at
+least one country party to the PARIS convention for the protection
+of industrial property or one member of the WTO for which that
+earlier application was filed.
+-->
+<!ELEMENT office-of-filing ((region, country?) | country)>
+<!--the receiving office is requested to prepare and transmit
+to the IB a certified copy of the earlier application
+-->
+<!ELEMENT priority-doc-requested EMPTY>
+<!--the priority document is attached to the application
+-->
+<!ELEMENT priority-doc-attached EMPTY>
+<!--For the provision of results of priority search results related to the priority claim
+-->
+<!ELEMENT earlier-searches (earlier-search+)>
+<!ELEMENT earlier-search (application-reference?, date-search-completed?, doc-page*)>
+<!ATTLIST earlier-search
+	id ID #IMPLIED
+	office CDATA #REQUIRED
+	search-type (international-type | isr | sisr | national | national-supplementary) #REQUIRED
+	declaration-of-no-search (yes | no | not-determined) #REQUIRED
+>
+<!-- ********************************
+Application reference information: application number, country
+(INID 21, ST.32:B210)
+In case of a filing refererence, the kind code is empty and the date refers to 
+the filing date
+-->
+<!ELEMENT application-reference (document-id)>
+<!ATTLIST application-reference
+	id ID #IMPLIED
+	appl-type CDATA #IMPLIED
+>
+<!--Date of completion of search report.
+This is mandatory for EP SRs
+-->
+<!ELEMENT date-search-completed (date)>
+<!--PCT/RO/101 Box No.VII :International Searching Authority
+-->
+<!ELEMENT search-authority (isa, earlier-search-request?)>
+<!--International Search Authority; international search
+to be carried out by
+-->
+<!ELEMENT isa (country)>
+<!--request to use results of earlier search;
+reference to that search
+-->
+<!ELEMENT earlier-search-request (document-id+)>
+<!--PCT/RO/101 Box No. VIII: DECLARATIONS
+(Rules 4.1(c)(iii) and 4.17)
+-->
+<!ELEMENT declarations (declaration1?, declaration2?, declaration3?, declaration4?, declaration5?)>
+<!--Declaration as to the identity of the inventor
+(Rules 4.17(i) and 51bis.1(a)(i))
+-->
+<!ELEMENT declaration1 EMPTY>
+<!ATTLIST declaration1
+	quantity CDATA #REQUIRED
+>
+<!--Declaration as applicant's entitlement, as at the international
+filing date, to apply for and be granted a patent (Rules 4.17(ii)
+and 51bis.1(a)(ii)), in a case where the declaration under Rule
+4.17(iv) is not appropriate
+-->
+<!ELEMENT declaration2 EMPTY>
+<!ATTLIST declaration2
+	quantity CDATA #REQUIRED
+>
+<!--Declaration as applicant's entitlement, as at the international
+filing date, to claim the priority of the earlier application,
+where the applicant is not the applicant who filed the earlier
+application or where the applicant's name has changed since the
+filing of the earlier application
+(Rules 4.17(iii) and 51bis.1(a)(iii)).
+-->
+<!ELEMENT declaration3 EMPTY>
+<!ATTLIST declaration3
+	quantity CDATA #REQUIRED
+>
+<!--Declaration of inventorship (Rules 4.17(iv) and 51bis.1(a)(iv)) for
+the purposes of the designation of the United States of America
+-->
+<!ELEMENT declaration4 EMPTY>
+<!ATTLIST declaration4
+	quantity CDATA #REQUIRED
+>
+<!--Declaration as to non-prejudical disclosures or exceptions to
+lack of novelty (Rules 4.17(v) and 51bis.1(a)(v))
+-->
+<!ELEMENT declaration5 EMPTY>
+<!ATTLIST declaration5
+	quantity CDATA #REQUIRED
+>
+<!--Request (PCT/RO/101) BOX No.IX Check list, figure number to
+publish and language of International Application check-list
+* EPO : check list - this really refers to old paper filings
+and does not make much sense for OLF, eg. there is a always
+request because the user is 'in' the request! EPO always
+need info about the description and claims
+-->
+<!ELEMENT check-list (cl-request?, cl-description?, cl-claims?, cl-abstract?, cl-drawings?, cl-sequence-listing?, cl-fee-calculation?, cl-separate-power-of-attorney?, cl-general-power-of-attorney?, cl-copy-general-power-of-attorney?, cl-lack-of-signature?, cl-priority-document?, cl-translation-of-application?, cl-biological-material?, cl-other-document*)>
+<!ATTLIST check-list
+	total-page-count CDATA #IMPLIED
+>
+<!--checklist; the request is being furnished
+-->
+<!ELEMENT cl-request EMPTY>
+<!ATTLIST cl-request
+	page-count CDATA #IMPLIED
+>
+<!--checklist; a description is being furnished
+* EPO 1001 added:
+ppf - first page
+ppl - last page
+for page ranges (PDF)-->
+<!ELEMENT cl-description EMPTY>
+<!ATTLIST cl-description
+	page-count CDATA #IMPLIED
+	ppf CDATA #IMPLIED
+	ppl CDATA #IMPLIED
+>
+<!--checklist; claims are being furnished
+* EP 1001 *
+EP added :
+number-of-claims
+ppf - first page
+ppl - last page
+for page ranges (PDF)
+Changes v1-9 -> v1-10 
+EPO applied the following change:
+added attribute number-claims-fee-calculation CDATA #IMPLIED
+-->
+<!ELEMENT cl-claims EMPTY>
+<!ATTLIST cl-claims
+	page-count CDATA #IMPLIED
+	number-of-claims CDATA #IMPLIED
+	number-claims-fee-calculation CDATA #IMPLIED
+	ppf CDATA #IMPLIED
+	ppl CDATA #IMPLIED
+>
+<!--checklist; the abstract is being furnished
+* EPO 1001 added:
+ppf - first page
+ppl - last page
+for page ranges (PDF)-->
+<!ELEMENT cl-abstract EMPTY>
+<!--"0" 0 no abstract-->
+<!ATTLIST cl-abstract
+	page-count CDATA #IMPLIED
+	ppf CDATA #IMPLIED
+	ppl CDATA #IMPLIED
+>
+<!--checklist; drawings are being furnished
+* EPO 1001 added:
+fig-count for number of figures within the drawings
+page-->
+<!ELEMENT cl-drawings EMPTY>
+<!ATTLIST cl-drawings
+	page-count CDATA #IMPLIED
+	ppf CDATA #IMPLIED
+	ppl CDATA #IMPLIED
+	fig-count CDATA #IMPLIED
+>
+<!--checklist; a sequence listing is being furnished
+-->
+<!ELEMENT cl-sequence-listing EMPTY>
+<!ATTLIST cl-sequence-listing
+	quantity CDATA #REQUIRED
+	page-count CDATA #IMPLIED
+>
+<!--checklist; a fee calculation sheet is being furnished
+-->
+<!ELEMENT cl-fee-calculation EMPTY>
+<!--checklist; a separate power of attorney is being furnished
+-->
+<!ELEMENT cl-separate-power-of-attorney EMPTY>
+<!ATTLIST cl-separate-power-of-attorney
+	quantity CDATA #REQUIRED
+>
+<!--checklist; a general power of attorney is being furnished
+-->
+<!ELEMENT cl-general-power-of-attorney EMPTY>
+<!ATTLIST cl-general-power-of-attorney
+	quantity CDATA #REQUIRED
+>
+<!--checklist; a copy of the general power
+of attorney is being furnished
+-->
+<!ELEMENT cl-copy-general-power-of-attorney (ref-number+)>
+<!ATTLIST cl-copy-general-power-of-attorney
+	quantity CDATA #REQUIRED
+>
+<!--Reference number of general power of attorney.
+-->
+<!ELEMENT ref-number (#PCDATA)>
+<!--checklist; a statement explaining lack of
+signature is being furnished
+-->
+<!ELEMENT cl-lack-of-signature EMPTY>
+<!ATTLIST cl-lack-of-signature
+	quantity CDATA #REQUIRED
+>
+<!--checklist; a priority document is being furnished
+-->
+<!ELEMENT cl-priority-document (sequence-number+)>
+<!ATTLIST cl-priority-document
+	quantity CDATA #REQUIRED
+>
+<!--sequential identification of priority documents. PCT/RO/101 Box VI.
+-->
+<!ELEMENT sequence-number (#PCDATA)>
+<!--check-list; a translation of application is being furnished
+-->
+<!ELEMENT cl-translation-of-application EMPTY>
+<!ATTLIST cl-translation-of-application
+	quantity CDATA #REQUIRED
+	lang CDATA #REQUIRED
+>
+<!--includes the PCT/RO/134 or any separate sheet containing
+indications that is not included as part of the description
+-->
+<!ELEMENT cl-biological-material EMPTY>
+<!ATTLIST cl-biological-material
+	quantity CDATA #REQUIRED
+>
+<!--checklist; an additional document is being furnished
+-->
+<!ELEMENT cl-other-document (#PCDATA)>
+<!ATTLIST cl-other-document
+	page-count CDATA #IMPLIED
+>
+<!--figure of the drawings which should accompany the abstract;
+figure to publish with the abstract
+-->
+<!ELEMENT figure-to-publish (fig-number+)>
+<!--PCT/RO/101 Box IX: the number of the figure which should
+accompany the abstract
+-->
+<!ELEMENT fig-number (#PCDATA)>
+<!--* ep 1001 *
+Modified to one or multiple (manadtory) possible occurences.
+EPO added attribute:
+lang-code = language code for EPO:
+"non-epo" i.e. non-official EPO languages (22)
+"epo" i.e. official EPO languages (DE, EN, FR)
+"other" i.e. all languages beyond the above
+"translation" (into DE, EN, or FR)
+
+filing language, ISO639 language code, e.g, en,de,ja, etc.
+-->
+<!ELEMENT ep-language-of-filing (#PCDATA)>
+<!ATTLIST ep-language-of-filing
+	lang-code CDATA #IMPLIED
+>
+<!--signatories
+-->
+<!ELEMENT signatories (signatory+)>
+<!--PCT/RO/101 Box No. X:
+The signature must be that of the applicant (if there are several
+applicants, all must sign); however, the signature may be that of
+the agent, or the common representative, where a separate power of
+attorney appointing the agent or the common representative,
+respectively, or a copy of a general power of attorney is already
+in possession of the receiving Office, is furnished...
+(PCT Rules 4.1(d), 4.15, and 90)
+
+Indicate the capacity of the signer with 'signatory-capacity'
+-->
+<!ELEMENT signatory (%name_group;, address?, electronic-signature, signatory-capacity?)>
+<!--a signature represented by electronic means
+-->
+<!ELEMENT electronic-signature (basic-signature | enhanced-signature)>
+<!ATTLIST electronic-signature
+	date CDATA #REQUIRED
+	place-signed CDATA #IMPLIED
+>
+<!--a non-PKI electronic signature
+-->
+<!ELEMENT basic-signature (fax-image | text-string | click-wrap)>
+<!--a TIFF image of a signature
+-->
+<!ELEMENT fax-image EMPTY>
+<!ATTLIST fax-image
+	file CDATA #REQUIRED
+>
+<!--a simple text string is to be used as the basic electronic
+signature, e.g., John Doe <text-string>/jd/</text-string>
+-->
+<!ELEMENT text-string (#PCDATA)>
+<!--a simple 'signature', e.g., clicking a button
+labeled 'accept' or 'I agree'
+-->
+<!ELEMENT click-wrap EMPTY>
+<!--A PKI / PKCS #7 digital signature data type
+-->
+<!ELEMENT enhanced-signature (pkcs7)>
+<!--PKCS7 digital signature
+-->
+<!ELEMENT pkcs7 EMPTY>
+<!--the capacity in which the person signs
+-->
+<!ELEMENT signatory-capacity (#PCDATA)>
+<!--************************************************************************
+* START OF EPO SPECIFIC TAGS
+************************************************************************
+These tags have been included in this DTD and NOT an external DTD.
+Therefore, office-dtd and file attributes have been changed to implied.
+
+office="EP" - mandatory
+************************************************************************
+
+EPC2000: ep-divisional-appl and ep-declarations added
+-->
+<!ELEMENT ep-office-specific-data (ep-designated-states, ep-divisional-appl?, ep-request-for-exam-art94?, ep-art61-appl?, ep-declarations?, ep-fax?, ep-biological-material*, ep-electronic-files*, ep-financial-data?, ep-notes-to-EPO*)>
+<!ATTLIST ep-office-specific-data
+	office CDATA #REQUIRED
+	office-dtd CDATA #IMPLIED
+	file CDATA #IMPLIED
+	id CDATA #IMPLIED
+	lang CDATA #REQUIRED
+	status CDATA #IMPLIED
+>
+<!--* If "all" clicked on client screen - 
+then attribute all="yes"; the element could be empty
+if no extension states :
+<ep-designated-states all="yes"></>
+-->
+<!--* Added in v1-9: validation-states, preparing for validation states support such as Morocco
+-->
+<!ELEMENT ep-designated-states (country*, (region, country*)?, extension-states?, validation-states?)>
+<!ATTLIST ep-designated-states
+	waiver-communication-and-processing-of-non-designated-states (yes | no) #REQUIRED
+>
+<!ELEMENT extension-states (country*, (region, country*)?)>
+<!ELEMENT validation-states (country*)>
+
+<!--* A divisonal application (B620EP)
+parent doc for ancestor document including the filing date
+-->
+<!ELEMENT ep-divisional-appl (parent-doc, ep-earliest-doc?, (ep-first-communication-raising-lack-of-unity | ep-first-communication | ep-no-communication)?, ep-divisional-generation?)>
+<!ELEMENT parent-doc (document-id)>
+<!ELEMENT ep-first-communication-raising-lack-of-unity (date)>
+<!ELEMENT ep-earliest-doc (document-id)>
+<!ELEMENT ep-first-communication (date)>
+<!ELEMENT ep-no-communication EMPTY>
+<!-- ep-divisional-generation 
+added in ep-request-v1-11
+)-->
+<!ELEMENT ep-divisional-generation EMPTY>
+<!ATTLIST ep-divisional-generation
+	generation (1 | 2 | 3 | 4 | 5) #REQUIRED
+>
+<!--Request for examination in an
+admissible non-EPO language
+EPC Article 94.
+(Fee reduction)-->
+<!ELEMENT ep-request-for-exam-art94 EMPTY>
+<!ATTLIST ep-request-for-exam-art94
+	lang CDATA #REQUIRED
+>
+<!--* EPC Article 61. European patent applications by persons not
+having the right to a European patent ...
+-->
+<!ELEMENT ep-art61-appl (#PCDATA)>
+<!ELEMENT ep-declarations (waiver-to-indicate-further-processing?, request-re-establishment*, declaration-complete-translation-of-priority?, declaration-no-intention-to-file-further-priority?, declaration-intention-to-file-claims-later?, declaration-translation-filed-later?,declaration-of-entity-or-natural-person-under-rule-6-3?)>
+<!ELEMENT waiver-to-indicate-further-processing EMPTY>
+<!ELEMENT request-re-establishment (document-id)>
+<!ELEMENT declaration-complete-translation-of-priority (document-id)>
+<!ELEMENT declaration-no-intention-to-file-further-priority EMPTY>
+<!ELEMENT declaration-intention-to-file-claims-later EMPTY>
+<!ELEMENT declaration-translation-filed-later EMPTY>
+<!-- declaration-of-entity-or-natural-person-under-rule-6-3 
+added in v1.11
+-->
+<!ELEMENT declaration-of-entity-or-natural-person-under-rule-6-3 EMPTY>
+
+<!--* EP fax - To which office application is faxed; possible values:
+BE
+CH
+EPAB
+EPAM
+EPO
+FI
+FR
+GB
+SE
+-->
+<!ELEMENT ep-fax (date)>
+<!ATTLIST ep-fax
+	office-name CDATA #REQUIRED
+>
+<!--* biological deposit citation/information
+According to PCT Rule 13bis,
+EPC Rule 28
+This covers all bio data references long and short
+within the description and/or claims
+
+Recommended id = biod01, biod02, etc.
+
+Location (page, lines) of the depositary details in the technical documents 
+of the application, publication or translation
+-->
+<!ELEMENT ep-biological-material (depositary?, bio-accno?, bio-receipt?, bio-authorization?, bio-waiver?, ep-biological-material-reference*, bio-other-deposant?, bio-restriction-to-expert?, dtext?)>
+<!ATTLIST ep-biological-material
+	id ID #IMPLIED
+	num CDATA #IMPLIED
+	url CDATA #IMPLIED
+	dnum CDATA #IMPLIED
+	bio-info (1) #IMPLIED
+>
+<!--* information regarding the facility storing the biological deposit-->
+<!ELEMENT depositary (#PCDATA | address)*>
+<!--* biological accession number: the identification assigned
+to the biological material by the depository-->
+<!ELEMENT bio-accno (#PCDATA)>
+<!--A copy of the receipt(s) of deposit issued by the depositary institution-->
+<!ELEMENT bio-receipt (#PCDATA)>
+<!ATTLIST bio-receipt
+	will-be-filed-later (yes | no) "no"
+>
+<!ELEMENT bio-authorization (#PCDATA)>
+<!ATTLIST bio-authorization
+	will-be-filed-later (yes | no) "no"
+>
+<!ELEMENT bio-waiver (#PCDATA)>
+<!ELEMENT ep-biological-material-reference (ep-bio-references-page, ep-bio-references-lines)>
+<!ELEMENT ep-bio-references-page (#PCDATA)>
+<!ELEMENT ep-bio-references-lines (#PCDATA)>
+<!ELEMENT bio-other-deposant (#PCDATA)>
+<!ELEMENT bio-restriction-to-expert EMPTY>
+<!--* EPO 1001
+These are references to the external files attached to the
+requrest (now eg. PDF).This data may be in other dtds also.
+The attribute doc-type must be used
+eg. spec; sequence
+-->
+<!ELEMENT ep-electronic-files ((applicant-file-name, epo-file-name?) | epo-file-name)>
+<!ATTLIST ep-electronic-files
+	doc-type CDATA #REQUIRED
+>
+<!--* This is the file name entered by the user in the
+"Document" screen; it is kept for correspondence
+with the user only.
+The file is re-named by the client software under
+epo-file-name
+-->
+<!ELEMENT applicant-file-name (#PCDATA)>
+<!--* This is the epo file name given by the client software and used
+on the server
+-->
+<!ELEMENT epo-file-name (#PCDATA)>
+<!--* OLF - Payment and fees and cost pages
+-->
+<!ELEMENT ep-financial-data (mode-of-payment?, reimbursement?, sr-refund?, addcopies?, fees?)>
+<!ATTLIST ep-financial-data
+	curr CDATA #REQUIRED
+	fee-amounts-unlocked-by-user (yes | no) #IMPLIED
+>
+<!ELEMENT mode-of-payment (#PCDATA | cheque-info)*>
+<!ATTLIST mode-of-payment
+	accno CDATA #REQUIRED
+	mode-type (auto | deposit | batch | bank | giro | cheque) #REQUIRED
+	currency CDATA #IMPLIED
+	deferred-execution-date CDATA #IMPLIED
+>
+<!--* deferred-execution-date (yyyymmdd) future date on which the payment should take place
+	if invalid or not defined then the earliest date of payment will be used
+-->
+
+<!ELEMENT cheque-info (#PCDATA)>
+<!ATTLIST cheque-info
+	chequeno CDATA #REQUIRED
+	amount CDATA #REQUIRED
+>
+<!--* reimbursement off any fees
+-->
+<!ELEMENT reimbursement (#PCDATA)>
+<!ATTLIST reimbursement
+	accno CDATA #REQUIRED
+>
+<!--* EPO1001 - 
+re-fund of search fee (article 10 Rfees) on the basis
+of the earlier search report-->
+<!ELEMENT sr-refund (#PCDATA)>
+<!--* EPO1001 - 
+Number of additional copies of the documents cited in the EP search report-->
+<!ELEMENT addcopies (#PCDATA)>
+<!--* EPO 1001 - Fees and costs-->
+<!ELEMENT fees (standard-fee?, other-fee?, additional-fee?, fee-calc-info?, fee-total-amount)>
+<!ATTLIST fees
+	date CDATA #REQUIRED
+>
+<!ELEMENT standard-fee (fee*)>
+<!ELEMENT fee (type-of-fee, fee-factor, fee-schedule, fee-sub-amount, fee-reduction-factor?, fee-reduction-amount? )>
+<!ATTLIST fee
+	index CDATA #REQUIRED
+	topay (yes | no) #REQUIRED
+>
+<!ELEMENT type-of-fee (#PCDATA)>
+<!-- -*EP1001 -
+- added user-input attribute storing the page number for calculating 
+  the actual factor incl. any reductions reductions -->
+<!ELEMENT fee-factor (#PCDATA)>
+<!ATTLIST fee-factor
+	user-input CDATA #IMPLIED
+>
+<!ELEMENT fee-schedule (#PCDATA)>
+<!ELEMENT fee-sub-amount (#PCDATA)>
+<!--* Added in v1-08 fee-reduction-factor: - -Not to be used until the release of end of 2011- -
+factor to be applied on fee-factor*fee-subamount to define a reduction in percentage, 
+for example 20% reduction fee-reduction-factor = "0.8"
+for backward compatibility reasons fee-reduction-factor is assumed to be "1" if not defined
+-->
+<!ELEMENT fee-reduction-factor (#PCDATA)>
+<!ATTLIST fee-reduction-factor user-input CDATA #IMPLIED>
+
+<!--* Added in v1-08 fee-reduction-amount:  - -Not to be used until the release of end of 2011- -
+reduction in amount to be deducted from fee-factor*fee-subamount*fee-reduction-factor
+ to define a reduction in amount 
+for example 100 % reduction fee-reduction-amount = "100" 
+for backward compatibility reasons fee-reduction-amount is assumed to be "0" if not defined
+-->
+
+<!ELEMENT fee-reduction-amount (#PCDATA)>
+<!ATTLIST fee-reduction-amount user-input CDATA #IMPLIED>
+
+<!--* Added in v1-08 fee-reduction-factor, fee-reduction-amount: an example  - -Not to be used until the release of end of 2011- -
+For fee 29, when a reduction of 20% is applied and the fee normally is 45, resulting in 
+	a fee-factor of 0.8 and a fee-schedule of 36 (=0.8 * 45)
+	<fee index="29" topay="yes">
+		<type-of-fee>standard</type-of-fee>
+		<fee-factor>0.8</fee-factor>
+		<fee-schedule>36</fee-schedule>
+		<fee-sub-amount>45</fee-sub-amount>
+		</fee>
+This will become:
+	a fee-factor of 1 (= quantity), a fee-reduction-factor of 0.8, a fee-reduction-amount of 0 (since the reduction is a percentage)
+	and a fee-schedule of 36 (=1 * 0.8 * 45 - 0)
+	<fee index="29" topay="yes">
+		<type-of-fee>standard</type-of-fee>
+		<fee-factor>1</fee-factor>
+		<fee-schedule>36</fee-schedule>
+		<fee-sub-amount>45</fee-sub-amount>
+		<fee-reduction-factor>0.8</fee-reduction-factor>
+		<fee-reduction-amount>0</fee-reduction-amount>
+		</fee>
+	If <fee-reduction-amount>0</fee-reduction-amount> is omitted, as it is optional, then it is asumed to be 0
+
+For fee 29, when a reduction of 10 EUR is applied and the fee normally is 45, resulting in 
+	a fee-factor of 0.777777 and a fee-schedule of 36 (=0.777777 * 45)
+	<fee index="29" topay="yes">
+		<type-of-fee>standard</type-of-fee>
+		<fee-factor>0.777777</fee-factor>
+		<fee-schedule>33</fee-schedule>
+		<fee-sub-amount>45</fee-sub-amount>
+		</fee>
+This will become:
+	a fee-factor of 1 (= quantity), a fee-reduction-factor of 1 (since the reduction is an amount), a fee-reduction-amount of 10 (since the reduction is a percentage)
+	and a fee-schedule of 36 (=1 * 1 * 45 - 10)
+	<fee index="29" topay="yes">
+		<type-of-fee>standard</type-of-fee>
+		<fee-factor>1</fee-factor>
+		<fee-schedule>35</fee-schedule>
+		<fee-sub-amount>45</fee-sub-amount>
+		<fee-reduction-factor>1</fee-reduction-factor>
+		<fee-reduction-amount>10</fee-reduction-amount>
+		</fee>
+	If <fee-reduction-reduction>1</fee-reduction-reduction> is omitted, as it is optional, then it is asumed to be 1
+-->
+
+
+<!ELEMENT other-fee (fee*)>
+<!ELEMENT additional-fee (fee*)>
+<!ELEMENT fee-calc-info (search-region, IPEA, IPER)>
+<!ELEMENT search-region EMPTY>
+<!ATTLIST search-region
+	region (Other | EP) "EP"
+>
+<!ELEMENT IPEA EMPTY>
+<!ATTLIST IPEA
+	ipea (EP | other) "EP"
+>
+<!ELEMENT IPER EMPTY>
+<!ATTLIST IPER
+	iper-type (rational | detailed) #REQUIRED
+>
+<!ELEMENT fee-total-amount (#PCDATA)>
+<!ELEMENT ep-notes-to-EPO (author?, subject?, date, dtext)>
+<!ATTLIST ep-notes-to-EPO
+	id ID #IMPLIED
+	page CDATA #REQUIRED
+>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT subject (#PCDATA)>
+<!--************************************************************************
+* START OF DOC PAGE
+************************************************************************
+
+This is primarily to be used when data for the whole or
+major sections of an application are in image format
+OR other formats such as pdf. Page range attributes are
+given when required pp- page range ppf - first page
+ppl - last page (for pdf). The 'img' may also be used
+for complete pages, eg. in drawings
+
+Recommended id = docp01, docp02, etc.
+************************************************************************
+-->
+<!ELEMENT doc-page EMPTY>
+<!ATTLIST doc-page
+	id ID #IMPLIED
+	he NMTOKEN #REQUIRED
+	wi NMTOKEN #REQUIRED
+	type (jpg | pdf | tif) #REQUIRED
+	alt CDATA #IMPLIED
+	pp CDATA #IMPLIED
+	ppf CDATA #IMPLIED
+	ppl CDATA #IMPLIED
+	file CDATA #REQUIRED
+	color (color | bw) #IMPLIED
+	orientation (portrait | landscape) "portrait"
+>

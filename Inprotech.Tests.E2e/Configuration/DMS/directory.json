@@ -1,0 +1,398 @@
+﻿{
+  "data": [
+    {
+      "containerID": "TPSDK!7020",
+      "id": 7020,
+      "database": "TPSDK",
+      "name": "1001.001 - Microsoft vs. U.S. Department of Justice",
+      "folderType": "workspace",
+      "iwl": "iwl:dms=sdksandbox.goimanage.com&&lib=TPSDK&&num=7020",
+      "childFolders": [
+        {
+          "containerID": "TPSDK!7021",
+          "id": 7021,
+          "database": "TPSDK",
+          "name": "Administrative",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!7022",
+          "id": 7022,
+          "database": "TPSDK",
+          "name": "Correspondence",
+          "folderType": "folder",
+          "childFolders": [
+            {
+              "containerID": "TPSDK!7023",
+              "id": 7023,
+              "database": "TPSDK",
+              "name": "Address Lists and Label",
+              "folderType": "folder",
+              "childFolders": null,
+              "documents": null,
+              "hasChildFolders": false,
+              "hasDocuments": true,
+              "documentsLoaded": false
+            },
+            {
+              "containerID": "TPSDK!7024",
+              "id": 7024,
+              "database": "TPSDK",
+              "name": "Errand Requests",
+              "folderType": "folder",
+              "childFolders": null,
+              "documents": null,
+              "hasChildFolders": false,
+              "hasDocuments": true,
+              "documentsLoaded": false
+            },
+            {
+              "containerID": "TPSDK!7025",
+              "id": 7025,
+              "database": "TPSDK",
+              "name": "Fax Cover Sheets",
+              "folderType": "folder",
+              "childFolders": null,
+              "documents": null,
+              "hasChildFolders": false,
+              "hasDocuments": false,
+              "documentsLoaded": false
+            }
+          ],
+          "documents": null,
+          "hasChildFolders": true,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!7026",
+          "id": 7026,
+          "database": "TPSDK",
+          "name": "Discovery",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!7027",
+          "id": 7027,
+          "database": "TPSDK",
+          "name": "Document Production",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!7028",
+          "id": 7028,
+          "database": "TPSDK",
+          "name": "Documents",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!7029",
+          "id": 7029,
+          "database": "TPSDK",
+          "name": "Email",
+          "folderType": "emailFolder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!7030",
+          "id": 7030,
+          "database": "TPSDK",
+          "name": "Experts",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": false,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!7031",
+          "id": 7031,
+          "database": "TPSDK",
+          "name": "Legal Research",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!7032",
+          "id": 7032,
+          "database": "TPSDK",
+          "name": "Memoranda",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": false,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!7033",
+          "id": 7033,
+          "database": "TPSDK",
+          "name": "Orders",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!7034",
+          "id": 7034,
+          "database": "TPSDK",
+          "name": "Pleadings",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        }
+      ],
+      "documents": null,
+      "hasChildFolders": true,
+      "hasDocuments": false,
+      "documentsLoaded": false
+    },
+    {
+      "containerID": "TPSDK!17837",
+      "id": 17837,
+      "database": "TPSDK",
+      "name": "Workfff",
+      "folderType": "workspace",
+      "iwl": "iwl:dms=sdksandbox.goimanage.com&&lib=TPSDK&&num=17837",
+      "childFolders": [
+        {
+          "containerID": "TPSDK!18076",
+          "id": 18076,
+          "database": "TPSDK",
+          "name": "Billingfff",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!18073",
+          "id": 18073,
+          "database": "TPSDK",
+          "name": "Corresp",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!28770",
+          "id": 28770,
+          "database": "TPSDK",
+          "name": "Creation",
+          "folderType": "folder",
+          "childFolders": [
+            {
+              "containerID": "TPSDK!28776",
+              "id": 28776,
+              "database": "TPSDK",
+              "name": "hahaha",
+              "folderType": "folder",
+              "childFolders": null,
+              "documents": null,
+              "hasChildFolders": false,
+              "hasDocuments": true,
+              "documentsLoaded": false
+            }
+          ],
+          "documents": null,
+          "hasChildFolders": true,
+          "hasDocuments": false,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!18071",
+          "id": 18071,
+          "database": "TPSDK",
+          "name": "Documentz",
+          "folderType": "folder",
+          "childFolders": [
+            {
+              "containerID": "TPSDK!18349",
+              "id": 18349,
+              "database": "TPSDK",
+              "name": "New",
+              "folderType": "folder",
+              "childFolders": null,
+              "documents": null,
+              "hasChildFolders": false,
+              "hasDocuments": true,
+              "documentsLoaded": false
+            },
+            {
+              "containerID": "TPSDK!60845",
+              "id": 60845,
+              "database": "TPSDK",
+              "name": "QA TEST",
+              "folderType": "folder",
+              "childFolders": null,
+              "documents": null,
+              "hasChildFolders": false,
+              "hasDocuments": true,
+              "documentsLoaded": false
+            }
+          ],
+          "documents": null,
+          "hasChildFolders": true,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!18072",
+          "id": 18072,
+          "database": "TPSDK",
+          "name": "E-maily1",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!18074",
+          "id": 18074,
+          "database": "TPSDK",
+          "name": "File Notes WAK",
+          "folderType": "folder",
+          "childFolders": [
+            {
+              "containerID": "TPSDK!28775",
+              "id": 28775,
+              "database": "TPSDK",
+              "name": "Test",
+              "folderType": "folder",
+              "childFolders": null,
+              "documents": null,
+              "hasChildFolders": false,
+              "hasDocuments": false,
+              "documentsLoaded": false
+            }
+          ],
+          "documents": null,
+          "hasChildFolders": true,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!18075",
+          "id": 18075,
+          "database": "TPSDK",
+          "name": "Imported",
+          "folderType": "folder",
+          "childFolders": null,
+          "documents": null,
+          "hasChildFolders": false,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!18077",
+          "id": 18077,
+          "database": "TPSDK",
+          "name": "Legal Documents1",
+          "folderType": "folder",
+          "childFolders": [
+            {
+              "containerID": "TPSDK!26174",
+              "id": 26174,
+              "database": "TPSDK",
+              "name": "Even More",
+              "folderType": "folder",
+              "childFolders": null,
+              "documents": null,
+              "hasChildFolders": false,
+              "hasDocuments": true,
+              "documentsLoaded": false
+            },
+            {
+              "containerID": "TPSDK!26173",
+              "id": 26173,
+              "database": "TPSDK",
+              "name": "Several Legal Documents",
+              "folderType": "folder",
+              "childFolders": null,
+              "documents": null,
+              "hasChildFolders": false,
+              "hasDocuments": false,
+              "documentsLoaded": false
+            }
+          ],
+          "documents": null,
+          "hasChildFolders": true,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        },
+        {
+          "containerID": "TPSDK!28777",
+          "id": 28777,
+          "database": "TPSDK",
+          "name": "New Test",
+          "folderType": "folder",
+          "childFolders": [
+            {
+              "containerID": "TPSDK!28778",
+              "id": 28778,
+              "database": "TPSDK",
+              "name": "TESTEST",
+              "folderType": "folder",
+              "childFolders": null,
+              "documents": null,
+              "hasChildFolders": false,
+              "hasDocuments": true,
+              "documentsLoaded": false
+            }
+          ],
+          "documents": null,
+          "hasChildFolders": true,
+          "hasDocuments": true,
+          "documentsLoaded": false
+        }
+      ],
+      "documents": null,
+      "hasChildFolders": true,
+      "hasDocuments": false,
+      "documentsLoaded": false
+    }
+  ]
+}

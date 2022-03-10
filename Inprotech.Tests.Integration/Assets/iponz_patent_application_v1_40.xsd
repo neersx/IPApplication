@@ -1,0 +1,125 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.iponz.govt.nz/XMLSchema/patents/application"
+           xmlns:iponz="http://www.iponz.govt.nz/XMLSchema/patents"
+           attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://www.iponz.govt.nz/XMLSchema/patents/application"
+           version="1.20">
+   <xs:annotation>
+      <xs:documentation>IPONZ Patent Application Schema </xs:documentation>
+   </xs:annotation>
+   <xs:import namespace="http://www.iponz.govt.nz/XMLSchema/patents"
+              schemaLocation="iponz_patent_common_types_v1_40.xsd"/>
+   <xs:element name="Transaction" type="TransactionType"/>
+   <xs:complexType name="PatentApplicationSummaryReportType">
+      <xs:sequence>
+         <xs:element name="PatentApplicationReference" type="xs:token"/>
+         <xs:element name="ApplicationContact" type="iponz:NZ_ApplicationContactType"/>
+         <xs:element name="PatentApplicationDetails"
+                     type="iponz:NZ_PatentApplicationDetailsType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PatentApplicationType">
+      <xs:sequence>
+         <xs:element fixed="NZ"
+                     name="RegistrationOfficeCode"
+                     type="iponz:WIPOST3CodeType"/>
+         <xs:element name="PatentApplicationReference" type="xs:token"/>
+         <xs:element name="ApplicationContact" type="iponz:NZ_ApplicationContactType"/>
+         <xs:element name="PatentDetails" type="iponz:NZ_PatentDetailsType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TransactionBodyType">
+      <xs:sequence>
+         <xs:element name="TransactionContentDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element minOccurs="0" name="TransactionIdentifier" type="xs:token"/>
+                  <xs:element fixed="Patent E-Filing"
+                              name="TransactionCode"
+                              type="iponz:NZ_TransactionCodeType"/>
+                  <xs:element name="TransactionData" type="TransactionDataType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TransactionDataType">
+      <xs:sequence>
+         <xs:element name="PatentApplicationDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="PatentApplication" type="PatentApplicationType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TransactionErrorType">
+      <xs:sequence>
+         <xs:element name="TransactionErrorCode" type="xs:token"/>
+         <xs:element name="TransactionErrorText" type="iponz:TextType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TransactionResponseBodyType">
+      <xs:sequence>
+		<xs:element name="TransactionErrorDetails">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="TransactionIdentifier" type="xs:token"/>
+                     <xs:element fixed="Patent E-Filing"
+                                 name="TransactionCode"
+                                 type="iponz:NZ_TransactionCodeType"/>
+                     <xs:element maxOccurs="unbounded"
+                                 name="TransactionError"
+                                 type="TransactionErrorType"/>
+                  </xs:sequence>
+               </xs:complexType>
+        </xs:element>
+      <!--
+         <xs:choice>
+            <xs:element name="TransactionErrorDetails">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="TransactionIdentifier" type="xs:token"/>
+                     <xs:element fixed="Patent E-Filing"
+                                 name="TransactionCode"
+                                 type="iponz:NZ_TransactionCodeType"/>
+                     <xs:element maxOccurs="unbounded"
+                                 name="TransactionError"
+                                 type="TransactionErrorType"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+            <xs:element name="TransactionResponseContentDetails">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:element minOccurs="0" name="TransactionIdentifier" type="xs:token"/>
+                     <xs:element fixed="Patent E-Filing"
+                                 name="TransactionCode"
+                                 type="iponz:NZ_TransactionCodeType"/>
+                     <xs:element name="TransactionResponseData" type="TransactionResponseDataType"/>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:choice>
+         -->
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TransactionResponseDataType">
+      <xs:sequence>
+         <xs:element name="PatentApplicationSummaryReport"
+                     type="PatentApplicationSummaryReportType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TransactionResponseType">
+      <xs:sequence>
+         <xs:element name="PatentTransactionResponseBody" type="TransactionResponseBodyType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TransactionType">
+      <xs:sequence>
+         <xs:element name="PatentTransactionBody" type="TransactionBodyType"/>
+      </xs:sequence>
+   </xs:complexType>
+</xs:schema>

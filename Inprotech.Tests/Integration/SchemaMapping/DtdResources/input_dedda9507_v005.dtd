@@ -1,0 +1,249 @@
+<!ENTITY % address_group "(address-1? , address-2? , address-3? , mailcode? , pobox? , room? , address-floor? , building? , street? , city? , county? , state? , postcode? , country)">
+
+<!ENTITY % name_group "(name, prefix?, first-name? , suffix? ,orgname? , department?,registered-number?)">
+
+
+<!-- Root Element Einzugserm_tigung
+	Attribut durdebit = Indikator f_ereinzugserm_tigung / Widerruf der Dauereinzugserm_tigung
+		  debitchange = Indikator f_to_erung
+		  dedate = Datum, ab der die Konto_erung gilt
+		  date = Datum der Einzugserm㢨tigung
+
+	Element debnkac optional: September 2013, Version 005, PaStangl
+		Einzug fällt mit SEPA weg, wird durch Mandat ersetzt
+	Element mandate hinzugefügt: September 2013, Version 005, PaStangl
+		Mandatsreferenznummer wird mit SEPA eingeführt.
+	Element deakzs optional: September 2013, Version 005, PaStangl
+		Bei Widerruf des gesamten Mandats ist die Angabe von Aktenzeichen nicht erforderlich
+-->
+<!ELEMENT debitform (intrefid?,accountholder,mandate?,debnkac?,deakzs?,signatories?)>
+<!ATTLIST debitform
+			durdebit (dur|rev) #IMPLIED
+			debitchange (yes|no) "no"
+			dedate CDATA #IMPLIED
+			date CDATA #IMPLIED>
+
+
+<!--
+	Internes Aktenzeichen des Anmelders
+-->
+
+<!ELEMENT intrefid (#PCDATA)>
+
+<!--
+	Abschnitt Adressdaten Kontoinhaber
+-->
+<!ELEMENT accountholder (addressbook)>
+
+
+<!ELEMENT addressbook (%name_group; , address , phone* , fax* , email* , url* , ead* , dtext?)>
+<!ATTLIST addressbook  lang CDATA #IMPLIED
+>
+
+<!--
+	Elemente unter addressbook
+-->
+
+<!ELEMENT address (%address_group;)>
+
+<!ELEMENT phone (#PCDATA)>
+<!ELEMENT fax (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT ead (#PCDATA)>
+<!ELEMENT dtext (#PCDATA)>
+
+
+<!--
+	Elemente in %name_group
+-->
+
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name
+			name-type  (legal | natural) #IMPLIED
+>
+<!ELEMENT suffix (#PCDATA)>
+<!ELEMENT first-name (#PCDATA)>
+<!ELEMENT prefix (#PCDATA)>
+<!ELEMENT registered-number (#PCDATA)>
+<!ELEMENT orgname (#PCDATA)>
+<!ELEMENT department (#PCDATA)>
+
+<!--
+	Elemente in %address_group
+-->
+
+<!ELEMENT address-1 (#PCDATA)>
+<!ELEMENT address-2 (#PCDATA)>
+<!ELEMENT address-3 (#PCDATA)>
+<!ELEMENT mailcode (#PCDATA)>
+<!ELEMENT pobox (#PCDATA)>
+<!ELEMENT room (#PCDATA)>
+<!ELEMENT address-floor (#PCDATA)>
+<!ELEMENT building (#PCDATA)>
+<!ELEMENT street (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT county (#PCDATA)>
+<!ELEMENT state (#PCDATA)>
+<!ELEMENT postcode (#PCDATA)>
+<!ELEMENT country (#PCDATA)>
+
+<!--
+	ENDE Block Adressdaten Kontoinhaber
+-->
+
+<!--
+	Neuer Abschnitt Mandatsrefernznummer?
+	September 2013, Version 005, PaStangl
+		Beinhalte die mit SEPA eingeführte Mandatsreferenznummer
+-->
+
+<!ELEMENT mandate (#PCDATA)>
+
+
+
+<!--
+	Abschnitt zur Bankverbindung: NAme der Bank, Adresse der Bank, Kontonummer des Kontoinhabers
+	 und Bankleitzahl
+-->
+<!ELEMENT debnkac (debnknam, debnkadr, debkactn, debkswif)>
+<!--
+	Name der Bank
+-->
+<!ELEMENT debnknam (#PCDATA)>
+
+<!--
+	Adresse der Bank
+-->
+<!ELEMENT debnkadr (#PCDATA)>
+
+<!--
+	Kontonummer
+-->
+<!ELEMENT debkactn (#PCDATA)>
+
+<!--
+	Bankleitzahl
+-->
+<!ELEMENT debkswif (#PCDATA)>
+
+<!--
+	ENDE Block Bankverbindung
+-->
+
+
+<!--
+	ENDE Definition der Schutzrechtsart
+-->
+
+<!--
+	Abschnitt zur Definition der angegebenen Aktenzeichen
+-->
+<!ELEMENT deakzs (deakz)+>
+
+<!--
+	Einzelnes Aktenzeichen besteht mindestens aus dem AZ des betroffenen Schutzrechts. 
+	In einem Mehrseitigen Verfahren kann noch das AZ des angegriffenen Schutzrechts angegeben werden.
+
+	Abschnitt zur Definition der Schutzrechtsart
+		pa = Patent
+		gbm = Gebrauchsmuster
+		tm = Marke
+		gsm = Geschmacksmuster
+		tg = Topographie
+		ddpa = DDR Patent
+		proprietor = name des Schutzrechtsinhaber
+		pct = PCT-Anmeldung
+		schutz = Schutzzertifikat
+-->
+
+<!--
+	Um die Aktenzeichen bei einer Änderungsmitteilung hinzfügen zu können,
+	ist fees optional geworden: Septemer 2013 Version 005 PaStangl
+		Bei Widerruf eines Mandats für ein oder mehrere Aktenzeichen ist die Angabe von Gebühren nicht erforderlich
+-->
+<!ELEMENT deakz (akz,akzop?,proprietor?,fees?)>
+<!ATTLIST deakz
+		type (pa|gbm|tm|gsm|tg|ddpa|pct|schutz) #IMPLIED
+		internalAkz CDATA #IMPLIED>
+
+
+
+<!--
+	Aktenzeichen des betroffenen Schutzrechts
+-->
+<!ELEMENT akz (#PCDATA)>
+
+<!--
+	Aktenzeichen des angegriffenen Schutzrechts
+-->
+<!ELEMENT akzop (#PCDATA)>
+
+<!--
+	Name des Schutzrechtsinhabers
+-->
+
+<!ELEMENT proprietor (#PCDATA)>
+
+<!--
+	ENDE Aktenzeichen Block
+-->
+
+
+<!-- 
+	Abschnitt zur Gebuerevzahlung
+	Attribut amount = Gesamtbetrag der angegebenen Gebuehr
+-->
+<!ELEMENT fees (fee)+>
+<!ATTLIST fees
+		amount CDATA  #REQUIRED>
+
+
+<!--
+	Definition einzelne Geb_steht aus Geb_ummern, Verwendungszweck und Betrag
+-->
+
+<!ELEMENT fee (feecode, feeusage, feeamount)>
+
+<!--
+	Gebuehrencode: Muss 6stellig sein
+-->
+<!ELEMENT feecode (#PCDATA)>
+
+<!--
+	Verwendungszweck der Gebuehr -->
+<!ELEMENT feeusage (#PCDATA)>
+
+<!--
+	Betrag der Geb  -->
+<!ELEMENT feeamount (#PCDATA)>
+
+<!-- ENDE GebuehrenBlock -->
+
+
+
+<!--
+	Abschnitt einfache Signatur ep-request.dtd
+-->
+
+<!ELEMENT signatories  (signatory+) >
+
+
+<!ELEMENT signatory  (name,first-name,electronic-signature,signatory-capacity?) >
+
+
+<!ELEMENT electronic-signature  (basic-signature) >
+
+<!ATTLIST electronic-signature
+               date  CDATA    #IMPLIED 
+               place-signed  CDATA    #IMPLIED  >
+
+<!ELEMENT basic-signature  (text-string) >
+
+
+<!ELEMENT text-string  (#PCDATA) >
+
+
+<!ELEMENT signatory-capacity  (#PCDATA) >
+
+<!-- ENDE Signatory Block -->

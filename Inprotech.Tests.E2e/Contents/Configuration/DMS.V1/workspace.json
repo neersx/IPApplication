@@ -1,0 +1,185 @@
+﻿{
+  "searchParams": [
+    {
+      "key": "caseWorkspaceCustomField1",
+      "value": "1001",
+      "nameType": ""
+    },
+    {
+      "key": "caseWorkspaceCustomField2",
+      "value": "001",
+      "nameType": ""
+    },
+    {
+      "key": "nameWorkspaceCustomField1",
+      "value": "1001",
+      "nameType": "Instructor"
+    }
+  ],
+  "results": [
+    {
+      "key": "caseWorkspace",
+      "status": "info",
+      "value": "1001.001 - Microsoft vs. U.S. Department of Justice",
+      "nameType": null
+    },
+    {
+      "key": "caseWorkspace",
+      "status": "info",
+      "value": "Workfff",
+      "nameType": null
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.0001 - James F. Alderson v. Quorum Health Group, Inc. et al",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.001 - James F. Alderson v. Quorum Health Group, Inc. et al",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.001 - James F. Alderson v. Quorum Health Group, Inc. et al",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.001 - Microsoft vs. U.S. Department of Justice",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.002 - Microsoft Vs. Overland Container",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.003 - Microsoft v. Dorsey Importers",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.004 - Microsoft v. Intel",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.005 - Building Lease - 501 Northshore",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.006 - Building Lease - 1005 Northshore",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.007 - MASTER MATTER FOR SPLIT BILLING",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.008 - FIXED FEE MATTER",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.009 - NON-BILLABLE MATTER",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "1001.010 - Arrow Company, and Aquantive Inc. Acquisition",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "ABC123",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug 17 0250",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug 17 1041",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug 18 409",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug 23 406",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug 23 505",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug10 628",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug10 725",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug11 1216",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug11 1216",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug11 1216",
+      "nameType": "Instructor"
+    },
+    {
+      "key": "nameWorkspace",
+      "status": "info",
+      "value": "Aug11 555",
+      "nameType": "Instructor"
+    }
+  ],
+  "errors": [],
+  "isConnectionUnsuccessful": false
+}

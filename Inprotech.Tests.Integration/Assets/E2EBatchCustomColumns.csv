@@ -1,0 +1,8 @@
+Property Type,Country,Case Category,Sub Type,E2E_Custom_Event,E2E_Custom_Name,E2E_Custom_Number,E2E_Custom_Text,,,,,,,,,,,,,,,,,,,,,,,,,
+Patent,AU,Normal,Normal,2015-07-15,ABCD,123,text,,,,,,,,,,,,,,,,,,,,,,,,,
+Design,AU,Normal,Normal,2015-07-16,ABCD,123,text,,,,,,,,,,,,,,,,,,,,,,,,,
+Patent,PCT,Normal,Normal,2015-07-17,ABCD,123,text,,,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+Patent,AU,PCT National Phase,Normal,2015-07-18,ABCD,123,text,,,,,,,,,,,,,,,,,,,,,,,,,
+Patent,NZ,PCT National Phase,Normal,2015-07-19,ABCD,123,text,,,,,,,,,,,,,,,,,,,,,,,,,
+Patent,US,PCT National Phase,Normal,2015-07-20,ABCD,123,text,,,,,,,,,,,,,,,,,,,,,,,,,

@@ -1,0 +1,774 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="http://www.iponz.govt.nz/XMLSchema/patents"
+           xmlns:xmime="http://www.w3.org/2005/05/xmlmime"
+           attributeFormDefault="unqualified"
+           elementFormDefault="qualified"
+           targetNamespace="http://www.iponz.govt.nz/XMLSchema/patents"
+           version="1.20">
+   <xs:annotation>
+      <xs:documentation>
+      This library contains common Patent types used by IPONZ.
+      The types are declared in alphabetical order by name. IPONZ
+      custom types are distinguished from the WIPO standard types
+      by using the prefix "NZ_".
+    </xs:documentation>
+   </xs:annotation>
+   <xs:include schemaLocation="IPONZ-ISOCountryCodeType-V2006.xsd"/>
+   <xs:include schemaLocation="IPONZ-WIPOST3CodeType-V2007.xsd"/>
+   <xs:complexType name="AddressBookType">
+      <xs:sequence>
+         <xs:element name="FormattedNameAddress" type="FormattedNameAddressType"/>
+         <xs:element minOccurs="0" name="ContactInformationDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="Phone" type="NZ_PhoneType"/>
+                  <xs:element minOccurs="0" name="Mobile" type="NZ_PhoneType"/>
+                  <xs:element minOccurs="0" name="Email" type="xs:string"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="PostalAddress" type="AddressType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="AddressType">
+      <xs:sequence>
+         <xs:element minOccurs="0" name="AddressCountryCode" type="ISOCountryCodeType"/>
+         <xs:element name="FormattedAddress">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="5" name="AddressLine" type="TextType"/>
+                  <xs:element minOccurs="0" name="AddressSuburb" type="xs:token"/>
+                  <xs:element minOccurs="0" name="AddressCity" type="xs:token"/>
+                  <xs:element minOccurs="0" name="AddressState" type="xs:token"/>
+                  <xs:element minOccurs="0" name="AddressPostcode" type="xs:token"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ApplicantKeyType">
+      <xs:sequence>
+         <xs:element name="Identifier" type="xs:token"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="ApplicantType">
+      <xs:sequence>
+         <xs:element minOccurs="0" name="ApplicantKey" type="ApplicantKeyType"/>
+         <xs:element minOccurs="0" name="ApplicantLegalEntity" type="NZ_LegalEntityType"/>
+         <xs:element minOccurs="0" name="ApplicantNationalityCode" type="ISOCountryCodeType"/>
+         <!--
+         <xs:choice minOccurs="0">
+            <xs:element name="ApplicantNationalityCode" type="ISOCountryCodeType"/>
+            <xs:element name="ApplicantIncorporationCountryCode" type="ISOCountryCodeType"/>
+         </xs:choice>-->
+         <xs:element minOccurs="0" name="ApplicantEntityIdentifier" type="xs:token"/>
+         <xs:element name="ApplicantAddressBook" type="AddressBookType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="ExtendedWIPOST3CodeType">
+      <xs:union memberTypes="WIPOST3CodeType WIPOFormerST3CodeType"/>
+   </xs:simpleType>
+   <xs:simpleType name="FileFormatType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="PDF"/>
+         <xs:enumeration value="JPEG"/>
+         <xs:enumeration value="TIFF"/>
+         <xs:enumeration value="GIF"/>
+         <xs:enumeration value="DOC"/>
+         <xs:enumeration value="MP3"/>
+         <xs:enumeration value="MPEG"/>
+         <xs:enumeration value="WMA"/>
+         <xs:enumeration value="WAV"/>
+         <xs:enumeration value="CDA"/>
+         <xs:enumeration value="PNG"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="FormattedNameAddressType">
+      <xs:sequence>
+         <xs:element name="Name" type="NameType"/>
+         <xs:element name="Address" type="AddressType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="FreeFormatNameType">
+      <xs:sequence>
+         <xs:element minOccurs="0" name="NameKind" type="NameKindType"/>
+         <xs:element name="FreeFormatNameDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="FreeFormatNameLine" type="TextType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="NameKindType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="Natural Person"/>
+         <xs:enumeration value="Legal Entity"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="NameType">
+      <xs:sequence>
+		<xs:element name="FreeFormatName" type="FreeFormatNameType"/>
+      <!--
+         <xs:choice>
+            <xs:element name="FreeFormatName" type="FreeFormatNameType"/>
+            <xs:element name="FormattedName">
+               <xs:complexType>
+                  <xs:sequence>
+                     <xs:choice>
+                        <xs:element name="PersonName">
+                           <xs:complexType>
+                              <xs:sequence>
+                                 <xs:element name="FirstName" type="xs:token"/>
+                                 <xs:element name="LastName" type="xs:token"/>
+                              </xs:sequence>
+                           </xs:complexType>
+                        </xs:element>
+                        <xs:element name="OrganizationName" type="xs:token"/>
+                     </xs:choice>
+                  </xs:sequence>
+               </xs:complexType>
+            </xs:element>
+         </xs:choice>-->
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_ApplicantDetailsType">
+      <xs:sequence>
+         <xs:element maxOccurs="unbounded" name="PatentApplicant">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="Applicant" type="ApplicantType"/>
+               </xs:sequence>
+               <xs:attribute name="contact" type="xs:boolean" use="optional"/>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="NZ_ElectedType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="Chapter 1 (Not Elected)"/>
+         <xs:enumeration value="Chapter 2 (Elected)"/>
+         <xs:enumeration value="Not Yet Determined"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NZ_ApplicationContactType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="Applicant"/>
+         <xs:enumeration value="Representative"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="NZ_AssociatedPatentType">
+      <xs:sequence>
+         <xs:element name="AssociatedPatentNumber" type="xs:positiveInteger"/>
+         <xs:element name="AssociationType" type="xs:token"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_ClassificationType">
+      <xs:sequence>
+         <xs:element name="ClassificationKindCode" type="xs:token"/>
+         <xs:element minOccurs="0" name="ClassificationVersion" type="xs:token"/>
+         <xs:element name="ClassDescriptionDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="ClassDescription" type="xs:token"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_ContactDetailsType">
+      <xs:sequence>
+         <xs:element name="Contact" type="NZ_ContactType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_ContactType">
+      <xs:sequence>
+         <xs:element name="ContactKey">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="Identifier" type="xs:token"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="ContactLegalEntity" type="NZ_LegalEntityType"/>
+         <xs:element minOccurs="0" name="ContactNationalityCode" type="ISOCountryCodeType"/>
+         <!--
+         <xs:choice minOccurs="0">
+            <xs:element name="ContactNationalityCode" type="ISOCountryCodeType"/>
+            <xs:element name="ContactIncorporationCountryCode" type="ISOCountryCodeType"/>
+         </xs:choice>
+         -->
+         <xs:element name="ContactAddressBook" type="AddressBookType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="NZ_DerivationOfRightsType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="Applicant"/>
+         <xs:enumeration value="Assignee"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NZ_ExtendedWIPOST3CodeType">
+      <xs:union memberTypes="ExtendedWIPOST3CodeType NZ_UnknownCountryCode"/>
+   </xs:simpleType>
+   <xs:complexType name="NZ_InventorType">
+      <xs:sequence>
+         <xs:element name="Name" type="NameType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_IPNewZealandPatentApplicationType">
+      <xs:sequence>
+         <xs:element name="PatentApplicationNumber" type="xs:positiveInteger"/>
+         <xs:element fixed="PCTI"
+                     name="PatentApplicationKind"
+                     type="NZ_PatentApplicationKindCode"/>
+         <xs:element name="SubjectArea" type="NZ_SubjectAreaCodeType"/>
+         <xs:element name="StatusCode" type="xs:token"/>
+         <xs:element name="StatusDescription" type="xs:token"/>
+         <xs:element name="NationalPhaseEntryDate" type="xs:date"/>
+         <xs:element name="InternationalFilingDate" type="xs:date"/>
+         <xs:element name="InternationalApplicationNumber" type="xs:token"/>
+         <xs:element name="NZElected" type="NZ_ElectedType"/>
+         <xs:element minOccurs="0" name="CertifiedEnglishTranslation">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="DocumentFilename" type="xs:token"/>
+                  <xs:element name="Attachment"
+                              type="xs:base64Binary"
+                              xmime:expectedContentTypes="application/octet-stream"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="VoluntaryAmendmentDocument">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="DocumentFilename" type="xs:token"/>
+                  <xs:element name="Attachment"
+                              type="xs:base64Binary"
+                              xmime:expectedContentTypes="application/octet-stream"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="DerivationOfRightsDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="DerivationOfRights" type="NZ_DerivationOfRightsType"/>
+                  <xs:element minOccurs="0"
+                              name="DerivationOfRightDocument"
+                              type="DerivationOfRightDocumentType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="DeclarationOfInventorship">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element fixed="I/We hereby declare that the true and first inventors of the invention disclosed in the complete specification are as stated in the international application."
+                              name="DeclarationStatement"
+                              type="xs:token"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="PatentOfAdditionDetails">
+            <xs:complexType>
+               <xs:sequence>
+				<xs:element name="MainNZPatentNumber" type="xs:positiveInteger"/>
+               <!--
+                  <xs:choice>
+                     <xs:element name="MainNZPatentNumber" type="xs:positiveInteger"/>
+                     <xs:element name="MainInternationalApplicationNumber" type="xs:token"/>
+                  </xs:choice>
+                 -->
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="SealingRequested" type="xs:boolean"/>
+         <xs:element minOccurs="0"
+                     name="RequestForDefermentOfAcceptance"
+                     type="NZ_RequestForDefermentOfAcceptanceType"/>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="AdditionalInformation"
+                     type="TextType"/>
+         <xs:element name="ApplicantDetails" type="NZ_ApplicantDetailsType"/>
+         <xs:element name="ContactDetails" type="NZ_ContactDetailsType"/>
+         <xs:element minOccurs="0" name="GroundsOfEntitlementDocument">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="DocumentFilename" type="xs:token"/>
+                  <xs:element minOccurs="0"
+                              name="Attachment"
+                              type="xs:base64Binary"
+                              xmime:expectedContentTypes="application/octet-stream"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_IPNewZealandPatentRenewalType">
+      <xs:sequence>
+         <xs:element name="RegistrationNumber" type="xs:positiveInteger"/>
+         <xs:element name="StatusCode" type="xs:token"/>
+         <xs:element name="StatusDescription" type="xs:token"/>
+         <xs:element name="OldRenewalDueDate" type="xs:date"/>
+         <xs:element name="OldRenewalDescription" type="NZ_OldRenewalDescriptionType"/>
+         <xs:element name="NewRenewalDueDate" type="xs:date"/>
+         <!--
+         <xs:choice>
+            <xs:element name="NewRenewalDueDate" type="xs:date"/>
+            <xs:element name="ExpiryDate" type="xs:date"/>
+         </xs:choice>
+         -->
+         <xs:element name="OwnerDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="Owner" type="NZ_OwnerType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="ContactDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="Contact" type="NZ_ContactType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="NZ_LegalEntityType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="Person"/>
+         <xs:enumeration value="New Zealand Company"/>
+         <xs:enumeration value="Overseas Company"/>
+         <xs:enumeration value="Partnership"/>
+         <xs:enumeration value="Charitable Trust"/>
+         <xs:enumeration value="Incorporated Society"/>
+         <xs:enumeration value="Other"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="NZ_LicenseeType">
+      <xs:sequence>
+         <xs:element name="LicenseeAddressBook" type="AddressBookType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="NZ_OldRenewalDescriptionType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="1st year renewal"/>
+         <xs:enumeration value="2nd year renewal"/>
+         <xs:enumeration value="3rd year renewal"/>
+         <xs:enumeration value="4th year renewal"/>
+         <xs:enumeration value="5th year renewal"/>
+         <xs:enumeration value="6th year renewal"/>
+         <xs:enumeration value="7th year renewal"/>
+         <xs:enumeration value="8th year renewal"/>
+         <xs:enumeration value="9th year renewal"/>
+         <xs:enumeration value="10th year renewal"/>
+         <xs:enumeration value="11th year renewal"/>
+         <xs:enumeration value="12th year renewal"/>
+         <xs:enumeration value="13th year renewal"/>
+         <xs:enumeration value="14th year renewal"/>
+         <xs:enumeration value="15th year renewal"/>
+         <xs:enumeration value="16th year renewal"/>
+         <xs:enumeration value="17th year renewal"/>
+         <xs:enumeration value="18th year renewal"/>
+         <xs:enumeration value="19th year renewal"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NZ_OppositionKindType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="Challenge"/>
+         <xs:enumeration value="Opposition"/>
+         <xs:enumeration value="Possible Opposition"/>
+         <xs:enumeration value="Revocation Requested"/>
+         <xs:enumeration value="Other"/>
+         <xs:enumeration value="Unknown"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="NZ_OwnerType">
+      <xs:sequence>
+         <xs:element name="OwnerKey">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="Identifier" type="xs:token"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="OwnerLegalEntity" type="NZ_LegalEntityType"/>
+         <xs:element minOccurs="0" name="OwnerNationalityCode" type="ISOCountryCodeType"/>
+		<!--
+         <xs:choice minOccurs="0">
+            <xs:element name="OwnerNationalityCode" type="ISOCountryCodeType"/>
+            <xs:element name="OwnerIncorporationCountryCode" type="ISOCountryCodeType"/>
+         </xs:choice>
+         -->
+         <xs:element name="OwnerAddressBook" type="AddressBookType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_PatentApplicationDetailsType">
+      <xs:sequence>
+         <xs:element name="IPNewZealandPatentApplication"
+                     type="NZ_IPNewZealandPatentApplicationType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="NZ_PatentApplicationKindCode">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="PCTI"/>
+         <xs:enumeration value="PC"/>
+         <xs:enumeration value="PNCC"/>
+         <xs:enumeration value="PNCP"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="NZ_PatentDetailsType">
+      <xs:sequence>
+         <xs:element name="Patent" type="PatentType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_PatentDocumentType">
+      <xs:sequence>
+         <xs:element name="DocumentType" type="xs:token"/>
+         <xs:element name="DocumentFilename" type="xs:token"/>
+         <xs:element name="DocumentFileFormat" type="FileFormatType"/>
+         <xs:element name="DocumentSizeInByte" type="xs:positiveInteger"/>
+         <xs:element name="DocumentID" type="xs:token"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_PatentInformationType">
+      <xs:sequence>
+         <xs:element name="Patent">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="PatentNumber" type="xs:positiveInteger"/>
+                  <xs:element minOccurs="0" name="InternationalApplicationNumber" type="xs:token"/>
+                  <xs:element minOccurs="0" name="WIPOPublicationNumber" type="xs:token"/>
+                  <xs:element minOccurs="0" name="PatentCurrentStatusCode" type="xs:token"/>
+                  <xs:element minOccurs="0" name="PatentCurrentStatusDate" type="xs:date"/>
+                  <xs:element minOccurs="0" name="CompleteFiledDate" type="xs:date"/>
+                  <xs:element minOccurs="0" name="PriorityDetails">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element maxOccurs="unbounded" name="Priority" type="PriorityType"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="NationalPhaseEntryDate" type="xs:date"/>
+                  <xs:element minOccurs="0" name="PublishedDate" type="xs:date"/>
+                  <xs:element minOccurs="0" name="ProvisionalDate" type="xs:date"/>
+                  <xs:element minOccurs="0" name="GrantDate" type="xs:date"/>
+                  <xs:element minOccurs="0" name="RenewalDueDate" type="xs:date"/>
+                  <xs:element minOccurs="0" name="ExpiryDate" type="xs:date"/>
+                  <xs:element minOccurs="0" name="PatentType" type="xs:token"/>
+                  <xs:element minOccurs="0" name="PatentTitle" type="xs:token"/>
+                  <xs:element minOccurs="0" name="ClassificationDetails">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element maxOccurs="unbounded"
+                                       name="Classification"
+                                       type="NZ_ClassificationType"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="PatentDocumentDetails">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element maxOccurs="unbounded"
+                                       name="PatentDocument"
+                                       type="NZ_PatentDocumentType"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="AssociatedPatentDetails">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element maxOccurs="unbounded"
+                                       name="AssociatedPatent"
+                                       type="NZ_AssociatedPatentType"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="ApplicantDetails">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element maxOccurs="unbounded" name="Applicant" type="ApplicantType"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="RepresentativeDetails">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element name="Representative" type="RepresentativeType"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="InventorDetails">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element maxOccurs="unbounded" name="Inventor" type="NZ_InventorType"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="LicenseeDetails">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element maxOccurs="unbounded" name="Licensee" type="NZ_LicenseeType"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="LastRenewedBy" type="xs:string"/>
+                  <xs:element minOccurs="0" name="AddressForService" type="AddressType"/>
+                  <xs:element minOccurs="0" name="OppositionDetails">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element maxOccurs="unbounded" name="Opposition" type="OppositionType"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+                  <xs:element minOccurs="0" name="PatentEventDetails">
+                     <xs:complexType>
+                        <xs:sequence>
+                           <xs:element maxOccurs="unbounded" name="PatentEvent" type="PatentEventType"/>
+                        </xs:sequence>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_PatentRenewalDetailsType">
+      <xs:sequence>
+         <xs:element name="IPNewZealandPatentRenewal"
+                     type="NZ_IPNewZealandPatentRenewalType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="NZ_PhoneType">
+      <xs:sequence>
+         <xs:element name="CountryCode" type="xs:string"/>
+         <xs:element name="AreaCode" type="xs:string"/>
+         <xs:element name="Number" type="xs:string"/>
+      </xs:sequence>
+      <xs:attribute name="phoneKind" type="PhoneKindType" use="optional"/>
+   </xs:complexType>
+   <xs:simpleType name="NZ_RequestForDefermentOfAcceptanceType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="12 months"/>
+         <xs:enumeration value="15 months"/>
+         <xs:enumeration value="18 months"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NZ_SubjectAreaCodeType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="Biotech"/>
+         <xs:enumeration value="Chemical"/>
+         <xs:enumeration value="Electrical"/>
+         <xs:enumeration value="Mechanical"/>
+         <xs:enumeration value="Unknown"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NZ_TransactionCodeType">
+      <xs:restriction base="xs:token">
+         <xs:enumeration value="Patent E-Filing"/>
+         <xs:enumeration value="Patent E-Renewal"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="NZ_UnknownCountryCode">
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="Unknown"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:complexType name="OppositionType">
+      <xs:sequence>
+         <xs:element name="OppositionDate" type="xs:date"/>
+         <xs:element name="OppositionType" type="NZ_OppositionKindType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="DerivationOfRightDocumentType">
+      <xs:sequence>
+         <xs:element name="DocumentFilename" type="xs:token"/>
+         <xs:element minOccurs="0"
+                     name="Attachment"
+                     type="xs:base64Binary"
+                     xmime:expectedContentTypes="application/octet-stream"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PatentType">
+      <xs:sequence>
+         <xs:element name="ExaminationRequested" type="xs:boolean"/>
+         <xs:element fixed="PCTI"
+                     name="PatentApplicationKind"
+                     type="NZ_PatentApplicationKindCode"/>
+         <xs:element name="SubjectArea" type="NZ_SubjectAreaCodeType"/>
+         <xs:element minOccurs="0" name="CertifiedEnglishTranslation">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="DocumentFilename" type="xs:token"/>
+                  <xs:element minOccurs="0"
+                              name="Attachment"
+                              type="xs:base64Binary"
+                              xmime:expectedContentTypes="application/octet-stream"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="VoluntaryAmendmentDocument">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="DocumentFilename" type="xs:token"/>
+                  <xs:element minOccurs="0"
+                              name="Attachment"
+                              type="xs:base64Binary"
+                              xmime:expectedContentTypes="application/octet-stream"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="DerivationOfRightsDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="DerivationOfRights" type="NZ_DerivationOfRightsType"/>
+                  <xs:element minOccurs="0"
+                              name="DerivationOfRightDocument"
+                              type="DerivationOfRightDocumentType"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="DeclarationOfInventorship">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element fixed="I/We hereby declare that the true and first inventors of the invention disclosed in the complete specification are as stated in the international application."
+                              name="DeclarationStatement"
+                              type="xs:token"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="InternationalFilingDate" type="xs:date"/>
+         <xs:element name="InternationalApplicationNumber" type="xs:token"/>
+         <xs:element name="ApplicantDetails">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element maxOccurs="unbounded" name="PatentApplicant">
+                     <xs:complexType>
+                        <xs:sequence>
+							<xs:element name="NewApplicant" type="ApplicantType"/>
+							<!--
+                           <xs:choice>
+                              <xs:element name="ExistingApplicantKey" type="ApplicantKeyType"/>
+                              <xs:element name="NewApplicant" type="ApplicantType"/>
+                           </xs:choice>
+                           -->
+                        </xs:sequence>
+                        <xs:attribute name="contact" type="xs:boolean" use="optional"/>
+                     </xs:complexType>
+                  </xs:element>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0" name="PatentOfAdditionDetails">
+            <xs:complexType>
+               <xs:sequence>
+					<xs:element name="MainNZPatentNumber" type="xs:positiveInteger"/>
+               <!--
+                  <xs:choice>
+                     <xs:element name="MainNZPatentNumber" type="xs:positiveInteger"/>
+                     <xs:element name="MainInternationalApplicationNumber" type="xs:token"/>
+                  </xs:choice>
+                  -->
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element name="SealingRequested" type="xs:boolean"/>
+         <xs:element minOccurs="0"
+                     name="RequestForDefermentOfAcceptance"
+                     type="NZ_RequestForDefermentOfAcceptanceType"/>
+         <xs:element maxOccurs="unbounded"
+                     minOccurs="0"
+                     name="AdditionalInformation"
+                     type="TextType"/>
+         <xs:element minOccurs="0" name="GroundsOfEntitlementDocument">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="DocumentFilename" type="xs:token"/>
+                  <xs:element minOccurs="0"
+                              name="Attachment"
+                              type="xs:base64Binary"
+                              xmime:expectedContentTypes="application/octet-stream"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="PatentEventType">
+      <xs:sequence>
+         <xs:element name="PatentEventCode" type="xs:token"/>
+         <xs:element minOccurs="0" name="PatentEventCompletedDate" type="xs:date"/>
+         <xs:element minOccurs="0" name="PatentEventDueDate" type="xs:date"/>
+         <xs:element minOccurs="0" name="PatentEventJournalIssue" type="xs:token"/>
+         <xs:element minOccurs="0"
+                     name="PatentEventJournalPublicationDate"
+                     type="xs:date"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="PhoneKindType">
+      <xs:union memberTypes="xs:token">
+         <xs:simpleType>
+            <xs:restriction base="xs:token">
+               <xs:enumeration value="Fixed"/>
+               <xs:enumeration value="Mobile Phone"/>
+               <xs:enumeration value="Other"/>
+               <xs:enumeration value="Undefined"/>
+            </xs:restriction>
+         </xs:simpleType>
+      </xs:union>
+   </xs:simpleType>
+   <xs:complexType name="PriorityType">
+      <xs:sequence>
+         <xs:element name="PriorityCountryCode" type="NZ_ExtendedWIPOST3CodeType"/>
+         <xs:element minOccurs="0" name="PriorityNumber" type="xs:token"/>
+         <xs:element name="PriorityDate" type="xs:date"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="RepresentativeType">
+      <xs:sequence>
+         <xs:element minOccurs="0" name="RepresentativeKey">
+            <xs:complexType>
+               <xs:sequence>
+                  <xs:element name="Identifier" type="xs:token"/>
+               </xs:sequence>
+            </xs:complexType>
+         </xs:element>
+         <xs:element minOccurs="0"
+                     name="RepresentativeLegalEntity"
+                     type="NZ_LegalEntityType"/>
+         <xs:element minOccurs="0" name="RepresentativeNationalityCode" type="ISOCountryCodeType"/>
+         <!--
+         <xs:choice minOccurs="0">
+            <xs:element name="RepresentativeNationalityCode" type="ISOCountryCodeType"/>
+            <xs:element name="RepresentativeIncorporationCountryCode" type="ISOCountryCodeType"/>
+         </xs:choice>
+         -->
+         <xs:element name="RepresentativeAddressBook" type="AddressBookType"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="TextType">
+      <xs:simpleContent>
+         <xs:extension base="xs:string">
+            <xs:attribute name="languageCode" type="xs:language" use="optional"/>
+            <xs:attribute name="sequenceNumber" type="xs:integer" use="optional"/>
+         </xs:extension>
+      </xs:simpleContent>
+   </xs:complexType>
+   <xs:complexType name="VersionType">
+      <xs:sequence>
+         <xs:element name="VersionNumber" type="xs:token"/>
+         <xs:element name="VersionDate" type="xs:date"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="WIPOFormerST3CodeType">
+      <xs:restriction base="xs:NMTOKEN">
+         <xs:enumeration value="CS"/>
+         <xs:enumeration value="DL"/>
+         <xs:enumeration value="DD"/>
+         <xs:enumeration value="SU"/>
+         <xs:enumeration value="YD"/>
+         <xs:enumeration value="YU"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

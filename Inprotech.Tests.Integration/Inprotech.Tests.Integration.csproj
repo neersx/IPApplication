@@ -1,0 +1,178 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <NoWarn>618,1001</NoWarn>
+    <CodeAnalysisRuleSet>..\Inprotech.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <DebugSymbols>true</DebugSymbols>
+    <NoWarn>618,1001</NoWarn>
+    <CodeAnalysisRuleSet>..\Inprotech.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise />
+  </Choose>
+  <ItemGroup>
+    <Compile Include="..\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Inprotech.Server\AppSettings.config">
+      <Link>AppSettings.config</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\updated_IDS.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Assets\1.zip">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\doc.docx">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\FakePdf.pdf" />
+    <EmbeddedResource Include="Assets\file.pdf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\file.txt">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\file2.pdf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\innography.trademark.cpa-xml.xml" />
+    <EmbeddedResource Include="Assets\pf1077.pdf" />
+    <EmbeddedResource Include="Scripts\E-Filing-DeliverIntegrationArtifacts.sql" />
+    <EmbeddedResource Include="Scripts\SecurityTask-CreateNegativeWorkflowRules.sql" />
+    <EmbeddedResource Include="Assets\file.e2e.cpaxml.xml" />
+    <EmbeddedResource Include="Assets\innography.cpa-xml.xml" />
+    <EmbeddedResource Include="Assets\uspto.privatepair.e2e.cpaxml.xml" />
+    <EmbeddedResource Include="Assets\epo.ops.cpaxml.xml" />
+    <EmbeddedResource Include="Assets\uspto.tsdr.e2e-status.xml" />
+    <EmbeddedResource Include="Scripts\AddE2ECreatedColumn.sql" />
+    <EmbeddedResource Include="Scripts\lastrefno.sql" />
+    <EmbeddedResource Include="Assets\invalidcpaxml.xml" />
+    <EmbeddedResource Include="Assets\validcpaxml.xml" />
+    <EmbeddedResource Include="Scripts\EnableServiceBroker.sql" />
+    <EmbeddedResource Include="..\post-dev-upgrade.sql">
+      <Link>Scripts\post-dev-upgrade.sql</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\chicken-tonight.png" />
+    <EmbeddedResource Include="Assets\drag_and_drop_helper.js" />
+    <Content Include="Utils\7z\7za.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Aspose.Cells.lic">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Assets\caseImportInvalid.csv" />
+    <EmbeddedResource Include="Assets\E2EBatchCustomColumns.csv" />
+    <EmbeddedResource Include="Assets\E2EBatchMultipleRelatedCases.csv" />
+    <EmbeddedResource Include="Assets\Agent Input~E2EAIName~E2EBatchValid.csv" />
+    <EmbeddedResource Include="Assets\E2EBatchValidWithSpaces.csv" />
+    <EmbeddedResource Include="Assets\PatentImport.xltx" />
+    <EmbeddedResource Include="Assets\TrademarkImport.xltx" />
+    <EmbeddedResource Include="Assets\schema-mapping-api-test.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\sample.epf" />
+    <EmbeddedResource Include="Assets\schema-mapping-e2e-test.dtd" />
+    <EmbeddedResource Include="Assets\IPONZ-ISOCountryCodeType-V2006.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\IPONZ-WIPOST3CodeType-V2007.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\iponz_patent_application_v1_40.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\iponz_patent_common_types_v1_40.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\schema-mapping-test-iponz.json" />
+    <EmbeddedResource Include="Assets\inprodoc-run-doc-item.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Inprotech.Contracts\Inprotech.Contracts.csproj" />
+    <ProjectReference Include="..\Inprotech.Infrastructure\Inprotech.Infrastructure.csproj" />
+    <ProjectReference Include="..\Inprotech.Integration\Inprotech.Integration.csproj" />
+    <ProjectReference Include="..\Inprotech.Web\Inprotech.Web.csproj" />
+    <ProjectReference Include="..\InprotechKaizen.Model.Components\InprotechKaizen.Model.Components.csproj" />
+    <ProjectReference Include="..\InprotechKaizen.Model\InprotechKaizen.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EndToEnd\Picklists\Common\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper">
+      <Version>8.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="EntityFramework">
+      <Version>6.4.4</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="NUnit">
+      <Version>3.6.1</Version>
+    </PackageReference>
+    <PackageReference Include="Otp.NET" Version="1.2.1" />
+    <PackageReference Include="Protractor">
+      <Version>0.12.0</Version>
+    </PackageReference>
+    <PackageReference Include="Selenium.Support">
+      <Version>3.141.0</Version>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers">
+      <Version>1.1.118</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="System.Management" Version="5.0.0" />
+    <PackageReference Include="Z.EntityFramework.Plus.EF6">
+      <Version>1.8.25</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="EndToEnd\Components\NamesGrid.cs" />
+    <Compile Remove="EndToEnd\Form\EmailValidation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Assets\1.zip" />
+    <None Remove="Assets\doc.docx" />
+    <None Remove="Assets\FakePdf.pdf" />
+    <None Remove="Assets\file.pdf" />
+    <None Remove="Assets\file.txt" />
+    <None Remove="Assets\file2.pdf" />
+    <None Remove="Assets\innography.trademark.cpa-xml.xml" />
+    <None Remove="Assets\pf1077.pdf" />
+    <None Remove="Assets\updated_IDS.pdf" />
+  </ItemGroup>
+</Project>

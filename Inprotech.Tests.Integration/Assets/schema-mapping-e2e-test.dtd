@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT rootNode ((document-id, invention-title?, ep-declarations?)| (doc-page)+)>
+<!ATTLIST rootNode
+	lang CDATA #REQUIRED		
+	produced-by (applicant | RO | ISA | IPEA | IB | DO | EO) #REQUIRED
+>
+
+<!ELEMENT document-id (#PCDATA)>
+
+<!ELEMENT invention-title (#PCDATA | b )*>
+<!ATTLIST invention-title
+	id ID #IMPLIED
+	lang CDATA #IMPLIED
+>
+
+<!ELEMENT ep-declarations (empty-element?, name) >
+
+<!ELEMENT empty-element EMPTY>
+<!ELEMENT name (#PCDATA)>
+
+<!ELEMENT b (#PCDATA)*>
+
+<!ELEMENT doc-page (#PCDATA)>

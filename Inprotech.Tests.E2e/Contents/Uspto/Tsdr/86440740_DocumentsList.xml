@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DocumentList xmlns="urn:us:gov:doc:uspto:trademark">
+  <Document>
+    <SerialNumber>86440740</SerialNumber>
+    <DocumentTypeCode>COA</DocumentTypeCode>
+    <DocumentTypeCodeDescriptionText>Teas Change of Owner Address</DocumentTypeCodeDescriptionText>
+    <MailRoomDate>2015-02-10-05:00</MailRoomDate>
+    <ScanDateTime>2015-02-11T09:51:49.000-05:00</ScanDateTime>
+    <TotalPageQuantity>1</TotalPageQuantity>
+    <PageMediaTypeList>
+      <PageMediaTypeName>application/xml</PageMediaTypeName>
+    </PageMediaTypeList>
+  </Document>
+  <Document>
+    <SerialNumber>86440740</SerialNumber>
+    <DocumentTypeCode>DSC</DocumentTypeCode>
+    <DocumentTypeCodeDescriptionText>Design Search Code Corr Project</DocumentTypeCodeDescriptionText>
+    <MailRoomDate>2014-11-13-05:00</MailRoomDate>
+    <ScanDateTime>2014-11-13T05:55:17.000-05:00</ScanDateTime>
+    <TotalPageQuantity>1</TotalPageQuantity>
+    <PageMediaTypeList>
+      <PageMediaTypeName>application/xml</PageMediaTypeName>
+    </PageMediaTypeList>
+  </Document>
+</DocumentList>
