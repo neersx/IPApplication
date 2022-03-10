@@ -1,0 +1,225 @@
+-----------------------------------------------------------------------------------------------------------------------------
+-- Creation of ip_cc_ITEM
+-----------------------------------------------------------------------------------------------------------------------------
+if exists (select * from sysobjects where id = object_id(N'[dbo].[ip_cc_ITEM]') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+begin
+	print '**** Drop procedure dbo.ip_cc_ITEM.'
+	drop procedure dbo.ip_cc_ITEM
+	print '**** Creating procedure dbo.ip_cc_ITEM...'
+	print ''
+end
+go
+
+
+SET QUOTED_IDENTIFIER OFF 
+go
+
+
+CREATE PROCEDURE dbo.ip_cc_ITEM
+	@pnRowCount			int 		= 0	OUTPUT,
+	@pnUserIdentityId		int		= null,	-- included for use by .NET
+	@psCulture			nvarchar(10)	= null, -- the language in which output is to be expressed
+	@pnFunction			int		= 1, 	-- the specific behaviour required of the stored procedure on this occasion
+	@psUserName			nvarchar(40)	= 'dbo', -- the current user name which will have created the 'CCImport_' tables dbo used as default for security error instead of crash
+	@pnSourceNo			int		= null, --  Name No - source of import file
+	@psChangeList			ntext		= null, --  XML 'table' listing values to be updated
+	@pnOrderBy			tinyint		= 2	-- 1-Result; 2-Code
+	
+AS
+
+-- PROCEDURE :	ip_cc_ITEM
+-- VERSION :	1
+-- DESCRIPTION:	The comparison/display and merging of imported data for the ITEM table
+-- CALLED BY :	
+
+-- MODIFICATION
+-- Date		Who	Number	Version	Description
+-- ----         ---	------	-------	-----------------------------------------------------------
+-- 20 Feb 2013	System		1	Procedure created
+--
+-- @pnFunction - possible values and expected behaviour:
+-- 	= 1	Refresh the import table if necessary (with updated keys for example) 
+-- 		and return the comparison with the system table
+--	= 2	Update the system tables with the imported data 
+--
+-- 18 Jan 2012 AvdA - for CopyConfig ignore mapping (3-5 unused here but skip to 6 if new value required)
+--	= 3	Supply the statement to collect the system keys if
+-- 		there is a primary key associated with this tab which may be mapped
+-- 		(Return null to indicate mapping not allowed.)
+-- 	= 4	Supply the statement to list the imported keys and any existing mapping.
+-- 		(Should not be called if mapping not allowed.)
+-- 	= 5 	Add/update the existing mapping based on the supplied XML in the form
+--		 <DataMap><DataMapChange><SourceValue/><StoredMapValue/><NewMapValue/></DataMapChange></DataMap>
+
+set nocount on
+Set CONCAT_NULL_YIELDS_NULL OFF
+
+
+-- Prerequisite that the CCImport_ITEM table has been loaded
+
+Declare @sSQLString		nvarchar(4000)
+Declare @sSQLString0		nvarchar(4000)
+Declare @sSQLString1		nvarchar(4000)
+Declare @sSQLString2		nvarchar(4000)
+Declare @sSQLString3		nvarchar(4000)
+Declare @sSQLString4		nvarchar(4000)
+Declare @sSQLString5		nvarchar(4000)
+
+Declare	@ErrorCode			int
+Declare @sUserName			nvarchar(40)
+Declare	@hDocument	 		int 			-- handle to the XML parameter
+Declare @bOriginalKeyColumnExists	bit
+Declare @nNewRows			int
+
+Set @ErrorCode=0
+Set @bOriginalKeyColumnExists = 0
+Set @sUserName	= @psUserName
+
+
+-- Function 1 - Data Comparison
+If @ErrorCode=0 
+and @pnFunction=1
+Begin
+	-- Return result set of imported data with current live data
+	If  @ErrorCode=0
+	Begin
+		Set @sSQLString="SELECT * from dbo.fn_cc_ITEM('"+@psUserName+"')
+		order by "+CASE WHEN(@pnOrderBy=1)THEN "1,3" ELSE "3" END 
+		
+		select isnull(@sSQLString,''), isnull(@sSQLString1,''),isnull(@sSQLString2,''), isnull(@sSQLString3,''),isnull(@sSQLString4,''), isnull(@sSQLString5,'')
+		
+		Select	@ErrorCode=@@Error,
+			@pnRowCount=@@rowcount
+	End
+End
+
+-- Data Update from temporary table
+-- Merge the imported data
+-- @pnFunction = 2 describes the update of the system data from the temporary table
+If  @ErrorCode=0
+and @pnFunction=2
+Begin
+
+/**************** Data Update ***************************************/
+	If @ErrorCode = 0
+	Begin
+
+		-- Update the rows where the key matches but there is some other discrepancy
+	
+		Set @sSQLString="
+		Update ITEM
+		set	ITEM_NAME= I.ITEM_NAME,
+			SQL_QUERY= replace(CAST(I.SQL_QUERY as NVARCHAR(MAX)),char(10),char(13)+char(10)),
+			ITEM_DESCRIPTION=replace( I.ITEM_DESCRIPTION,char(10),char(13)+char(10)),
+			CREATED_BY= I.CREATED_BY,
+			DATE_CREATED= I.DATE_CREATED,
+			DATE_UPDATED= I.DATE_UPDATED,
+			ITEM_TYPE= I.ITEM_TYPE,
+			ENTRY_POINT_USAGE= I.ENTRY_POINT_USAGE,
+			SQL_DESCRIBE=replace( I.SQL_DESCRIBE,char(10),char(13)+char(10)),
+			SQL_INTO=replace( I.SQL_INTO,char(10),char(13)+char(10))
+		from	ITEM C
+		join	CCImport_ITEM I	on ( I.ITEM_ID=C.ITEM_ID)
+" Set @sSQLString1="
+		where 		( I.ITEM_NAME <>  C.ITEM_NAME)
+		OR 		( replace(CAST(I.SQL_QUERY as NVARCHAR(MAX)),char(10),char(13)+char(10)) <>  CAST(C.SQL_QUERY as NVARCHAR(MAX)))
+		OR 		(replace( I.ITEM_DESCRIPTION,char(10),char(13)+char(10)) <>  C.ITEM_DESCRIPTION)
+		OR 		( I.CREATED_BY <>  C.CREATED_BY OR (I.CREATED_BY is null and C.CREATED_BY is not null )
+ OR (I.CREATED_BY is not null and C.CREATED_BY is null))
+		OR 		( I.DATE_CREATED <>  C.DATE_CREATED OR (I.DATE_CREATED is null and C.DATE_CREATED is not null )
+ OR (I.DATE_CREATED is not null and C.DATE_CREATED is null))
+		OR 		( I.DATE_UPDATED <>  C.DATE_UPDATED OR (I.DATE_UPDATED is null and C.DATE_UPDATED is not null )
+ OR (I.DATE_UPDATED is not null and C.DATE_UPDATED is null))
+		OR 		( I.ITEM_TYPE <>  C.ITEM_TYPE OR (I.ITEM_TYPE is null and C.ITEM_TYPE is not null )
+ OR (I.ITEM_TYPE is not null and C.ITEM_TYPE is null))
+		OR 		( I.ENTRY_POINT_USAGE <>  C.ENTRY_POINT_USAGE OR (I.ENTRY_POINT_USAGE is null and C.ENTRY_POINT_USAGE is not null )
+ OR (I.ENTRY_POINT_USAGE is not null and C.ENTRY_POINT_USAGE is null))
+		OR 		(replace( I.SQL_DESCRIBE,char(10),char(13)+char(10)) <>  C.SQL_DESCRIBE OR (I.SQL_DESCRIBE is null and C.SQL_DESCRIBE is not null )
+ OR (I.SQL_DESCRIBE is not null and C.SQL_DESCRIBE is null))
+		OR 		(replace( I.SQL_INTO,char(10),char(13)+char(10)) <>  C.SQL_INTO OR (I.SQL_INTO is null and C.SQL_INTO is not null )
+ OR (I.SQL_INTO is not null and C.SQL_INTO is null))
+"
+		exec (@sSQLString+@sSQLString1+@sSQLString2+@sSQLString3+@sSQLString4)
+
+		Set @ErrorCode=@@Error 
+		Set @pnRowCount=@@rowcount
+	End 
+
+	/**************** Data Insert ***************************************/
+		If @ErrorCode=0
+		Begin
+	
+
+		-- Insert the rows where existing key not found.
+		Set @sSQLString= "
+
+		-- Insert the rows where existing key not found.
+		Insert into ITEM(
+			ITEM_ID,
+			ITEM_NAME,
+			SQL_QUERY,
+			ITEM_DESCRIPTION,
+			CREATED_BY,
+			DATE_CREATED,
+			DATE_UPDATED,
+			ITEM_TYPE,
+			ENTRY_POINT_USAGE,
+			SQL_DESCRIBE,
+			SQL_INTO)
+		select
+	 I.ITEM_ID,
+	 I.ITEM_NAME,
+	 replace(CAST(I.SQL_QUERY as NVARCHAR(MAX)),char(10),char(13)+char(10)),
+	replace( I.ITEM_DESCRIPTION,char(10),char(13)+char(10)),
+	 I.CREATED_BY,
+	 I.DATE_CREATED,
+	 I.DATE_UPDATED,
+	 I.ITEM_TYPE,
+	 I.ENTRY_POINT_USAGE,
+	replace( I.SQL_DESCRIBE,char(10),char(13)+char(10)),
+	replace( I.SQL_INTO,char(10),char(13)+char(10))
+		from CCImport_ITEM I
+		left join ITEM C	on ( C.ITEM_ID=I.ITEM_ID)
+		where C.ITEM_ID is null
+			"
+
+		exec @ErrorCode=sp_executesql @sSQLString
+	
+		Set @pnRowCount=@pnRowCount+@@rowcount
+	End
+
+/**************** Data Delete ***************************************/
+	If @ErrorCode=0
+	Begin
+
+		-- Delete the rows where imported key not found.
+		Set @sSQLString= "
+		Delete ITEM
+		from CCImport_ITEM I
+		right join ITEM C	on ( C.ITEM_ID=I.ITEM_ID)
+		where I.ITEM_ID is null"
+
+		exec @ErrorCode=sp_executesql @sSQLString
+	
+		Set @pnRowCount=@pnRowCount+@@rowcount
+	End
+End
+
+-- @pnFunction = 3 supplies the statement to collect the system keys if
+-- there is a primary key associated with this tab which may be mapped.
+-- ( no mapping is allowed for CopyConfig - return null)
+If  @ErrorCode=0
+and @pnFunction=3
+Begin
+	Set @sSQLString=null
+
+	select @sSQLString
+	
+	Select	@ErrorCode=@@Error,
+		@pnRowCount=@@rowcount
+End
+
+RETURN @ErrorCode
+go
+grant execute on dbo.ip_cc_ITEM  to public
+go

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" ?> 
+<StoredProcedureRules>
+	<DatabaseTable>
+		<TableName>OFFICIALNUMBERS</TableName>
+		<InternalName>OfficialNumber</InternalName>
+		<Prefix></Prefix>
+	</DatabaseTable>
+	<DatabaseColumns>
+		<DatabaseColumn>
+			<ColumnName>NUMBERTYPE</ColumnName>
+			<PropertyName>NumberTypeCode</PropertyName>
+		</DatabaseColumn>
+	</DatabaseColumns>
+	<FetchCriteria>
+		<DatabaseColumns>
+			<ColumnName></ColumnName>
+		</DatabaseColumns>
+	</FetchCriteria>
+</StoredProcedureRules>

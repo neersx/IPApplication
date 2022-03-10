@@ -1,0 +1,43 @@
+INSERT INTO ROWACCESS (ACCESSNAME, ACCESSDESC)
+	VALUES ('TESTPROFILE', null)
+INSERT INTO ROWACCESSDETAIL (ACCESSNAME, RECORDTYPE, SEQUENCENO, PROPERTYTYPE, SECURITYFLAG)
+	values ('TESTPROFILE', 'C', 0, 'P', 1)	-- Select
+INSERT INTO ROWACCESSDETAIL (ACCESSNAME, RECORDTYPE, SEQUENCENO, PROPERTYTYPE, CASETYPE, SECURITYFLAG)
+	values ('TESTPROFILE', 'C', 1, 'P', 'A', 7)  -- Insert, Delete, Select
+INSERT INTO ROWACCESSDETAIL (ACCESSNAME, RECORDTYPE, SEQUENCENO, CASETYPE, SECURITYFLAG)
+	values ('TESTPROFILE', 'C', 2, 'F', 8)	-- Update
+INSERT INTO IDENTITYROWACCESS (ACCESSNAME, IDENTITYID)
+	values ('TESTPROFILE', 18)
+
+/* 
+SELECT * FROM USERIDENTITY
+SELECT * FROM IDENTITYROWACCESS
+SELECT * FROM ROWACCESSDETAIL
+SELECT * FROM ROWACCESS
+SELECT * FROM CASES
+*/
+
+
+ 
+Declare @nErr INT
+-- Exec @nErr = cs_VerifyUpdatedCase
+Exec @nErr = cs_VerifyInsertedCase
+	@pnUserIdentityId	= 18,	
+--	@pnUserIdentityId	= 19,	-- No rights at all - should always fail
+	@psCulture		= 'EN-US',
+--	@pnCaseKey		= -17	-- CASETYPE = A, PROPERTYTYPE = P : should be OK
+-- 	@pnCaseKey		= -47	-- CASETYPE = F, (PROPERTYTYPE = T) :  No insert right - should generate error
+ 	@pnCaseKey		= -55	-- CASETYPE = D, PROPERTYTYPE = T :  No insert right - should generate error
+PRINT @nErr
+
+
+/* 
+Declare @nErr INT
+Exec @nErr = dbo.cs_GetSecurityForCase
+	@pnUserIdentityId = 18
+*/
+-- 
+
+DELETE FROM IDENTITYROWACCESS
+DELETE FROM ROWACCESSDETAIL
+DELETE FROM ROWACCESS

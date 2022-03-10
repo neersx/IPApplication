@@ -1,0 +1,41 @@
+exec ipw_UpdateStandingInstruction
+	@pnUserIdentityId		= 5,		-- Mandatory
+	@psCulture			= 'en-AU',
+	@pbCalledFromCentura		= 0,
+	@pnNameKey			= -493,		-- Mandatory
+	@pnSequence			= 0,		-- Mandatory
+	@pnCaseKey			= null,
+	@pnRestrictedToNameKey		= null,
+	@pnInstructionCode		= null,
+	@psCountryCode			= null,
+	@psPropertyTypeCode		= null,
+	@pnPeriod1Amount		= null,
+	@psPeriod1Type			= null,
+	@pnPeriod2Amount		= null,
+	@psPeriod2Type			= null,
+	@pnPeriod3Amount		= null,
+	@psPeriod3Type			= 'M',
+
+	@pnOldCaseKey			= null,
+	@pnOldRestrictedToNameKey	= null,
+	@pnOldInstructionCode		= null,--10,
+	@psOldCountryCode		= null,--'AU',
+	@psOldPropertyTypeCode		= null,--'P',
+	@pnOldPeriod1Amount		= null,--1,
+	@psOldPeriod1Type		= null,--'M',
+	@pnOldPeriod2Amount		= null,--1,
+	@psOldPeriod2Type		= null,--'M',
+	@pnOldPeriod3Amount		= null,--1,
+	@psOldPeriod3Type		= null,--'M'
+	
+	@pbIsCaseKeyInUse		= 0,
+	@pbIsRestrictedToNameKeyInUse	= 0,
+	@pbIsInstructionCodeInUse	= 0,
+	@pbIsCountryCodeInUse		= 0,
+	@pbIsPropertyTypeCodeInUse	= 0,
+	@pbIsPeriod1AmountInUse		= 0,
+	@pbIsPeriod1TypeInUse		= 0,
+	@pbIsPeriod2AmountInUse		= 0,
+	@pbIsPeriod2TypeInUse		= 0,
+	@pbIsPeriod3AmountInUse		= 0,
+	@pbIsPeriod3TypeInUse		= 1

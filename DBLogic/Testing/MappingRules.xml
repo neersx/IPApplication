@@ -1,0 +1,23 @@
+﻿<!--- Rules to generate scripting to populate MAPPING table. -->
+<Rules>
+	<ChangeReference>RFCxxx</ChangeReference>
+	<Comment>Description of script</Comment>
+	<!-- Last MAPPING.MAPPING used -->
+	<LastMappingKey></LastMappingKey>
+	<Mapping>
+		<StructureID></StructureID> <!-- MAPSTRUCTURE.STRUCTUREID -->
+		<DataSourceCode></DataSourceCode> <!-- The code of the source system EXTERNALSYSTEM.SYSTEMCODE -->
+		<InputCode></InputCode>
+		<InputDescription></InputDescription>
+		<InputEncoded>
+			<SchemeCode></SchemeCode> <!-- ENCODINGSCHEME.SCHEMECODE -->
+			<Code></Code> <!-- The Code of the item as it appears in the encoded value list -->
+		</InputEncoded>
+		<OutputEncoded>
+			<SchemeCode></SchemeCode> <!-- ENCODINGSCHEME.SCHEMECODE -->
+			<Code></Code> <!-- The Code of the item as it appears in the encoded value list -->
+		</OutputEncoded>
+		<OutputValue></OutputValue>
+		<IsNotApplicable></IsNotApplicable> <!-- Defaults to 0 -->
+	</Mapping>
+</Rules>
