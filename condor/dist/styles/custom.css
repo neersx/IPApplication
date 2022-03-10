@@ -1,0 +1,25 @@
+.login-brand-logo {
+    height: 200px;
+    background: url('../images/branding-logo.png') no-repeat center;
+    background-position: left bottom;
+}
+
+.brand-logo {
+    /* customise brand-logo top left of the page */
+}
+
+.custom-content-default-height {
+    height: 300px !important;
+}
+
+
+/* customise custom content menu background and topic border */
+
+
+/* .tab-content li.className {
+    background-color: magenta !important;
+}
+
+.topics-container div.className.active {
+    border: solid magenta 3px !important;
+} */

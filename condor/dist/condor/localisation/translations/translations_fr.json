@@ -1,0 +1,3151 @@
+{
+  "signin": {
+    "lblUsername": "Code de connexion",
+    "lblPassword": "Mot de passe",
+    "unauthorised-accounts-just-locked": "Vous avez dépassé le nombre maximal de tentatives de connexion non valides. Votre compte a été verrouillé. Veuillez contacter l'administrateur système.",
+    "btnSignIn": "Ouvrir une session",
+    "no-licence-found": "Impossible de trouver une  licence  pour ce module. Veuillez vérifier que votre licence a été installée.",
+    "user-incomplete": "Vous n'avez pas été configuré pour accéder à ce produit. Veuillez contacter l'administrateur système.",
+    "cancel": "Annuler",
+    "save": "Sauvegarder",
+    "newpassword": "Nouveau mot de passe",
+    "confirmpassword": "Confirmer le mot de passe",
+    "newPasswordsDoNotMatch": "Les deux mots de passe ne correspondent pas.",
+    "password": "Mot de passe",
+    "change": "Modifier le mot de passe",
+    "current": "Ancien mot de passe",
+    "new": "Nouveau mot de passe",
+    "submit": "Soumettre",
+    "titleChangePassword": "Modifier le mot de passe",
+    "oldPassword": "Ancien mot de passe",
+    "back": "Retour"
+  },
+  "sections": {
+    "actions": "Tâches"
+  },
+  "field": {
+    "errors": {
+      "required": "Champ obligatoire",
+      "ipRequired": "Champ obligatoire",
+      "invalidurl": "URL non valide",
+      "inUse": "En cours d'utilisation",
+      "newPasswordsDoNotMatch": "Les deux mots de passe ne correspondent pas.",
+      "changePassword": {
+        "newPasswordsDoNotMatch": "Les deux mots de passe ne correspondent pas."
+      },
+      "duplicateItemNo": "Tous les numéros de factures à l'intérieur de la plage spécifiée ont déjà été utilisés. Veuillez élargir la plage ou utiliser un autre préfixe.",
+      "duplicateItemPrefix": "Doublon sur le préfixe. Veuillez vous assurer que le préfixe pour chaque agence  est unique  et ne correspond pas à une valeur du site de contrôle \"DRAFTPREFIX\".",
+      "office": {
+        "only2letters": "Le champ des préfixes ne supporte pas des caractères non-alphabétiques. Veuillez supprimer du préfixe les caractères non-alphabétiques ."
+      }
+    }
+  },
+  "datepicker": {
+    "clear": "Effacer",
+    "close": "Terminé",
+    "today": "Aujourd'hui"
+  },
+  "entity": {
+    "cannotdelete": "Cet enregistrement ne peut pas être supprimé, car il est indispensable pour d'autres informations existantes."
+  },
+  "grid": {
+    "columns": {
+      "textoperators": {
+        "contains": "Contient",
+        "startswith": "Commence par"
+      }
+    },
+    "messages": {
+      "pagerOf": "sur"
+    }
+  },
+  "Save": "Sauvegarder",
+  "Code": "Code",
+  "Description": "Description",
+  "caseSearchResults": {
+    "pageTitle": "Résultats de la recherche de dossiers",
+    "for": "Pour",
+    "togglePreview": "Aperçu"
+  },
+  "quickSearch": {
+    "using": {
+      "Title": "Dénomination",
+      "Family": "Famille",
+      "Keyword": "Mot clé"
+    }
+  },
+  "picklist": {
+    "case": {
+      "Type": "Dossier",
+      "CaseRef": "Réf. dossier",
+      "Title": "Dénomination",
+      "OfficialNumber": "N° officiel",
+      "PropertyType": "Type de droits",
+      "Country": "Pays",
+      "Instructor": "Donneur d'ordre",
+      "searchPanel": {
+        "caseType": "Type de dossier",
+        "Title": "Dossier",
+        "office": "Agence gestionnaire",
+        "name": "Tiers"
+      }
+    },
+    "instructiontype": {
+      "Type": "Type d'instruction",
+      "Code": "Code",
+      "Description": "Description"
+    },
+    "characteristic": {
+      "label": "Caractéristique"
+    },
+    "dataitemgroup": {
+      "Description": "Description"
+    },
+    "dataitem": {
+      "Code": "Tiers",
+      "Description": "Description",
+      "EntryPoint": "Point d'accès"
+    },
+    "instruction": {
+      "TypeDescription": "Type d'instruction",
+      "label": "Instruction"
+    },
+    "event": {
+      "Type": "Evènement",
+      "EventNo": "N° de l'évènement",
+      "Code": "Code",
+      "Description": "Description",
+      "MaxCycles": "Cycles",
+      "Importance": "Importance",
+      "EventCategory": "Catégorie",
+      "EventGroup": "Groupe",
+      "maintenance": {
+        "description": "Description de l'évènement",
+        "code": "Code de l'évènement",
+        "unlimited": "Illimité",
+        "category": "Catégorie d'évènements",
+        "notes": "Définition",
+        "policing": "Policer",
+        "billing": "Facturation",
+        "confirmPropagateChanges": {
+          "button": {
+            "cancel": "Annuler"
+          }
+        }
+      }
+    },
+    "office": {
+      "Type": "Agence gestionnaire",
+      "Description": "Description",
+      "Organisation": "Société",
+      "Country": "Pays",
+      "DefaultLanguage": "Langue par défaut"
+    },
+    "casetype": {
+      "Type": "Type de dossier",
+      "Code": "Code",
+      "Description": "Description"
+    },
+    "nametypegroup": {
+      "groupName": "Description",
+      "description": "Description"
+    },
+    "jurisdiction": {
+      "Code": "Code"
+    },
+    "propertytype": {
+      "Type": "Type de droits",
+      "Code": "Code",
+      "Description": "Description",
+      "maintenance": {
+        "warning": "Avertissement"
+      }
+    },
+    "subtype": {
+      "Type": "Sous-type",
+      "Code": "Code",
+      "Description": "Description"
+    },
+    "action": {
+      "Type": "Action",
+      "Code": "Code",
+      "Description": "Description",
+      "Cycles": "Cycles",
+      "ImportanceLevel": "Niveau d'importance",
+      "Other": "Autre"
+    },
+    "casecategory": {
+      "Type": "Catégorie de dossier",
+      "Code": "Code",
+      "Description": "Description"
+    },
+    "dateoflaw": {
+      "propertyType": "Type de droits",
+      "actions": "Action"
+    },
+    "basis": {
+      "Type": "Base",
+      "Code": "Code",
+      "Description": "Description"
+    },
+    "relationship": {
+      "Type": "Lien dossier",
+      "Code": "Code",
+      "Description": "Description",
+      "notes": "Gérer les notes"
+    },
+    "checklistmatcher": {
+      "Code": "Code",
+      "Description": "Description"
+    },
+    "status": {
+      "label": "Statut",
+      "Description": "Description",
+      "Type": "Type",
+      "caseStatus": "Statut du dossier",
+      "renewalStatus": "Statut de renouvellement",
+      "Code": "Code"
+    },
+    "checklist": {
+      "type": "Liste de contrôle",
+      "Code": "Code",
+      "Description": "Description",
+      "Other": "Autre"
+    },
+    "nameType": {
+      "type": "Type de Tiers",
+      "code": "Code",
+      "description": "Description"
+    },
+    "nameTypeGroup": {
+      "description": "Description"
+    },
+    "textType": {
+      "code": "Code",
+      "description": "Description"
+    },
+    "additionalNumberPatternValidation": {
+      "code": "Code"
+    },
+    "fileLocation": {
+      "label": "Emplacement du classeur"
+    },
+    "eventCategory": {
+      "name": "Catégorie",
+      "label": "Catégorie d'évènements",
+      "image": "Image",
+      "imageDescription": "Description de l'image"
+    },
+    "numberType": {
+      "label": "Type de numéro",
+      "code": "Code",
+      "description": "Description",
+      "relatedEvent": "Evènement lié"
+    },
+    "document": {
+      "label": "Document",
+      "template": "Modèle",
+      "code": "Code",
+      "description": "Description"
+    },
+    "availableTopic": {
+      "label": "Etapes",
+      "step": "Etape",
+      "category": "Catégorie"
+    },
+    "tableCode": {
+      "code": "Code d'utilisateur",
+      "description": "Description"
+    },
+    "role": {
+      "Type": "Rôle",
+      "description": "Rôle",
+      "external": "Externe"
+    },
+    "chargeType": "Type de frais",
+    "tablecode": {
+      "userCode": "Code d'utilisateur",
+      "description": "Description",
+      "id": "Code"
+    },
+    "image": {
+      "label": "Image",
+      "id": "Code de l'image",
+      "description": "Description",
+      "status": "Statut",
+      "image": "Image"
+    },
+    "dataDownloadCaseQueries": {
+      "description": "Description"
+    },
+    "internalUsers": {
+      "label": "Utilisateur",
+      "username": "Utilisateur",
+      "name": "Tiers"
+    },
+    "entryPoint": {
+      "Type": "Point d'accès"
+    },
+    "renewalType": "Type de renouvellement",
+    "casefamily": {
+      "type": "Famille du dossier",
+      "description": "Dénomination de la famille",
+      "inUse": "En cours d'utilisation"
+    },
+    "caselist": {
+      "type": "Liste de dossiers",
+      "caseList": "Liste de dossiers",
+      "description": "Description",
+      "primeCase": "Dossier initial",
+      "delete": "Supprimer",
+      "edit": "Modifier"
+    },
+    "keyword": {
+      "type": "Mot clé",
+      "keyword": "Mot clé",
+      "caseStopWord": "Case Stop Word",
+      "nameStopWord": "Name Stop Word"
+    },
+    "nameRelationship": {
+      "description": "Description",
+      "code": "Code"
+    },
+    "eventNoteType": {
+      "description": "Description",
+      "isExternal": "Publique",
+      "code": "Code",
+      "type": "Type de note relative à l'événement"
+    },
+    "tmClass": {
+      "class": "Classe"
+    },
+    "currency": {
+      "title": "Devise",
+      "description": "Description"
+    },
+    "typeOfMark": "Type de marque",
+    "instructor": "Donneur d'ordre",
+    "owner": "Titulaire",
+    "agent": "Agent",
+    "staff": "Consultant",
+    "signatory": "Signataire",
+    "classitem": {
+      "ItemNumber": "Numéro de l'élément",
+      "ItemDescription": "Description de l'élément",
+      "Class": "Classe",
+      "Language": "Langue",
+      "SubClass": "Sous-classe"
+    },
+    "wipTemplate": {
+      "label": "Activité",
+      "description": "Description",
+      "type": "Type",
+      "code": "Code"
+    },
+    "narrative": {
+      "label": "Explication",
+      "code": "Code",
+      "title": "Dénomination"
+    },
+    "name": {
+      "Name": "Nom",
+      "Code": "Code",
+      "Remarks": "Remarques"
+    },
+    "client": "Client",
+    "profile": {
+      "Code": "Code",
+      "Type": "Profil",
+      "Name": "Nom",
+      "Description": "Description"
+    },
+    "caseProgram": {
+      "Name": "Nom",
+      "Code": "Code",
+      "ParentName": "Tiers parent",
+      "ShortType": "Programme",
+      "Description": "Description"
+    },
+    "nameGroup": {
+      "Type": "Groupe de Tiers",
+      "Title": "Dénomination",
+      "Comments": "Observations"
+    },
+    "profitCentre": {
+      "code": "Code",
+      "type": "Centre de profit",
+      "name": "Entité",
+      "description": "Description"
+    },
+    "purchaseCurrency": {
+      "label": "Devise",
+      "code": "Code",
+      "description": "Description"
+    },
+    "exchangeRateSchedule": {
+      "label": "Tableau du taux de change",
+      "description": "Description",
+      "code": "Code"
+    },
+    "ledgerAccount": {
+      "label": "Compte du grand livre",
+      "description": "Description",
+      "code": "Code"
+    },
+    "address": {
+      "address": "Adresse",
+      "type": "Type d'adresse",
+      "status": "Statut"
+    },
+    "timePeriod": {
+      "dateRange": "Plage de dates",
+      "thisWeek": "Cette semaine",
+      "thisMonth": "Ce mois",
+      "nextWeek": "Semaine prochaine",
+      "overdue": "Échéance dépassée"
+    },
+    "columnGroup": {
+      "queryColumnGroup": "Groupe de la colonne"
+    },
+    "searchColumn": {
+      "Description": "Description",
+      "Format": "Format"
+    },
+    "program": {
+      "description": "Description"
+    },
+    "statusSummary": {
+      "description": "Description"
+    },
+    "taskPlannerSavedSearch": {
+      "name": "Nom de la recherche",
+      "description": "Description",
+      "isPublic": "Publique"
+    },
+    "attachmentType": {
+      "label": "Type de la pièce jointe",
+      "code": "Code",
+      "description": "Description"
+    },
+    "alertTemplate": {
+      "type": "Matrice ad hoc",
+      "code": "Code",
+      "message": "Message"
+    }
+  },
+  "numberType": {
+    "code": "Code",
+    "description": "Description",
+    "relatedEvent": "Evènement lié",
+    "moveUp": "Monter",
+    "moveDown": "Descendre"
+  },
+  "nameType": {
+    "maintenance": {
+      "nameType": "Type de Tiers",
+      "organisation": "Société",
+      "address": "Adresse",
+      "nameVariant": "Variante du Tiers",
+      "inherited": "Hérité",
+      "expiryDate": "Date d'expiration",
+      "commenceDate": "Date de début",
+      "billPercent": "Pourcentage de la facture",
+      "correspondence": "Correspondance",
+      "remarks": "Remarques",
+      "contact": "Contact",
+      "start": "Début",
+      "none": "Aucun",
+      "nationality": "Nationalité",
+      "reference": "Référence",
+      "comments": "Observations",
+      "attention": "Destinataire"
+    },
+    "priorityOrder": "Afficher l'ordre",
+    "moveUp": "Monter",
+    "moveDown": "Descendre"
+  },
+  "validcombinations": {
+    "characteristic": "Caractéristique",
+    "copy": "Copier",
+    "propertyType": "Type de droits",
+    "category": "Catégorie",
+    "action": "Action",
+    "caseType": "Type de dossier",
+    "caseCategory": "Catégorie de dossier",
+    "basis": "Base",
+    "checklist": "Liste de contrôle",
+    "relationship": "Lien dossier",
+    "status": "Statut",
+    "subType": "Sous-type",
+    "moveUp": "Monter",
+    "moveDown": "Descendre",
+    "selectAll": "Sélectionner tout"
+  },
+  "dataDownload": {
+    "schedules": {
+      "status": "Statut",
+      "dataSource": "Source de données",
+      "noMoreRuns": "s/o",
+      "stop": "Arrêter",
+      "delete": "Supprimer",
+      "pause": "Pause",
+      "resume": "Reprendre"
+    },
+    "schedule": {
+      "definition": "Définition",
+      "details": "Informations",
+      "status": "Statut",
+      "source": "Source de données",
+      "type": "Type",
+      "started": "En cours ",
+      "cases": "Dossiers",
+      "errorDetails": "Détails de l'erreur",
+      "review": "Review",
+      "documents": "Documents",
+      "documentCode": "Code du document"
+    },
+    "newSchedule": {
+      "dataSource": "Source de données",
+      "startTime": "Start Time",
+      "downloadType": "Inclure",
+      "recurring": "Récurrent",
+      "on": "Le"
+    },
+    "dataSource": {
+      "File": "Fichier"
+    },
+    "uspto": {
+      "delete": "Supprimer",
+      "editPassword": "Modifier",
+      "new": {
+        "subTitle": "Informations"
+      }
+    }
+  },
+  "status": {
+    "filterText": "Filtrer par",
+    "caseStatus": "Statut du dossier",
+    "renewalStatus": "Statut de renouvellement",
+    "pending": "En attente",
+    "registered": "Enregistré",
+    "dead": "Désactivé",
+    "maintenance": {
+      "billing": "Facturation",
+      "wip": "WIP",
+      "remindersAllowed": "Rappels",
+      "reasonStopPaying": "Motif d'arrêt du paiement"
+    }
+  },
+  "notes": "Gérer les notes",
+  "eventDescription": "Description de l'évènement",
+  "bulkactionsmenu": {
+    "actions": "Actions",
+    "selectFullSet": "Sélectionner tout",
+    "deselectFullSet": "Désélectionner tout",
+    "BatchEventUpdate": "Batch Event Update",
+    "GlobalNameChange": "Changement en lot de Tiers ",
+    "SanityCheck": "Validation des données",
+    "delete": "Supprimer"
+  },
+  "picklistmodal": {
+    "actions": "Actions",
+    "searchItems": "Rechercher",
+    "clearItem": "Effacer"
+  },
+  "button": {
+    "ok": "OK",
+    "cancel": "Annuler",
+    "discard": "Ignorer",
+    "save": "Sauvegarder",
+    "close": "Fermer",
+    "revert": "Réinitialiser",
+    "search": "Rechercher",
+    "clear": "Effacer",
+    "submit": "Soumettre",
+    "generate": "Générer"
+  },
+  "modal": {
+    "discardchanges": {
+      "title": "Ignorer les modifications",
+      "discardButton": "Ignorer",
+      "cancel": "Annuler"
+    },
+    "confirmation": {
+      "title": "Confirm",
+      "yes": "Oui",
+      "no": "Non",
+      "save": "Sauvegarder",
+      "cancel": "Annuler",
+      "copy": "Copier",
+      "delete": "Supprimer"
+    },
+    "unsavedchanges": {
+      "title": "Modifications non sauvegardées"
+    },
+    "sameNameType": {
+      "title": "Confirm"
+    },
+    "info": {
+      "title": "Confirm"
+    },
+    "information": "Information",
+    "warning": {
+      "cancel": "Annuler",
+      "title": "Confirm"
+    }
+  },
+  "shortcuts": {
+    "save": "Sauvegarder",
+    "revert": "Réinitialiser",
+    "close": "Fermer",
+    "discard": "Ignorer",
+    "add": "Ajouter",
+    "delete": "Supprimer",
+    "search": "Rechercher",
+    "page": {
+      "first": "Première page",
+      "prev": "Page précédente",
+      "next": "Page suivante",
+      "last": "Dernière page"
+    },
+    "edit": "Modifier"
+  },
+  "keyboardShortcuts": {
+    "picklist": "Liste de présélection",
+    "searchResults": "Résultats de la recherche",
+    "enter": "Saisir",
+    "firstPage": "Première page",
+    "nextPage": "Page suivante",
+    "previousPage": "Page précédente",
+    "lastPage": "Dernière page"
+  },
+  "importanceLevel": {
+    "importance": "Niveau d'importance",
+    "level": "Niveau d'importance"
+  },
+  "textType": {
+    "code": "Code",
+    "description": "Description",
+    "forCases": "Dossiers",
+    "forNames": "Tiers",
+    "staff": "Consultant",
+    "individual": "Personne physique",
+    "organisation": "Société"
+  },
+  "nameRestriction": {
+    "description": "Description",
+    "password": "Mot de passe"
+  },
+  "nameAliasType": {
+    "type": "Type",
+    "description": "Description"
+  },
+  "dataMapping": {
+    "name": "Tiers",
+    "maintenance": {
+      "eventDescription": "Description de l'évènement",
+      "ignore": "Ignorer"
+    }
+  },
+  "dataItem": {
+    "name": "Tiers",
+    "description": "Description",
+    "maintenance": {
+      "name": "Tiers",
+      "group": "Groupe",
+      "description": "Description",
+      "entryPoint": "Point d'accès",
+      "procedureName": "Tiers",
+      "notes": "Gérer les notes"
+    },
+    "createdBy": "Créé par:"
+  },
+  "eventNoteType": {
+    "description": "Description",
+    "public": "Publique"
+  },
+  "configurations": {
+    "pageTitle": "Configuration",
+    "title": "Configuration",
+    "actions": "Actions",
+    "name": "Tiers",
+    "description": "Description",
+    "maintenance": {
+      "name": "Tiers",
+      "description": "Description"
+    }
+  },
+  "jurisdictions": {
+    "search": {
+      "code": "Code",
+      "name": "Tiers",
+      "type": "Type"
+    },
+    "maintenance": {
+      "sections": {
+        "attributes": "Attributs",
+        "texts": "Texte",
+        "states": "Etats",
+        "classes": "Classes"
+      },
+      "attributes": {
+        "type": "Type d'attribut",
+        "value": "Valeur d'attribut",
+        "attribute": "Attribut"
+      },
+      "groupMemberships": {
+        "code": "Code",
+        "groupName": "Groupe",
+        "propertyTypes": "Type de droits",
+        "maintenance": {
+          "group": "Groupe"
+        }
+      },
+      "businessDays": {
+        "date": "Date",
+        "dayOfWeek": {
+          "title": "Jour de la semaine"
+        }
+      },
+      "states": {
+        "state": "Etat"
+      },
+      "texts": {
+        "textType": "Type de texte",
+        "propertyType": "Type de droits",
+        "text": "Texte"
+      },
+      "validNumbers": {
+        "propertyType": "Type de droits",
+        "caseType": "Type de dossier",
+        "caseCategory": "Catégorie de dossier",
+        "subType": "Sous-type",
+        "numberType": "Type de numéro",
+        "warningFlag": "Avertissement"
+      },
+      "defaults": {
+        "billing": "Facturation",
+        "currency": "Devise",
+        "taxCode": "Code fiscal "
+      },
+      "classes": {
+        "internationalClasses": {
+          "label": "Classes internationales",
+          "heading": "Classes int."
+        },
+        "classCode": "Code",
+        "effectiveDate": "Date effective",
+        "propertyType": "Type de droits",
+        "notes": "Gérer les notes",
+        "class": "Classe",
+        "classHeading": "En-tête de classe",
+        "subClass": "Sous-classe",
+        "subclass": "Sous-classe"
+      },
+      "overview": {
+        "dateCeased": "Date de fin",
+        "type": "Type",
+        "types": {
+          "country": "Pays",
+          "group": "Groupe"
+        },
+        "code": "Code",
+        "name": "Tiers",
+        "notes": "Gérer les notes"
+      }
+    }
+  },
+  "periodTypes": {
+    "days": "Jours",
+    "weeks": "Semaines",
+    "months": "Mois",
+    "years": "Années"
+  },
+  "workflows": {
+    "common": {
+      "event": "Evènement",
+      "eventNo": "N° de l'évènement",
+      "eventDescription": "Description de l'évènement",
+      "period": "Période",
+      "eventDate": "Date de l'évènement",
+      "dueDate": "Date d'échéance",
+      "localOrForeignDropdown": {
+        "label": "Client local",
+        "localClients": "Oui",
+        "foreignClients": "Non"
+      }
+    },
+    "search": {
+      "searchBy": "Rechercher par",
+      "criteria": "Critères",
+      "case": "Dossier",
+      "event": "Evènement",
+      "bestCriteriaOnly": "Meilleurs critères seulement"
+    },
+    "maintenance": {
+      "entries": {
+        "createEntry": {
+          "description": "Description"
+        }
+      },
+      "events": {
+        "eventCode": "Code de l'évènement",
+        "importance": "Importance"
+      },
+      "deleteConfirmationEvent": {
+        "title": "Confirmer la suppression"
+      },
+      "deleteConfirmationEntry": {
+        "title": "Confirmer la suppression"
+      }
+    },
+    "eventcontrol": {
+      "unlimited": "Illimité",
+      "importanceLevel": "Niveau d'importance",
+      "nameType": "Type de Tiers",
+      "name": "Tiers",
+      "notes": "Gérer les notes",
+      "relativeCycleMap": {
+        "currentCycle": "Cycle en cours",
+        "previousCycle": "Cycle précédent",
+        "nextCycle": "Prochain cycle",
+        "all": "Toutes"
+      },
+      "standingInstruction": {
+        "title": "Instruction permanente"
+      },
+      "dueDateCalc": {
+        "title": "Calcul de la date d'échéance",
+        "dueDateByUnit": {
+          "Days": "Jours",
+          "Months": "Mois",
+          "Weeks": "Semaines",
+          "Years": "Années"
+        },
+        "formElements": {
+          "nameType": "Type de Tiers",
+          "name": "Tiers",
+          "yes": "Oui",
+          "no": "Non",
+          "earliest": "Le plus tôt",
+          "latest": "Le plus tard"
+        },
+        "operatorMap": {
+          "add": "Ajouter"
+        },
+        "fromToEventMap": {
+          "Event Date": "Date de l'évènement",
+          "Due Date": "Date d'échéance"
+        },
+        "nonWorkDayMap": {
+          "ok": "OK"
+        },
+        "cycle": "Cycle",
+        "event": "Evènement",
+        "period": "Période",
+        "maintenance": {
+          "either": "Les deux",
+          "reminders": "Rappels",
+          "options": "Options"
+        }
+      },
+      "eventOccurrence": {
+        "nameType": "Type de Tiers",
+        "events": "Evènements"
+      },
+      "dateComparison": {
+        "eventA": "Evènement",
+        "cycle": "Cycle",
+        "maintenance": {
+          "eventA": "Evènement",
+          "date": "Date",
+          "systemDate": "Date du système",
+          "caseRelationship": "Lien dossier"
+        }
+      },
+      "satisfyingEvents": {
+        "cycle": "Cycle"
+      },
+      "designatedJurisdictions": {
+        "group": "Groupe"
+      },
+      "dateLogic": {
+        "useCaseRelationship": "Lien dossier",
+        "cycle": "Cycle",
+        "maintenance": {
+          "eventDate": "Date de l'évènement",
+          "dueDate": "Date d'échéance",
+          "event": "Evènement",
+          "caseRelationship": "Lien dossier",
+          "message": "Message"
+        }
+      },
+      "eventsToClear": {
+        "cycle": "Cycle",
+        "clearEventDate": "Date de l'évènement",
+        "clearDueDate": "Date d'échéance"
+      },
+      "eventsToUpdate": {
+        "cycle": "Cycle"
+      },
+      "reminders": {
+        "title": "Rappels",
+        "maintenance": {
+          "messages": "Messages",
+          "subject": "Objet",
+          "recurring": "Récurrent",
+          "sendTo": "Envoyer à",
+          "staff": "Consultant",
+          "signatory": "Signataire",
+          "criticalList": "Liste critique"
+        }
+      },
+      "documents": {
+        "title": "Documents",
+        "document": "Document",
+        "maintenance": {
+          "addTitle": "Ajouter un document",
+          "recurring": "Récurrent",
+          "raiseCharge": "Frais"
+        }
+      },
+      "charges": {
+        "title": "Frais",
+        "isPayFee": "Payer les frais",
+        "isRaiseCharge": "Facturer",
+        "isCreateEstimate": "Saisir estimation",
+        "isDirectPay": "Paiement direct"
+      },
+      "changeAction": {
+        "openAction": "Action ouverte",
+        "closeAction": "Clôturer l'action"
+      },
+      "report": {
+        "title": "Informer CPA"
+      },
+      "ptaDelaysCalc": {
+        "ipOfficeDelay": "Délai de l'OPI",
+        "applicantDelay": "Délai du déposant"
+      }
+    },
+    "entrycontrol": {
+      "deleteConfirmation": {
+        "title": "Confirmer la suppression"
+      },
+      "details": {
+        "eventDate": "Date de l'évènement",
+        "dueDate": "Date d'échéance",
+        "policing": "Policer",
+        "period": "Période",
+        "entryOptions": "Options des saisies",
+        "otherDetails": "Autres informations",
+        "policeImmediately": "Recalculer immédiatement ",
+        "yes": "Oui",
+        "no": "Non",
+        "maintenance": {
+          "period": "Période",
+          "dueDateResponsibility": "Responsabilité de la date d'échéance"
+        }
+      },
+      "documents": {
+        "title": "Documents",
+        "document": "Document"
+      },
+      "dateOptions": {
+        "hide": "Masquer"
+      },
+      "controlOptions": {
+        "hide": "Masquer"
+      },
+      "steps": {
+        "title": "Dénomination",
+        "defaultTitle": "Etape",
+        "category": "Catégorie",
+        "mandatory": "Obligatoire",
+        "createAction": "Action",
+        "checklistTypes": "Type de liste de contrôle",
+        "general": "Général",
+        "mandatoryRelationship": "Relation obligatoire",
+        "nameType": "Type de Tiers",
+        "relationship": "Lien",
+        "textType": "Type de texte",
+        "step": "Etape",
+        "maintenance": {
+          "categories": "Catégorie",
+          "step": "Etape",
+          "title": "Dénomination",
+          "category": "Catégorie",
+          "mandatory": "Obligatoire"
+        }
+      },
+      "userAccess": {
+        "role": "Rôle"
+      }
+    },
+    "inheritance": {
+      "policingNotification": {
+        "title": "Avertissement"
+      }
+    }
+  },
+  "policing": {
+    "summaryBar": {
+      "total": "Total",
+      "onHold": "En attente"
+    },
+    "dashboard": {
+      "graph": {
+        "error": "Erreur"
+      }
+    },
+    "queue": {
+      "nextRunTimeModal": {
+        "date": "Date",
+        "time": "Temps"
+      },
+      "status": "Statut",
+      "user": "Utilisateur",
+      "caseReference": "Référence dossier",
+      "event": "Evènement",
+      "cycle": "Cycle",
+      "criteria": "Critères",
+      "propertyType": "Type de droits",
+      "errors": {
+        "date": "Date",
+        "message": "Message",
+        "event": "Evènement",
+        "cycle": "Cycle",
+        "criteria": "Critères"
+      }
+    },
+    "request": {
+      "action": {
+        "runNow": "Exécuter"
+      },
+      "log": {
+        "status": "Statut",
+        "error": "Erreur",
+        "completed": "Terminé",
+        "errors": {
+          "internalReference": "Référence dossier",
+          "cycleNo": "Cycle",
+          "message": "Message",
+          "criteria": "Critères",
+          "event": "Evènement"
+        }
+      },
+      "maintenance": {
+        "sections": {
+          "overview": {
+            "title": "Dénomination",
+            "notes": "Gérer les notes"
+          },
+          "eventsReminder": {
+            "startDate": "Date de début",
+            "endDate": "Date de fin",
+            "for": "Pour",
+            "days": "Jours"
+          },
+          "policingOptions": {
+            "reminders": "Rappels",
+            "emailReminders": "Rappels par email",
+            "documents": "Documents",
+            "update": "Mettre à jour",
+            "tooltip": {
+              "reminders": "Rappels",
+              "emailReminders": "Rappels par email",
+              "documents": "Documents",
+              "update": "Mettre à jour"
+            }
+          },
+          "caseCharacteristics": {
+            "caseReference": "Référence dossier",
+            "propertyType": "Type de droits",
+            "caseType": "Type de dossier",
+            "category": "Catégorie de dossier",
+            "subType": "Sous-type",
+            "office": "Agence gestionnaire"
+          },
+          "caseEventAttributes": {
+            "action": "Action",
+            "event": "Evènement"
+          },
+          "caseAssociatedWithNames": {
+            "name": "Tiers",
+            "nameType": "Type de Tiers"
+          },
+          "exclude": "Exclure"
+        }
+      }
+    },
+    "errorLog": {
+      "caseReference": "Référence dossier",
+      "date": "Date",
+      "message": "Message",
+      "event": "Evènement",
+      "cycle": "Cycle",
+      "criteria": "Critères",
+      "actions": {
+        "delete": "Supprimer"
+      }
+    },
+    "management": {
+      "savedrequests": {
+        "notes": "Gérer les notes"
+      }
+    }
+  },
+  "exchangeIntegration": {
+    "queue": {
+      "columns": {
+        "staff": "Consultant",
+        "eventDescription": "Description de l'évènement",
+        "reminderMessage": "Message de rappel",
+        "reference": "Référence",
+        "status": "Statut"
+      }
+    },
+    "bulkMenu": {
+      "reset": "Réinitialiser"
+    },
+    "settings": {
+      "administrator-details": {
+        "password": {
+          "label": "Mot de passe"
+        }
+      }
+    }
+  },
+  "total": "Total",
+  "on-hold": "En attente",
+  "in-error": "Erreur",
+  "open-action": "Action ouverte",
+  "operators": {
+    "exists": "Existe",
+    "startsWith": "Commence par",
+    "endsWith": "Se termine par",
+    "equalTo": "Egal à",
+    "notEqualTo": "Différent de",
+    "contains": "Contient",
+    "between": "Compris entre",
+    "notBetween": "Non compris entre",
+    "soundsLike": "Phonétique ressemble à",
+    "within": "Entre",
+    "withinLast": "Au cours des derniers",
+    "withinNext": "Au cours des prochains",
+    "SpecificDates": "Dates précises",
+    "dateRange": "Plage de dates"
+  },
+  "screenlabels": {
+    "translation": "Traduction",
+    "areaHeading": "Zone",
+    "area": {
+      "case": "Dossier",
+      "search": "Rechercher",
+      "batchEventUpdate": "Batch Event Update",
+      "configuration-names-aliastype": "Nom de l'alias",
+      "condor-status": "Statut",
+      "condor-nameType": "Type de Tiers",
+      "signin": "Ouvrir une session",
+      "condor-locality": "Localité",
+      "condor-nameAliasType": "Nom de l'alias",
+      "condor-priorArt": "Antériorité",
+      "condor-batchEventUpdate": "Batch Event Update",
+      "condor-numberType": "Type de numéro",
+      "condor-statusMaintenance": "Statut",
+      "condor-help": "Aide",
+      "condor-menu": "Menu",
+      "condor-cases": "Dossiers",
+      "condor-caseSearch": "Recherche de dossiers",
+      "condor-caseSearchResults": "Résultats de la recherche de dossiers",
+      "condor-textType": "Type de texte",
+      "condor-importanceLevel": "Niveau d'importance",
+      "condor-configurations": "Configuration",
+      "condor-signin": "Ouvrir une session",
+      "condor-kotTextTypes": "Mémentos",
+      "condor-eventNoteType": "Type de note relative à l'événement",
+      "condor-priorart": "Antériorité",
+      "condor-searchResults": "Résultats de la recherche",
+      "condor-nameSearchResults": "Résultats de la recherche avancée de Tiers",
+      "condor-dueDate": "Date d'échéance",
+      "condor-image": "Image",
+      "condor-customContent": "Contenu personnalisé"
+    }
+  },
+  "authentication": {
+    "unauthorised-accounts-just-locked": "Vous avez dépassé le nombre maximal de tentatives de connexion non valides. Votre compte a été verrouillé. Veuillez contacter l'administrateur système.",
+    "sessionTimeout": "Expiration de votre session"
+  },
+  "cases": {
+    "caseSearch": "Recherche de dossiers",
+    "caseType": "Type de dossier",
+    "propertyType": "Type de droits",
+    "caseCategory": "Catégorie de dossier",
+    "subType": "Sous-type",
+    "caseOffice": "Pays gestionnaire",
+    "fileLocation": "Emplacement du classeur",
+    "status": "Statut du dossier",
+    "year": "Année",
+    "renewalStatus": "Statut de renouvellement",
+    "nextEventDue": "Prochaine échéance d'un évènement",
+    "dueDate": "Date d'échéance",
+    "lastEvent": "Dernier évènement",
+    "classes": "Classes",
+    "defaultTitle": ""
+  },
+  "quicknav": {
+    "help": {
+      "title": "Aide",
+      "tooltip": "Aide"
+    },
+    "links": {
+      "title": "Liens",
+      "tooltip": "Liens"
+    }
+  },
+  "menu": {
+    "dataMapping": {
+      "File": "Fichier"
+    }
+  },
+  "caseview": {
+    "summary": {
+      "header": "Résumé du dossier",
+      "caseReference": "Référence dossier",
+      "yourReference": "Votre référence",
+      "caseType": "Type de dossier",
+      "category": "Catégorie de dossier",
+      "propertyType": "Type de droits",
+      "title": "Dénomination",
+      "subType": "Sous-type",
+      "basis": "Base",
+      "statusSummary": "Statut",
+      "caseStatus": "Statut du dossier",
+      "renewalStatus": "Statut de renouvellement",
+      "officialNumber": "Numéro officiel",
+      "family": "Famille",
+      "office": "Pays gestionnaire",
+      "fileLocation": "Emplacement du classeur",
+      "profitCentre": "Centre de profit",
+      "localClientFlag": "Client local",
+      "entitySize": "Taille de l'entité",
+      "typeOfMark": "Type de marque",
+      "workingAttorney": "Consultant",
+      "firstApplicant": "Déposant",
+      "clientName": "Instructeur",
+      "clientMainContact": "Votre contact",
+      "classes": "Classes",
+      "ourContact": "Notre contact",
+      "applicationFilingDate": "Date de dépôt de la demande"
+    },
+    "actions": {
+      "header": "Actions",
+      "actions": "Action",
+      "importanceLevel": "Niveau d'importance minimal",
+      "cycle": "Cycle",
+      "criteria": "Critères",
+      "police": "Recalculer",
+      "closedActions": "Actions closes",
+      "info": {
+        "ClosedAction": "Actions closes",
+        "AllEvents": "Tous les évènements"
+      },
+      "events": {
+        "event": "Evènement",
+        "eventDate": "Date de l'évènement",
+        "dueDate": "Date d'échéance",
+        "cycle": "Cycle",
+        "nextPolice": "Prochain recalcul",
+        "eventNo": "N° de l'évènement",
+        "criteria": "Critères",
+        "createdByAction": "Créé par une action",
+        "allEvents": "Tous les évènements",
+        "fromCase": "A partir du dossier",
+        "period": "Période",
+        "eventDetailType": "Type",
+        "eventDetailNote": "Gérer les notes",
+        "eventNotes": "Gérer les notes",
+        "dueDateSaved": "Date d'échéance sauvegardée",
+        "viewHistory": "Afficher l'historique",
+        "name": "Tiers en charge",
+        "nameType": "Type de Tiers en charge",
+        "eventNoteMenuItem": "Gérer une note concernant un évènement",
+        "warning": "Avertissement"
+      },
+      "Information": "Information",
+      "policing": "Policer",
+      "confirmPolicing": "Confirmer le recalcul",
+      "areYouSurePolicing": "Êtes-vous sûr de vouloir exécuter le Recalcul pour cette Action ?"
+    },
+    "names": {
+      "header": "Tiers",
+      "type": "Type",
+      "name": "Tiers",
+      "nameVariant": "Variante du Tiers",
+      "attention": "Destinataire",
+      "reference": "Référence",
+      "details": {
+        "address": "Adresse",
+        "inherited": "Hérité",
+        "expiryDate": "Date d'expiration",
+        "commenceDate": "Date de début",
+        "billPercent": "Pourcentage de la facture",
+        "remarks": "Observations",
+        "nationality": "Nationalité",
+        "email": "Email",
+        "phone": "Téléphone",
+        "website": "Site web"
+      },
+      "billPercentage": "Pourcentage de la facture"
+    },
+    "criticalDates": {
+      "header": "Dates critiques",
+      "event": "Evènement",
+      "date": "Date",
+      "officialNo": "N° officiel",
+      "renewalDate": "Date de renouvellement CPA"
+    },
+    "events": {
+      "header": "Evènements",
+      "date": "Date",
+      "occurred": "Evènements terminés",
+      "due": "Evénements arrivés à échéance",
+      "eventDescription": "Evènement",
+      "fromCase": "A partir du dossier",
+      "documentNumber": "N° du document"
+    },
+    "relatedCases": {
+      "header": "Dossiers liés",
+      "relationship": "Lien",
+      "caseReference": "Référence dossier",
+      "caseReferenceExternal": "Notre référence",
+      "clientReference": "Votre référence",
+      "officialNumber": "N° officiel",
+      "date": "Date",
+      "status": "Statut",
+      "classes": "Classes",
+      "title": "Dénomination",
+      "relatedEvent": "Evènement lié",
+      "relatedEventCycle": "Cycle"
+    },
+    "officialNumbers": {
+      "header": "Numéros officiels",
+      "numberType": "Type de numéro",
+      "officialNumber": "Numéro officiel",
+      "reference": "Référence",
+      "eventDate": "Date de l'évènement",
+      "dateInForce": "Date d'entrée en vigueur",
+      "isCurrent": "En cours"
+    },
+    "caseTexts": {
+      "header": "Texte",
+      "type": "Type",
+      "notes": "Gérer les notes",
+      "language": "Langue",
+      "caseIrn": "Référence dossier",
+      "class": "Classe",
+      "modified": "Date de modification",
+      "text": "Texte"
+    },
+    "designatedJurisdiction": {
+      "officialNumber": "N° officiel",
+      "caseStatus": "Statut du dossier",
+      "internalReference": "Référence dossier",
+      "ourReference": "Notre référence",
+      "clientReference": "Votre référence",
+      "classes": "Classes",
+      "details": {
+        "notes": "Gérer les notes",
+        "propertyType": "Type de droits",
+        "caseCategory": "Catégorie de dossier",
+        "title": "Dénomination",
+        "classes": "Classes",
+        "language": "Langue"
+      },
+      "priorityDate": "Date de désignation",
+      "isExtensionState": "État d'extension",
+      "instructorReference": "Référence du donneur d'ordre",
+      "agentReference": "Référence agent"
+    },
+    "contextNavigationTooltip": {
+      "email": "Email",
+      "caseDetails": "Informations internes sur le dossier ",
+      "attachments": "Pièces jointes"
+    },
+    "eFiling": {
+      "nextEventDue": "Prochaine échéance d'un évènement",
+      "date": "Date",
+      "user": "Utilisateur",
+      "header": "Dépôt en ligne"
+    },
+    "eFilingPackageFiles": {
+      "description": "Description",
+      "name": "Tiers",
+      "size": "Taille",
+      "type": "Type"
+    },
+    "eFilingHistory": {
+      "header": "Historique du statut",
+      "date": "Date",
+      "status": "Statut",
+      "description": "Description"
+    },
+    "classes": {
+      "header": "Classes",
+      "localClasses": "Classes locales",
+      "classes": "Classes",
+      "totalLocal": "Total local",
+      "totalInternational": "Total International",
+      "class": "Classe",
+      "firstUse": "Première utilisation",
+      "firstUseInCommerce": "Première utilisation dans le commerce",
+      "language": "Langue",
+      "totalItems": "Nombre total d'éléments",
+      "subClass": "Sous-classe"
+    },
+    "renewals": {
+      "header": "Renouvellements",
+      "caseStatus": "Statut du dossier",
+      "renewalStatus": "Statut de renouvellement",
+      "nextRenewalDate": "Date du prochain renouvellement",
+      "cpaRenewalDate": "Date de renouvellement CPA",
+      "renewalType": "Type de renouvellement",
+      "renewalYear": "Renewal Year",
+      "extendedRenewalYears": "Années de prolongation du renouvellement",
+      "startPaying": "Commencer à payer",
+      "stopPaying": "Arrêter de payer",
+      "reasonToStopPay": "Motif d'arrêt du paiement",
+      "lastExtracted": "Dernière extraction",
+      "portfolioDate": "Date du portefeuille",
+      "reportToCPA": "Informer CPA",
+      "notes": "Gérer les notes",
+      "releventDates": "Relevant Dates",
+      "standingInstruction": "Instructions permanentes",
+      "names": {
+        "header": "Tiers",
+        "type": "Type",
+        "name": "Tiers",
+        "nameVariant": "Variante du Tiers",
+        "attention": "Destinataire",
+        "reference": "Référence",
+        "details": {
+          "address": "Adresse",
+          "inherited": "Hérité",
+          "expiryDate": "Date de fin",
+          "commenceDate": "Date de début",
+          "billPercent": "Pourcentage de la facture",
+          "remarks": "Observations",
+          "nationality": "Nationalité",
+          "email": "Email",
+          "phone": "Téléphone",
+          "website": "Site web"
+        }
+      },
+      "openInRenew": "Ouvrir dans RENEW"
+    },
+    "standingInstructions": {
+      "header": "Instructions permanentes",
+      "instructionType": "Type d'instruction",
+      "instruction": "Instruction",
+      "defaultedFrom": "Source par défaut",
+      "adjustmentText": "Gérer les notes",
+      "adjustmentType": "Type d'ajustement",
+      "adjustmentDay": "Jour",
+      "startMonth": "Mois de début",
+      "dayOfWeek": "Jour de la semaine",
+      "startOn": "Date de début",
+      "period1": "Période 1",
+      "period2": "Période 2",
+      "period3": "Période 3"
+    },
+    "internalCaseDetails": {
+      "header": "Informations internes sur le dossier ",
+      "internalCaseId": "Code  interne du dossier",
+      "dateCreated": "Date de création",
+      "dateLastChanged": "Dernière modification le"
+    },
+    "wIP": {
+      "header": "WIP"
+    },
+    "billingInstructions": {
+      "header": "Instructions permanentes"
+    },
+    "caseBilling": {
+      "header": "Facturation"
+    },
+    "attributes": {
+      "header": "Attributs"
+    },
+    "checklist": {
+      "header": "Listes de contrôle"
+    },
+    "fileLocations": {
+      "header": "Emplacements de fichiers",
+      "title": "Emplacements de fichiers",
+      "fileLocation": "Emplacement du classeur",
+      "lastFileLocation": "Dernier emplacement",
+      "filePart": "Partie de fichier",
+      "issuedBy": "Etabli par",
+      "whenMoved": "Heure du déplacement",
+      "barCode": "Code à barres",
+      "caseReference": "Référence dossier",
+      "confirmFileLocation": "Confirm",
+      "description": "Description"
+    },
+    "priorArt": {
+      "header": "Antériorité"
+    },
+    "caseFirstUse": {
+      "header": "Première utilisation"
+    },
+    "pTA": {
+      "header": "Ajustements de la durée des  brevets"
+    },
+    "caseOtherDetails": {
+      "header": "Autres informations"
+    },
+    "caseNameText": {
+      "header": "Name Text"
+    },
+    "keywords": {
+      "header": "Mots clés"
+    },
+    "caseJournal": {
+      "header": "Journal"
+    },
+    "caseDocumentManagementSystem": {
+      "header": "Gestion des documents",
+      "documentColumns": {
+        "description": "Description",
+        "version": "Version",
+        "staffMember": "Consultant",
+        "docType": "Type du document",
+        "dateCreated": "Date de création",
+        "emailDateReceived": "Reçu",
+        "size": "Taille",
+        "from": "De",
+        "to": "A"
+      },
+      "documentProfile": {
+        "comment": "Commentaire"
+      },
+      "relatedDocumentsTab": {
+        "title": "Documents liés"
+      }
+    },
+    "designElement": {
+      "header": "Elément de dessin"
+    },
+    "contactActivitySummary": {
+      "header": "Résumé des activités de contact"
+    },
+    "assignedCases": {
+      "header": "Dossiers attribués"
+    },
+    "changeOfOwner": {
+      "header": "Changement du titulaire"
+    },
+    "caseList": {
+      "header": "Listes de dossiers"
+    },
+    "recentContacts": {
+      "header": "Contacts récents"
+    },
+    "cRMCaseStatusHistory": {
+      "header": "Historique du statut"
+    },
+    "checklists": {
+      "header": "Listes de contrôle",
+      "type": "Type de liste de contrôle",
+      "yes": "Oui",
+      "no": "Non",
+      "count": "Compte",
+      "amount": "Montant",
+      "date": "Date",
+      "period": "Période",
+      "staff": "Consultant",
+      "text": "Texte",
+      "selection": "Sélection",
+      "processed": "Traité",
+      "changed": "Modifié"
+    },
+    "eventRules": {
+      "event": "Evènement",
+      "action": "Action",
+      "importanceLevel": "Niveau d'importance",
+      "eventDate": "Date de l'évènement",
+      "cycle": "Cycle",
+      "lastModified": "Date de la dernière modification",
+      "byLogin": "Par code d'accès",
+      "from": "De",
+      "dueDateCalculations": {
+        "header": "Calcul de la date d'échéance",
+        "dueDateSatisfied_Literal": "L'échéance sera retirée suite à l'accomplissement de l'un des évènements suivants:",
+        "heading_Earliest": "La date d'échéance de l'évènement est calculée en tant que premier des calculs suivants:",
+        "heading_Latest": "La date d'échéance  de l'évènement est calculée  en tant que dernier des calculs suivants:",
+        "moveToNextWorkDay": "avancé au prochain jour ouvrable",
+        "moveToPreviousWorkDay": "ramené au jour ouvrable précédent",
+        "or": "Ou",
+        "systemDate": "Date du système",
+        "mustExistCalculation": "Ce calcul est indispensable pour pourvoir calculer la date d'échéance.",
+        "calculatedFromDate": "Calculé à partir de la date",
+        "calculatedFromEvent": "Calculé à partir de l'évènement",
+        "calculateOnlyFor": "La date d'échéance ne pourra se calculer que si l'instruction permanente {0}  affiche l'indicateur {1}",
+        "calculateOnlyIf": "L'échéance ne pourra se calculer que si {0} des comparaisons de dates suivantes sont justes:",
+        "calculateOnlyIf_All": "Toutes",
+        "calculateOnlyIf_Any": "au moins une",
+        "periodConcatenation_UserEntered": "(utilisateur a entré)",
+        "StandingInstruction_Period1": "Période 1",
+        "StandingInstruction_Period2": "Période 2",
+        "StandingInstruction_Period3": "Période 3",
+        "dateType_DueDate": "Date d'échéance",
+        "dateType_EventDate": "Date de l'évènement",
+        "dateType_EventOrDueDate": "Evènement ou date d'échéance",
+        "relativeCycle_CurrentCycle": "Cycle en cours",
+        "relativeCycle_Entered": "Cycle",
+        "relativeCycle_FirstCycle": "premier sycle",
+        "relativeCycle_LastCycle": "Dernier cycle",
+        "relativeCycle_LatestCycle": "Cycle le plus récent",
+        "relativeCycle_NextCycle": "Prochain cycle",
+        "relativeCycle_PreviousCycle": "Cycle précédent",
+        "operator_Exists": "Existe",
+        "operator_DoesNotExist": "N'existe pas",
+        "eventNo": "N° de l'évènement",
+        "event": "Evènement"
+      },
+      "reminders": {
+        "header": "Rappels",
+        "sendBeforeDueDate": "Commençant {0} avant la date d'échéance {1} {2}",
+        "sendOnDueDate": "Commençant {0} à la date d'échéance {1} {2}. ",
+        "stopLiteral": "jusqu'à {0} après la date d'échéance.",
+        "criticalList": "Liste critique"
+      },
+      "documents": {
+        "header": "Documents",
+        "sendBeforeDueDate": "Commençant {0} avant la date d'échéance {1} {2} créer document {3}",
+        "sendOnDueDate": "Commençant {0} à l'échéance {1} {2} créer document {3}",
+        "stopLiteral": "jusqu'à {0} après la date d'échéance.",
+        "updateEvent1Literal": "L'évènement sera mis à jour à la date d'aujourd'hui quand le document sera requis.",
+        "updateEvent2Literal": "Demander le document quand l'évènement sera mis à jour.",
+        "raiseChargeLiteral": "{0} en utilisant l'estimation enregistrée",
+        "payFeeCode": {
+          "RaiseCharge": "Facturer",
+          "PayFee": "Payer les frais",
+          "PayFeeAndRaiseCharge": "Saisir des frais et payer les taxes"
+        }
+      },
+      "dateslogic": {
+        "header": "Validation des dates en cas de saisie manuelle des dates",
+        "mustExist": "qui doit exister",
+        "fromRelationship": "de la relation du dossier lié {0} {1}",
+        "dateValidation": "{0}  saisi  devrait être {1} {2} {3}"
+      },
+      "eventUpdate": {
+        "header": "La suite après la mise à jour de l'évènement",
+        "updateWhenDue": "Evènement de mise à jour quand la date d'échéance est égale ou postérieure à la date actuelle.",
+        "RaiseChargeLiteral": "Pour",
+        "BooleanLiteral_True": "Le",
+        "BooleanLiteral_False": "inactif",
+        "statusSetTo": "Statut défini comme",
+        "createAction": "Créer une action",
+        "closeAction": "Clôturer l'action",
+        "adjustedTo": "Ajusté à",
+        "pushEventHeader": "Envoyer cet évènement mis à jour aux éléments suivents:",
+        "reportToCpaHeader": "Informer CPA"
+      }
+    },
+    "affectedCases": {
+      "caseStatus": {
+        "pending": "En attente",
+        "registered": "Enregistré",
+        "dead": "Désactivé"
+      },
+      "columns": {
+        "caseRef": "Référence dossier",
+        "officialNo": "N° officiel",
+        "propertyType": "Type de droits",
+        "caseStatus": "Statut du dossier",
+        "status": "Statut"
+      },
+      "setAgent": {
+        "caseRef": "Référence dossier"
+      },
+      "requestRecordal": {
+        "caseRef": "Référence dossier"
+      },
+      "cancel": "Annuler",
+      "confirmAddAffectedCaseTitle": "Confirm"
+    },
+    "recordal": {
+      "steps": "Etapes",
+      "label": "Libellé",
+      "value": "Valeur",
+      "stepLabel": "Etape",
+      "name": "Tiers",
+      "currentAddress": "Adresse actuelle"
+    },
+    "designElements": {
+      "renew": "Renouveler",
+      "elementDescription": "Description de l'élément"
+    },
+    "caseFirstToFile": {
+      "header": "First To File"
+    },
+    "caseCustomContent": {
+      "header": "Contenu personnalisé"
+    },
+    "attachments": {
+      "activityCategory": "Catégorie de la pièce jointe",
+      "activityDate": "Date",
+      "activityType": "Type de l'activité",
+      "attachmentName": "Nom de la pièce jointe",
+      "attachmentType": "Type de la pièce jointe",
+      "eventCycle": "Cycle",
+      "eventDescription": "Evènement",
+      "isPublic": "Publique",
+      "language": "Langue",
+      "pageCount": "Nombre de pages",
+      "action": "Action",
+      "maintenance": {
+        "title": "Gérer les pièces jointes",
+        "description": "Description de la pièce jointe",
+        "browse": "Parcourir",
+        "attachmentName": "Nom de la pièce jointe",
+        "event": "Evènement",
+        "cycle": "Cycle",
+        "activityType": "Type de l'activité",
+        "activityCategory": "Catégorie de la pièce jointe",
+        "activityDate": "Date de l'activité",
+        "attachmentType": "Type de la pièce jointe",
+        "language": "Langue",
+        "pageCount": "Nombre de pages",
+        "fileBrowser": {
+          "title": "Navigateur de fichier",
+          "path": "Chemin",
+          "fileName": "Nom du fichier",
+          "name": "Tiers",
+          "dateModified": "Date de modification",
+          "type": "Type",
+          "size": "Taille",
+          "uploadFiles": "Télécharger les fichiers",
+          "clearAll": "Effacer tout",
+          "upload": "Télécharger"
+        },
+        "fileUploader": {
+          "title": "Télécharger les fichiers",
+          "return": "Retourner à l'explorateur de fichier"
+        }
+      },
+      "modal": {
+        "title": "Pièces jointes"
+      }
+    }
+  },
+  "caseSearch": {
+    "topics": {
+      "references": {
+        "title": "Références",
+        "yourReference": "Votre référence",
+        "caseReference": "Case Reference(s)",
+        "caseNameReferenceDefault": "Tiers",
+        "officialNumber": "Numéro officiel",
+        "anyNumberType": "Tout type de numéro",
+        "searchNumbersOnly": "Rechercher seulement dans les numéros",
+        "primeOnly": "Dossiers principaux seulement",
+        "family": "Famille",
+        "caseList": "Liste de dossiers"
+      },
+      "details": {
+        "title": "Informations",
+        "caseOffice": "Pays gestionnaire",
+        "caseType": "Type de dossier",
+        "propertyType": "Type de droits",
+        "caseCategory": "Catégorie de dossier",
+        "subType": "Sous-type",
+        "basis": "Base",
+        "class": "Classe",
+        "includeDraftCases": "Inclure les dossiers préparatoires",
+        "caseList": "Liste de dossiers",
+        "local": "Local",
+        "international": "International"
+      },
+      "text": {
+        "title": "Texte",
+        "typeOfMark": "Type de marque",
+        "titleMark": "Dénomination/Marque",
+        "textType": "Type de texte",
+        "keyword": "Mot clé",
+        "any": "Tout"
+      },
+      "names": {
+        "title": "Tiers",
+        "instructor": "Donneur d'ordre",
+        "owner": "Titulaire",
+        "agent": "Agent",
+        "staff": "Consultant",
+        "signatory": "Signataire",
+        "useNameVariant": "Utiliser cette variante du Tiers",
+        "includeThisCase": "Inclure ce dossier",
+        "isOtherCases": "et tous les autres dossiers  qui partagent le même",
+        "relationship": "Lien",
+        "isRelatedToMyselfAs": "me concerne",
+        "inheritedNames": "Tiers hérités",
+        "parentName": "Tiers parent",
+        "isMyself": "C'est moi-même",
+        "anyNameType": "Tout type de Tiers",
+        "organisation": "Société",
+        "postalAddress": "Adresse postale",
+        "streetAddress": "Adresse géographique",
+        "phone": "Téléphone",
+        "email": "Email",
+        "startDate": "Date de début",
+        "staffClassification": "Catégorie de consultant(s)",
+        "group": "Groupe",
+        "mainContact": "Contact principal",
+        "profitCenter": "Centre de profit",
+        "ceasedDate": "Date de fin de validité",
+        "searchKey1": "Clé de recherche 1",
+        "searchKey2": "Clé de recherche 2",
+        "nationality": "Nationalité",
+        "category": "Catégorie",
+        "remarks": "Remarques",
+        "companyNumber": "N° d'immatriculation (Siren/Siret..)",
+        "incorporated": "Statut juridique",
+        "parentEntity": "Entité parent",
+        "signOffName": "Nom du signataire",
+        "abbreviatedName": "Nom abrégé",
+        "telephone": "Téléphone",
+        "fax": "Fax",
+        "taxNo": "TVA intracommunautaire",
+        "supplierType": "Type de fournisseur",
+        "capacityToSign": "Pouvoir de signature",
+        "informalSalutation": "Formule d'appel informelle",
+        "position": "Poste",
+        "comments": "Observations",
+        "estRevenue": "Chiffre d'affaires estimé",
+        "formalSalutation": "Formule d'appel formelle",
+        "filesIn": "Peut déposer dans les pays"
+      },
+      "status": {
+        "title": "Statut"
+      },
+      "dates": {
+        "event": "Evènement",
+        "searchFor": "Recherche de",
+        "occurredEvent": "Evènement terminé",
+        "includeClosedActions": "Inclure les actions clôturées",
+        "dueEvent": "Evènement arrivé à échéance",
+        "importanceLevel": "Niveau d'importance",
+        "and": "ET",
+        "actions": "Actions",
+        "action": "Action",
+        "renewals": "Renouvellements",
+        "nonRenewals": "Afficher les dates hors renouvellement",
+        "open": "Ouvrir actions seulement",
+        "eventNotes": "Texte de l'évènement",
+        "range": "Plage",
+        "date": "Date",
+        "anyName": "Tout Tiers (sauf responsabilités par défaut)",
+        "staff": "Consultant (y compris les responsabilités par défaut)",
+        "signatory": "Signataires (y compris les responsabilités par défaut)",
+        "nameType": "Type de Tiers",
+        "name": "Tiers",
+        "nameGroup": "Groupe de Tiers",
+        "staffClassification": "Catégorie de consultant(s)",
+        "eventNoteType": "Type de note relative à l'événement"
+      },
+      "otherDetails": {
+        "title": "Autres informations",
+        "fileLocation": "Emplacement du classeur",
+        "standingInstruction": "Instruction permanente",
+        "caseSpecific": "Spécifique au dossier seulement",
+        "instruction": "Instruction",
+        "characteristic": "Caractéristique",
+        "queues": "Files d'attente",
+        "letters": "Lettres",
+        "charges": "Frais",
+        "policingIncomplete": "Recalcul du workflow incomplet",
+        "nameChangeIncomplete": "Changement en lot de Tiers incomplet",
+        "entitySize": "Taille de l'entité"
+      },
+      "attributes": {
+        "attributeValue": "Valeur d'attribut",
+        "boolean": "Booléen",
+        "and": "ET",
+        "or": "Ou"
+      },
+      "dataManagement": {
+        "title": "Gestion des données"
+      },
+      "designElement": {
+        "firmElementId": "Code élément du cabinet",
+        "officialElementId": "Code élément officiel",
+        "registrationNo": "N° d'enregistrement",
+        "typeface": "Nombre de vues",
+        "renew": "Renouveler",
+        "description": "Description",
+        "eldescription": "Description de l'élément"
+      },
+      "patentTermAdjustments": {
+        "title": "Ajustements de la durée des  brevets",
+        "ipOfficeSuppliedPta": "PTA fourni par l'OPI",
+        "to": "A",
+        "days": "Jours",
+        "ptaDeterminedByUs": "PTA déterminé en interne",
+        "ipOfficeDelay": "Délai de l'OPI",
+        "applicantDelay": "Délai du déposant",
+        "ptaDiscrepancies": "Dossiers  avec divergences PTA"
+      }
+    },
+    "header": "Résumé du dossier",
+    "caseType": "Type de dossier",
+    "category": "Catégorie de dossier",
+    "propertyType": "Type de droits",
+    "title": "Dénomination",
+    "subType": "Sous-type",
+    "basis": "Base",
+    "statusSummary": "Statut",
+    "caseStatus": "Statut du dossier",
+    "renewalStatus": "Statut de renouvellement",
+    "officialNumber": "Numéro officiel",
+    "office": "Pays gestionnaire",
+    "fileLocation": "Emplacement du classeur",
+    "profitCentre": "Centre de profit",
+    "localClientFlag": "Client local",
+    "entitySize": "Taille de l'entité",
+    "typeOfMark": "Type de marque",
+    "workingAttorney": "Consultant",
+    "firstApplicant": "Déposant",
+    "clientName": "Instructeur",
+    "classes": "Classes",
+    "dataSource": "Source de données",
+    "batchIdentifier": "Identifiant de lot",
+    "operatorSession": "Session opérateur",
+    "pageTitle": "Recherche de dossiers",
+    "presentation": "Présentation",
+    "presentationColumns": {
+      "useDefault": "Utiliser la présentation par défaut",
+      "selectedColumns": {
+        "hidden": "Masquer"
+      },
+      "hideTitle": "Masquer",
+      "searchDescription": "Description de la recherche",
+      "savedSearchDelete": "Etes-vous sûr de vouloir supprimer définitivement cette recherche ?",
+      "copyPresentationFrom": "Copier la présentation à partir de",
+      "maintainColumns": "Gérer les colonnes",
+      "refresh": "Actualiser",
+      "mandatory": "Obligatoire"
+    },
+    "savedSearch": {
+      "searchName": "Nom de la recherche",
+      "description": "Description",
+      "public": "Publique",
+      "includeInSearchMenu": "Inclure dans le menu de recherche"
+    },
+    "tasks": "Tâches",
+    "applicationFilingDate": "Date de dépôt de la demande",
+    "SaveAs": "Enregistrer sous"
+  },
+  "locality": {
+    "code": "Code",
+    "name": "Tiers",
+    "city": "Ville",
+    "state": "Etat",
+    "country": "Pays"
+  },
+  "namerelation": {
+    "reverserelationship": "Lien inversé",
+    "employee": "Employee",
+    "individual": "Personne physique",
+    "organisation": "Société"
+  },
+  "schemaMapping": {
+    "usError": "Erreur",
+    "usBtnEdit": "Modifier",
+    "usBtnDelete": "Supprimer",
+    "usLblFileName": "Nom du fichier",
+    "usLblLastModified": "Date de la dernière modification",
+    "usLblName": "Tiers",
+    "usLblEdit": "Modifier",
+    "usBtnCancel": "Annuler",
+    "usBtnCreate": "Créer",
+    "usLblMappingName": "Tiers",
+    "usLblFile": "Fichier",
+    "spBtnDone": "Terminé",
+    "spLblStatus": "Statut",
+    "spLblFileName": "Nom du fichier",
+    "mpLblNodeShowDetails": "Afficher les informations",
+    "mpLblNodeHideDetails": "Cacher les informations",
+    "mpLblNodeMandatory": "Obligatoire",
+    "mpLblNodeError": "Erreur",
+    "mpLblDocItemSelect": "Sélectionner",
+    "mpLblDocItemClear": "Effacer",
+    "mpLblDocItemDescription": "Description",
+    "mpBtnSave": "Sauvegarder",
+    "mpBtnGenerate": "Générer",
+    "dipLblSearch": "Rechercher",
+    "dipLblName": "Tiers",
+    "dipLblDescription": "Description",
+    "dipLblSelect": "Sélectionner",
+    "dipLblCancel": "Annuler",
+    "xmlLblEntryPoint": "Point d'accès",
+    "xmlBtnGenerate": "Générer",
+    "maptovalue": "Valeur",
+    "usLblOr": "Ou"
+  },
+  "financialReports": {
+    "frFinancialReportsTitle": "Financial Reports",
+    "pageTitle": "Financial Reports"
+  },
+  "priorArt": {
+    "pacLblTitle": "Dénomination",
+    "pacLblAbstract": "Abstract",
+    "pacLblCitation": "Citation",
+    "pacLblOfficialNo": "Numéro officiel",
+    "pacLblCountry": "Pays",
+    "pasBtnSearch": "Rechercher",
+    "pasBtnEdit": "Modifier",
+    "pasLblCases": "Dossiers",
+    "pasThReference": "Référence",
+    "paeLblFrom": "De",
+    "paeLblName": "Tiers",
+    "paeLblPublished": "Publié",
+    "paeLblPriority": "Date de priorité",
+    "paeLblGranted": "Date de délivrance",
+    "paeLblPTOCited": "PTO cité",
+    "paeLblAppFiled": "Dépôt effectué",
+    "paeBtnSave": "Sauvegarder",
+    "paeBtnCancel": "Annuler",
+    "publication": "Publication"
+  },
+  "externalApplication": {
+    "iealblActive": "Actif",
+    "iealblYes": "Oui",
+    "iealblNo": "Non",
+    "ieabtnEdit": "Modifier",
+    "iealblName": "Tiers"
+  },
+  "dmsIntegration": {
+    "dmslblSubTitle": "Configuration",
+    "dmslblLocation": "Chemin",
+    "iManage": {
+      "status": "Statut",
+      "generate": "Générer",
+      "confirmSave": {
+        "confirmText": "Oui",
+        "cancelText": "Non"
+      },
+      "credentials": {
+        "password": "Mot de passe"
+      },
+      "workspaces": {
+        "cases": "Dossiers",
+        "nameTypes": "Types deTiers",
+        "nameType": "Type de Tiers"
+      },
+      "testWorkspace": {
+        "caseIrn": "Référence dossier",
+        "name": "Tiers",
+        "password": "Mot de passe"
+      }
+    }
+  },
+  "caseComparison": {
+    "gBtnYes": "Oui",
+    "gBtnNo": "Non",
+    "gBtnClose": "Fermer",
+    "gLblDSFile": "Fichier",
+    "idBtnCancel": "Annuler",
+    "idLblEvent": "Evènement",
+    "idLblCycle": "Cycle",
+    "idLblAttachmentName": "Tiers",
+    "idLblActivityType": "Type de l'activité",
+    "idLblActivityCategory": "Catégorie de la pièce jointe",
+    "idLblAttachmentType": "Type de la pièce jointe",
+    "idLblActivityDate": "Date",
+    "idLblAttachmentIsPublic": "Publique",
+    "ccHeadingGeneral": "Général",
+    "ccHeadingAttention": "Destinataire",
+    "ccHeadingError": "Erreur",
+    "ccHeadingNames": "Tiers",
+    "ccHeadingEvents": "Evènements",
+    "ccLblCaseReference": "Référence dossier",
+    "ccLblTitle": "Dénomination",
+    "ccLblCaseStatus": "Statut du dossier",
+    "ccLblStatusDate": "Date du Statut",
+    "ccLblLocalClasses": "Classes locales",
+    "ccLblIntClasses": "Classes internationales",
+    "ccLblCountry": "Pays",
+    "ccLblPropertyType": "Type de droits",
+    "ccLblCycle": "Cycle",
+    "ccLblClass": "Classe",
+    "ccLblFirstUsedDate": "Première utilisation",
+    "ccLblFirstUsedInCommerceDate": "Première utilisation dans le commerce",
+    "ccLblText": "Texte",
+    "ccLblRelationship": "Lien",
+    "ccLblCountryCode": "Pays",
+    "ccLblOfficialNumber": "Numéro officiel",
+    "ccLblRelatedCaseReference": "Référence dossier",
+    "ccLblPriorityDate": "Date",
+    "ccLblParentStatus": "Statut parent",
+    "ccLblDocumentCode": "Code du document",
+    "ccLblDocumentDescription": "Description",
+    "ccLblDocumentCategory": "Catégorie",
+    "ccLblUsptoTsdrDocumentCode": "Code du document",
+    "ccLblEpoDocumentDate": "Date",
+    "ccLblEpoDocumentType": "Type du document",
+    "ccLblPageCount": "Nombre de pages",
+    "ccDocDownloadFailed": "Erreur",
+    "ccEventUpdatedCycle": "Cycle",
+    "ccAddress": "Adresse",
+    "ccReference": "Référence",
+    "ipInclude": "Inclure",
+    "errLblMessage": "Message",
+    "errLblDetails": "Informations",
+    "errLblDateOccurred": "Date",
+    "errBtnMoreDetails": "Informations",
+    "errTitleErrorDetails": "Détails de l'erreur",
+    "gLblProductName": "Inprotech"
+  },
+  "bulkCaseImport": {
+    "gBtnClose": "Fermer",
+    "bciError": "Erreur",
+    "isLblStatus": "Statut",
+    "isLblSource": "Source",
+    "isLblNewCases": "Nouveaux dossiers",
+    "isLblUnresolved": "Incomplet",
+    "isLblBatchIdentifier": "Identifiant de lot",
+    "isLblCompleted": "Terminé",
+    "Error": "Erreur",
+    "Processed": "Traité",
+    "niNameType": "Type de Tiers",
+    "niNameCode": "Code Tiers",
+    "niName": "Tiers",
+    "niAddress": "Adresse",
+    "niPhone": "Téléphone",
+    "niFax": "Fax",
+    "niEmail": "Email",
+    "niContact": "Contact",
+    "niLoadingPotentialMatches": "Chargement...",
+    "niSearchKey1": "Clé de recherche 1",
+    "niRemarks": "Remarques",
+    "niFirstName": "Prénom",
+    "miErrorDetailsTitle": "Détails de l'erreur",
+    "isErrorDetailsTitle": "Erreur",
+    "bsLblTransStatus": "Statut",
+    "bsLblPropertyType": "Type de droits",
+    "bsLblCountry": "Pays",
+    "bsLblOfficialNumber": "Numéro officiel",
+    "bsLblCaseTitle": "Dénomination",
+    "bciLblOr": "Ou"
+  },
+  "batchEventUpdate": {
+    "title": "Batch Event Update",
+    "btnSave": "Sauvegarder",
+    "columnHeadingCaseRef": "Référence dossier",
+    "columnHeadingOfficialNo": "N° officiel",
+    "columnHeadingFileLocation": "Emplacement du classeur",
+    "columnHeadingCycle": "Cycle",
+    "columnHeadingEventDate": "Date de l'évènement",
+    "columnHeadingDueDate": "Date d'échéance",
+    "columnHeadingCaseStatus": "Statut du dossier",
+    "columnHeadingTitle": "Dénomination",
+    "columnHeadingReason": "Motif",
+    "headingWarnings": "Avertissements",
+    "headingStatusChangeVerification": "Vérification du changement de statut",
+    "confirmYes": "Oui",
+    "confirmNo": "Non",
+    "csCurrentCycle": "Cycle en cours",
+    "csNextCycle": "Prochain cycle",
+    "ucAdditionalInformation": "Informations supplémentaires",
+    "btnOk": "OK",
+    "btnCancel": "Annuler",
+    "confirmTitle": "Confirm",
+    "errorHeading": "Erreur",
+    "entryAtleastOneDateRequired": "Une date au moins doit être saisie."
+  },
+  "Loading": "Chargement...",
+  "savedSearch": {
+    "caseSearchBuilder": "Recherche avancée de dossiers",
+    "savedSearches": "Recherches sauvegardées",
+    "caseSearch": "Recherche de dossiers"
+  },
+  "namesConsolidation": {
+    "runTooltip": "Exécuter",
+    "columns": {
+      "name": "Tiers",
+      "nameCode": "Code Tiers",
+      "remarks": "Remarques",
+      "dateCeased": "Date de fin"
+    },
+    "validationErrors": {
+      "confirmationTitle": "Avertissement"
+    }
+  },
+  "help": {
+    "credits": "Credits"
+  },
+  "accounting": {
+    "vat": {
+      "entity": "Entité",
+      "period": "Période",
+      "fromDate": "De",
+      "toDate": "A",
+      "status": "Statut",
+      "open": "Ouverte"
+    },
+    "vatObligations": {
+      "status": "Statut",
+      "start": "Début",
+      "dueDate": "Date d'échéance",
+      "submit": "Soumettre"
+    },
+    "vatSubmitter": {
+      "vatToPeriod": "A",
+      "export": "Exporter au format PDF"
+    },
+    "vatHmrcSettings": {
+      "addAccount": "Informations"
+    },
+    "vatFulfilled": {
+      "vatToPeriod": "A",
+      "export": "Exporter au format PDF"
+    },
+    "vatLog": {
+      "vatToPeriod": "A",
+      "date": "Date",
+      "message": "Message"
+    },
+    "time": {
+        "fields": {
+            "time": "Temps",
+            "start": "Début",
+            "finish": "Terminer",
+            "name": "Tiers",
+            "case": "Référence dossier",
+            "activity": "Activité",
+            "localValue": "Valeur en devise locale",
+            "foreignValue": "Valeur en devise étrangère",
+            "narrative": "Explication",
+            "notes": "Gérer les notes",
+            "localDiscount": "Remise en devise locale",
+            "foreignDiscount": "Remise en devise étrangère",
+            "units": "Unités",
+            "caseReference": "Référence dossier",
+            "accumulatedTime": "Temps cumulé",
+            "chargeOutRate": "Tarif",
+            "currency": "Devise",
+            "amount": "Montant",
+            "foreignAmount": "Montant en devise étrangère",
+            "margin": "Marge",
+            "foreignMargin": "Marge en devises étrangères",
+            "date": "Date",
+            "entryDate": "Date de saisie"
+        },
+      "recording": {
+        "chargeableHours": "Heures facturables",
+        "totalHours": "Heures travaillées",
+        "totalValue": "Valeur du temps",
+        "summary": {
+          "caseReference": "Référence dossier",
+          "title": "Dénomination",
+          "caseStatus": "Statut du dossier",
+          "officialNumber": "Numéro officiel",
+          "instructor": "Donneur d'ordre",
+          "owner": "Titulaire",
+          "staffMember": "Consultant",
+          "signatory": "Signataire",
+          "renewalStatus": "Statut de renouvellement",
+          "wip": "WIP",
+          "receivableBalance": "Solde à recevoir",
+          "budget": "Budget",
+          "instructorReference": "Référence du donneur d'ordre",
+          "unpostedTime": "Temps non-comptabilisé",
+          "lastInvoice": "Date de la  dernière facturation",
+          "caseNarrative": "Dénomination "
+        },
+        "showSummary": "Résumé du dossier",
+        "timeEntry": "Saisie des temps",
+        "validationMsgs": {
+          "differentYearWarning": "L'année ne correspond pas à l'année en cours."
+        },
+        "doNotDisplayChkBoxLabel": "Ne pas réafficher ce message ",
+        "changeEntryDate": "Change Entry Date",
+        "originalDate": "Original Date",
+        "timeContinuationSummary": "Récapitulatif des heures",
+        "delete": "Supprimer"
+      },
+      "postTime": {
+        "title": "L'envoi en facturation en cours",
+        "toEntity": "Envoyer un ordre de facturation de saisies de temps  à l'entité",
+        "button": "Constatation",
+        "date": "Date",
+        "hours": "Heures",
+        "chargeableHours": "Heures facturables"
+      },
+      "duplicateEntry": {
+        "start": "Début"
+      },
+      "caseNarrative": {
+        "textType": "Type de texte",
+        "notes": "Gérer les notes",
+        "language": "Langue",
+        "clear": "Retirer",
+        "caseRef": "Référence dossier"
+      },
+      "gaps": {
+        "fromTime": "De",
+        "toTime": "A",
+        "duration": "Durée",
+        "total": "Total"
+      },
+      "query": {
+        "staff": "Consultant",
+        "fromDate": "De",
+        "toDate": "A",
+        "totalTime": "Temps total"
+      },
+      "widget": {
+        "duration": "Durée"
+      }
+    },
+    "agedBalance": {
+      "entity": "Entité",
+      "current": "En cours",
+      "bracket1": "1 période",
+      "total": "Total"
+    },
+    "wip": {
+      "additionalInfo": {
+        "title": "Informations supplémentaires"
+      },
+      "warningMsgs": {
+        "creditLimit": "Limite de crédit",
+        "restrictions": "Restrictions",
+        "budget": "Budget",
+        "budgetUsed": "Budget utilisé",
+        "billed": "Facturé",
+        "unbilled": "Non facturé",
+        "prepayments": {
+          "title": "Paiements anticipés",
+          "forCase": "Pour ce dossier",
+          "forCaseDebtor": "Pour ce(s) client(s) facturé(s)",
+          "total": "Total des paiements anticipés"
+        },
+        "billingCap": {
+          "title": "Limite de facturation",
+          "value": "Limite de facturation",
+          "totalBilled": "Montant facturé",
+          "startDate": "Date de début",
+          "period": "Période",
+          "recurring": "Récurrent"
+        }
+      },
+      "labels": {
+        "receivableBalance": "Solde à recevoir",
+        "creditLimit": "Limite de crédit"
+      },
+      "caseStatusRestrictedFor": "Le Cas sélectionné ne peut pas être utilisé car le statut du cas restreint les transactions WIP."
+    },
+    "errors": {
+      "AC14": "L'entité est obligatoire mais n'a pas été fournie.",
+      "AC208": "La date de l'élément ne peut pas être dans le futur. Elle doit être comprise dans la période de comptabilisation en cours ou atteindre la date actuelle et inclure cette dernière."
+    }
+  },
+  "searchResults": {
+    "title": {
+      "CaseSearchExternal": "Liste de dossiers",
+      "CaseSearch": "Liste de dossiers",
+      "NameSearchExternal": "Liste de Tiers",
+      "NameSearch": "Liste de Tiers",
+      "WipOverviewSearch": "Récapitulatif WIP",
+      "OpportunitySearch": "Liste d'opportunités",
+      "CampaignSearch": "Liste de campagnes",
+      "MarketingEventSearch": "Liste d'évènements marketing",
+      "LeadSearch": "Prospects"
+    },
+    "warning": {
+      "truncatedRows": "Le volume des résultats de recherche est volumineux.  Seules les {0} premières  lignes seront exportées."
+    },
+    "dms": {
+      "title": "Gestion des documents",
+      "caseReference": "Référence dossier",
+      "name": {
+        "title": "Tiers",
+        "nameType": "Type de Tiers"
+      }
+    }
+  },
+  "Inheritance": {
+    "InheritedOrDerived": "Hérité"
+  },
+  "NoInformationAvailable": "Aucune information disponible.",
+  "copy": "Copier",
+  "continue": "Continuer",
+  "cancel": "Annuler",
+  "twoFactorPreference": {
+    "emailName": "Email",
+    "configureText": "Configurer"
+  },
+  "twoFactorConfiguration": {
+    "step4": {
+      "stepHeading": "Terminée"
+    }
+  },
+  "timepicker": {
+    "buttons": {
+      "cancel": "Annuler",
+      "now": "Maintenant"
+    }
+  },
+  "SearchByDate": "Rechercher par échéance",
+  "screenDesignerCases": {
+    "search": {
+      "criteria": "Critères",
+      "case": "Dossier",
+      "bestCriteriaOnly": "Meilleurs critères seulement",
+      "searchBy": "Rechercher par",
+      "subTitle": "Dossiers"
+    },
+    "pageTitle": "Concepteur d'écrans",
+    "criteriaMaintenance": {
+      "criteriaName": "Nom du critère",
+      "protectedCriteriaNo": "Non",
+      "protectedCriteriaYes": "Oui",
+      "inUseNo": "Non",
+      "inUseYes": "Oui"
+    },
+    "inheritance": {
+      "togglePreview": "Aperçu"
+    }
+  },
+  "changePassword": {
+    "title": "Modifier le mot de passe",
+    "labels": {
+      "password": "Mot de passe",
+      "change": "Modifier le mot de passe",
+      "current": "Ancien mot de passe",
+      "new": "Nouveau mot de passe",
+      "cancel": "Annuler",
+      "submit": "Soumettre"
+    },
+    "status": {
+      "newPasswordsDoNotMatch": "Les deux mots de passe ne correspondent pas."
+    }
+  },
+  "Inherited": "Hérité",
+  "bulkUpdate": {
+    "clear": "Effacer",
+    "fieldUpdate": {
+      "profitCentre": "Centre de profit",
+      "caseOffice": "Pays gestionnaire",
+      "caseFamily": "Famille du dossier",
+      "purchaseOrder": "Bon de commande",
+      "entitySize": "Taille de l'entité",
+      "typeOfMark": "Type de marque",
+      "titleMark": "Dénomination/Marque"
+    },
+    "reset": "Réinitialiser",
+    "remove": "Retirer",
+    "cancel": "Annuler",
+    "textType": "Type de texte",
+    "notes": "Gérer les notes",
+    "requestSubmitted": "Votre requête de mise à jour a été soumise. Vous serez averti dès que toutes les mises à jour seront terminées.",
+    "case": "Dossier",
+    "cases": "Dossiers",
+    "caseTextUpdate": {
+      "header": "Texte du dossier",
+      "caseText": "Texte du dossier",
+      "language": "Langue",
+      "textType": "Type de texte",
+      "class": "Classe",
+      "append": "Attacher",
+      "replace": "Remplacer"
+    },
+    "confirm": "Confirm",
+    "caseNameReferenceUpdate": {
+      "header": "Référence Tiers",
+      "nameType": "Type de Tiers",
+      "reference": "Référence"
+    },
+    "fileLocationUpdate": {
+      "header": "Emplacement du classeur",
+      "fileLocation": "Emplacement du classeur",
+      "whenMoved": "Heure du déplacement",
+      "movedBy": "Déplacé par"
+    },
+    "caseStatusUpdate": {
+      "header": "Statut",
+      "caseStatus": "Statut du dossier",
+      "renewalStatus": "Statut de renouvellement",
+      "pending": "En attente",
+      "registered": "Enregistré",
+      "dead": "Désactivé",
+      "password": "Mot de passe",
+      "confirmPasswordTitle": "Confirmer le mot de passe"
+    }
+  },
+  "backgroundNotifications": {
+    "processName": "Nom du processus",
+    "status": "Statut",
+    "statusDate": "Date du Statut",
+    "statusDetails": "Informations concernant le statut",
+    "processTypes": {
+      "globalcasechange": "Mise à jour en lot des champs",
+      "globalnamechange": "Changement en lot de Tiers ",
+      "cpaxmlexport": "Exportation CPA-XML",
+      "cpaxmlforimport": "CPA-XML pour importation",
+      "debtorstatementrequest": "Statut d'envoi des relevés des mouvements des éléments du client facturé",
+      "sanitycheck": "Validation des données",
+      "useradministration": "User Administration"
+    },
+    "tooltips": {
+      "globalcasechange": "Mise à jour en lot des champs",
+      "globalnamechange": "Changement en lot de Tiers "
+    },
+    "statusType": {
+      "started": "En cours ",
+      "completed": "Terminé",
+      "error": "Erreur",
+      "information": "Information",
+      "hidden": "Masqué"
+    },
+    "error": {
+      "globalcasechange": "Mise à jour en lot des champs",
+      "globalnamechange": "Changement en lot de Tiers ",
+      "cpaxmlexport": "Exportation CPA-XML",
+      "cpaxmlforimport": "CPA-XML pour importation",
+      "debtorstatementrequest": "Cliquez ici pour voir les motifs de l'échec du Relevé des mouvements des éléments du client facturé",
+      "sanitycheck": "Exécuter une Validation des données sur les dossiers sélectionnés"
+    }
+  },
+  "Yes": "Oui",
+  "No": "Non",
+  "Clear": "Effacer",
+  "Search": "Rechercher",
+  "Add": "Ajouter",
+  "of": "sur",
+  "Warning": "Avertissement",
+  "Discard": "Ignorer",
+  "Revert": "Réinitialiser",
+  "Cancel": "Annuler",
+  "Delete": "Supprimer",
+  "Restore": "Restaurer",
+  "confirmDeletion": "Confirmer la suppression",
+  "Previous": "Précédent",
+  "Next": "Suivant",
+  "Instruction": "Instruction",
+  "Tasks": "Tâches",
+  "Instructor": "Donneur d'ordre",
+  "Checklist": "Liste de contrôle",
+  "Document": "Document",
+  "Name": "Nom",
+  "Value": "Valeur",
+  "All": "Tous",
+  "Criteria": "Critères",
+  "Case": "Dossier ",
+  "Event": "Evènement",
+  "Include": "Inclure",
+  "Office": "Agence gestionnaire",
+  "propertyType": "Type de droits",
+  "Basis": "Base",
+  "Criteria Name": "Nom du critère",
+  "Importance": "Importance",
+  "Actions": "Actions",
+  "searchResult": "Résultats de la recherche",
+  "nameview": {
+    "supplierDetails": {
+      "header": "Informations relatives aux fournisseurs",
+      "deafultPurchaseInformation": "Informations sur les achats par défaut",
+      "paymentDetails": "Informations sur les paiements",
+      "supplierType": "Type de fournisseur",
+      "purchaseDescription": "Description de l'achat",
+      "purchaseCurrency": "Devise d'achat",
+      "exchangeRateSchedule": "Tableau du taux de change",
+      "tax": "Taxes",
+      "paymentTerm": "Conditions de paiement",
+      "profitCentre": "Centre de profit",
+      "ledgerAccount": "Compte du grand livre",
+      "wipDisbursement": "Débours WIP",
+      "sendTo": "Envoyer à",
+      "address": "Adresse",
+      "attentionOf": "A l'attention de",
+      "instructions": "Instructions",
+      "intoBankAccount": "Compte bancaire"
+    },
+    "internalNameDetails": {
+      "header": "Informations internes sur le Tiers",
+      "internalNameId": "Code  interne du Tiers",
+      "dateEntered": "Date saisie",
+      "dateLastChanged": "Dernière modification le",
+      "soundexCode": "Code Soundex"
+    },
+    "contextNavigationTooltip": {
+      "nameDetails": "Informations internes sur le Tiers"
+    },
+    "trustAccounting": {
+      "header": "Comptabilité de fiducie",
+      "totalLocalBalance": "Solde total en devise locale",
+      "entity": "Entité",
+      "bankAccount": "Compte bancaire",
+      "localBalance": "Solde en devise locale",
+      "foreignBalance": "Solde en devise étrangère",
+      "trustAccountingDetails": {
+        "trader": "Négociant",
+        "date": "Date",
+        "itemrefno": "Réf. de l'élément",
+        "referenceno": "N° de référence",
+        "localvalue": "Valeur en devise locale",
+        "localbalance": "Solde en devise locale",
+        "foreignvalue": "Valeur en devise étrangère",
+        "foreignbalance": "Solde en devise étrangère",
+        "exchangedifference": "Différence de change",
+        "description": "Description",
+        "localbalanceTotal": "Solde total en devise locale"
+      }
+    }
+  },
+  "opportunitySearchResults": {
+    "pageTitle": "Résultats de la recherche d'opportunités",
+    "for": "Pour"
+  },
+  "campaignSearchResults": {
+    "pageTitle": "Résultats de la recherche de campagnes",
+    "for": "Pour"
+  },
+  "marketingEventSearchResults": {
+    "pageTitle": "Résultats de recherche d'évènements marketing",
+    "for": "Pour"
+  },
+  "nameSearchResults": {
+    "pageTitle": "Résultats de la recherche avancée de Tiers",
+    "for": "Pour",
+    "togglePreview": "Aperçu"
+  },
+  "leadSearchResults": {
+    "pageTitle": "Résultats de la recherche de prospects",
+    "for": "Pour",
+    "togglePreview": "Aperçu"
+  },
+  "wipOverviewSearchResults": {
+    "for": "Pour"
+  },
+  "priorartSearchResults": {
+    "for": "Pour"
+  },
+  "Confirm": "Confirm",
+  "sanityCheck": {
+    "multipleResults": "Sanity Check Results",
+    "status": "Statut",
+    "caseReference": "Référence dossier",
+    "displayMessage": "Afficher le message",
+    "Error": "Erreur",
+    "Information": "Information",
+    "caseOffice": "Pays gestionnaire",
+    "staff": "Consultant",
+    "signatory": "Signataire",
+    "exportToPdf": "Exporter au format PDF"
+  },
+  "and": "ET",
+  "back": "Retour",
+  "defaultpageTitle": "",
+  "caseTaskMenu": {
+    "maintainFileLocation": "Gérer l'emplacement du fichier",
+    "firstToFile": "Ouvrir dans First To File",
+    "recordWip": "Enregistrer  les WIP",
+    "copyCase": "Copier le dossier",
+    "recordTime": "Enregistrer les temps",
+    "recordTimer": "Démarrer le compteur",
+    "createAdHocDate": "Créer un délai manuel",
+    "openDms": "Gestion des documents"
+  },
+  "taskPlannerTaskMenu": {
+    "markAsRead": "Marquer comme lu",
+    "markAsUnread": "Marquer comme non lu",
+    "finaliseAdHocDate": "Finaliser le délai manuel",
+    "createAdhoc": "Créer un délai manuel"
+  },
+  "taskPlannerBulkActionMenu": {
+    "deferReminders": "Reporter les rappels",
+    "read": "Lire",
+    "unread": "Non lu",
+    "forwardReminders": "Transférer les rappels"
+  },
+  "nameSearchTaskMenu": {
+    "maintainNotes": "Gérer les notes",
+    "maintainAttributes": "Gérer les attributs",
+    "createAdHocDate": "Créer un délai manuel",
+    "createContactActivity": "Créer une activité  contact"
+  },
+  "priorArtSearchTaskMenu": {
+    "maintainPriorArt": "Gérer l'antériorité"
+  },
+  "wipOverviewSearch": {
+    "bulkActionMenu": {
+      "createSingleBill": "Créer une facture unique",
+      "createMultipleBill": "Créer des factures à quote part"
+    }
+  },
+  "caseList": {
+    "maintenance": {
+      "description": "Description",
+      "primeCase": "Dossier initial",
+      "officialNo": "N° officiel",
+      "title": "Dénomination"
+    }
+  },
+  "ip-platform": {
+    "file": {
+      "instruct": {
+        "tooltip": "Pour ce dossier, les dépôts sont gérés via l'application The IP Platform FILE."
+      }
+    }
+  },
+  "portal": {
+    "product-name": "Inprotech"
+  },
+  "documentGeneration": {
+    "generateWord": {      
+      "name": "Nom du document",
+      "addAsAttachment": "Ajouter en tant que pièce jointe",
+      "fileName": "Nom du fichier",
+      "activityDate": "Date de l'activité",
+      "attachmentName": "Nom de la pièce jointe",
+      "browse": "Parcourir"
+    },
+    "generatePdf": {
+      "title": "Créer un formulaire PDF",
+      "name": "Nom du document",
+      "addAsAttachment": "Ajouter en tant que pièce jointe",
+      "fileName": "Nom du fichier",
+      "activityDate": "Date de l'activité",
+      "attachmentName": "Nom de la pièce jointe",
+      "browse": "Parcourir"
+    },
+    "errors": {
+      "message": "Message",
+      "displayMessage": "Afficher le message"
+    }
+  },
+  "bulkPolicing": {
+    "caseAction": "Action"
+  },
+  "taskPlanner": {
+    "customSearch": "Recherche personnalisée",
+    "for": "Pour",
+    "from": "De",
+    "to": "A",
+    "today": "Aujourd'hui",
+    "dateRange": "Plage de dates",
+    "createAdhoc": "Créer un délai manuel",
+    "SaveAs": "Enregistrer sous",
+    "deferReminder": {
+      "toThisDate": "Reporter à cette date"
+    },
+    "dueDateResponsibility": {
+      "save": "Sauvegarder"
+    },
+    "forwardReminder": {
+      "forward": "Transférer"
+    },
+    "reminderComments": {
+      "comments": "Observations"
+    },
+    "eventNotes": {
+      "replaceNotes": "Remplacer les notes",
+      "predefinedNote": "Notes prédéfinies",
+      "promptText": "Saisir les notes ici"
+    },
+    "searchBuilder": {
+      "general": {
+        "header": "Général",
+        "include": "Inclure",
+        "reminders": "Rappels",
+        "dueDates": "Échéances",
+        "adHocDates": "Délais manuels",
+        "adHocDate": "Délai manuel",
+        "searchBy": "Rechercher par",
+        "dueDate": "Date d'échéance",
+        "reminderDate": "Date de rappel",
+        "and": "ET",
+        "date": "Date",
+        "range": "Plage",
+        "period": "Période",
+        "to": "A",
+        "importanceLevel": "Niveau d'importance",
+        "belongingTo": "Appartenant à",
+        "actingAs": "Agissant en tant que",
+        "nameTypes": "Types deTiers",
+        "myself": "Moi-même",
+        "or": "Ou"
+      },
+      "cases": {
+        "header": "Dossiers",
+        "caseReference": "Case Reference(s)",
+        "officialNumber": "Numéro officiel",
+        "caseFamily": "Famille du dossier",
+        "caseList": "Liste de dossiers",
+        "caseOffice": "Pays gestionnaire",
+        "caseType": "Type de dossier",
+        "propertyType": "Type de droits",
+        "caseCategory": "Catégorie de dossier",
+        "subType": "Sous-type",
+        "basis": "Base",
+        "instructor": "Donneur d'ordre",
+        "owner": "Titulaire",
+        "dead": "Désactivé",
+        "pending": "En attente",
+        "registered": "Enregistré",
+        "caseStatus": "Statut du dossier",
+        "renewalStatus": "Statut de renouvellement",
+        "anyNumberType": "Tout type de numéro",
+        "anyNameType": "Tout type de Tiers",
+        "references": "Références",
+        "details": "Informations",
+        "names": "Tiers",
+        "status": "Statut"
+      },
+      "eventsAndActions": {
+        "event": "Evènement",
+        "eventCategory": "Catégorie d'évènements",
+        "eventNoteType": "Type de note relative à l'événement",
+        "eventNotes": "Texte de l'évènement",
+        "action": "Action",
+        "renewals": "Renouvellements",
+        "nonRenewals": "Afficher les dates hors renouvellement"
+      },
+      "reminders": {
+        "header": "Rappels",
+        "reminderMessage": "Message de rappel",
+        "notOnHold": "N'est pas en attente",
+        "onHold": "En attente",
+        "read": "Lire"
+      },
+      "adhocDate": {
+        "header": "Délais manuels",
+        "include": "Inclure",
+        "case": "Dossier",
+        "name": "Tiers",
+        "general": "Général",
+        "message": "Message",
+        "emailSubject": "Objet de l'email"
+      }
+    },
+    "summary": {
+      "criticalDates": "Dates critiques",
+      "caseReference": "Référence dossier",
+      "title": "Dénomination",
+      "caseStatus": "Statut du dossier",
+      "officialNumber": "Numéro officiel",
+      "instructorReference": "Référence du donneur d'ordre",
+      "caseType": "Type de dossier",
+      "propertyType": "Type de droits",
+      "caseCategory": "Catégorie de dossier",
+      "subType": "Sous-type",
+      "basis": "Base",
+      "typeOfMark": "Type de marque",
+      "classes": "Classes",
+      "instructor": "Donneur d'ordre",
+      "owner": "Titulaire",
+      "staffMember": "Consultant",
+      "signatory": "Signataire",
+      "renewalStatus": "Statut de renouvellement",
+      "caseOffice": "Pays gestionnaire",
+      "dueDateResponsibility": "Responsabilité de la date d'échéance",
+      "taskDetails": {
+        "type": "Type",
+        "event": "Evènement",
+        "dueDate": "Date d'échéance",
+        "adHoc": "Délai manuel",
+        "reminderMessage": "Message de rappel",
+        "reminderDate": "Date de rappel",
+        "reminderFor": "Rappel pour",
+        "nextReminder": "Prochain rappel"
+      }
+    },
+    "finaliseAdHocDate": {
+      "finalise": "Finaliser",
+      "adHocDateFor": "Délai manuel pour",
+      "dueDate": "Date d'échéance",
+      "reason": "Motif",
+      "message": "Message",
+      "reference": "Référence"
+    }
+  },
+  "adHocDate": {
+    "adHocType": {
+      "case": "Dossier",
+      "name": "Tiers",
+      "general": "Général",
+      "lblType": "Type"
+    },
+    "reminders": {
+      "recurring": "Récurrent",
+      "days": "Jours",
+      "months": "Mois"
+    },
+    "caseReference": "Référence dossier",
+    "nameReference": "Référence Tiers",
+    "generalReference": "Référence générale",
+    "dueDate": "Date d'échéance",
+    "event": "Evènement",
+    "remindersHeader": "Rappels",
+    "adHocTemplate": "Matrice ad hoc",
+    "message": "Message",
+    "importanceLevel": "Niveau d'importance"
+  },
+  "attachmentsIntegration": {
+    "subtitle": "Configuration",
+    "attachmentBrowseSetting": {
+      "title": "Parcourir",
+      "displayName": "Parcourir"
+    },
+    "storageLocations": {
+      "displayName": "Afficher le Tiers",
+      "path": "Chemin"
+    }
+  },
+  "reportingServices": {
+    "configuration": {
+      "password": "Mot de passe"
+    }
+  },
+  "recordalType": {
+    "recordalElement": {
+      "display": "Afficher",
+      "mandatory": "Obligatoire",
+      "column": {
+        "nameType": "Type de Tiers",
+        "attribute": "Attribut"
+      }
+    }
+  },
+  "fileLocationOffice": {
+    "column": {
+      "fileLocation": "Emplacement du classeur",
+      "office": "Agence gestionnaire"
+    }
+  },
+  "currencies": {
+    "column": {
+      "code": "Code"
+    },
+    "maintenance": {
+      "title": "Gestion de la devise"
+    }
+  },
+  "office": {
+    "column": {
+      "description": "Agence gestionnaire",
+      "organisation": "Société",
+      "country": "Pays",
+      "language": "Langue par défaut",
+      "userCode": "Code d'utilisateur",
+      "cpaCode": "Code CPA",
+      "irnOfficeCode": "IRN Code bureau",
+      "region": "Région"
+    },
+    "maintenance": {
+      "title": "Gestion de l'agence",
+      "lastDebitNote": "Date du dernier n° d'avoir finalisé",
+      "itemPrefix": "Préfixe",
+      "itemFrom": "De",
+      "itemTo": "A"
+    },
+    "edit": "Modifier",
+    "delete": "Supprimer"
+  },
+  "keywords": {
+    "column": {
+      "keyword": "Mot clé",
+      "caseStopWord": "Case Stop Word",
+      "nameStopWord": "Name Stop Word"
+    },
+    "editKeyword": "Modifier"
+  },
+  "kotTextTypes": {
+    "filterByCase": "Dossier",
+    "filterByName": "Tiers",
+    "caseRef": "Réf. du dossier",
+    "column": {
+      "caseType": "Type de dossier",
+      "nameType": "Type de Tiers",
+      "roles": "Rôles",
+      "textType": "Type de texte"
+    },
+    "maintenance": {
+      "status": "Statut",
+      "caseProgram": "Dossier",
+      "nameProgram": "Tiers",
+      "billingProgram": "Facturation",
+      "pending": "En attente",
+      "registered": "Enregistré",
+      "dead": "Désactivé"
+    }
+  },
+  "userPreferences": {
+    "resetToDefault": {
+      "confirmation": {
+        "confirm": "Réinitialiser"
+      }
+    }
+  },
+  "image": {
+    "defaultTitle": ""
+  },
+  "sanityChecks": {
+    "closebtn": "Fermer",
+    "ignoreErrors": "Ignorer les erreurs"
+  },
+  "priorart": {
+    "pageTitle": "Antériorité",
+    "caseReference": "Référence dossier",
+    "sourceSubHeader": "Source",
+    "priorArtSubHeader": "Antériorité",
+    "source": "Source",
+    "search": "Rechercher",
+    "classes": "Classes",
+    "subClasses": "Sous-classes",
+    "kindCode": "Type prio",
+    "results": "Résultats",
+    "reference": "Référence",
+    "publication": "Publication",
+    "reportIssued": "Rapport établi",
+    "reportReceived": "Date de réception",
+    "kind": "Type prio",
+    "title": "Dénomination",
+    "abstract": "Abstract",
+    "citation": "Citation",
+    "country": "Pays",
+    "caseFamily": "Famille du dossier",
+    "caseList": "Liste de dossiers",
+    "inprotechCases": {
+      "caseReference": "Référence dossier",
+      "officialNumber": "Numéro officiel",
+      "title": "Dénomination",
+      "caseStatus": "Statut du dossier"
+    },
+    "notFound": {
+      "reference": "Référence",
+      "kindCode": "Type prio"
+    },
+    "translation": "Traduction",
+    "granted": "Date de délivrance",
+    "city": "Ville",
+    "refresh": "Actualiser",
+    "published": "Publié",
+    "priority": "Date de priorité",
+    "ptoCited": "PTO cité",
+    "applicationFiled": "Dépôt effectué",
+    "description": "Description",
+    "comments": "Observations",
+    "maintenance": {
+      "step1": {
+        "priorArtTitle": "Gérer l'antériorité",
+        "priorArtHeading": "Gérer l'antériorité",
+        "kindCode": "Type prio",
+        "country": "Pays",
+        "publication": "Publication",
+        "classes": "Classes",
+        "subClasses": "Sous-classes",
+        "reportIssued": "Rapport établi",
+        "reportReceived": "Date de réception",
+        "description": "Description",
+        "comments": "Observations",
+        "sourceType": "Source",
+        "city": "Ville",
+        "title": "Dénomination",
+        "officialNumber": "Référence",
+        "applicationFiledDate": "Dépôt effectué",
+        "publishedDate": "Publié",
+        "grantedDate": "Date de délivrance",
+        "priorityDate": "Date de priorité",
+        "ptoCitedDate": "PTO cité",
+        "abstract": "Abstract",
+        "citation": "Citation"
+      },
+      "step2": {
+        "associatePriorArt": {
+          "title": "Technique antérieure associée"
+        }
+      },
+      "step3": {
+        "linkedCases": {
+          "columns": {
+            "officialNo": "Numéro officiel",
+            "caseStatus": "Statut du dossier",
+            "dateUpdated": "Date mise à jour",
+            "relationship": "Lien",
+            "family": "Famille",
+            "caseList": "Liste de dossiers"
+          },
+          "caseReference": "Référence dossier",
+          "caseFamily": "Famille du dossier",
+          "caseList": "Liste de dossiers",
+          "name": "Tiers",
+          "usedAs": "Utilisé en tant que"
+        }
+      },
+      "step4": {
+        "familyCaselist": {
+          "columns": {
+            "name": "Tiers",
+            "nameType": "Type de Tiers"
+          }
+        },
+        "name": {
+          "columns": {
+            "name": "Tiers",
+            "nameType": "Type de Tiers"
+          }
+        },
+        "caseDetails": {
+          "columns": {
+            "caseRef": "Référence dossier",
+            "officialNumber": "Numéro officiel"
+          }
+        },
+        "removeLink": {
+          "tooltip": {
+            "name": "Retirer le Tiers"
+          }
+        }
+      },
+      "step5": {
+        "title": "Tiers"
+      }
+    },
+    "priorArtTypes": {
+      "source": "Source"
+    }
+  },
+  "refresh": "Actualiser",
+  "upload": "Télécharger",
+  "SearchColumns": {
+    "columnSummary": "Résultats de la recherche",
+    "internal": "Interne",
+    "external": "Externe",
+    "displayName": "Afficher le Tiers",
+    "columnNameDescription": "Description de la colonne",
+    "case": "Dossier",
+    "name": "Tiers",
+    "wipOverview": "Récapitulatif WIP",
+    "priorArt": "Antériorité",
+    "reciprocitySearch": "Réciprocité",
+    "clientRequestSearchInternalExternal": "Requête client",
+    "staffRemindersSearchColumns": "Rappels consultants",
+    "toDoSearchColumns": "Liste des tâches",
+    "whatsDueSearchColumns": "Échéances à venir",
+    "workHistorySearchColumns": "Historique des travaux",
+    "activitySearchColumns": "Activité",
+    "columnName": "Désignation de la colonne",
+    "columnGroup": "Groupe de la colonne",
+    "Parameter": "Paramètre",
+    "dataFormat": "Format des données",
+    "visible": "Visible",
+    "mandatory": "Obligatoire",
+    "bulkActions": {
+      "delete": "Supprimer"
+    }
+  }
+}
