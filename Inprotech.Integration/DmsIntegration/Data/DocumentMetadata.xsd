@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DocumentMetadata" type="DocumentMetadataType">
+  </xs:element>
+
+  <xs:complexType name="DocumentMetadataType">
+    <xs:sequence>
+      <xs:element name="DataSource" type="DataSourceType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="MatterRef" type="xs:string" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ResponsibleAttorney" type="NameType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Paralegal" type="NameType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Client" type="NameType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="ResponsibleOffice" type="xs:string" minOccurs="0" maxOccurs="1" />
+      <xs:element name="DocumentDate" type="xs:date" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Description" type="xs:string" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="NameType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="code" type="xs:string" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="DataSourceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UsptoPrivatePair"/>
+      <xs:enumeration value="UsptoTsdr"/>
+      <xs:enumeration value="Epo"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
