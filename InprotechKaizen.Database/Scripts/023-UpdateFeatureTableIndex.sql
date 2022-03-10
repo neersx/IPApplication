@@ -1,0 +1,18 @@
+ /*** RFC25327 Add CATEGORYID column to XAK1FEATURE index      ***/
+
+ if exists (select * from sysindexes where name = 'XAK1FEATURE')
+ begin
+   PRINT 'Dropping index FEATURE.XAK1FEATURE ...'
+   DROP INDEX FEATURE.XAK1FEATURE
+ end
+ go
+
+ PRINT 'Adding index FEATURE.XAK1FEATURE ...'
+ CREATE  UNIQUE INDEX XAK1FEATURE ON FEATURE
+ (
+  FEATURENAME  ASC,
+  CATEGORYID  ASC,
+  ISEXTERNAL  ASC,
+  ISINTERNAL  ASC
+ )
+ go

@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cpasoftwaresolutions.com" targetNamespace="http://www.cpasoftwaresolutions.com" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.4">
+	<xs:annotation>
+		<xs:documentation>Details of a Case request or transaction</xs:documentation>
+	</xs:annotation>
+	<!-- ======================================================================
+          Filename      : CaseType.xsd 
+          Author        : CPA Software Solutions
+          Version       : 1.6
+          Last Update   : 2016-10-06
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA Data Model Version 1.6 (CPA-XML)  
+       ====================================================================== -->
+	<!-- ======================================================================
+          BUSINESS TYPES LIBRARY                             
+       ====================================================================== -->
+	<xs:include schemaLocation="AddressBookType.xsd"/>
+	<xs:include schemaLocation="DocumentType.xsd"/>
+	<xs:include schemaLocation="NameTypeCodeType.xsd"/>
+	<!-- ======================================================================
+          ADDITIONAL TYPES LIBRARY                              
+       ====================================================================== -->
+	<xs:include schemaLocation="AmountType.xsd"/>
+	<xs:include schemaLocation="CurrencyCodeType.xsd"/>
+	<xs:include schemaLocation="ST3CountryCodeType.xsd"/>
+	<!-- ====================================================================== -->
+	<xs:complexType name="CaseType">
+		<xs:sequence>
+			<xs:element name="SenderCaseIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="SenderCaseReference" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReceiverCaseIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReceiverCaseReference" type="xs:string" minOccurs="0"/>
+			<xs:element name="CaseLanguageCode" type="LanguageCodeType" minOccurs="0"/>
+			<xs:element name="CorrespondenceLanguageCode" type="LanguageCodeType" minOccurs="0"/>
+			<xs:element name="CaseTypeCode" type="CaseTypeCodeType" minOccurs="0"/>
+			<xs:element name="CasePropertyTypeCode" type="CasePropertyTypeCodeType"/>
+			<xs:element name="CaseCategoryCode" type="CaseCategoryCodeType" minOccurs="0"/>
+			<xs:element name="CaseSubTypeCode" type="CaseSubTypeCodeType" minOccurs="0"/>
+			<xs:element name="CaseBasisCode" type="CaseBasisCodeType" minOccurs="0"/>
+			<xs:element name="CaseCountryCode" type="CaseCountryCodeType"/>
+			<xs:element name="EntitySize" type="EntitySizeType" minOccurs="0"/>
+			<xs:element name="NumberClaims" type="xs:positiveInteger" minOccurs="0"/>
+			<xs:element name="NumberDesigns" type="xs:positiveInteger" minOccurs="0"/>
+			<xs:element name="ExtendedNumberYears" type="xs:positiveInteger" minOccurs="0"/>
+			<xs:element name="CaseStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="CaseRenewalStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="CaseStatusFlag" type="CaseStatusFlagType" minOccurs="0"/>
+			<xs:element name="StopReasonCode" type="StopReasonCodeType" minOccurs="0"/>
+			<xs:element name="TypeOfMark" type="TypeOfMarkType" minOccurs="0"/>
+			<xs:element name="CaseReferenceStem" type="xs:string" minOccurs="0"/>
+			<xs:element name="CaseOffice" type="xs:string" minOccurs="0"/>
+			<xs:element name="Family" type="xs:string" minOccurs="0"/>
+			<xs:element name="DescriptionDetails" type="DescriptionType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="IdentifierNumberDetails" type="IdentifierNumberType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="EventDetails" type="CaseEventType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="NameDetails" type="CaseNameType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AssociatedCaseDetails" type="AssociatedCaseType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DesignatedCountryDetails" type="DesignatedCountryType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GoodsServicesDetails" type="GoodsServicesType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ChargeDetails" type="ChargeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DocumentDetails" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Document" type="DocumentType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PatentTermAdjustment" type="PatentTermAdjustmentType" minOccurs="0"/>
+			<xs:element name="ChecklistDetails" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ChecklistTypeCode" type="ChecklistTypeCodeType"/>
+						<xs:element name="Checklist" type="ChecklistType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ======================================================================
+          BUSINESS TYPES LIBRARY                                                                                         
+       ====================================================================== -->
+	<xs:complexType name="DescriptionType">
+		<xs:sequence>
+			<xs:element name="DescriptionCode" type="DescriptionCodeType"/>
+			<xs:element name="DescriptionText" type="TextType" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="CaseEventType">
+		<xs:sequence>
+			<xs:element name="EventCode" type="EventCodeType"/>
+			<xs:element name="EventDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="EventDueDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="EventDescription" type="TextType" minOccurs="0"/>
+			<xs:element name="EventText" type="TextType" minOccurs="0"/>
+			<xs:element name="EventCycle" type="xs:integer" minOccurs="0"/>
+			<xs:element name="AnnuityTerm" type="xs:string" minOccurs="0"/>
+			<xs:element name="CreatedByAction" type="xs:string" minOccurs="0"/>
+			<xs:element name="EventChargeDetails" type="ChargeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="IdentifierNumberType">
+		<xs:sequence>
+			<xs:element name="IdentifierNumberCode" type="IdentifierNumberCodeType"/>
+			<xs:element name="IdentifierNumberText" type="xs:string"/>
+			<xs:element name="IdentifierNumberDateInForce" type="xs:date" minOccurs="0"/>
+			<xs:element name="IdentifierNumberIsCurrent" type="xs:boolean" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="CaseNameType">
+		<xs:sequence>
+			<xs:element name="NameTypeCode" type="NameTypeCodeType"/>
+			<xs:element name="NameSequenceNumber" type="xs:integer" minOccurs="0"/>
+			<xs:element name="NameReference" type="xs:string" minOccurs="0"/>
+			<xs:element name="NameCurrencyCode" type="CurrencyCodeType" minOccurs="0"/>
+			<xs:element name="AddressBook" type="AddressBookType" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="AssociatedCaseType">
+		<xs:sequence>
+			<xs:element name="AssociatedCaseRelationshipCode" type="RelationshipCodeType"/>
+			<xs:element name="AssociatedCaseCountryCode" type="CaseCountryCodeType" minOccurs="0"/>
+			<xs:element name="AssociatedCaseStatus" type="xs:string" minOccurs="0"/>
+			<xs:element name="AssociatedCaseComment" type="xs:string" minOccurs="0"/>
+			<xs:element name="AssociatedCaseIdentifierNumberDetails" type="IdentifierNumberType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AssociatedCaseEventDetails" type="CaseEventType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AssociatedDocumentDetails" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AssociatedDocument" type="DocumentType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="DesignatedCountryType">
+		<xs:sequence>
+			<xs:element name="DesignatedCountryCode" type="CaseCountryCodeType"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="GoodsServicesType">
+		<xs:sequence>
+			<xs:element name="ClassificationTypeCode" type="ClassificationTypeCodeType" minOccurs="0"/>
+			<xs:element name="ClassificationVersion" type="xs:string" minOccurs="0"/>
+			<xs:element name="GoodsServicesComment" type="TextType" minOccurs="0"/>
+			<xs:element name="ClassDescriptionDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ClassDescription" type="ClassDescriptionType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="ClassDescriptionType">
+		<xs:sequence>
+			<xs:element name="ClassNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="FirstUsedDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="FirstUsedDateInCommerce" type="xs:date" minOccurs="0"/>
+			<xs:element name="GoodsServicesDescription" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="ChargeType">
+		<xs:sequence>
+			<xs:element name="ChargeDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="ChargeTypeCode" type="ChargeTypeCodeType" minOccurs="0"/>
+			<xs:element name="ChargeDocumentNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="ChargeDocumentItemNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="ChargeAmount" type="AmountType"/>
+			<xs:element name="ChargeComment" type="TextType" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="PatentTermAdjustmentType">
+		<xs:sequence>
+			<xs:element name="PreIssuePetitions" type="xs:integer" minOccurs="0"/>
+			<xs:element name="PostIssuePetitions" type="xs:integer" minOccurs="0"/>
+			<xs:element name="USPTOAdjustment" type="xs:integer" minOccurs="0"/>
+			<xs:element name="USPTODelay" type="xs:integer" minOccurs="0"/>
+			<xs:element name="ThreeYears" type="xs:integer" minOccurs="0"/>
+			<xs:element name="ApplicantDelay" type="xs:integer" minOccurs="0"/>
+			<xs:element name="TotalPatentTermAdjustment" type="xs:integer" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="ChecklistType">
+		<xs:sequence>
+			<xs:element name="QuestionCode" type="xs:string"/>
+			<xs:element name="QuestionDescription" type="xs:string"/>
+			<xs:element name="AnswerDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="AnswerDateTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="AnswerString" type="xs:string" minOccurs="0"/>
+			<xs:element name="AnswerInteger" type="xs:integer" minOccurs="0"/>
+			<xs:element name="AnswerDecimal" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="AnswerBoolean" type="xs:boolean" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CaseTypeCodeType">
+		<xs:union memberTypes="CaseTypeFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CaseTypeFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Property"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CasePropertyTypeCodeType">
+		<xs:union memberTypes="CasePropertyTypeFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CasePropertyTypeFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Design"/>
+			<xs:enumeration value="Patent"/>
+			<xs:enumeration value="Trademark"/>
+			<xs:enumeration value="Business Name"/>
+			<xs:enumeration value="Copyright"/>
+			<xs:enumeration value="Domain Name"/>
+			<xs:enumeration value="Innovation Patent"/>
+			<xs:enumeration value="Utility Model"/>
+			<xs:enumeration value="Plan Variety Right"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CaseCategoryCodeType">
+		<xs:union memberTypes="CaseCategoryFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CaseCategoryFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Normal"/>
+			<xs:enumeration value="Cautionary Notices"/>
+			<xs:enumeration value="State Reg"/>
+			<xs:enumeration value="Re-registration of Foreign Registration"/>
+			<xs:enumeration value="Re-registration of US Registration"/>
+			<xs:enumeration value="Re-registration of ZA Registration"/>
+			<xs:enumeration value=".COM"/>
+			<xs:enumeration value=".NET"/>
+			<xs:enumeration value=".BIZ"/>
+			<xs:enumeration value="Madrid National"/>
+			<xs:enumeration value="Standard (Convert from CTM)"/>
+			<xs:enumeration value="Maintain an Vigueur"/>
+			<xs:enumeration value="Food/Drug"/>
+			<xs:enumeration value="Reissue"/>
+			<xs:enumeration value="Intend to use"/>
+			<xs:enumeration value="Continued Prosecution Application"/>
+			<xs:enumeration value="Eurasian National"/>
+			<xs:enumeration value="Patent of Addition"/>
+			<xs:enumeration value="Patent of Addition &amp; Divisional"/>
+			<xs:enumeration value="Continuation"/>
+			<xs:enumeration value="Divisional"/>
+			<xs:enumeration value="Supplementary Protection Certificate"/>
+			<xs:enumeration value="Madrid OL/Refusal"/>
+			<xs:enumeration value="Associated Design"/>
+			<xs:enumeration value="Continuation in Part"/>
+			<xs:enumeration value="Pipeline"/>
+			<xs:enumeration value="PCT National Phase"/>
+			<xs:enumeration value="Patent of Addition via National Phase"/>
+			<xs:enumeration value="Associated TM"/>
+			<xs:enumeration value="Multiple Designs"/>
+			<xs:enumeration value="Provisional"/>
+			<xs:enumeration value="Subsequent Design"/>
+			<xs:enumeration value="EP National Stage"/>
+			<xs:enumeration value="EP National Stage Divisional"/>
+			<xs:enumeration value="Madrid Agreement"/>
+			<xs:enumeration value="Madrid Protocol"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CaseSubTypeCodeType">
+		<xs:union memberTypes="CaseSubTypeFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CaseSubTypeFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="5 Yearly Renewals"/>
+			<xs:enumeration value="Collective Mark"/>
+			<xs:enumeration value="Certification Mark"/>
+			<xs:enumeration value="Defensive Mark"/>
+			<xs:enumeration value="Licence"/>
+			<xs:enumeration value="PCT Chapter 1, National Phase"/>
+			<xs:enumeration value="PCT Chapter 2, National Phase"/>
+			<xs:enumeration value="Similar"/>
+			<xs:enumeration value="Multiple Part"/>
+			<xs:enumeration value="Normal"/>
+			<xs:enumeration value="Supplementary B Registration"/>
+			<xs:enumeration value="Spare Part"/>
+			<xs:enumeration value="Single Part"/>
+			<xs:enumeration value="Vines/Potatoes/Trees"/>
+			<xs:enumeration value="Licence"/>
+			<xs:enumeration value="Licence - 5 yearly"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CaseStatusFlagType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Live"/>
+			<xs:enumeration value="Dead"/>
+			<xs:enumeration value="Transferred"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="StopReasonCodeType">
+		<xs:union memberTypes="StopReasonFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="StopReasonFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Abandon"/>
+			<xs:enumeration value="Other Channels"/>
+			<xs:enumeration value="Unspecified"/>
+		</xs:restriction>
+	</xs:simpleType>	
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CaseBasisCodeType">
+		<xs:union memberTypes="CaseBasisFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CaseBasisFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Non Convention"/>
+			<xs:enumeration value="Convention"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CaseCountryCodeType">
+		<xs:union memberTypes="ST3CountryCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="EntitySizeType">
+		<xs:union memberTypes="EntitySizeFixCodeType xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="EntitySizeFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Small"/>
+			<xs:enumeration value="Large"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="TypeOfMarkType">
+		<xs:union memberTypes="TypeOfMarkFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="TypeOfMarkFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Device only"/>
+			<xs:enumeration value="Word"/>
+			<xs:enumeration value="Sound"/>
+			<xs:enumeration value="Olfactory"/>
+			<xs:enumeration value="3-Dimensional shape"/>
+			<xs:enumeration value="Colour"/>
+			<xs:enumeration value="Device containing words or letters"/>
+			<xs:enumeration value="Device of words or letters in special script"/>
+			<xs:enumeration value="Device of Hologram"/>
+			<xs:enumeration value="Packaging"/>
+			<xs:enumeration value="Combination"/>
+			<xs:enumeration value="Logo"/>
+			<xs:enumeration value="Series"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="EventCodeType">
+		<xs:union memberTypes="EventFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="EventFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Application"/>
+			<xs:enumeration value="CPA End Payment"/>
+			<xs:enumeration value="CPA Start Payment"/>
+			<xs:enumeration value="Earliest Priority"/>
+			<xs:enumeration value="Expiry"/>
+			<xs:enumeration value="Lapse Date"/>
+			<xs:enumeration value="Last Amendment"/>
+			<xs:enumeration value="Next Affidavit or Intent to Use"/>
+			<xs:enumeration value="Next Renewal"/>
+			<xs:enumeration value="Next Tax"/>
+			<xs:enumeration value="Nominal Working"/>
+			<xs:enumeration value="PCT Filing"/>
+			<xs:enumeration value="Publication"/>
+			<xs:enumeration value="Registration/Grant"/>
+			<xs:enumeration value="Renewal Start Date"/>
+			<xs:enumeration value="Change of Responsibility"/>
+			<xs:enumeration value="Case Became Dead"/>
+			<xs:enumeration value="Agent Renewal"/>
+			<xs:enumeration value="Agent Next Renewal"/>
+			<xs:enumeration value="Abandon Instruction"/>
+			<xs:enumeration value="Agent Instructed"/>
+			<xs:enumeration value="Automatic Reminder"/>
+			<xs:enumeration value="Changeover Acknowledgment"/>
+			<xs:enumeration value="Channels Instruction"/>
+			<xs:enumeration value="Credit Note"/>
+			<xs:enumeration value="Expired at CPA"/>
+			<xs:enumeration value="Hold Instruction"/>
+			<xs:enumeration value="Invoice"/>
+			<xs:enumeration value="Lapsed at CPA"/>
+			<xs:enumeration value="Official Receipt Received"/>
+			<xs:enumeration value="Official Receipt Reversed"/>
+			<xs:enumeration value="Official Reminder Waiting"/>
+			<xs:enumeration value="Official Reminder Rejected"/>
+			<xs:enumeration value="Pay Instruction"/>
+			<xs:enumeration value="Proprietor Change Certificate Received"/>
+			<xs:enumeration value="Proprietor Change Certificate Reversed"/>
+			<xs:enumeration value="Reminder 1"/>
+			<xs:enumeration value="Reminder 2"/>
+			<xs:enumeration value="Reminder 3"/>
+			<xs:enumeration value="Reminder 4"/>
+			<xs:enumeration value="Remove Instruction"/>
+			<xs:enumeration value="Renewal Confirmed"/>
+			<xs:enumeration value="Renewal Fee Rejected"/>
+			<xs:enumeration value="Reset Instruction"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="IdentifierNumberCodeType">
+		<xs:union memberTypes="IdentifierNumberFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="IdentifierNumberFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Application"/>
+			<xs:enumeration value="Publication"/>
+			<xs:enumeration value="Registration/Grant"/>
+			<xs:enumeration value="PCT Filing"/>
+			<xs:enumeration value="Trademark Reference"/>
+			<xs:enumeration value="File Number"/>
+			<xs:enumeration value="Reel/Frame"/>
+			<xs:enumeration value="Acceptance"/>
+			<xs:enumeration value="Provisional Application"/>
+			<xs:enumeration value="International Application"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="DescriptionCodeType">
+		<xs:union memberTypes="DescriptionFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="DescriptionFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Short Title"/>
+			<xs:enumeration value="Imported Case Category"/>
+			<xs:enumeration value="Abstract"/>
+			<xs:enumeration value="International Patent Classification"/>
+			<xs:enumeration value="Correspondence Instructions (Billing)"/>
+			<xs:enumeration value="Correspondence Instructions (Cases)"/>
+			<xs:enumeration value="Correspondence Instructions (Pass Thru)"/>
+			<xs:enumeration value="Claims"/>
+			<xs:enumeration value="Description"/>
+			<xs:enumeration value="Goods/Services"/>
+			<xs:enumeration value="Inventors"/>
+			<xs:enumeration value="Translation of Trademark"/>
+			<xs:enumeration value="Extended Name"/>
+			<xs:enumeration value="Remarks"/>
+			<xs:enumeration value="Statement of Monopoly"/>
+			<xs:enumeration value="Full Title or Trademark"/>
+			<xs:enumeration value="Statement of Novelty"/>
+			<xs:enumeration value="General Notes"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="RelationshipCodeType">
+		<xs:union memberTypes="RelationshipCodeFixType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="RelationshipCodeFixType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Priority"/>
+			<xs:enumeration value="Parent Application"/>
+			<xs:enumeration value="PCT Application"/>
+			<xs:enumeration value="Associated Design"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="ClassificationTypeCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Nice"/>
+			<xs:enumeration value="Domestic"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="ChargeTypeCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="To Be Defined"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="ChecklistTypeCodeType">
+		<xs:union memberTypes="ChecklistTypeCodeFixType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="ChecklistTypeCodeFixType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="To Be Defined"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

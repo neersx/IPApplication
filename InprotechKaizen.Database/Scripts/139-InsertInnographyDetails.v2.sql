@@ -1,0 +1,17 @@
+﻿if not exists(select * from EXTERNALSETTINGS where PROVIDERNAME = 'Innography')
+begin
+
+	insert EXTERNALSETTINGS (PROVIDERNAME, SETTINGS, ISCOMPLETE)
+	values ('Innography', 'B+iLY6Gctt3dj0EFacVloxKli132RGsa5VZusx5VWWEZ061KJkJJUBo75Lv5MqitBk9sl9H2w9+u8C6R7nCuAsyGuT3d8UAJRPFlaK4hUWw=', 1)
+
+end
+go
+
+if exists(select * from EXTERNALSETTINGS where PROVIDERNAME = 'Innography')
+begin
+	
+	update EXTERNALSETTINGS set SETTINGS = '6eWsLvqm/5wQK51f1GEWpLQY6K2ZKRgv1N8f1Pgkfe5gTQ2BRvGSwbp0H7b2TguUdfnls/aegwa8fmXFfSUpBoz7wXLzsgc0exy8p4aqreY+P+1VPwnHm4QAuthDUYFBrmffU0N9By8TdyJr3z8kRznmEg3nxqOp5Z2asT3y9Ot3n3/ByRAG+o7iF52DN/JfZBEBh18yJggnMpIb5sD/1FITDcQoNAgpmNWtsaU24E0Qya5QEpEhQaJeF7zvWJAvoifMa7D75iDs+06tc90Cb9rNmF93K6UT6XXZPSlI8kVW+VyfN5zJy761uSPy7JSanbL6k4/sX24OwkcNeije+erQb+Iu6GPKndJ2893lJLtCpQM2FGW5iFH5GlxdTPVCItdEUZ9tB98Itpp78L1DBg=='
+	where PROVIDERNAME = 'Innography'
+
+end
+go

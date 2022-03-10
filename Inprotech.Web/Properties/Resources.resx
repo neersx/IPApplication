@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ValidationAtLeastOneCaseIdMustBeSpecified" xml:space="preserve">
+    <value>At least one case id must be specified.</value>
+  </data>
+  <data name="ErrorCasesOneOrMoreSpecifiedCasesNotFoundOrNotUpdatable" xml:space="preserve">
+    <value>Could not find any of specified cases. If they exist, you may not have update permission to them.</value>
+  </data>
+  <data name="ErrorCasesCaseNotFound" xml:space="preserve">
+    <value>Case not found.</value>
+  </data>
+  <data name="ErrorDataEntryTaskDataEntryTaskNotFound" xml:space="preserve">
+    <value>Data entry task not found.</value>
+  </data>
+  <data name="ErrorSecurityTaskAccessCheckFailure" xml:space="preserve">
+    <value>You do not have sufficient privileges to perform this action.</value>
+  </data>
+  <data name="ErrorHttpResourceNotFound" xml:space="preserve">
+    <value>Specified resource not found.</value>
+  </data>
+  <data name="WarningCreditLimitExceeded" xml:space="preserve">
+    <value>Credit limit exceeded.</value>
+  </data>
+  <data name="ErrorPriorArtNotEnoughInfoForExactFind" xml:space="preserve">
+    <value>Not enough information to perform an exact find.</value>
+  </data>
+  <data name="ErrorFileNameMustMatchSenderFilename" xml:space="preserve">
+    <value>The name of the file you have added is not the same as the value of the SenderFilename value in the CPA XML. Change the file name.</value>
+  </data>
+  <data name="ErrorSenderFilenameMustExist" xml:space="preserve">
+    <value>There is no SenderFilename element in the CPA XML. Add the SenderFilename element to the file.</value>
+  </data>
+  <data name="ErrorOtherExportInProgress" xml:space="preserve">
+    <value>Another staff member is currently using Import Cases. Only one set of data can be imported at a time. Try again soon.</value>
+  </data>
+  <data name="ErrorDuplicateSenderRequest" xml:space="preserve">
+    <value>A CSV file with the file name of '{1}', or CPA XML file with the sender identifier of '{1}' has already been imported to Inprotech for {0}. Try importing it with a different file name or sender identifier.</value>
+  </data>
+  <data name="ErrorSenderIdentifierMustExist" xml:space="preserve">
+    <value>SenderRequestIdentifier is not found in the CPA XML. Add the SenderRequestIdentifier to the file.</value>
+  </data>
+  <data name="ErrorSenderMappedToMoreThanOneNameAliases" xml:space="preserve">
+    <value>There are multiple EDE Identifier alias matches in Inprotech on the Sender '{0}'. Ensure only a single name is mapped to the Sender in Inprotech.</value>
+  </data>
+  <data name="ErrorSenderNotMappedOrNotProvided" xml:space="preserve">
+    <value>There are no EDE Identifier aliases for any name in Inprotech that match the Sender '{0}'. Ensure a name is mapped to the Sender in Inprotech.</value>
+  </data>
+  <data name="ErrorTooManySenderDetailsOrNotFound" xml:space="preserve">
+    <value>There must be one SenderDetails element included in the CPA XML. Update the CPA XML.</value>
+  </data>
+  <data name="ErrorUnknownSenderRequestType" xml:space="preserve">
+    <value>The SenderRequest type of '{0}' is not valid. Enter 'Case Import' in the SenderRequest element.</value>
+  </data>
+  <data name="ErrorBatchAlreadyProcessed" xml:space="preserve">
+    <value>The batch with batch identifier, '{0}' has already been processed and cannot be resubmitted.</value>
+  </data>
+  <data name="ErrorBatchInProgress" xml:space="preserve">
+    <value>The batch with batch identifier, '{0}' is already in progress. Please refresh the window.</value>
+  </data>
+  <data name="NameRelationCrm" xml:space="preserve">
+    <value>Applicable to CRM</value>
+  </data>
+  <data name="NameRelationEmployee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="NameRelationIndividual" xml:space="preserve">
+    <value>Individual</value>
+  </data>
+  <data name="NameRelationOrganisation" xml:space="preserve">
+    <value>Organisation</value>
+  </data>
+  <data name="NameRelationRelationship" xml:space="preserve">
+    <value>Relationship Code</value>
+  </data>
+  <data name="NameRelationRelationshipDesc" xml:space="preserve">
+    <value>Relationship Description</value>
+  </data>
+  <data name="NameRelationReverseDescription" xml:space="preserve">
+    <value>Reverse Relationship</value>
+  </data>
+  <data name="NameRelationAlreadyInUse" xml:space="preserve">
+    <value>The requested Name Relation cannot be deleted as it is essential to other existing information.</value>
+  </data>
+  <data name="ImportCasesDuplicateMapping" xml:space="preserve">
+    <value>Duplicate mappings present for column '{0}'. Rectify mapping and try again.</value>
+  </data>
+  <data name="ImportCasesNoCasesFound" xml:space="preserve">
+    <value>No cases found in the file '{0}'</value>
+  </data>
+  <data name="ImportCasesInvalidSenderRequestType" xml:space="preserve">
+    <value>Invalid sender request type used - '{0}'. Rectify and try again.</value>
+  </data>
+  <data name="ImportCasesSenderIdNotProvided" xml:space="preserve">
+    <value>Sender Id needs to be provided as part of filename for sender request type - '{0}'. Rectify and try again.</value>
+  </data>
+  <data name="InstructionTypeNotFound" xml:space="preserve">
+    <value>This Instruction Type was not found in the system.</value>
+  </data>
+  <data name="InstructionsErrorTitle" xml:space="preserve">
+    <value>Error occured while saving following Instructions:</value>
+  </data>
+  <data name="CharacteristicsErrorTitle" xml:space="preserve">
+    <value>Error occured while saving following Characteristics:</value>
+  </data>
+  <data name="DescriptionNotUnique" xml:space="preserve">
+    <value>'{0}' is not unique.</value>
+  </data>
+  <data name="InstructionNotFound" xml:space="preserve">
+    <value>This Instruction was not found in the system.</value>
+  </data>
+  <data name="InstructionCharacteristicsNotFound" xml:space="preserve">
+    <value>The following Characteristics were not found in the system. Please refresh the window to reload the latest available Characteristics.</value>
+  </data>
+  <data name="ValidationErrorMaxLengthExceeded" xml:space="preserve">
+    <value>The value must not be greater than {0} characters.</value>
+  </data>
+  <data name="InstructionTypeCharacteristicsInUse" xml:space="preserve">
+    <value>The following Characteristics are in use and cannot be deleted:</value>
+  </data>
+  <data name="InstructionTypeInstructionsInUse" xml:space="preserve">
+    <value>The following Instructions are in use and cannot be deleted:</value>
+  </data>
+  <data name="InstructionTypeCharacteristicsInUseErrorMessage" xml:space="preserve">
+    <value>{0} is used by the following {1}</value>
+  </data>
+  <data name="ErrorDuplicateNameTypeCode" xml:space="preserve">
+    <value>Name Type Code '{0}' already exists. Please use another name type code that is unique.</value>
+  </data>
+  <data name="ErrorDuplicateStatusDescription" xml:space="preserve">
+    <value>Status '{0}' already exists. Please use another internal description that is unique.</value>
+  </data>
+  <data name="ErrorDuplicateNumberTypeCode" xml:space="preserve">
+    <value>Number Type Code '{0}' already exists. Please use another number type code that is unique.</value>
+  </data>
+  <data name="ErrorDuplicateDataItemName" xml:space="preserve">
+    <value>Data Item '{0}' already exists. Please use another data item name that is unique.</value>
+  </data>
+  <data name="InstructionTypeInstructionsInUseErrorMessage" xml:space="preserve">
+    <value>'{0}' is used by one or more Names or Cases</value>
+  </data>
+  <data name="ErrorDuplicateTextTypeCode" xml:space="preserve">
+    <value>Text Type Code '{0}' already exists. Please use another text type code that is unique.</value>
+  </data>
+  <data name="ErrorDuplicateNameAliasType" xml:space="preserve">
+    <value>An Alias with the same type '{0}' already exists. Please enter a unique type.</value>
+  </data>
+  <data name="ErrorDuplicateNameAliasDesc" xml:space="preserve">
+    <value>An Alias with the same description '{0}' already exists. Please enter a unique description.</value>
+  </data>
+  <data name="ErrorDuplicateEventNoteTypeCode" xml:space="preserve">
+    <value>Event Note Type '{0}' already exists. Please use another description that is unique.</value>
+  </data>
+  <data name="ErrorDuplicateNameRestrictionDescription" xml:space="preserve">
+    <value>Name Restriction '{0}' already exists. Please use another description that is unique.</value>
+  </data>
+  <data name="DeleteErrorTitle" xml:space="preserve">
+    <value>Unable to Delete</value>
+  </data>
+  <data name="DeleteEventErrorCritieria" xml:space="preserve">
+    <value>This event is being used by the following criteria: </value>
+  </data>
+  <data name="DeleteEventErrorOrphan" xml:space="preserve">
+    <value>This event exists as an 'orphaned event' on one or more cases.</value>
+  </data>
+  <data name="EthicalWall" xml:space="preserve">
+    <value>Ethical Wall</value>
+  </data>
+  <data name="NoImageColumn" xml:space="preserve">
+    <value>There are no columns selected in the SQL statement which could potentially contain an image. Please change the SELECT statement or untick the 'Returns an image' option.</value>
+  </data>
+  <data name="MultipleImageColumn" xml:space="preserve">
+    <value>There is more than one column selected in the SQL statement which is potentially an image. Please change the SELECT statement to only return one (long) column or de-select the Image option.</value>
+  </data>
+  <data name="NoColumnStoredProcedure" xml:space="preserve">
+    <value>There is no return value from the stored procedure used by the data item. The stored procedure must use SELECT to return values instead of using the RETURN or OUTPUT parameters.</value>
+  </data>
+  <data name="DuplicateGroupCodeMessage" xml:space="preserve">
+    <value>This Jurisdiction is already a member of the selected Group.</value>
+  </data>
+  <data name="DuplicateTextsPropertyMessage" xml:space="preserve">
+    <value>This Texts and Property combination already exists.</value>
+  </data>
+  <data name="SameMemberAndGroupCodeMessage" xml:space="preserve">
+    <value>Group and Country cannot be same.</value>
+  </data>
+  <data name="DateCeasedErrorMessage" xml:space="preserve">
+    <value>Date Left Group cannot be less than Date Joined Group.</value>
+  </data>
+  <data name="AssociateMemberErrorMessage" xml:space="preserve">
+    <value>Date Became Full Member cannot exist for an Associate member.</value>
+  </data>
+  <data name="DateFullMembershipErrorMessage" xml:space="preserve">
+    <value>Date Became Full Member cannot be less than Date Joined Group.</value>
+  </data>
+  <data name="DateAssociateMemberErrorMessage" xml:space="preserve">
+    <value>Date Became Associate Member cannot be less than Date Joined Group.</value>
+  </data>
+  <data name="DateLeftErrorMessage" xml:space="preserve">
+    <value>Date Left Group cannot be less than Date Became Full Member.</value>
+  </data>
+  <data name="DateLeftAssoicateMemberErrorMessage" xml:space="preserve">
+    <value>Date Left Group cannot be less than Date Became Associate Member.</value>
+  </data>
+  <data name="NoColumnSql" xml:space="preserve">
+    <value>Unable to parse the SQL statement to derive values for the columns SQL_DESCRIBE and SQL_INTO in the ITEM table. This is probably because the SQL statement contains comments, or a subquery or complex expression. Please simplify the SQL statement or use a stored procedure instead.</value>
+  </data>
+  <data name="CodeNotUnique" xml:space="preserve">
+    <value>Code '{0}' already exists. Please use another code that is unique.</value>
+  </data>
+  <data name="DataMappingDescriptionNotUnique" xml:space="preserve">
+    <value>Data mapping '{0}' already exists. Please use another description that is unique.</value>
+  </data>
+  <data name="DataMappingDescriptionMandatory" xml:space="preserve">
+    <value>'{0}' is a required field.</value>
+  </data>
+  <data name="DataMappingOutput" xml:space="preserve">
+    <value>Event '{0}' already exists. Please use another code that is unique.</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>default</value>
+  </data>
+  <data name="InvalidCaseIdForCaseValidationSql" xml:space="preserve">
+    <value>Invalid Sanity Check Data Item entry point. The SQL Statement for a Data Item that belongs to the Data Validation group must contain the entry point formatted as '=:CaseId'.</value>
+  </data>
+</root>

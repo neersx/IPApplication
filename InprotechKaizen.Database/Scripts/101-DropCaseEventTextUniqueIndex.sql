@@ -1,0 +1,7 @@
+﻿      /** R69853 Drop unique index CASEEVENTTEXT.XAK1CASEEVENTTEXT **/
+
+	  IF exists (SELECT * FROM sysindexes WHERE name = 'XAK1CASEEVENTTEXT')
+      BEGIN
+            PRINT 'Dropping index CASEEVENTTEXT.XAK1CASEEVENTTEXT ...'
+            DROP INDEX CASEEVENTTEXT.XAK1CASEEVENTTEXT
+      END

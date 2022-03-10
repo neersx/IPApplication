@@ -1,0 +1,29 @@
+
+		If NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'POLICING' AND COLUMN_NAME = 'NOTES')
+		BEGIN   
+		PRINT '**** RFC52340 Adding column POLICING.NOTES.'           
+		ALTER TABLE POLICING add  NOTES nvarchar(max) NULL		
+		PRINT '**** RFC52340 POLICING.NOTES column has been added.'
+		END
+		ELSE   
+		PRINT '**** RFC52340 POLICING.NOTES already exists'
+		PRINT ''
+		go
+
+		If NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'POLICING' AND COLUMN_NAME = 'NOTES_TID')
+		BEGIN   
+		PRINT '**** RFC52340 Adding column POLICING.NOTES_TID.'           
+		ALTER TABLE POLICING add  NOTES_TID  int  NULL 		
+		PRINT '**** RFC52340 POLICING.NOTES_TID column has been added.'
+		END
+		ELSE   
+		PRINT '**** RFC52340 POLICING.NOTES_TID already exists'
+		PRINT ''
+		GO
+
+		IF dbo.fn_IsAuditSchemaConsistent('POLICING') = 0
+		BEGIN
+			EXEC ipu_UtilGenerateAuditTriggers 'POLICING'
+		END
+		GO
+	

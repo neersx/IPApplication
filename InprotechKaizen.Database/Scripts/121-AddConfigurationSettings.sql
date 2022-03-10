@@ -1,0 +1,59 @@
+﻿/****************************************************************************/
+/*** RFC70590 Adding table CONFIGURATIONSETTINGS ***/	
+/****************************************************************************/
+
+If NOT exists (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'CONFIGURATIONSETTINGS')
+		BEGIN
+		PRINT '**** RFC70590  Adding table CONFIGURATIONSETTINGS.'
+		CREATE TABLE dbo.CONFIGURATIONSETTINGS
+	( 
+		ID                   int  NOT NULL  IDENTITY ( 1,1 )  NOT FOR REPLICATION,
+		SETTINGKEY           nvarchar(450)  NOT NULL ,
+		SETTINGVALUE         nvarchar(max)  NOT NULL ,
+		LOGUSERID            nvarchar(50)  NULL ,
+		LOGIDENTITYID        int  NULL ,
+		LOGTRANSACTIONNO     int  NULL ,
+		LOGDATETIMESTAMP     datetime  NULL ,
+		LOGAPPLICATION       nvarchar(128)  NULL ,
+		LOGOFFICEID          int  NULL 
+	)
+			exec sc_AssignTableSecurity 'CONFIGURATIONSETTINGS'			 
+			PRINT '**** RFC70590 CONFIGURATIONSETTINGS table has been added.'
+			PRINT ''
+		END
+		ELSE
+			PRINT '**** RFC70590 CONFIGURATIONSETTINGS already exists'
+			PRINT ''
+go 
+
+
+ if not exists (select * from INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE where TABLE_NAME = 'CONFIGURATIONSETTINGS' and CONSTRAINT_NAME = 'XPKCONFIGURATIONSETTINGS')
+	begin
+		PRINT 'Adding primary key constraint CONFIGURATIONSETTINGS.XPKCONFIGURATIONSETTINGS...'
+		ALTER TABLE dbo.CONFIGURATIONSETTINGS
+		WITH NOCHECK ADD CONSTRAINT XPKCONFIGURATIONSETTINGS PRIMARY KEY  CLUSTERED (ID ASC)		
+	end
+	else
+			PRINT '**** Primary key constraint CONFIGURATIONSETTINGS.XPKCONFIGURATIONSETTINGS already exists'
+			PRINT ''
+GO
+
+IF dbo.fn_IsAuditSchemaConsistent('CONFIGURATIONSETTINGS') = 0
+BEGIN
+   EXEC ipu_UtilGenerateAuditTriggers 'CONFIGURATIONSETTINGS'
+END
+GO
+
+if not exists (select * from sysindexes where name = 'XAK1CONFIGURATIONSETTINGS')
+	begin
+		PRINT 'Adding index CONFIGURATIONSETTINGS.XAK1CONFIGURATIONSETTINGS ...'
+		CREATE UNIQUE NONCLUSTERED INDEX XAK1CONFIGURATIONSETTINGS ON CONFIGURATIONSETTINGS
+		( 
+			SETTINGKEY ASC
+		)
+	end
+else
+			PRINT '**** index CONFIGURATIONSETTINGS.XAK1CONFIGURATIONSETTINGS already exists'
+			PRINT ''
+go
+

@@ -1,0 +1,16 @@
+
+If NOT exists (SELECT *
+FROM SETTINGDEFINITION
+WHERE SettingId IN (29))
+
+	INSERT INTO SETTINGDEFINITION(SettingId, SETTINGNAME, DATATYPE, COMMENT, ISINTERNAL, ISEXTERNAL)
+	VALUES
+	(29, 'App Temp Secret Key','C', '', 1,1)
+
+
+ELSE
+	BEGIN
+	PRINT '**** Two Factor Temp Key Setting Definitions Exist Already'
+END
+GO
+

@@ -1,0 +1,31 @@
+﻿	/*** ST-142 change PERIOD.STARTDATE from Nullable to NOT NULL */
+
+	If exists(SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'PERIOD' AND COLUMN_NAME = 'STARTDATE'  AND IS_NULLABLE = 'YES')
+		BEGIN
+		 PRINT '**** Change column PERIOD.STARTDATE to be NOT NULL.'
+			ALTER TABLE [PERIOD] ALTER COLUMN STARTDATE DATETIME NOT NULL 
+		 PRINT '****  PERIOD.STARTDATE column has been changed to NOT NULL.'
+		 PRINT ''
+ 		END
+	ELSE
+ 		PRINT '**** PERIOD.STARTDATE already exists'
+ 		PRINT ''
+	go	
+
+
+	/*** ST-142 change PERIOD.ENDDATE from Nullable to NOT NULL */
+
+	if exists(SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'PERIOD' AND COLUMN_NAME = 'ENDDATE'  AND IS_NULLABLE = 'YES')
+		BEGIN
+		 PRINT '**** Change column PERIOD.ENDDATE to be NOT NULL.'
+			ALTER TABLE [PERIOD] ALTER COLUMN ENDDATE DATETIME NOT NULL 			 
+		 PRINT '****  PERIOD.ENDDATE column has been changed to NOT NULL.'
+		 PRINT ''
+ 		END
+	ELSE
+ 		PRINT '**** PERIOD.ENDDATE already exists'
+ 		PRINT ''
+	GO
+    exec ipu_UtilGenerateAuditTriggers 'PERIOD'
+	GO
+

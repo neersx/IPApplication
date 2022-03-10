@@ -1,0 +1,102 @@
+﻿If NOT exists (select * from TASK where TASKID = 278)
+	BEGIN
+		 PRINT '**** DR-43327 Adding data TASK.TASKID = 278'
+	INSERT INTO TASK (TASKID, TASKNAME, DESCRIPTION)
+	VALUES (278, N'Consolidate Names',N'Consolidate a selection of names into a single name')
+		 PRINT '**** DR-43327 Data successfully added to TASK table.'
+	 PRINT ''
+		END
+	ELSE
+		PRINT '**** DR-43327 TASK.TASKID = 278 already exists'
+		PRINT ''
+go
+
+IF NOT exists (select * from FEATURETASK where FEATUREID = 19 AND TASKID = 278)
+	begin
+		PRINT '**** DR-43327 Inserting FEATURETASK.FEATUREID = 19, TASKID = 278'
+	INSERT INTO FEATURETASK (FEATUREID, TASKID)
+	VALUES (19, 278)
+		PRINT '**** DR-43327 Data has been successfully added to FEATURETASK table.'
+		PRINT ''
+	END
+	ELSE
+		PRINT '**** DR-43327 FEATURETASK.FEATUREID = 19, TASKID = 278 already exists.'
+		PRINT ''
+go
+
+If NOT exists(SELECT * FROM PERMISSIONS WHERE OBJECTTABLE = 'TASK'
+			and OBJECTINTEGERKEY = 278
+			and LEVELTABLE is null
+			and LEVELKEY is null)
+	BEGIN
+		 PRINT '**** DR-43327 Adding TASK definition data PERMISSIONS.OBJECTKEY = 278'
+	INSERT	PERMISSIONS (OBJECTTABLE, OBJECTINTEGERKEY, OBJECTSTRINGKEY, LEVELTABLE, LEVELKEY, GRANTPERMISSION, DENYPERMISSION) 
+	VALUES ('TASK', 278, NULL, NULL, NULL, 32, 0)
+		 PRINT '**** DR-43327 Data successfully added to PERMISSIONS table.'
+	 PRINT ''
+		END
+	ELSE
+	BEGIN
+		 PRINT '**** DR-43327 TASK definition data PERMISSIONS.OBJECTKEY = 278 already exists'
+	PRINT ''
+		END
+go
+
+If NOT exists(SELECT * FROM PERMISSIONS WHERE OBJECTTABLE = 'TASK'
+	and OBJECTINTEGERKEY = 278
+	and LEVELTABLE = 'ROLE'
+	and LEVELKEY = -21)
+BEGIN
+	INSERT	PERMISSIONS (OBJECTTABLE, OBJECTINTEGERKEY, OBJECTSTRINGKEY, LEVELTABLE, LEVELKEY, GRANTPERMISSION, DENYPERMISSION) 
+	VALUES ('TASK', 278, NULL, 'ROLE', -21, 32, 0)
+END
+go
+
+If NOT exists (SELECT * FROM VALIDOBJECT WHERE TYPE = 20
+							  and OBJECTDATA = '72  82')
+	BEGIN
+		 PRINT '**** DR-43327 Adding data VALIDOBJECT.OBJECTDATA = 72  82'
+	declare @validObject int
+			Select @validObject = (max(OBJECTID) + 1) from VALIDOBJECT
+	INSERT INTO VALIDOBJECT (OBJECTID, TYPE, OBJECTDATA)
+	VALUES (@validObject, 20, '72  82')
+		 PRINT '**** DR-43327 Data successfully added to VALIDOBJECT table.'
+	 PRINT ''
+		END
+	ELSE
+		PRINT '**** DR-43327 VALIDOBJECT.OBJECTDATA = 72  82 already exists'
+		PRINT ''
+go
+
+If NOT exists (SELECT * FROM VALIDOBJECT WHERE TYPE = 20
+							  and OBJECTDATA = '72 982')
+	BEGIN
+		 PRINT '**** DR-43327 Adding data VALIDOBJECT.OBJECTDATA = 72 982'
+	declare @validObject int
+			Select @validObject = (max(OBJECTID) + 1) from VALIDOBJECT
+	INSERT INTO VALIDOBJECT (OBJECTID, TYPE, OBJECTDATA)
+	VALUES (@validObject, 20, '72 982')
+		 PRINT '**** DR-43327 Data successfully added to VALIDOBJECT table.'
+	PRINT ''
+		END
+	ELSE
+		PRINT '**** DR-43327 VALIDOBJECT.OBJECTDATA = 72 982 already exists'
+		PRINT ''
+go
+
+
+If NOT exists (SELECT * FROM VALIDOBJECT WHERE TYPE = 20
+                                and OBJECTDATA = '72 781')
+    BEGIN
+        PRINT '**** DR-43327 Adding data VALIDOBJECT.OBJECTDATA = 72 781'
+	declare @validObject int
+      	    Select @validObject = (max(OBJECTID) + 1) from VALIDOBJECT
+    INSERT INTO VALIDOBJECT (OBJECTID, TYPE, OBJECTDATA)
+	VALUES (@validObject, 20, '72 781')
+        PRINT '**** DR-43327 Data successfully added to VALIDOBJECT table.'
+		PRINT ''
+    END
+	ELSE
+		PRINT '**** DR-43327 VALIDOBJECT.OBJECTDATA = 72 781 already exists'
+		PRINT ''
+go

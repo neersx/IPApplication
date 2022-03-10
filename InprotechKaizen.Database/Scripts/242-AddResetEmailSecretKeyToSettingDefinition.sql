@@ -1,0 +1,12 @@
+
+If NOT exists (SELECT * FROM SETTINGDEFINITION WHERE SettingId = 30)
+
+	INSERT INTO SETTINGDEFINITION(SettingId, SETTINGNAME, DATATYPE, COMMENT, ISINTERNAL, ISEXTERNAL)
+	VALUES
+	(30, 'Reset Password Secret Key','C', '', 1,1)
+ELSE
+	BEGIN
+	PRINT '**** Reset Password Secret Key Already Exists'
+END
+GO
+

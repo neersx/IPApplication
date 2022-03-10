@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cpasoftwaresolutions.com" targetNamespace="http://www.cpasoftwaresolutions.com" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.4">
+	<xs:annotation>
+		<xs:documentation>Payment Type</xs:documentation>
+	</xs:annotation>
+	<!-- ======================================================================
+          Filename      : PaymentType.xsd 
+          Author        : CPA Software Solutions
+          Version       : 1.6
+          Last Update   : 2016-10-06
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA Data Model Version 1.6 (CPA-XML)  
+       ====================================================================== -->
+	<!-- ======================================================================
+          ADDITIONAL TYPES LIBRARY 
+       ====================================================================== -->
+	<xs:include schemaLocation="AmountType.xsd"/>
+	<!-- ======================================================================
+          BUSINESS TYPES LIBRARY
+       ====================================================================== -->
+	<xs:include schemaLocation="AddressBookType.xsd"/>
+	<!-- ====================================================================== -->
+	<xs:complexType name="PaymentType">
+		<xs:sequence>
+			<xs:element name="PaymentIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="PaymentReference" type="xs:string" minOccurs="0"/>
+			<xs:element name="PayerName" type="AddressBookType" minOccurs="0"/>
+			<xs:element name="PaymentStatus" type="PaymentStatusCodeType" minOccurs="0"/>
+			<xs:element name="PaymentComment" type="xs:string" minOccurs="0"/>
+			<xs:element name="PaymentDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="PaymentMethod" type="PaymentMethodType" minOccurs="0"/>
+			<xs:element name="PaymentFeeDetails">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PaymentFee" type="PaymentFeeType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="PaymentMethodType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Account">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AccountIdentifier" type="xs:string"/>
+							<xs:element name="AccountKind" type="xs:string" minOccurs="0"/>
+							<xs:element name="AccountHolderName" type="xs:string" minOccurs="0"/>
+							<xs:element name="AccountDebitKind" type="AccountDebitKindType" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="CardAccount" type="CardAccountType"/>
+				<xs:element name="Cheque">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ChequeIdentifier" type="xs:string"/>
+							<xs:element name="ChequeKind" type="xs:string" minOccurs="0"/>
+							<xs:element name="BankName" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="BankTransfer">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="BankTransferIdentifier" type="xs:string"/>
+							<xs:element name="BankTransferDate" type="xs:date"/>
+							<xs:element name="OriginBankName" type="xs:string" minOccurs="0"/>
+							<xs:element name="BankDestinationAccount" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="OtherPaymentMethod" type="xs:string" minOccurs="0"/>
+			</xs:choice>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="CardAccountType">
+		<xs:sequence>
+			<xs:element name="CardPrimaryAccountNumber" type="xs:string"/>
+			<xs:element name="CardNetworkIdentifier" type="xs:string"/>
+			<xs:element name="CardTypeCode" type="CardTypeCodeType" minOccurs="0"/>
+			<xs:element name="CardCustomerIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="CardValidityStartDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="CardExpiryDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="CardIssuerIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="CardIssueNumber" type="xs:string" minOccurs="0"/>
+			<xs:element name="CardCV2Identifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="CardChipCode" type="ChipCodeType" minOccurs="0"/>
+			<xs:element name="CardChipApplicationIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="CardHolderName" type="TextType" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="PaymentFeeType">
+		<xs:sequence>
+			<xs:element name="FeeIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="FeeReference" type="xs:string" minOccurs="0"/>
+			<xs:element name="FeeAmount" type="AmountType"/>
+			<xs:element name="FeeUnitQuantity" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="FeeUnitAmount" type="AmountType" minOccurs="0"/>
+			<xs:element name="FeeComment" type="xs:string" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="PaymentStatusCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Done"/>
+			<xs:enumeration value="Attached"/>
+			<xs:enumeration value="To follow"/>
+			<xs:enumeration value="Bank transfer to follow"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="AccountDebitKindType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Basic Fee Immediate"/>
+			<xs:enumeration value="Basic Fee End of Period"/>
+			<xs:enumeration value="Basic and Class Fee"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="CardTypeCodeType">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="Credit Card"/>
+			<xs:enumeration value="Debit Card"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="ChipCodeType">
+		<xs:restriction base="xs:normalizedString">
+			<xs:enumeration value="Chip"/>
+			<xs:enumeration value="MagneticStripe"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

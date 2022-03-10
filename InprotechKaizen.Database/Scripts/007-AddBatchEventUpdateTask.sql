@@ -1,0 +1,87 @@
+﻿If NOT exists (select * from TASK where TASKID = 211)
+BEGIN
+	INSERT INTO TASK (TASKID, TASKNAME, DESCRIPTION)
+	VALUES (211, N'Batch Event Update',N'Allows the user to update events that belong to a selected data entry task across multiple cases at the same time')
+END
+go
+
+IF NOT exists (select * from FEATURETASK where FEATUREID = 29 AND TASKID = 211)
+BEGIN
+	INSERT INTO FEATURETASK (FEATUREID, TASKID)
+	VALUES (29, 211)
+END
+go
+
+
+If NOT exists(SELECT * FROM PERMISSIONS WHERE OBJECTTABLE = 'TASK'
+	and OBJECTINTEGERKEY = 211
+	and LEVELTABLE is null
+	and LEVELKEY is null)
+BEGIN
+	INSERT	PERMISSIONS (OBJECTTABLE, OBJECTINTEGERKEY, OBJECTSTRINGKEY, LEVELTABLE, LEVELKEY, GRANTPERMISSION, DENYPERMISSION) 
+	VALUES ('TASK', 211, NULL, NULL, NULL, 32, 0)
+END
+go
+
+
+If NOT exists(SELECT * FROM PERMISSIONS WHERE OBJECTTABLE = 'TASK'
+	and OBJECTINTEGERKEY = 211
+	and LEVELTABLE = 'ROLE'
+	and LEVELKEY = -21)
+BEGIN
+	INSERT	PERMISSIONS (OBJECTTABLE, OBJECTINTEGERKEY, OBJECTSTRINGKEY, LEVELTABLE, LEVELKEY, GRANTPERMISSION, DENYPERMISSION) 
+	VALUES ('TASK', 211, NULL, 'ROLE', -21, 0, 0)
+END
+go
+
+
+If NOT exists (SELECT * FROM VALIDOBJECT WHERE TYPE = 20
+                      and OBJECTDATA = '12  12')
+BEGIN
+	declare @validObject int
+    Select @validObject = (max(OBJECTID) + 1) from VALIDOBJECT
+    INSERT INTO VALIDOBJECT (OBJECTID, TYPE, OBJECTDATA)
+	VALUES (@validObject, 20, '12  12')
+END
+go
+	
+If NOT exists (SELECT * FROM VALIDOBJECT WHERE TYPE = 20
+                      and OBJECTDATA = '12 811')
+BEGIN
+	declare @validObject int
+    Select @validObject = (max(OBJECTID) + 1) from VALIDOBJECT
+    INSERT INTO VALIDOBJECT (OBJECTID, TYPE, OBJECTDATA)
+	VALUES (@validObject, 20, '12 811')
+END
+go
+    	
+If NOT exists (SELECT * FROM VALIDOBJECT WHERE TYPE = 20
+                      and OBJECTDATA = '12 112')
+BEGIN
+	declare @validObject int
+    Select @validObject = (max(OBJECTID) + 1) from VALIDOBJECT
+    INSERT INTO VALIDOBJECT (OBJECTID, TYPE, OBJECTDATA)
+	VALUES (@validObject, 20, '12 112')
+END
+go
+    	
+    	
+If NOT exists (SELECT * FROM VALIDOBJECT WHERE TYPE = 20
+                      and OBJECTDATA = '12 812')
+BEGIN
+	declare @validObject int
+    Select @validObject = (max(OBJECTID) + 1) from VALIDOBJECT
+    INSERT INTO VALIDOBJECT (OBJECTID, TYPE, OBJECTDATA)
+	VALUES (@validObject, 20, '12 812')
+END
+go
+    	
+If NOT exists (SELECT * FROM VALIDOBJECT WHERE TYPE = 20
+                      and OBJECTDATA = '12 912')
+BEGIN
+	declare @validObject int
+    Select @validObject = (max(OBJECTID) + 1) from VALIDOBJECT
+    INSERT INTO VALIDOBJECT (OBJECTID, TYPE, OBJECTDATA)
+	VALUES (@validObject, 20, '12 912')
+END
+go

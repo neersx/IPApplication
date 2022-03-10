@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EventNoteTypeDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="EventNoteTypeExternal" xml:space="preserve">
+    <value>Public</value>
+  </data>
+  <data name="LocalityCity" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="LocalityCode" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="LocalityCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="LocalityName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="LocalityState" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="NameAliasType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="NameAliasTypeDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="NameAliasTypeUnique" xml:space="preserve">
+    <value>Unique</value>
+  </data>
+  <data name="InUseErrorMessage" xml:space="preserve">
+    <value>Items highlighted in red cannot be deleted as they are in use.</value>
+  </data>
+  <data name="DeleteSuccessMessage" xml:space="preserve">
+    <value>Selected items have been deleted sucessfully.</value>
+  </data>
+  <data name="ValidAction" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="ValidBasis" xml:space="preserve">
+    <value>Basis</value>
+  </data>
+  <data name="ValidCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="ValidChecklist" xml:space="preserve">
+    <value>Checklist</value>
+  </data>
+  <data name="ValidDateOfLaw" xml:space="preserve">
+    <value>Date of Law</value>
+  </data>
+  <data name="AllCharacteristics" xml:space="preserve">
+    <value>All Characteristics</value>
+  </data>
+  <data name="ValidPropertyType" xml:space="preserve">
+    <value>Property Type</value>
+  </data>
+  <data name="ValidRelationship" xml:space="preserve">
+    <value>Case Relationship</value>
+  </data>
+  <data name="ValidStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="ValidSubType" xml:space="preserve">
+    <value>Sub Type</value>
+  </data>
+  <data name="DuplicateValidCombination" xml:space="preserve">
+    <value>The valid combination already exists for:</value>
+  </data>
+  <data name="InvalidCaseCategory" xml:space="preserve">
+    <value>The selected Case Category is not available for:</value>
+  </data>
+  <data name="ErrorInvalidPropertyTypes" xml:space="preserve">
+    <value>The Property Type is not available for the selected Jurisdiction. Modify either characteristic and try again.</value>
+  </data>
+  <data name="InValidPorpertyTypes" xml:space="preserve">
+    <value>The selected Property Type is not available for:</value>
+  </data>
+  <data name="ErrorInvalidCaseCategories" xml:space="preserve">
+    <value>The Case Category is not available for the selected combination. Modify the combination and try again.</value>
+  </data>
+  <data name="ConfirmSaveForValidCombination" xml:space="preserve">
+    <value>Would you like to save this as a valid combination only for:</value>
+  </data>
+  <data name="ErrorDuplicateValidCombination" xml:space="preserve">
+    <value>This valid combination already exists for the selected Jurisdiction. Modify the combination and try again.</value>
+  </data>
+  <data name="DuplicateCombination" xml:space="preserve">
+    <value>Duplicate Combination</value>
+  </data>
+  <data name="UnavailableCombination" xml:space="preserve">
+    <value>Unavailable Combination</value>
+  </data>
+  <data name="ConfirmCopyValidCombination" xml:space="preserve">
+    <value>Would you like to copy the valid combinations that do not exist?</value>
+  </data>
+  <data name="ValidCombinationExistForCopy" xml:space="preserve">
+    <value>Some of the valid combinations already exist for:</value>
+  </data>
+  <data name="DisplayError" xml:space="preserve">
+    <value>Display error</value>
+  </data>
+  <data name="DisplayWarning" xml:space="preserve">
+    <value>Display warning dialog</value>
+  </data>
+  <data name="DisplayWarningPromptPassword" xml:space="preserve">
+    <value>Display warning dialog &amp; prompt for password</value>
+  </data>
+  <data name="NoAction" xml:space="preserve">
+    <value>No Action</value>
+  </data>
+  <data name="ErrorDuplicateLocalityCode" xml:space="preserve">
+    <value>Locality Code '{0}' already exists. Please use another locality code that is unique.</value>
+  </data>
+  <data name="ErrorDuplicateLocalityDescription" xml:space="preserve">
+    <value>Locality '{0}' already exists. Please use another description that is unique.</value>
+  </data>
+  <data name="ErrorDuplicateNameRelationshipCode" xml:space="preserve">
+    <value>Name Relationship Code '{0}' already exists. Please use another name relationship code that is unique.</value>
+  </data>
+  <data name="ErrorDuplicateNameRelationshipDescription" xml:space="preserve">
+    <value>Name Relationship '{0}' already exists. Please use another description that is unique.</value>
+  </data>
+  <data name="ErrorDuplicateNameRelationshipReverseDescription" xml:space="preserve">
+    <value>Reverse Relationship '{0}' already exists. Please use another reverse relationship that is unique.</value>
+  </data>
+  <data name="NameRelationAtleastOneOptionRequired" xml:space="preserve">
+    <value>Mandatory to select one of these options.</value>
+  </data>
+  <data name="DuplicateJurisdictionAttribute" xml:space="preserve">
+    <value>This attribute already exists for the selected jurisdiction.</value>
+  </data>
+	<data name="DuplicateJurisdictionTexts" xml:space="preserve">
+    <value>The Text Type and Property Type combination already exists for the selected Jurisdiction.</value>
+  </data>
+	<data name="EmpltyJurisdictionTexts" xml:space="preserve">
+    <value>Text type can not be blank.</value>
+  </data>
+  <data name="MaxAttributesError" xml:space="preserve">
+    <value>Maximum number of attributes for ‘{0}’ exceeded.</value>
+  </data>
+  <data name="MinAttributesError" xml:space="preserve">
+    <value>Minimum number of attributes required for ‘{0}’ is {1}. Add more attributes for the type.</value>
+  </data>
+  <data name="ErrorDuplicateJurisdictionCode" xml:space="preserve">
+    <value>Jurisdiction Code '{0}' already exists. Please use another code that is unique.</value>
+  </data>
+  <data name="ClassItemDeleteValidation" xml:space="preserve">
+    <value>Deleting this default item will also delete the associated language items for this combination.</value>
+  </data>
+  <data name="RecordNotFoundForUpdate" xml:space="preserve">
+    <value>"Unable to retrieve class item for update."</value>
+  </data>
+  
+</root>

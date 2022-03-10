@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cpasoftwaresolutions.com" targetNamespace="http://www.cpasoftwaresolutions.com" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.4">
+	<xs:annotation>
+		<xs:documentation>Document Type</xs:documentation>
+	</xs:annotation>
+	<!-- ======================================================================
+          Filename      : DocumentType.xsd 
+          Author        : CPA Software Solutions
+          Version       : 1.6
+          Last Update   : 2016-10-06
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA Data Model Version 1.6 (CPA-XML)  
+       ====================================================================== -->
+	<!-- ======================================================================
+          ADDITIONAL TYPES LIBRARY
+       ====================================================================== -->
+	<xs:include schemaLocation="LanguageCodeType.xsd"/>
+	<!-- ======================================================================
+          DOCUMENT TYPES LIBRARY
+       ====================================================================== -->
+	<xs:complexType name="DocumentType">
+		<xs:sequence>
+			<xs:element name="DocumentIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentReturnCode" type="DocumentReturnCodeType" minOccurs="0"/>
+			<xs:element name="DocumentName" type="xs:string"/>
+			<xs:element name="DocumentFilename" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentFileFormat" type="FileFormatType" minOccurs="0"/>
+			<xs:element name="DocumentDate" type="xs:date" minOccurs="0"/>
+			<xs:element name="DocumentTypeCode" type="DocumentTypeCodeType" minOccurs="0"/>
+			<xs:element name="DocumentLanguageCode" type="LanguageCodeType" minOccurs="0"/>
+			<xs:element name="DocumentMedia" type="DocumentMediaType" minOccurs="0"/>
+			<xs:element name="DocumentLocation" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentVersion" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentNumberPages" type="xs:positiveInteger" minOccurs="0"/>
+			<xs:element name="DocumentSizeInByte" type="xs:integer" minOccurs="0"/>
+			<xs:element name="DocumentComment" type="xs:string" minOccurs="0"/>
+			<xs:element name="DocumentBinary" type="xs:base64Binary" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="DocumentReturnCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Accepted"/>
+			<xs:enumeration value="Document Not Found"/>
+			<xs:enumeration value="Extract Error"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="FileFormatType">
+		<xs:restriction base="xs:NMTOKEN">
+			<xs:enumeration value="Other">
+				<xs:annotation>
+					<xs:documentation>Other</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TIF">
+				<xs:annotation>
+					<xs:documentation>TIFF</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="GIF">
+				<xs:annotation>
+					<xs:documentation>Graphic Image Format</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="PDF">
+				<xs:annotation>
+					<xs:documentation>Portable Document Format</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="JPG">
+				<xs:annotation>
+					<xs:documentation>JPEG Format</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="TXT">
+				<xs:annotation>
+					<xs:documentation>Text Format</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="DocumentMediaType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Paper"/>
+			<xs:enumeration value="Fax"/>
+			<xs:enumeration value="File"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="DocumentTypeCodeType">
+		<xs:union memberTypes="DocumentTypeFixCodeType xs:string"/>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="DocumentTypeFixCodeType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="To Be Defined"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

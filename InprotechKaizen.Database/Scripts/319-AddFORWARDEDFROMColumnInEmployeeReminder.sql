@@ -1,0 +1,44 @@
+/****************************************************************************/
+/** DR-68368 Add column EMPLOYEEREMINDER.FORWARDEDFROM	**/
+/****************************************************************************/
+
+If NOT exists (SELECT *
+FROM INFORMATION_SCHEMA.COLUMNS
+WHERE TABLE_NAME = 'EMPLOYEEREMINDER' AND COLUMN_NAME = 'FORWARDEDFROM')
+    BEGIN
+	PRINT '**** DR-68368 Adding column EMPLOYEEREMINDER.FORWARDEDFROM'
+	ALTER TABLE EMPLOYEEREMINDER ADD FORWARDEDFROM int NULL
+	PRINT '**** DR-68368 Column EMPLOYEEREMINDER.FORWARDEDFROM added'
+END
+ELSE
+    BEGIN
+	PRINT '**** DR-68368 Column EMPLOYEEREMINDER.FORWARDEDFROM exists already'
+END
+GO
+
+/** DR-68368 Adding foreign key constraint EMPLOYEEREMINDER.R_81942	**/
+
+If Not exists (select *
+from INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE
+where TABLE_NAME = 'EMPLOYEEREMINDER' and CONSTRAINT_NAME = 'R_81942')
+	begin
+	PRINT 'Adding foreign key constraint EMPLOYEEREMINDER.R_81942...'
+	ALTER TABLE dbo.EMPLOYEEREMINDER
+	 WITH NOCHECK ADD CONSTRAINT R_81942 FOREIGN KEY (FORWARDEDFROM) REFERENCES dbo.NAME(NAMENO)
+	 ON UPDATE NO ACTION
+	 NOT FOR REPLICATION
+END
+ELSE
+    BEGIN
+	PRINT '**** DR-68368 foreign key constraint EMPLOYEEREMINDER.R_81942 exists already'
+END
+GO
+
+
+/*** DR-68368 Genarating audit triggers ***/
+
+IF dbo.fn_IsAuditSchemaConsistent('EMPLOYEEREMINDER') = 0
+BEGIN
+   EXEC ipu_UtilGenerateAuditTriggers 'EMPLOYEEREMINDER'
+END
+GO

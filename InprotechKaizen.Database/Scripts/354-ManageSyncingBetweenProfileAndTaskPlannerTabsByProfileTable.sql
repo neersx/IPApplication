@@ -1,0 +1,43 @@
+
+if exists (select * from INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE where TABLE_NAME = 'TASKPLANNERTABSBYPROFILE' and CONSTRAINT_NAME = 'R_81943')
+	begin
+		PRINT 'Dropping foreign key constraint TASKPLANNERTABSBYPROFILE.R_81943...'
+		ALTER TABLE TASKPLANNERTABSBYPROFILE DROP CONSTRAINT R_81943
+	end
+go
+
+if exists (select * from INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE where TABLE_NAME = 'TASKPLANNERTABSBYPROFILE' and CONSTRAINT_NAME = 'R_81944')
+	begin
+		PRINT 'Dropping foreign key constraint TASKPLANNERTABSBYPROFILE.R_81944...'
+		ALTER TABLE TASKPLANNERTABSBYPROFILE DROP CONSTRAINT R_81944
+	end
+go
+
+IF EXISTS (SELECT * FROM  sysobjects WHERE  type = 'TR' AND NAME = 'tD_PROFILES_Sync') 
+  BEGIN 
+      PRINT 'Drop trigger tD_PROFILES_Sync...' 
+      DROP TRIGGER tD_PROFILES_Sync 
+  END 
+GO
+
+CREATE TRIGGER tD_PROFILES_Sync ON PROFILES
+AFTER DELETE NOT FOR REPLICATION
+AS
+  -- TRIGGER :  tD_PROFILES_Sync
+  -- VERSION :	1
+  -- DESCRIPTION:	Deletes records from TASKPLANNERTABSBYPROFILE table
+
+  -- MODIFICATIONS :
+  -- Date			Who	Change	Version	Description
+  -- -----------	-------		------	-------	----------------------------------------------- 
+  -- 26 Oct 2021	AK			1		Trigger created
+
+  Declare @nProfileId int
+  Select @nProfileId = d.PROFILEID from deleted d
+  IF EXISTS (SELECT 1 FROM TASKPLANNERTABSBYPROFILE WHERE PROFILEID = @nProfileId)
+  BEGIN  
+    DELETE T
+      FROM TASKPLANNERTABSBYPROFILE T
+	  WHERE T.PROFILEID = @nProfileId		  
+  END
+GO

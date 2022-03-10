@@ -1,0 +1,217 @@
+<HTML>
+<HEAD>
+    <style>
+
+        body {
+            font-family: "noto_sansregular", "Open sans", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857;
+            color: #1A1A1A;
+            background-color: #fff;
+        }
+
+        .h5, .h6, h5, h6 {
+            margin-top: 8.5px;
+            margin-bottom: 8.5px;
+        }
+
+        b, h4, h6 {
+            font-family: noto_sansbold;
+        }
+
+        h6 {
+            line-height: 17px;
+            display: block;
+            font-size: 14px;
+            margin-block-start: 1.33em;
+            margin-block-end: 1.33em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+
+        h2 {
+            line-height: 27px;
+            font-size: 20px;
+        }
+
+        .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+            font-family: noto_sansregular,"Open sans",Helvetica,Arial,sans-serif;
+            line-height: 1.1;
+            color: inherit;
+        }
+
+        .text-black-bold {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .alert-danger {
+            background-color: #fff;
+            border-color: #E90101 !important;
+            color: #333333;
+        }
+
+        .alert-success {
+            background-color: #fff;
+            border-color: #00AA00 !important;
+            color: #333333;
+        }
+
+        .alert {
+            padding: 4px 9px;
+            margin-bottom: 0;
+            border: 2px dashed transparent;
+            border-radius: 0;
+            text-align: left;
+            font-family: "noto_sansregular", "Open sans", Helvetica, Arial, sans-serif;
+            background-color: #fff;
+        }
+
+        .col-md-6 {
+            width: 512px;
+            margin-right: 0px;
+            position: relative;
+            min-height: 1px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        .col-md-12 {
+            width: 800px;
+            margin-right: 0px;
+        }
+
+        .data {
+            width: 800px;
+            margin-right: 0px;
+        }
+
+        .pull-right {
+            text-align: right;
+        }
+
+        .padCurrency {
+            padding-left: 10px;
+            padding-right: 150px;
+        }
+
+        .vatResponse {
+            display: none;
+            margin-bottom: 10px;
+        }
+    </style>
+</HEAD>
+<BODY>
+    <div style="width:100%;text-align: center;">
+        <div id="vatData" style="width:800px;text-align:left;">
+            <div>
+                <h2> <span>HMRC VAT Submission - ##entityName##</span> </h2>
+            </div>
+            <div class="vatResponse" style="display:##failureResponse##">
+                <div class="alert alert-danger">
+                    <h6>
+                        <span class="cpa-icon cpa-icon-exclamation-circle" name="exclamation-circle"></span>
+                        <span>##submitFailedDetails##</span>
+                    </h6>
+                    <div> <span>##responseErrorAndMessage## </span> </div>
+                    <ul>
+                        ##liErrorText##
+                    </ul>
+                </div>
+            </div>
+            <div class="vatResponse" style="display:##successResponse##">
+                <div class="alert alert-success">
+                    <h6> <span class="cpa-icon cpa-icon-check-circle" name="check-circle"></span><span>##LabelSubmitSuccessful##</span> </h6>
+                    <div> <label>##LabelProcessingDate##: </label><span>##ProcessingDate##</span></div>
+                    <div> <label>##LabelPaymentIndicator##: </label><span>##PaymentIndicator##</span> </div>
+                    <div> <label>##LabelFormBundleNumber##: </label><span>##FormBundleNumber##</span> </div>
+                    <div> <label>##LabelChargeRefNumber##: </label><span>##ChargeRefNumber##</span> </div>
+                </div>
+            </div>
+            <div>
+                <span>##LabelVatDatePeriod## </span> <span class="text-black-bold">##vatFromDate##</span> <span>##LabelVatToPeriod##</span> <span class="text-black-bold">##vatToDate##</span> <span> ##LabelVatDatePeriodTaxCode##</span>
+                <span style="display: ##hasMultipleEntities##">
+                    ##LabelMultipleEntities##
+                </span>
+            </div> <br>
+            <div>
+                <table style="border: 0px; width: 90%; font-size: 14px;">
+                    <tr>
+                        <td style="width: 60%;" class="pull-right">
+                            ##LabelVatBox1##
+                        </td>
+                        <td style="width: 40%;" class="pull-right padCurrency">
+                            ##BoxVal1##
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 60%;" class="pull-right">
+                            ##LabelVatBox2##
+                        </td>
+                        <td style="width: 40%;" class="pull-right padCurrency">
+                            ##BoxVal2##
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 60%;" class="pull-right">
+                            ##LabelVatBox3##
+                        </td>
+                        <td style="width: 40%;" class="pull-right padCurrency">
+                            ##BoxVal3##
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 60%;" class="pull-right">
+                            ##LabelVatBox4##
+                        </td>
+                        <td style="width: 40%;" class="pull-right padCurrency">
+                            ##BoxVal4##
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 60%;" class="pull-right text-black-bold">
+                            ##LabelVatBox5##
+                        </td>
+                        <td style="width: 40%;" class="pull-right padCurrency text-black-bold">
+                            ##BoxVal5##
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 60%;" class="pull-right">
+                            ##LabelVatBox6##
+                        </td>
+                        <td style="width: 40%;" class="pull-right padCurrency">
+                            ##BoxVal6##
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 60%;" class="pull-right">
+                            ##LabelVatBox7##
+                        </td>
+                        <td style="width: 40%;" class="pull-right padCurrency">
+                            ##BoxVal7##
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 60%;" class="pull-right">
+                            ##LabelVatBox8##
+                        </td>
+                        <td style="width: 40%;" class="pull-right padCurrency">
+                            ##BoxVal8##
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 60%;" class="pull-right">
+                            ##LabelVatBox9##
+                        </td>
+                        <td style="width: 40%;" class="pull-right padCurrency">
+                            ##BoxVal9##
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            </div>
+        </div>
+</BODY>
+</HTML>

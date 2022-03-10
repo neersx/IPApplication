@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.6">
+	<!-- ======================================================================
+          Filename      : AmountType_T.xsd                                                                                           
+          Author        : CPA Software Solutions
+          Version       : 0.6
+          Last Update   : 2006-06-20
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA-XML Bulk Load schema.
+       ====================================================================== -->
+	<!-- ======================================================================
+          ADDITIONAL TYPES LIBRARY                                                                                         
+       ====================================================================== -->
+	<!-- ====================================================================== -->
+	<xs:complexType name="AmountType">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="currencyCode" type="xs:string" use="optional" sql:field="CURRENCYCODE"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

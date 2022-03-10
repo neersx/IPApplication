@@ -1,0 +1,8 @@
+﻿IF NOT EXISTS (SELECT * FROM CONFIGURATIONITEM WHERE TASKID = 215)
+BEGIN
+	INSERT INTO CONFIGURATIONITEM(TASKID, TITLE, DESCRIPTION) VALUES(
+	215,
+	N'Upload USPTO Certificate',
+	N'Upload your USPTO Private PAIR certificate to allow Inprotech to access the USPTO on your behalf.')
+END
+GO

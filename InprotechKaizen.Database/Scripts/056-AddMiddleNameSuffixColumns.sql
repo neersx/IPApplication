@@ -1,0 +1,37 @@
+/*** R53905 Add column NAME.MIDDLENAME          ***/
+
+If NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'NAME' AND COLUMN_NAME = 'MIDDLENAME')
+BEGIN
+    PRINT '**** R53905 Adding column NAME.MIDDLENAME.'
+    ALTER TABLE NAME add  MIDDLENAME  nvarchar(50)  NULL
+    PRINT '**** R53905 NAME.MIDDLENAME column has been added.'
+    PRINT ''
+END
+ELSE
+BEGIN
+    PRINT '**** R53905 NAME.MIDDLENAME already exists'
+    PRINT ''
+END
+go
+
+/*** R53905 Add column NAME.SUFFIX          ***/
+
+If NOT EXISTS (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'NAME' AND COLUMN_NAME = 'SUFFIX')
+BEGIN
+    PRINT '**** R53905 Adding column NAME.SUFFIX.'
+    ALTER TABLE NAME add  SUFFIX  nvarchar(20)  NULL    
+    PRINT '**** R53905 NAME.SUFFIX column has been added.'
+    PRINT ''
+END
+ELSE
+BEGIN
+    PRINT '**** R53905 NAME.SUFFIX already exists'
+    PRINT ''
+END
+GO
+
+IF dbo.fn_IsAuditSchemaConsistent('NAME') = 0
+BEGIN
+   EXEC ipu_UtilGenerateAuditTriggers 'NAME'
+END
+GO

@@ -1,0 +1,8 @@
+﻿IF NOT EXISTS (SELECT * FROM CONFIGURATIONITEM WHERE TASKID = 216)
+BEGIN
+	INSERT INTO CONFIGURATIONITEM(TASKID, TITLE, DESCRIPTION) VALUES(
+	216,
+	N'Schedule USPTO Download',
+	N'Schedule tasks to automatically download selected case data from the USPTO Private PAIR.')
+END
+GO

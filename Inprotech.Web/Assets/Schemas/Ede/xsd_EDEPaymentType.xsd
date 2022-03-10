@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:sql="urn:schemas-microsoft-com:mapping-schema" elementFormDefault="qualified" attributeFormDefault="unqualified" version="0.6">
+	<xs:annotation>
+		<xs:appinfo>
+			<sql:relationship name="PaymentName" parent="EDEPAYMENTDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER" child="EDEADDRESSBOOK" child-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="PaymentMethod" parent="EDEPAYMENTDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER" child="EDEPAYMENTMETHOD" child-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="PayAcct" parent="EDEPAYMENTMETHOD" parent-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER" child="EDEACCOUNT" child-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="CreditAcct" parent="EDEPAYMENTMETHOD" parent-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER" child="EDECARDACCOUNT" child-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="ChequeAcct" parent="EDEPAYMENTMETHOD" parent-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER" child="EDECHEQUE" child-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="EFTAcct" parent="EDEPAYMENTMETHOD" parent-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER" child="EDEBANKTRANSFER" child-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER"/>
+			<sql:relationship name="PaymentFeeDtls" parent="EDEPAYMENTDETAILS" parent-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER" child="EDEPAYMENTFEEDETAILS" child-key="USERID TRANSACTIONIDENTIFIER PAYMENTIDENTIFIER"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:annotation>
+		<xs:documentation>Payment Type</xs:documentation>
+	</xs:annotation>
+	<!-- ======================================================================
+          Filename      : PaymentType_T.xsd 
+          Author        : CPA Software Solutions
+          Version       : 0.6
+          Last Update   : 2006-06-20
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA-XML Bulk Load schema.
+       ====================================================================== -->
+	<!-- ======================================================================
+          ADDITIONAL TYPES LIBRARY                                                                                         
+       ====================================================================== -->
+	<xs:include schemaLocation="xsd_EDEAmountType.xsd"/>
+	<!-- ======================================================================
+          BUSINESS TYPES LIBRARY                                                                                         
+       ====================================================================== -->
+	<xs:include schemaLocation="xsd_EDEAddressBookType.xsd"/>
+	<!-- ====================================================================== -->
+	<xs:complexType name="PaymentType">
+		<xs:sequence>
+			<xs:element name="PaymentIdentifier" type="xs:string" minOccurs="0" sql:field="PAYMENTIDENTIFIER"/>
+			<xs:element name="PaymentReference" type="xs:string" minOccurs="0" sql:field="PAYMENTREFERENCE"/>
+			<xs:element name="PayerName" type="AddressBookType" minOccurs="0" sql:relation="EDEADDRESSBOOK" sql:relationship="PaymentName"/>
+			<xs:element name="PaymentStatus" type="xs:string" minOccurs="0" sql:field="PAYMENTSTATUS"/>
+			<xs:element name="PaymentComment" type="xs:string" minOccurs="0" sql:field="PAYMENTCOMMENT"/>
+			<xs:element name="PaymentDate" type="xs:dateTime" minOccurs="0" sql:field="PAYMENTDATE"/>
+			<xs:element name="PaymentMethod" type="PaymentMethodType" minOccurs="0" sql:relation="EDEPAYMENTMETHOD" sql:relationship="PaymentMethod"/>
+			<xs:element name="PaymentFeeDetails" sql:is-constant="1">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="PaymentFee" type="PaymentFeeType" maxOccurs="unbounded" sql:relation="EDEPAYMENTFEEDETAILS" sql:relationship="PaymentFeeDtls"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="PaymentMethodType">
+		<xs:sequence>
+			<xs:element name="Account" sql:relation="EDEACCOUNT" sql:relationship="PayAcct">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="AccountIdentifier" type="xs:string" sql:field="ACCOUNTIDENTIFIER"/>
+						<xs:element name="AccountKind" type="xs:string" minOccurs="0" sql:field="ACCOUNTKIND"/>
+						<xs:element name="AccountHolderName" type="xs:string" minOccurs="0" sql:field="ACCOUNTHOLDERNAME"/>
+						<xs:element name="AccountDebitKind" type="xs:string" minOccurs="0" sql:field="ACCOUNTDEBITKIND"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CardAccount" type="CardAccountType" sql:relation="EDECARDACCOUNT" sql:relationship="CreditAcct"/>
+			<xs:element name="Cheque" sql:relation="EDECHEQUE" sql:relationship="ChequeAcct">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="ChequeIdentifier" type="xs:string" sql:field="CHEQUEIDENTIFIER"/>
+						<xs:element name="ChequeKind" type="xs:string" minOccurs="0" sql:field="CHEQUEKIND"/>
+						<xs:element name="BankName" type="xs:string" minOccurs="0" sql:field="BANKNAME"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BankTransfer" sql:relation="EDEBANKTRANSFER" sql:relationship="EFTAcct">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="BankTransferIdentifier" type="xs:string" sql:field="BANKTRANSFERIDENTIFIER"/>
+						<xs:element name="BankTransferDate" type="xs:dateTime" sql:field="BANKTRANSFERDATE"/>
+						<xs:element name="OriginBankName" type="xs:string" minOccurs="0" sql:field="ORIGINBANKNAME"/>
+						<xs:element name="BankDestinationAccount" type="xs:string" minOccurs="0" sql:field="BANKDESTINATIONACCOUNT"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OtherPaymentMethod" type="xs:string" minOccurs="0" sql:field="OTHERPAYMENTMETHOD"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="CardAccountType">
+		<xs:sequence>
+			<xs:element name="CardPrimaryAccountNumber" type="xs:string" sql:field="CARDPRIMARYACCOUNTNUMBER"/>
+			<xs:element name="CardNetworkIdentifier" type="xs:string" sql:field="CARDNETWORKIDENTIFIER"/>
+			<xs:element name="CardTypeCode" type="xs:string" minOccurs="0" sql:field="CARDTYPECODE"/>
+			<xs:element name="CardCustomerIdentifier" type="xs:string" minOccurs="0" sql:field="CARDCUSTOMERIDENTIFIER"/>
+			<xs:element name="CardValidityStartDate" type="xs:dateTime" minOccurs="0" sql:field="CARDVALIDITYSTARTDATE"/>
+			<xs:element name="CardExpiryDate" type="xs:dateTime" minOccurs="0" sql:field="CARDEXPIRYDATE"/>
+			<xs:element name="CardIssuerIdentifier" type="xs:string" minOccurs="0" sql:field="CARDISSUERIDENTIFIER"/>
+			<xs:element name="CardIssueNumber" type="xs:string" minOccurs="0" sql:field="CARDISSUENUMBER"/>
+			<xs:element name="CardCV2Identifier" type="xs:string" minOccurs="0" sql:field="CARDCV2IDENTIFIER"/>
+			<xs:element name="CardChipCode" type="xs:string" minOccurs="0" sql:field="CARDCHIPCODE"/>
+			<xs:element name="CardChipApplicationIdentifier" type="xs:string" minOccurs="0" sql:field="CARDCHIPAPPLICATIONIDENTIFIER"/>
+			<xs:element name="CardHolderName" type="TextType" minOccurs="0" sql:field="CARDHOLDERNAME"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="PaymentFeeType">
+		<xs:sequence>
+			<xs:element name="FeeIdentifier" type="xs:string" minOccurs="0" sql:field="FEEIDENTIFIER"/>
+			<xs:element name="FeeReference" type="xs:string" minOccurs="0" sql:field="FEEREFERENCE"/>
+			<xs:element name="FeeAmount" type="FeeAmountType" sql:field="FEEAMOUNT"/>
+			<xs:element name="FeeUnitQuantity" type="xs:decimal" minOccurs="0" sql:field="FEEUNITQUANTITY"/>
+			<xs:element name="FeeUnitAmount" type="FeeUnitAmountType" minOccurs="0" sql:field="FEEUNITAMOUNT"/>
+			<xs:element name="FeeComment" type="xs:string" minOccurs="0" sql:field="FEECOMMENT"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FeeAmountType">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="currencyCode" type="xs:string" use="optional" sql:field="FEEAMOUNTCURRENCYCODE"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="FeeUnitAmountType">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="currencyCode" type="xs:string" use="optional" sql:field="FEEUNITAMOUNTCURRENCYCODE"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

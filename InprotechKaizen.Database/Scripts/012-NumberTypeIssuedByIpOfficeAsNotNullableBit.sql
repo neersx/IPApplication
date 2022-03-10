@@ -1,0 +1,31 @@
+﻿	/*** ST-454 change NUMBERTYPES.ISSUEDBYIPOFFICE from decimal to not nullable bit column */
+
+	If exists(SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'NUMBERTYPES' AND COLUMN_NAME = 'ISSUEDBYIPOFFICE'  AND DATA_TYPE = 'decimal')
+		BEGIN
+		 PRINT '**** Change column NUMBERTYPES.ISSUEDBYIPOFFICE to be not nullable bit column.'
+			UPDATE [NUMBERTYPES] set ISSUEDBYIPOFFICE = 0 
+				where ISSUEDBYIPOFFICE is null
+
+			ALTER TABLE [NUMBERTYPES] 
+				ALTER COLUMN ISSUEDBYIPOFFICE bit NOT NULL 			
+
+		 PRINT '****  NUMBERTYPES.ISSUEDBYIPOFFICE column has been changed to a not nullable bit.'
+		 PRINT ''
+ 		END
+	ELSE
+ 		PRINT '**** NUMBERTYPES.ISSUEDBYIPOFFICE already is a non-nullable bit column'
+ 		PRINT ''
+	go	
+
+	/*** ST-454 change NUMBERTYPES.ISSUEDBYIPOFFICE from to have a default */
+
+	if exists(SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'NUMBERTYPES' 
+					AND COLUMN_NAME = 'ISSUEDBYIPOFFICE' 
+					AND COLUMN_DEFAULT is null)
+	BEGIN
+		ALTER TABLE [NUMBERTYPES] ADD DEFAULT 0 FOR ISSUEDBYIPOFFICE
+	END
+	GO
+
+	exec ipu_UtilGenerateAuditTriggers 'NUMBERTYPES'
+	GO

@@ -1,0 +1,55 @@
+{
+  "CompressImage": "true",
+  "Excel": {
+    "TitleColor": "#00156E",
+    "TitleBackgroundColor": "#FFFFFF",
+    "RowBackgroundColor": "#FFFFFF",
+    "RowAlternateBackgroundColor": "#F1FBFF",
+    "ColumnHeaderBackgroundColor": "#CDDEF2",
+    "BorderColor": "#9FAABF",
+    "ImageMaxDimension": "48X48",
+    "PageOrientation": 1,
+    "ImageReSizeMode": 0,
+    "PaperSize": 0
+  },
+  "Word": {
+    "TitleColor": "#00156E",
+    "TitleBackgroundColor": "#FFFFFF",
+    "RowBackgroundColor": "#FFFFFF",
+    "RowAlternateBackgroundColor": "#F1FBFF",
+    "ColumnHeaderBackgroundColor": "#CDDEF2",
+    "BorderColor": "#9FAABF",
+    "ImageMaxDimension": "48X48",
+    "PageOrientation": 1,
+    "ImageReSizeMode": 0,
+    "PaperSize": 0,
+    "CompanyLogo": "client/images/branding-logo.png",
+    "DisplayLogo": true,
+    "DisplayLogoOnFirstPageOnly": true,
+    "MarginTop": 10,
+    "MarginRight": 10,
+    "MarginBottom": 10,
+    "MarginLeft": 10
+  },
+  "Pdf": {
+    "TitleColor": "#00156E",
+    "TitleBackgroundColor": "#FFFFFF",
+    "RowBackgroundColor": "#FFFFFF",
+    "RowAlternateBackgroundColor": "#F1FBFF",
+    "ColumnHeaderBackgroundColor": "#CDDEF2",
+    "BorderColor": "#9FAABF",
+    "ImageMaxDimension": "48X48",
+    "ImageReSizeMode": 0,
+    "CompanyLogo": "client/images/branding-logo.png",
+    "DisplayLogo": true,
+    "DisplayLogoOnFirstPageOnly": true,
+    "MarginTop": 10,
+    "MarginRight": 10,
+    "MarginBottom": 10,
+    "MarginLeft": 10,
+    "IconCheckboxChecked": "client/images/checkbox2.check.png",
+    "IconCheckboxUnchecked": "client/images/checkbox2.uncheck.png"
+  }
+}
+
+

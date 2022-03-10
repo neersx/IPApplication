@@ -1,0 +1,27 @@
+	/* R54018 Add translation support to missing columns in country **/
+
+	IF NOT exists (select * from TRANSLATIONSOURCE where TABLENAME = 'COUNTRY' and TIDCOLUMN = 'INFORMALNAME_TID')
+	begin
+			PRINT '**** R54018 Inserting data into TRANSLATIONSOURCE.TABLENAME = COUNTRY'
+			Insert into TRANSLATIONSOURCE (TABLENAME, SHORTCOLUMN , LONGCOLUMN, TIDCOLUMN, INUSE)
+			Values ('COUNTRY', 'INFORMALNAME', NULL, 'INFORMALNAME_TID', 0)
+			PRINT '**** R54018 Data has been successfully added to TRANSLATIONSOURCE table.'
+			PRINT ''   
+	END
+	ELSE
+	PRINT '**** R54018 TRANSLATIONSOURCE = COUNTRY.INFORMALNAME already exists.'
+	PRINT ''
+	go
+	
+	IF NOT exists (select * from TRANSLATIONSOURCE where TABLENAME = 'COUNTRY' and TIDCOLUMN = 'NOTES_TID')
+	begin
+			PRINT '**** R54018 Inserting data into TRANSLATIONSOURCE.TABLENAME = COUNTRY'
+			Insert into TRANSLATIONSOURCE (TABLENAME, SHORTCOLUMN , LONGCOLUMN, TIDCOLUMN, INUSE)
+			Values ('COUNTRY', 'NOTES', NULL, 'NOTES_TID', 0)
+			PRINT '**** R54018 Data has been successfully added to TRANSLATIONSOURCE table.'
+			PRINT ''   
+	END
+	ELSE
+	PRINT '**** R54018 TRANSLATIONSOURCE = COUNTRY.NOTES already exists.'
+	PRINT ''
+	go	

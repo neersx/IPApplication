@@ -1,0 +1,55 @@
+/****************************************************************************/
+/*** DR-73958 Inserting data into TRANSLATIONSOURCE.TABLENAME = QUESTION' ***/
+/****************************************************************************/
+
+--- Translation Source columns should be added before adding a TID column(To generate audit triggers) ---	   
+IF NOT exists (select * from TRANSLATIONSOURCE where TABLENAME = 'QUESTION' and TIDCOLUMN = 'INSTRUCTIONS_TID')
+BEGIN
+	PRINT '**** DR-73958 Inserting data into TRANSLATIONSOURCE.TABLENAME = QUESTION'
+	Insert into TRANSLATIONSOURCE(TABLENAME, SHORTCOLUMN , LONGCOLUMN, TIDCOLUMN, INUSE)
+	Values ('QUESTION', 'INSTRUCTIONS', NULL, 'INSTRUCTIONS_TID', 0)
+	PRINT '**** DR-73958 Data has been successfully added to TRANSLATIONSOURCE table.'
+	PRINT ''
+END
+ELSE
+	PRINT '**** DR-73958 Data TRANSLATIONSOURCE.TABLENAME = QUESTION and TRANSLATIONSOURCE.TIDCOLUMN = INSTRUCTIONS_TID already exists.'
+PRINT ''
+GO
+
+/*** DR-73958 Add column QUESTION.INSTRUCTIONS ***/
+
+If NOT exists (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'QUESTION' AND COLUMN_NAME = 'INSTRUCTIONS')
+BEGIN
+	PRINT '**** DR-73958 Adding column QUESTION.INSTRUCTIONS'
+	ALTER TABLE QUESTION ADD INSTRUCTIONS nvarchar(508) NULL
+	PRINT '**** DR-73958 Column QUESTION.INSTRUCTIONS added'
+	PRINT ''
+END
+ELSE
+    BEGIN
+	PRINT '**** DR-73958 Column QUESTION.INSTRUCTIONS exists already'
+	PRINT ''
+END
+GO
+
+/*** DR-73958 Add column QUESTION.INSTRUCTIONS_TID ***/
+
+If NOT exists (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'QUESTION' AND COLUMN_NAME = 'INSTRUCTIONS_TID')
+BEGIN
+	PRINT '**** DR-73958 Adding column QUESTION.INSTRUCTIONS_TID'
+	ALTER TABLE QUESTION ADD INSTRUCTIONS_TID int NULL
+	PRINT '**** DR-73958 Column QUESTION.INSTRUCTIONS_TID added'
+	PRINT ''
+END
+ELSE
+    BEGIN
+	PRINT '**** DR-73958 Column QUESTION.INSTRUCTIONS_TID exists already'
+	PRINT ''
+END
+GO
+
+IF dbo.fn_IsAuditSchemaConsistent('QUESTION') = 0
+BEGIN
+   EXEC ipu_UtilGenerateAuditTriggers 'QUESTION'
+END
+GO

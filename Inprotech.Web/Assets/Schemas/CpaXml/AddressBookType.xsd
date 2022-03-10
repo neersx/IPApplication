@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.cpasoftwaresolutions.com" targetNamespace="http://www.cpasoftwaresolutions.com" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.4">
+	<xs:annotation>
+		<xs:documentation>Address Book Type</xs:documentation>
+	</xs:annotation>
+	<!-- ======================================================================
+          Filename      : AddressBookType.xsd 
+          Author        : CPA Software Solutions
+          Version       : 1.6
+          Last Update   : 2016-10-06
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        Implementation of CPA Data Model Version 1.6 (CPA-XML)  
+       ====================================================================== -->
+	<!-- ======================================================================
+          ADDITIONAL TYPES LIBRARY              
+       ====================================================================== -->
+	<xs:include schemaLocation="TextType.xsd"/>
+	<xs:include schemaLocation="LanguageCodeType.xsd"/>
+	<xs:include schemaLocation="CountryCodeType.xsd"/>
+	<!-- ======================================================================
+          ADDRESS BOOK TYPES LIBRARY                                  
+       ====================================================================== -->
+	<xs:complexType name="AddressBookType">
+		<xs:sequence>
+			<xs:element name="AddressLanguageCode" type="LanguageCodeType" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="FreeFormatNameAddressDetails" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FreeFormatNameAddressLine" type="TextType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FormattedNameAddress" type="FormattedNameAddressType" minOccurs="0"/>
+			</xs:choice>
+			<xs:element name="ContactInformationDetails" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Phone" type="PhoneType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="Fax" type="FaxType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="Email" type="EmailType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="URL" type="xs:anyURI" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="OtherElectronicAddress" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="FormattedNameAddressType">
+		<xs:sequence>
+			<xs:element name="Name" type="NameType"/>
+			<xs:element name="Address" type="AddressType" minOccurs="0"/>
+			<xs:element name="AttentionOf" type="AttentionOfType" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="NameType">
+		<xs:sequence>
+			<xs:element name="SenderNameIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="SenderNameInternalIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReceiverNameIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:element name="ReceiverNameInternalIdentifier" type="xs:string" minOccurs="0"/>
+			<xs:choice>
+				<xs:element name="FreeFormatName" type="FreeFormatNameType" minOccurs="0"/>
+				<xs:element name="FormattedName">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NamePrefix" type="xs:string" minOccurs="0"/>
+							<xs:element name="FirstName" type="xs:string" minOccurs="0"/>
+							<xs:element name="MiddleName" type="xs:string" minOccurs="0"/>
+							<xs:element name="LastName" type="xs:string" minOccurs="0"/>
+							<xs:element name="SecondLastName" type="xs:string" minOccurs="0"/>
+							<xs:element name="NameSuffix" type="xs:string" minOccurs="0"/>
+							<xs:element name="Salutation" type="xs:string" minOccurs="0"/>
+							<xs:element name="Gender" type="GenderType" minOccurs="0"/>
+							<xs:element name="IndividualIdentifier" type="IndividualIdentifierType" minOccurs="0"/>
+							<xs:element name="PersonRole" type="xs:string" minOccurs="0"/>
+							<xs:element name="OrganizationName" type="xs:string" minOccurs="0"/>
+							<xs:element name="OrganizationDepartment" type="xs:string" minOccurs="0"/>
+							<xs:element name="NameSynonym" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="AddressType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="FreeFormatAddress" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FreeFormatAddressLine" type="TextType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FormattedAddress">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="AddressLine" type="TextType" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="AddressMailCode" type="xs:string" minOccurs="0"/>
+							<xs:element name="AddressPostOfficeBox" type="xs:string" minOccurs="0"/>
+							<xs:element name="AddressRoom" type="xs:string" minOccurs="0"/>
+							<xs:element name="AddressFloor" type="xs:string" minOccurs="0"/>
+							<xs:element name="AddressBuilding" type="xs:string" minOccurs="0"/>
+							<xs:element name="AddressStreet" type="xs:string" minOccurs="0"/>
+							<xs:element name="AddressCity" type="xs:string" minOccurs="0"/>
+							<xs:element name="AddressCounty" type="xs:string" minOccurs="0"/>
+							<xs:element name="AddressState" type="xs:string" minOccurs="0"/>
+							<xs:element name="AddressPostcode" type="xs:string" minOccurs="0"/>
+							<xs:element name="AddressCountryCode" type="CountryCodeType" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="AttentionOfType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="FreeFormatAttentionOf" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FreeFormatAttentionOfLine" type="TextType" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="FormattedAttentionOf">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="NamePrefix" type="xs:string" minOccurs="0"/>
+							<xs:element name="FirstName" type="xs:string" minOccurs="0"/>
+							<xs:element name="LastName" type="xs:string" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="FreeFormatNameType">
+		<xs:sequence>
+			<xs:element name="NameKind" type="NameKindType" minOccurs="0"/>
+			<xs:element name="FreeFormatNameDetails" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FreeFormatNameLine" type="TextType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="NameKindType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Individual"/>
+			<xs:enumeration value="Organisation"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="GenderType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Male"/>
+			<xs:enumeration value="Female"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="IndividualIdentifierType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="National Individual Identifier"/>
+			<xs:enumeration value="Entreprise Identifier"/>
+			<xs:enumeration value="Social Security Number"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="PhoneType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="sequenceNumber" type="xs:positiveInteger" use="optional"/>
+				<xs:attribute name="phoneKind" type="PhoneKindType" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:simpleType name="PhoneKindType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="Fixed"/>
+			<xs:enumeration value="Mobile Phone"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="FaxType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="sequenceNumber" type="xs:positiveInteger" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<!-- ====================================================================== -->
+	<xs:complexType name="EmailType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="sequenceNumber" type="xs:positiveInteger" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

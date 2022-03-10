@@ -1,0 +1,71 @@
+	/***  RFC32218  Add new table - EXTERNALSETTINGS for compatibility with Inprotech 9 Patches		***/
+
+	If NOT exists (SELECT * FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'EXTERNALSETTINGS')
+		BEGIN
+			PRINT '**** RFC32218  Adding table EXTERNALSETTINGS.' 
+
+				CREATE TABLE dbo.EXTERNALSETTINGS
+				 (
+					ID  int  IDENTITY (1,1)  NOT FOR REPLICATION,
+ 					PROVIDERNAME  nvarchar(30)  NOT NULL ,
+ 					SETTINGS  nvarchar(max)  NOT NULL ,
+ 					ISCOMPLETE  bit  NOT NULL 
+ 						 DEFAULT  0,
+ 					LOGUSERID  nvarchar(50)  NULL ,
+ 					LOGIDENTITYID  int  NULL ,
+ 					LOGTRANSACTIONNO  int  NULL ,
+ 					LOGDATETIMESTAMP  datetime  NULL ,
+ 					LOGAPPLICATION  nvarchar(128)  NULL ,
+ 					LOGOFFICEID  int  NULL 
+				 )
+
+			exec sc_AssignTableSecurity 'EXTERNALSETTINGS'
+
+			PRINT '**** RFC32218 EXTERNALSETTINGS table has been added.'
+			PRINT ''
+		END
+	ELSE
+			PRINT '**** RFC32218 EXTERNALSETTINGS already exists'
+			PRINT ''
+	go 
+
+
+	/*** RFC32218 Adding primary key for table EXTERNALSETTINGS				***/
+
+	if exists (select * from INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE where TABLE_NAME = 'EXTERNALSETTINGS' and CONSTRAINT_NAME = 'XPKEXTERNALSETTINGS')
+		begin
+			PRINT 'Dropping primary key constraint EXTERNALSETTINGS.XPKEXTERNALSETTINGS...'
+			ALTER TABLE EXTERNALSETTINGS DROP CONSTRAINT XPKEXTERNALSETTINGS
+		end
+	go
+
+	PRINT 'Adding primary key constraint EXTERNALSETTINGS.XPKEXTERNALSETTINGS...'
+	ALTER TABLE dbo.EXTERNALSETTINGS
+		 WITH NOCHECK ADD CONSTRAINT  XPKEXTERNALSETTINGS PRIMARY KEY   NONCLUSTERED (ID  ASC)
+	go
+
+
+	/*** RFC32218 Adding Index for table EXTERNALSETTINGS				***/	
+
+	if exists (select * from sysindexes where name = 'XAK1EXTERNALSETTINGS')
+	begin
+		 PRINT 'Dropping index EXTERNALSETTINGS.XAK1EXTERNALSETTINGS ...'
+		 DROP INDEX EXTERNALSETTINGS.XAK1EXTERNALSETTINGS
+	end
+	go
+
+	PRINT 'Adding index EXTERNALSETTINGS.XAK1EXTERNALSETTINGS ...'
+	CREATE  UNIQUE INDEX XAK1EXTERNALSETTINGS ON EXTERNALSETTINGS
+	(
+		PROVIDERNAME  ASC
+	)
+	go
+
+	/***  RFC32218  Add data into EXTERNALSETTINGS for ExchangeSetting 				***/
+
+	IF NOT EXISTS (SELECT * FROM EXTERNALSETTINGS WHERE PROVIDERNAME = 'ExchangeSetting')
+	BEGIN
+		INSERT INTO EXTERNALSETTINGS(PROVIDERNAME, SETTINGS) VALUES(N'ExchangeSetting', 
+		N'{"Server": null,  "Domain": null,  "UserId": null,  "Password": null, "IsReminderEnabled": false}')
+	END
+	GO
