@@ -1,0 +1,57 @@
+[{
+    "value": "Applies to All",
+    "key": "~",
+    "code": "~"
+}, {
+    "value": "Business Names",
+    "key": "B",
+    "code": "B"
+}, {
+    "value": "Campaign",
+    "key": "F",
+    "code": "F"
+}, {
+    "value": "Copyright",
+    "key": "C",
+    "code": "C"
+}, {
+    "value": "Designs",
+    "key": "D",
+    "code": "D"
+}, {
+    "value": "Domain Name",
+    "key": "I",
+    "code": "I"
+}, {
+    "value": "Innovation Patent",
+    "key": "N",
+    "code": "N"
+}, {
+    "value": "Marketing Event",
+    "key": "E",
+    "code": "E"
+}, {
+    "value": "No IP Rules Set Up",
+    "key": "#",
+    "code": "#"
+}, {
+    "value": "Opportunity",
+    "key": "A",
+    "code": "A"
+}, {
+    "value": "Patents",
+    "key": "P",
+    "code": "P"
+}, {
+    "value": "Plant Variety Rights",
+    "key": "V",
+    "code": "V"
+}, {
+    "value": "Trade Marks",
+    "key": "T",
+    "code": "T"
+}, {
+    "value": "Utility Models / Petty Patents",
+    "key": "U",
+    "code": "U"
+}]

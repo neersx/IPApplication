@@ -1,0 +1,49 @@
+[{
+    "id": {
+       "countryId": "AU",
+       "propertyTypeId": "D",
+       "caseTypeId": "A",
+       "actionId": "~1"
+    },
+    "countryId": "AU",
+    "country": "Australia",
+    "propertyTypeId": "D",
+    "propertyType": "Designs",
+    "caseTypeId": "A",
+    "caseType": "Properties",
+    "actionId": "~1",
+    "action": "Formalities - Law Update Service",
+    "validDescription": "Valid Formalities Action"
+}, {
+    "id": {
+       "countryId": "US",
+       "propertyTypeId": "P",
+       "caseTypeId": "A",
+       "actionId": "EF"
+    },
+    "countryId": "US",
+    "country": "United States",
+    "propertyTypeId": "P",
+    "propertyType": "Patents",
+    "caseTypeId": "A",
+    "caseType": "Properties",
+    "actionId": "EF",
+    "action": "Electronic Filing",
+    "validDescription": "Valid Electronic Filing"
+}, {
+    "id": {
+       "countryId": "AU",
+       "propertyTypeId": "D",
+       "caseTypeId": "A",
+       "actionId": "~2"
+    },
+    "countryId": "AU",
+    "country": "Australia",
+    "propertyTypeId": "D",
+    "propertyType": "Designs",
+    "caseTypeId": "A",
+    "caseType": "Properties",
+    "actionId": "~2",
+    "action": "Renewals - Law Update Service",
+    "validDescription": "Valid Formalities Renewals Filing"
+}]

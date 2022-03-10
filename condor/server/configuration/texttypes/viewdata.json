@@ -1,0 +1,41 @@
+[{
+    "id": 1,
+    "code": "A",
+    "description": "Abstract",
+    "usedByNames": false,
+    "usedByStaff": false,
+    "usedByIndividual": false,
+    "usedByOrganisation": false
+}, {
+    "id": 2,
+    "code": "CL",
+    "description": "Claims",
+    "usedByNames": false,
+    "usedByStaff": false,
+    "usedByIndividual": false,
+    "usedByOrganisation": false
+}, {
+    "id": 3,
+    "code": "GW",
+    "description": "Global Welcome",
+    "usedByNames": true,
+    "usedByStaff": false,
+    "usedByIndividual": false,
+    "usedByOrganisation": true
+}, {
+    "id": 4,
+    "code": "N",
+    "description": "Extended Name",
+    "usedByNames": true,
+    "usedByStaff": false,
+    "usedByIndividual": true,
+    "usedByOrganisation": false
+}, {
+    "id": 5,
+    "code": "R",
+    "description": "Remarks",
+    "usedByNames": true,
+    "usedByStaff": true,
+    "usedByIndividual": true,
+    "usedByOrganisation": true
+}]

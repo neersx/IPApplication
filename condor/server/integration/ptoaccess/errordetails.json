@@ -1,0 +1,26 @@
+{
+    "date": "2014-10-24T15:56:44.13",
+    "log": [{
+        "type": "Error",
+        "message": "An error occurred while sending the request.",
+        "exceptionType": "System.Net.Http.HttpRequestException",
+        "exceptionDetails": [{
+            "type": "System.Net.Http.HttpRequestException",
+            "message": "An error occurred while sending the request.",
+            "details": "   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()\r\n   at Inprotech.Integration.UsptoDataExtraction.Security.AuthenticationService.<Authenticate>d__0.MoveNext() in c:\\src\\inprotechkaizen\\Inprotech.Integration.UsptoDataExtraction\\Security\\AuthenticationService.cs:line 31"
+        }],
+        "dispatchCycle": 1,
+        "date": "2014-10-24T15:56:42.2085252+11:00"
+    }, {
+        "type": "Error",
+        "message": "An error occurred while sending the request.",
+        "exceptionType": "System.Net.Http.HttpRequestException",
+        "exceptionDetails": [{
+            "type": "System.Net.Http.HttpRequestException",
+            "message": "An error occurred while sending the request.",
+            "details": "   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)\r\n   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)\r\n   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()\r\n   at Inprotech.Integration.UsptoDataExtraction.Security.AuthenticationService.<Authenticate>d__0.MoveNext() in c:\\src\\inprotechkaizen\\Inprotech.Integration.UsptoDataExtraction\\Security\\AuthenticationService.cs:line 31"
+        }],
+        "dispatchCycle": 0,
+        "date": "2014-10-24T15:55:50.8135252+11:00"
+    }]
+}

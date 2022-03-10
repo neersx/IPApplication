@@ -1,0 +1,33 @@
+[{
+    "value": "UK Form 1/77",
+    "code": -19999,
+    "key": -19999
+}, {
+    "value": "Order letter to Agent for filing new case",
+    "code": 0,
+    "key": 0
+}, {
+    "value": "US Form SB0001",
+    "code": 6,
+    "key": 6
+}, {
+    "value": "US Form PTO1595",
+    "code": 34,
+    "key": 34
+}, {
+    "value": "New Application Debit Note",
+    "code": 4,
+    "key": 4
+}, {
+    "value": "Renewal Debit Note",
+    "code": 5,
+    "key": 5
+}, {
+    "value": "US Form SB0017",
+    "code": 12,
+    "key": 12
+}, {
+    "value": "US Form SB0030",
+    "code": 19,
+    "key": 19
+}]

@@ -1,0 +1,37 @@
+[{
+    "isInherited": true,
+    "eventToClear": {
+        "key": 12,
+        "value": "Fake Event 1"
+    },
+    "relativeCycle": 1,
+    "eventDateA": false,
+    "dueDateA": true,
+    "eventDateB": true,
+    "dueDateB": false,
+    "clearEventOnEventChange": true
+}, {
+    "isInherited": true,
+    "eventToClear": {
+        "key": 22,
+        "value": "Fake Event 2"
+    },
+    "relativeCycle": 2,
+    "eventDateA": true,
+    "dueDateA": false,
+    "eventDateB": false,
+    "dueDateB": true,
+    "clearDueDateOnEventChange": true
+}, {
+    "isInherited": false,
+    "eventToClear": {
+        "key": 15,
+        "value": "Fake Event 3"
+    },
+    "relativeCycle": 3,
+    "eventDateA": false,
+    "dueDateA": true,
+    "eventDateB": false,
+    "dueDateB": true,
+    "clearEventOnDueDateChange": true
+}]

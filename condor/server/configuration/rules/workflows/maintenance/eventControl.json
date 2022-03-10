@@ -1,0 +1,308 @@
+[{
+    "eventNo": -13,
+    "description": "Date of Entry",
+    "displaySequence": 0,
+    "eventCode": "QEI",
+    "importance": "Critical",
+    "maxCycles": 1
+}, {
+    "eventNo": -16,
+    "description": "Instructions Received Date for new case",
+    "displaySequence": 1,
+    "eventCode": "ELW",
+    "importance": "Critical",
+    "maxCycles": 1,
+    "inheritanceLevel": "Full"
+}, {
+    "eventNo": -1036,
+    "description": "Notice of Opposition received",
+    "displaySequence": 2,
+    "eventCode": "TLD",
+    "importance": "Important",
+    "maxCycles": 1,
+    "inheritanceLevel": "Partial"
+}, {
+    "eventNo": -82,
+    "description": "Opposition reported to client",
+    "displaySequence": 3,
+    "eventCode": "LRR",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1102,
+    "description": "O/S Observations Deadline",
+    "displaySequence": 4,
+    "eventCode": "OHI",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1103,
+    "description": "O/S Observations Filed",
+    "displaySequence": 5,
+    "eventCode": "QKT",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1104,
+    "description": "Our Observations Deadline",
+    "displaySequence": 6,
+    "eventCode": "COC",
+    "importance": "Important",
+    "maxCycles": 1
+}, {
+    "eventNo": -1187,
+    "description": "Our Observations Filed",
+    "displaySequence": 7,
+    "eventCode": "VKB",
+    "importance": "Important",
+    "maxCycles": 1
+}, {
+    "eventNo": -1105,
+    "description": "Request EOT for Observations",
+    "displaySequence": 8,
+    "eventCode": "UKS",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1106,
+    "description": "Extension of Time Granted for Observations",
+    "displaySequence": 9,
+    "eventCode": "PPO",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1107,
+    "description": "Extended Observations Deadline",
+    "displaySequence": 10,
+    "eventCode": "TUY",
+    "importance": "Important",
+    "maxCycles": 1
+}, {
+    "eventNo": -1109,
+    "description": "Notice of Oral Proceedings",
+    "displaySequence": 11,
+    "eventCode": "VSJ",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -11525,
+    "description": "Date of Oral Hearing",
+    "displaySequence": 12,
+    "eventCode": "HWI",
+    "importance": "Critical",
+    "maxCycles": 1
+}, {
+    "eventNo": -1110,
+    "description": "Written Submissions Deadline",
+    "displaySequence": 13,
+    "eventCode": "YRH",
+    "importance": "Important",
+    "maxCycles": 1
+}, {
+    "eventNo": -1111,
+    "description": "Opposition Decision Expected by",
+    "displaySequence": 14,
+    "eventCode": "FAQ",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1112,
+    "description": "Opposition Decision - Negative",
+    "displaySequence": 15,
+    "eventCode": "CPP",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1113,
+    "description": "Opposition Decision - Positive",
+    "displaySequence": 16,
+    "eventCode": "KOW",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1114,
+    "description": "Appeal Deadline",
+    "displaySequence": 17,
+    "eventCode": "JWK",
+    "importance": "Critical",
+    "maxCycles": 1
+}, {
+    "eventNo": -1184,
+    "description": "Appeal Filed",
+    "displaySequence": 18,
+    "eventCode": "WUC",
+    "importance": "Important",
+    "maxCycles": 1
+}, {
+    "eventNo": -1115,
+    "description": "Grounds of Appeal",
+    "displaySequence": 19,
+    "eventCode": "VRI",
+    "importance": "Critical",
+    "maxCycles": 1
+}, {
+    "eventNo": -1183,
+    "description": "Grounds of Appeal Filed",
+    "displaySequence": 20,
+    "eventCode": "JCV",
+    "importance": "Important",
+    "maxCycles": 1
+}, {
+    "eventNo": -448,
+    "description": "Not appealing decision in court",
+    "displaySequence": 21,
+    "eventCode": "PVG",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1116,
+    "description": "O/S Appeal Deadline",
+    "displaySequence": 22,
+    "eventCode": "DPU",
+    "importance": "Important",
+    "maxCycles": 1
+}, {
+    "eventNo": -1123,
+    "description": "O/S Appeal Filed",
+    "displaySequence": 23,
+    "eventCode": "XPX",
+    "importance": "Important",
+    "maxCycles": 1
+}, {
+    "eventNo": -1136,
+    "description": "O/S Grounds of Appeal Deadline",
+    "displaySequence": 24,
+    "eventCode": "QDK",
+    "importance": "Important",
+    "maxCycles": 1
+}, {
+    "eventNo": -1137,
+    "description": "O/S Grounds of Appeal Filed",
+    "displaySequence": 25,
+    "eventCode": "IUQ",
+    "importance": "Important",
+    "maxCycles": 1
+}, {
+    "eventNo": -1117,
+    "description": "O/S Not Appealing Decision",
+    "displaySequence": 26,
+    "eventCode": "BLH",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1118,
+    "description": "Appeal Decision expected",
+    "displaySequence": 27,
+    "eventCode": "QTA",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1119,
+    "description": "Misc Deadline on Opposition",
+    "displaySequence": 28,
+    "eventCode": "VNT",
+    "importance": "Important",
+    "maxCycles": 9999
+}, {
+    "eventNo": -1120,
+    "description": "Misc Deadline Responded to on Opposition",
+    "displaySequence": 29,
+    "eventCode": "UBU",
+    "importance": "Important",
+    "maxCycles": 9999
+}, {
+    "eventNo": -1121,
+    "description": "Appeal Decision received - Negative",
+    "displaySequence": 30,
+    "eventCode": "EWV",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1122,
+    "description": "Appeal Decision received - Positive",
+    "displaySequence": 31,
+    "eventCode": "NGR",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -446,
+    "description": "Opposition discontinued or dismissed",
+    "displaySequence": 32,
+    "eventCode": "VIW",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -4009,
+    "description": "Close opposition ACTION",
+    "displaySequence": 33,
+    "eventCode": "DOF",
+    "importance": "Normal",
+    "maxCycles": 1
+}, {
+    "eventNo": -1011828,
+    "code": "",
+    "description": "PCT - 31M deadline to enter natl phase (Chap 1)",
+    "numberOfCyclesAllowed": 1,
+    "importance": "Critical"
+}, {
+    "eventNo": -1011785,
+    "code": "",
+    "description": "Acceptance 18 month deadline",
+    "numberOfCyclesAllowed": 1,
+    "importance": "Critical"
+}, {
+    "eventNo": -1011761,
+    "code": "",
+    "description": "Grant Fee Deadline(inc 10 days)",
+    "numberOfCyclesAllowed": 1,
+    "importance": "Minimal"
+}, {
+    "eventNo": -1011403,
+    "code": "",
+    "description": "Rule 51(4) Deadline(inc 10 days)",
+    "numberOfCyclesAllowed": 1,
+    "importance": "Minimal"
+}, {
+    "eventNo": -1011386,
+    "code": "",
+    "description": "Issue/Publication Fees Due - Last Day",
+    "numberOfCyclesAllowed": 1,
+    "importance": "Critical"
+}, {
+    "eventNo": -1011384,
+    "code": "",
+    "description": "Final 3 Month Office Action - Last Day",
+    "numberOfCyclesAllowed": 1,
+    "importance": "Critical"
+}, {
+    "eventNo": -1011378,
+    "code": "",
+    "description": "2 Month Office Action - 3 month extension",
+    "numberOfCyclesAllowed": 1,
+    "importance": "Critical"
+}, {
+    "eventNo": -1000153,
+    "code": "",
+    "description": "Request Examination Deadline",
+    "numberOfCyclesAllowed": 1,
+    "importance": "Critical"
+}, {
+    "eventNo": -1000023,
+    "code": "",
+    "description": "Convention Period - Foreign Filings",
+    "numberOfCyclesAllowed": 1,
+    "importance": "Normal"
+}, {
+    "eventNo": -12126,
+    "code": "EF",
+    "description": "PCT/RO/101 Prepare & Review Electronic Package",
+    "numberOfCyclesAllowed": 2,
+    "importance": null
+}, {
+    "eventNo": -12095,
+    "code": "OPP",
+    "description": "Applicants answer due",
+    "numberOfCyclesAllowed": 1,
+    "importance": "Normal"
+}]
+

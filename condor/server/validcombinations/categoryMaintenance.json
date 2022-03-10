@@ -1,0 +1,65 @@
+[{
+   "validCategoryIdentifier": {
+        "countryId": "AU",
+        "propertyTypeId": "D",
+        "caseTypeId": "A",
+        "categoryId": "D"
+    },
+    "jurisdictions": [
+        {
+            "code": "AU",
+            "value": "Australia"
+        }
+    ],
+    "propertyType": {
+        "code": "D",
+        "value": "Designs"
+    },
+    "caseType": {
+        "code": "A",
+        "value": "Properties"
+    },
+    "caseCategory": {
+        "code": "D",
+        "value": "Divisional"
+    }, 
+    "validDescription": "Valid  Divisional",
+    "multiClassPropertyApp": true,
+    "propertyEvent": {
+        "key": -1011761,
+        "code": "",
+        "value": "Grant Fee Deadline(inc 10 days)"
+    }
+}, {
+    "validCategoryIdentifier": {
+        "countryId": "US",
+        "propertyTypeId": "T",
+        "caseTypeId": "A",
+        "categoryId": "9"
+    },   
+    "jurisdictions": [
+        {
+            "code": "US",
+            "value": "United States"
+        }
+    ],
+    "propertyType": {
+        "code": "T",
+        "value": "Trademark"
+    },
+    "caseType": {
+        "code": "A",
+        "value": "Properties"
+    },
+    "caseCategory": {
+        "code": "9",
+        "value": "Intent to Use"
+    },  
+    "validDescription": "Valid Intent to Use",
+    "multiClassPropertyApp": false,
+    "propertyEvent": {
+        "key": -1011785,
+        "code": "",
+        "value": "Acceptance 18 month deadline"
+    }
+}]

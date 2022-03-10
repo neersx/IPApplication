@@ -1,0 +1,26 @@
+{
+    "id": 8,
+    "nameTypeCode": "A",
+    "name": "Agent",
+    "maximumAllowed": 10,
+    "isMandatory": false,
+    "displayNameCode": 2,
+    "isAttentionDisplayed": true,
+    "isAddressDisplayed": true,
+    "isReferenceNumberDisplayed": true,
+    "isAssignDateDisplayed": true,
+    "isDateCommencedDisplayed": true,
+    "allowClientNames": true,
+    "allowSuppliers": true,
+    "pathNameTypePickList" : {
+    	"id": 1,
+    	"nameTypeCode": "D",
+    	"name": "Debtor"
+    },
+    "updateFromParentNameType": true,
+    "changeEvent": {
+    	"key": 1,
+    	"code": "-4",
+    	"value": "Application filing date"
+    }
+}

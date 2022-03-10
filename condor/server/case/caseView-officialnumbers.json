@@ -1,0 +1,15 @@
+[{
+    "caseId": -487,
+    "numberTypeDescription": "Application No.",
+    "officialNumber": "123456",
+    "dateInForce": "2018-25-01",
+    "isCurrent": true,
+    "ipOffice": true
+}, {
+    "caseId": -487,
+    "numberTypeDescription": "Other",
+    "officialNumber": "6543789",
+    "dateInForce": "2019-25-01",
+    "isCurrent": true,
+    "ipOffice": false
+}]

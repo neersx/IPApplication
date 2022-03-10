@@ -1,0 +1,41 @@
+[{
+    "key": 502,
+    "value": "CHALLENGER NAMES",
+    "nameTypes": "Challenger (our side), Challenger (other side), Other Side's Attorney",
+    "exactMatch": false
+}, {
+    "key": 509,
+    "value": "EDE NAME GROUP",
+    "nameTypes": "Debtor, Instructor, Owner",
+    "exactMatch": false
+}, {
+    "key": 508,
+    "value": "MARKETING NAMES",
+    "nameTypes": "Staff Member",
+    "exactMatch": false
+}, {
+    "key": 507,
+    "value": "OPPORTUNITY NAMES",
+    "nameTypes": "Competitor, Existing Provider, Lead, Prospect, Staff Member",
+    "exactMatch": false
+}, {
+    "key": 501,
+    "value": "OTHER PARTIES",
+    "nameTypes": "Copies To, Debtor Copies To, Debtor, Examiner, Old Owner",
+    "exactMatch": false
+}, {
+    "key": 503,
+    "value": "RENEWAL NAMES",
+    "nameTypes": "Renewal Agent, New Renewal Instructor, Renewals Instructor, Renewal Copies To, Renewals Debtor, Renewals Debtor Copy To",
+    "exactMatch": false
+}, {
+    "key": 506,
+    "value": "RESPONSIBLE STAFF",
+    "nameTypes": "Staff Member, Paralegal, Secretary, Signatory",
+    "exactMatch": false
+}, {
+    "key": 504,
+    "value": "WIP REPORT NAMETYPES",
+    "nameTypes": "",
+    "exactMatch": false
+}]

@@ -1,0 +1,31 @@
+ [{
+     "type": "default",
+     "description": ""
+ }, {
+     "type": "jurisdiction",
+     "description": "Jurisdiction"
+ }, {
+     "type": "propertytype",
+     "description": "Property Type"
+ }, {
+     "type": "action",
+     "description": "Action"
+ }, {
+     "type": "category",
+     "description": "Category"
+ }, {
+     "type": "subtype",
+     "description": "Sub Type"
+ }, {
+     "type": "basis",
+     "description": "Basis"
+ }, {
+     "type": "relationship",
+     "description": "Relationship"
+ }, {
+     "type": "checklist",
+     "description": "Checklist"
+ }, {
+     "type": "status",
+     "description": "Status"
+ }]

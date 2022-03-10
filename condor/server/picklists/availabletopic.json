@@ -1,0 +1,161 @@
+[{
+    "key": "frmRecCaseAffectedCases",
+    "defaultTitle": "Affected Cases",
+    "value": "Affected Cases",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmAgreementCases",
+    "defaultTitle": "Agreement Cases",
+    "value": "Agreement Cases",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmApplyAssignment",
+    "defaultTitle": "Apply Assignment",
+    "value": "Apply Assignment",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmAssignCases",
+    "defaultTitle": "Assigned Cases",
+    "value": "Assigned Cases",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmAttachments",
+    "defaultTitle": "Attachments",
+    "value": "Attachments",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmAttributes",
+    "defaultTitle": "Attributes",
+    "value": "Attributes",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmBudget",
+    "defaultTitle": "Budget",
+    "value": "Budget",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmCaseActivity",
+    "defaultTitle": "Case Activity",
+    "value": "Case Activity",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmCopyDetails",
+    "defaultTitle": "Case Copy",
+    "value": "Case Copy",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmCaseDates",
+    "defaultTitle": "Case Dates",
+    "value": "Case Dates",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmCaseDetail",
+    "defaultTitle": "Case Event Entry",
+    "value": "Case Event Entry",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmCaseHistory",
+    "defaultTitle": "Case Events",
+    "value": "Case Events",
+    "type": "A ",
+    "typeDescription": "Create Action",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmCaseLists",
+    "defaultTitle": "Case Lists",
+    "value": "Case Lists",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmCaseEventSummry",
+    "defaultTitle": "Case Summary",
+    "value": "Case Summary",
+    "type": "A ",
+    "typeDescription": "Create Action",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmCaseTextSummry",
+    "defaultTitle": "Case Text Summary",
+    "value": "Case Text Summary",
+    "type": "R ",
+    "typeDescription": "Relationship",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmChangeOwner",
+    "defaultTitle": "Change of Owners",
+    "value": "Change of Owners",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmCheckList",
+    "defaultTitle": "Checklist",
+    "value": "Checklist",
+    "type": "C ",
+    "typeDescription": "Checklist Types",
+    "isWebEnabled": true,
+    "exactMatch": false
+}, {
+    "key": "frmClasses",
+    "defaultTitle": "Classes",
+    "value": "Classes",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": true,
+    "exactMatch": false
+}, {
+    "key": "frmEDECaseResolutionClasses",
+    "defaultTitle": "Classes",
+    "value": "Classes",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}, {
+    "key": "frmDesignElements",
+    "defaultTitle": "Design Elements",
+    "value": "Design Elements",
+    "type": "G ",
+    "typeDescription": "General",
+    "isWebEnabled": false,
+    "exactMatch": false
+}]

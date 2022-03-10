@@ -1,0 +1,60 @@
+[{
+    "id": "A",
+    "description": "Chemicals",
+    "propertyType": "Trademark",
+    "internationalClasses": [{
+        "id": "01",
+        "description": "Chemicals used in industry, science and photography, as well as in agriculture, horticulture and forestry; unprocessed artificial resins, unprocessed plastics; manures; fire extinguishing compositions; tempering and soldering preparations; chemical substances for preserving foodstuffs; tanning substances; adhesives used in industry."
+    }, {
+        "id": "02",
+        "description": "Paints, varnishes, lacquers; preservatives against rust and against deterioration of wood; colorants; mordants; raw natural resins; metals in foil and powder form for painters, decorators, printers and artists."
+    }]
+}, {
+    "id": "02",
+    "description": "Paints, varnishes, lacquers; preservatives against rust and against deterioration of wood; colorants; mordants; raw natural resins; metals in foil and powder form for painters, decorators, printers and artists.",
+    "propertyType": "Trademark"
+}, {
+    "id": "03",
+    "description": "Bleaching preparations and other substances for laundry use; cleaning, polishing, scouring and abrasive preparations; soaps; perfumery, essential oils, cosmetics, hair lotions; dentifrices.",
+    "propertyType": "Trademark"
+}, {
+    "id": "04",
+    "description": "Industrial oils and greases; lubricants; dust absorbing, wetting and binding compositions; fuels (including motor spirit) and illuminants; candles and wicks for lighting.",
+    "propertyType": "Trademark"
+}, {
+    "id": "05",
+    "description": "Pharmaceutical and veterinary preparations; sanitary preparations for medical purposes; dietetic substances adapted for medical use, food for babies; plasters, materials for dressings; material for stopping teeth, dental wax; disinfectants; preparations for destroying vermin; fungicides, herbicides.",
+    "propertyType": "Trademark"
+}, {
+    "id": "06",
+    "description": "Common metals and their alloys; metal building materials; transportable buildings of metal; materials of metal for railway tracks; non-electric cables and wires of common metal; ironmongery, small items of metal hardware; pipes and tubes of metal; safes; goods of common metal not included in other classes; ores.",
+    "propertyType": "Trademark"
+}, {
+    "id": "07",
+    "description": "Machines and machine tools; motors and engines (except for land vehicles); machine coupling and transmission components (except for land vehicles); agricultural implements other than hand-operated; incubators for eggs.",
+    "propertyType": "Trademark"
+}, {
+    "id": "08",
+    "description": "Hand tools and implements (hand-operated); cutlery; side arms; razors.",
+    "propertyType": "Trademark"
+}, {
+    "id": "09",
+    "description": "Scientific, nautical, surveying, photographic, cinematographic, optical, weighing, measuring, signalling, checking (supervision), life-saving and teaching apparatus and instruments; apparatus and instruments for conducting, switching, transforming, accumulating, regulating or controlling electricity; apparatus for recording, transmission or reproduction of sound or images; magnetic data carriers, recording discs; automatic vending machines and mechanisms for coin-operated apparatus; cash registers, calculating machines, data processing equipment and computers; fire-extinguishing apparatus.",
+    "propertyType": "Trademark"
+}, {
+    "id": "10",
+    "description": "Surgical, medical, dental and veterinary apparatus and instruments, artificial limbs, eyes and teeth; orthopedic articles; suture materials.",
+    "propertyType": "Trademark"
+}, {
+    "id": "11",
+    "description": "Apparatus for lighting, heating, steam generating, cooking, refrigerating, drying, ventilating, water supply and sanitary purposes.",
+    "propertyType": "Trademark"
+}, {
+    "id": "12",
+    "description": "Vehicles; apparatus for locomotion by land, air or water.",
+    "propertyType": "Trademark"
+}, {
+    "id": "13",
+    "description": "Firearms; ammunition and projectiles; explosives; fireworks.",
+    "propertyType": "Trademark"
+}]

@@ -1,0 +1,156 @@
+[{
+    "key": "AD",
+    "code": "AD",
+    "value": "Andorra",
+    "isGroup": true
+}, {
+    "key": "AE",
+    "code": "AE",
+    "value": "United Arab Emirates",
+    "isGroup": true
+}, {
+    "key": "US",
+    "code": "US",
+    "value": "United States",
+    "isGroup": false
+}, {
+    "key": "AF",
+    "code": "AF",
+    "value": "Afghanistan"
+}, {
+    "key": "AT",
+    "code": "AT",
+    "value": "Austria"
+}, {
+    "key": "AU",
+    "code": "AU",
+    "value": "Australia"
+}, {
+    "key": "BE",
+    "code": "BE",
+    "value": "Belgium"
+}, {
+    "key": "BR",
+    "code": "BR",
+    "value": "Brazil"
+}, {
+    "key": "BS",
+    "code": "BS",
+    "value": "Bahamas"
+}, {
+    "key": "BZ",
+    "code": "BZ",
+    "value": "Belize"
+}, {
+    "key": "CA",
+    "code": "CA",
+    "value": "Canada"
+}, {
+    "key": "CD",
+    "code": "CD",
+    "value": "Democractic Republic of Congo"
+}, {
+    "key": "CF",
+    "code": "CF",
+    "value": "Central African Republic"
+}, {
+    "key": "CG",
+    "code": "CG",
+    "value": "Congo"
+}, {
+    "key": "CH",
+    "code": "CH",
+    "value": "Switzerland"
+}, {
+    "key": "CN",
+    "code": "CN",
+    "value": "China"
+}, {
+    "key": "CZ",
+    "code": "CZ",
+    "value": "Czech Republic"
+}, {
+    "key": "DE",
+    "code": "DE",
+    "value": "Germany"
+}, {
+    "key": "FR",
+    "code": "FR",
+    "value": "France"
+}, {
+    "key": "GB",
+    "code": "GB",
+    "value": "United Kingdom"
+}, {
+    "key": "HK",
+    "code": "HK",
+    "value": "Hong Kong"
+}, {
+    "key": "IN",
+    "code": "IN",
+    "value": "India"
+}, {
+    "key": "JP",
+    "code": "JP",
+    "value": "Japan"
+}, {
+    "key": "KR",
+    "code": "KR",
+    "value": "Republic of Korea"
+}, {
+    "key": "LT",
+    "code": "LT",
+    "value": "Lithuania"
+}, {
+    "key": "MAD",
+    "code": "MAD",
+    "value": "Madrid Agreement (TM)"
+}, {
+    "key": "MAP",
+    "code": "MAP",
+    "value": "Madrid Protocol (TM)"
+}, {
+    "key": "MAT",
+    "code": "MAT",
+    "value": "Madrid Agreement & Protocol (TM)"
+}, {
+    "key": "NZ",
+    "code": "NZ",
+    "value": "New Zealand"
+}, {
+    "key": "PCT",
+    "code": "PCT",
+    "value": "Patent Cooperation Treaty"
+}, {
+    "key": "SB",
+    "code": "SB",
+    "value": "Solomon Islands"
+}, {
+    "key": "SE",
+    "code": "SE",
+    "value": "Sweden"
+}, {
+    "key": "SG",
+    "code": "SG",
+    "value": "Singapore"
+}, {
+    "key": "TW",
+    "code": "TW",
+    "value": "Taiwan"
+}, {
+    "key": "WWW",
+    "code": "WWW",
+    "value": "World Wide (Domain Name)"
+}, {
+    "key": "XXX",
+    "code": "XXX",
+    "value": "To be advised"
+}, {
+    "key": "ZW",
+    "code": "ZW",
+    "value": "Zimbabwe"
+}, {
+    "key": "ZZZ",
+    "code": "ZZZ",
+    "value": "DEFAULT FOREIGN COUNTRY"
+}]

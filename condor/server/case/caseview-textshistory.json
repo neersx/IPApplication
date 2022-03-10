@@ -1,0 +1,30 @@
+{
+    "irn": "1234/A",
+    "textClass": null,
+    "textDescription": "Goods/Services",
+    "language": "Bahasa",
+    "type": "G",
+    "typeKey": null,
+    "history": [
+        {
+            "dateModified": "2018-07-11T16:56:58.66",
+            "text": "Test text in Remarks Minimum Importance Level Earliest Claim"
+        },
+        {
+            "dateModified": "2018-07-11T16:56:49.567",
+            "text": "Test text in Remarks Minimum Importance Level Earliest priority"
+        },
+        {
+            "dateModified": "2018-07-11T16:42:13.51",
+            "text": "Test text in Remarks Minimum Importance Level Convention Claim From"
+        },
+        {
+            "dateModified": "2018-07-10T14:07:33.5",
+            "text": "Test text in Remarks field with Convention Claim From"
+        },
+        {
+            "dateModified": "2018-07-10T14:07:17.697",
+            "text": "Test text in Remarks field with testationality"
+        }
+    ]
+}

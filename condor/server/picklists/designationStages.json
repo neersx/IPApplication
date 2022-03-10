@@ -1,0 +1,31 @@
+[{
+    "value": "Select at Application",
+    "jurisdiction": "Patent Cooperation Treaty",
+    "key": 1,
+    "jurisdictionId": "PCT",
+    "exactMatch": false
+}, {
+    "value": "Elect Preliminary Examination",
+    "jurisdiction": "Patent Cooperation Treaty",
+    "key": 2,
+    "jurisdictionId": "PCT",
+    "exactMatch": false
+}, {
+    "value": "National Phase Entered",
+    "jurisdiction": "Patent Cooperation Treaty",
+    "key": 4,
+    "jurisdictionId": "PCT",
+    "exactMatch": false
+}, {
+    "value": "Special Action Completed",
+    "jurisdiction": "Patent Cooperation Treaty",
+    "key": 16,
+    "jurisdictionId": "PCT",
+    "exactMatch": false
+}, {
+    "value": "Abandoned",
+    "jurisdiction": "Patent Cooperation Treaty",
+    "key": 32,
+    "jurisdictionId": "PCT",
+    "exactMatch": false
+}]

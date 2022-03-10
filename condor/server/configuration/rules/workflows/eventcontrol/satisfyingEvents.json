@@ -1,0 +1,17 @@
+[{
+    "isInherited": false,
+    "sequence": 0,
+    "satisfyingEvent": {
+        "key": -1000200,
+        "value": "Priority Documents Deadline"
+    },
+    "relativeCycle": 0
+}, {
+    "isInherited": true,
+    "sequence": 1,
+    "satisfyingEvent": {
+        "key": -1011765,
+        "value": "15M Acceptance Deadline"
+    },
+    "relativeCycle": 2
+}]

@@ -1,0 +1,41 @@
+[{
+    "isInherited": true,
+    "sequence": 1,
+    "eventA": {
+        "key": -1000083,
+        "value": "15M Acceptance Deadline"
+    },
+    "comparisonOperator": {"key": "<=", "value": "<="},
+    "eventB": {
+        "key": -1011765,
+        "value": "Opposition deadline"
+    },
+    "eventADate": "Event",
+    "eventBDate": "Due",
+    "eventARelativeCycle": "1",
+    "eventBRelativeCycle": "0"
+}, {
+    "isInherited": false,
+    "sequence": 2,
+    "eventA": {
+        "key": -1000070,
+        "value": "Registration fee payment deadline"
+    },
+    "comparisonOperator": {"key": "EX", "value": "EX"},
+    "eventB": {
+        "key": -1000200,
+        "value": "Priority Documents Deadline"
+    }
+}, {
+    "isInherited": true,
+    "sequence": 3,
+    "eventA": {
+        "key": -1000083,
+        "value": "Opposition deadline"
+    },
+    "comparisonOperator": {"key": "NE", "value": "NE"},
+    "eventB": {
+        "key": -1011766,
+        "value": "21M Acceptance Deadline"
+    }
+}]

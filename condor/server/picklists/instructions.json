@@ -1,0 +1,101 @@
+[{
+    "id": 10,
+    "typeId": "1",
+    "description": "Auto req normal exam after filing appln",
+    "typeDescription": "Examination"
+}, {
+    "id": 11,
+    "typeId": "1",
+    "description": "Auto req normal exam after direction recvd",
+    "typeDescription": "Examination"
+}, {
+    "id": 12,
+    "typeId": "1",
+    "description": "Request exam only on instructions",
+    "typeDescription": "Examination"
+}, {
+    "id": 13,
+    "typeId": "1",
+    "description": "Auto req norm exam after dirn just < deadline",
+    "typeDescription": "Examination"
+}, {
+    "id": 14,
+    "typeId": "1",
+    "description": "Auto req norm exam after dirn just < dl no rems",
+    "typeDescription": "Examination"
+}, {
+    "id": 20,
+    "typeId": "3",
+    "description": "No reminders",
+    "typeDescription": "Renewal Reminder"
+}, {
+    "id": 21,
+    "typeId": "3",
+    "description": "First reminder only",
+    "typeDescription": "Renewal Reminder"
+}, {
+    "id": 22,
+    "typeId": "3",
+    "description": "Final reminders only",
+    "typeDescription": "Renewal Reminder"
+}, {
+    "id": 23,
+    "typeId": "3",
+    "description": "All reminders",
+    "typeDescription": "Renewal Reminder"
+}, {
+    "id": 24,
+    "typeId": "3",
+    "description": "Send debit note in advance in place of rems",
+    "typeDescription": "Renewal Reminder"
+}, {
+    "id": 25,
+    "typeId": "3",
+    "description": "Second reminder only",
+    "typeDescription": "Renewal Reminder"
+}, {
+    "id": 29,
+    "typeId": "4",
+    "description": "CPA renews via us - automatically",
+    "typeDescription": "Renewal"
+}, {
+    "id": 30,
+    "typeId": "4",
+    "description": "Renew only after instruction",
+    "typeDescription": "Renewal"
+}, {
+    "id": 31,
+    "typeId": "4",
+    "description": "Auto renew just before deadline",
+    "typeDescription": "Renewal"
+}, {
+    "id": 34,
+    "typeId": "4",
+    "description": "Renewal handled elsewhere",
+    "typeDescription": "Renewal"
+}, {
+    "id": 38,
+    "typeId": "4",
+    "description": "CPA - Client renews directly",
+    "typeDescription": "Renewal"
+}, {
+    "id": 39,
+    "typeId": "4",
+    "description": "CPA renews via us - on instructions",
+    "typeDescription": "Renewal"
+}, {
+    "id": 40,
+    "typeId": "2",
+    "description": "Auto file application immediately",
+    "typeDescription": "Lodging"
+}, {
+    "id": 41,
+    "typeId": "2",
+    "description": "File application only on instructions",
+    "typeDescription": "Lodging"
+}, {
+    "id": 42,
+    "typeId": "2",
+    "description": "Auto file application just before deadline",
+    "typeDescription": "Lodging"
+}]

@@ -1,0 +1,22 @@
+[
+    {
+        "key": "1",
+        "searchName": "My Due Dates",
+        "description": "Due Dates and Ad Hoc Dates for the next four weeks where I am the Staff Member or Signatory on a case or have Due Date Responsibility."
+    },
+    {
+        "key": "2",
+        "searchName": "My Tasks",
+        "description": "Reminders, Due Dates and Ad Hocs for the next two weeks where I am the Reminder Recipient, the Staff or Signatory on the case, or have Due Date Responsibility."
+    },
+    {
+        "key": "3",
+        "searchName": "My Team's Tasks",
+        "description": "Reminders, Due Dates and Ad Hocs for the next two weeks where anyone in my team is the Reminder Recipient, a staff member on the case, or has Due Date Responsibility."
+    },
+    {
+        "key": "4",
+        "searchName": "Test search 1",
+        "description": "Test search 1 desc"
+    }
+]

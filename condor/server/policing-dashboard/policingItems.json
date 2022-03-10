@@ -1,0 +1,1307 @@
+[{
+    "status": "failed",
+    "requested": "2016-03-01T17:44:00.29",
+    "user": "SYSADM",
+    "caseReference": null,
+    "eventId": -4,
+    "eventDescription": "International Filing date",
+    "actionName": "Filing",
+    "criteriaId": 10107,
+    "criteriaDescription": "Electronic filing for OHIM",
+    "typeOfRequest": "event-occurred",
+    "caseId": null,
+    "cycle": 3,
+    "hasEventControl": false
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-03-01T17:43:00.29",
+    "user": "SYSADM",
+    "caseReference": "46449PCT",
+    "eventId": -4,
+    "eventDescription": "International Filing date",
+    "actionName": "Filing",
+    "criteriaId": 10107,
+    "criteriaDescription": "Electronic filing for OHIM",
+    "typeOfRequest": "event-occurred",
+    "caseId": 36254,
+    "propertyName": "Patents",
+    "jurisdiction": "Australia",
+    "nextScheduled": "2016-03-01T19:54:05.29",
+    "cycle": 1,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-error",
+    "requested": "2016-03-01T17:43:00.28",
+    "user": "George Grey",
+    "caseReference": "080618-0764",
+    "eventId": -72,
+    "eventDescription": "Registration certificate received",
+    "actionName": null,
+    "criteriaId": null,
+    "typeOfRequest": "due-date-changed",
+    "caseId": -237864,
+    "totalErrorItemCount": 6,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemsCount": 6,
+        "errorItems": [{
+            "errorDate": "2016-03-06T17:43:00.29",
+            "eventNumber": 100,
+            "eventDescription": "Event desc 1 Really Really Longggggggggggggggggggggggggggggggggggggggggggggggggg description",
+            "eventCycle": 10,
+            "eventCriteriaNumber": 12,
+            "message": "Error Occured",
+            "hasEventControl": true,
+            "criteriaDescription" : "criteria Description"
+        }, {
+            "errorDate": "2016-03-02T17:43:00.29",
+            "eventNumber": 100,
+            "eventDescription": "Event desc 2",
+            "eventCycle": 11,
+            "eventCriteriaNumber": 12,
+            "message": "Error Occured",
+            "hasEventControl": true,
+            "criteriaDescription" : "criteria Description"
+        }, {
+            "errorDate": "2016-03-03T17:43:00.29",
+            "eventNumber": 100,
+            "eventDescription": "Event desc 3",
+            "eventCycle": 12,
+            "eventCriteriaNumber": 12,
+            "message": "Error Occured",
+            "hasEventControl": true,
+            "criteriaDescription" : "criteria Description"
+        }, {
+            "errorDate": "2016-03-04T17:43:00.29",
+            "eventNumber": 100,
+            "eventDescription": "Event desc 4",
+            "eventCycle": 13,
+            "eventCriteriaNumber": 12,
+            "message": "Error Occured"
+        }, {
+            "errorDate": "2016-03-05T17:43:00.29",
+            "eventNumber": 100,
+            "eventDescription": "Event desc 5",
+            "eventCycle": 14,
+            "eventCriteriaNumber": 12,
+            "message": "Error Occured"
+        }]
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-03-01T17:43:00.28",
+    "user": "George Grey",
+    "caseReference": "46449PCT",
+    "eventId": -20,
+    "eventDescription": "Application sent to IP office",
+    "actionName": "Filing",
+    "criteriaId": 10107,
+    "criteriaDescription": "Electronic filing for OHIM",
+    "typeOfRequest": "event-occurred",
+    "caseId": 36254,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2016-03-01T17:42:19.663",
+    "user": "Cork Collean",
+    "caseReference": "46449PCT",
+    "eventId": 415,
+    "eventDescription": "(sys) Multiple dependencies included",
+    "actionName": null,
+    "criteriaId": 11606,
+    "criteriaDescription": "Renewals",
+    "typeOfRequest": "event-occurred",
+    "caseId": 36254,
+    "cycle": 10,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2016-03-01T17:42:19.66",
+    "user": "Cork Collean",
+    "caseReference": "46449PCT",
+    "eventId": 442,
+    "eventDescription": "(sys) Budapest T deposit information not required",
+    "actionName": null,
+    "criteriaId": 11606,
+    "criteriaDescription": "Renewals",
+    "typeOfRequest": "event-occurred",
+    "caseId": 36254,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2016-03-01T17:42:19.66",
+    "user": "George Grey",
+    "caseReference": "46449PCT",
+    "eventId": 783,
+    "eventDescription": "(sys) Submission of declaration and assignment required (US) ",
+    "actionName": null,
+    "criteriaId": 10107,
+    "criteriaDescription": "Electronic filing for OHIM",
+    "typeOfRequest": "event-occurred",
+    "caseId": 36254,
+    "propertyName": "Designs",
+    "jurisdiction": "Hong Kong",
+    "nextScheduled": "2016-03-01T11:12:16.39",
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2016-03-01T17:42:19.66",
+    "user": "SYSADM",
+    "caseReference": "46449PCT",
+    "eventId": 772,
+    "eventDescription": "(sys) statement of inventorship required",
+    "actionName": null,
+    "criteriaId": 11632,
+    "typeOfRequest": "event-occurred",
+    "caseId": 36254,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2016-03-01T17:42:19.657",
+    "user": "George Grey",
+    "caseReference": "46449PCT",
+    "eventId": 395,
+    "eventDescription": "Correct Inventor's details received",
+    "actionName": null,
+    "criteriaId": 11606,
+    "criteriaDescription": "Renewals",
+    "typeOfRequest": "event-occurred",
+    "caseId": 36254,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2016-03-01T17:42:19.653",
+    "user": "SYSADM",
+    "caseReference": "46449PCT",
+    "eventId": 64,
+    "eventDescription": "Correct Applicant's details received",
+    "actionName": null,
+    "criteriaId": 11809,
+    "typeOfRequest": "event-occurred",
+    "caseId": 36254,
+    "cycle": 12,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2016-03-01T17:42:19.323",
+    "user": "George Grey",
+    "caseReference": "46449PCT",
+    "eventId": 417,
+    "eventDescription": "Prefiling check performed",
+    "actionName": "Filing",
+    "criteriaId": 10107,
+    "criteriaDescription": "Electronic filing for OHIM",
+    "typeOfRequest": "event-occurred",
+    "caseId": 36254,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2016-03-01T17:42:29.407",
+    "user": "Cork Collean",
+    "caseReference": "51422CN",
+    "eventId": 501,
+    "eventDescription": "Bill sent - request for examination filed",
+    "actionName": "Examination/Prosecution",
+    "criteriaId": 10256,
+    "typeOfRequest": "event-occurred",
+    "caseId": 30825,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-09T12:19:13.71",
+    "user": "SYSADM",
+    "caseReference": "1234/A",
+    "eventDescription": "TEST EVEN 1",
+    "actionName": null,
+    "criteriaId": null,
+    "typeOfRequest": "event-occurred",
+    "caseId": -487,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-09T20:30:07.453",
+    "user": "SYSADM",
+    "caseReference": "1234/A",
+    "eventId": -277,
+    "actionName": null,
+    "criteriaId": null,
+    "typeOfRequest": "event-occurred",
+    "caseId": -487,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "George Grey",
+    "caseReference": "001234/0495-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "criteriaDescription": "test Criteria",
+    "typeOfRequest": "open-action",
+    "caseId": 52086,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0494-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52085,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "SYSADM",
+    "caseReference": "001234/0493-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52084,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0492-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52083,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "SYSADM",
+    "caseReference": "001234/0491-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52082,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "George Grey",
+    "caseReference": "001234/0490-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52081,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0489-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52080,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "George Grey",
+    "caseReference": "001234/0488-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52079,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "George Grey",
+    "caseReference": "001234/0487-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52078,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "George Grey",
+    "caseReference": "001234/0486-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52077,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "George Grey",
+    "caseReference": "001234/0485-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52076,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0484-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52075,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "George Grey",
+    "caseReference": "001234/0483-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52074,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "SYSADM",
+    "caseReference": "001234/0482-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52073,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0481-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52072,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0480-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52071,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0479-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52070,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "SYSADM",
+    "caseReference": "001234/0478-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52069,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "SYSADM",
+    "caseReference": "001234/0477-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52068,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "George Grey",
+    "caseReference": "001234/0476-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52067,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "George Grey",
+    "caseReference": "001234/0475-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52066,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0474-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52065,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "SYSADM",
+    "caseReference": "001234/0473-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52064,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0472-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52063,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0471-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52062,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "Cork Collean",
+    "caseReference": "001234/0470-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52061,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "George Grey",
+    "caseReference": "001234/0469-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52060,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-23T12:16:10.293",
+    "user": "SYSADM",
+    "caseReference": "001234/0468-US",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 52059,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "on-hold",
+    "requested": "2016-02-26T15:08:23.94",
+    "user": "Cork Collean",
+    "caseReference": "001234/1459-SG",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 53086,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2016-02-22T12:45:28.86",
+    "user": "SYSADM",
+    "caseReference": "37475",
+    "eventId": -11,
+    "eventDescription": "Next renewal due",
+    "actionName": "Renewals",
+    "criteriaId": 11600,
+    "typeOfRequest": "event-occurred",
+    "caseId": -83521,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2016-02-22T12:45:28.95",
+    "user": "George Grey",
+    "caseReference": "37475",
+    "eventId": -11782,
+    "eventDescription": "Renewal grace period",
+    "actionName": "Renewals - Law Update Service",
+    "criteriaId": -2000273,
+    "typeOfRequest": "event-occurred",
+    "caseId": -83521,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-01-19T16:43:46.28",
+    "user": "George Grey",
+    "caseReference": "21080426",
+    "eventId": -11301,
+    "eventDescription": "Take over - filing stage",
+    "actionName": "Take Over of Cases",
+    "criteriaId": 1659,
+    "typeOfRequest": "event-occurred",
+    "caseId": 142681,
+    "hasEventControl": true,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-01-29T15:40:02.78",
+    "user": "SYSADM",
+    "caseReference": "21080435",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142694,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-01-29T16:18:32.223",
+    "user": "George Grey",
+    "caseReference": "21080436",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142695,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-01-29T16:54:09.12",
+    "user": "George Grey",
+    "caseReference": "21080437",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142696,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T10:12:47.5",
+    "user": "George Grey",
+    "caseReference": "21080438",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142697,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T10:26:10.26",
+    "user": "George Grey",
+    "caseReference": "21080439",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142698,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T10:29:02.113",
+    "user": "Cork Collean",
+    "caseReference": "21080440",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142699,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T10:31:01.277",
+    "user": "George Grey",
+    "caseReference": "21080441",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142700,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T10:34:29.143",
+    "user": "George Grey",
+    "caseReference": "21080442",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Take Over of Cases",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142701,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T10:41:06.613",
+    "user": "Cork Collean",
+    "caseReference": "21080443",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142702,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T10:49:13.447",
+    "user": "Cork Collean",
+    "caseReference": "21080444",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142703,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T11:10:09.35",
+    "user": "SYSADM",
+    "caseReference": "21080445",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142704,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T11:18:28.997",
+    "user": "Cork Collean",
+    "caseReference": "21080446",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142705,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T11:48:07.83",
+    "user": "Cork Collean",
+    "caseReference": "21080447",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142706,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T12:18:01.73",
+    "user": "SYSADM",
+    "caseReference": "21080448",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142707,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T13:35:42.477",
+    "user": "SYSADM",
+    "caseReference": "21080449",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142708,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T14:18:44.117",
+    "user": "George Grey",
+    "caseReference": "21080450",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142709,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T14:23:29.53",
+    "user": "SYSADM",
+    "caseReference": "21080451",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142710,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-01T14:28:18.893",
+    "user": "SYSADM",
+    "caseReference": "31036929",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142711,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-02T16:07:25.48",
+    "user": "SYSADM",
+    "caseReference": "21080445",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": null,
+    "criteriaId": null,
+    "typeOfRequest": "prior-art-distribution",
+    "caseId": 142704,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-02T16:07:25.817",
+    "user": "George Grey",
+    "caseReference": "21080452",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": null,
+    "criteriaId": null,
+    "typeOfRequest": "prior-art-distribution",
+    "caseId": 142712,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-02T16:07:26.727",
+    "user": "Cork Collean",
+    "caseReference": "21080452",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142712,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-02T16:54:04.6",
+    "user": "Cork Collean",
+    "caseReference": "21080453",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142713,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-02T17:31:31.31",
+    "user": "Cork Collean",
+    "caseReference": "21080454",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142714,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2016-02-08T11:18:53.22",
+    "user": "George Grey",
+    "caseReference": "21080455",
+    "eventId": null,
+    "eventDescription": null,
+    "actionName": "Overview",
+    "criteriaId": null,
+    "typeOfRequest": "open-action",
+    "caseId": 142715,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-progress",
+    "requested": "2013-03-26T14:03:18.32",
+    "user": "Cork Collean",
+    "caseReference": "E01/058EP",
+    "eventId": -8,
+    "eventDescription": "Grant date",
+    "actionName": "Registration/Certificates",
+    "criteriaId": 10214,
+    "typeOfRequest": "event-occurred",
+    "caseId": 727,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2013-07-16T13:56:38.78",
+    "user": "George Grey",
+    "caseReference": "E01/058EP",
+    "eventId": -11402,
+    "eventDescription": "Rule 71(3)Communication Dated",
+    "actionName": "Registration/Certificates",
+    "criteriaId": 10214,
+    "typeOfRequest": "event-occurred",
+    "caseId": 727,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2013-07-16T13:56:38.82",
+    "user": "SYSADM",
+    "caseReference": "E01/058EP",
+    "eventId": -11410,
+    "eventDescription": "Rule 71(3)Comm Reported to Client ",
+    "actionName": "Registration/Certificates",
+    "criteriaId": 10214,
+    "typeOfRequest": "event-occurred",
+    "caseId": 727,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2013-07-16T13:56:38.83",
+    "user": "Cork Collean",
+    "caseReference": "E01/058EP",
+    "eventId": -1011403,
+    "eventDescription": "Rule 71(3) Deadline(inc 10 days)",
+    "actionName": "Registration/Certificates",
+    "criteriaId": 10214,
+    "typeOfRequest": "due-date-changed",
+    "caseId": 727,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "waiting-to-start",
+    "requested": "2013-07-16T13:59:11.31",
+    "user": "George Grey",
+    "caseReference": "E01/058EP",
+    "eventId": -69,
+    "eventDescription": "Acceptance notification received",
+    "actionName": "Examination/Prosecution",
+    "criteriaId": 10212,
+    "typeOfRequest": "event-occurred",
+    "caseId": 727,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemCount": 0,
+        "errorItems": []
+    }
+}, {
+    "status": "in-error",
+    "requested": "2013-02-13T15:26:10.327",
+    "user": "SYSADM",
+    "caseReference": "080618-0764",
+    "eventId": -11995,
+    "eventDescription": "PTA Expiry Date",
+    "actionName": null,
+    "criteriaId": null,
+    "typeOfRequest": "due-date-changed",
+    "caseId": -237864,
+    "hasEventControl": false,
+    "error": {
+        "totalErrorItemsCount": 6,
+        "errorItems": [{
+            "errorDate": "2016-03-06T17:43:00.29",
+            "eventNumber": 100,
+            "eventDescription": "Event desc 1 Really Really Longggggggggggggggggggggggggggggggggggggggggggggggggg description",
+            "eventCycle": 10,
+            "eventCriteriaNumber": 12,
+            "message": "Error Occured"
+        }, {
+            "errorDate": "2016-03-02T17:43:00.29",
+            "eventNumber": 100,
+            "eventDescription": "Event desc 2",
+            "eventCycle": 11,
+            "eventCriteriaNumber": 12,
+            "message": "Error Occured"
+        }, {
+            "errorDate": "2016-03-03T17:43:00.29",
+            "eventNumber": 100,
+            "eventDescription": "Event desc 3",
+            "eventCycle": 12,
+            "eventCriteriaNumber": 12,
+            "message": "Error Occured"
+        }, {
+            "errorDate": "2016-03-04T17:43:00.29",
+            "eventNumber": 100,
+            "eventDescription": "Event desc 4",
+            "eventCycle": 13,
+            "eventCriteriaNumber": 12,
+            "message": "Error Occured"
+        }, {
+            "errorDate": "2016-03-05T17:43:00.29",
+            "eventNumber": 100,
+            "eventDescription": "Event desc 5",
+            "eventCycle": 14,
+            "eventCriteriaNumber": 12,
+            "message": "Error Occured"
+        }]
+    }
+}]

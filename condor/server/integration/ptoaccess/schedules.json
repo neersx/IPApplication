@@ -1,0 +1,141 @@
+{
+    "schedules": [{
+        "id": "1",
+        "name": "Daily status check",
+        "runOnDays": "Sun,Mon,Tue,Wed,Thu,Fri,Sat",
+        "dataSource": "UsptoPrivatePair",
+        "downloadType": "StatusChanges",
+        "startTime": "00:00:00",
+        "nextRun": "2015-02-09T01:00:00",
+        "state": 0,
+        "executionStatus": "In progress",
+        "extension": {
+            "CustomerNumbers": "1234,5678",
+            "CertificateName": "CPA Global"
+        }
+    }, {
+        "id": "2",
+        "name": "Daily document download",
+        "dataSource": "UsptoPrivatePair",
+        "runOnDays": "Sun,Mon,Tue,Wed,Thu,Fri,Sat",
+        "downloadType": "Documents",
+        "startTime": "02:00:00",
+        "nextRun": "2015-02-05T01:00:00",
+        "state": 0,
+        "executionStatus": "Completed with failures",
+        "extension": {
+            "CustomerNumbers": "1234,5678",
+            "CertificateName": "CPA Global"
+        }
+    }, {
+        "id": "3",
+        "name": "US Trademark Schedule",
+        "dataSource": "UsptoTsdr",
+        "runOnDays": "Sun,Mon,Tue,Wed,Thu,Fri,Sat",
+        "downloadType": "Documents",
+        "startTime": "04:00:00",
+        "nextRun": "2015-02-08T00:05:00",
+        "expiresAfter": "2020-12-25",
+        "state": 0,
+        "executionStatus": "Completed",
+        "extension": {
+            "SavedQueryId": 1,
+            "SavedQueryName": "US Trademarks",
+            "RunAsUserId": 2,
+            "RunAsUserName": "internal"
+        }
+    }, {
+        "id": "4",
+        "name": "George's Night Schedule",
+        "dataSource": "UsptoPrivatePair",
+        "runOnDays": "Mon,Wed,Fri",
+        "downloadType": "StatusChanges",
+        "startTime": "03:00:00",
+        "nextRun": "2015-02-09T10:00:00",
+        "expiresAfter": "2100-01-01",
+        "state": 0,
+        "executionStatus": "Started",
+        "extension": {
+            "CustomerNumbers": "16273",
+            "CertificateName": "George's Certificate"
+        }
+    }, {
+        "id": "5",
+        "name": "Initial Download",
+        "dataSource": "UsptoTsdr",
+        "downloadType": "All",
+        "startTime": "03:00:00",
+        "nextRun": null,
+        "expiresAfter": "2000-01-01",
+        "state": 1,
+        "executionStatus": "Completed",
+        "extension": {
+            "SavedQueryId": 1,
+            "SavedQueryName": "US Trademarks",
+            "RunAsUserId": 2,
+            "RunAsUserName": "internal"
+        }
+    }, {
+        "id": "6",
+        "name": "No more runs",
+        "dataSource": "UsptoTsdr",
+        "downloadType": "All",
+        "startTime": "03:00:00",
+        "nextRun": null,
+        "expiresAfter": "2100-01-01",
+        "state": 2,
+        "executionStatus": "Completed",
+        "extension": {
+            "SavedQueryId": 1,
+            "SavedQueryName": "US Trademarks",
+            "RunAsUserId": 2,
+            "RunAsUserName": "internal"
+        }
+    }, {
+        "id": "7",
+        "name": "John's schedule",
+        "dataSource": "Innography",
+        "downloadType": "All",
+        "startTime": "03:00:00",
+        "nextRun": null,
+        "expiresAfter": "2100-01-01",
+        "state": 2,
+        "executionStatus": "Completed",
+        "extension": {
+            "SavedQueryId": 1,
+            "SavedQueryName": "Innography Sample",
+            "RunAsUserId": 2,
+            "RunAsUserName": "internal"
+        }
+    }, {
+        "id": "8",
+        "name": "FILE Status query",
+        "dataSource": "UsptoTsdr",
+        "downloadType": "All",
+        "startTime": "03:00:00",
+        "nextRun": null,
+        "expiresAfter": "2100-01-01",
+        "state": 2,
+        "executionStatus": "Completed",
+        "extension": {
+            "SavedQueryId": 1,
+            "SavedQueryName": "FILE Status",
+            "RunAsUserId": 2,
+            "RunAsUserName": "internal"
+        }
+    },{
+        "id": "9",
+        "name": "Daily status check",
+        "runOnDays": "Sun,Mon,Tue,Wed,Thu,Fri,Sat",
+        "dataSource": "UsptoPrivatePair",
+        "downloadType": "All",
+        "startTime": "00:00:00",
+        "nextRun": "2015-02-09T01:00:00",
+        "state": 0,
+        "executionStatus": "Completed",
+        "extension": {
+            "CustomerNumbers": "1234,5678,0001",
+            "CertificateName": ""
+        }
+    }]
+}

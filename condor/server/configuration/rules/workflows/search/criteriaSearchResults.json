@@ -1,0 +1,1659 @@
+[{
+    "id": 24,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {},
+    "propertyType": {},
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Case Other Screens",
+    "isProtected": true,
+    "isInherited": false,
+    "isHighestParent": true
+}, {
+    "id": 25,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "CA",
+        "description": "Canada"
+    },
+    "propertyType": {
+        "code": "D",
+        "description": "Designs"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases CA Designs Screens",
+    "isProtected": false,
+    "isInherited": true,
+    "isHighestParent": true
+}, {
+    "id": 26,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "US",
+        "description": "United States of America"
+    },
+    "propertyType": {
+        "code": "D",
+        "description": "Designs"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": false,
+    "inUse": true,
+    "criteriaName": "Cases US Design Screens",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": 27,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "AU",
+        "description": "Australia"
+    },
+    "propertyType": {
+        "code": "D",
+        "description": "Designs"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": false,
+    "inUse": true,
+    "criteriaName": "Cases AU Design Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 28,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "GB",
+        "description": "United Kingdom"
+    },
+    "propertyType": {
+        "code": "D",
+        "description": "Designs"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases UK Design Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 29,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "GB",
+        "description": "United Kingdom"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases UK Patents Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 30,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "AU",
+        "description": "Australia"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases AU Patents Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 31,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "CA",
+        "description": "Canada"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases CA Patents Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 32,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "CA",
+        "description": "Canada"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases CA trademark screebs",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 33,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "AU",
+        "description": "Australia"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases AU Trademarks Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 34,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "GB",
+        "description": "United Kingdom"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases UK Trademarks Screens",
+    "isProtected": false,
+    "isInherited": true
+}, {
+    "id": 35,
+    "caseType": {
+        "code": "H",
+        "description": "Challenge Regn/Challenger"
+    },
+    "caseCategory": {},
+    "jurisdiction": {},
+    "propertyType": {},
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases Base Challenge Registration as Challenger Screens",
+    "isProtected": false,
+    "isInherited": true
+}, {
+    "id": 36,
+    "caseType": {
+        "code": "G",
+        "description": "Challenge Regn/Owner"
+    },
+    "caseCategory": {},
+    "jurisdiction": {},
+    "propertyType": {},
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases Base Challenger Registration for Owner Screens",
+    "isProtected": false,
+    "isInherited": true
+}, {
+    "id": 37,
+    "caseType": {
+        "code": "F",
+        "description": "Miscellaneous"
+    },
+    "caseCategory": {},
+    "jurisdiction": {},
+    "propertyType": {},
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases Bases Miscellaneous Screens",
+    "isProtected": false,
+    "isInherited": true
+}, {
+    "id": 38,
+    "caseType": {
+        "code": "E",
+        "description": "Assignment/recordals"
+    },
+    "caseCategory": {},
+    "jurisdiction": {},
+    "propertyType": {},
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases Base Assignment Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 39,
+    "caseType": {
+        "code": "D",
+        "description": "Searching"
+    },
+    "caseCategory": {},
+    "jurisdiction": {},
+    "propertyType": {},
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases Base Search Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 40,
+    "caseType": {
+        "code": "C",
+        "description": "Oppositions/Opponent"
+    },
+    "caseCategory": {},
+    "jurisdiction": {},
+    "propertyType": {},
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases Base Opposition as Opponent Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 41,
+    "caseType": {
+        "code": "B",
+        "description": "Oppositions/Owner"
+    },
+    "caseCategory": {},
+    "jurisdiction": {},
+    "propertyType": {},
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases Base Opposition as Owner Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 42,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "US",
+        "description": "United States of America"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases US Trademarks Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": 43,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {},
+    "propertyType": {
+        "code": "D",
+        "description": "Designs"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases Base Designs Screens",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": -2005010,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "AT",
+        "description": "Austria"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "2005-07-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Austria (AT), Patent, Renewals - Law Update Service, 01 Jul 2005",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": -2005002,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "GR",
+        "description": "Greece"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "2005-05-18T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Greece (GR), Patent, X, Renewals - Law Update Service, 18 May 2005",
+    "isProtected": false,
+    "isInherited": false
+}, {
+    "id": -2005001,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "GR",
+        "description": "Greece"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "2005-05-18T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Greece (GR), Patent, Renewals - Law Update Service, 18 May 2005",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2001460,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "JP",
+        "description": "Japan"
+    },
+    "propertyType": {
+        "code": "U",
+        "description": "Utility Models / Petty Patents"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "2005-04-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Japan (JP), Utility Model, Renewals - Law Update Service, 01 Apr 2005",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2001157,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "YU",
+        "description": "Serbia & Montenegro"
+    },
+    "propertyType": {
+        "code": "D",
+        "description": "Designs"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "2005-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Serbia & Montenegro (YU), Design, Renewals - Law Update Service, 01 Jan 2005",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2000234,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "SY",
+        "description": "Syria"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "2005-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Syria (SY), Trademark, Renewals - Law Update Service, 01 Jan 2005",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -1000116,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "YU",
+        "description": "Serbia & Montenegro"
+    },
+    "propertyType": {
+        "code": "D",
+        "description": "Designs"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "2005-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Serbia & Montenegro Design Renewal Sequencing from 1 Jan 2005",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2005024,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "SG",
+        "description": "Singapore"
+    },
+    "propertyType": {
+        "code": "D",
+        "description": "Designs"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "2005-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Singapore (SG), Design, Renewals - Law Update Service, 01 Jan 2005",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2002084,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "IN",
+        "description": "India"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "2005-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "India (IN), Patent, Renewals - Law Update Service, 01 Jan 2005",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -1000050,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "MA",
+        "description": "Morocco"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "2004-12-18T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "TM Morocco Renewal Sequencing after Dec 2004",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2004001,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "EM",
+        "description": "European Community"
+    },
+    "propertyType": {
+        "code": "V",
+        "description": "Plant Variety Rights"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {
+        "code": "V",
+        "description": "Vines/Potatoes/Trees"
+    },
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "European Community (EM), Plant Variety, , Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2004144,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "ZW",
+        "description": "Zimbabwe"
+    },
+    "propertyType": {
+        "code": "V",
+        "description": "Plant Variety Rights"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {
+        "code": "V",
+        "description": "Vines/Potatoes/Trees"
+    },
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Zimbabwe (ZW), Plant Variety, Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2004143,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "ZM",
+        "description": "Zambia"
+    },
+    "propertyType": {
+        "code": "V",
+        "description": "Plant Variety Rights"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {
+        "code": "V",
+        "description": "Vines/Potatoes/Trees"
+    },
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Zambia (ZM), Plant Variety, Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2004142,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "ZA",
+        "description": "South Africa"
+    },
+    "propertyType": {
+        "code": "V",
+        "description": "Plant Variety Rights"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {
+        "code": "V",
+        "description": "Vines/Potatoes/Trees"
+    },
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "South Africa (ZA), Plant Variety, Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2004141,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "TH",
+        "description": "Thailand"
+    },
+    "propertyType": {
+        "code": "V",
+        "description": "Plant Variety Rights"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {
+        "code": "V",
+        "description": "Vines/Potatoes/Trees"
+    },
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Thailand (TH), Plant Variety, Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2004140,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "SZ",
+        "description": "Swaziland"
+    },
+    "propertyType": {
+        "code": "V",
+        "description": "Plant Variety Rights"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {
+        "code": "V",
+        "description": "Vines/Potatoes/Trees"
+    },
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Swaziland (SZ), Plant Variety, Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2004139,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "SG",
+        "description": "Singapore"
+    },
+    "propertyType": {
+        "code": "V",
+        "description": "Plant Variety Rights"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {
+        "code": "V",
+        "description": "Vines/Potatoes/Trees"
+    },
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Singapore (SG), Plant Variety, Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2004138,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "QA",
+        "description": "Qatar"
+    },
+    "propertyType": {
+        "code": "V",
+        "description": "Plant Variety Rights"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {
+        "code": "V",
+        "description": "Vines/Potatoes/Trees"
+    },
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Qatar (QA), Plant Variety, Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2004137,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "PL",
+        "description": "Poland"
+    },
+    "propertyType": {
+        "code": "V",
+        "description": "Plant Variety Rights"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {
+        "code": "V",
+        "description": "Vines/Potatoes/Trees"
+    },
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Poland (PL), Plant Variety, Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2004136,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "PK",
+        "description": "Pakistan"
+    },
+    "propertyType": {
+        "code": "V",
+        "description": "Plant Variety Rights"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {
+        "code": "V",
+        "description": "Vines/Potatoes/Trees"
+    },
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Pakistan (PK), Plant Variety, Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -484743,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "EP",
+        "description": "European Patent Office"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "AL",
+        "description": "Filing"
+    },
+    "subType": {},
+    "basis": {
+        "code": "N",
+        "description": "Non-Convention"
+    },
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Default EP Patent Filing Application, Non Convention",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642453,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "AU",
+        "description": "Australia"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {
+        "code": "AL",
+        "description": "Filing"
+    },
+    "subType": {},
+    "basis": {
+        "code": "N",
+        "description": "Non-Convention"
+    },
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "AU Trademark Lodgement/Filing Application Non-Conv",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642452,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "AU",
+        "description": "Australia"
+    },
+    "propertyType": {
+        "code": "D",
+        "description": "Designs"
+    },
+    "action": {
+        "code": "AL",
+        "description": "Filing"
+    },
+    "subType": {},
+    "basis": {
+        "code": "N",
+        "description": "Non-Convention"
+    },
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "AU Design Lodgement/Filing Application Non-Conv",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642451,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "AU",
+        "description": "Australia"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "AL",
+        "description": "Filing"
+    },
+    "subType": {},
+    "basis": {
+        "code": "N",
+        "description": "Non-Convention"
+    },
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "AU Patent Lodgement/Filing Application Non-Conv",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -247,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "GB",
+        "description": "United Kingdom"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {
+        "code": "AL",
+        "description": "Filing"
+    },
+    "subType": {},
+    "basis": {
+        "code": "N",
+        "description": "Non-Convention"
+    },
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "GB TM Filing Application/Non-Convention - User defined",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -3015,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "GB",
+        "description": "United Kingdom"
+    },
+    "propertyType": {
+        "code": "D",
+        "description": "Designs"
+    },
+    "action": {
+        "code": "AL",
+        "description": "Filing"
+    },
+    "subType": {},
+    "basis": {
+        "code": "N",
+        "description": "Non-Convention"
+    },
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "GB Default Design Filing Application/Non-Convention",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -3014,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "GB",
+        "description": "United Kingdom"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {
+        "code": "AL",
+        "description": "Filing"
+    },
+    "subType": {},
+    "basis": {
+        "code": "N",
+        "description": "Non-Convention"
+    },
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "GB TM Filing Application/Non-Convention",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -3009,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "GB",
+        "description": "United Kingdom"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {
+        "code": "AL",
+        "description": "Filing"
+    },
+    "subType": {},
+    "basis": {
+        "code": "Y",
+        "description": "Claiming Paris Convention"
+    },
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "GB TM Filing Application/Convention",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -1000123,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "MAP",
+        "description": "Madrid Protocol (TM)"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {
+        "code": "Y",
+        "description": "Claiming Paris Convention"
+    },
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases Madrid Protocol Trademarks Screens - convention",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -1000122,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {},
+    "jurisdiction": {
+        "code": "EM",
+        "description": "European Community"
+    },
+    "propertyType": {
+        "code": "T",
+        "description": "Trade Marks"
+    },
+    "action": {},
+    "subType": {},
+    "basis": {
+        "code": "Y",
+        "description": "Claiming Paris Convention"
+    },
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Cases EMTrademarks Screens Convention",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -2002011,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "AT",
+        "description": "Austria"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "~2",
+        "description": "Renewals - Law Update Service"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": "1800-01-01T00:00:00",
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Austria (AT), Patent, X, Renewals - Law Update Service, 01 Jan 1800",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642660,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "RO",
+        "description": "Romania"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Romania Patent EP National Stage Renewal Sequencing",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642659,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "PT",
+        "description": "Portugal"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Portugal Patent EP National Stage Renewal Sequencing",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642658,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "NL",
+        "description": "Netherlands"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Netherlands Patent EP National Stage Renewal Sequencing",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642657,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "MK",
+        "description": "Macedonia (F.Y.R.O.M)"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Macedonia Patent EP National Stage Renewal Sequencing",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642656,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "FI",
+        "description": "Finland"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Finland Patent EP National Stage Renewal Sequencing",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642655,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "ES",
+        "description": "Spain"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Spain Patent EP National Stage Renewal Sequencing",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642654,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "CZ",
+        "description": "Czech Republic"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Czech Republic Patent EP National Stage Renewal Sequencing",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642653,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "CH",
+        "description": "Switzerland"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Switzerland Patent EP National Stage Renewal Sequencing",
+    "isProtected": true,
+    "isInherited": false
+}, {
+    "id": -642652,
+    "caseType": {
+        "code": "A",
+        "description": "Properties"
+    },
+    "caseCategory": {
+        "code": "A",
+        "description": "Patent of Addition"
+    },
+    "jurisdiction": {
+        "code": "BG",
+        "description": "Bulgaria"
+    },
+    "propertyType": {
+        "code": "P",
+        "description": "Patents"
+    },
+    "action": {
+        "code": "RS",
+        "description": "Renewal Sequencing"
+    },
+    "subType": {},
+    "basis": {},
+    "office": {},
+    "dateOfLaw": {},
+    "isLocalClient": true,
+    "inUse": true,
+    "criteriaName": "Bulgaria Patent EP National Stage Renewal Sequencing",
+    "isProtected": true,
+    "isInherited": false
+}]

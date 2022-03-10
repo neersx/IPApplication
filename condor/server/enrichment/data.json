@@ -1,0 +1,31 @@
+{
+    "userAgent": {
+        "languages": ["en", "en-US", "zh-CN", "zh"]
+    },
+    "systemInfo": {
+        "releaseYear": "2017",
+        "appVersion": "4.7",
+        "inprotechVersion": "12.1"
+    },
+    "intendedFor": {
+        "name": "internal",
+        "preferences": {
+            "culture": "de-CH",
+            "dateFormat": "dd-MMM-yyyy",
+            "timeRecording": {
+                "displaySeconds": "true"
+            },
+            "currencyFormat": {
+                "localCurrencyCode": "BFG",
+                "localDecimalPlaces": 0
+            },
+            "kendoLocale": "en"
+        },
+        "displayName": "Grey, George",
+        "permissions": {
+            "canShowLinkforInprotechWeb": true,
+            "canViewWorkInProgress": true,
+            "canViewReceivables": true
+        }
+    }
+}

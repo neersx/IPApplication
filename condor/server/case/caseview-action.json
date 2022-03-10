@@ -1,0 +1,19 @@
+[{
+    "name": "Overview",    
+    "cycle": 1,
+    "status": "In Progress",
+    "criteriaId": -34567,
+    "isOpen": true
+}, {
+    "name": "Base Filling",
+    "cycle": 2,
+    "status": "Waiting",
+    "criteriaId": 56771,
+    "isOpen": true
+}, {
+    "name": "Renewals",
+    "cycle": 1,
+    "status": "Complete",
+    "criteriaId": 34535,
+    "isOpen": false
+}]

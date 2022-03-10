@@ -1,0 +1,14 @@
+{
+    "id": "1",
+    "code": "GP",
+    "name": "Green Park",
+    "city": "New Delhi",
+    "country": {
+        "code": "IN",
+        "value": "India"
+    },
+    "state": {
+        "code": "DEL",
+        "value": "Delhi"
+    }
+}

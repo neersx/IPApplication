@@ -1,0 +1,4 @@
+{
+    "includes": ["**"],
+    "excludes": ["index.js", "config.json", "*/*.json", "*/*/*.json", "utils/**"]
+}

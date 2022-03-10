@@ -1,0 +1,56 @@
+[{
+    "id": 2,
+    "timeSlot": "2015-03-08T09:20:00.000",
+    "enterQueue": 1,
+    "exitQueue": 10
+}, {
+    "id": 3,
+    "timeSlot": "2015-03-08T09:30:00.000",
+    "enterQueue": 11,
+    "exitQueue": 13
+}, {
+    "id": 4,
+    "timeSlot": "2015-09-11T09:40:00.000",
+    "enterQueue": 16,
+    "exitQueue": 11
+}, {
+    "id": 5,
+    "timeSlot": "2015-09-11T09:50:00.000",
+    "enterQueue": 1,
+    "exitQueue": 1
+}, {
+    "id": 6,
+    "timeSlot": "2015-09-11T10:00:00.000",
+    "enterQueue": 7,
+    "exitQueue": 2
+}, {
+    "id": 7,
+    "timeSlot": "2015-09-11T10:10:00.000",
+    "enterQueue": 18,
+    "exitQueue": 5
+}, {
+    "id": 8,
+    "timeSlot": "2015-09-11T10:20:00.000",
+    "enterQueue": 2,
+    "exitQueue": 12
+}, {
+    "id": 9,
+    "timeSlot": "2015-09-11T10:30:00.000",
+    "enterQueue": 18,
+    "exitQueue": 5
+}, {
+    "id": 10,
+    "timeSlot": "2015-09-11T10:40:00.000",
+    "enterQueue": 1,
+    "exitQueue": 12
+}, {
+    "id": 11,
+    "timeSlot": "2016-03-09T21:00:00.000",
+    "enterQueue": 18,
+    "exitQueue": 5
+}, {
+    "id": 11,
+    "timeSlot": "2016-03-10T11:00:00.000",
+    "enterQueue": 8,
+    "exitQueue": 15
+}]

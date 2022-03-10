@@ -1,0 +1,37 @@
+[{
+    "key": -216,
+    "value": "Abandoned by client",
+    "type": "Case"
+}, {
+    "key": -302,
+    "value": "CPA to be notified",
+    "type": "Renewal"
+}, {
+    "key": -301,
+    "value": "EP Granted",
+    "type": "Case"
+}, {
+    "key": -300,
+    "value": "Lapsed at Renewal Organisation",
+    "type": "Renewal"
+}, {
+    "key": -299,
+    "value": "Assignment completed",
+    "type": "Case"
+}, {
+    "key": -297,
+    "value": "Assignment recorded",
+    "type": "Case"
+}, {
+    "key": -296,
+    "value": "Assignment with agent",
+    "type": "Case"
+}, {
+    "key": -227,
+    "value": "Same status as parent",
+    "type": "Case"
+}, {
+    "key": -212,
+    "value": "Refused or Removed by IPO",
+    "type": "Renewal"
+}]

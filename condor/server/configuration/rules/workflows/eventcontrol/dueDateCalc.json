@@ -1,0 +1,55 @@
+[{
+    "inherited": true,
+    "mustExist": false,
+    "jurisdiction": {
+        "Key": "AU",
+        "Value": "Australia"
+    },
+    "fromEvent": {
+        "key": -4,
+        "code": null,
+        "value": "Application Filing Date"
+    },
+    "period": {
+        "type": "M",
+        "value": 31
+    },
+    "cycle": 1,
+    "operator": "A",
+    "fromTo": 1,
+    "relativeCycle": 3
+}, {
+    "inherited": true,
+    "mustExist": false,
+    "jurisdiction": null,
+    "fromEvent": {
+        "key": -1,
+        "code": null,
+        "value": "Earliest Priority Date"
+    },
+    "period": {
+        "type": "M",
+        "value": 31
+    },
+    "cycle": 1,
+    "operator": "A",
+    "fromTo": 1,
+    "relativeCycle": 3
+}, {
+    "inherited": false,
+    "mustExist": false,
+    "jurisdiction": null,
+    "fromEvent": {
+        "key": -1,
+        "code": null,
+        "value": "Earliest Priority Date"
+    },
+    "period": {
+        "type": "M",
+        "value": 31
+    },
+    "cycle": 2,
+    "operator": "A",
+    "fromTo": 1,
+    "relativeCycle": 4
+}]

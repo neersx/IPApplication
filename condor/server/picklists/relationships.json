@@ -1,0 +1,33 @@
+[{
+    "value": "Marketing Activity",
+    "code": "~MK",
+    "key": "~MK"
+}, {
+    "value": "Convention Claim From",
+    "code": "BAS",
+    "key": "BAS"
+}, {
+    "value": "Continued",
+    "code": "CTP",
+    "key": "CTP"
+}, {
+    "value": "Associated Trade Mark",
+    "code": "ATM",
+    "key": "ATM"
+}, {
+    "value": "Basic Application",
+    "code": "BSP",
+    "key": "BSP"
+}, {
+    "value": "Converted from CTM",
+    "code": "CFC",
+    "key": "CFC"
+}, {
+    "value": "Continued In Part",
+    "code": "CIP",
+    "key": "CIP"
+}, {
+    "value": "Patent Of Addition To",
+    "code": "ADD",
+    "key": "ADD"
+}]

@@ -1,0 +1,170 @@
+{
+    "id": 1234,
+    "topics": [{
+        "name": "summary",
+        "fields": [{
+            "fieldName": "title",
+            "label": "W-Title",
+            "hidden": false
+        }, {
+            "fieldName": "officialNumber",
+            "label": "W-Official Number",
+            "hidden": false
+        }, {
+            "fieldName": "propertyType",
+            "label": "W-Property Type",
+            "hidden": false
+        }, {
+            "fieldName": "caseCategory",
+            "label": "W-Case Category",
+            "hidden": false
+        }, {
+            "fieldName": "subType",
+            "label": "W-Sub-Type",
+            "hidden": false
+        }, {
+            "fieldName": "caseType",
+            "label": "W-Type",
+            "hidden": false
+        }, {
+            "fieldName": "fileLocation",
+            "label": "W-File Location",
+            "hidden": true
+        }, {
+            "fieldName": "caseOffice",
+            "label": "W-Office",
+            "hidden": false
+        }, {
+            "fieldName": "status",
+            "label": "W-Status",
+            "hidden": false
+        }, {
+            "fieldName": "caseStatus",
+            "label": "W-Case Status",
+            "hidden": false
+        }, {
+            "fieldName": "renewalStatus",
+            "label": "W-Renewal Status",
+            "hidden": false
+        }, {
+            "fieldName": "country",
+            "label": "W-Jurisdiction",
+            "hidden": false
+        }, {
+            "fieldName": "entitySize",
+            "label": "W-Entity Size",
+            "hidden": true
+        }, {
+            "fieldName": "localClientFlag",
+            "label": "W-Local Client",
+            "hidden": true
+        }, {
+            "fieldName": "profitCentre",
+            "label": "W-Profit Centre",
+            "hidden": true
+        }, {
+            "fieldName": "family",
+            "label": "W-Family",
+            "hidden": false
+        }, {
+            "fieldName": "instructor",
+            "label": "W-Client",
+            "hidden": false
+        }, {
+            "fieldName": "firstApplicant",
+            "label": "W-Inventor",
+            "hidden": false
+        }, {
+            "fieldName": "staff",
+            "label": "W-Attorney",
+            "hidden": false
+        }, {
+            "fieldName": "classes",
+            "label": "W-Classes",
+            "hidden": false
+        }, {
+            "fieldName": "numberInSeries",
+            "label": "W-No. In Series",
+            "hidden": false
+        }, {
+            "fieldName": "typeOfMark",
+            "label": "W-Type of Mark",
+            "hidden": false
+        }, {
+            "fieldName": "applicationFilingDate",
+            "label": "W-Filed On",
+            "hidden": false
+        }]
+    }, {
+        "id": 100,
+        "name": "criticalDates"
+    }, {
+        "id": 101,
+        "name": "actions",
+        "fields": []
+    }, {
+        "id": 102,
+        "name": "names",
+        "fields": []
+    }, {
+        "id": 103,
+        "name": "names",
+        "title": "Debtors",
+        "fields": [],
+        "filters": { "nameTypeKey": "D,Z" }
+    }, {
+        "id": 104,
+        "name": "events"
+    }, {
+        "id": 105,
+        "name": "relatedCases"
+    }, {
+        "id": 106,
+        "name": "officialNumbers"
+    }, {
+        "id": 108,
+        "name": "designatedCountries"
+    }, {
+        "id": 107,
+        "name": "caseText",
+        "title": "All Texts"
+    }, {
+        "id": 109,
+        "name": "caseText",
+        "title": "Combined Text Topic",
+        "filters": { "textTypeKey": "CL, CB" }
+    }, {
+        "id": 110,
+        "name": "caseText",
+        "title": "Single Filtered Topic",
+        "filters": { "textTypeKey": "A" }
+    }, {
+        "id": 111,
+        "name": "eFiling",
+        "title": "E-filing"
+    }, {
+        "id": 112,
+        "name": "images",
+        "title": "Case Images"
+    }, {
+        "id": 113,
+        "name": "caseRenewals",
+        "fields": []
+    },
+    {
+        "id": 114,
+        "name": "caseStandingInstructions",
+        "fields": []
+    },
+    {
+        "id": 115,
+        "name": "caseCustomContent",
+        "fields": []
+    },
+    {
+        "id": 116,
+        "name": "caseDesignElement",
+        "fields": []
+    }
+    ]
+}

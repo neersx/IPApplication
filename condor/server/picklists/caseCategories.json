@@ -1,0 +1,73 @@
+[{
+    "key": "3",
+    "code": "3",
+    "value": ".BIZ"
+}, {
+    "key": "1",
+    "code": "1",
+    "value": ".COM"
+}, {
+    "key": "2",
+    "code": "2",
+    "value": ".NET"
+}, {
+    "key": "F",
+    "code": "F",
+    "value": "Advertising"
+}, {
+    "key": "H",
+    "code": "H",
+    "value": "Associated Design"
+}, {
+    "key": "M",
+    "code": "M",
+    "value": "Associated TM"
+}, {
+    "key": "T",
+    "code": "T",
+    "value": "Cautionary Notices"
+}, {
+    "key": "B",
+    "code": "B",
+    "value": "Conference"
+}, {
+    "key": "C",
+    "code": "C",
+    "value": "Continuation"
+}, {
+    "key": "I",
+    "code": "I",
+    "value": "Continuation in Part"
+}, {
+    "key": "G",
+    "code": "G",
+    "value": "Direct Mail"
+}, {
+    "key": "D",
+    "code": "D",
+    "value": "Divisional"
+}, {
+    "key": "X",
+    "code": "X",
+    "value": "EP National Stage"
+}, {
+    "key": "Y",
+    "code": "Y",
+    "value": "EP National Stage Div'l"
+}, {
+    "key": "K",
+    "code": "K",
+    "value": "Ex PCT National Phase"
+}, {
+    "key": "7",
+    "code": "7",
+    "value": "Food/Drug"
+}, {
+    "key": "9",
+    "code": "9",
+    "value": "Intent to Use"
+}, {
+    "key": "4",
+    "code": "4",
+    "value": "Madrid - Proof of Use"
+}]

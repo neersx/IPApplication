@@ -1,0 +1,82 @@
+[
+    {
+        "key": "DEVICE",
+        "isStopWord": true
+    },
+    {
+        "key": "PLUCKING",
+        "isStopWord": false
+    },
+    {
+        "key": "PICKER",
+        "isStopWord": false
+    },
+    {
+        "key": "ASPARAGUS",
+        "isStopWord": false
+    },
+    {
+        "key": "OF",
+        "isStopWord": true
+    },
+    {
+        "key": "CONTENT",
+        "isStopWord": false
+    },
+    {
+        "key": "WATER",
+        "isStopWord": false
+    },
+    {
+        "key": "DETERMINING",
+        "isStopWord": false
+    },
+    {
+        "key": "FOR",
+        "isStopWord": true
+    },
+    {
+        "key": "TESTING",
+        "isStopWord": false
+    },
+    {
+        "key": "A",
+        "isStopWord": true
+    },
+    {
+        "key": "THE",
+        "isStopWord": true
+    },
+    {
+        "key": "AN",
+        "isStopWord": true
+    },
+    {
+        "key": "ASPER",
+        "isStopWord": false
+    },
+    {
+        "key": "APPLICATION",
+        "isStopWord": false
+    },
+    {
+        "key": "TO",
+        "isStopWord": true
+    },
+    {
+        "key": "OPPOSITION",
+        "isStopWord": true
+    },
+    {
+        "key": "MACHINE",
+        "isStopWord": false
+    },
+    {
+        "key": "POPCORN",
+        "isStopWord": false
+    },
+    {
+        "key": "SLEEP",
+        "isStopWord": false
+    }
+]

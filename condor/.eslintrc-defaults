@@ -1,0 +1,6 @@
+extends: eslint:recommended
+
+globals:
+  _: false
+  Papa: false
+  inproInitGtag: false

@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "outDir": "client/condor/transpiled",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "types": [
+            "jasmine",
+            "node",
+            "underscore",
+            "angular",
+            "jquery",
+            "angular-mocks",
+            "kendo-ui"
+        ],
+        "lib": [
+            "es2016",
+            "es2015",
+            "dom",
+            "es5"
+        ]
+    },
+    "include": [
+        "client/condor/**/*.ts", "client/condor/downgrades/hotkeys.service.js"
+    ],
+    "exclude": [
+        "client/ng/**/*.ts"
+    ]
+}

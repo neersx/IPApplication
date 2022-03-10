@@ -1,0 +1,94 @@
+[{
+    "sequence": 1,
+    "document": {
+        "key": -15872,
+        "code": "US SB0001",
+        "value": "Declaration for Utility or Design Patent Application - Fillable Form"
+    },
+    "produce": "asScheduled",
+    "startBefore": {
+        "type": "M",
+        "value": 3
+    },
+    "repeatEvery": {
+        "type": "M",
+        "value": 3
+    },
+    "stopTime": {
+        "type": "M",
+        "value": 9
+    },
+    "maxDocuments": 1,
+    "chargeType": {
+        "key": 99998,
+        "value": "Renewal Extension"
+    },
+    "isPayFee": true,
+    "isRaiseCharge": false,
+    "isEstimate": true,
+    "isDirectPay": false,
+    "isCheckCycleForSubstitute": true,
+    "inherited": true
+}, {
+    "sequence": 2,
+    "document": {
+        "key": -15869,
+        "code": "US SB0008",
+        "value": "Information Disclosure Sheet By Applicant"
+    },
+    "produce": "onDueDate",
+    "startBefore": {
+        "type": "M",
+        "value": 3
+    },
+    "repeatEvery": {
+        "type": "M",
+        "value": 3
+    },
+    "stopTime": {
+        "type": "M",
+        "value": 9
+    },
+    "maxDocuments": 1,
+    "chargeType": {
+        "key": 99998,
+        "value": "Renewal Extension"
+    },
+    "isPayFee": true,
+    "isRaiseCharge": false,
+    "isEstimate": true,
+    "isDirectPay": false,
+    "isCheckCycleForSubstitute": true,
+    "inherited": true
+}, {
+    "sequence": 3,
+    "document": {
+        "key": -15865,
+        "code": "US SB0022",
+        "value": "Petition for Extension of Time Under 37 CFR 1.136(a)"
+    },
+    "produce": "eventOccurs",
+    "startBefore": {
+        "type": "M",
+        "value": 3
+    },
+    "repeatEvery": {
+        "type": "M",
+        "value": 3
+    },
+    "stopTime": {
+        "type": "M",
+        "value": 9
+    },
+    "maxDocuments": 1,
+    "chargeType": {
+        "key": 99998,
+        "value": "Renewal Extension"
+    },
+    "isPayFee": true,
+    "isRaiseCharge": false,
+    "isEstimate": true,
+    "isDirectPay": false,
+    "isCheckCycleForSubstitute": true,
+    "inherited": true
+}]

@@ -1,0 +1,121 @@
+[{
+    "key": -15874,
+    "code": null,
+    "value": "EDE Case Export",
+    "template": "sqlt_ede_case_export.xml",
+    "exactMatch": false
+}, {
+    "key": -15873,
+    "code": null,
+    "value": "OHIM CTM Application",
+    "template": "application_ctm_en_cpass.pdf",
+    "exactMatch": false
+}, {
+    "key": -15872,
+    "code": "US SB0001",
+    "value": "Declaration for Utility or Design Patent Application - Fillable Form",
+    "template": "SB0001.DOT",
+    "exactMatch": false
+}, {
+    "key": -15871,
+    "code": "US SB0002",
+    "value": "Declaration (Additional Inventors) - Fillable Form",
+    "template": "SB0002.DOT",
+    "exactMatch": false
+}, {
+    "key": -15870,
+    "code": "US SB0005",
+    "value": "Utility Patent Application Transmittal - Fillable Form",
+    "template": "SB0005.DOT",
+    "exactMatch": false
+}, {
+    "key": -15869,
+    "code": "US SB0008",
+    "value": "Information Disclosure Sheet By Applicant",
+    "template": "SB0008.DOT",
+    "exactMatch": false
+}, {
+    "key": -15868,
+    "code": "US SB0015",
+    "value": "Assignment of Application",
+    "template": "SB0015.DOT",
+    "exactMatch": false
+}, {
+    "key": -15867,
+    "code": "US SB0017",
+    "value": "Fee Transmittal for FY 2002 - Fillable Form",
+    "template": "SB0017.DOT",
+    "exactMatch": false
+}, {
+    "key": -15866,
+    "code": "US SB0018",
+    "value": "Design Patent Application Transmittal - Fillable Form",
+    "template": "sb0018.dot",
+    "exactMatch": false
+}, {
+    "key": -15865,
+    "code": "US SB0022",
+    "value": "Petition for Extension of Time Under 37 CFR 1.136(a)",
+    "template": "SB0022.DOT",
+    "exactMatch": false
+}, {
+    "key": -15864,
+    "code": "US SB0023",
+    "value": "Petition for Extension of Time Under 37 CFR 1.136(b)",
+    "template": "SB0023.DOT",
+    "exactMatch": false
+}, {
+    "key": -15863,
+    "code": "US SB0025",
+    "value": "Terminal Disclaimer to Obviate a Provisional Double Patenting Rejection Over a Pending Second Applic",
+    "template": "SB0025.DOT",
+    "exactMatch": false
+}, {
+    "key": -15862,
+    "code": "US SB0026",
+    "value": "Terminal Disclaimer to Obviate a Provisional Double Patenting Rejection Over a Prior Patent",
+    "template": "SB0026.DOT",
+    "exactMatch": false
+}, {
+    "key": -15861,
+    "code": "US SB0029",
+    "value": "Continued Prosecution Application (CPA) Request Transmittal",
+    "template": "SB0029.DOT",
+    "exactMatch": false
+}, {
+    "key": -15860,
+    "code": "US SB0030",
+    "value": "Request for Continued Examination (RCE) Transmittal",
+    "template": "SB0030.DOT",
+    "exactMatch": false
+}, {
+    "key": -15859,
+    "code": "US SB0031",
+    "value": "Notice of Appeal from the Examiner to the Board of Patent Appeals and Interferences",
+    "template": "SB0031.DOT",
+    "exactMatch": false
+}, {
+    "key": -15858,
+    "code": "US SB0035",
+    "value": "NonPublication Request Under 35 U.S.C. 122(b)(2)(B)(i)",
+    "template": "SB0035.DOT",
+    "exactMatch": false
+}, {
+    "key": -15857,
+    "code": "US SB0036",
+    "value": "Request to Rescind Previous NonPublication Request 35 U.S.C. 122 (b)(2)(B)(ii)",
+    "template": "SB0036.DOT",
+    "exactMatch": false
+}, {
+    "key": -15856,
+    "code": "US SB0044",
+    "value": "Certificate of Correction",
+    "template": "SB0044.DOT",
+    "exactMatch": false
+}, {
+    "key": -15855,
+    "code": "US SB0047",
+    "value": "Fee Address Indication Form",
+    "template": "SB0047.DOT",
+    "exactMatch": false
+}]

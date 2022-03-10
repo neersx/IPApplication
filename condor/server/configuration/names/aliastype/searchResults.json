@@ -1,0 +1,31 @@
+[{
+    "id": "1",
+    "code": "A",
+    "description": "Accounts Alias",
+    "isUnique": true
+}, {
+    "id": "2",
+    "code": "B",
+    "description": "FILE Agent Id",
+    "isUnique": false
+}, {
+    "id": "3",
+    "code": "C",
+    "description": "CPA User Code",
+    "isUnique": false
+}, {
+    "id": "4",
+    "code": "D",
+    "description": "User Login Id",
+    "isUnique": false
+}, {
+    "id": "5",
+    "code": "E",
+    "description": "CPA Account No",
+    "isUnique": true
+}, {
+    "id": "6",
+    "code": "F",
+    "description": "FILE Agent No",
+    "isUnique": true
+}]

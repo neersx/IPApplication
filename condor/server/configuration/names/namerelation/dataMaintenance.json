@@ -1,0 +1,12 @@
+{
+    "id": "2",
+    "relationshipCode": "BI2",
+    "relationshipDescription": "Copy Bills To",
+    "reverseDescription": "Receives Bill Copies For",
+    "isCrmOnly": true,
+    "isEmployee": false,
+    "isIndividual": true,
+    "isOrganisation": true,
+    "hasCrmLisences": true,
+    "ethicalWallValue": "Not Applicable"
+}

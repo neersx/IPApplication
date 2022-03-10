@@ -1,0 +1,13 @@
+extends: .eslintrc-defaults
+
+env:
+  jasmine: true
+  jquery : true
+
+globals:
+  inject: false
+  module: false
+  angular: false
+  kendo: false
+  test: false
+  window: false

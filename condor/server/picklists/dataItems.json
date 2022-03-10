@@ -1,0 +1,25 @@
+[{
+    "key": "1",
+    "code": "item_a",
+    "value": "Item a description"
+}, {
+    "key": "2",
+    "code": "item_b",
+    "value": "Item b description"
+}, {
+    "key": "3",
+    "code": "item_c",
+    "value": "Item c description"
+}, {
+    "key": "4",
+    "code": "item_d",
+    "value": "Item d description"
+}, {
+    "key": "5",
+    "code": "item_e",
+    "value": "Description of item e"
+}, {
+    "key": "6",
+    "code": "item_f",
+    "value": "duplicate of item_e returning stored procedure"
+}]

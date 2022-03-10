@@ -1,0 +1,49 @@
+{
+    "caseStatus": "Renewal Ready",
+    "renewalStatus": "Pending",
+    "nextRenewalDate": "11/09/2019",
+    "renewalType": "Dunno!",
+    "renewalYear": "2019",
+    "extendedRenewalYears": 100,
+    "reportToCpa": true,
+    "startPaying": "2018-02-02",
+    "stopPaying": "3019-02-02",
+    "reasonToStopPay": "Forgot To Pay",
+    "lastExtracted": "2019-02-02",
+    "lastCpaEvent": "2019-06-02",
+    "portfolioDate": "2020-06-02",
+    "renewalNotes": "I like to eat eat eat - Apple and Banana",
+    "ipplatformRenewLink": "https://www.google.com/search?q=smily",
+    "relevantDates": [
+        {
+            "eventDescription": "Earliest Priority Date",
+            "eventDate": "2019-09-27 00:00:00.000",
+            "isOccurred": true
+        },
+        {
+            "eventDescription": "Renewal Date",
+            "eventDate": "2010-09-27 00:00:00.000",
+            "isOccurred": false
+        },
+        {
+            "eventDescription": "Renewal Date way in future",
+            "eventDate": "2040-09-27 00:00:00.000",
+            "isOccurred": false
+        },
+        {
+            "eventDescription": "This is just for fun",
+            "eventDate": "2010-09-27 00:00:00.000",
+            "isOccurred": true
+        }
+    ],
+    "standingInstructions": [
+        {
+            "instruction": "Renewal Reminder",
+            "instructionTypeDescription": "All reminders"
+        },
+        {
+            "instruction": "Renewal",
+            "instructionTypeDescription": "Renew only after instruction"
+        }
+    ]
+}

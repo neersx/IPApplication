@@ -1,0 +1,63 @@
+[{
+    "validBasisIdentifier": {
+        "countryId": "AU",
+        "propertyTypeId": "D",
+        "caseTypeId": "A",        
+        "basisId": "N",
+        "caseCategoryId": "D"
+    },
+     "jurisdictions": [
+        {
+            "code": "AU",
+            "value": "Australia"
+        }
+    ],
+    "propertyType": {
+        "code": "D",
+        "value": "Designs"
+    },
+    "caseType": {
+        "code": "A",
+        "value": "Properties"
+    },
+    "caseCategory": {
+        "code": "D",
+        "value": "Divisional"
+    },
+    "basis": {
+        "code": "N",
+        "value": "Non-convention"
+    },
+    "validDescription": "Non-convention"
+}, {
+     "validBasisIdentifier": {
+        "countryId": "US",
+        "propertyTypeId": "T",
+        "caseTypeId": "A",        
+        "basisId": "Y",
+        "caseCategoryId": "9"
+    },
+     "jurisdictions": [
+        {
+            "code": "US",
+            "value": "United States"
+        }
+    ],
+    "propertyType": {
+        "code": "D",
+        "value": "Designs"
+    },
+    "caseType": {
+        "code": "T",
+        "value": "Trademark"
+    },
+    "caseCategory": {
+        "code": "9",
+        "value": "Intent to Use"
+    },
+    "basis": {
+        "code": "Y",
+        "value": "Convention"
+    },
+    "validDescription": "First Filing"
+}]

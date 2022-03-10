@@ -1,0 +1,5 @@
+{
+    "configuredModes": ["email", "app"],
+    "enabled": "true",
+    "preference": "email"
+}

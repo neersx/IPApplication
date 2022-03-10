@@ -1,0 +1,46 @@
+[{
+    "key": "A",
+    "value": "Properties"
+}, {
+    "key": "B",
+    "value": "Oppositions/Owner"
+}, {
+    "key": "C",
+    "value": "Oppositions/Opponent"
+}, {
+    "key": "D",
+    "value": "Searching"
+}, {
+    "key": "E",
+    "value": "Assignment/recordals"
+}, {
+    "key": "F",
+    "value": "Miscellaneous"
+}, {
+    "key": "G",
+    "value": "Challenge Regn/Owner"
+}, {
+    "key": "H",
+    "value": "Challenge Regn/Challenger"
+}, {
+    "key": "I",
+    "value": "Licensing"
+}, {
+    "key": "M",
+    "value": "Marketing Activities"
+}, {
+    "key": "O",
+    "value": "CRM"
+}, {
+    "key": "W",
+    "value": "Document"
+}, {
+    "key": "X",
+    "value": "Draft Property"
+}, {
+    "key": "Y",
+    "value": "Internal"
+}, {
+    "key": "Z",
+    "value": "Interim"
+}]

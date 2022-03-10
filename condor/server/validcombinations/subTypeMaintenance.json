@@ -1,0 +1,63 @@
+[{
+    "validSubTypeIdentifier": {
+        "countryId": "AU",
+        "propertyTypeId": "D",
+        "caseTypeId": "A",
+        "caseCategoryId": "D",
+        "subTypeId": "MP"
+    },
+    "jurisdictions": [
+        {
+            "code": "AU",
+            "value": "Australia"
+        }
+    ],
+    "propertyType": {
+        "code": "D",
+        "value": "Designs"
+    },
+    "caseType": {
+        "code": "A",
+        "value": "Properties"
+    },
+    "caseCategory": {
+        "code": "D",
+        "value": "Divisional"
+    },
+    "subType": {
+        "code": "MP",
+        "value": "Multiple Part"
+    },    
+    "validDescription": "Valid Multiple Part"
+}, {
+    "validSubTypeIdentifier": {
+        "countryId": "US",
+        "propertyTypeId": "T",
+        "caseTypeId": "A",
+        "caseCategoryId": "9",        
+        "subTypeId": "N"
+    },
+    "jurisdictions": [
+        {
+            "code": "US",
+            "value": "United States"
+        }
+    ],
+    "propertyType": {
+        "code": "T",
+        "value": "Trademark"
+    },
+    "caseType": {
+        "code": "A",
+        "value": "Properties"
+    },
+    "caseCategory": {
+        "code": "9",
+        "value": "Intent to Use"
+    },
+    "subType": {
+        "code": "N",
+        "value": "Normal"
+    },    
+    "validDescription": "Valid Normal"
+}]

@@ -1,0 +1,61 @@
+[{
+    "culture": "ar",
+    "description": "Arabic"
+}, {
+    "culture": "zh-CHS",
+    "description": "Chinese"
+}, {
+    "culture": "da",
+    "description": "Danish"
+}, {
+    "culture": "nl",
+    "description": "Dutch"
+}, {
+    "culture": "en",
+    "description": "English"
+}, {
+    "culture": "fi",
+    "description": "Finnish"
+}, {
+    "culture": "fr",
+    "description": "French"
+}, {
+    "culture": "de",
+    "description": "German"
+}, {
+    "culture": "el",
+    "description": "Greek"
+}, {
+    "culture": "it",
+    "description": "Italian"
+}, {
+    "culture": "ja",
+    "description": "Japanese"
+}, {
+    "culture": "ko",
+    "description": "Korean"
+}, {
+    "culture": "no",
+    "description": "Norwegian"
+}, {
+    "culture": "pl",
+    "description": "Polish"
+}, {
+    "culture": "pt",
+    "description": "Portugese"
+}, {
+    "culture": "ru",
+    "description": "Russian"
+}, {
+    "culture": "es",
+    "description": "Spanish"
+}, {
+    "culture": "sv",
+    "description": "Swedish"
+}, {
+    "culture": "th",
+    "description": "Thai"
+}, {
+    "culture": "tr",
+    "description": "Turkish"
+}]

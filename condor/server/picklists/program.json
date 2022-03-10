@@ -1,0 +1,56 @@
+[{
+        "key": "CASENTRY",
+        "name": "Case",
+        "parentName": "ZZ Case Parent Program"
+    },
+    {
+        "key": "CASEOTH",
+        "name": "Case (Other Scr.)",
+        "parentName": "ZZ Case Parent Program"
+    },
+    {
+        "key": "CASEEXT",
+        "name": "Case Client Access",
+        "parentName": "ZZ Case Parent Program"
+    },
+    {
+        "key": "CASEENQ",
+        "name": "Case Enquiry",
+        "parentName": "ZZ Case Parent Program"
+    },
+    {
+        "key": "CASMAINT",
+        "name": "Case Maintenance",
+        "parentName": "ZZ Case Parent Program"
+    },
+    {
+        "key": "CSREVIEW",
+        "name": "Case Review",
+        "parentName": "Case Review Program"
+    },
+    {
+        "key": "CSREVPRG",
+        "name": "Case Review Program",
+        "parentName": null
+    },
+    {
+        "key": "TAKEOVER",
+        "name": "Case Takeover",
+        "parentName": "ZZ Case Parent Program"
+    },
+    {
+        "key": "CRM",
+        "name": "CRM WorkBench",
+        "parentName": null
+    },
+    {
+        "key": "RENEWAL",
+        "name": "Renewals",
+        "parentName": "ZZ Case Parent Program"
+    },
+    {
+        "key": "CASE",
+        "name": "ZZ Case Parent Program",
+        "parentName": null
+    }
+]

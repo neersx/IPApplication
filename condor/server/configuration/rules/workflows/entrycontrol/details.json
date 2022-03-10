@@ -1,0 +1,99 @@
+[{
+    "isInherited": true,
+    "entryEvent": {
+        "key": 1,
+        "code": null,
+        "value": "Opposition Decision - Positive"
+    },
+    "eventToUpdate": null,
+    "eventDate": 3,
+    "dueDate": null,
+    "policing": null,
+    "period": null,
+    "dueDateResp": null,
+    "overrideDueDate": null,
+    "overrideEventDate": null
+}, {
+    "isInherited": false,
+    "entryEvent": {
+        "key": 2,
+        "code": null,
+        "value": "Opposition Decision - Negative"
+    },
+    "eventToUpdate": {
+        "key": 2,
+        "code": null,
+        "value": "Some other event"
+    },
+    "eventDate": 3,
+    "dueDate": null,
+    "policing": null,
+    "period": null,
+    "dueDateResp": null,
+    "overrideDueDate": null,
+    "overrideEventDate": null
+}, {
+    "isInherited": true,
+    "entryEvent": {
+        "key": 3,
+        "code": null,
+        "value": "Appeal Deadline"
+    },
+    "eventToUpdate": {
+        "key": 2,
+        "code": null,
+        "value": "Some other event"
+    },
+    "eventDate": null,
+    "dueDate": 4,
+    "policing": null,
+    "period": null,
+    "dueDateResp": null,
+    "overrideDueDate": null,
+    "overrideEventDate": null
+}, {
+    "isInherited": false,
+    "entryEvent": {
+        "key": 5,
+        "code": null,
+        "value": "Grounds of Appeal"
+    },
+    "eventToUpdate": null,
+    "eventDate": 1,
+    "dueDate": 3,
+    "policing": null,
+    "period": null,
+    "dueDateResp": null,
+    "overrideDueDate": 0,
+    "overrideEventDate": 1
+}, {
+    "isInherited": true,
+    "entryEvent": {
+        "key": 6,
+        "code": null,
+        "value": "O/S Appeal Deadline"
+    },
+    "eventToUpdate": null,
+    "eventDate": 1,
+    "dueDate": 4,
+    "policing": null,
+    "period": null,
+    "dueDateResp": null,
+    "overrideDueDate": 1,
+    "overrideEventDate": 2
+}, {
+    "isInherited": false,
+    "entryEvent": {
+        "key": 7,
+        "code": null,
+        "value": "O/S Grounds of Appeal Deadline"
+    },
+    "eventToUpdate": null,
+    "eventDate": 2,
+    "dueDate": 1,
+    "policing": null,
+    "period": null,
+    "dueDateResp": 1,
+    "overrideDueDate": 0,
+    "overrideEventDate": 1
+}]

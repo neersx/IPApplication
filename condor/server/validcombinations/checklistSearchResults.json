@@ -1,0 +1,33 @@
+[{
+    "id": {
+        "countryId": "AU",
+        "propertyTypeId": "D",
+        "caseTypeId": "A",
+        "checklistId": "1"
+    },
+    "countryId": "AU",
+    "country": "Australia",
+    "propertyTypeId": "D",
+    "propertyType": "Designs",
+    "caseTypeId": "A",
+    "caseType": "Properties",
+    "checklistType": "1", 
+    "checklist": "Lodge new patent application + DN",
+    "validDescription": "Valid Lodge new patent application + DN"
+}, {
+    "id": {
+        "countryId": "US",
+        "propertyTypeId": "T",
+        "caseTypeId": "A",
+        "checklistId": "6"
+    },
+    "countryId": "US",
+    "country": "United States",
+    "propertyTypeId": "T",
+    "propertyType": "Trademark",
+    "caseTypeId": "A",
+    "caseType": "Properties",
+    "checklistType": "6", 
+    "checklist": "US Form SB0001",
+    "validDescription": "Valid US Form SB0001"
+}]

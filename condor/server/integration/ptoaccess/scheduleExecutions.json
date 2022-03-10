@@ -1,0 +1,566 @@
+[{
+        "id": 1,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2014-10-24T08:00:44.13",
+        "finished": "2014-10-24T23:56:44.13",
+        "casesProcessed": 1,
+        "casesIncluded": 100,
+        "correlationId": "1234",
+        "allowsIndexRetrieval": true
+    }, {
+        "id": 2,
+        "status": "Failed",
+        "type": "OnDemand",
+        "started": "2014-09-04T15:56:44.13",
+        "finished": "2014-09-04T19:56:44.13",
+        "casesProcessed": null,
+        "casesIncluded": null,
+        "correlationId": "5678"
+    }, {
+        "id": 3,
+        "status": "Complete",
+        "type": "Retry",
+        "started": "2014-08-12T15:56:44.13",
+        "finished": "2014-08-13T15:56:44.13",
+        "casesProcessed": 0,
+        "casesIncluded": 0,
+        "correlationId": "1234"
+    }, {
+        "id": 1,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2014-10-24T08:00:44.13",
+        "finished": "2014-10-24T23:56:44.13",
+        "casesProcessed": 10,
+        "casesIncluded": 10,
+        "correlationId": "5678"
+    }, {
+        "id": 2,
+        "status": "Failed",
+        "type": "OnDemand",
+        "started": "2014-09-04T15:56:44.13",
+        "finished": "2014-09-04T19:56:44.13",
+        "casesProcessed": null,
+        "casesIncluded": null,
+        "correlationId": "1234"
+    }, {
+        "id": 3,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2014-08-12T15:56:44.13",
+        "finished": "2014-08-13T15:56:44.13",
+        "casesProcessed": 10,
+        "casesIncluded": 10,
+        "correlationId": "5678"
+    }, {
+        "id": 161804,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-26T00:01:21.977",
+        "finished": "2017-08-26T00:52:21.527",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "94994ebf-1085-46b7-a4a3-78bdc7b70654",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 161801,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-25T00:01:20.367",
+        "finished": "2017-08-25T00:52:09.607",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "6ce03833-1b38-478c-aacd-b47d505f9e71",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 161798,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-24T00:01:24.403",
+        "finished": "2017-08-24T00:52:10.753",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "6a95f4e1-7ff5-429b-b2a1-fa4c1ca9662c",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 161795,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-23T00:01:21.537",
+        "finished": "2017-08-23T00:52:09.813",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "98f5a5e0-7812-4fdb-bf8a-da58b8fae950",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151794,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-22T00:00:44.853",
+        "finished": "2017-08-22T00:54:04.543",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "842c7e5f-dd3a-46ee-9700-127f78208249",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151792,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-21T00:00:41.58",
+        "finished": "2017-08-21T00:51:29.203",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "396cb858-6a1e-4c9b-a10f-57640ce37a5c",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151789,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-20T00:00:40.233",
+        "finished": "2017-08-20T00:51:27.533",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "fcb9f9eb-5bd6-46f3-9b6f-55743f907a0c",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151788,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-19T00:01:30.36",
+        "finished": "2017-08-19T00:52:19.583",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "777a7973-d428-4ff4-8227-e81114a659ad",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151784,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-18T00:00:27.43",
+        "finished": "2017-08-18T00:51:19.133",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "b5017000-e63b-461d-b985-9416ec7bae73",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151781,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-17T00:00:25.723",
+        "finished": "2017-08-17T00:51:15.107",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "e659df4e-2909-453c-a4c2-6da13c5e5767",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151778,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-16T00:00:39.787",
+        "finished": "2017-08-16T00:51:28.343",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "9f507b06-83ed-425a-a1b0-0a0e18abee68",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151775,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-15T00:00:37.71",
+        "finished": "2017-08-15T00:51:25.687",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "aff1a5fb-6372-42d6-a82e-6e6a06f5b0c7",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151772,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-14T00:02:29.63",
+        "finished": "2017-08-14T00:53:19.107",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "b584cdd2-1dd6-41f7-8a12-ee505ec28c5a",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151770,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-13T00:02:27.607",
+        "finished": "2017-08-13T00:58:33.457",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "e9a3386c-23df-4c10-959b-fd842a4a680d",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151768,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-12T00:01:59.76",
+        "finished": "2017-08-12T00:57:47.947",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "ec06d15d-f876-4979-8b0b-78e4d2adc69e",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151765,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-11T00:01:57.293",
+        "finished": "2017-08-11T00:52:47.873",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "59557a3a-d989-409a-bf7c-40e33268f281",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151762,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-10T00:01:01.503",
+        "finished": "2017-08-10T00:51:49.893",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "d33a4b4f-35a1-4239-96c4-a4fddb960b0e",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151760,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-09T00:00:58.63",
+        "finished": "2017-08-09T00:56:49.9",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "e5b293a9-7da0-455f-8fea-63726b6645f7",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151756,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-08T00:00:55.943",
+        "finished": "2017-08-08T00:51:43.797",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "daf69804-c0bd-415e-a2a4-145e72cd2f24",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151753,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-07T00:00:27.087",
+        "finished": "2017-08-07T00:51:14.887",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "b5dc61f5-b758-4e2d-8d87-6e9c8436073f",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151751,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-06T00:00:25.067",
+        "finished": "2017-08-06T00:56:12.917",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "d070b461-a56d-474b-b87b-74415cc8a425",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151749,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-05T00:01:43.937",
+        "finished": "2017-08-05T00:52:35.593",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "24cf6642-bbc1-4786-a559-9f2eb57203e8",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151746,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-04T00:01:41.97",
+        "finished": "2017-08-04T00:52:32.69",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "52f1411e-81ef-4e52-83a7-dfa768d5b97b",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151743,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-03T00:03:14.987",
+        "finished": "2017-08-03T00:54:07.163",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "626ae150-481c-461a-99d5-d29a7702417d",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151740,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-02T00:03:12.553",
+        "finished": "2017-08-02T00:54:03.367",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "9546d2dd-3dd4-4985-aabb-8f844005b9bc",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151737,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-08-01T00:03:10.15",
+        "finished": "2017-08-01T00:54:00.497",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "fefaebbb-bc2f-4f42-9cc2-be636c861e89",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151734,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-07-31T00:03:07.73",
+        "finished": "2017-07-31T00:53:57.99",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "5bcdbd82-05b9-474f-86fe-2b287cb84424",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151732,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-07-30T00:03:03.673",
+        "finished": "2017-07-30T00:53:52.29",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "1fefaf94-5755-46a5-9658-97510dd802fe",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151730,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-07-29T00:03:01.227",
+        "finished": "2017-07-29T00:53:50.853",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "49c2c95a-0a51-49c0-8980-14a442ea9814",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    },
+    {
+        "id": 151727,
+        "status": "Complete",
+        "type": "Scheduled",
+        "started": "2017-07-28T00:02:59.593",
+        "finished": "2017-07-28T00:53:49.617",
+        "casesProcessed": 54,
+        "casesIncluded": 54,
+        "correlationId": null,
+        "allowsIndexRetrieval": false,
+        "cancellationInfo": {
+            "token": "a9c0bf51-7e6d-4eea-b2d1-47fecab5748f",
+            "cancelledOn": "0001-01-01T00:00:00",
+            "byUserId": 0,
+            "byUserName": null
+        }
+    }
+]

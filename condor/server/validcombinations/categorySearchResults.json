@@ -1,0 +1,33 @@
+[{
+    "id": {
+        "countryId": "AU",
+        "propertyTypeId": "D",
+        "caseTypeId": "A",
+        "categoryId": "D"
+    },
+    "countryId": "AU",
+    "country": "Australia",
+    "propertyTypeId": "D",
+    "propertyType": "Designs",
+    "caseTypeId": "A",
+    "caseType": "Properties",
+    "caseCategoryId": "D",
+    "caseCategory": "Divisional",   
+    "validDescription": "Valid  Divisional"
+}, {
+     "id": {
+        "countryId": "US",
+        "propertyTypeId": "T",
+        "caseTypeId": "A",
+        "categoryId": "9"
+    },
+    "countryId": "US",
+    "country": "United States",
+    "propertyTypeId": "T",
+    "propertyType": "Trademark",
+    "caseTypeId": "A",
+    "caseType": "Properties",
+    "caseCategoryId": "9",
+    "caseCategory": "Intent to Use",    
+    "validDescription": "Valid Intent to Use"
+}]

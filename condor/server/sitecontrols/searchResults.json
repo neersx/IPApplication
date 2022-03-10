@@ -1,0 +1,701 @@
+[{
+    "id": 431,
+    "name": "IPRULES 2002.01.01",
+    "description": "IPRules scripts for version IPRULES 2002.01.01 have been loaded",
+    "release": null,
+    "value": "true",
+    "components": ""
+}, {
+    "id": 607,
+    "name": "Round Up",
+    "description": "If set on, the Timesheet program will use the rounding up function.",
+    "release": "Inprotech 3.0 U1",
+    "value": "true",
+    "components": "Timesheet, WorkBenches"
+}, {
+    "id": 32,
+    "name": "AP Handle Partial Disbursement",
+    "description": "Controls whether the program will not show any warning or errors (value=0), warn the user (value=1) or display an error (value=2) when the purchase being entered is only partially disbursed.",
+    "release": "Inprotech 3.0 U2",
+    "value": "1",
+    "components": "Accounts Payable, Financial Management"
+}, {
+    "id": 485,
+    "name": "LETTERSAFTERDAYS",
+    "description": "The number of days added to the system date to automatically generate the Letter date in the Policing Request program",
+    "release": "Inprotech 3.0 U1",
+    "value": "1",
+    "components": "IP Matter Management, Policing"
+}, {
+    "id": 161,
+    "name": "CountryProfile",
+    "description": "The Centura Country Profile constant for the presentation of Local Currency.  Leave blank if the same as the country of operation.",
+    "release": "Inprotech 3.0 U1",
+    "value": null,
+    "components": "Billing"
+}, {
+    "id": 407,
+    "name": "Ignore Case First Linked To",
+    "description": "When set to True the Report Issued and Received dates will also be pushed through to associated Cases event if the Case First Linked To flag is set on for the Case.",
+    "release": "Inprotech 3.5.1 CPA-22",
+    "value": "false",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 487,
+    "name": "Log Time as GMT",
+    "description": "The log datetime stamp may use Greenwich Mean Time irrespective of location as an alternative to using the Log Time Offset site control.",
+    "release": null,
+    "value": "false",
+    "components": ""
+}, {
+    "id": 250,
+    "name": "CPA User Code",
+    "description": "CPA System Id that is extracted into the output files",
+    "release": "Inprotech 3.0 U2",
+    "value": "ZZZ",
+    "components": "Renewals Interface"
+}, {
+    "id": 40,
+    "name": "Auto Import Duplicate Files",
+    "description": "Determines how Import Server will process files that have already been imported when running in automatic mode.\r\n1 - Add files to the queue with an error but do not process\r\n2 - Re-add files to the queue and process\r\n3 - Ignore files already processed.\r\n",
+    "release": null,
+    "value": "1",
+    "components": ""
+}, {
+    "id": 121,
+    "name": "CASEONLY_TIME",
+    "description": "When set on then Timesheet entries with only a name are displayed in red and will prevent the timesheet from being posted",
+    "release": "Inprotech 3.0 U1",
+    "value": "false",
+    "components": "Case, IP Matter Management, Name, WorkBenches"
+}, {
+    "id": 572,
+    "name": "Quotations",
+    "description": "Controls whether Quotation data can be viewed and edited in the Time and Billing modules.  When set ON Quotation columns and picklists are visible.  When OFF they are invisible.",
+    "release": "Inprotech 3.5.1",
+    "value": "true",
+    "components": "Billing, Timesheet"
+}, {
+    "id": 429,
+    "name": "IPOfficeDivRel",
+    "description": "The RelatedCase relationship used for exporting the Divisional Number to the IP Office",
+    "release": "Inprotech 3.0 U1",
+    "value": null,
+    "components": "Document Generation, IP Matter Management"
+}, {
+    "id": 605,
+    "name": "Rollover Log Files Directory",
+    "description": "The full path, preferably in the UNC (Universal Naming Convention) format, of the directory where InPro will save Rollover log files.  The UNC path looks like this: \\\\server_name\\directory_path.",
+    "release": "Inprotech 3.5.1 MOF-6",
+    "value": null,
+    "components": "Accounts Receivable, Financial Management"
+}, {
+    "id": 466,
+    "name": "IPRULES 2005.01RN",
+    "description": "IPRules scripts for version IPRULES 2005.01RN have been loaded",
+    "release": null,
+    "value": "true",
+    "components": ""
+}, {
+    "id": 600,
+    "name": "Restrict On WIP",
+    "description": "Controls use of bad debtor restrictions within Timesheet & WIP. When TRUE, the restrictions for bad debtors eg. require password, will be implemented within Timesheet & WIP. When FALSE, Timesheet & WIP give warnings if bad debtor restrictions exist.",
+    "release": "Inprotech 3.5.1",
+    "value": "false",
+    "components": "Billing, WIP, WorkBenches"
+}, {
+    "id": 249,
+    "name": "CPA Use CaseId as Case Code",
+    "description": "Use the CASEID to report to CPA as the Case Code.  This will be required if any Case Reference (IRN) exceeds the 15 character maximum on the CPA database.\r\nWarning - this option should not be changed once live data exchange has begun.",
+    "release": "Inprotech 3.2 U2",
+    "value": "false",
+    "components": "Renewals Interface"
+}, {
+    "id": 218,
+    "name": "CPA PD 13",
+    "description": "1st Priority Date",
+    "release": null,
+    "value": "-1",
+    "components": ""
+}, {
+    "id": 253,
+    "name": "CPA-CEF Event",
+    "description": "EventNo mapped to the Event Date from the Composite Event File (CEF)",
+    "release": "Inprotech 3.0 U2",
+    "value": null,
+    "components": "Renewals Interface"
+}, {
+    "id": 105,
+    "name": "Case Event Default Sorting",
+    "description": "Controls the default sorting of Events table on the Case Events tab. ES = Event Sequence. ED = Event Date. DD = Event Due Date. NR = Date Next Reminder. IL = Importance Level. CD = Cycle, Event/Due.",
+    "release": "Inprotech 3.3 U4",
+    "value": "ES",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 6,
+    "name": "Additional Internal Staff",
+    "description": "Allows specifying a Name Type of an additional Internal Staff.  When a valid Name Type is entered the Internal Staff data field pick list becomes visible on the Instructor tab in the Case program. Note: EMP, SIG, I and A cannot be used.",
+    "release": "Inprotech 3.0 U2",
+    "value": null,
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 313,
+    "name": "DocGen Row Display Limit",
+    "description": "Defines the default value for the 'Row display limit' field in the Document Generator program.",
+    "release": "Inprotech 4.0",
+    "value": null,
+    "components": "Document Generation, IP Matter Management"
+}, {
+    "id": 535,
+    "name": "Police Immediately",
+    "description": "When it is set ON causes Policing to run immediately when an Action is opened or an event is updated.  When it is OFF then a request is written into the POLICING table for the POLICING SERVER to process.",
+    "release": "Inprotech 3.0 U1",
+    "value": "true",
+    "components": "EDE Module, IP Matter Management, Policing"
+}, {
+    "id": 39,
+    "name": "Attach HTTP Response To Case",
+    "description": "When set to TRUE the response received after delivering a document via Document Generator using the HTTP (Hyper Text Transfer Protocol) will be attached as a file to the case.",
+    "release": "Inprotech 3.5.1 MOF-6",
+    "value": "false",
+    "components": "Document Generation, IP Matter Management"
+}, {
+    "id": 242,
+    "name": "CPA TM 17",
+    "description": "Previous Renewal Date",
+    "release": null,
+    "value": "-99",
+    "components": ""
+}, {
+    "id": 268,
+    "name": "CRM Default Opportunity Status",
+    "description": "The default Opportunity status to be assigned to a Opportunity when it is first created.  This is the code visible via Table Maintenance for the Opportunity Status table.  It can also be found on TableCodes.TableCode for TableType=145.",
+    "release": "Inprotech 3.5.1 CPA-19",
+    "value": "-14501",
+    "components": "CRM, Marketing"
+}, {
+    "id": 142,
+    "name": "Client Number Types Shown",
+    "description": "In WorkBenches, these are the number types for a case which can be shown to external users. Selected from the NUMBERTYPES.NUMBERTYPE column or a comma-separated list of these. If blank, only number types where ISSUEDBYIPOFFICE =1 will be displayed.",
+    "release": "Inprotech 3.5.1 CPA-7",
+    "value": null,
+    "components": "Client Access, WorkBenches"
+}, {
+    "id": 563,
+    "name": "PROMPTCOUNTRY",
+    "description": "In the Names program, if this is set on the operator is prompted to enter a country of a new name as it is being entered, so that the address for the name is formatted appropriately for that name.",
+    "release": "Inprotech 3.0 U1",
+    "value": "true",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 307,
+    "name": "DN Copy Text 1",
+    "description": "The text to be placed in the asCopy field of the Debit Note for the first of the Firm's copies.",
+    "release": "Inprotech 3.5",
+    "value": "File Copy",
+    "components": "Billing"
+}, {
+    "id": 140,
+    "name": "Client Name Types",
+    "description": "In the Internet Enquiry module, this holds the names type relationships the client name must have to gain access to the case. Selected from the Nametype.Nametype column or combinations of these values separated by commas. (eg, \"I,A\").",
+    "release": "Inprotech 3.2",
+    "value": "I,A",
+    "components": "Client Access, IP Matter Management"
+}, {
+    "id": 462,
+    "name": "IPRULES 2004.04NR",
+    "description": "IPRules scripts for version IPRULES 2004.04NR have been loaded",
+    "release": null,
+    "value": "true",
+    "components": ""
+}, {
+    "id": 542,
+    "name": "Policing Reminders On Hold",
+    "description": "When TRUE, the On Hold Date will be set to the future reminder date for any reminders generated with a future date.",
+    "release": "Inprotech 3.5.1 CPA-23",
+    "value": "false",
+    "components": "IP Matter Management, Policing"
+}, {
+    "id": 324,
+    "name": "DocMgmt Path",
+    "description": "Specifies the full path to the Document Management program, i.e. the location of the program and the name of the executable.  The location has to be, preferably, in the UNC (Universal Naming Convention): \\\\server_name\\path_to_executable.",
+    "release": "Inprotech 3.5.1 CPA-11",
+    "value": "C:\\Program Files\\Microsoft Office\\Office10\\Winword.exe",
+    "components": "Document Generation, IP Matter Management"
+}, {
+    "id": 635,
+    "name": "Statements Sender Email",
+    "description": "The email address from whom debtor statements will be sent. This will be the From address of the email to which the statement will be attached.",
+    "release": "Inprotech 3.3",
+    "value": null,
+    "components": "Accounts Receivable, Financial Management"
+}, {
+    "id": 189,
+    "name": "CPA EDT Email Body",
+    "description": "The body of the EDT email to be sent to CPA. The symbol combination '$$$' signifies the batch number variable and will be replaced by the actual running batch number",
+    "release": "Inprotech 3.0 U1",
+    "value": null,
+    "components": "Renewals Interface"
+}, {
+    "id": 110,
+    "name": "Case Instr. Address Restricted",
+    "description": "If set to TRUE, Instructor address will not be derived if the instructor has more than one address. If mandatory this will force the user to manually select one. If FALSE, Instr. Address will be defaulted/derived as normal.",
+    "release": "Inprotech 3.5.1 EF-9",
+    "value": "false",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 92,
+    "name": "Billing Credit Tolerance",
+    "description": "The percentage tolerance used by billing to determine whether the remainder of a credit item (e.g. prepayment or unallocated cash) is trivial enough for it to be automatically paid out. Calculated as Remainder/Original Amount. Default is 3.00 (i.e. 3%)",
+    "release": "Inprotech 3.0 U5",
+    "value": "3.14",
+    "components": "Billing"
+}, {
+    "id": 281,
+    "name": "Database Email Via Certificate",
+    "description": "When set to TRUE, emails will be sent directly via database mail using a signed certificate.  FALSE, send email as background task.",
+    "release": "Inprotech 3.5.1 CPA-8",
+    "value": "false",
+    "components": "Document Generation, IP Matter Management"
+}, {
+    "id": 532,
+    "name": "Police Continuously",
+    "description": "This flag causes Smart Policing to continue processing any unprocessed Policing requests. Setting the site control to FALSE will allow Smart Policing to complete the current cycle and exit gracefully.",
+    "release": "Inprotech 3.2",
+    "value": "true",
+    "components": "IP Matter Management, Policing"
+}, {
+    "id": 610,
+    "name": "Sell Rate Only for New WIP",
+    "description": "If set on, the Sell Rate of the currency (rather than the Buy Rate) will always be used as the exchange rate when a WIP item is entered in a foreign currency.",
+    "release": "Inprotech 3.1 U6",
+    "value": "false",
+    "components": "Billing, WorkBenches"
+}, {
+    "id": 697,
+    "name": "Wizard Show Tabs",
+    "description": "If this option is turned ON the tabs will be visible when entering details about a case via the Workflow Wizard.",
+    "release": "Inprotech 3.5.1 CPA-11",
+    "value": "true",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 226,
+    "name": "CPA PD 27",
+    "description": "Start Paying Date",
+    "release": null,
+    "value": null,
+    "components": ""
+}, {
+    "id": 146,
+    "name": "Client Request Email Subject",
+    "description": "The name of the doc item providing the subject line for the email produced when a new client request is created.",
+    "release": "Inprotech 3.1 U1",
+    "value": "EG_CLIENT_REQUEST_SUBJECT",
+    "components": "Client Access, WorkBenches"
+}, {
+    "id": 534,
+    "name": "Police Immediate in Background",
+    "description": "If set to TRUE then Policing Immediately will run as a background task. This will allow the user to continue to do other things within the Case program while Policing is in progress.",
+    "release": "Inprotech 3.5.1 MCL-4",
+    "value": "true",
+    "components": "EDE Module, IP Matter Management, Policing"
+}, {
+    "id": 652,
+    "name": "Telecom Type - Home Page",
+    "description": "The Code of the Telecommunications Type that represents the web home page for a name.  This is the code visible via Table Maintenance for the Telecommunications Type.  It can also be found on TableCodes.TableCode for TableType=19.",
+    "release": "Inprotech 3.0 U1",
+    "value": null,
+    "components": "Case, IP Matter Management, Name, WorkBenches"
+}, {
+    "id": 143,
+    "name": "Client Request Case Summary",
+    "description": "The name of the doc item providing the default information to be placed in the Summary field of a case-specific Client Request.",
+    "release": "Inprotech 3.1 U1",
+    "value": "EG_CLIENT_REQUEST_SUMMARY",
+    "components": "Client Access, WorkBenches"
+}, {
+    "id": 257,
+    "name": "CPA-Use ClientCaseCode",
+    "description": "If Inprotech user is known by CPA as a Managing Agent, then the IRN will be held in the CLIENTCASECODE instead of the AGENTCASECODE field.",
+    "release": null,
+    "value": "false",
+    "components": ""
+}, {
+    "id": 381,
+    "name": "FeeListNameType",
+    "description": "The name type (code) to use in the Fees List program – fees lists can be filtered and consolidated by the chosen name type.",
+    "release": "Inprotech 3.4 U1",
+    "value": null,
+    "components": "Fees List, IP Matter Management"
+}, {
+    "id": 182,
+    "name": "CPA Date-Registratn",
+    "description": "EventNo of the Registration date to be extracted for CPA",
+    "release": "Inprotech 3.0 U1",
+    "value": "-8",
+    "components": "Renewals Interface"
+}, {
+    "id": 494,
+    "name": "Maintain File Request History",
+    "description": "If set to true, File Requests would not be deleted automatically when the file location is updated to requested location otherwise if the file location record is created, the corresponding file request gets deleted automatically.",
+    "release": "Inprotech 3.2 U3",
+    "value": "false",
+    "components": "File Tracking, IP Matter Management"
+}, {
+    "id": 213,
+    "name": "CPA P 15",
+    "description": "PCT filing",
+    "release": null,
+    "value": "-19",
+    "components": ""
+}, {
+    "id": 690,
+    "name": "WIP Summary Currency Options",
+    "description": "Controls the default setting of the Currency Options on the WIP Summary window. 1-Local; 2-Foreign; 4-Anticipated Agent. Sum together where appropriate. E.g. 3- Display Local & Foreign columns.",
+    "release": "Inprotech 3.4 U1",
+    "value": "3",
+    "components": "Billing"
+}, {
+    "id": 190,
+    "name": "CPA EDT Email Copies",
+    "description": "The email address to send copies of the CPA Interface EDT file to (e.g. the EDT manager). If you wish to send to multiple email addresses they should be separated by a semicolon ( ; )",
+    "release": "Inprotech 3.0 U1",
+    "value": null,
+    "components": "Renewals Interface"
+}, {
+    "id": 366,
+    "name": "Event Display Order",
+    "description": "The order of the events displayed in the Summary forms D indicating descending order and A ascending: DA(default) - EVENTDATE(descending) and EVENTDUEDATE(ascending). DISPLAYSEQ - events sorted by the DISPLAYSEQUENCE and CYCLE.",
+    "release": "Inprotech 3.0",
+    "value": "DA",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 409,
+    "name": "Inflation Index Code",
+    "description": "WIP Code used by Billing to carry the value of the Inflation Index when creating a Quotation Instalment Bill.",
+    "release": "Inprotech 3.5.1",
+    "value": "QUOTII",
+    "components": "Billing"
+}, {
+    "id": 683,
+    "name": "WIP NameType Default",
+    "description": "In the Work In Progress report window there is the option to display the report in detail grouped by Name Type. The Name Type specified in this Site Control will appear as the default selection in the associated dropdown, e.g. EMP.",
+    "release": "Inprotech 3.5.1 CPA-11",
+    "value": null,
+    "components": "Billing"
+}, {
+    "id": 617,
+    "name": "Show Past Reminders",
+    "description": "TRUE will leave the From: date field in the Reminders program blank allowing the user to view all past reminders. FALSE will set the From: date field to the day after the last work day. Default is FALSE.",
+    "release": "Inprotech 5.1.1",
+    "value": "true",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 28,
+    "name": "AP Default Supplier Tax Code",
+    "description": "The default consumption tax code shown on invoices of the Supplier to be recorded on purchases. Leave blank if no defaulting required. Example: A tax code of T1 will imply that the Standard consumption tax will apply as a default to all purchases.",
+    "release": "Inprotech 3.1 U6",
+    "value": null,
+    "components": "Accounts Payable, Financial Management"
+}, {
+    "id": 38,
+    "name": "AR Without Journals",
+    "description": "When turned on, any transaction posted within the Accounts Receivable module will not be passed to the Financial Interface for accounting.  When turned off, the rules for creating Journals in the financial interface apply.",
+    "release": "Inprotech 3.0 U6",
+    "value": "false",
+    "components": "Accounts Receivable, Financial Management"
+}, {
+    "id": 296,
+    "name": "Discount Renewal WIP Code",
+    "description": "The WIP Code to be used on any Discount WIP Items created for renewal WIP.  This must be a WIP Code entered via the WIP Template pick list.",
+    "release": "Inprotech 3.0 U5",
+    "value": null,
+    "components": "Billing, WIP, WorkBenches"
+}, {
+    "id": 330,
+    "name": "Document Attachments Disabled",
+    "description": "When set to FALSE documents created from the Forms menu can be added as an attachment to the case or name (the default). When set to TRUE the Add as attachment checkbox is disabled.",
+    "release": "Inprotech 3.2",
+    "value": "false",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 372,
+    "name": "Exchange Loss Reason",
+    "description": "The code of the default Reason to be used if an Exchange Loss occurs.",
+    "release": "Inprotech 3.0",
+    "value": "EX",
+    "components": "Accounts Receivable, Financial Management"
+}, {
+    "id": 658,
+    "name": "Timesheet show Case Narrative",
+    "description": "If set, Timesheet will display read-only Case Narrative in Case Summary panel and in Timer View",
+    "release": "Inprotech 3.2 U3",
+    "value": "false",
+    "components": "Timesheet, WorkBenches"
+}, {
+    "id": 119,
+    "name": "CASE_EVENTENTRY_HREF",
+    "description": "A hyperlink that may be included in emailed reminders.  Takes the user to an appropriate CPA Inprostart page to update the event.  Modify the above to replace \"www.MyOrg.com/CPAInprostart\" with the details specific to your firm.",
+    "release": "Inprotech 3.1 U6",
+    "value": "http://www.MyOrg.com/CPAInprostart/Desktop/Modules/CaseMaintenanceCaseWorkflow.aspx?CaseKey=<CaseKey>&EventKey=<EventKey>&Cycle=<Cycle>",
+    "components": "x-obsolete"
+}, {
+    "id": 523,
+    "name": "OfficeGetFromUser",
+    "description": "If this site control is On then name aliases need to be set up for the Users so that the Staff Name of the currently logged in User can be determined and from there the office can be defaulted into the new Case or Name.",
+    "release": "Inprotech 3.0 U4",
+    "value": "false",
+    "components": "IP Matter Management, Security"
+}, {
+    "id": 549,
+    "name": "Prepayment Warn Bill",
+    "description": "Controls whether a warning will be given if available prepayments (and other valid credits) are not taken up when drafting a manual bill.",
+    "release": "Inprotech 3.0 U6",
+    "value": "true",
+    "components": "Billing"
+}, {
+    "id": 594,
+    "name": "Report Server URL",
+    "description": "This site control specifies the web address of the Reporting Services instance. It is referenced when Report Services is called from Client Server.",
+    "release": "Inprotech 3.5.1.12",
+    "value": null,
+    "components": "Billing"
+}, {
+    "id": 230,
+    "name": "CPA Received Event",
+    "description": "The event updated for each case when data is imported from CPA and accepted",
+    "release": "Inprotech 3.0 U2",
+    "value": "-189",
+    "components": "Renewals Interface"
+}, {
+    "id": 382,
+    "name": "Fees List Format A",
+    "description": "The name of the QRP file to use for Fee list that do not include the age of the case",
+    "release": "Inprotech 3.0 U6",
+    "value": "FEELISTA.QRP",
+    "components": "Fees List, IP Matter Management"
+}, {
+    "id": 48,
+    "name": "B2B EPOLine Command Import",
+    "description": "Specifies the full command line path plus executable and parameters for import. Substitution parameters will be used i.e. %filename%",
+    "release": "Inprotech 3.3 U4",
+    "value": "C:\\epoline_2\\fmi -xml mode = demo %username% %password% foldername=%foldername%",
+    "components": "E-filing, IP Matter Management"
+}, {
+    "id": 337,
+    "name": "Duplicate Organisation Check",
+    "description": "If set ON, the Names module will perform a check when a new organisation is entered to determine if it may be a duplicate of an already existing name.",
+    "release": "Inprotech 3.5.1 MOF-6",
+    "value": "true",
+    "components": "Case, IP Matter Management, Name, WorkBenches"
+}, {
+    "id": 615,
+    "name": "Show extra addresses",
+    "description": "Displays the Extra Addresses window in the Names program, and sets the flag on to do this from the Names Summary window.",
+    "release": "Inprotech 3.0 U1",
+    "value": "true",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 515,
+    "name": "Name Variant",
+    "description": "When set to TRUE  the Name Variant tab is displayed in the Names program. When set to FALSE (the default) the tab is not displayed.",
+    "release": "Inprotech 3.0 U2",
+    "value": "true",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 520,
+    "name": "Numeric Stem Not Defaulted",
+    "description": "Set to TRUE to instruct the Cases program not to default the Numeric Stem field on the Numeric Stem window to the previously entered value.",
+    "release": "Inprotech 3.5.1 MCL-14",
+    "value": "false",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 478,
+    "name": "LASTIRN",
+    "description": "The last IR number currently used for sequentially numbered IRs",
+    "release": "Inprotech 3.0 U1",
+    "value": "90000099",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 539,
+    "name": "Policing Message Interval",
+    "description": "The time interval, in tenths of a second, that determines how often the policing status messages should be refreshed when policing is running.  0=Not display messages at all; 5 =0.5sec; 10=1sec; 30= 3secs;",
+    "release": null,
+    "value": "0",
+    "components": ""
+}, {
+    "id": 671,
+    "name": "USPTO Private PAIR Enabled",
+    "description": "If set to true, indicates that case data comparison with US PTO Private PAIR has been configured for use at this site.  Users with appropriate permissions will be able to compare case data.",
+    "release": "Inprotech 3.4 U1",
+    "value": "true",
+    "components": "IP Matter Management, WorkBenches"
+}, {
+    "id": 336,
+    "name": "Duplicate Individual Check",
+    "description": "If set to 1 or 2, the Names module will perform a check when a new individual is entered to determine if it may be a duplicate of an already existing name (2 = check restricted to office for non-clients, 1 = unrestricted).",
+    "release": "Inprotech 3.5.1 MOF-6",
+    "value": "1",
+    "components": "Case, IP Matter Management, Name, WorkBenches"
+}, {
+    "id": 106,
+    "name": "Case Export Office Suffix",
+    "description": "The suffix to be concatenated with the Office user code for the first column of a Case Export MC export file. If no Office user code exists, an exception will be raised.",
+    "release": "Inprotech 3.5.1 MOF-6",
+    "value": "FILES",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 430,
+    "name": "IPOfficePriorityRel",
+    "description": "The RelatedCase relationship used for exporting the priority Convention details to the IP Office",
+    "release": "Inprotech 3.0 U1",
+    "value": null,
+    "components": "Document Generation, IP Matter Management"
+}, {
+    "id": 98,
+    "name": "BulkRenAbandonEvent",
+    "description": "The default event to use for abandoning a case via Bulk Renewals.",
+    "release": "Inprotech 3.0 U1",
+    "value": "-141",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 335,
+    "name": "Due Date Report Template",
+    "description": "The report template to be used by the due date report. 2 are delivered as part of the standard installation: duedaterpt.qrp and duedateUS.qrp.",
+    "release": "Inprotech 3.5.1 MOF-6",
+    "value": "duedaterpt.qrp",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 73,
+    "name": "Bill Ref Doc Item 2",
+    "description": "The name of the Doc Item that is executed for each case (the case IRN is used as the entry point for the doc item). The text returned by the Doc Item is passed to the Billing Report Template as the Input Item DetailRefDocItem2.",
+    "release": "Inprotech 3.0 U6",
+    "value": null,
+    "components": "Billing"
+}, {
+    "id": 318,
+    "name": "Docket Wizard Action",
+    "description": "Default Open Action to be used in docket wizard demo.",
+    "release": "Inprotech 3.0 U1",
+    "value": "AL",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 113,
+    "name": "Case Reference Procedure",
+    "description": "User defined stored procedure name used to extend or replace the Case Reference generation rules.",
+    "release": "Inprotech 3.5.1.10",
+    "value": null,
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 246,
+    "name": "CPA TM 28",
+    "description": "Start Paying Date",
+    "release": null,
+    "value": null,
+    "components": ""
+}, {
+    "id": 576,
+    "name": "Reciprocity Disb",
+    "description": "A comma separated list of all the Disbursement WIP type Codes to be used in the calculation of the Disbursements Incurred statistic for Reciprocity; eg ASSFEE, OTHPD.  If not specified, all disbursement WIP Types will be used.",
+    "release": "Inprotech 3.0 U4",
+    "value": "FORPT,FORTM,CONSLT",
+    "components": "Case, IP Matter Management, Name, Reciprocity"
+}, {
+    "id": 7,
+    "name": "Addr Change Reminder Template",
+    "description": "The Alert Code of the Alert Template to use when generating an ad-hoc reminder to inform administrative staff that an address has changed on an invoice.",
+    "release": "Inprotech 3.0 U3",
+    "value": null,
+    "components": "Billing"
+}, {
+    "id": 616,
+    "name": "Show extra telecom",
+    "description": "Displays the Extra Telecom. window in the Names program, and sets the flag on to do this from the Names Summary window.",
+    "release": "Inprotech 3.0 U1",
+    "value": "true",
+    "components": "Case, IP Matter Management"
+}, {
+    "id": 545,
+    "name": "Policing Rows To Get",
+    "description": "The maximum number of rows on the Policing Server to be processed at the one time.  If zero then ALL available rows will be processed.",
+    "release": "Inprotech 3.5.1",
+    "value": "0",
+    "components": "IP Matter Management, Policing"
+}, {
+    "id": 455,
+    "name": "IPRULES 2004.02NR",
+    "description": "IPRules scripts for version IPRULES 2004.02NR have been loaded",
+    "release": null,
+    "value": "true",
+    "components": ""
+}, {
+    "id": 537,
+    "name": "Policing Concurrency Control",
+    "description": "This flag indicates that a Policing batch process (e.g. recalculate) is to generate a Policing request for each individual Case being processed.  This will then block any other Policing against the Case from being processed until completion of the batch.",
+    "release": "Inprotech 3.4 U1",
+    "value": "false",
+    "components": "IP Matter Management, Policing"
+}, {
+    "id": 442,
+    "name": "IPRULES 2003.01.US-A",
+    "description": "IPRules scripts for version IPRULES 2003.01.US-A have been loaded",
+    "release": null,
+    "value": "true",
+    "components": ""
+}, {
+    "id": 346,
+    "name": "EDE Transaction Processing",
+    "description": "The number of transactions within an EDE batch to process in parallel. Used to reduced time locks held. 0 - entire batch processed; 1 - lowest number of transactions and shortest lock period. >1 to decrease locking but improve overall throughput.",
+    "release": "Inprotech 4.0 CRM-1",
+    "value": "1000",
+    "components": "EDE Module, IP Matter Management"
+}, {
+    "id": 80,
+    "name": "Bill Ref-Multi 9",
+    "description": "The name of the Item to be used for extracting billing reference for multi-case bills. This SQL is extracted for the first case only and suffixes any other details extracted.",
+    "release": "Inprotech 3.0 U1",
+    "value": null,
+    "components": "Billing"
+}, {
+    "id": 379,
+    "name": "EXTACCOUNTSFLAG",
+    "description": "Set on if an external accounting system is in use and allows an Account number to be recorded against the Name on the Names program. If the flag is on then the field called *Accounts Code* appears in the Main names window",
+    "release": "Inprotech 3.5.1 MOF-6",
+    "value": "false",
+    "components": "Billing"
+}, {
+    "id": 447,
+    "name": "IPRULES 2003.03RN",
+    "description": "IPRules scripts for version IPRULES 2003.03RN have been loaded",
+    "release": null,
+    "value": "true",
+    "components": ""
+}, {
+    "id": 353,
+    "name": "Email Debtor Statement To",
+    "description": "The name of the Item to be used for extracting the To email address for Debtor Statement",
+    "release": "Inprotech 3.3 U1",
+    "value": null,
+    "components": "Billing, WIP"
+}, {
+    "id": 244,
+    "name": "CPA TM 19",
+    "description": "1st Priority No.\r\nCPA Trade Mark layout item # 19",
+    "release": null,
+    "value": "BAS",
+    "components": ""
+}, {
+    "id": 544,
+    "name": "Policing Retry After Minutes",
+    "description": "Number of minutes Policing will wait before attempting to reprocess a Policing request a second time. Zero indicates no second attempt to occur.",
+    "release": "Inprotech 3.0 U1",
+    "value": "10",
+    "components": "Case, IP Matter Management, Name"
+}, {
+    "id": 637,
+    "name": "Stop Processing Event",
+    "description": "EventNo set from standing instruction to stop processing these Cases. Used to indicate that client no longer is using the firm.",
+    "release": "Inprotech 3.4 U1",
+    "value": null,
+    "components": "EDE Module, IP Matter Management"
+}]

@@ -1,0 +1,27 @@
+[{
+    "key": "1",
+    "code": "E",
+    "value": "Examination",
+    "recordedAgainst": "Instructor",
+    "recordedAgainstId": "I"
+}, {
+    "key": "2",
+    "code": "L",
+    "value": "Lodging",
+    "recordedAgainst": "Instructor",
+    "recordedAgainstId": "I"
+}, {
+    "key": "3",
+    "code": "M",
+    "value": "Renewal Reminder",
+    "recordedAgainst": "Renewal Instructor",
+    "recordedAgainstId": "R",
+    "restrictedBy": "Owner",
+    "restrictedById": "O"
+}, {
+    "key": "4",
+    "code": "R",
+    "value": "Renewal",
+    "recordedAgainst": "Renewal Instructor",
+    "recordedAgainstId": "R"
+}]

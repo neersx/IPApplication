@@ -1,0 +1,21 @@
+[{
+    "packageType": "DPMA Patent Application",
+    "packageReference": "0000DPMA-0001",
+    "currentStatus": "Pack for DPMA was successful",
+    "nextEventDue": "",
+    "lastStatusChange": "",
+    "userName": "Ju",
+    "server": "DPMA Server",
+    "exchangeId": 1,
+    "packageSequence": 1
+}, {
+    "packageType": "DPMA Patent Application",
+    "packageReference": "0000DPMA-0002",
+    "currentStatus": "Task completed successfully (Prepare Package)",
+    "nextEventDue": "DPMA Patent Validate Package",
+    "lastStatusChange": "2018-06-01T12:00:00",
+    "userName": "Ju",
+    "server": "DPMA Server",
+    "exchangeId": 1,
+    "packageSequence": 2
+}]

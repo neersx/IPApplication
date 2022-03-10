@@ -1,0 +1,65 @@
+[{
+    "id": 1,
+    "submittedDate": "2014-07-29T09:00:39.7599042",
+    "isHomeName": true,
+    "statusType": "InProgress",
+    "source": "Maxim Yarrow and Colman",
+    "batchIdentifier": "22987-ZA-jv1",
+    "isReversible": false
+}, {
+    "id": 2,
+    "submittedDate": "2014-07-29T08:00:39.7599042",
+    "statusType": "ResolutionRequired",
+    "statusMessage": "Unprocessed",
+    "isHomeName": true,
+    "source": "Maxim Yarrow and Colman",
+    "newCasesUrl": "desktop.aspx?datasourcekey=1&batchId=45687",
+    "newCases": 21,
+    "amended": 9,
+    "noChange": 5,
+    "rejected": 1,
+    "total": 56,
+    "notMapped": 10,
+    "nameIssues": 18,
+    "unresolved": 6,
+    "batchIdentifier": "4568557_patent_super_long_super_long_super_lonng_super_long_super_longfile",
+    "isReversible": true
+}, {
+    "id": 3,
+    "submittedDate": "2014-07-29T07:00:39.7599042",
+    "isHomeName": true,
+    "statusType": "Error",
+    "source": "Maxim Yarrow and Colman",
+    "batchIdentifier": "22987-1263571",
+    "otherErrors": {
+        "titleResId": "isErrorDetailsTitle",
+        "issues": [
+            "Duplicate Case Reference"
+        ]
+    },
+    "isReversible": true
+}, {
+    "id": 4,
+    "submittedDate": "2013-12-18T10:51:39.7599042",
+    "statusType": "Processed",
+    "statusMessage": "Processed",
+    "isHomeName": false,
+    "source": "IP Australia",
+    "newCasesUrl": "desktop.aspx?datasourcekey=2&batchId=19387891",
+    "newCases": 1987,
+    "total": 1897,
+    "batchIdentifier": "19387891",
+    "isReversible": false
+}, {
+    "id": 5,
+    "submittedDate": "2013-12-18T10:51:39.7599042",
+    "statusType": "OutputProduced",
+    "statusMessage": "Output Produced",
+    "isHomeName": false,
+    "source": "IP Australia",
+    "newCasesUrl": "desktop.aspx?datasourcekey=2&batchId=19387891",
+    "newCases": 1987,
+    "total": 1897,
+    "batchIdentifier": "19387891",
+    "isReversible": false
+}]

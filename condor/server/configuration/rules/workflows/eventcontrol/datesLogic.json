@@ -1,0 +1,41 @@
+[{
+    "appliesTo": "Event",
+    "caseRelationship": null,
+    "compareEvent": {
+        "key": 1,
+        "value": "Parent Renewal Start Date"
+    },
+    "compareType": "Event",
+    "isInherited": true,
+    "operator": {
+        "key": "<",
+        "value": "<"
+    },
+    "sequence": 0,
+    "relativeCycle": 1,
+    "eventMustExist": true,
+    "ifRuleFails": "Block",
+    "failureMessage": "Event must be before Parent Renewal Start Date is required"
+
+}, {
+    "appliesTo": "Due",
+    "caseRelationship": {
+        "key": "ar",
+        "value": "Assignment/Recordal"
+    },
+    "compareEvent": {
+        "key": 2,
+        "value": "Parent Renewal End Date"
+    },
+    "compareType": "Due",
+    "isInherited": false,
+    "operator": {
+        "key": ">=",
+        "value": ">="
+    },
+    "sequence": 1,
+    "relativeCycle": 2,
+    "eventMustExist": false,
+    "ifRuleFails": "Warn",
+    "failureMessage": ""
+}]

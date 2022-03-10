@@ -1,0 +1,29 @@
+[{
+    "errorDate": "2016-03-06T17:43:00.29",
+    "caseRef": "1234/A",
+    "eventNumber": 100,
+    "eventDescription": "Event desc 1 Really Really Longgggg Longggg Longgggggggg description",
+    "eventCycle": 10,
+    "eventCriteriaNumber": 12,
+    "message": "Error Occured"
+}, {
+    "errorDate": "2016-03-02T17:43:00.29",
+    "caseRef": "1234/B",
+    "eventNumber": 100,
+    "eventDescription": "Event desc 2",
+    "eventCycle": 11,
+    "eventCriteriaNumber": 90,
+    "message": "Error Occured",
+    "errorForInProgressItem": "queue"
+}, {
+    "errorDate": "2016-03-03T17:43:00.29",
+    "caseRef": "1234/C",
+    "eventNumber": 100,
+    "eventDescription": "Event desc 3",
+    "eventCycle": 12,
+    "eventCriteriaNumber": 12,
+    "message": "Error Occured",
+    "errorForInProgressItem": "request",
+    "eventCriteriaDescription": "Criteria Description",
+    "hasEventControl": true
+}]

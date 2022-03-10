@@ -1,0 +1,45 @@
+[{
+    "id": "ZZZ",
+    "name": "DEFAULT FOREIGN COUNTRY",
+    "type": "Country"
+}, {
+    "id": "AT",
+    "name": "Austria",
+    "type": "Country"
+}, {
+    "id": "AU",
+    "name": "Australia",
+    "type": "Country"
+}, {
+    "id": "CA",
+    "name": "Canada",
+    "type": "Country"
+}, {
+    "id": "EC",
+    "name": "European Community",
+    "type": "Group"
+}, {
+    "id": "EP",
+    "name": "European Patent Office",
+    "type": "IP Only"
+}, {
+    "id": "GB",
+    "name": "United Kingdom",
+    "type": "Country"
+}, {
+    "id": "NZ",
+    "name": "New Zealand",
+    "type": "Country"
+}, {
+    "id": "PCT",
+    "name": "Patent Cooperation Treaty",
+    "type": "Group"
+}, {
+    "id": "US",
+    "name": "United States of America",
+    "type": "Country"
+}, {
+    "id": "CO",
+    "name": "Democractic Republic of Congo",
+    "type": "IP Only"
+}]

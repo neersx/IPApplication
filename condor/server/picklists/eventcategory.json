@@ -1,0 +1,17 @@
+[{
+    "key": 1,
+    "code": "External Deadline",
+    "value": "Legislative and IP Office deadlines (e.g. renewal deadline), client generated deadlines (e.g. date by which client wants application filed) and agent generated deadlines (e.g. date by which agent has requested instruction)."
+}, {
+    "key": 2,
+    "code": "Internal Action Due",
+    "value": "Workflow and service delivery deadlines; e.g. when a response needs to be lodged after receiving instructions."
+}, {
+    "key": 3,
+    "code": "External Action Due",
+    "value": "When actions by external parties are due; e.g. when a filing receipt or exam report from an IP Ofice or agent is expected."
+}, {
+    "key": 4,
+    "code": "Client Reminder Letter",
+    "value": null
+}]

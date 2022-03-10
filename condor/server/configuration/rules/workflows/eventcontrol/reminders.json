@@ -1,0 +1,48 @@
+[{
+    "sequence": 0,
+    "standardMessage": "Deadline approaching",
+    "alternateMessage": "Deadline overdue",
+    "useOnAndAfterDueDate": true,
+    "sendEmail": true,
+    "emailSubject": "3 Month Client Filing deadline",
+    "startBefore": {
+        "type": "M",
+        "value": 3
+    },
+    "repeatEvery": {
+        "type": "M",
+        "value": 3
+    },
+    "stopTime": {
+        "type": "M",
+        "value": 9
+    },
+    "sendToStaff": true,
+    "sendToSignatory": true,
+    "sendToCriticalList": true,
+    "name": {
+        "key": -492,
+        "code": "888333",
+        "displayName": "Aspargus Holdings Pty Limited",
+        "remarks": "Bondi Junction"
+    },
+    "nameTypes": [{
+        "key": "I",
+        "code": null,
+        "value": "Instructor"
+    }, {
+        "key": "J",
+        "code": null,
+        "value": "Inventor"
+    }, {
+        "key": "O",
+        "code": null,
+        "value": "Owner"
+    }],
+    "relationship": {
+        "key": "CON",
+        "code": null,
+        "value": "Contact"
+    },
+    "isInherited": false
+}]

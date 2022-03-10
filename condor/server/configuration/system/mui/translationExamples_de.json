@@ -1,0 +1,148 @@
+[{
+    "area": "integration-ptoaccess",
+    "key": "cuLblTitle",
+    "original": "Upload and Store USPTO Private Pair Certificate",
+    "translation": "Hochladen und Speichern des USPTO Zertifikats"
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblSubtitle",
+    "original": "Upload your USPTO Private Pair Certificate file and password to Inprotech.",
+    "translation": "Hochladen Ihrer USPTO Zertifikatsdatei und Passwort nach Inprotech."
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblDescription",
+    "original": "These credentials are used to automatically access USPTO case data when performing a case data comparison.",
+    "translation": "Diese Anmeldeinformationen werden genutzt um automatisch Zugriff auf die Aktendaten beim USPTO zu erhalten, wenn Sie einen Aktendatenvergleich ausführen möchten."
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblCertificateFile",
+    "original": "Digital Certificate File",
+    "translation": "USPTO Zertifikatsdatei"
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblName",
+    "original": "Certificate Name",
+    "translation": "Zertifikatname"
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblNamePlaceholder",
+    "original": "Enter a name for the certificate to be displayed in Inprotech",
+    "translation": "Geben Sie einen Namen für das Zertifikat ein, der in Inprotech angezeigt werden soll."
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblClientNumbers",
+    "original": "Customer Number(s)",
+    "translation": "Kundennummer(n)"
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblClientNumbersPlaceholder",
+    "original": "e.g. 12345, 67890",
+    "translation": "z.B. 12345 67890"
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblPassword",
+    "original": "USPTO Password",
+    "translation": "USPTO Passwort"
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblPasswordPlaceholder",
+    "original": "Type password",
+    "translation": "Passworteingabe"
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblSaving",
+    "original": "Saving...",
+    "translation": "Speichern…"
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuBtnUploadAndStore",
+    "original": "Upload and Store",
+    "translation": "Hochladen und Speichern"
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuBtnCancel",
+    "original": "Cancel",
+    "translation": "Abbruch"
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblExpiredCertificate",
+    "original": "The certificate has expired. Upload a different certificate file, or contact the USPTO to obtain a valid certificate.",
+    "translation": "Das Zertifikat ist leider abgelaufen. Bitte laden Sie ein anderes Zertifikat hoch oder kontaktieren Sie das USPTO, um ein gültiges Zertifikat zu erhalten."
+}, {
+    "area": "integration-ptoaccess",
+    "key": "cuLblInvalidCredentials",
+    "original": "The certificate file and password did not match. Select the certificate file again, and re-enter the Certificate Description and Password.",
+    "translation": "Die Zertifikatsdatei und das Passwort stimmen nicht überein. Bitte wählen Sie die Zertifikatsdatei  nochmals aus und geben Sie die Zertifikatsberschreibung und das Passwort erneut ein."
+}, {
+    "area": "common",
+    "key": "SelectInstructionType",
+    "original": "Select an Instruction Type"
+}, {
+    "area": "common",
+    "key": "ChooseInstructionType",
+    "original": "Select an Instruction Type to display Standing Instructions"
+}, {
+    "area": "common",
+    "key": "ChooseInstructionTypeChar",
+    "original": "Select an Instruction Type to display available Characteristics"
+}, {
+    "area": "common",
+    "key": "Picklist SelectInstructionTypes",
+    "original": "Select an instruction type"
+}, {
+    "area": "common",
+    "key": "Picklist Modal Title InstructionTypes",
+    "original": "Instruction Type Picklist"
+}, {
+    "area": "common",
+    "key": "Picklist Field InstructionTypes",
+    "original": "Instruction Type"
+}, {
+    "area": "common",
+    "key": "Picklist Modal Title Instructions",
+    "original": "Instruction Pick List"
+}, {
+    "area": "common",
+    "key": "Picklist Field Instructions",
+    "original": "Instruction"
+}, {
+    "area": "common",
+    "key": "Picklist Modal Title Offices",
+    "original": "Office Pick List"
+}, {
+    "area": "common",
+    "key": "Picklist Field Offices",
+    "original": "Office"
+}, {
+    "area": "common",
+    "key": "Picklist Modal Title CaseTypes",
+    "original": "Case Type Pick List"
+}, {
+    "area": "common",
+    "key": "Picklist Field CaseTypes",
+    "original": "Case Type"
+}, {
+    "area": "common",
+    "key": "Picklist Modal Title Jurisdictions",
+    "original": "Jurisdiction Pick List"
+}, {
+    "area": "common",
+    "key": "Picklist Field Jurisdictions",
+    "original": "Jurisdiction"
+}, {
+    "area": "common",
+    "key": "Picklist Modal Title Checklist",
+    "original": "Checklist Pick List"
+}, {
+    "area": "common",
+    "key": "Picklist Field Checklist",
+    "original": "Checklist"
+}, {
+    "area": "common",
+    "key": "Picklist Modal Title PropertyTypes",
+    "original": "Property Type Pick List"
+}, {
+    "area": "common",
+    "key": "Picklist Field PropertyTypes",
+    "original": "Property Type"
+}]

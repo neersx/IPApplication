@@ -1,0 +1,13 @@
+extends: .eslintrc-defaults
+
+env:
+  node: true
+
+rules:
+  new-cap: 0
+  no-underscore-dangle: 0
+  strict: [2, global]
+  no-console: 0
+
+globals:
+  jasmine: false  

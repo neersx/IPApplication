@@ -1,0 +1,27 @@
+[{
+    "id": {
+        "countryId": "AU",
+        "propertyTypeId": "D",
+        "relationshipCode": "BAS"
+    },
+    "countryId": "AU",
+    "country": "Australia",
+    "propertyTypeId": "D",
+    "propertyType": "Designs",
+    "relationshipCode": "BAS",
+    "relationship": "Convention Claim From",
+    "recipRelationship": null
+}, {
+    "id": {
+        "countryId": "US",
+        "propertyTypeId": "T",
+        "relationshipCode": "CTP"
+    },
+    "countryId": "US",
+    "country": "United States",
+    "propertyTypeId": "T",
+    "propertyType": "Trademark",
+    "relationshipCode": "CTP",
+    "relationship": "Continued",
+    "recipRelationship": "ORG"
+}]

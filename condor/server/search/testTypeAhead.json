@@ -1,0 +1,221 @@
+{
+    "data": [
+        {
+            "key": "AF",
+            "code": "AF",
+            "value": "Afghanistan"
+        },
+        {
+            "key": "AP",
+            "code": "AP",
+            "value": "African Regional Intellectual Property Organisation"
+        },
+        {
+            "key": "AL",
+            "code": "AL",
+            "value": "Albania"
+        },
+        {
+            "key": "AS",
+            "code": "AS",
+            "value": "American Samoa"
+        },
+        {
+            "key": "AD",
+            "code": "AD",
+            "value": "Andorra"
+        },
+        {
+            "key": "AO",
+            "code": "AO",
+            "value": "Angola"
+        },
+        {
+            "key": "AI",
+            "code": "AI",
+            "value": "Anguila"
+        },
+        {
+            "key": "AG",
+            "code": "AG",
+            "value": "Antigua & Barbuda"
+        },
+        {
+            "key": "AR",
+            "code": "AR",
+            "value": "Argentina"
+        },
+        {
+            "key": "AM",
+            "code": "AM",
+            "value": "Armenia"
+        },
+        {
+            "key": "AW",
+            "code": "AW",
+            "value": "Aruba"
+        },
+        {
+            "key": "AU",
+            "code": "AU",
+            "value": "Australia"
+        },
+        {
+            "key": "AT",
+            "code": "AT",
+            "value": "Austria"
+        },
+        {
+            "key": "AZ",
+            "code": "AZ",
+            "value": "Azerbaijan"
+        },
+        {
+            "key": "AN",
+            "code": "AN",
+            "value": "Netherlands Antilles"
+        },
+        {
+            "key": "AE",
+            "code": "AE",
+            "value": "United Arab Emirates"
+        },
+        {
+            "key": "OA",
+            "code": "OA",
+            "value": "African Intellectual Property Organisation"
+        },
+        {
+            "key": "DZ",
+            "code": "DZ",
+            "value": "Algeria"
+        },
+        {
+            "key": "BA",
+            "code": "BA",
+            "value": "Bosnia & Herzegovina"
+        },
+        {
+            "key": "CA",
+            "code": "CA",
+            "value": "Canada"
+        },
+        {
+            "key": "EA",
+            "code": "EA",
+            "value": "Eurasian Patent Organization"
+        },
+        {
+            "key": "GA",
+            "code": "GA",
+            "value": "Gabon"
+        },
+        {
+            "key": "GAZ",
+            "code": "GAZ",
+            "value": "Gaza"
+        },
+        {
+            "key": "HAW",
+            "code": "HAW",
+            "value": "Hawaii"
+        },
+        {
+            "key": "MAN",
+            "code": "MAN",
+            "value": "Isle of Man, British Isles"
+        },
+        {
+            "key": "LA",
+            "code": "LA",
+            "value": "Laos"
+        },
+        {
+            "key": "MAT",
+            "code": "MAT",
+            "value": "Madrid Agreement & Protocol (TM)"
+        },
+        {
+            "key": "MAD",
+            "code": "MAD",
+            "value": "Madrid Agreement (TM)"
+        },
+        {
+            "key": "MAP",
+            "code": "MAP",
+            "value": "Madrid Protocol (TM)"
+        },
+        {
+            "key": "NA",
+            "code": "NA",
+            "value": "Namibia"
+        }
+    ],
+    "pagination": {
+        "total": 229
+    },
+    "maintainability": {
+        "canAdd": false,
+        "canEdit": false,
+        "canDelete": false
+    },
+    "columns": [
+        {
+            "title": "picklist.jurisdiction.Description",
+            "field": "value",
+            "hidden": false,
+            "key": null,
+            "code": null,
+            "description": true,
+            "displayOrder": 0,
+            "preventCopy": null,
+            "sortable": true,
+            "highlight": false,
+            "filterable": false,
+            "filterApi": "",
+            "filterType": "",
+            "menu": false,
+            "hideByDefault": false
+        },
+        {
+            "title": "picklist.jurisdiction.Code",
+            "field": "code",
+            "hidden": false,
+            "key": null,
+            "code": true,
+            "description": null,
+            "displayOrder": 1,
+            "preventCopy": null,
+            "sortable": true,
+            "highlight": false,
+            "filterable": false,
+            "filterApi": "",
+            "filterType": "",
+            "menu": false,
+            "hideByDefault": false
+        },
+        {
+            "title": null,
+            "field": "key",
+            "hidden": true,
+            "key": true,
+            "code": null,
+            "description": null,
+            "displayOrder": null,
+            "preventCopy": null,
+            "sortable": true,
+            "highlight": false,
+            "filterable": false,
+            "filterApi": "",
+            "filterType": "",
+            "menu": false,
+            "hideByDefault": false
+        }
+    ],
+    "maintainabilityActions": {
+        "allowAdd": true,
+        "allowEdit": true,
+        "allowDelete": true,
+        "allowDuplicate": true
+    }
+}

@@ -1,0 +1,25 @@
+[{
+    "key": "10273",
+    "value": "Minneapolis",
+    "organisation": "CPASS-NA",
+    "country": "United States of America",
+    "defaultLanguage": "American"
+}, {
+    "key": "10176",
+    "value": "Noida",
+    "organisation": "CPASS-IND",
+    "country": "India",
+    "defaultLanguage": "English"
+}, {
+    "key": "10272",
+    "value": "Paris",
+    "organisation": "CPASS-EU",
+    "country": "France",
+    "defaultLanguage": "French"
+}, {
+    "key": "10175",
+    "value": "Sydney",
+    "organisation": "CPASS-AP",
+    "country": "Australia",
+    "defaultLanguage": "English"
+}]

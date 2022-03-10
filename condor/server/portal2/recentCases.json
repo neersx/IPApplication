@@ -1,0 +1,429 @@
+{
+    "totalRows": 18,
+    "columns": [{
+            "id": "casereference__77_",
+            "title": "Case Ref.",
+            "format": "String",
+            "decimalPlaces": null,
+            "currencyCodeColumnName": null,
+            "isHyperlink": true
+        },
+        {
+            "id": "currentofficialnumber__3_",
+            "title": "Official No.",
+            "format": "String",
+            "decimalPlaces": null,
+            "currencyCodeColumnName": null,
+            "isHyperlink": true
+        },
+        {
+            "id": "shorttitle__15_",
+            "title": "Title",
+            "format": "Text",
+            "decimalPlaces": null,
+            "currencyCodeColumnName": null,
+            "isHyperlink": false
+        },
+        {
+            "id": "statusdescription__14_",
+            "title": "Case Status",
+            "format": "String",
+            "decimalPlaces": null,
+            "currencyCodeColumnName": null,
+            "isHyperlink": false
+        },
+        {
+            "id": "casetypedescription__6_",
+            "title": "Case Type",
+            "format": "String",
+            "decimalPlaces": null,
+            "currencyCodeColumnName": null,
+            "isHyperlink": false
+        },
+        {
+            "id": "countryname__7_",
+            "title": "Country",
+            "format": "String",
+            "decimalPlaces": null,
+            "currencyCodeColumnName": null,
+            "isHyperlink": false
+        },
+        {
+            "id": "propertytypedescription__8_",
+            "title": "Property Type",
+            "format": "String",
+            "decimalPlaces": null,
+            "currencyCodeColumnName": null,
+            "isHyperlink": false
+        },
+        {
+            "id": "localclasses__69_",
+            "title": "Local Classes",
+            "format": "String",
+            "decimalPlaces": null,
+            "currencyCodeColumnName": null,
+            "isHyperlink": false
+        }
+    ],
+    "rows": [{
+            "casereference__77_": {
+                "value": "000315-1",
+                "link": {
+                    "caseKey": 13
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "12345",
+                "link": {
+                    "caseKey": 13
+                }
+            },
+            "shorttitle__15_": "BALLOON BLAST BALL",
+            "statusdescription__14_": "Application filed",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "Australia",
+            "propertytypedescription__8_": "Trade Mark",
+            "localclasses__69_": "28, 29",
+            "rowKey": 1,
+            "caseKey": 13,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "001234/0447-US",
+                "link": {
+                    "caseKey": 543
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "6,530,939",
+                "link": {
+                    "caseKey": 543
+                }
+            },
+            "shorttitle__15_": "VASCULAR DEVICE HAVING ONE OR MORE ARTICULATION REGIONS AND METHODS OF USE",
+            "statusdescription__14_": "Registered",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "United States of America",
+            "propertytypedescription__8_": "Patent",
+            "rowKey": 2,
+            "caseKey": 543,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "001234/0448-US",
+                "link": {
+                    "caseKey": 544
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "6,589,263",
+                "link": {
+                    "caseKey": 544
+                }
+            },
+            "shorttitle__15_": "VASCULAR DEVICE HAGING ONE OR MORE ARTICULATION REGIONS AND METHODS OF USE ",
+            "statusdescription__14_": "Registered",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "United States of America",
+            "propertytypedescription__8_": "Patent",
+            "rowKey": 3,
+            "caseKey": 544,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "001234/0449-US",
+                "link": {
+                    "caseKey": 545
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "6,129,739",
+                "link": {
+                    "caseKey": 545
+                }
+            },
+            "shorttitle__15_": "VASCULAR DEVICE HAVING ONE OR MORE ARTICULATION REGIONS AND METHODS OF USE",
+            "statusdescription__14_": "Registered",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "United States of America",
+            "propertytypedescription__8_": "Patent",
+            "rowKey": 4,
+            "caseKey": 545,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "001234/0453-US",
+                "link": {
+                    "caseKey": 549
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "6,371,970",
+                "link": {
+                    "caseKey": 549
+                }
+            },
+            "shorttitle__15_": "VASCULAR DEVICE HAVING ONE OR MORE ARTICULATION REGIONS AND METHODS OF USE",
+            "statusdescription__14_": "Registered",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "United States of America",
+            "propertytypedescription__8_": "Patent",
+            "rowKey": 5,
+            "caseKey": 549,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "002345/0440-AU",
+                "link": {
+                    "caseKey": 523
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "09192837123",
+                "link": {
+                    "caseKey": 523
+                }
+            },
+            "shorttitle__15_": "Process to make deadlines appear",
+            "statusdescription__14_": "Application filed",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "Australia",
+            "propertytypedescription__8_": "Patent",
+            "rowKey": 6,
+            "caseKey": 523,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "010222-1",
+                "link": {
+                    "caseKey": 14
+                }
+            },
+            "shorttitle__15_": "Extraction of Iron from low grade ores",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "Patent Cooperation Treaty",
+            "propertytypedescription__8_": "Patent",
+            "rowKey": 7,
+            "caseKey": 14,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "010718-1",
+                "link": {
+                    "caseKey": 59
+                }
+            },
+            "shorttitle__15_": "BALLOON BLAST BALL",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "United Kingdom",
+            "propertytypedescription__8_": "Trade Mark",
+            "localclasses__69_": "02, 04",
+            "rowKey": 8,
+            "caseKey": 59,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "1098",
+                "link": {
+                    "caseKey": -405
+                }
+            },
+            "shorttitle__15_": "A Toy Bulldozer",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "Australia",
+            "propertytypedescription__8_": "Design",
+            "rowKey": 9,
+            "caseKey": -405,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "1234/A",
+                "link": {
+                    "caseKey": -487
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "777777",
+                "link": {
+                    "caseKey": -487
+                }
+            },
+            "shorttitle__15_": "RONDON and shoe device XXX",
+            "statusdescription__14_": "Registered",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "Australia",
+            "propertytypedescription__8_": "Trade Mark",
+            "localclasses__69_": "42",
+            "rowKey": 10,
+            "caseKey": -487,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "1234/B",
+                "link": {
+                    "caseKey": -486
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "123879",
+                "link": {
+                    "caseKey": -486
+                }
+            },
+            "shorttitle__15_": "RONDON & shoe device",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "United States of America",
+            "propertytypedescription__8_": "Trademark",
+            "localclasses__69_": "24, 42",
+            "rowKey": 11,
+            "caseKey": -486,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "1234/C",
+                "link": {
+                    "caseKey": -485
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "678543",
+                "link": {
+                    "caseKey": -485
+                }
+            },
+            "shorttitle__15_": "Device of shoe",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "New Zealand",
+            "propertytypedescription__8_": "Trade Mark",
+            "localclasses__69_": "17",
+            "rowKey": 12,
+            "caseKey": -485,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "1234/U",
+                "link": {
+                    "caseKey": -470
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "345654",
+                "link": {
+                    "caseKey": -470
+                }
+            },
+            "shorttitle__15_": "RONDON",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "United States of America",
+            "propertytypedescription__8_": "Trademark",
+            "localclasses__69_": "[42], [100]",
+            "rowKey": 13,
+            "caseKey": -470,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "1234/X",
+                "link": {
+                    "caseKey": -367
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "565656",
+                "link": {
+                    "caseKey": -367
+                }
+            },
+            "shorttitle__15_": "RONDON and shoe device",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "Australia",
+            "propertytypedescription__8_": "Trade Mark",
+            "localclasses__69_": "42",
+            "rowKey": 14,
+            "caseKey": -367,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "64290/80US",
+                "link": {
+                    "caseKey": -123
+                }
+            },
+            "currentofficialnumber__3_": {
+                "value": "4,354,094",
+                "link": {
+                    "caseKey": -123
+                }
+            },
+            "shorttitle__15_": "Continuous Water Heating Unit",
+            "statusdescription__14_": "Expired at end of life",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "United States of America",
+            "propertytypedescription__8_": "Patent",
+            "rowKey": 15,
+            "caseKey": -123,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "P1222PCT-EP-LU",
+                "link": {
+                    "caseKey": 266
+                }
+            },
+            "shorttitle__15_": "Method to remove leaves from train lines",
+            "statusdescription__14_": "Application filed",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "Luxembourg",
+            "propertytypedescription__8_": "Patent",
+            "rowKey": 16,
+            "caseKey": 266,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "P1222PCT-EP-SE",
+                "link": {
+                    "caseKey": 257
+                }
+            },
+            "shorttitle__15_": "Method to remove leaves from train lines",
+            "statusdescription__14_": "Application filed",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "Sweden",
+            "propertytypedescription__8_": "Patent",
+            "rowKey": 17,
+            "caseKey": 257,
+            "isEditable": true
+        },
+        {
+            "casereference__77_": {
+                "value": "P1222PCT-EP-TR",
+                "link": {
+                    "caseKey": 255
+                }
+            },
+            "shorttitle__15_": "Method to remove leaves from train lines",
+            "statusdescription__14_": "Application filed",
+            "casetypedescription__6_": "Properties",
+            "countryname__7_": "Turkey",
+            "propertytypedescription__8_": "Patent",
+            "rowKey": 18,
+            "caseKey": 255,
+            "isEditable": true
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+[{
+    "isInherited": true,
+    "sequence": 0,
+    "eventToUpdate": {
+        "key": -12130,
+        "value": "PCT/RO/101 - Manual process"
+    },
+    "relativeCycle": 3,
+    "adjustDate": "Change to 1 Jan 1986"
+}, {
+    "isInherited": false,
+    "sequence": 1,
+    "eventToUpdate": {
+        "key": -12127,
+        "value": "PCT/RO/101 Review and Send Electronic Package"
+    },
+    "relativeCycle": 3,
+    "adjustDate": "Change to 1 April 2003"
+}]

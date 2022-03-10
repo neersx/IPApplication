@@ -1,0 +1,10 @@
+extends: .eslintrc-defaults
+
+env:
+  browser: true
+  jquery : true     
+
+globals:
+  angular: false
+  moment: false
+  kendo: false

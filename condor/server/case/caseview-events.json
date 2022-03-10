@@ -1,0 +1,44 @@
+[{
+    "eventDescription": "Date of entry",
+    "eventNo": -13,
+    "eventDate": "2018-01-25",    
+    "cycle": 1,
+    "nextPolice": "2018-02-02",
+    "createdByCriteria": 1324,
+    "createdByAction": "Overview",
+    "isOccurred": true
+}, {
+    "eventDescription": "Close Examination Action",
+    "eventNo": -835,
+    "eventDate": "2018-02-18",    
+    "cycle": 1,
+    "nextPolice": "2018-02-02",
+    "createdByCriteria": 1324,
+    "createdByAction": "",
+    "isOccurred": true
+},{
+    "eventDescription": "Filing",
+    "eventNo": -836,
+    "eventDate": "2018-01-10",    
+    "cycle": 1,
+    "nextPolice": "2018-02-02",
+    "createdByCriteria": 1324,
+    "createdByAction": "",
+    "isOccurred": true
+}, {
+    "eventDescription": "Open Renewal Law Update Action",
+    "eventNo": -233,
+    "eventDate": "2018-01-26",    
+    "cycle": 1,
+    "nextPolice": "",
+    "createdByCriteria": 1324,
+    "createdByAction": "Overview"
+},{
+    "eventDescription": "close Renewal Action",
+    "eventNo": -234,
+    "eventDate": "2020-01-25",    
+    "cycle": 1,
+    "nextPolice": "",
+    "createdByCriteria": 1324,
+    "createdByAction": "Overview"
+}]

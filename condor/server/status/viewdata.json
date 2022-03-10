@@ -1,0 +1,23 @@
+{
+	"stopPayReasons": [
+		{
+			"id":6501,
+			"name": "Abandoned",
+			"userCode": "A"
+		},
+		{
+			"id": 6502,
+			"name": "Paid through other channels",
+			"userCode": "C"
+		},
+		{
+			"id": 6503, 
+			"name": "Unspecified",
+			"userCode": "U"
+		}],
+	"permissions": {
+		"canUpdate": true,
+		"canDelete": true,
+		"canCreate": true
+		}
+}

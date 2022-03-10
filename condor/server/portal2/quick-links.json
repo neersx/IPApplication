@@ -1,0 +1,72 @@
+[
+    {
+        "group": "quick links",
+        "links": [
+            {
+                "itemID": "0316e1dd-61d6-4a62-8353-7b399e911315",
+                "title": "Google",
+                "tooltip": "Google Software Solutions Home Page",
+                "imagePath": null,
+                "action": "$openAttachment();",
+                "shortcut": "",
+                "linkType": "WebLink",
+                "url": "http://www.google.com"
+            },
+            {
+                "itemID": "0316e1dd-61d6-4a62-8353-7b399e911315",
+                "title": "Stack Overflow",
+                "tooltip": "SO Software Solutions Home Page",
+                "imagePath": null,
+                "action": "$openAttachment();",
+                "shortcut": "",
+                "linkType": "WebLink",
+                "url": "http://www.stackoverflow.com"
+            }
+        ]
+    },
+    {
+        "group": "my links",
+        "links": [
+            {
+                "itemID": "02fead0a-0be0-4707-8626-6a3fe9608649",
+                "title": "CPA",
+                "tooltip": "CPA\u0027s Global Web Site",
+                "imagePath": null,
+                "action": "$openAttachment();",
+                "shortcut": "",
+                "linkType": "WebLink",
+                "url": "http://www.cpaglobal.com"
+            },
+            {
+                "itemID": "0316e1dd-61d6-4a62-8353-7b399e911315",
+                "title": "CPA Software Solutions",
+                "tooltip": "CPA Software Solutions Home Page",
+                "imagePath": null,
+                "action": "$openAttachment();",
+                "shortcut": "",
+                "linkType": "WebLink",
+                "url": "http://www.cpaglobal.com/software"
+            },
+            {
+                "itemID": "02fead0a-0be0-4707-8626-6a3fe9608650",
+                "title": "CPA 2",
+                "tooltip": "CPA\u0027s Global Web Site",
+                "imagePath": null,
+                "action": "$openAttachment();",
+                "shortcut": "",
+                "linkType": "WebLink",
+                "url": "http://www.cpaglobal.com"
+            },
+            {
+                "itemID": "0316e1dd-61d6-4a62-8353-7b399e911316",
+                "title": "CPA Software Solutions 2",
+                "tooltip": "CPA Software Solutions Home Page",
+                "imagePath": null,
+                "action": "$openAttachment();",
+                "shortcut": "",
+                "linkType": "WebLink",
+                "url": "http://www.cpaglobal.com/software"
+            }
+        ]
+    }
+]

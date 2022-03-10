@@ -1,0 +1,112 @@
+[{
+    "key": "&",
+    "value": "Renewal Agent"
+}, {
+    "key": "~~~",
+    "value": "Unrestricted Name Types"
+}, {
+    "key": "~CM",
+    "value": "Competitor"
+}, {
+    "key": "~CN",
+    "value": "Contact"
+}, {
+    "key": "~EP",
+    "value": "Existing Provider"
+}, {
+    "key": "~LD",
+    "value": "Lead"
+}, {
+    "key": "~PR",
+    "value": "Prospect"
+}, {
+    "key": "A",
+    "value": "Agent"
+}, {
+    "key": "B",
+    "value": "Author"
+}, {
+    "key": "C",
+    "value": "Copies To"
+}, {
+    "key": "CD",
+    "value": "Debtor Copies To"
+}, {
+    "key": "D",
+    "value": "Debtor"
+}, {
+    "key": "EMP",
+    "value": "Staff Member"
+}, {
+    "key": "EX",
+    "value": "Examiner"
+}, {
+    "key": "H",
+    "value": "Instructor's Client"
+}, {
+    "key": "I",
+    "value": "Instructor"
+}, {
+    "key": "J",
+    "value": "Inventor"
+}, {
+    "key": "K",
+    "value": "Old Owner"
+}, {
+    "key": "L",
+    "value": "Licensee"
+}, {
+    "key": "NRI",
+    "value": "New Renewal Instructor"
+}, {
+    "key": "O",
+    "value": "Owner"
+}, {
+    "key": "ON",
+    "value": "New Owner"
+}, {
+    "key": "P",
+    "value": "Challenger (our side)"
+}, {
+    "key": "PQ",
+    "value": "Challenger (other side)"
+}, {
+    "key": "PR",
+    "value": "Paralegal"
+}, {
+    "key": "PRJ",
+    "value": "Project"
+}, {
+    "key": "Q",
+    "value": "Other Side's Attorney"
+}, {
+    "key": "R",
+    "value": "Renewals Instructor"
+}, {
+    "key": "SE",
+    "value": "Secretary"
+}, {
+    "key": "SIG",
+    "value": "Signatory"
+}, {
+    "key": "T",
+    "value": "Transferred To"
+}, {
+    "key": "TRN",
+    "value": "Translator"
+}, {
+    "key": "W",
+    "value": "Owner under challenge (other side)"
+}, {
+    "key": "Y",
+    "value": "Renewal Copies To"
+}, {
+    "key": "Z",
+    "value": "Renewals Debtor"
+}, {
+    "key": "ZC",
+    "value": "Renewals Debtor Copy To"
+}, {
+    "key": "ZS",
+    "value": "Renewal Staff"
+}]

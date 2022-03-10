@@ -1,0 +1,109 @@
+[{
+    "policingLogId": 1,
+    "policingName": "Recalculate Criteria",
+    "startDateTime": "2016-01-11T15:37:26.503",
+    "finishDateTime": null,
+    "timeTaken": null,
+    "failMessage": null,
+    "hasErrors": true,
+    "fromDate": "2016-01-11T00:00:00",
+    "numberOfDays": null,
+    "status": "error",
+    "error": {
+        "startDateTime": "2016-01-11T15:37:26.503",
+        "totalErrorItemsCount": 6,
+        "errorItems": [{
+            "irn": "1",
+            "eventDescription": "event description",
+            "cycleNo": 1,
+            "message": "blah blah",
+            "criteriaNo": 5,
+            "eventNo": 1,
+            "criteriaDescription": "criteria description 123",
+            "hasEventControl": true
+        }, {
+            "irn": "1",
+            "eventDescription": "event description",
+            "cycleNo": 1,
+            "message": "blah blah",
+            "criteriaNo": 1,
+            "eventNo": 1
+        }, {
+            "irn": "1",
+            "eventDescription": "event description",
+            "cycleNo": 1,
+            "message": "blah blah",
+            "criteriaNo": 1,
+            "eventNo": 1
+        }, {
+            "irn": "1",
+            "eventDescription": "event description",
+            "cycleNo": 1,
+            "message": "blah blah",
+            "criteriaNo": 1,
+            "eventNo": 1
+        }, {
+            "irn": "1",
+            "eventDescription": "event description",
+            "cycleNo": 1,
+            "message": "blah blah",
+            "criteriaNo": 1,
+            "eventNo": 1
+        }]
+    }
+}, {
+    "policingLogId": 2,
+    "policingName": "Recalculate Criteria",
+    "startDateTime": "2016-01-11T15:37:26.503",
+    "finishDateTime": null,
+    "timeTaken": null,
+    "failMessage": null,
+    "hasErrors": false,
+    "fromDate": "2016-01-11T00:00:00",
+    "numberOfDays": null,
+    "status": "inProgress"
+}, {
+    "policingLogId": 3,
+    "policingName": "Recalculate Criteria",
+    "startDateTime": "2015-04-08T13:00:36.783",
+    "finishDateTime": null,
+    "timeTaken": null,
+    "failMessage": null,
+    "hasErrors": false,
+    "fromDate": "2015-04-08T00:00:00",
+    "numberOfDays": null,
+    "status": "inProgress"
+}, {
+    "policingLogId": 4,
+    "policingName": "Recalculate Criteria",
+    "startDateTime": "2015-04-08T12:49:45.707",
+    "finishDateTime": null,
+    "timeTaken": null,
+    "failMessage": null,
+    "hasErrors": false,
+    "fromDate": "2015-04-08T00:00:00",
+    "numberOfDays": null,
+    "status": "inProgress"
+}, {
+    "policingLogId": 5,
+    "policingName": "Recalculate Criteria",
+    "startDateTime": "2015-04-08T11:27:10.627",
+    "finishDateTime": "2015-04-08T11:27:14.97",
+    "timeTaken": "00:00:04",
+    "failMessage": null,
+    "hasErrors": false,
+    "fromDate": "2015-04-08T00:00:00",
+    "numberOfDays": null,
+    "status": "completed"
+}, {
+    "policingLogId": 6,
+    "policingName": "Recalculate Criteria",
+    "startDateTime": "2015-04-08T11:23:43.62",
+    "finishDateTime": "2015-04-08T11:23:50.26",
+    "timeTaken": "00:00:06",
+    "failMessage": null,
+    "hasErrors": false,
+    "fromDate": "2015-04-08T00:00:00",
+    "numberOfDays": null,
+    "status": "completed"
+}]

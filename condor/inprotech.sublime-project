@@ -1,0 +1,10 @@
+{
+	"folders":
+	[
+		{
+            "path": ".",
+			"follow_symlinks": true,
+            "folder_exclude_patterns": [".asm", ".idea", ".tmp", "tmp", "dist", ".build", ".out", ".sass-cache", ".coverage", "debug", "node_modules", "bower_components", "coverage"]
+		}
+	]
+}

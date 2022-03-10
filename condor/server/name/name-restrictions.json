@@ -1,0 +1,26 @@
+[{
+        "id": -5578300,
+        "severity": "warning",
+        "description": "Slow payer"
+    },
+    {
+        "id": 20,
+        "severity": "warning",
+        "description": "Slow payer"
+    },
+    {
+        "id": 23,
+        "severity": "error",
+        "description": "Absolutely no work"
+    },
+    {
+        "id": 42,
+        "severity": "information",
+        "description": "Past problems - OK now"
+    },
+    {
+        "id": 10029,
+        "severity": "warning",
+        "description": "Slow payer"
+    }
+]

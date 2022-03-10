@@ -1,0 +1,1238 @@
+{
+    "totalRows": 32,
+    "columns": [{
+        "id": "displayname_i___39_",
+        "title": "Instructor",
+        "format": "String",
+        "decimalPlaces": null,
+        "currencyCodeColumnName": null,
+        "isHyperlink": true,
+        "filterable": false,
+        "fieldId": "DisplayName_I___39_",
+        "linkType": "NameDetails",
+        "linkArgs": ["nameKey_I_", "displayName_I___39_", "nameCode_I_"],
+        "isColumnFreezed": false
+    }, {
+        "id": "casereference__77_",
+        "title": "Case Ref.",
+        "format": "String",
+        "decimalPlaces": null,
+        "currencyCodeColumnName": null,
+        "isHyperlink": true,
+        "filterable": false,
+        "fieldId": "CaseReference__77_",
+        "linkType": "CaseDetails",
+        "linkArgs": ["caseKey", "caseReference__77_"],
+        "isColumnFreezed": false
+    }, {
+        "id": "currentofficialnumber__3_",
+        "title": "Official No.",
+        "format": "String",
+        "decimalPlaces": null,
+        "currencyCodeColumnName": null,
+        "isHyperlink": true,
+        "filterable": false,
+        "fieldId": "CurrentOfficialNumber__3_",
+        "linkType": "CaseDetails",
+        "linkArgs": ["caseKey", "currentOfficialNumber__3_"],
+        "isColumnFreezed": false
+    }, {
+        "id": "shorttitle__15_",
+        "title": "Title",
+        "format": "String",
+        "decimalPlaces": null,
+        "currencyCodeColumnName": null,
+        "isHyperlink": false,
+        "filterable": false,
+        "fieldId": "ShortTitle__15_",
+        "linkType": null,
+        "linkArgs": null,
+        "isColumnFreezed": false
+    }, {
+        "id": "statusdescription__14_",
+        "title": "Case Status",
+        "format": "String",
+        "decimalPlaces": null,
+        "currencyCodeColumnName": null,
+        "isHyperlink": false,
+        "filterable": true,
+        "fieldId": "StatusDescription__14_",
+        "linkType": null,
+        "linkArgs": null,
+        "isColumnFreezed": false
+    }, {
+        "id": "casetypedescription__6_",
+        "title": "Case Type",
+        "format": "String",
+        "decimalPlaces": null,
+        "currencyCodeColumnName": null,
+        "isHyperlink": false,
+        "filterable": true,
+        "fieldId": "CaseTypeDescription__6_",
+        "linkType": null,
+        "linkArgs": null,
+        "isColumnFreezed": false
+    }, {
+        "id": "countryname__7_",
+        "title": "Country",
+        "format": "String",
+        "decimalPlaces": null,
+        "currencyCodeColumnName": null,
+        "isHyperlink": false,
+        "filterable": true,
+        "fieldId": "CountryName__7_",
+        "linkType": null,
+        "linkArgs": null,
+        "isColumnFreezed": false
+    }, {
+        "id": "propertytypedescription__8_",
+        "title": "Property Type",
+        "format": "String",
+        "decimalPlaces": null,
+        "currencyCodeColumnName": null,
+        "isHyperlink": false,
+        "filterable": true,
+        "fieldId": "PropertyTypeDescription__8_",
+        "linkType": null,
+        "linkArgs": null,
+        "isColumnFreezed": false
+    }, {
+        "id": "localclasses__69_",
+        "title": "Local Classes",
+        "format": "String",
+        "decimalPlaces": null,
+        "currencyCodeColumnName": null,
+        "isHyperlink": false,
+        "filterable": false,
+        "fieldId": "LocalClasses__69_",
+        "linkType": null,
+        "linkArgs": null,
+        "isColumnFreezed": false
+    }],
+    "rows": [{
+        "displayname_i___39_": {
+            "value": "Balloon Blast Ball Pty Ltd",
+            "link": {
+                "nameKey_I_": 10048,
+                "displayName_I___39_": "Balloon Blast Ball Pty Ltd",
+                "nameCode_I_": "BBB"
+            }
+        },
+        "casereference__77_": {
+            "value": "000315-1",
+            "link": {
+                "caseKey": 13,
+                "caseReference__77_": "000315-1"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "12345",
+            "link": {
+                "caseKey": 13,
+                "currentOfficialNumber__3_": "12345"
+            }
+        },
+        "shorttitle__15_": "BALLOON BLAST BALL",
+        "statusdescription__14_": "Application filed",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "localclasses__69_": "28, 29",
+        "rowKey": 1,
+        "caseKey": 13,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "BBB",
+        "nameKey_I_": 10048,
+        "propertyTypeKey": "T",
+        "statusKey": -202,
+        "id": "13_1"
+    }, {
+        "displayname_i___39_": {
+            "value": "Brimstone Holding Company",
+            "link": {
+                "nameKey_I_": 42,
+                "displayName_I___39_": "Brimstone Holding Company",
+                "nameCode_I_": "001234"
+            }
+        },
+        "casereference__77_": {
+            "value": "001234/000089-AU",
+            "link": {
+                "caseKey": 150,
+                "caseReference__77_": "001234/000089-AU"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "123454",
+            "link": {
+                "caseKey": 150,
+                "currentOfficialNumber__3_": "123454"
+            }
+        },
+        "shorttitle__15_": "INPROMA",
+        "statusdescription__14_": "Registered",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "rowKey": 2,
+        "caseKey": 150,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "001234",
+        "nameKey_I_": 42,
+        "propertyTypeKey": "T",
+        "statusKey": -210,
+        "id": "150_2"
+    }, {
+        "displayname_i___39_": {
+            "value": "Brimstone Holding Company",
+            "link": {
+                "nameKey_I_": 42,
+                "displayName_I___39_": "Brimstone Holding Company",
+                "nameCode_I_": "001234"
+            }
+        },
+        "casereference__77_": {
+            "value": "001234/0077-AU",
+            "link": {
+                "caseKey": 141,
+                "caseReference__77_": "001234/0077-AU"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "1234455",
+            "link": {
+                "caseKey": 141,
+                "currentOfficialNumber__3_": "1234455"
+            }
+        },
+        "shorttitle__15_": "Process",
+        "statusdescription__14_": "Application filed",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 3,
+        "caseKey": 141,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "001234",
+        "nameKey_I_": 42,
+        "propertyTypeKey": "P",
+        "statusKey": -202,
+        "id": "141_3"
+    }, {
+        "displayname_i___39_": {
+            "value": "Brimstone Holding Company",
+            "link": {
+                "nameKey_I_": 42,
+                "displayName_I___39_": "Brimstone Holding Company",
+                "nameCode_I_": "001234"
+            }
+        },
+        "casereference__77_": {
+            "value": "001234/0424-GB",
+            "link": {
+                "caseKey": 475,
+                "caseReference__77_": "001234/0424-GB"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "12345678",
+            "link": {
+                "caseKey": 475,
+                "currentOfficialNumber__3_": "12345678"
+            }
+        },
+        "shorttitle__15_": "Camera Device",
+        "statusdescription__14_": "Application filed",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "United Kingdom",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 4,
+        "caseKey": 475,
+        "caseTypeKey": "A",
+        "countryCode": "GB",
+        "isEditable": true,
+        "nameCode_I_": "001234",
+        "nameKey_I_": 42,
+        "propertyTypeKey": "P",
+        "statusKey": -202,
+        "id": "475_4"
+    }, {
+        "displayname_i___39_": {
+            "value": "Brimstone Holding Company",
+            "link": {
+                "nameKey_I_": 42,
+                "displayName_I___39_": "Brimstone Holding Company",
+                "nameCode_I_": "001234"
+            }
+        },
+        "casereference__77_": {
+            "value": "001234/0450-BX",
+            "link": {
+                "caseKey": 506,
+                "caseReference__77_": "001234/0450-BX"
+            }
+        },
+        "shorttitle__15_": "Novagraaf",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Benelux",
+        "propertytypedescription__8_": "Trade Mark",
+        "rowKey": 5,
+        "caseKey": 506,
+        "caseTypeKey": "A",
+        "countryCode": "BX",
+        "isEditable": true,
+        "nameCode_I_": "001234",
+        "nameKey_I_": 42,
+        "propertyTypeKey": "T",
+        "id": "506_5"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "002345/0425-AU",
+            "link": {
+                "caseKey": 478,
+                "caseReference__77_": "002345/0425-AU"
+            }
+        },
+        "shorttitle__15_": "Phone screening mechanism",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 6,
+        "caseKey": 478,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "P",
+        "id": "478_6"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "002345/0426-AU",
+            "link": {
+                "caseKey": 480,
+                "caseReference__77_": "002345/0426-AU"
+            }
+        },
+        "shorttitle__15_": "Telepathic typing",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 7,
+        "caseKey": 480,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "P",
+        "id": "480_7"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "002345/0431-AU",
+            "link": {
+                "caseKey": 477,
+                "caseReference__77_": "002345/0431-AU"
+            }
+        },
+        "shorttitle__15_": "Bottle opener",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "rowKey": 8,
+        "caseKey": 477,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "T",
+        "id": "477_8"
+    }, {
+        "displayname_i___39_": {
+            "value": "Acorn & Associates",
+            "link": {
+                "nameKey_I_": 7,
+                "displayName_I___39_": "Acorn & Associates",
+                "nameCode_I_": "010000"
+            }
+        },
+        "casereference__77_": {
+            "value": "010000/0430-DK",
+            "link": {
+                "caseKey": 488,
+                "caseReference__77_": "010000/0430-DK"
+            }
+        },
+        "shorttitle__15_": "Testing case",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Denmark",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 9,
+        "caseKey": 488,
+        "caseTypeKey": "A",
+        "countryCode": "DK",
+        "isEditable": true,
+        "nameCode_I_": "010000",
+        "nameKey_I_": 7,
+        "propertyTypeKey": "P",
+        "id": "488_9"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "010123-1",
+            "link": {
+                "caseKey": 9,
+                "caseReference__77_": "010123-1"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "12345/92",
+            "link": {
+                "caseKey": 9,
+                "currentOfficialNumber__3_": "12345/92"
+            }
+        },
+        "shorttitle__15_": "Development of an early screening method",
+        "statusdescription__14_": "Possibly lapsed recently (live)",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 10,
+        "caseKey": 9,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "P",
+        "statusKey": -225,
+        "id": "9_10"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "1234/A",
+            "link": {
+                "caseKey": -487,
+                "caseReference__77_": "1234/A"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "777777",
+            "link": {
+                "caseKey": -487,
+                "currentOfficialNumber__3_": "777777"
+            }
+        },
+        "shorttitle__15_": "RONDON and shoe device",
+        "statusdescription__14_": "Registered",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "localclasses__69_": "42",
+        "rowKey": 11,
+        "caseKey": -487,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "T",
+        "statusKey": -210,
+        "id": "-487_11"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "1234/B",
+            "link": {
+                "caseKey": -486,
+                "caseReference__77_": "1234/B"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "123879",
+            "link": {
+                "caseKey": -486,
+                "currentOfficialNumber__3_": "123879"
+            }
+        },
+        "shorttitle__15_": "RONDON & shoe device",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "United States of America",
+        "propertytypedescription__8_": "Trademark",
+        "localclasses__69_": "24, 42",
+        "rowKey": 12,
+        "caseKey": -486,
+        "caseTypeKey": "A",
+        "countryCode": "US",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "T",
+        "id": "-486_12"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asterisk Corporation",
+            "link": {
+                "nameKey_I_": -485,
+                "displayName_I___39_": "Asterisk Corporation",
+                "nameCode_I_": "445566"
+            }
+        },
+        "casereference__77_": {
+            "value": "1234/C",
+            "link": {
+                "caseKey": -485,
+                "caseReference__77_": "1234/C"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "678543",
+            "link": {
+                "caseKey": -485,
+                "currentOfficialNumber__3_": "678543"
+            }
+        },
+        "shorttitle__15_": "Device of shoe",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "New Zealand",
+        "propertytypedescription__8_": "Trade Mark",
+        "localclasses__69_": "17",
+        "rowKey": 13,
+        "caseKey": -485,
+        "caseTypeKey": "A",
+        "countryCode": "NZ",
+        "isEditable": true,
+        "nameCode_I_": "445566",
+        "nameKey_I_": -485,
+        "propertyTypeKey": "T",
+        "id": "-485_13"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "1234/F",
+            "link": {
+                "caseKey": -469,
+                "caseReference__77_": "1234/F"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "687789",
+            "link": {
+                "caseKey": -469,
+                "currentOfficialNumber__3_": "687789"
+            }
+        },
+        "shorttitle__15_": "RONDON and shoe device",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "localclasses__69_": "25",
+        "rowKey": 14,
+        "caseKey": -469,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "T",
+        "id": "-469_14"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "1234/G",
+            "link": {
+                "caseKey": -457,
+                "caseReference__77_": "1234/G"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "12349",
+            "link": {
+                "caseKey": -457,
+                "currentOfficialNumber__3_": "12349"
+            }
+        },
+        "shorttitle__15_": "RONDON and shoe device",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "localclasses__69_": "42",
+        "rowKey": 15,
+        "caseKey": -457,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "T",
+        "id": "-457_15"
+    }, {
+        "displayname_i___39_": {
+            "value": "Brimstone Extraction Industries",
+            "link": {
+                "nameKey_I_": 40,
+                "displayName_I___39_": "Brimstone Extraction Industries",
+                "nameCode_I_": "000105"
+            }
+        },
+        "casereference__77_": {
+            "value": "1234/SEARCH",
+            "link": {
+                "caseKey": 465,
+                "caseReference__77_": "1234/SEARCH"
+            }
+        },
+        "shorttitle__15_": "Searching",
+        "statusdescription__14_": "Search completed",
+        "casetypedescription__6_": "Searching",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "rowKey": 16,
+        "caseKey": 465,
+        "caseTypeKey": "D",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "000105",
+        "nameKey_I_": 40,
+        "propertyTypeKey": "T",
+        "statusKey": -289,
+        "id": "465_16"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "1234/U",
+            "link": {
+                "caseKey": -470,
+                "caseReference__77_": "1234/U"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "345654",
+            "link": {
+                "caseKey": -470,
+                "currentOfficialNumber__3_": "345654"
+            }
+        },
+        "shorttitle__15_": "RONDON",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "United States of America",
+        "propertytypedescription__8_": "Trademark",
+        "localclasses__69_": "[42], [100]",
+        "rowKey": 17,
+        "caseKey": -470,
+        "caseTypeKey": "A",
+        "countryCode": "US",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "T",
+        "id": "-470_17"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "1234/X",
+            "link": {
+                "caseKey": -367,
+                "caseReference__77_": "1234/X"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "565656",
+            "link": {
+                "caseKey": -367,
+                "currentOfficialNumber__3_": "565656"
+            }
+        },
+        "shorttitle__15_": "RONDON and shoe device",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "localclasses__69_": "42",
+        "rowKey": 18,
+        "caseKey": -367,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "T",
+        "id": "-367_18"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "12345/AB",
+            "link": {
+                "caseKey": -424,
+                "caseReference__77_": "12345/AB"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "676789",
+            "link": {
+                "caseKey": -424,
+                "currentOfficialNumber__3_": "676789"
+            }
+        },
+        "shorttitle__15_": "HARVEST HOME",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "localclasses__69_": "31, 32",
+        "rowKey": 19,
+        "caseKey": -424,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "T",
+        "id": "-424_19"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "12345/DE",
+            "link": {
+                "caseKey": -402,
+                "caseReference__77_": "12345/DE"
+            }
+        },
+        "shorttitle__15_": "HARVEST HOME",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "localclasses__69_": "31, 32",
+        "rowKey": 20,
+        "caseKey": -402,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "T",
+        "id": "-402_20"
+    }, {
+        "displayname_i___39_": {
+            "value": "CCC TV Pty Limited",
+            "link": {
+                "nameKey_I_": 32,
+                "displayName_I___39_": "CCC TV Pty Limited",
+                "nameCode_I_": "024000"
+            }
+        },
+        "casereference__77_": {
+            "value": "123456/A",
+            "link": {
+                "caseKey": -374,
+                "caseReference__77_": "123456/A"
+            }
+        },
+        "shorttitle__15_": "CALL DIRECT in special script",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "localclasses__69_": "38",
+        "rowKey": 21,
+        "caseKey": -374,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "024000",
+        "nameKey_I_": 32,
+        "propertyTypeKey": "T",
+        "id": "-374_21"
+    }, {
+        "displayname_i___39_": {
+            "value": "Zappy Coolers (Australia) Pty Limited",
+            "link": {
+                "nameKey_I_": -1681000,
+                "displayName_I___39_": "Zappy Coolers (Australia) Pty Limited",
+                "nameCode_I_": "016000"
+            }
+        },
+        "casereference__77_": {
+            "value": "17465",
+            "link": {
+                "caseKey": -1,
+                "caseReference__77_": "17465"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "12344/95",
+            "link": {
+                "caseKey": -1,
+                "currentOfficialNumber__3_": "12344/95"
+            }
+        },
+        "shorttitle__15_": "Cooling Water Units",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 22,
+        "caseKey": -1,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "016000",
+        "nameKey_I_": -1681000,
+        "propertyTypeKey": "P",
+        "id": "-1_22"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "702003",
+            "link": {
+                "caseKey": -474,
+                "caseReference__77_": "702003"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "12345/95",
+            "link": {
+                "caseKey": -474,
+                "currentOfficialNumber__3_": "12345/95"
+            }
+        },
+        "shorttitle__15_": "Asparagus freezing process",
+        "statusdescription__14_": "Possibly lapsed recently (live)",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 23,
+        "caseKey": -474,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "P",
+        "statusKey": -225,
+        "id": "-474_23"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "Ä/TEST/AUT",
+            "link": {
+                "caseKey": -498,
+                "caseReference__77_": "Ä/TEST/AUT"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "123456",
+            "link": {
+                "caseKey": -498,
+                "currentOfficialNumber__3_": "123456"
+            }
+        },
+        "shorttitle__15_": "Device",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "localclasses__69_": "25, 24",
+        "rowKey": 24,
+        "caseKey": -498,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "T",
+        "id": "-498_24"
+    }, {
+        "displayname_i___39_": {
+            "value": "Acme Products Inc",
+            "link": {
+                "nameKey_I_": 10054,
+                "displayName_I___39_": "Acme Products Inc",
+                "nameCode_I_": "ACME"
+            }
+        },
+        "casereference__77_": {
+            "value": "ACME/0433-AU",
+            "link": {
+                "caseKey": 509,
+                "caseReference__77_": "ACME/0433-AU"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "123456",
+            "link": {
+                "caseKey": 509,
+                "currentOfficialNumber__3_": "123456"
+            }
+        },
+        "shorttitle__15_": "test",
+        "statusdescription__14_": "Application filed",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 25,
+        "caseKey": 509,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "ACME",
+        "nameKey_I_": 10054,
+        "propertyTypeKey": "P",
+        "statusKey": -202,
+        "id": "509_25"
+    }, {
+        "displayname_i___39_": {
+            "value": "Brimstone Holding Company",
+            "link": {
+                "nameKey_I_": 42,
+                "displayName_I___39_": "Brimstone Holding Company",
+                "nameCode_I_": "001234"
+            }
+        },
+        "casereference__77_": {
+            "value": "CGSTST1",
+            "link": {
+                "caseKey": 5,
+                "caseReference__77_": "CGSTST1"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "1234A",
+            "link": {
+                "caseKey": 5,
+                "currentOfficialNumber__3_": "1234A"
+            }
+        },
+        "shorttitle__15_": "CGS Test 1",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Trade Mark",
+        "rowKey": 26,
+        "caseKey": 5,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "001234",
+        "nameKey_I_": 42,
+        "propertyTypeKey": "T",
+        "id": "5_26"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "LATIDA",
+            "link": {
+                "caseKey": 479,
+                "caseReference__77_": "LATIDA"
+            }
+        },
+        "shorttitle__15_": "Bottle corking process",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 27,
+        "caseKey": 479,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "P",
+        "id": "479_27"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "P1333PCT-PH",
+            "link": {
+                "caseKey": 168,
+                "caseReference__77_": "P1333PCT-PH"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "1234545",
+            "link": {
+                "caseKey": 168,
+                "currentOfficialNumber__3_": "1234545"
+            }
+        },
+        "shorttitle__15_": "Bicycle Seat",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Philippines",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 28,
+        "caseKey": 168,
+        "caseTypeKey": "A",
+        "countryCode": "PH",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "P",
+        "id": "168_28"
+    }, {
+        "displayname_i___39_": {
+            "value": "Asparagus Farming Equipment Pty Ltd",
+            "link": {
+                "nameKey_I_": -493,
+                "displayName_I___39_": "Asparagus Farming Equipment Pty Ltd",
+                "nameCode_I_": "002345"
+            }
+        },
+        "casereference__77_": {
+            "value": "P1333US",
+            "link": {
+                "caseKey": 162,
+                "caseReference__77_": "P1333US"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "4320756",
+            "link": {
+                "caseKey": 162,
+                "currentOfficialNumber__3_": "4320756"
+            }
+        },
+        "shorttitle__15_": "Bicycle Seat",
+        "statusdescription__14_": "Registered",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "United States of America",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 29,
+        "caseKey": 162,
+        "caseTypeKey": "A",
+        "countryCode": "US",
+        "isEditable": true,
+        "nameCode_I_": "002345",
+        "nameKey_I_": -493,
+        "propertyTypeKey": "P",
+        "statusKey": -210,
+        "id": "162_29"
+    }, {
+        "displayname_i___39_": {
+            "value": "Brimstone Holding Company",
+            "link": {
+                "nameKey_I_": 42,
+                "displayName_I___39_": "Brimstone Holding Company",
+                "nameCode_I_": "001234"
+            }
+        },
+        "casereference__77_": {
+            "value": "SRB-980401-2",
+            "link": {
+                "caseKey": -387,
+                "caseReference__77_": "SRB-980401-2"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "600100",
+            "link": {
+                "caseKey": -387,
+                "currentOfficialNumber__3_": "600100"
+            }
+        },
+        "shorttitle__15_": "Process to kill chickens",
+        "statusdescription__14_": "Possibly lapsed recently (live)",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 30,
+        "caseKey": -387,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameCode_I_": "001234",
+        "nameKey_I_": 42,
+        "propertyTypeKey": "P",
+        "statusKey": -225,
+        "id": "-387_30"
+    }, {
+        "displayname_i___39_": {
+            "value": "Brimstone Extraction Industries",
+            "link": {
+                "nameKey_I_": 40,
+                "displayName_I___39_": "Brimstone Extraction Industries",
+                "nameCode_I_": "000105"
+            }
+        },
+        "casereference__77_": {
+            "value": "T2112US",
+            "link": {
+                "caseKey": 360,
+                "caseReference__77_": "T2112US"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "aba 12345",
+            "link": {
+                "caseKey": 360,
+                "currentOfficialNumber__3_": "aba 12345"
+            }
+        },
+        "shorttitle__15_": "Inprotech Dovetail",
+        "statusdescription__14_": "Registered",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "United States of America",
+        "propertytypedescription__8_": "Trademark",
+        "localclasses__69_": "41, 42",
+        "rowKey": 31,
+        "caseKey": 360,
+        "caseTypeKey": "A",
+        "countryCode": "US",
+        "isEditable": true,
+        "nameCode_I_": "000105",
+        "nameKey_I_": 40,
+        "propertyTypeKey": "T",
+        "statusKey": -210,
+        "id": "360_31"
+    }, {
+        "displayname_i___39_": {
+            "value": "abcxyz",
+            "link": {
+                "nameKey_I_": 10077,
+                "displayName_I___39_": "abcxyz",
+                "nameCode_I_": null
+            }
+        },
+        "casereference__77_": {
+            "value": "TEST",
+            "link": {
+                "caseKey": 504,
+                "caseReference__77_": "TEST"
+            }
+        },
+        "currentofficialnumber__3_": {
+            "value": "12345",
+            "link": {
+                "caseKey": 504,
+                "currentOfficialNumber__3_": "12345"
+            }
+        },
+        "shorttitle__15_": "Testing on work benches",
+        "casetypedescription__6_": "Properties",
+        "countryname__7_": "Australia",
+        "propertytypedescription__8_": "Patent",
+        "rowKey": 32,
+        "caseKey": 504,
+        "caseTypeKey": "A",
+        "countryCode": "AU",
+        "isEditable": true,
+        "nameKey_I_": 10077,
+        "propertyTypeKey": "P",
+        "id": "504_32"
+    }]
+}

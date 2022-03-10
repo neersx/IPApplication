@@ -1,0 +1,61 @@
+[{
+    "jurisdiction": "Austria",
+    "designatedStatus": "National Phase Entered",
+    "officialNumber": "192837",
+    "caseStatus": "Application filed",
+    "internalReference": "P1222PCT-EP-AT",
+    "classes": "Class 1, Class 2, Class 3",
+    "priorityDate": "2018-25-01",
+    "isExtensionState": true,
+    "instructorReference": "Ref I",
+    "agentReference": "Ref A",
+    "canView": true,
+    "caseKey": -659,
+    "isFiled": true,
+    "canViewInFile": true
+}, {
+    "jurisdiction": "Germany",
+    "designatedStatus": "National Phase Entered",
+    "officialNumber": "",
+    "caseStatus": "Application Pending",
+    "classes": "Class 10, Class 12, Class 13",
+    "priorityDate": "2018-12-05",
+    "isExtensionState": false,
+    "instructorReference": "Ref I 123",
+    "agentReference": "Ref A 321",
+    "canView": false,
+    "caseKey": -657,
+    "isFiled": true,
+    "canViewInFile": false
+}, {
+    "jurisdiction": "Sweden",
+    "designatedStatus": "Assignment recorded",
+    "officialNumber": "",
+    "caseStatus": "Application Pending",
+    "internalReference": "P1222PCT-EP-SE",
+    "notes": "This is the only note available\nNote on second line"
+}, {
+    "jurisdiction": "Slovenia",
+    "designatedStatus": "National Phase Entered",
+    "officialNumber": "",
+    "caseStatus": "Application filed",
+    "internalReference": "P1222PCT-EP-SL",
+    "classes": "Class A, Class B, Class C",
+    "priorityDate": "2018-11-07",
+    "isExtensionState": true,
+    "instructorReference": "Xyz",
+    "agentReference": "Abc",
+    "caseKey": -487,
+    "canView": true,
+    "isFiled": true,
+    "canViewInFile": true
+}, {
+    "jurisdiction": "Turkey",
+    "designatedStatus": "Search underway",
+    "officialNumber": "12345",
+    "caseStatus": "Completed",
+    "internalReference": "P1222PCT-EP-TR",
+    "caseKey": -488,
+    "notes": "Filing Completed",
+    "canView": true
+}]

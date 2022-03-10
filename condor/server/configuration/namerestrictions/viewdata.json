@@ -1,0 +1,17 @@
+[{
+    "id": 1,
+    "description": "Absolutely no work",
+    "actionToBeTaken": "Display Error"
+}, {
+    "id": 2,
+    "description": "Slow payer",
+    "actionToBeTaken": "Display Warning  dialog"
+}, {
+    "id": 3,
+    "description": "Bad Debtor - approval required",
+    "actionToBeTaken": "Display Warning dialog and prompt for Password"
+}, {
+    "id": 4,
+    "description": "Past problems - OK now",
+    "actionToBeTaken": "No Action"
+}]

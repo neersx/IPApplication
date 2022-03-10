@@ -1,0 +1,5 @@
+[{
+    "type": "Abstract",
+    "notes": "An analog modulator is provided having seven switched-capacitor integrators (62)-(74) disposed in a leap-frog filter configuration with a plurality of feedback taps (76)-(88) provided from the output to each of the integrators (62)-(74). These are summed in a summation junction (90), the output thereof input to a quantizing circuit (92) for input back to a summation junction alter a D to A circuit (60) for summation with the analog input signal and then input to the first integrator (62). The first feedback structures (98)-(102) are provided for connection between the output of the last of the integrated structures (74) and the input of the preceding one thereof such that the feedback structure (98) is connected across integrators (64) and integrator (66), feedback structure (100) connected between integrators (68)-(70) and integrator (102) connected against integrators (72) and (74). Leap-frog feedback elements are connected across integrators (70) and (72) and leap-frog feedback filter (104) is connected across integrator (66) and (68).",
+    "language": "English"
+}]

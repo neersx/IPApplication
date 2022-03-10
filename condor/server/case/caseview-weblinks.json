@@ -1,0 +1,19 @@
+[{
+    "groupName": "Search Engines",
+    "links": [{
+        "linkTitle": "Google",
+        "linkDescription": "Go to google search engine",
+        "url": "http://www.google.com"
+    }, {
+        "linkTitle": "Bing",
+        "linkDescription": "Go to bing search engine",
+        "url": "http://www.google.com"
+    }]
+}, {
+    "groupName": "",
+    "links": [{
+        "linkTitle": "PatentScout",
+        "linkDescription": "Search for case details in Patent Scout",
+        "url": "https://patentscout.innography.com"
+    }]
+}]

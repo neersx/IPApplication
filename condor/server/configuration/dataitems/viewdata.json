@@ -1,0 +1,70 @@
+{
+    "ids": 4,
+    "results": {
+        "data": [{
+                "name": "AGENT_ADDRESS",
+                "description": "Address of the Agent",
+                "sql": "Select a.ADDRESS from AGENTADDRESS",
+                "outputDataType": "nvarchar",
+                "createdBy": "SYSADM",
+                "dateUpdated": "2017-01-01",
+                "dateCreated": "2017-01-02",
+                "isSql": "true",
+                "notes": "Notes for 1",
+                "groups": [{
+                        "name": "Case"
+                    },
+                    {
+                        "name": "Case Validation"
+                    }
+                ]
+            },
+            {
+                "name": "AGENT_CASE_REF",
+                "description": "Case reference of the Agent",
+                "sql": "sp_sampleProcedure0",
+                "outputDataType": "int, nvarchar",
+                "createdBy": "Maxim",
+                "dateUpdated": "2017-02-01",
+                "dateCreated": "2017-02-02",
+                "isSql": "false",
+                "notes": "Notes for 2",
+                "groups": [{
+                    "name": "Name"
+                }]
+            },
+            {
+                "name": "CORRESPONDENCE_NAMETEXT",
+                "description": "",
+                "sql": "sp_sampleProcedure1",
+                "outputDataType": "int, datetime",
+                "createdBy": "Maxim",
+                "dateUpdated": "2017-03-01",
+                "dateCreated": "2017-03-02",
+                "isSql": "false",
+                "notes": "Notes for CORRESPONDENCE_NAMETEXT",
+                "groups": [{
+                    "name": "Case"
+                }]
+
+            }, {
+                "name": "CORRESPONDENCE_SITECONTROL",
+                "description": "",
+                "sql": "sp_sampleProcedure2",
+                "outputDataType": "int, bool",
+                "createdBy": "SYSADM",
+                "dateUpdated": "2017-03-01",
+                "dateCreated": "2017-03-02",
+                "isSql": "false",
+                "notes": "Notes for CORRESPONDENCE_SITECONTROL",
+                "groups": [{
+                        "name": "Name"
+                    },
+                    {
+                        "name": "Name Validation"
+                    }
+                ]
+            }
+        ]
+    }
+}

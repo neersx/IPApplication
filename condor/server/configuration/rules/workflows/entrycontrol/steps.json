@@ -1,0 +1,234 @@
+[{
+    "id": 1,
+    "isInherited": true,
+    "displaySequence": 0,
+    "title": "Checklist Very very very very very very very very very very very very lonnnng title",
+    "step": {
+        "type": "C",
+        "value": "Check list",
+        "defaultTitle": "Checklist"
+    },
+    "screenTip": "Ensure checklist is added Lorem ipsum dolor sit amet, consectetur adipiscing elit. Bona autem corporis huic sunt, quod posterius posui, similiora. Quae cum dixisset paulumque institisset, Quid est? Et quidem iure fortasse, sed tamen non gravissimum est testimonium multitudinis. Cum salvum esse flentes sui respondissent, rogavit essentne fusi hostes.",
+    "isMandatory": true,
+    "categories": [{
+        "categoryCode": "checklist",
+        "categoryValue": {
+            "key": 1,
+            "code": "A",
+            "value": "Checklist"
+        }
+    }, {
+        "categoryCode": "nameType",
+        "categoryValue": {
+            "key": 1,
+            "code": "A",
+            "value": "Agent"
+        }
+    }]
+}, {
+    "id": 2,
+    "isInherited": true,
+    "displaySequence": 4,
+    "title": "Document Filing",
+    "step": {
+        "type": "O",
+        "value": "Number Type",
+        "defaultTitle": "Number Type"
+    },
+    "screenTip": "Add documents for filing",
+    "categories": [{
+        "categoryCode": "numberType",
+        "categoryValue": {
+            "key": 1,
+            "code": "A",
+            "value": "Application Number"
+        }
+    }]
+}, {
+    "id": 3,
+    "isInherited": false,
+    "displaySequence": 5,
+    "title": "Case Events",
+    "step": {
+        "type": "O",
+        "value": "Case Events",
+        "defaultTitle": "Case Events"
+    },
+    "categories": [{
+        "categoryCode": "numberType",
+        "categoryValue": {
+            "key": 1,
+            "code": "A",
+            "value": "Examination"
+        }
+    }]
+}, {
+    "id": 4,
+    "isInherited": false,
+    "displaySequence": 6,
+    "title": "Names",
+    "step": {
+        "type": "N",
+        "value": "Names",
+        "defaultTitle": "Names"
+    },
+    "categories": [{
+        "categoryCode": "nameType",
+        "categoryValue": {
+            "key": 1,
+            "code": "N",
+            "value": "Instructor"
+        }
+    }]
+}, {
+    "id": 5,
+    "isInherited": false,
+    "displaySequence": 7,
+    "title": "Names",
+    "step": {
+        "type": "N",
+        "value": "nameType",
+        "defaultTitle": "NameType"
+    },
+    "categories": [{
+        "categoryCode": "nameType",
+        "categoryValue": {
+            "key": 1,
+            "code": "N",
+            "value": "Agent"
+        }
+    }]
+}, {
+    "id": 6,
+    "isInherited": false,
+    "displaySequence": 8,
+    "title": "Multiple Name Types",
+    "step": {
+        "type": "X",
+        "value": "Multiple Name Types",
+        "defaultTitle": "Multiple Name Types"
+    },
+    "categories": [{
+        "categoryCode": "nameType",
+        "categoryValue": {
+            "key": 1,
+            "code": "P",
+            "value": "RENEWAL NAMES"
+        }
+    }, {
+        "categoryCode": "textType",
+        "categoryValue": {
+            "key": 1,
+            "code": "P",
+            "value": "Renewal"
+        }
+    }]
+}, {
+    "id": 7,
+    "isInherited": false,
+    "displaySequence": 9,
+    "title": "Official Nos",
+    "step": {
+        "type": "O",
+        "value": "Official Nos",
+        "defaultTitle": "Official Numbers"
+    },
+    "categories": [{
+        "categoryCode": "numberType",
+        "categoryValue": {
+            "key": 1,
+            "code": "O",
+            "value": "OHIM ID"
+        }
+    }]
+}, {
+    "id": 8,
+    "isInherited": false,
+    "displaySequence": 10,
+    "title": "Related Cases",
+    "step": {
+        "type": "R",
+        "value": "Related Cases",
+        "defaultTitle": "Related Cases"
+    },
+    "categories": [{
+        "categoryCode": "relationship",
+        "categoryValue": {
+            "key": 1,
+            "code": "N",
+            "value": "Foreign Convention Filing"
+        }
+    }]
+}, {
+    "id": 9,
+    "isInherited": false,
+    "displaySequence": 11,
+    "title": "Text",
+    "step": {
+        "type": "T",
+        "value": "Text",
+        "defaultTitle": "Text"
+    },
+    "categories": [{
+        "categoryCode": "textType",
+        "categoryValue": {
+            "key": 1,
+            "code": "T",
+            "value": "Correspondence Instructions (Cases)"
+        }
+    }]
+}, {
+    "id": 10,
+    "isInherited": false,
+    "displaySequence": 12,
+    "title": "Name Text",
+    "step": {
+        "type": "X",
+        "value": "Name Text",
+        "defaultTitle": "Name Text"
+    },
+    "categories": [{
+        "categoryCode": "nameType",
+        "categoryValue": {
+            "key": 1,
+            "code": "X",
+            "value": "Author/Billing"
+        }
+    }]
+}, {
+    "id": 11,
+    "isInherited": false,
+    "displaySequence": 13,
+    "title": "Case Text Summary",
+    "step": {
+        "type": "T",
+        "value": "Case Text Summary",
+        "defaultTitle": "Case Text Summary"
+    },
+    "categories": [{
+        "categoryCode": "textType",
+        "categoryValue": {
+            "key": 1,
+            "code": "R",
+            "value": "Original Madrid"
+        }
+    }]
+}, {
+    "id": 12,
+    "isInherited": false,
+    "displaySequence": 14,
+    "title": "Standing Instructions",
+    "step": {
+        "type": "N",
+        "value": "Standing Instructions",
+        "defaultTitle": "Standing Instructions"
+    },
+    "categories": [{
+        "categoryCode": "nameType",
+        "categoryValue": {
+            "key": null,
+            "code": null,
+            "value": null
+        }
+    }]
+}]

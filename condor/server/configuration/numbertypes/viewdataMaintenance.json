@@ -1,0 +1,11 @@
+{
+    "id": 1,
+    "numberTypeCode": "C",
+    "numberTypeDescription": "Acceptance No",
+    "issuedByIpOffice": true,
+    "relatedEvent": {
+        "key": 1,
+        "code": "-4",
+        "value": "Notice of Allowance"
+    }
+}

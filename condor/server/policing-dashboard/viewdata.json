@@ -1,0 +1,118 @@
+[{
+    "summary": {
+        "total": 160,
+        "inProgress": {
+
+            "tolerable": 1,
+            "fresh": 15,
+            "total": 16
+        },
+        "waitingToStart": {
+            "stuck": 1,
+            "tolerable": 1,
+            "fresh": 1,
+            "total": 3
+        },
+        "blocked": {
+            "stuck": 2,
+            "tolerable": 1,
+            "fresh": 2,
+            "total": 5
+        },
+        "inError": {
+            "stuck": 1,
+            "tolerable": 1,
+            "fresh": 1,
+            "total": 3
+        },
+        "failed": {
+            "fresh": 15,
+            "tolerable": 11,
+            "total": 26
+        },
+        "onHold": {
+            "stuck": 105,
+            "tolerable": 1,
+            "fresh": 1,
+            "total": 107
+        }
+    }
+}, {
+    "summary": {
+        "total": 105,
+        "inProgress": {
+
+            "tolerable": 1,
+            "fresh": 0,
+            "total": 1
+        },
+        "waitingToStart": {
+            "stuck": 1,
+            "tolerable": 5,
+            "fresh": 5,
+            "total": 11
+        },
+        "blocked": {
+            "stuck": 1,
+            "tolerable": 3,
+            "fresh": 1,
+            "total": 5
+        },
+        "inError": {
+            "stuck": 1,
+            "tolerable": 1,
+            "fresh": 1,
+            "total": 3
+        },
+        "failed": {
+            "fresh": 26,
+            "tolerable": 0,
+            "total": 26
+        },
+        "onHold": {
+            "stuck": 57,
+            "tolerable": 1,
+            "fresh": 1,
+            "total": 59
+        }
+    }
+}, {
+    "summary": {
+        "total": 75,
+        "inProgress": {
+
+            "tolerable": 1,
+            "fresh": 0,
+            "total": 1
+        },
+        "waitingToStart": {
+            "stuck": 6,
+            "tolerable": 0,
+            "fresh": 0,
+            "total": 6
+        },
+        "blocked": {
+            "stuck": 3,
+            "tolerable": 1,
+            "fresh": 1,
+            "total": 5
+        },
+        "inError": {
+            "stuck": 6,
+            "tolerable": 1,
+            "fresh": 1,
+            "total": 8
+        },
+        "failed": {
+            "fresh": 0,
+            "tolerable": 0,
+            "total": 0
+        },
+        "onHold": {
+            "stuck": 55,
+            "tolerable": 0,
+            "fresh": 0,
+            "total": 55
+        }
+    }
+}]

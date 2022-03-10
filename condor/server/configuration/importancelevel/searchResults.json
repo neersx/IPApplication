@@ -1,0 +1,19 @@
+[{
+    "level": "1",
+    "description": "Minimal"
+}, {
+    "level": "3",
+    "description": "Internal low level"
+}, {
+    "level": "5",
+    "description": "Normal"
+}, {
+    "level": "7",
+    "description": "Important"
+}, {
+    "level": "8",
+    "description": "Very Important"
+}, {
+    "level": "9",
+    "description": "Critical"
+}]

@@ -1,0 +1,53 @@
+[{
+    "key": "20",
+    "code": "20",
+    "value": "PCT Chapter 1, Nat'l Phase"
+}, {
+    "key": "30",
+    "code": "30",
+    "value": "PCT Chapter 2, Nat'l Phase"
+}, {
+    "key": "5",
+    "code": "5",
+    "value": "5 yearly renewals"
+}, {
+    "key": "C",
+    "code": "C",
+    "value": "Certification Mark"
+}, {
+    "key": "D",
+    "code": "D",
+    "value": "Defensive Mark"
+}, {
+    "key": "I",
+    "code": "I",
+    "value": "Similar"
+}, {
+    "key": "L",
+    "code": "L",
+    "value": "Collective Mark"
+}, {
+    "key": "MP",
+    "code": "MP",
+    "value": "Multiple Part"
+}, {
+    "key": "N",
+    "code": "N",
+    "value": "Normal"
+}, {
+    "key": "SB",
+    "code": "SB",
+    "value": "Supplementary B Registration"
+}, {
+    "key": "SD",
+    "code": "SD",
+    "value": "Spare Part"
+}, {
+    "key": "SP",
+    "code": "SP",
+    "value": "Single Part"
+}, {
+    "key": "V",
+    "code": "V",
+    "value": "Vines/Potatoes/Trees"
+}]

@@ -1,0 +1,53 @@
+[{
+    "key": "C",
+    "code": "C",
+    "value": "Acceptance No."
+}, {
+    "key": "A",
+    "code": "A",
+    "value": "Application No."
+}, {
+    "key": "7",
+    "code": "7",
+    "value": "CPA Format Acceptance No."
+}, {
+    "key": "6",
+    "code": "6",
+    "value": "CPA Format Application No."
+}, {
+    "key": "8",
+    "code": "8",
+    "value": "CPA Format Publication No."
+}, {
+    "key": "9",
+    "code": "9",
+    "value": "CPA Format Registration No."
+}, {
+    "key": "I",
+    "code": "I",
+    "value": "International Application No"
+}, {
+    "key": "B",
+    "code": "B",
+    "value": "OHIM ID"
+}, {
+    "key": "Z",
+    "code": "Z",
+    "value": "Patent No"
+}, {
+    "key": "0",
+    "code": "0",
+    "value": "Provisional Application No."
+}, {
+    "key": "P",
+    "code": "P",
+    "value": "Publication No."
+}, {
+    "key": "N",
+    "code": "N",
+    "value": "Reel/Frame"
+}, {
+    "key": "R",
+    "code": "R",
+    "value": "Registration No."
+}]

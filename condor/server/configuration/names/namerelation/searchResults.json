@@ -1,0 +1,51 @@
+[
+    {
+        "id": "1",
+        "relationshipCode": "AGT",
+        "relationshipDescription": "Renewal Agent",
+        "reverseDescription": "Renewal Agent For",
+        "isCrmOnly": false,
+        "isEmployee": true,
+        "isIndividual": false,
+        "isOrganisation": false,
+        "hasCrmLisences": true,
+        "ethicalWallValue": "Not Applicable"
+    },
+    {
+        "id": "2",
+        "relationshipCode": "BI2",
+        "relationshipDescription": "Copy Bills To",
+        "reverseDescription": "Receives Bill Copies For",
+        "isCrmOnly": true,
+        "isEmployee": false,
+        "isIndividual": false,
+        "isOrganisation": false,
+        "hasCrmLisences": true,
+        "ethicalWallValue": "Not Applicable"
+    },
+    {
+        "id": "3",
+        "relationshipCode": "BIL",
+        "relationshipDescription": "Send Bills To",
+        "reverseDescription": "Receives Bills For",
+        "isCrmOnly": true,
+        "isEmployee": false,
+        "isIndividual": true,
+        "isOrganisation": true,
+        "hasCrmLisences": false,
+        "ethicalWallValue": "Deny Access"
+    },
+    {
+        "id": "4",
+        "relationshipCode": "BKB",
+        "relationshipDescription": "Bank Branch Of",
+        "reverseDescription": "Bank Of Branch",
+        "isCrmOnly": false,
+        "isEmployee": true,
+        "isIndividual": false,
+        "isOrganisation": false,
+        "hasCrmLisences": true,
+        "ethicalWallValue": "Allow Access"
+    }
+    
+]

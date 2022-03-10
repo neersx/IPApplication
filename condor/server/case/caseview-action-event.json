@@ -1,0 +1,62 @@
+[
+    {
+        "eventDescription": "Date of entry",
+        "eventNo": -13,
+        "eventDate": "2018-25-01",
+        "dueDate": "2018-02-02",
+        "cycle": 1,
+        "nextPolice": "2018-02-02",
+        "createdByCriteria": 1324,
+        "createdByAction": "Overview"
+    },
+    {
+        "eventDescription": "Renewal (start) anniversary date",
+        "eventNo": -9,
+        "eventDate": "2018-25-01",
+        "dueDate": "2018-02-02",
+        "cycle": 1,
+        "nextPolice": "",
+        "createdByCriteria": -283,
+        "createdByAction": "Filling",
+        "eventNotes": [
+            {
+                "noteText": "test",
+                "noteTypeDescription": "description"
+            },
+            {
+                "noteText": "test",
+                "noteTypeDescription": "description"
+            }
+        ]
+    },
+    {
+        "eventDescription": "Close Examination Action",
+        "eventNo": -835,
+        "eventDate": "2018-25-01",
+        "dueDate": "2018-02-02",
+        "cycle": 1,
+        "nextPolice": "2018-02-02",
+        "createdByCriteria": 1324,
+        "createdByAction": ""
+    },
+    {
+        "eventDescription": "Open Renewal Law Update Action",
+        "eventNo": -233,
+        "eventDate": "2018-25-01",
+        "dueDate": "2018-02-02",
+        "cycle": 1,
+        "nextPolice": "",
+        "createdByCriteria": 1324,
+        "createdByAction": "Overview"
+    },
+    {
+        "eventDescription": "Registered on",
+        "eventNo": -8,
+        "eventDate": "2018-25-01",
+        "dueDate": "2018-02-02",
+        "cycle": 1,
+        "nextPolice": "",
+        "createdByCriteria": 1324,
+        "createdByAction": "Overview"
+    }
+]

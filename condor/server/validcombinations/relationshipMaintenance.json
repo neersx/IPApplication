@@ -1,0 +1,46 @@
+[{
+    "validRelationshipIdentifier": {
+        "countryId": "AU",
+        "propertyTypeId": "D",
+        "relationshipCode": "BAS"
+    },
+    "jurisdictions": [
+        {
+            "code": "AU",
+            "value": "Australia"
+        }
+    ],
+    "propertyType": {
+        "code": "D",
+        "value": "Designs"
+    },
+    "relationship": {
+        "code": "BAS",
+        "value": "Convention Claim From"
+    },    
+    "recipRelationship": null
+}, {
+    "validRelationshipIdentifier": {
+        "countryId": "US",
+        "propertyTypeId": "T",
+        "relationshipCode": "CTP"
+    },    
+    "jurisdictions": [
+        {
+            "code": "US",
+            "value": "United States"
+        }
+    ],
+    "propertyType": {
+        "code": "T",
+        "value": "Trademark"
+    },
+    "relationship": {
+        "code": "CTP",
+        "value": "Continued"
+    },
+    "recipRelationship": {
+        "code": "ADD",
+        "value": "Patent Of Addition To"
+    }
+}]

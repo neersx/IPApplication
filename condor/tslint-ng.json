@@ -1,0 +1,97 @@
+{
+    "rulesDirectory": [
+        "./node_modules/codelyzer"
+    ],
+    "extends": [
+        "angular-tslint-rules"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "./client/main.ts",
+            "./client/polyfills.ts",
+            "./client/test.ts",
+            "./client/ng/app.module.ts",
+            "./client/ng/setupJest.ts",
+            "./client/ng/jestGlobalMocks.ts",
+            "./client/condor/**"
+        ]
+    },
+    "rules": {
+        "no-implicit-dependencies": false,
+        "ordered-imports": [
+            true,
+            {
+                "import-sources-order": "case-insensitive",
+                "named-imports-order": "case-insensitive",
+                "grouped-imports": false
+            }
+        ],
+        "max-line-length": false,
+        "promise-function-async": false,
+        "arrow-parens": false,
+        "prefer-template": false,
+        "restrict-plus-operands": false,
+        "template-i18n": [
+            false,
+            "check-text"
+        ],
+        "component-selector": false,
+        "directive-selector": false,
+        "no-input-rename": false,
+        "no-output-rename": false,
+        "no-null-keyword": false,
+        "no-forward-ref": false,
+        "align": [
+            false,
+            "arguments",
+            "members",
+            "parameters",
+            "statements"
+        ],
+        "newline-per-chained-call": false,
+        "template-no-call-expression": false,
+        "no-output-on-prefix": false,
+        "member-ordering": [
+            false,
+            {
+                "order": "fields-first"
+            }
+        ],
+        "no-console": [
+            false,
+            "log",
+            "debug",
+            "info",
+            "time",
+            "timeEnd",
+            "trace"
+        ],
+        "no-floating-promises": false,
+        "eofline": false,
+        "no-void-expression": [
+            true,
+            "ignore-arrow-function-shorthand"
+        ],
+        "interface-over-type-literal": false,
+        "arrow-return-shorthand": false,
+        "interface-name": [
+            false
+        ],
+        "template-cyclomatic-complexity": false,
+        "no-redundant-jsdoc": false,
+        "comment-type": false,
+        "max-file-line-count": false,
+        "strict-comparisons": false,
+        "no-lifecycle-call": false,
+        "prefer-on-push-component-change-detection": true,
+        "no-unbound-method": [
+            true,
+            {
+                "whitelist": [
+                    "expect"
+                ],
+                "ignore-static": true
+            }
+        ]
+    }
+}

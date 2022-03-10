@@ -1,0 +1,31 @@
+[{
+    "id": {
+       "countryId": "AU",
+       "propertyTypeId": "A"
+    },
+    "countryId": "AU",
+    "country": "Australia",
+    "propertyTypeId": "A",
+    "propertyType": "Opportunity",
+    "validDescription": "Valid Opportunity"
+}, {
+    "id": {
+       "countryId": "US",
+       "propertyTypeId": "C"
+    },
+    "countryId": "US",
+    "country": "United States",
+    "propertyTypeId": "C",
+    "propertyType": "Copyright",
+    "validDescription": "Valid Copyright"
+}, {
+    "id": {
+       "countryId": "AF",
+       "propertyTypeId": "D"
+    },
+    "countryId": "AF",
+    "country": "Afghanistan",
+    "propertyTypeId": "D",
+    "propertyType": "Designs",
+    "validDescription": "Valid Designs"
+}]

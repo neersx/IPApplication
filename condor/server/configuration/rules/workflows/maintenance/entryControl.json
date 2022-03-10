@@ -1,0 +1,82 @@
+[{
+    "entryNo": 1,
+    "description": "           Notice of Opposition & Received/Reported to Client",
+    "displaySequence": 1
+}, {
+    "entryNo": 23,
+    "description": "O/S Observations Deadline",
+    "displaySequence": 2
+}, {
+    "entryNo": 4,
+    "description": "O/S Observations Received",
+    "displaySequence": 5
+}, {
+    "entryNo": 5,
+    "description": "Our Observations Deadline",
+    "displaySequence": 6
+}, {
+    "entryNo": 6,
+    "description": "Request Extension of Time for Observations",
+    "displaySequence": 7
+}, {
+    "entryNo": 15,
+    "description": "--------------------------------------------------------",
+    "displaySequence": 8,
+    "isSeparator": true
+}, {
+    "entryNo": 20,
+    "description": "Extension of Time Granted for Observations",
+    "displaySequence": 9
+}, {
+    "entryNo": 7,
+    "description": "Our Observations Filed",
+    "displaySequence": 10
+}, {
+    "entryNo": 8,
+    "description": "Notice of Oral Proceedings",
+    "displaySequence": 11
+}, {
+    "entryNo": 9,
+    "description": "Oral Proceedings Attended/Written Submissions Filed",
+    "displaySequence": 12
+}, {
+    "entryNo": 11,
+    "description": "Miscellaneous Deadline",
+    "displaySequence": 13
+}, {
+    "entryNo": 12,
+    "description": "Miscellaneous Deadline Responded to",
+    "displaySequence": 14
+}, {
+    "entryNo": 14,
+    "description": "Amend Opposition Decision Expected by",
+    "displaySequence": 15
+}, {
+    "entryNo": 13,
+    "description": "Opposition Decision Received",
+    "displaySequence": 16
+}, {
+    "entryNo": 15,
+    "description": "We are not to  Appeal Decision",
+    "displaySequence": 17
+}, {
+    "entryNo": 16,
+    "description": "Our Grounds of Appeal/Appeal Filed",
+    "displaySequence": 18
+}, {
+    "entryNo": 21,
+    "description": "O/S Appeal Deadline/Filed/Not Appealing",
+    "displaySequence": 19
+}, {
+    "entryNo": 18,
+    "description": "Appeal Decision Received",
+    "displaySequence": 21
+}, {
+    "entryNo": 19,
+    "description": "Opposition Discontinued/Withdrawn",
+    "displaySequence": 22
+}, {
+    "entryNo": 22,
+    "description": "Close Opposition Action ",
+    "displaySequence": 23
+}]

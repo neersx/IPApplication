@@ -1,0 +1,13 @@
+[{
+    "componentDescription": "DE-Request Schema",
+    "fileName": "DE-REQUEST.xml",
+    "fileSize": "169",
+    "fileType": "XML",
+    "outbound": 1
+}, {
+    "componentDescription": "receipt",
+    "fileName": "receipt.xml",
+    "fileSize": "169",
+    "fileType": "XML",
+    "outbound": 0
+}]

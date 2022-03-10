@@ -1,0 +1,37 @@
+[
+    {
+        "key": "107651",
+        "value": "Widget the World Watcher",
+        "inUse": false
+    },
+    {
+        "key": "1234",
+        "value": "Bicycle Seat",
+        "inUse": true
+    },
+    {
+        "key": "BALLOON",
+        "value": "Balloon",
+        "inUse": true
+    },
+    {
+        "key": "BWU",
+        "value": "Boiling Water Units",
+        "inUse": true
+    },
+    {
+        "key": "DATA COMPARISON",
+        "value": "DATA COMPARISON",
+        "inUse": true
+    },
+    {
+        "key": "FLOAT",
+        "value": "Float Chamber",
+        "inUse": true
+    },
+    {
+        "key": "HYDROSIM",
+        "value": "Hydrosim",
+        "inUse": true
+    }
+]

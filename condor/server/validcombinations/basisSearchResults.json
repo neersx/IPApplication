@@ -1,0 +1,39 @@
+[{
+    "id": {
+        "countryId": "AU",
+        "propertyTypeId": "D",
+        "caseTypeId": "A",        
+        "basisId": "N",
+        "caseCategoryId": "D"
+    },
+    "countryId": "AU",
+    "country": "Australia",
+    "propertyTypeId": "D",
+    "propertyType": "Designs",
+    "caseTypeId": "A",
+    "caseType": "Properties",
+    "categoryId": "D",
+    "category": "Divisional",
+    "basisId": "N",
+    "basis": "Non-convention",
+    "validDescription": "Non-convention"
+}, {
+     "id": {
+        "countryId": "US",
+        "propertyTypeId": "T",
+        "caseTypeId": "A",        
+        "basisId": "Y",
+        "caseCategoryId": "9"
+    },
+    "countryId": "US",
+    "country": "United States",
+    "propertyTypeId": "T",
+    "propertyType": "Trademark",
+    "caseTypeId": "A",
+    "caseType": "Properties",
+    "categoryId": "9",
+    "category": "Intent to Use",
+    "basisId": "Y",
+    "basis": "Convention",
+    "validDescription": "First Filing"
+}]

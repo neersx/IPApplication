@@ -1,0 +1,65 @@
+{
+    "viewData": {
+        "allowDiagnostics": true,
+        "failureSummary": [{
+            "dataSource": "Epo",
+            "failedCount": 1,
+            "recoverPossible": true,
+            "cases": [{
+                "applicationNumber": "125225",
+                "registrationNumber": null,
+                "publicationNumber": null,
+                "correlationId": null,
+                "scheduleId": 1
+            }],
+            "schedules": [{
+                "failedCount": 1,
+                "name": "Epo Schedule",
+                "scheduleId": 1
+            }]
+        }, {
+            "dataSource": "UsptoPrivatePair",
+            "failedCount": 2,
+            "recoverPossible": false,
+            "cases": [{
+                "artifactId": 2,
+                "artifactType": 2,
+                "applicationNumber": "125225",
+                "registrationNumber": null,
+                "publicationNumber": null,
+                "correlationIds": "1234",
+                "scheduleId": 1
+            }, {
+                "artifactId": 1,
+                "artifactType": 1,
+                "applicationNumber": "125223",
+                "registrationNumber": "9999",
+                "publicationNumber": null,
+                "correlationIds": "4567",
+                "scheduleId": 1
+            }, {
+                "artifactId": 1,
+                "artifactType": 1,
+                "applicationNumber": "125223",
+                "registrationNumber": "9999",
+                "publicationNumber": null,
+                "correlationIds": "9898",
+                "scheduleId": 2
+            }],
+            "schedules": [{
+                "failedCount": 2,
+                "name": "USPTO PP Schedule",
+                "scheduleId": 1,
+                "correlationIds": "1234, 4567"
+            }, {
+                "failedCount": 1,
+                "name": "USPTO PP Schedule 2",
+                "scheduleId": 2,
+                "correlationIds": "9898"
+            }]
+        }, {
+            "dataSource": "UsptoTsdr",
+            "failedCount": 0
+        }]
+    }
+}

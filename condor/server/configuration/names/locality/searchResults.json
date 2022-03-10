@@ -1,0 +1,42 @@
+[
+    {
+        "id": "1",
+        "code": "GP",
+        "name": "Green Park",
+        "city": "New Delhi",
+        "country": "India",
+        "state": "Delhi"
+    },
+    {
+        "id": "2",
+        "code": "INA",
+        "name": "INA Market",
+        "city": "New Delhi",
+        "country": "India",
+        "state": "Delhi"
+    },
+    {
+        "id": "3",
+        "code": "MEL",
+        "name": "Melbourne Area",
+        "city": "Melbourne",
+        "country": "Australia",
+        "state": "New South Waled"
+    },
+    {
+        "id": "4",
+        "code": "BRC",
+        "name": "Barrack Street",
+        "city": "Sydney",
+        "country": "Australia",
+        "state": "Victoria"
+    },
+    {
+        "id": "5",
+        "code": "SEC",
+        "name": "Sector 126",
+        "city": "Noida",
+        "country": "India",
+        "state": "Uttar Pradesh"
+    }
+]

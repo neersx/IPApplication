@@ -1,0 +1,101 @@
+[{
+    "key": "XX",
+    "code": "XX",
+    "value": "Abandonment & Ceasing",
+    "cycles": 1
+}, {
+    "key": "AC",
+    "code": "AC",
+    "value": "Acceptance",
+    "cycles": 1
+}, {
+    "key": "PF",
+    "code": "PF",
+    "value": "Additional PTO Filings",
+    "cycles": 1
+}, {
+    "key": "CP",
+    "code": "CP",
+    "value": "CPA Events",
+    "cycles": 1
+}, {
+    "key": "CC",
+    "code": "CC",
+    "value": "Critical Client Events",
+    "cycles": 1
+}, {
+    "key": "ED",
+    "code": "ED",
+    "value": "EDE Action",
+    "cycles": 1
+}, {
+    "key": "EF",
+    "code": "EF",
+    "value": "Electronic Filing",
+    "cycles": 1
+}, {
+    "key": "EN",
+    "code": "EN",
+    "value": "Examination/Prosecution",
+    "cycles": 1
+}, {
+    "key": "EX",
+    "code": "EX",
+    "value": "Extension of Term",
+    "cycles": 1
+}, {
+    "key": "AL",
+    "code": "AL",
+    "value": "Filing",
+    "cycles": 1
+}, {
+    "key": "~1",
+    "code": "~1",
+    "value": "Formalities - Law Update Service",
+    "cycles": 1
+}, {
+    "key": "FM",
+    "code": "FM",
+    "value": "Forms",
+    "cycles": 1
+}, {
+    "key": "LR",
+    "code": "LR",
+    "value": "Licensing & Assignment Recordal",
+    "cycles": 1
+}, {
+    "key": "MS",
+    "code": "MS",
+    "value": "Miscellaneous",
+    "cycles": 1
+}, {
+    "key": "NO",
+    "code": "NO",
+    "value": "Nominal Working",
+    "cycles": 25
+}, {
+    "key": "OC",
+    "code": "OC",
+    "value": "Opposition & Challenges",
+    "cycles": 1
+}, {
+    "key": "AS",
+    "code": "AS",
+    "value": "Overview",
+    "cycles": 1
+}, {
+    "key": "PR",
+    "code": "PR",
+    "value": "Post Registration",
+    "cycles": 1
+}, {
+    "key": "PC",
+    "code": "PC",
+    "value": "PTO Correspondence",
+    "cycles": 1
+}, {
+    "key": "RF",
+    "code": "RF",
+    "value": "Refusal",
+    "cycles": 1
+}]

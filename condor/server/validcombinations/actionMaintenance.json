@@ -1,0 +1,107 @@
+[{
+    "validActionIdentifier": {
+       "countryId": "AU",
+       "propertyTypeId": "D",
+       "caseTypeId": "A",
+       "actionId": "~1"
+    },
+    "jurisdictions": [
+        {
+            "code": "AU",
+            "value": "Australia"
+        }
+    ],
+    "propertyType": {
+        "code": "D",
+        "value": "Designs"
+    },
+    "caseType": {
+        "code": "A",
+        "value": "Properties"
+    },
+    "action": {
+        "code": "~1",
+        "value": "Formalities - Law Update Service"
+    },    
+    "validDescription": "Valid Formalities Action",
+    "validActionOrder": {
+        "id": {
+            "countryId": "AU",
+            "propertyTypeId": "D",
+            "caseTypeId": "A",
+            "actionId": "~1"
+        },
+        "code": "~1",
+        "description": "Formalities - Law Update Service",
+        "cycles": 2,
+        "renewal": true,
+        "examination": false,
+        "displaySequence": 3        
+    }
+}, {
+    "validActionIdentifier": {
+       "countryId": "US",
+       "propertyTypeId": "P",
+       "caseTypeId": "A",
+       "actionId": "EF"
+    },
+    "jurisdictions": [
+        {
+            "code": "AU",
+            "value": "Australia"
+        }
+    ],
+    "propertyType": {
+        "code": "P",
+        "value": "Patents"
+    },
+    "caseType": {
+        "code": "A",
+        "value": "Properties"
+    },
+    "action": {
+        "code": "EF",
+        "value": "Electronic Filing"
+    },    
+    "validDescription": "Valid Electronic Filing"
+}, {
+    "validActionIdentifier": {
+       "countryId": "AU",
+       "propertyTypeId": "D",
+       "caseTypeId": "A",
+       "actionId": "~2"
+    },
+    "jurisdictions": [
+        {
+            "code": "AU",
+            "value": "Australia"
+        }
+    ],
+    "propertyType": {
+        "code": "D",
+        "value": "Designs"
+    },
+    "caseType": {
+        "code": "A",
+        "value": "Properties"
+    },
+    "action": {
+        "code": "~2",
+        "value": "Renewals - Law Update Service"
+    },    
+    "validDescription": "Valid Formalities Renewals Filing",
+    "validActionOrder": {
+        "id": {
+            "countryId": "AU",
+            "propertyTypeId": "D",
+            "caseTypeId": "A",
+            "actionId": "~2"
+        },
+        "code": "~2",
+        "description": "Renewals - Law Update Service",
+        "cycles": 1,
+        "renewal": false,
+        "examination": false,
+        "displaySequence": 5       
+    }
+}]

@@ -1,0 +1,36 @@
+[{
+    "id": 1,
+    "code": "C",
+    "description": "Acceptance No",
+    "relatedEvent": "Notice of Allowance",
+    "issuedByIpOffice": true,
+    "displayPriority": 0
+}, {
+    "id": 2,
+    "code": "A",
+    "description": "Application No",
+    "relatedEvent": "File Information",
+    "issuedByIpOffice": false,
+    "displayPriority": 1
+}, {
+    "id": 3,
+    "code": "W",
+    "description": "Patent No",
+    "relatedEvent": "",
+    "issuedByIpOffice": true,
+    "displayPriority": 2
+}, {
+    "id": 4,
+    "code": "V",
+    "description": "Registration No",
+    "relatedEvent": "Publication of Application",
+    "issuedByIpOffice": true,
+    "displayPriority": 3
+}, {
+    "id": 5,
+    "code": "6",
+    "description": "CPA Format Application No",
+    "relatedEvent": "",
+    "issuedByIpOffice": false,
+    "displayPriority": 4
+}]

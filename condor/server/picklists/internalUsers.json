@@ -1,0 +1,81 @@
+[{
+    "key": -1,
+    "username": "Administrator",
+    "name": "System Administrator"
+}, {
+    "key": 6,
+    "username": "Attorney",
+    "name": "Orange, Barbara O."
+}, {
+    "key": 34,
+    "username": "clerical",
+    "name": "Cork, Colleen C"
+}, {
+    "key": 35,
+    "username": "Accounts",
+    "name": "Harris, John Jackson"
+}, {
+    "key": 41,
+    "username": "eelm",
+    "name": "Elm, Ellen"
+}, {
+    "key": 42,
+    "username": "marketing",
+    "name": "Baston, Ann"
+}, {
+    "key": 45,
+    "username": "afrancis",
+    "name": "Acorn, Arthur Francis"
+}, {
+    "key": 47,
+    "username": "internal",
+    "name": "Grey, George"
+}, {
+    "key": 50,
+    "username": "paralegal",
+    "name": "Rankin, Trent"
+}, {
+    "key": 52,
+    "username": "intloginkey",
+    "name": "Harris, John Jackson"
+}, {
+    "key": 54,
+    "username": "intloginkey1",
+    "name": "Branch, Bruce John"
+}, {
+    "key": 57,
+    "username": "intloginkey3",
+    "name": "Lanava, Julie"
+}, {
+    "key": 60,
+    "username": "aa",
+    "name": "Acorn Georgio Mr"
+}, {
+    "key": 61,
+    "username": "utest",
+    "name": "Hodges, Ken"
+}, {
+    "key": 63,
+    "username": "rholm",
+    "name": "Mr Records Holm"
+}, {
+    "key": 64,
+    "username": "aholm",
+    "name": "Ms Andrea Holm"
+}, {
+    "key": 65,
+    "username": "French",
+    "name": "Renoir, Francois"
+}, {
+    "key": 66,
+    "username": "German",
+    "name": "Eichmann, Dietrich"
+}, {
+    "key": 67,
+    "username": "Spanish",
+    "name": "Chavez Domingo"
+}, {
+    "key": 68,
+    "username": "jlaverton",
+    "name": "Laverton, Jan"
+}]

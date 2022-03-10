@@ -1,0 +1,27 @@
+[{    
+    "country": "Australia",
+    "countryId": "AU",
+    "propertyType": "Designs",    
+    "caseType": "Properties",
+    "action": "Filing",
+    "category": "Divisional",
+    "subtype": "Normal",
+    "basis": "Non-convention",
+    "status": "Search completed",
+    "checklist": "Lodged Application",
+    "relationship": "Marketing Activity",
+    "dateOfLaw": "1-Feb-2016"
+}, {    
+    "country": "United States",
+    "countryId": "US",   
+    "propertyType": "Designs",    
+    "caseType": "Properties",
+    "action": "Formalities - Law Update Service",
+    "category": "Divisional",
+    "subtype": "Certification Mark",
+    "basis": "Convention",
+    "status": "CPA to be notified",
+    "checklist": "New Application Debit Note",
+    "relationship": "Converted from CTM",
+    "dateOfLaw": "1-Feb-2015"
+}]

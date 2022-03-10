@@ -1,0 +1,83 @@
+{
+    "caseKey": 13,
+    "irn": "000315-1",
+    "title": "BALLOON BLAST BALL",
+    "caseStatus": "Application filed",
+    "renewalStatus": null,
+    "officialNumber": "12345",
+    "instructor": {
+        "id": 10048,
+        "type": "Instructor",
+        "typeId": "I",
+        "sequence": 0,
+        "name": "Balloon Blast Ball Pty Ltd",
+        "nameAndCode": "{BBB} Balloon Blast Ball Pty Ltd",
+        "reference": "BBB0019",
+        "billingPercentage": null
+    },
+    "debtors": [{
+            "id": 42,
+            "type": "Debtor",
+            "typeId": "D",
+            "sequence": 0,
+            "name": "Brimstone Holding Company",
+            "nameAndCode": "Brimstone Holding Company {001234}",
+            "billingPercentage": 35,
+            "showNameCodeRestriction": true,
+            "showBillPercentage": true
+        },
+        {
+            "id": 43,
+            "type": "Debtor",
+            "typeId": "D",
+            "sequence": 0,
+            "name": "Brimstone Holding Company2",
+            "nameAndCode": "Brimstone Holding Company {001234}",
+            "billingPercentage": 65,
+            "showNameCodeRestriction": true,
+            "showBillPercentage": true
+        }
+    ],
+    "owners": [{
+            "id": -1681000,
+            "type": "Owner",
+            "typeId": "O",
+            "sequence": 0,
+            "name": "Zappy Coolers (Australia) Pty Limited",
+            "nameAndCode": "Zappy Coolers (Australia) Pty Limited"
+        },
+        {
+            "id": 42,
+            "type": "Owner",
+            "typeId": "O",
+            "sequence": 0,
+            "name": "Brimstone Holding Company",
+            "nameAndCode": "Brimstone Holding Company"
+        },
+        {
+            "id": 10048,
+            "type": "Owner",
+            "typeId": "O",
+            "sequence": 0,
+            "name": "Balloon Blast Ball Pty Ltd",
+            "nameAndCode": "Balloon Blast Ball Pty Ltd"
+        }
+    ],
+    "staffMember": {
+        "id": -499,
+        "type": "Staff Member",
+        "typeId": "EMP",
+        "sequence": 0,
+        "name": "Postema Gerton Mr",
+        "nameAndCode": "Postema Gerton Mr"
+    },
+    "signatory": {
+        "id": -499,
+        "type": "Signatory",
+        "typeId": "SIG",
+        "sequence": 0,
+        "name": "Postema Gerton Mr",
+        "nameAndCode": "Postema Gerton Mr"
+    },
+    "instructorReference": null
+}

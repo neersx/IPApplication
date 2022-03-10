@@ -1,0 +1,58 @@
+[{
+    "validPropertyIdentifier": {
+       "countryId": "AU",
+       "propertyTypeId": "A"
+    },
+    "jurisdictions": [
+        {
+            "code": "AU",
+            "value": "Australia"
+        }
+    ],
+    "propertyType": {
+        "code": "A",
+        "value": "Opportunity"
+    },
+    "offset": 1,
+    "cycleOffset": 2,
+    "annuityType": 0,
+    "validDescription": "Valid Opportunity"
+}, {
+    "validPropertyIdentifier": {
+       "countryId": "US",
+       "propertyTypeId": "C"
+    },
+    "jurisdictions": [
+        {
+            "code": "US",
+            "value": "United States"
+        }
+    ],
+    "propertyType": {
+        "code": "C",
+        "value": "Copyright"
+    },
+    "offset": 1,
+    "cycleOffset": 1,
+    "annuityType": 1,
+    "validDescription": "Valid Copyright"
+}, {
+    "validPropertyIdentifier": {
+       "countryId": "AF",
+       "propertyTypeId": "D"
+    },
+    "jurisdictions": [
+        {
+            "code": "AF",
+            "value": "Afghanistan"
+        }
+    ],
+    "propertyType": {
+        "code": "D",
+        "value": "Designs"
+    },
+    "offset": null,
+    "cycleOffset": 3,
+    "annuityType": 1,
+    "validDescription": "Valid Designs"
+}]

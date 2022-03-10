@@ -1,0 +1,30 @@
+{
+    "caseKey": -487,
+    "irn": "1234/A",
+    "title": "RONDON and shoe device",
+    "caseStatus": "Registered",
+    "renewalStatus": "In Force",
+    "country": "Australia",
+    "propertyTypeCode": "T",
+    "propertyType": "Trade Mark",
+    "caseCategory": "Normal",
+    "subType": "Normal",
+    "fileLocation": "Sent to Storage",
+    "caseOffice": null,
+    "caseType": "Properties",
+    "isPending": false,
+    "isRegistered": true,
+    "isDead": false,
+    "status": "Registered",
+    "criteriaKey": 999,
+    "policingStatus": "Error",
+    "staff": {
+        "name": "George Grey",
+        "nameCode": "GG",
+        "nameKey": -487,
+        "nameType": "EMP"
+    },
+    "hasBillPercentageDisplayed": [
+        "D"
+    ]
+}

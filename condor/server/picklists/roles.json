@@ -1,0 +1,18 @@
+[
+    {"key": "6", "value": "All External"},
+    {"key": "5", "value": "All Internal"},
+    {"key": "-4", "value": "Client Accounts"},
+    {"key": "2", "value": "Client Basic"},
+    {"key": "-2", "value": "Client Basic Enquiry"},
+    {"key": "-5", "value": "Client Financials"},
+    {"key": "-3", "value": "Client Supervisor"},
+    {"key": "4", "value": "Customer Relationship Manager"},
+    {"key": "-22", "value": "External"},
+    {"key": "-12", "value": "External Administrator"},
+    {"key": "-10", "value": "Fee Earner"},
+    {"key": "3", "value": "Filing Clerk"},
+    {"key": "-21", "value": "Internal"},
+    {"key": "-11", "value": "Report Template Author"},
+    {"key": "-1", "value": "System Administrator"},
+    {"key": "-20", "value": "User"}
+]

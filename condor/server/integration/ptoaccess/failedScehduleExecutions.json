@@ -1,0 +1,17 @@
+[{
+    "id": 2,
+    "status": "Failed",
+    "type": "Retry",
+    "started": "2014-09-04T15:56:44.13",
+    "finished": "2014-09-04T19:56:44.13",
+    "casesDownloaded": 20,
+    "correlationId": "5678"
+}, {
+    "id": 2,
+    "status": "Failed",
+    "type": "OnDemand",
+    "started": "2014-09-04T15:56:44.13",
+    "finished": "2014-09-04T19:56:44.13",
+    "casesDownloaded": 20,
+    "correlationId": "1234"
+}]

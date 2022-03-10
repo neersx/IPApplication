@@ -1,0 +1,280 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "condorNg": {
+      "root": "client",
+      "sourceRoot": "client/ng",
+      "projectType": "application",
+      "prefix": "ipx",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "aot": true,
+            "outputPath": "client/tmp/ng",
+            "index": "client/index.html",
+            "main": "client/main.ts",
+            "polyfills": "client/polyfills.ts",
+            "tsConfig": "client/ng/tsconfig.app.json",
+            "assets": [],
+            "styles": [
+              "./client/ng/style.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "hybrid": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": {
+                "scripts": true,
+                "styles": false,
+                "vendor": false
+              },
+              "vendorSourceMap": false,
+              "extractCss": false,
+              "aot": false,
+              "buildOptimizer": false,
+              "extractLicenses": false,
+              "namedChunks": false,
+              "vendorChunk": true,
+              "styles": [
+                "client/ng/style.scss"
+              ]
+            },
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": false,
+              "aot": true,
+              "buildOptimizer": true,
+              "extractLicenses": false,
+              "namedChunks": false,
+              "vendorChunk": false,
+              "styles": [
+                "client/ng/style.scss"
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "client/ng/environments/environment.ts",
+                  "with": "client/ng/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "e2e": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "aot": true,
+              "buildOptimizer": true,
+              "extractLicenses": true,
+              "namedChunks": false,
+              "vendorChunk": false,
+              "fileReplacements": [
+                {
+                  "replace": "client/ng/environments/environment.ts",
+                  "with": "client/ng/environments/environment.e2e.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "condorNg:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "condorNg:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "condorNg:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "no-cache": true
+          }
+        }        
+      }
+    },
+    "signinNg": {
+      "root": "client/signin/",
+      "sourceRoot": "client/signin/src",
+      "projectType": "application",
+      "prefix": "ipx",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "aot": true,
+            "outputPath": "client/tmp/signin",
+            "index": "client/signin/src/index.html",
+            "main": "client/signin/src/main.ts",
+            "polyfills": "client/signin/src/polyfills.ts",
+            "tsConfig": "client/signin/tsconfig.app.json",
+            "assets": [],
+            "resourcesOutputPath": "../styles/assets",
+            "extractCss": true,
+            "styles": [
+              {
+                "input": "client/signin/src/styles.scss",
+                "bundleName": "./signin-app.min"
+              }
+            ],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "client/signin/environments/environment.ts",
+                  "with": "client/signin/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "signinNg:build",
+            "port": 9001
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "signinNg:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "signinNg:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-builders/jest:run",
+          "options": {
+            "no-cache": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "client/signin/tsconfig.app.json",
+              "client/signin/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "**/client/ng/**",
+              "**/client/redirect/**",
+              "**/client/condor/**",
+              "**/client/maint.ts"
+            ],
+            "tslintConfig": "./tslint-ng.json"
+          }
+        }
+      }
+    },
+    "lint-src":{
+      "root": "client",
+      "sourceRoot": "client/ng",
+      "projectType": "application",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "client/ng/tsconfig.app.json"
+            ],
+            "tslintConfig": "./tslint-ng.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "lint-spec":{
+      "root": "client",
+      "sourceRoot": "client/ng",
+      "projectType": "application",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "client/ng/tsconfig.spec.json"
+            ],
+            "tslintConfig": "./tslint-ng.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "condorNg",
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss"
+    }
+  },
+  "cli": {
+    "analytics": "afdd6a18-2229-4e0e-ab82-8ea95af4f15e"
+  }
+}

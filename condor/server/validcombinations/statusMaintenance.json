@@ -1,0 +1,51 @@
+[{
+    "validStatusIdentifier": {
+        "countryId": "AU",
+        "propertyTypeId": "D",
+        "caseTypeId": "A",
+        "statusCode": -302
+    },
+    "jurisdictions": [
+        {
+            "code": "AU",
+            "value": "Australia"
+        }
+    ],
+    "propertyType": {
+        "code": "D",
+        "value": "Designs"
+    },
+    "caseType": {
+        "code": "A",
+        "value": "Properties"
+    },
+    "status": {
+        "key": -302,
+        "value": "CPA to be notified"
+    }    
+}, {
+    "validStatusIdentifier": {
+        "countryId": "US",
+        "propertyTypeId": "T",
+        "caseTypeId": "A",
+        "statusCode": -212
+    },
+    "jurisdictions": [
+        {
+            "code": "US",
+            "value": "United States"
+        }
+    ],
+    "propertyType": {
+        "code": "T",
+        "value": "Trademark"
+    },
+    "caseType": {
+        "code": "A",
+        "value": "Properties"
+    },
+    "status": {
+        "key": -212,
+        "value": "Refused or Removed by IPO"
+    }
+}]

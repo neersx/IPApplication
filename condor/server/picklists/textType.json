@@ -1,0 +1,73 @@
+[{
+    "key": "_B",
+    "value": "Billing"
+}, {
+    "key": "A",
+    "value": "Abstract"
+}, {
+    "key": "C",
+    "value": "Int'l Patent Classification"
+}, {
+    "key": "CB",
+    "value": "Correspondence Instructions (Billing)"
+}, {
+    "key": "CC",
+    "value": "Correspondence Instructions (Cases)"
+}, {
+    "key": "CL",
+    "value": "Claims"
+}, {
+    "key": "CP",
+    "value": "Correspondence Instructions (PassThru)"
+}, {
+    "key": "D",
+    "value": "Description"
+}, {
+    "key": "G",
+    "value": "Goods/Services"
+}, {
+    "key": "GW",
+    "value": "Global Welcome"
+}, {
+    "key": "I",
+    "value": "Inventors"
+}, {
+    "key": "IW",
+    "value": "Internal Welcome"
+}, {
+    "key": "M",
+    "value": "Translation of TM"
+}, {
+    "key": "N",
+    "value": "Extended Name"
+}, {
+    "key": "R",
+    "value": "Remarks"
+}, {
+    "key": "S",
+    "value": "Statement of Monopoly"
+}, {
+    "key": "T",
+    "value": "Full Title or Mark"
+}, {
+    "key": "T1",
+    "value": "Text 1"
+}, {
+    "key": "T2",
+    "value": "Text 2"
+}, {
+    "key": "T3",
+    "value": "Text 3"
+}, {
+    "key": "V",
+    "value": "Statement of Novelty"
+}, {
+    "key": "X",
+    "value": "General Notes"
+}, {
+    "key": "XW",
+    "value": "External Welcome"
+}, {
+    "key": "Z2",
+    "value": "IPONZ Series Mark Data"
+}]

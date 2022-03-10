@@ -1,0 +1,27 @@
+[
+    {
+        "key": 1,
+        "name": "Accounts",
+        "description": "Accountants"
+    },
+    {
+        "key": 2,
+        "name": "Clerical",
+        "description": "Filing Clerks"
+    },
+    {
+        "key": 5,
+        "name": "Client Access",
+        "description": "A profile for external (client) users"
+    },
+    {
+        "key": 4,
+        "name": "Customer Relations",
+        "description": "Customer Relations Manager"
+    },
+    {
+        "key": 3,
+        "name": "Proffessional",
+        "description": "Attorneys, Fee Earners, Lawyers, Partners, Associates"
+    }
+]

@@ -1,0 +1,13 @@
+[{
+    "type": 0,
+    "description": "Display Error"
+}, {
+    "type": 1,
+    "description": "Display Warning  dialog"
+}, {
+    "type": 2,
+    "description": "Display Warning dialog and prompt for Password"
+}, {
+    "type": 3,
+    "description": "No Action"
+}]

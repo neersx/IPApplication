@@ -1,0 +1,49 @@
+[{
+    "key": "1800-01-01T00:00:00",
+    "value": "01-Jan-1800",
+    "retrospectiveAction": "",
+    "defaultEventForLaw": "Application Filing Date",
+    "defaultRetrospectiveEvent": "Critical date for law change"
+}, {
+    "key": "1800-01-01T00:00:00",
+    "value": "01-Jan-1800",
+    "retrospectiveAction": "Renewals - Law Update Service",
+    "defaultEventForLaw": "Application Filing Date",
+    "defaultRetrospectiveEvent": "Critical date for law change"
+}, {
+    "key": "1901-01-01T00:00:00",
+    "value": "01-Jan-1901",
+    "retrospectiveAction": "",
+    "defaultEventForLaw": "Application Filing Date",
+    "defaultRetrospectiveEvent": ""
+}, {
+    "key": "1958-08-01T00:00:00",
+    "value": "01-Aug-1958",
+    "retrospectiveAction": "",
+    "defaultEventForLaw": "Application Filing Date",
+    "defaultRetrospectiveEvent": "Critical date for law change"
+}, {
+    "key": "1958-08-01T00:00:00",
+    "value": "01-Aug-1958",
+    "retrospectiveAction": "Renewals - Law Update Service",
+    "defaultEventForLaw": "Application Filing Date",
+    "defaultRetrospectiveEvent": "Critical date for law change"
+}, {
+    "key": "1996-01-01T00:00:00",
+    "value": "01-Jan-1996",
+    "retrospectiveAction": "",
+    "defaultEventForLaw": "Registered on",
+    "defaultRetrospectiveEvent": "Critical date for law change"
+}, {
+    "key": "1996-01-01T00:00:00",
+    "value": "01-Jan-1996",
+    "retrospectiveAction": "Renewal Sequencing",
+    "defaultEventForLaw": "Application Filing Date",
+    "defaultRetrospectiveEvent": "Critical date for law change"
+}, {
+    "key": "1996-01-01T00:00:00",
+    "value": "01-Jan-1996",
+    "retrospectiveAction": "Renewals - Law Update Service",
+    "defaultEventForLaw": "Registered on",
+    "defaultRetrospectiveEvent": "Critical date for law change"
+}]
